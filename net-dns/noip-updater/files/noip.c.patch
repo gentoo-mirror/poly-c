@@ -1,0 +1,13 @@
+--- noip_updater_v1.6/noip.c.old	2001-10-11 01:48:12.000000000 +0200
++++ noip_updater_v1.6/noip.c	2006-08-07 23:34:44.723854160 +0200
+@@ -95,8 +95,8 @@
+ #define OURBUFLEN		8192
+ #define IPLEN			16
+ #define SAVEDIPFILE		"/tmp/no-ip_save"
+-#define CONFIG_FILENAME		"/usr/local/lib/no-ip.conf"
+-#define CONFIG_FILENAME_ETC     "/usr/local/etc/no-ip.conf"
++#define CONFIG_FILENAME		"/usr/lib/no-ip.conf"
++#define CONFIG_FILENAME_ETC     "/etc/no-ip.conf"
+ #define CONFIGNUM		10
+ #define CONFSTRLEN		1024
+ #define NUMBER			2

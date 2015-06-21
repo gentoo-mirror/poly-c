@@ -1,0 +1,55 @@
+--- ntopng-1.1_6932/configure.in
++++ ntopng-1.1_6932/configure.in
+@@ -2,11 +2,7 @@
+ 
+ AC_PROG_CPP
+ 
+-dnl> Add /usr/local/ /opt/local
+ NTOPNG_VERS=`cat ./configure.in | head -1 | grep '_INIT' | cut -d " " -f 2|cut -d ')' -f 1`
+-CFLAGS="${CFLAGS} -I/usr/local/include -I/opt/local/include"
+-CPPFLAGS="${CPPFLAGS} -I/usr/local/include -I/opt/local/include"
+-LDFLAGS="${LDFLAGS} -L/usr/local/lib -L/opt/local/lib"
+ 
+ SVN_RELEASE=`svn info . | grep "^Revision"|cut -d " " -f 2`
+ AC_DEFINE_UNQUOTED(NTOPNG_SVN_RELEASE, "r${SVN_RELEASE}", [SVN Release])
+--- ntopng-1.1_6932/Makefile.in
++++ ntopng-1.1_6932/Makefile.in
+@@ -120,13 +120,13 @@
+ 	tar cvfz ntopng-@PACKAGE_VERSION@.tgz ntopng-@PACKAGE_VERSION@
+ 	#
+ 	rm -rf ntopng-data-@PACKAGE_VERSION@
+-	mkdir -p ntopng-data-@PACKAGE_VERSION@/usr/local/share/ntopng/httpdocs/geoip/
++	mkdir -p ntopng-data-@PACKAGE_VERSION@$(DESTDIR)$(PREFIX)/share/ntopng/httpdocs/geoip/
+ 	@if test -d ~/dat_files ; then \
+-	  cp ~/dat_files/* ntopng-data-@PACKAGE_VERSION@/usr/local/share/ntopng/httpdocs/geoip/; \
++	  cp ~/dat_files/* ntopng-data-@PACKAGE_VERSION@$(DESTDIR)$(PREFIX)/share/ntopng/httpdocs/geoip/; \
+ 	else \
+-	  cp ./httpdocs/geoip/* ntopng-data-@PACKAGE_VERSION@/usr/local/share/ntopng/httpdocs/geoip/ ;\
++	  cp ./httpdocs/geoip/* ntopng-data-@PACKAGE_VERSION@$(DESTDIR)$(PREFIX)/share/ntopng/httpdocs/geoip/ ;\
+ 	fi
+-	#gunzip ntopng-data-@PACKAGE_VERSION@/usr/local/share/ntopng/httpdocs/geoip/*.gz
++	#gunzip ntopng-data-@PACKAGE_VERSION@$(DESTDIR)$(PREFIX)/share/ntopng/httpdocs/geoip/*.gz
+ 	tar cvfz ntopng-data-@PACKAGE_VERSION@.tgz ntopng-data-@PACKAGE_VERSION@
+ 
+ 
+@@ -161,13 +161,13 @@
+ 	@echo "to create a package and install that"
+ 	@echo "rpm - do 'make build-rpm'"
+ 	@echo "deb - do 'cd packages/ubuntu;./configure;make"
+-	mkdir -p /usr/local/share/ntopng /usr/local/man/man8 /usr/local/bin
+-	cp ntopng /usr/local/bin
+-	cp ./ntopng.8 /usr/local/man/man8
+-	cp -r ./httpdocs /usr/local/share/ntopng
+-	cp -r ./scripts /usr/local/share/ntopng
+-	find /usr/local/share/ntopng -name "*~"   | xargs /bin/rm -f
+-	find /usr/local/share/ntopng -name ".svn" | xargs /bin/rm -rf
++	mkdir -p $(DESTDIR)$(PREFIX)/share/ntopng $(DESTDIR)$(PREFIX)/man/man8 $(DESTDIR)$(PREFIX)/bin
++	cp ntopng $(DESTDIR)$(PREFIX)/bin
++	cp ./ntopng.8 $(DESTDIR)$(PREFIX)/man/man8
++	cp -r ./httpdocs $(DESTDIR)$(PREFIX)/share/ntopng
++	cp -r ./scripts $(DESTDIR)$(PREFIX)/share/ntopng
++	find $(DESTDIR)$(PREFIX)/share/ntopng -name "*~"   | xargs /bin/rm -f
++	find $(DESTDIR)$(PREFIX)/share/ntopng -name ".svn" | xargs /bin/rm -rf
+ 
+ Makefile: @SVN_WC_DB@
+ 	@echo ""

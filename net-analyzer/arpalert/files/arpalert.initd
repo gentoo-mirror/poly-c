@@ -1,0 +1,22 @@
+#!/sbin/runscript
+# Copyright 1999-2006 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+# Written by Polynomial-C
+
+depend() {
+	need net
+}
+
+start() {
+	ebegin "Starting arpalert"
+	start-stop-daemon --quiet --start --pidfile /var/run/arpalert.lock --exec /usr/sbin/arpalert -- -d
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping arpalert"
+	start-stop-daemon --quiet --stop --pidfile /var/run/arpalert.lock
+	eend $?
+}

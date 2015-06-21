@@ -1,0 +1,27 @@
+--- cutmp3-2.0.2/Makefile
++++ cutmp3-2.0.2/Makefile
+@@ -1,10 +1,10 @@
+ NAME=cutmp3
+ VERSION=@VERSION@
+-PREFIX=/usr
++PREFIX=${D}/usr
+ BINDIR=${PREFIX}/bin
+ DATADIR=${PREFIX}/share
+ MANDIR=${PREFIX}/share/man/man1
+-DOCDIR=${DATADIR}/doc/${NAME}-${VERSION}
++DOCDIR=${DATADIR}/doc/${PF}
+ 
+ all:
+ 	@echo -e "\n\n*** You need readline-devel, ncurses-devel or similar to compile ${NAME} ***\n*** Maybe you want to try the binary on compile failures? ***\n\n"
+@@ -24,9 +23,8 @@
+ install:
+ 	install -d ${BINDIR}
+ 	install ${NAME} ${BINDIR}
+-	if [ ! -z "${KDEDIR}" ]; then install -m 644 ${NAME}.desktop ${KDEDIR}/share/apps/konqueror/servicemenus; elif [ -d /usr/share/apps/konqueror/servicemenus ]; then install -m 644 ${NAME}.desktop /usr/share/apps/konqueror/servicemenus; elif [ -d /opt/kde/share/apps/konqueror/servicemenus ]; then install -m 644 ${NAME}.desktop /opt/kde/share/apps/konqueror/servicemenus; elif [ -d /opt/kde3/share/apps/konqueror/servicemenus ]; then install -m 644 ${NAME}.desktop /opt/kde3/share/apps/konqueror/servicemenus; fi
+-	install -d ${DOCDIR}/${NAME}
+-	install -m 644 README* USAGE ${DOCDIR}/${NAME}
++	install -d ${DOCDIR}
++	install -m 644 README* USAGE ${DOCDIR}
+ 	install -d ${MANDIR}
+ 	gzip ${NAME}.1
+ 	install -m 644 ${NAME}.1.gz ${MANDIR}

@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst unpack
+DEPEND=>=app-arch/rpm2targz-9.0.0.3g
+DESCRIPTION=Adaptec Storage Manager (ASM)
+EAPI=5
+HOMEPAGE=http://www.adaptec.com/en-US/downloads/
+IUSE=X
+KEYWORDS=-* ~amd64 ~x86
+LICENSE=Adaptec
+RDEPEND=virtual/libstdc++:3.3 X? ( || ( virtual/jdk:1.7 virtual/jdk:1.6 virtual/jdk:1.5 ) )
+RESTRICT=strip
+SLOT=0
+SRC_URI=amd64? ( http://download.adaptec.com/raid/storage_manager/asm_linux_x64_v5_20_17414.rpm ) x86? ( http://download.adaptec.com/raid/storage_manager/asm_linux_x86_v5_20_17414.rpm )
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	62927b3db3a589b0806255f3a002d5d3	rpm	b94b54b44f14d6bee3e966c8f5c86fba	toolchain-funcs	42408102d713fbad60ca21349865edb4	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_md5_=096dabb0053f35611752fd6a4b67f4e3

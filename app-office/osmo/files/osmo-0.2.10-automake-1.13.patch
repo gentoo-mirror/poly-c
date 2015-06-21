@@ -1,0 +1,24 @@
+From: Markus Koschany <apo@gambaru.de>
+Date: Sat, 22 Jun 2013 20:50:42 +0200
+Subject: Remove -Werror flag from AM_INIT_AUTOMAKE.
+
+Temporary solution to prevent a FTBFS.
+
+Forwarded:
+---
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index d959965..a4a1acd 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -4,7 +4,7 @@
+ AC_PREREQ(2.61)
+ AC_INIT([Osmo], [0.2.12], [pasp@users.sf.net])
+ AC_CONFIG_MACRO_DIR([m4])
+-AM_INIT_AUTOMAKE([-Wall -Werror foreign])
++AM_INIT_AUTOMAKE([-Wall foreign])
+ AC_CONFIG_SRCDIR([src/contacts.c])
+ AC_CONFIG_HEADER([config.h])
+ AC_MSG_CHECKING(for type of build)

@@ -1,0 +1,24 @@
+Limit TTY name to size of `buf' buffer
+
+Patch from <http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=221841>.
+http://sourceforge.net/tracker/?func=detail&aid=3095712&group_id=80387&atid=559616
+
+--- mingetty-1.08/mingetty.c
++++ mingetty-1.08/mingetty.c
+@@ -138,11 +138,12 @@
+ 	int fd;
+ 
+ 	/* Set up new standard input. */
+-	if (tty[0] == '/')
+-		strcpy (buf, tty);
+-	else {
++	if (tty[0] == '/') {
++		strncpy (buf, tty, sizeof(buf)-1);
++		buf[sizeof(buf)-1] = '\0';
++	} else {
+ 		strcpy (buf, "/dev/");
+-		strcat (buf, tty);
++		strncat (buf, tty, sizeof(buf)-strlen(buf)-1);
+ 	}
+ 	/* There is always a race between this reset and the call to
+ 	   vhangup() that s.o. can use to get access to your tty. */

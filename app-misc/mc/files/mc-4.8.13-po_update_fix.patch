@@ -1,0 +1,107 @@
+--- mc-4.8.13/po/mc.pot
++++ mc-4.8.13/po/mc.pot
+@@ -694,7 +694,7 @@
+ msgid "&OK"
+ msgstr ""
+ 
+-#: lib/widget/quick.h:216 src/editor/bookmark_list.c:592
++#: lib/widget/quick.h:216 src/editor/bookmark.c :592
+ #: src/editor/editcmd.c:246 src/editor/editcmd.c:269 src/editor/editcmd.c:440
+ #: src/editor/editcmd.c:603 src/editor/editcmd.c:1734
+ #: src/editor/editcmd.c:2079 src/editor/editcmd.c:2856
+@@ -1156,68 +1156,68 @@
+ msgid "Two files are needed to compare"
+ msgstr ""
+ 
+-#: src/editor/bookmark_list.c:240 src/editor/bookmark_list.c:658
++#: src/editor/bookmark.c :240 src/editor/bookmark.c :658
+ msgid "Bookmarks"
+ msgstr ""
+ 
+-#: src/editor/bookmark_list.c:244
++#: src/editor/bookmark.c :244
+ msgid " - Sort: "
+ msgstr ""
+ 
+-#: src/editor/bookmark_list.c:246
++#: src/editor/bookmark.c :246
+ msgid "ABC"
+ msgstr ""
+ 
+-#: src/editor/bookmark_list.c:247
++#: src/editor/bookmark.c :247
+ msgid "FRQ"
+ msgstr ""
+ 
+-#: src/editor/bookmark_list.c:252
++#: src/editor/bookmark.c :252
+ msgid " - Filter: "
+ msgstr ""
+ 
+-#: src/editor/bookmark_list.c:253
++#: src/editor/bookmark.c :253
+ msgid "FOUND"
+ msgstr ""
+ 
+-#: src/editor/bookmark_list.c:253
++#: src/editor/bookmark.c :253
+ msgid "USER"
+ msgstr ""
+ 
+-#: src/editor/bookmark_list.c:580
++#: src/editor/bookmark.c :580
+ msgid "&Go to"
+ msgstr ""
+ 
+-#: src/editor/bookmark_list.c:583
++#: src/editor/bookmark.c :583
+ msgid "&Add"
+ msgstr ""
+ 
+-#: src/editor/bookmark_list.c:586 src/filemanager/hotlist.c:201
++#: src/editor/bookmark.c :586 src/filemanager/hotlist.c:201
+ #: src/filemanager/panelize.c:141
+ msgid "&Remove"
+ msgstr ""
+ 
+-#: src/editor/bookmark_list.c:589
++#: src/editor/bookmark.c :589
+ msgid "Fl&ush"
+ msgstr ""
+ 
+-#: src/editor/bookmark_list.c:595
++#: src/editor/bookmark.c :595
+ msgid "&Filter"
+ msgstr ""
+ 
+-#: src/editor/bookmark_list.c:598
++#: src/editor/bookmark.c :598
+ msgid "&Sort"
+ msgstr ""
+ 
+-#: src/editor/bookmark_list.c:601
++#: src/editor/bookmark.c :601
+ msgid "Re&verse"
+ msgstr ""
+ 
+-#: src/editor/bookmark_list.c:642
++#: src/editor/bookmark.c :642
+ msgid "Bookmark list"
+ msgstr ""
+ 
+-#: src/editor/bookmark_list.c:674
++#: src/editor/bookmark.c :674
+ msgid "Bookmark detail"
+ msgstr ""
+ 
+--- mc-4.8.13/po/POTFILES.in
++++ mc-4.8.13/po/POTFILES.in
+@@ -25,7 +25,7 @@
+ src/diffviewer/internal.h
+ src/diffviewer/search.c
+ src/diffviewer/ydiff.c
+-src/editor/bookmark_list.c
++src/editor/bookmark.c
+ src/editor/choosesyntax.c
+ src/editor/edit.c
+ src/editor/editcmd.c

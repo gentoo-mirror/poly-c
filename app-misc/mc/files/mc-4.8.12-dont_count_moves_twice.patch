@@ -1,0 +1,36 @@
+Index: src/filemanager/file.c
+===================================================================
+--- src/filemanager/file.c	(revision e5203cb023a7a8aa1f69ce3ca87be6c0b616e485)
++++ src/filemanager/file.c	(revision 620b9252cfa91cb8fdff9ece385462e5ed99d7b0)
+@@ -2351,4 +2351,5 @@
+   oktoret:
+     file_progress_show_source (ctx, NULL);
++    file_progress_show_target (ctx, NULL);
+     file_progress_show (ctx, 0, 0, "", FALSE);
+ 
+@@ -2360,4 +2361,7 @@
+     if (ctx->erase_at_end)
+     {
++        /* Reset progress count before delete to avoid counting files twice */
++        tctx->progress_count = tctx->prev_progress_count;
++
+         while (erase_list != NULL && return_status != FILE_ABORT)
+         {
+@@ -2372,4 +2376,7 @@
+             free_link (lp);
+         }
++
++        /* Save progress counter before move next directory */
++        tctx->prev_progress_count = tctx->progress_count;
+     }
+     erase_dir_iff_empty (ctx, src_vpath, tctx->progress_count);
+Index: src/filemanager/fileopctx.h
+===================================================================
+--- src/filemanager/fileopctx.h	(revision f0da49345a0f337644138fafe78ecd2ec9a704c1)
++++ src/filemanager/fileopctx.h	(revision 620b9252cfa91cb8fdff9ece385462e5ed99d7b0)
+@@ -166,4 +166,5 @@
+ {
+     size_t progress_count;
++    size_t prev_progress_count; /* Used in OP_MOVE between copy and remove directories */
+     uintmax_t progress_bytes;
+     uintmax_t copied_bytes;

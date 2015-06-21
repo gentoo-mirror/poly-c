@@ -1,0 +1,43 @@
+From: Simon Ruderich <simon@ruderich.org>
+Subject: [PATCH] Honor CFLAGS/CPPFLAGS as passed to configure
+
+The CFLAGS from dpkg-buildflags are missing because they are
+overwritten in /Makefile.am.
+
+The attached patch removes an incorrect build rule and passes the
+custom flags through AM_CFLAGS/AM_CPPFLAGS. All custom flags are
+still passed correctly.
+
+Signed-off-by: Russ Allbery <rra@debian.org>
+
+---
+ Makefile.am |    8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index c5b1a8d..57a4305 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -1,8 +1,7 @@
+ ## Process this file with automake to produce Makefile.in
+ AUTOMAKE_OPTIONS = nostdinc
+-ourdefs = -DPATH_RSSH_CONFIG=\"@sysconfdir@/rssh.conf\" -DPATH_CHROOT_HELPER=\"@libexecdir@/rssh_chroot_helper\"
+-ourflags = @defcflags@ @static@ 
+-AM_CFLAGS = $(ourflags)
++AM_CPPFLAGS = -DPATH_RSSH_CONFIG=\"@sysconfdir@/rssh.conf\" -DPATH_CHROOT_HELPER=\"@libexecdir@/rssh_chroot_helper\"
++AM_CFLAGS = @defcflags@ @static@
+ bin_PROGRAMS = rssh
+ libexec_PROGRAMS = rssh_chroot_helper
+ nodist_rssh_SOURCES = main.c pathnames.h config.h
+@@ -15,9 +14,6 @@ man_MANS = rssh.1 rssh.conf.5
+ EXTRA_DIST = $(man_MANS) CHROOT SECURITY LICENSE rssh.spec mkchroot.sh conf_convert.sh
+ base=`echo @PACKAGE_STRING@|tr " " "-"`
+ 
+-.c.o:
+-	$(CC) -c $(DEFS) $(ourdefs) $(AM_CFLAGS) $(CPPFLAGS) $(LDFLAGS) $<
+-
+ install-exec-hook:
+ 	chmod u+s $(libexecdir)/rssh_chroot_helper
+ 
+-- 
+tg: (6db40b8..) fixes/cppflags (depends on: upstream)

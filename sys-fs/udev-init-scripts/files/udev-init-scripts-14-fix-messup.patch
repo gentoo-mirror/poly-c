@@ -1,0 +1,70 @@
+--- udev-init-scripts-14/helpers/write_root_link_rule
++++ udev-init-scripts-14/helpers/write_root_link_rule
+@@ -0,0 +1,29 @@
++#!/bin/sh
++#
++# This script should run before doing udevtrigger at boot.
++# It will create a rule matching the device directory / is on, and
++# creating /dev/root symlink pointing on its device node.
++#
++# This is especially useful for hal looking at /proc/mounts containing
++# a line listing /dev/root as device:
++#   /dev/root / reiserfs rw 0 0
++# 
++# This program is free software; you can redistribute it and/or modify it
++# under the terms of the GNU General Public License as published by the
++# Free Software Foundation version 2 of the License.
++#
++# (c) 2007-2008 Matthias Schwarzott <zzam@gentoo.org>
++
++eval $(udevadm info --export --export-prefix="ROOT_" --device-id-of-file=/)
++
++[ $? = 0 ] || exit 0
++[ "$ROOT_MAJOR" = 0 ] && exit 0
++
++[ -e /run ] && DIR=/run/udev/rules.d || DIR=/dev/.udev/rules.d
++[ -d "$DIR" ] || mkdir -p "$DIR"
++RULES=$DIR/10-root-link.rules
++
++echo "# Created by /lib/udev/write_root_link_rule" > "${RULES}"
++echo "# This rule should create /dev/root as link to real root device." >> "${RULES}"
++echo "SUBSYSTEM==\"block\", ENV{MAJOR}==\"$ROOT_MAJOR\", ENV{MINOR}==\"$ROOT_MINOR\", SYMLINK+=\"root\"" >> "${RULES}"
++
+--- udev-init-scripts-14/init.d/udev
++++ udev-init-scripts-14/init.d/udev
+@@ -2,7 +2,7 @@
+ # Copyright 1999-2010 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ 
+-command=/usr/lib/systemd/systemd-udevd
++command=/sbin/udevd
+ command_args="--daemon ${udev_opts}"
+ description="udev manages device permissions and symbolic links in /dev"
+ extra_started_commands="reload"
+@@ -71,6 +71,8 @@
+ 
+ start_pre()
+ {
++	/lib/udev/write_root_link_rule
++
+ 	check_kernel || return 1
+ 	if [ -e /proc/sys/kernel/hotplug ]; then
+ 		echo "" >/proc/sys/kernel/hotplug
+--- udev-init-scripts-14/Makefile
++++ udev-init-scripts-14/Makefile
+@@ -2,13 +2,14 @@
+ VERSION = 14
+ DISTNAME = $(PACKAGE)-$(VERSION)
+ 
+-LIBUDEV ?= /usr/lib/udev
++LIBUDEV ?= /lib/udev
+ RULESDIR ?= $(LIBUDEV)/rules.d
+ SYSCONFDIR ?= /etc
+ CONFD ?= $(SYSCONFDIR)/conf.d
+ INITD ?= $(SYSCONFDIR)/init.d
+ 
+ HELPERS = \
++	helpers/write_root_link_rule \
+ 	helpers/net.sh
+ 
+ all:

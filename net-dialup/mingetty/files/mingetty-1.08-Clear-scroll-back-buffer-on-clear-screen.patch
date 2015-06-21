@@ -1,0 +1,25 @@
+From 1b0a3a3b484148ccf9746722f55fc28327ad2e2b Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Petr=20P=C3=ADsa=C5=99?= <ppisar@redhat.com>
+Date: Fri, 10 Jun 2011 13:46:15 +0200
+Subject: [PATCH] Clear scroll-back buffer on clear screen
+
+This is implemented in Linux since 3.0 version.
+
+http://sourceforge.net/tracker/?func=detail&aid=3314678&group_id=80387&atid=559616
+
+--- mingetty-1.08/mingetty.c
++++ mingetty-1.08/mingetty.c
+@@ -191,8 +191,11 @@
+ 
+ 	/* Write a reset string to the terminal. This is very linux-specific
+ 	   and should be checked for other systems. */
+-	if (noclear == 0)
+-		write (0, "\033c", 2);
++	if (noclear == 0) {
++		write (0, "\033[3;J", 5);   /* Clear scroll-back buffer,
++						since Linux 3.0 */
++		write (0, "\033c", 2);      /* Reset */
++	}
+ 
+ 	sigaction (SIGHUP, &sa_old, NULL);
+ }

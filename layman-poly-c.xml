@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<layman>
+    <overlay
+	    contact="polynomial-c@gentoo.org"
+	    name="poly-c"
+	    src="rsync://gentoofan.no-ip.org/poly-c"
+	    type="rsync">
+	<link>
+	    http://www.gentoofan.org/gentoo
+	</link>
+	<description>
+	    Private overlay of Polynomial-C
+	</description>
+    </overlay>
+</layman>

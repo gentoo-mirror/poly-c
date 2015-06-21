@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure
+DEPEND=app-arch/lzlib:0=
+DESCRIPTION=Parallel lzip compressor
+EAPI=5
+HOMEPAGE=http://www.nongnu.org/lzip/plzip.html
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-3
+RDEPEND=app-arch/lzlib:0=
+RESTRICT=mirror
+SLOT=0
+SRC_URI=http://download.savannah.gnu.org/releases-noredirect/lzip/plzip/plzip-1.4-rc1.tar.gz
+_eclasses_=multilib	62927b3db3a589b0806255f3a002d5d3	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=f820953a4a1e4af658b6dceab3586a01

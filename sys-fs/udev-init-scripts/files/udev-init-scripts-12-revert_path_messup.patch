@@ -1,0 +1,11 @@
+--- udev-init-scripts-12/init.d/udev
++++ udev-init-scripts-12/init.d/udev
+@@ -2,7 +2,7 @@
+ # Copyright 1999-2010 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ 
+-command=/usr/lib/systemd/systemd-udevd
++command=/sbin/udevd
+ command_args="--daemon ${udev_opts}"
+ description="udev manages device permissions and symbolic links in /dev"
+ 

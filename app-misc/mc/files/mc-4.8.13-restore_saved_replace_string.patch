@@ -1,0 +1,17 @@
+fix Ticket #3203 - mcedit: replace dialog doesn't remember last entered replacement string
+
+Signed-off-by: Andreas Mohr <and@gmx.li>
+
+diff -ruN mc-4.8.13/src/editor/editcmd_dialogs.c mc-4.8.13.patch/src/editor/editcmd_dialogs.c
+--- mc-4.8.13/src/editor/editcmd_dialogs.c	2014-09-02 11:23:58.000000000 +0200
++++ mc-4.8.13.patch/src/editor/editcmd_dialogs.c	2015-02-16 19:00:00.000000000 +0100
+@@ -194,6 +194,9 @@
+     if ((search_default == NULL) || (*search_default == '\0'))
+         search_default = INPUT_LAST_TEXT;
+ 
++    if ((replace_default == NULL) || (*replace_default == '\0'))
++        replace_default = INPUT_LAST_TEXT;
++
+     list_of_types = mc_search_get_types_strings_array (&num_of_types);
+ 
+     {

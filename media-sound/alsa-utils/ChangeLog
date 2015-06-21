@@ -1,0 +1,2 @@
+Using patch from https://bugs.gentoo.org/253535 for still being able to remove
+modularized hda-intel drivers from >=kernel-2.6.28

@@ -1,0 +1,19 @@
+# has broken install target
+app-misc/ldapexplorertool
+
+# masked for testing
+=www-client/seamonkey-2.35_alpha*
+=www-client/seamonkey-2.35_beta*
+=www-client/seamonkey-2.35_pre*
+
+# segfaults
+app-misc/kenny
+
+# WIP
+net-irc/pchat-irc
+
+# WIP
+net-analyzer/ntopng
+dev-libs/credis
+dev-libs/ewahboolarray
+

@@ -1,0 +1,37 @@
+--- cvs-1.12.13.1/src/main.c
++++ cvs-1.12.13.1/src/main.c
+@@ -574,9 +574,9 @@
+ 	{"no-verify", 0, NULL, 10},
+ 	{"verify-template", required_argument, NULL, 11},
+ 	{"verify-arg", required_argument, NULL, 12},
++	{"timeout", required_argument, NULL, 13},
+ #ifdef SERVER_SUPPORT
+ 	{"allow-root", required_argument, NULL, 3},
+-	{"timeout", required_argument, NULL, 13},
+ #endif /* SERVER_SUPPORT */
+         {0, 0, 0, 0}
+     };
+@@ -818,11 +818,6 @@
+ 		/* --verify-arg */
+ 		add_verify_arg (optarg);
+ 		break;
+-#ifdef SERVER_SUPPORT
+-	    case 3:
+-		/* --allow-root */
+-		root_allow_add (optarg, gConfigPath);
+-		break;
+ 	    case 13:
+ 		/* --timeout */
+ 		connection_timeout = strtol (optarg, &end, 10);
+@@ -854,6 +849,11 @@
+ 		  error (1, 0,
+ "argument to --timeout must be greater than or equal to 0");
+ 		break;
++#ifdef SERVER_SUPPORT
++	    case 3:
++		/* --allow-root */
++		root_allow_add (optarg, gConfigPath);
++		break;
+ #endif /* SERVER_SUPPORT */
+ 	    case 'Q':
+ 		really_quiet = 1;

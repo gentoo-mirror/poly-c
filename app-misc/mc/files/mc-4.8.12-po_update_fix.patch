@@ -1,0 +1,23 @@
+--- mc-4.8.12/po/mc.pot
++++ mc-4.8.12/po/mc.pot
+@@ -574,7 +574,7 @@
+ msgid "Error dup'ing old error pipe"
+ msgstr ""
+ 
+-#: lib/vfs/dir/entry.c:266 lib/vfs/direntry.c:277
++#: lib/vfs/direntry.c:266 lib/vfs/direntry.c:277
+ #, c-format
+ msgid "Directory cache expired for %s"
+ msgstr ""
+--- mc-4.8.12/po/POTFILES.in
++++ mc-4.8.12/po/POTFILES.in
+@@ -11,9 +11,7 @@
+ lib/tty/tty.c
+ lib/tty/tty-slang.c
+ lib/utilunix.c
+-lib/vfs/dir/entry.c
+ lib/vfs/direntry.c
+-lib/vfs/dir/utils.c
+ lib/vfs/interface.c
+ lib/vfs/parse_ls_vga.c
+ lib/vfs/utilvfs.c

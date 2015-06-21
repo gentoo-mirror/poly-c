@@ -1,0 +1,19 @@
+--- credis-0.2.3/Makefile
++++ credis-0.2.3/Makefile
+@@ -1,5 +1,5 @@
+-CFLAGS = -g -O2 -Wall
+-LDFLAGS =
++CFLAGS ?= -g -O2 -Wall
++LDFLAGS ?=
+ #CPPFLAGS = -DPRINTDEBUG
+ 
+ # build shared lib under OS X or Linux
+@@ -22,7 +22,7 @@
+ 	$(AR) -cvq $@ $^
+ 
+ libcredis.so: credis.o
+-	$(CC) $(SHAREDLIB_LINK_OPTIONS)$@ -o $@ $^
++	$(CC) $(CFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHAREDLIB_LINK_OPTIONS)$@ -o $@ $^
+ 
+ credis.o: credis.c credis.h Makefile
+ 	$(CC) -c -fPIC $(CFLAGS) $(CPPFLAGS) -o $@ credis.c

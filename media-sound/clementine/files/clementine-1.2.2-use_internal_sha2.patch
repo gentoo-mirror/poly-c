@@ -1,0 +1,36 @@
+From b14d2f31230e39154d6ce214bbd9e0e50ffc30d5 Mon Sep 17 00:00:00 2001
+From: David Sansome <me@davidsansome.com>
+Date: Fri, 28 Feb 2014 19:48:41 +1100
+Subject: [PATCH] Never use the system's sha2 library - ours has a different
+ API now.  Fixes #4217
+
+---
+ CMakeLists.txt | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index f7ada84..638cbff 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -365,14 +365,10 @@ if(GMOCK_INCLUDE_DIRS)
+   endif(GTEST_INCLUDE_DIRS)
+ endif(GMOCK_INCLUDE_DIRS)
+ 
+-# Use system sha2 if it's available
+-find_path(SHA2_INCLUDE_DIRS sha2.h)
+-find_library(SHA2_LIBRARIES sha2)
+-if(NOT SHA2_INCLUDE_DIRS OR NOT SHA2_LIBRARIES)
+-  add_subdirectory(3rdparty/sha2)
+-  set(SHA2_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/sha2)
+-  set(SHA2_LIBRARIES sha2)
+-endif(NOT SHA2_INCLUDE_DIRS OR NOT SHA2_LIBRARIES)
++# Never use the system's sha2.
++add_subdirectory(3rdparty/sha2)
++set(SHA2_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/sha2)
++set(SHA2_LIBRARIES sha2)
+ 
+ # Use our 3rdparty chromaprint if a system one wasn't found
+ if(NOT CHROMAPRINT_FOUND)
+-- 
+1.8.5.5
+

@@ -1,0 +1,85 @@
+--- udev-init-scripts-30/init.d/udev
++++ udev-init-scripts-30/init.d/udev
+@@ -14,6 +14,19 @@
+ 	keyword -lxc -systemd-nspawn -vserver
+ }
+ 
++get_udevd_binary() {
++	bins="/sbin/udevd /lib/systemd/systemd-udevd /usr/lib/systemd/systemd-udevd"
++	for f in ${bins}; do
++		if [ -x "$f" -a ! -L "$f" ]; then
++			command="$f"
++		fi
++	done
++	if [ -z "$command" ]; then
++		eerror "Unable to find udev executable."
++		return 1
++	fi
++}
++
+ start_pre()
+ {
+ 	# make sure devtmpfs is in the kernel
+@@ -45,35 +58,22 @@
+ 		fi
+ 	fi
+ 
+-	bins="/sbin/udevd /lib/systemd/systemd-udevd /usr/lib/systemd/systemd-udevd"
+-	for f in ${bins}; do
+-		if [ -x "$f" -a ! -L "$f" ]; then
+-			command="$f"
+-		fi
+-	done
+-	if [ -z "$command" ]; then
+-		eerror "Unable to find udev executable."
+-		return 1
+-	fi
++	get_udevd_binary || return 1
+ 
+ 	if [ -e /proc/sys/kernel/hotplug ]; then
+ 		echo "" >/proc/sys/kernel/hotplug
+ 	fi
+ 
+-	local stderr=/dev/null
+-
+ 	if yesno "${udev_debug:-NO}"; then
+-		command_args="${command_args} --debug"
+-		stderr=/run/udevdebug.log
++		command_args="${command_args} --debug 2> /run/udevdebug.log"
+ 	fi
+ 
+-	command_args="${command_args} < /dev/null > /dev/null 2> ${stderr}"
+-
+ 	return 0
+ }
+ 
+ stop()
+ {
++	get_udevd_binary || return 1
+ 	local rc=0
+ 	ebegin "Stopping ${name:-$RC_SVCNAME}"
+ 	udevadm control --exit
+@@ -81,7 +81,7 @@
+ 	if [ $rc -ne 0 ]; then
+ 		eend $rc "Failed to stop $RC_SVCNAME using udevadm"
+ 		ebegin "Trying with start-stop-daemon"
+-		start-stop-daemon --stop --exec /sbin/udevd
++		start-stop-daemon --stop --exec ${command}
+ 		rc=$?
+ 	fi
+ 	eend $rc "Failed to stop $RC_SVCNAME"
+--- udev-init-scripts-30/init.d/udev-trigger
++++ udev-init-scripts-30/init.d/udev-trigger
+@@ -48,9 +48,9 @@
+ 			start-stop-daemon --stop --pidfile "${udevmonitor_pid}" \
+ 				--exec /bin/udevadm
+ 		fi
+-		fi
+-		display_hotplugged_services
+-		return 0
++	fi
++	display_hotplugged_services
++	return 0
+ }
+ 
+ # This is here because some software expects /dev/root to exist.

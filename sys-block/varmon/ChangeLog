@@ -1,0 +1,5 @@
+initial ebuild. Not in portage atm:
+http://bugs.gentoo.org/show_bug.cgi?id=70051
+
+known bugs that belong to upstream:
+- cannot cancel a consistency check

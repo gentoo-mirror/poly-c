@@ -1,0 +1,69 @@
+From 7d7229e6dc1816b0a32ce241e76212a173c69fe1 Mon Sep 17 00:00:00 2001
+From: Brian Dolbec <dolsen@gentoo.org>
+Date: Mon, 6 Jan 2014 01:45:14 -0800
+Subject: [PATCH] WIP bug #472104 --verbose-slot-rebuilds=y|n
+
+---
+ pym/_emerge/actions.py  | 6 ++++++
+ pym/_emerge/depgraph.py | 5 +++--
+ pym/_emerge/main.py     | 5 +++++
+ 3 files changed, 14 insertions(+), 2 deletions(-)
+
+diff --git a/pym/_emerge/actions.py b/pym/_emerge/actions.py
+index 9bb4774..98bdafb 100644
+--- a/pym/_emerge/actions.py
++++ b/pym/_emerge/actions.py
+@@ -2923,6 +2923,12 @@ def adjust_config(myopts, settings):
+ 		settings["PORTAGE_VERBOSE"] = "1"
+ 		settings.backup_changes("PORTAGE_VERBOSE")
+ 
++	settings["VERBOSE_SLOT_REBUILDS"] = "1"
++	if "--verbose-slot-rebuilds" in myopts:
++		if myopts["--verbose-slot-rebuilds"] not in ("yes","true"):
++			settings["VERBOSE_SLOT_REBUILDS"] = "0"
++		settings.backup_changes("VERBOSE_SLOT_REBUILDS")
++
+ 	# Set so that configs will be merged regardless of remembered status
+ 	if ("--noconfmem" in myopts):
+ 		settings["NOCONFMEM"]="1"
+diff --git a/pym/_emerge/depgraph.py b/pym/_emerge/depgraph.py
+index 763f3fd..1594beb 100644
+--- a/pym/_emerge/depgraph.py
++++ b/pym/_emerge/depgraph.py
+@@ -7384,8 +7384,9 @@ class depgraph(object):
+ 		if not unresolved_conflicts:
+ 			self._show_missed_update()
+ 
+-		self._compute_abi_rebuild_info()
+-		self._show_abi_rebuild_info()
++		if self._frozen_config.settings["VERBOSE_SLOT_REBUILDS"] == "1":
++			self._compute_abi_rebuild_info()
++			self._show_abi_rebuild_info()
+ 
+ 		self._show_ignored_binaries()
+ 
+diff --git a/pym/_emerge/main.py b/pym/_emerge/main.py
+index 89413a9..9d19994 100644
+--- a/pym/_emerge/main.py
++++ b/pym/_emerge/main.py
+@@ -155,6 +155,7 @@ def insert_optional_args(args):
+ 		'--usepkg'               : y_or_n,
+ 		'--usepkgonly'           : y_or_n,
+ 		'--verbose'              : y_or_n,
++		'--verbose-slot-rebuilds': y_or_n,
+ 	}
+ 
+ 	short_arg_opts = {
+@@ -639,6 +640,10 @@ def parse_opts(tmpcmdline, silent=False):
+ 			"help"     : "verbose output",
+ 			"choices"  : true_y_or_n
+ 		},
++		"--verbose-slot-rebuilds": {
++			"help"     : "verbose slot rebuild output",
++			"choices"  : y_or_n
++		},
+ 	}
+ 
+ 	parser = ArgumentParser(add_help=False)
+-- 
+1.8.3.2

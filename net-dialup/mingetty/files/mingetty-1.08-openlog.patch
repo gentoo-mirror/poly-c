@@ -1,0 +1,13 @@
+http://sourceforge.net/tracker/?func=detail&aid=3036068&group_id=80387&atid=559616
+
+--- mingetty-1.08/mingetty.c
++++ mingetty-1.08/mingetty.c
+@@ -83,7 +83,7 @@
+ 	va_list va_alist;
+ 
+ 	va_start (va_alist, fmt);
+-	openlog (progname, LOG_PID, LOG_AUTH);
++	openlog (progname, LOG_PID, LOG_AUTHPRIV);
+ 	vsyslog (LOG_ERR, fmt, va_alist);
+ 	/* no need, we exit anyway: closelog (); */
+ 	va_end (va_alist);

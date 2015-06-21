@@ -1,0 +1,29 @@
+#!/sbin/runscript
+# Copyright 1999-2006 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License, v2 or later
+# $Header: $
+
+pidfile=/var/run/storagnt.pid
+description="Adaptec Storage Agent"
+name="StorAgnt"
+instdir=/opt/StorMan
+
+depend() {
+	after net
+}
+
+start() {
+	ebegin "Starting Adaptec Storage Agent"
+	cd /opt/StorMan || return 1
+	start-stop-daemon --quiet --start --make-pidfile \
+		--pidfile "${pidfile}" --background --exec java \
+		-- -Djava.compiler=NONE -cp /opt/StorMan/RaidMan.jar \
+		com.ibm.sysmgt.raidmgr.agent.ManagementAgent $*
+	eend $? "Failed to start Adaptec Storage Agent"
+}
+
+stop() {
+	ebegin "Stopping Adaptec Storage Agent"
+	start-stop-daemon --stop --quiet --pidfile "${pidfile}"
+	eend $? "Failed to stop Adaptec Storage Agent"
+}

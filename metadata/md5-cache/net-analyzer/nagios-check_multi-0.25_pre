@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure install postinst prepare
+DEPEND=dev-lang/perl
+DESCRIPTION=A multi-purpose wrapper plugin for Nagios
+EAPI=4
+HOMEPAGE=http://my-plugin.de/wiki/projects/check_multi/start
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=dev-lang/perl net-analyzer/nagios-plugins
+RESTRICT=mirror
+SLOT=0
+SRC_URI=http://my-plugin.de/check_multi/check_multi-stable-0.25.tar.gz
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	62927b3db3a589b0806255f3a002d5d3	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=feed7a18484f3abbcc1d72548f2c743f

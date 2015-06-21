@@ -1,0 +1,24 @@
+--- pidgin-2.10.9/libpurple/plugins/ssl/ssl-nss.c
++++ pidgin-2.10.9/libpurple/plugins/ssl/ssl-nss.c
+@@ -133,6 +133,7 @@
+ static void
+ ssl_nss_init_nss(void)
+ {
++	SSLVersionRange supported, enabled;
+ 	PR_Init(PR_SYSTEM_THREAD, PR_PRIORITY_NORMAL, 1);
+ 	NSS_NoDB_Init(".");
+ 	NSS_SetDomesticPolicy();
+@@ -150,6 +151,13 @@
+ 	SSL_CipherPrefSetDefault(SSL_DHE_RSA_WITH_DES_CBC_SHA, 1);
+ 	SSL_CipherPrefSetDefault(SSL_DHE_DSS_WITH_DES_CBC_SHA, 1);
+ 
++	if ((SSL_VersionRangeGetSupported(ssl_variant_stream, &supported) == SECSuccess) &&
++	    (SSL_VersionRangeGetDefault(ssl_variant_stream, &enabled) == SECSuccess))
++	{
++		enabled.max = supported.max;
++		SSL_VersionRangeSetDefault(ssl_variant_stream, &enabled);
++	}
++
+ 	_identity = PR_GetUniqueIdentity("Purple");
+ 	_nss_methods = PR_GetDefaultIOMethods();
+ }

@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install setup
+DEPEND=ssl? ( >=dev-libs/openssl-0.9.8d )
+DESCRIPTION=shroudBNC is a modular IRC proxy written in C++.
+HOMEPAGE=http://www.shroudbnc.info/
+IUSE=ssl
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=ssl? ( >=dev-libs/openssl-0.9.8d )
+RESTRICT=mirror
+SLOT=0
+SRC_URI=http://mirror.shroudbnc.info/sbnc-1.2.tar.gz
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	62927b3db3a589b0806255f3a002d5d3	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=abfecd3fae3d09096d30d970c1acfa88

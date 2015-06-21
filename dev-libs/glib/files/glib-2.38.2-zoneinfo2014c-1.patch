@@ -1,0 +1,29 @@
+From d6da02ec875b16cf5ee14931468d4f1b0aad5d68 Mon Sep 17 00:00:00 2001
+From: John Ralls <jralls@ceridwen.us>
+Date: Fri, 23 May 2014 14:01:45 -0700
+Subject: [PATCH 1/2] Bug 730332 - glib uses wrong timezone transition with
+ zoneinfo 2014c and up
+
+---
+ glib/gtimezone.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/glib/gtimezone.c b/glib/gtimezone.c
+index 1305d07..99f3457 100644
+--- a/glib/gtimezone.c
++++ b/glib/gtimezone.c
+@@ -1556,7 +1556,11 @@ interval_end (GTimeZone *tz,
+               guint      interval)
+ {
+   if (tz->transitions && interval < tz->transitions->len)
++  {
++    if ((TRANSITION(interval)).time == G_MININT64)
++      return G_MININT64;
+     return (TRANSITION(interval)).time - 1;
++  }
+   return G_MAXINT64;
+ }
+ 
+-- 
+1.8.3.rc0
+

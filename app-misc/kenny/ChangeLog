@@ -1,0 +1,4 @@
+initial ebuild. It's not in portage and never will be.
+http://forums.gentoo.org/viewtopic.php?t=244101
+
+ - use $(tc-getCC) instead of gcc

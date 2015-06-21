@@ -1,0 +1,48 @@
+--- Transcoder_0.0.6/Makefile
++++ Transcoder_0.0.6/Makefile
+@@ -1,31 +1,31 @@
+ PREFIX = /usr/local
+-INSTALL = /usr/bin/install -c
++INSTALL = /usr/bin/install -c -D
+ INSTALLDATA = /usr/bin/install -c -D -m 644
+ CC = gcc -Wall `pkg-config --cflags --libs gtk+-2.0`
+ all: Transcoder
+ 
+ Transcoder: src/main.o src/misc.o src/ui.o src/callbacks.o
+-	$(CC) -Xlinker -zmuldefs src/main.o src/misc.o src/ui.o src/callbacks.o -o Transcoder
++	$(CC) $(LDFLAGS) -Xlinker -zmuldefs src/main.o src/misc.o src/ui.o src/callbacks.o -o Transcoder
+ 
+ main.o : src/main.c
+-	$(CC) -c -o src/main.o src/main.c
++	$(CC) $(LDFLAGS) -c -o src/main.o src/main.c
+ 	
+ misc.o : src/misc.c
+-	$(CC) -c -o src/misc.o src/misc.c
++	$(CC) $(LDFLAGS) -c -o src/misc.o src/misc.c
+ 	
+ ui.o : src/ui.c
+-	$(CC) -c -o src/ui.o src/ui.c
++	$(CC) $(LDFLAGS) -c -o src/ui.o src/ui.c
+ 	
+ callbacks.o : src/callbacks.c
+-	$(CC) -c -o src/callbacks.o src/callbacks.c
++	$(CC) $(LDFLAGS) -c -o src/callbacks.o src/callbacks.c
+ 	
+ clean:
+ 	rm -rf src/*o Transcoder
+ 	
+ install:all
+-	$(INSTALL) Transcoder $(PREFIX)/bin/Transcoder
+-	$(INSTALLDATA) data/transcoder.desktop $(PREFIX)/share/applications/transcoder.desktop
+-	$(INSTALLDATA) data/transcoder.png $(PREFIX)/share/Transcoder/transcoder.png
++	$(INSTALL) Transcoder $(DESTDIR)/$(PREFIX)/bin/Transcoder
++	$(INSTALLDATA) data/transcoder.desktop $(DESTDIR)/$(PREFIX)/share/applications/transcoder.desktop
++	$(INSTALLDATA) data/transcoder.png $(DESTDIR)/$(PREFIX)/share/Transcoder/transcoder.png
+ 
+ uninstall:
+ 	rm -rf $(PREFIX)/bin/Transcoder
+esktop
++	$(INSTALLDATA) data/transcoder.png $(DESTDIR)/$(PREFIX)/share/Transcoder/transcoder.png
+ 
+ uninstall:
+ 	rm -rf $(PREFIX)/bin/Transcoder

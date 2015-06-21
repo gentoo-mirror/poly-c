@@ -1,0 +1,14 @@
+DEFINED_PHASES=config configure install
+DEPEND=>=dev-libs/boehm-gc-7.0[threads?] dev-libs/gmp dev-libs/libffi dev-libs/libltdl >=dev-libs/libunistring-0.9.3 sys-devel/gettext virtual/pkgconfig
+DESCRIPTION=GNU Ubiquitous Intelligent Language for Extensions
+EAPI=5
+HOMEPAGE=http://www.gnu.org/software/guile/
+IUSE=debug debug-malloc +deprecated +networking nls +regex +threads
+KEYWORDS=~amd64 ~x86
+LICENSE=LGPL-3
+RDEPEND=>=dev-libs/boehm-gc-7.0[threads?] dev-libs/gmp dev-libs/libffi dev-libs/libltdl >=dev-libs/libunistring-0.9.3 sys-devel/gettext
+RESTRICT=mirror
+SLOT=12
+SRC_URI=mirror://gnu/guile/guile-2.0.11.tar.gz
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	flag-o-matic	c9602887773166fe300444712fc7ff98	multilib	62927b3db3a589b0806255f3a002d5d3	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_md5_=ed0f9aceb21869c6e69d2e59a084ec71

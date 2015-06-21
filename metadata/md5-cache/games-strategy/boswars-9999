@@ -1,0 +1,10 @@
+DEFINED_PHASES=compile configure install postinst preinst prepare setup unpack
+DEPEND=dev-lang/lua media-libs/libsdl[sound,video] media-libs/libpng media-libs/libvorbis media-libs/libtheora media-libs/libogg virtual/opengl x11-libs/libX11 dev-util/scons || ( dev-vcs/subversion[http] dev-vcs/subversion[webdav-neon] dev-vcs/subversion[webdav-serf] ) net-misc/rsync
+DESCRIPTION=Futuristic real-time strategy game
+EAPI=5
+HOMEPAGE=http://www.boswars.org/
+LICENSE=GPL-2
+RDEPEND=games-misc/games-envd
+SLOT=0
+_eclasses_=base	87f7447ccfc06fd0729ff4684e11e0d6	eutils	9fb270e417e0e83d64ca52586c4a79de	games	1ad3205dbf62a2c98249f2f59b0a2d39	multilib	62927b3db3a589b0806255f3a002d5d3	scons-utils	988e24b9e2e4642189b4e97c03e5ae71	subversion	c12bdf4fcc82f86ad89b14c8f76c4026	toolchain-funcs	42408102d713fbad60ca21349865edb4	user	f54e098dd38ba1c0847a13e685b87747
+_md5_=cff53598a4fd8141a8426381f2b7b789
