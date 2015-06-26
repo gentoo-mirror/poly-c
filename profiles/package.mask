@@ -16,4 +16,5 @@ net-irc/pchat-irc
 net-analyzer/ntopng
 dev-libs/credis
 dev-libs/ewahboolarray
+=sys-fs/udev-221_pre
 

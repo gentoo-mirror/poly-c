@@ -4,16 +4,16 @@
 
 EAPI=5
 
-inherit autotools bash-completion-r1 eutils linux-info multilib multilib-minimal toolchain-funcs udev user versionator
+inherit autotools bash-completion-r1 eutils linux-info multilib multilib-minimal toolchain-funcs udev user versionator poly-c_ebuilds
 
 if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://anongit.freedesktop.org/systemd/systemd"
 	inherit git-2
 	patchset=
 else
-	patchset=4
-	FIXUP_PATCH="${PN}-220-revert-systemd-messup.patch.xz"
-	SRC_URI="http://www.freedesktop.org/software/systemd/systemd-${PV}.tar.xz
+	patchset=
+	FIXUP_PATCH="${PN}-221-revert-systemd-messup.patch.xz"
+	SRC_URI="http://www.freedesktop.org/software/systemd/systemd-${MY_PV}.tar.xz
 		http://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}"
 	if [[ -n "${patchset}" ]]; then
 		SRC_URI="${SRC_URI}
@@ -28,14 +28,12 @@ HOMEPAGE="http://www.freedesktop.org/wiki/Software/systemd"
 
 LICENSE="LGPL-2.1 MIT GPL-2"
 SLOT="0"
-IUSE="acl doc gudev hwdb introspection +kmod selinux static-libs"
+IUSE="acl hwdb +kmod selinux static-libs"
 
 RESTRICT="test"
 
 COMMON_DEPEND=">=sys-apps/util-linux-2.20
 	acl? ( sys-apps/acl )
-	gudev? ( >=dev-libs/glib-2.34.3[${MULTILIB_USEDEP}] )
-	introspection? ( >=dev-libs/gobject-introspection-1.38 )
 	kmod? ( >=sys-apps/kmod-16 )
 	selinux? ( >=sys-libs/libselinux-2.1.9 )
 	!<sys-libs/glibc-2.11
@@ -59,22 +57,17 @@ DEPEND="${COMMON_DEPEND}
 	virtual/os-headers
 	virtual/pkgconfig
 	>=sys-devel/make-3.82-r4
-	>=sys-kernel/linux-headers-3.9
-	doc? ( >=dev-util/gtk-doc-1.18 )"
+	>=sys-kernel/linux-headers-3.9"
 
 RDEPEND="${COMMON_DEPEND}
 	!<sys-fs/lvm2-2.02.103
-	!<sec-policy/selinux-base-2.20120725-r10
-	gudev? ( !dev-libs/libgudev )"
+	!<sec-policy/selinux-base-2.20120725-r10"
 
 PDEPEND=">=sys-apps/hwids-20140304[udev]
 	>=sys-fs/udev-init-scripts-26"
 
 S=${WORKDIR}/systemd-${MY_PV}
 
-# The multilib-build.eclass doesn't handle situation where the installed headers
-# are different in ABIs. In this case, we install libgudev headers in native
-# ABI but not for non-native ABI.
 multilib_check_headers() { :; }
 
 check_default_rules() {
@@ -141,11 +134,6 @@ src_prepare() {
 	epatch_user
 
 	if [[ ! -e configure ]]; then
-		if use doc; then
-			gtkdocize --docdir docs || die "gtkdocize failed"
-		else
-			echo 'EXTRA_DIST =' > docs/gtk-doc.make
-		fi
 		eautoreconf
 	else
 		check_default_rules
@@ -162,8 +150,6 @@ src_prepare() {
 		echo '#define secure_getenv(x) NULL' >> config.h.in
 		sed -i -e '/error.*secure_getenv/s:.*:#define secure_getenv(x) NULL:' src/shared/missing.h || die
 	fi
-	rm src/journal/audit_type-to-name.h src/udev/keyboard-keys-from-name.gperf \
-		|| die
 }
 
 multilib_src_configure() {
@@ -181,9 +167,7 @@ multilib_src_configure() {
 		--docdir=/usr/share/doc/${PF}
 		$(multilib_native_use_enable static-libs static)
 		--disable-nls
-		$(multilib_native_use_enable doc gtk-doc)
 		$(multilib_native_use_enable hwdb)
-		$(multilib_native_use_enable introspection)
 		--disable-python-devel
 		--disable-dbus
 		$(multilib_native_use_enable kmod)
@@ -207,10 +191,8 @@ multilib_src_configure() {
 		--disable-polkit
 		--disable-terminal
 		--disable-myhostname
-		$(use_enable gudev)
 		$(multilib_is_native_abi || echo "--disable-manpages")
 		--enable-split-usr
-		--with-html-dir=/usr/share/doc/${PF}/html
 		--without-python
 		--with-bashcompletiondir="$(get_bashcompdir)"
 		--with-rootprefix=
@@ -236,7 +218,6 @@ multilib_src_compile() {
 	# early enough, like eg. libsystemd-shared.la
 	if multilib_is_native_abi; then
 		local lib_targets=( libudev.la )
-		use gudev && lib_targets+=( libgudev-1.0.la )
 		emake "${lib_targets[@]}"
 
 		local exec_targets=(
@@ -267,14 +248,8 @@ multilib_src_compile() {
 			man/udevd.8
 		)
 		emake "${man_targets[@]}"
-
-		if use doc; then
-			emake -C docs/libudev
-			use gudev && emake -C docs/gudev
-		fi
 	else
 		local lib_targets=( libudev.la )
-		use gudev && lib_targets+=( libgudev-1.0.la )
 		emake "${lib_targets[@]}"
 	fi
 }
@@ -287,31 +262,23 @@ multilib_src_install() {
 		local targets=(
 			install-libLTLIBRARIES
 			install-includeHEADERS
-			install-libgudev_includeHEADERS
 			install-rootsbinPROGRAMS
 			install-rootbinPROGRAMS
 			install-rootlibexecPROGRAMS
 			install-udevlibexecPROGRAMS
 			install-dist_udevconfDATA
 			install-dist_udevrulesDATA
-			install-girDATA
 			install-man5
 			install-man7
 			install-man8
 			install-pkgconfiglibDATA
 			install-pkgconfigdataDATA
-			install-typelibsDATA
 			install-dist_docDATA
 			libudev-install-hook
 			install-directories-hook
 			install-dist_bashcompletionDATA
 			install-dist_networkDATA
 		)
-
-		if use gudev; then
-			lib_LTLIBRARIES+=" libgudev-1.0.la"
-			pkgconfiglib_DATA+=" src/gudev/gudev-1.0.pc"
-		fi
 
 		# add final values of variables:
 		targets+=(
@@ -331,11 +298,6 @@ multilib_src_install() {
 		)
 		emake -j1 DESTDIR="${D}" "${targets[@]}"
 
-		if use doc; then
-			emake -C docs/libudev DESTDIR="${D}" install
-			use gudev && emake -C docs/gudev DESTDIR="${D}" install
-		fi
-
 		# install udevadm compatibility symlink
 		dosym {../sbin,bin}/udevadm
 	else
@@ -348,11 +310,6 @@ multilib_src_install() {
 			install-includeHEADERS
 			install-pkgconfiglibDATA
 		)
-
-		if use gudev; then
-			lib_LTLIBRARIES+=" libgudev-1.0.la"
-			pkgconfiglib_DATA+=" src/gudev/gudev-1.0.pc"
-		fi
 
 		targets+=(
 			lib_LTLIBRARIES="${lib_LTLIBRARIES}"
@@ -381,9 +338,6 @@ multilib_src_install_all() {
 	docompress -x /usr/share/doc/${PF}/gentoo/${netrules}
 
 	if ! [[ ${PV} = 9999* ]]; then
-		insinto /usr/share/doc/${PF}/html/gudev
-		doins "${S}"/docs/gudev/html/*
-
 		insinto /usr/share/doc/${PF}/html/libudev
 		doins "${S}"/docs/libudev/html/*
 	fi
@@ -391,10 +345,7 @@ multilib_src_install_all() {
 
 pkg_preinst() {
 	local htmldir
-	for htmldir in gudev libudev; do
-		if [[ -d ${ROOT%/}/usr/share/gtk-doc/html/${htmldir} ]]; then
-			rm -rf "${ROOT%/}"/usr/share/gtk-doc/html/${htmldir}
-		fi
+	for htmldir in libudev; do
 		if [[ -d ${D}/usr/share/doc/${PF}/html/${htmldir} ]]; then
 			dosym ../../doc/${PF}/html/${htmldir} \
 				/usr/share/gtk-doc/html/${htmldir}
