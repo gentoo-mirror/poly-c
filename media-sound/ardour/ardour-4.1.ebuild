@@ -89,9 +89,9 @@ src_prepare(){
 	fi
 	$(use lv2 || epatch "${FILESDIR}"/${PN}-4.0-lv2.patch)
 	epatch "${FILESDIR}"/${PN}-3.5.403-sse.patch
-	sed -e 's/'FLAGS\'\,\ compiler_flags'/'FLAGS\'\,\ program_flags'/g' -i "${S}"/wscript
-	sed -e 's/'compiler_flags.append\ \(\'-DPROGRAM_'/'program_flags.append\ \(\'-DPROGRAM_'/g' -i "${S}"/wscript
-	sed -e '/compiler_flags\ \=\ \[\]/a \ \ \ \ program_flags\ \=\ \[\]' -i "${S}"/wscript
+	#sed -e 's/'FLAGS\'\,\ compiler_flags'/'FLAGS\'\,\ program_flags'/g' -i "${S}"/wscript
+	#sed -e 's/'compiler_flags.append\ \(\'-DPROGRAM_'/'program_flags.append\ \(\'-DPROGRAM_'/g' -i "${S}"/wscript
+	#sed -e '/compiler_flags\ \=\ \[\]/a \ \ \ \ program_flags\ \=\ \[\]' -i "${S}"/wscript
 	append-flags "-lboost_system"
 }
 
