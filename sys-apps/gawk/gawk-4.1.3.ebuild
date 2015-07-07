@@ -31,6 +31,9 @@ src_prepare() {
 	sed -i \
 		-e '/check-recursive all-recursive: check-for-shared-lib-support/d' \
 		extension/Makefile.in || die
+
+	EPATCH_OPTS="-Z" \
+	epatch "${FILESDIR}/${P}-bsd_configure_readline.patch" #507468
 }
 
 src_configure() {
