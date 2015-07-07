@@ -269,12 +269,12 @@ src_install() {
 		newconfd "${FILESDIR}"/vboxwebsrv-confd vboxwebsrv
 	fi
 
-	local gcfiles="*gc"
-	if use amd64 && ! has_multilib_profile ; then
-		gcfiles=""
-	fi
+	#local gcfiles="*gc"
+	#if use amd64 && ! has_multilib_profile ; then
+	#	gcfiles=""
+	#fi
 
-	for each in VBox{Manage,SVC,XPCOMIPCD,Tunctl,ExtPackHelperApp} *so *r0 ${gcfiles} ; do
+	for each in VBox{Manage,SVC,XPCOMIPCD,Tunctl,ExtPackHelperApp} *so *r0 *.rc ; do
 		doins ${each}
 		fowners root:vboxusers /usr/$(get_libdir)/${PN}/${each}
 		fperms 0750 /usr/$(get_libdir)/${PN}/${each}
