@@ -1,19 +1,19 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-220-r3.ebuild,v 1.1 2015/06/17 20:30:36 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-222.ebuild,v 1.2 2015/07/09 04:10:18 williamh Exp $
 
 EAPI=5
 
-inherit autotools bash-completion-r1 eutils linux-info multilib multilib-minimal toolchain-funcs udev user versionator poly-c_ebuilds
+inherit autotools bash-completion-r1 eutils linux-info multilib multilib-minimal toolchain-funcs udev user versionator
 
 if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://anongit.freedesktop.org/systemd/systemd"
-	inherit git-2
+	inherit git-r3
 	patchset=
 else
 	patchset=
 	FIXUP_PATCH="${PN}-221-revert-systemd-messup.patch.xz"
-	SRC_URI="http://www.freedesktop.org/software/systemd/systemd-${MY_PV}.tar.xz
+	SRC_URI="https://github.com/systemd/systemd/archive/v${PV}.tar.gz -> ${P}.tar.gz
 		http://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}"
 	if [[ -n "${patchset}" ]]; then
 		SRC_URI="${SRC_URI}
@@ -28,11 +28,11 @@ HOMEPAGE="http://www.freedesktop.org/wiki/Software/systemd"
 
 LICENSE="LGPL-2.1 MIT GPL-2"
 SLOT="0"
-IUSE="acl hwdb +kmod selinux static-libs"
+IUSE="acl doc hwdb +kmod selinux static-libs"
 
 RESTRICT="test"
 
-COMMON_DEPEND=">=sys-apps/util-linux-2.20
+COMMON_DEPEND=">=sys-apps/util-linux-2.24
 	acl? ( sys-apps/acl )
 	kmod? ( >=sys-apps/kmod-16 )
 	selinux? ( >=sys-libs/libselinux-2.1.9 )
@@ -47,9 +47,6 @@ COMMON_DEPEND=">=sys-apps/util-linux-2.20
 # Try with `emerge -C docbook-xml-dtd` to see the build failure without DTDs
 # Force new make >= -r4 to skip some parallel build issues
 DEPEND="${COMMON_DEPEND}
-	app-text/docbook-xml-dtd:4.2
-	app-text/docbook-xml-dtd:4.5
-	dev-libs/libxslt
 	dev-util/gperf
 	>=dev-util/intltool-0.50
 	>=sys-apps/coreutils-8.16
@@ -57,17 +54,23 @@ DEPEND="${COMMON_DEPEND}
 	virtual/os-headers
 	virtual/pkgconfig
 	>=sys-devel/make-3.82-r4
-	>=sys-kernel/linux-headers-3.9"
+	>=sys-kernel/linux-headers-3.9
+	app-text/docbook-xml-dtd:4.2
+	app-text/docbook-xml-dtd:4.5
+	app-text/docbook-xsl-stylesheets
+	dev-libs/libxslt"
 
 RDEPEND="${COMMON_DEPEND}
 	!<sys-fs/lvm2-2.02.103
 	!<sec-policy/selinux-base-2.20120725-r10"
-
 PDEPEND=">=sys-apps/hwids-20140304[udev]
 	>=sys-fs/udev-init-scripts-26"
 
-S=${WORKDIR}/systemd-${MY_PV}
+S=${WORKDIR}/systemd-${PV}
 
+# The multilib-build.eclass doesn't handle situation where the installed headers
+# are different in ABIs. In this case, we install libgudev headers in native
+# ABI but not for non-native ABI.
 multilib_check_headers() { :; }
 
 check_default_rules() {
@@ -107,7 +110,7 @@ pkg_setup() {
 src_prepare() {
 	if ! [[ ${PV} = 9999* ]]; then
 		# secure_getenv() disable for non-glibc systems wrt bug #443030
-		if ! [[ $(grep -r secure_getenv * | wc -l) -eq 28 ]]; then
+		if ! [[ $(grep -r secure_getenv * | wc -l) -eq 25 ]]; then
 			eerror "The line count for secure_getenv() failed, see bug #443030"
 			die
 		fi
@@ -119,7 +122,7 @@ src_prepare() {
 	fi
 
 	epatch "${DISTDIR}"/${FIXUP_PATCH}
-	rm man/systemd-{hwdb,udevd}.8 man/systemd-hwdb.xml || die
+	rm man/systemd-hwdb.xml || die
 
 	cat <<-EOF > "${T}"/40-gentoo.rules
 	# Gentoo specific floppy and usb groups
@@ -130,15 +133,16 @@ src_prepare() {
 	# change rules back to group uucp instead of dialout for now wrt #454556
 	sed -i -e 's/GROUP="dialout"/GROUP="uucp"/' rules/*.rules || die
 
+	# stub out the am_path_libcrypt function
+	echo 'AC_DEFUN([AM_PATH_LIBGCRYPT],[:])' > m4/gcrypt.m4
+
 	# apply user patches
 	epatch_user
 
-	if [[ ! -e configure ]]; then
-		eautoreconf
-	else
+	eautoreconf
+
+	if ! [[ ${PV} = 9999* ]]; then
 		check_default_rules
-		eautoreconf
-		elibtoolize
 	fi
 
 	# Restore possibility of running --enable-static wrt #472608
@@ -233,7 +237,6 @@ multilib_src_compile() {
 			collect
 			scsi_id
 			v4l_id
-			accelerometer
 			mtd_probe
 			)
 		emake "${helper_targets[@]}"
@@ -248,6 +251,10 @@ multilib_src_compile() {
 			man/udevd.8
 		)
 		emake "${man_targets[@]}"
+
+		if use doc; then
+			emake -C docs/libudev
+		fi
 	else
 		local lib_targets=( libudev.la )
 		emake "${lib_targets[@]}"
@@ -298,6 +305,10 @@ multilib_src_install() {
 		)
 		emake -j1 DESTDIR="${D}" "${targets[@]}"
 
+		if use doc; then
+			emake -C docs/libudev DESTDIR="${D}" install
+		fi
+
 		# install udevadm compatibility symlink
 		dosym {../sbin,bin}/udevadm
 	else
@@ -336,16 +347,14 @@ multilib_src_install_all() {
 	local netrules="80-net-setup-link.rules"
 	dodoc "${FILESDIR}"/${netrules}
 	docompress -x /usr/share/doc/${PF}/gentoo/${netrules}
-
-	if ! [[ ${PV} = 9999* ]]; then
-		insinto /usr/share/doc/${PF}/html/libudev
-		doins "${S}"/docs/libudev/html/*
-	fi
 }
 
 pkg_preinst() {
 	local htmldir
 	for htmldir in libudev; do
+		if [[ -d ${ROOT%/}/usr/share/gtk-doc/html/${htmldir} ]]; then
+			rm -rf "${ROOT%/}"/usr/share/gtk-doc/html/${htmldir}
+		fi
 		if [[ -d ${D}/usr/share/doc/${PF}/html/${htmldir} ]]; then
 			dosym ../../doc/${PF}/html/${htmldir} \
 				/usr/share/gtk-doc/html/${htmldir}
