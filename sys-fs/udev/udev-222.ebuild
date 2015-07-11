@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-222.ebuild,v 1.2 2015/07/09 04:10:18 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-222.ebuild,v 1.4 2015/07/10 23:17:45 floppym Exp $
 
 EAPI=5
 
@@ -28,7 +28,7 @@ HOMEPAGE="http://www.freedesktop.org/wiki/Software/systemd"
 
 LICENSE="LGPL-2.1 MIT GPL-2"
 SLOT="0"
-IUSE="acl doc hwdb +kmod selinux static-libs"
+IUSE="acl hwdb +kmod selinux static-libs"
 
 RESTRICT="test"
 
@@ -159,6 +159,7 @@ src_prepare() {
 multilib_src_configure() {
 	tc-export CC #463846
 	export cc_cv_CFLAGS__flto=no #502950
+	export cc_cv_CFLAGS__Werror_shadow=no #554454
 
 	# Keep sorted by ./configure --help and only pass --disable flags
 	# when *required* to avoid external deps or unnecessary compile
@@ -251,10 +252,6 @@ multilib_src_compile() {
 			man/udevd.8
 		)
 		emake "${man_targets[@]}"
-
-		if use doc; then
-			emake -C docs/libudev
-		fi
 	else
 		local lib_targets=( libudev.la )
 		emake "${lib_targets[@]}"
@@ -306,10 +303,6 @@ multilib_src_install() {
 		)
 		emake -j1 DESTDIR="${D}" "${targets[@]}"
 
-		if use doc; then
-			emake -C docs/libudev DESTDIR="${D}" install
-		fi
-
 		# install udevadm compatibility symlink
 		dosym {../sbin,bin}/udevadm
 	else
@@ -348,19 +341,6 @@ multilib_src_install_all() {
 	local netrules="80-net-setup-link.rules"
 	dodoc "${FILESDIR}"/${netrules}
 	docompress -x /usr/share/doc/${PF}/gentoo/${netrules}
-}
-
-pkg_preinst() {
-	local htmldir
-	for htmldir in libudev; do
-		if [[ -d ${ROOT%/}/usr/share/gtk-doc/html/${htmldir} ]]; then
-			rm -rf "${ROOT%/}"/usr/share/gtk-doc/html/${htmldir}
-		fi
-		if [[ -d ${D}/usr/share/doc/${PF}/html/${htmldir} ]]; then
-			dosym ../../doc/${PF}/html/${htmldir} \
-				/usr/share/gtk-doc/html/${htmldir}
-		fi
-	done
 }
 
 pkg_postinst() {
