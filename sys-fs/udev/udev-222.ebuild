@@ -13,7 +13,7 @@ if [[ ${PV} = 9999* ]]; then
 else
 	patchset=
 	FIXUP_PATCH="${PN}-221-revert-systemd-messup.patch.xz"
-	SRC_URI="https://github.com/systemd/systemd/archive/v${PV}.tar.gz -> ${P}.tar.gz
+	SRC_URI="https://github.com/systemd/systemd/archive/v${PV}.tar.gz -> systemd-${PV}.tar.gz
 		http://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}"
 	if [[ -n "${patchset}" ]]; then
 		SRC_URI="${SRC_URI}
@@ -302,6 +302,7 @@ multilib_src_install() {
 			dist_bashcompletion_DATA="shell-completion/bash/udevadm"
 			networkdir=/lib/udev/network
 			dist_network_DATA="network/99-default.link"
+			pkgconfigdata_DATA="src/udev/udev.pc"
 		)
 		emake -j1 DESTDIR="${D}" "${targets[@]}"
 
