@@ -53,7 +53,7 @@ src_prepare() {
 	# Use /run instead of /var/run.
 	sed -i \
 		-e 's:/var/run:/run:g' \
-		ip/ipnetns.c \
+		include/namespace.h \
 		man/man8/ip-netns.8 || die
 
 	# build against system headers
