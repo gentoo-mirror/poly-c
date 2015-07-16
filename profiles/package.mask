@@ -1,6 +1,3 @@
-# has broken install target
-app-misc/ldapexplorertool
-
 # masked for testing
 =www-client/seamonkey-2.35_alpha*
 =www-client/seamonkey-2.35_beta*
@@ -16,5 +13,4 @@ net-irc/pchat-irc
 net-analyzer/ntopng
 dev-libs/credis
 dev-libs/ewahboolarray
-=sys-fs/udev-221_pre
 
