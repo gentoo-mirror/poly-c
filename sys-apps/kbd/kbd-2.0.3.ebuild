@@ -46,7 +46,7 @@ src_unpack() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.0.0-tests.patch
+	epatch "${FILESDIR}"/${PN}-2.0.0-tests.patch #485116
 	eautoreconf
 }
 
