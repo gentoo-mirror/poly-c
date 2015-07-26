@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile install unpack
-DEPEND=!<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.14.1 >=sys-devel/automake-1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DEPEND=!<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
 DESCRIPTION=Ameter is an Alsa meter plugin
 HOMEPAGE=http://laugeo.free.fr/ameter.html
 KEYWORDS=~x86
@@ -8,5 +8,5 @@ RDEPEND=>=media-libs/alsa-lib-1.0.11_rc2 media-libs/libsdl media-libs/sdl-image
 RESTRICT=mirror
 SLOT=0
 SRC_URI=http://laugeo.free.fr/ameter-0.44.tar.gz
-_eclasses_=autotools	a9597abac7226d89ad9d010abeef6cfb	eutils	9fb270e417e0e83d64ca52586c4a79de	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_eclasses_=autotools	2264f05fbbbaaf83d34ec81e72b38ffd	eutils	9fb270e417e0e83d64ca52586c4a79de	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	42408102d713fbad60ca21349865edb4
 _md5_=3487f035927aeb512175694e88d283be

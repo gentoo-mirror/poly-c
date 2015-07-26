@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-222.ebuild,v 1.4 2015/07/10 23:17:45 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-222.ebuild,v 1.6 2015/07/24 14:12:53 aballier Exp $
 
 EAPI=5
 
@@ -188,6 +188,7 @@ multilib_src_configure() {
 		--disable-libcryptsetup
 		--disable-qrencode
 		--disable-microhttpd
+		--disable-gnuefi
 		--disable-gnutls
 		--disable-libcurl
 		--disable-libidn

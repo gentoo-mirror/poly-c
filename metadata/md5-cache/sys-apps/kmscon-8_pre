@@ -1,5 +1,5 @@
 DEFINED_PHASES=configure install prepare
-DEPEND=dev-libs/glib:2 sys-libs/libtsm >=virtual/udev-172 x11-libs/libxkbcommon drm? ( x11-libs/libdrm >=media-libs/mesa-8.0.3[egl,gbm] ) gles2? ( >=media-libs/mesa-8.0.3[gles2] ) pango? ( x11-libs/pango ) systemd? ( sys-apps/systemd ) pixman? ( x11-libs/pixman ) virtual/pkgconfig x11-proto/xproto doc? ( dev-util/gtk-doc ) !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.14.1:1.14 >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 virtual/pkgconfig
+DEPEND=dev-libs/glib:2 sys-libs/libtsm >=virtual/udev-172 x11-libs/libxkbcommon drm? ( x11-libs/libdrm >=media-libs/mesa-8.0.3[egl,gbm] ) gles2? ( >=media-libs/mesa-8.0.3[gles2] ) pango? ( x11-libs/pango ) systemd? ( sys-apps/systemd ) pixman? ( x11-libs/pixman ) virtual/pkgconfig x11-proto/xproto doc? ( dev-util/gtk-doc ) !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 virtual/pkgconfig
 DESCRIPTION=KMS/DRM based virtual Console Emulator
 EAPI=5
 HOMEPAGE=http://www.freedesktop.org/wiki/Software/kmscon
@@ -11,5 +11,5 @@ REQUIRED_USE=gles2? ( drm ) multiseat? ( systemd )
 RESTRICT=mirror
 SLOT=0
 SRC_URI=http://www.freedesktop.org/software/kmscon/releases/kmscon-8.tar.xz
-_eclasses_=autotools	a9597abac7226d89ad9d010abeef6cfb	eutils	9fb270e417e0e83d64ca52586c4a79de	flag-o-matic	c9602887773166fe300444712fc7ff98	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	systemd	090342761f573a8280dd5aa6b0345f3b	toolchain-funcs	42408102d713fbad60ca21349865edb4
+_eclasses_=autotools	2264f05fbbbaaf83d34ec81e72b38ffd	eutils	9fb270e417e0e83d64ca52586c4a79de	flag-o-matic	c9602887773166fe300444712fc7ff98	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	62927b3db3a589b0806255f3a002d5d3	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	systemd	090342761f573a8280dd5aa6b0345f3b	toolchain-funcs	42408102d713fbad60ca21349865edb4
 _md5_=fd0b0dd61ef4afaf09098c8ddee9e905
