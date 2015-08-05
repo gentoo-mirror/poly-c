@@ -1,0 +1,26 @@
+--- openssh-6.9p1/compat.c
++++ openssh-6.9p1/compat.c
+@@ -187,7 +187,22 @@
+ 		  "TTSSH/2.70*,"
+ 		  "TTSSH/2.71*,"
+ 		  "TTSSH/2.72*",	SSH_BUG_HOSTKEYS },
+-		{ "WinSCP*",		SSH_OLD_DHGEX },
++		{ "WinSCP_release_2.*"
++		  "WinSCP_release_3.*"
++		  "WinSCP_release_4.*"
++		  "WinSCP_release_5.0*"
++		  "WinSCP_release_5.1*"
++		  "WinSCP_release_5.2*"
++		  "WinSCP_release_5.3*"
++		  "WinSCP_release_5.4*"
++		  "WinSCP_release_5.5*"
++		  "WinSCP_release_5.6*"
++		  "WinSCP_release_5.7"
++		  "WinSCP_release_5.7.1"
++		  "WinSCP_release_5.7.2"
++		  "WinSCP_release_5.7.3"
++		  "WinSCP_release_5.7.4",
++					SSH_OLD_DHGEX },
+ 		{ NULL,			0 }
+ 	};
+ 

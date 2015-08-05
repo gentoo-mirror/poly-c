@@ -166,6 +166,8 @@ src_prepare() {
 	# kill logjam issue with fire
 	sed '/DH_GRP_MIN/s@1024@2048@' -i dh.h || die
 
+	epatch "${FILESDIR}"/${P}-winscp_blacklist.patch
+
 	eautoreconf
 }
 
