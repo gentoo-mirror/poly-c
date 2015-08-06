@@ -1,0 +1,46 @@
+Index: ipv4ll.c
+==================================================================
+--- ipv4ll.c
++++ ipv4ll.c
+@@ -361,31 +361,38 @@
+ 		state->arp = NULL;
+ 	}
+ 
+ 	if (drop && (ifp->options->options & DHCPCD_NODROP) != DHCPCD_NODROP) {
+ 		struct ipv4_state *istate;
++		int dropped;
+ 
++		dropped = 0;
+ 		if (state && state->addr.s_addr != INADDR_ANY) {
+ 			ipv4_deladdr(ifp, &state->addr, &inaddr_llmask, 1);
+ 			state->addr.s_addr = INADDR_ANY;
++			dropped = 1;
+ 		}
+ 
+ 		/* Free any other link local addresses that might exist. */
+ 		if ((istate = IPV4_STATE(ifp)) != NULL) {
+ 			struct ipv4_addr *ia, *ian;
+ 
+ 			TAILQ_FOREACH_SAFE(ia, &istate->addrs, next, ian) {
+-				if (IN_LINKLOCAL(ntohl(ia->addr.s_addr)))
++				if (IN_LINKLOCAL(ntohl(ia->addr.s_addr))) {
+ 					ipv4_deladdr(ifp, &ia->addr,
+ 					    &ia->net, 0);
++					dropped = 1;
++				}
+ 			}
+ 		}
+-		script_runreason(ifp, "IPV4LL");
++
++		if (dropped)
++			script_runreason(ifp, "IPV4LL");
+ 	}
+ 
+ 	if (state) {
+ 		free(state);
+ 		ifp->if_data[IF_DATA_IPV4LL] = NULL;
+ 
+ 		ipv4_buildroutes(ifp->ctx);
+ 	}
+ }
+
