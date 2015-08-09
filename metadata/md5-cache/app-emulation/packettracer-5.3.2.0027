@@ -1,14 +1,14 @@
-DEFINED_PHASES=install nofetch postinst postrm prepare setup
+_eclasses_=toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361	fdo-mime	92d07846ea8ea54172f8c0112a47ae3d	versionator	99ae9d758cbe7cfed19170e7d48f5a9c	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	eutils	351a78113be5b393c09a2c948701ad36
+_md5_=c602995fbc429641ed05084206914c99
+SLOT=0
+DEFINED_PHASES=install postinst postrm prepare setup
+EAPI=2
 DEPEND=app-arch/gzip
 DESCRIPTION=Cisco's Packet Tracer
-EAPI=2
-HOMEPAGE=https://www.cisco.com/web/learning/netacad/course_catalog/PacketTracer.html
-IUSE=doc linguas_de linguas_es linguas_ru
-KEYWORDS=~amd64 ~x86
 LICENSE=Cisco_EULA
-RDEPEND=doc? ( www-plugins/adobe-flash ) amd64? ( app-emulation/emul-linux-x86-compat >=app-emulation/emul-linux-x86-qtlibs-20081109 ) !<app-emulation/packettracer-52
+IUSE=doc linguas_de linguas_es linguas_ru
 RESTRICT=fetch mirror strip
-SLOT=0
 SRC_URI=http://cisco.netacad.net/cnams/resourcewindow/noncurr/downloadTools/app_files/PacketTracer532_Generic_Ubuntu.tar.gz linguas_de? ( http://cisco.netacad.net/cnams/resourcewindow/noncurr/downloadTools/app_files/PT53-german-v1.0.ptl ) linguas_es? ( http://cisco.netacad.net/cnams/resourcewindow/noncurr/downloadTools/app_files/spanish_PT_v53.ptl ) linguas_ru? ( http://cisco.netacad.net/cnams/resourcewindow/noncurr/downloadTools/app_files/RUSSIAN5.3.ptl )
-_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	multilib	62927b3db3a589b0806255f3a002d5d3	toolchain-funcs	42408102d713fbad60ca21349865edb4	versionator	cd0bcdb170807e4a1984115e9d53a26f
-_md5_=c602995fbc429641ed05084206914c99
+KEYWORDS=~amd64 ~x86
+HOMEPAGE=https://www.cisco.com/web/learning/netacad/course_catalog/PacketTracer.html
+RDEPEND=doc? ( www-plugins/adobe-flash ) amd64? ( app-emulation/emul-linux-x86-compat >=app-emulation/emul-linux-x86-qtlibs-20081109 ) !<app-emulation/packettracer-52
