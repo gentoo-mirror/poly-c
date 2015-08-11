@@ -10,4 +10,4 @@ RESTRICT=mirror
 SLOT=0
 SRC_URI=http://bellard.org/bpg/libbpg-0.9.5.tar.gz
 _eclasses_=poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435
-_md5_=b29232a456bd985d0da496e91aaa8bfb
+_md5_=24ff2d6ee546a5afd50796c90e5d3d8b

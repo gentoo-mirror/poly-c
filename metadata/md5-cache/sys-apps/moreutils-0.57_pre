@@ -11,4 +11,4 @@ RESTRICT=mirror
 SLOT=0
 SRC_URI=mirror://debian/pool/main/m/moreutils/moreutils_0.57.orig.tar.gz
 _eclasses_=multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361
-_md5_=e3f071c4bddc0a3f1422748c8fe1ed91
+_md5_=1ee1f773c92253a658135eff941fc74e

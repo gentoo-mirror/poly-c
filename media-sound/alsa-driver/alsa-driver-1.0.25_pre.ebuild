@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/alsa-driver/alsa-driver-1.0.23.ebuild,v 1.6 2011/06/06 06:24:21 robbat2 Exp $
+# $Id$
 
 inherit autotools linux-mod flag-o-matic eutils multilib poly-c_ebuilds
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/boswars/boswars-2.6.1.ebuild,v 1.5 2010/11/20 02:15:54 mr_bones_ Exp $
+# $Id$
 
 EAPI=5
 inherit eutils scons-utils games subversion

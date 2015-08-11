@@ -5,4 +5,4 @@ HOMEPAGE=https://github.com/lemire/EWAHBoolArray
 KEYWORDS=~amd64 ~x86
 SLOT=0
 SRC_URI=https://github.com/lemire/EWAHBoolArray/archive/0.4.0.tar.gz -> ewahboolarray-0.4.0.tar.gz
-_md5_=009b556e9b616d1672e3dce9d4ac8125
+_md5_=1cbc918099bb6dd8b666c421c4f32eb5

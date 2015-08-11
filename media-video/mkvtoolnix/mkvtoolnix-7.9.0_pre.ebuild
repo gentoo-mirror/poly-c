@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mkvtoolnix/mkvtoolnix-7.8.0.ebuild,v 1.1 2015/04/04 18:40:03 radhermit Exp $
+# $Id$
 
 EAPI=5
 WX_GTK_VER="3.0"

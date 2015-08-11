@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxsession/lxsession-0.4.9.2-r3.ebuild,v 1.7 2015/02/25 15:30:45 ago Exp $
+# $Id: 27270a0ad8d445228901162fc1c6e0e38a27db6f $
 
 EAPI=5
 

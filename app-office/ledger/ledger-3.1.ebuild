@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/ledger/ledger-3.1.ebuild,v 1.5 2015/06/07 08:09:57 jlec Exp $
+# $Id: 6cdf9d9a5148593b37212529b9aed602c243a6e1 $
 
 EAPI=5
 

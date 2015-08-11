@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-224.ebuild,v 1.1 2015/08/02 17:47:09 williamh Exp $
+# $Id: 08f9e6257ff84875014e2cfc4af1f78f1c2fb67f $
 
 EAPI=5
 
@@ -9,7 +9,6 @@ inherit autotools bash-completion-r1 eutils linux-info multilib multilib-minimal
 if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://anongit.freedesktop.org/systemd/systemd"
 	inherit git-r3
-	patchset=
 else
 	patchset=
 	FIXUP_PATCH="${PN}-221-revert-systemd-messup.patch.xz"

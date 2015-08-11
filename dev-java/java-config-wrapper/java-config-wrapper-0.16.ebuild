@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config-wrapper/java-config-wrapper-0.16.ebuild,v 1.9 2015/07/11 09:21:41 chewi Exp $
+# $Id: 8f1ac10614dd89e8539004cfeec06da33bdfb0e3 $
 
 EAPI=4
 

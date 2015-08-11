@@ -1,4 +1,4 @@
-DEFINED_PHASES=configure install
+DEFINED_PHASES=config configure install
 DEPEND=>=dev-libs/boehm-gc-7.0[threads?] dev-libs/gmp dev-libs/libffi dev-libs/libltdl >=dev-libs/libunistring-0.9.3 sys-devel/gettext virtual/pkgconfig
 DESCRIPTION=GNU Ubiquitous Intelligent Language for Extensions
 EAPI=5
@@ -11,4 +11,4 @@ RESTRICT=mirror
 SLOT=12
 SRC_URI=mirror://gnu/guile/guile-2.0.11.tar.gz
 _eclasses_=eutils	351a78113be5b393c09a2c948701ad36	flag-o-matic	02090c5a622458303e6bf68837ac6b96	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361
-_md5_=ed0f9aceb21869c6e69d2e59a084ec71
+_md5_=5952e3bdc9df97ed00ac002e0a0b8513

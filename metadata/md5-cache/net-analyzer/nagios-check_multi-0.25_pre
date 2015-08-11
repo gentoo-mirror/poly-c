@@ -10,4 +10,4 @@ RESTRICT=mirror
 SLOT=0
 SRC_URI=http://my-plugin.de/check_multi/check_multi-stable-0.25.tar.gz
 _eclasses_=eutils	351a78113be5b393c09a2c948701ad36	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361
-_md5_=feed7a18484f3abbcc1d72548f2c743f
+_md5_=384599e32522f9eef8a39625ea9082ae

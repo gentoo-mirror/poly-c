@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.38.2-r1.ebuild,v 1.15 2014/07/17 15:12:26 ssuominen Exp $
+# $Id$
 
 EAPI="5"
 PYTHON_COMPAT=( python2_{6,7} )

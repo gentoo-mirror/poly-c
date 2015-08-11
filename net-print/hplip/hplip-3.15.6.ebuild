@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-print/hplip/hplip-3.15.6.ebuild,v 1.1 2015/06/14 08:41:22 billie Exp $
+# $Id: 9e993be2d29b161c2bc3d59d05396a8dfe4554ad $
 
 EAPI=5
 

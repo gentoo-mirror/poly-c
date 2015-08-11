@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-astronomy/celestia/celestia-1.6.1-r1.ebuild,v 1.2 2014/02/04 03:58:07 zerochaos Exp $
+# $Id: 05d3bf9d2dffe1224cba9d4e8d9e1b91f307c68b $
 
 EAPI=5
 WANT_AUTOMAKE="1.11"

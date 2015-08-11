@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/redland/redland-1.0.16.ebuild,v 1.18 2014/12/28 15:34:51 titanofold Exp $
+# $Id: 7a1de943299fd09e31169e9d415ca323001cc392 $
 
 EAPI=4
 inherit autotools db-use eutils libtool

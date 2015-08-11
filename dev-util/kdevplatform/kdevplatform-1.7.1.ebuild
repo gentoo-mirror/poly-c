@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/kdevplatform/kdevplatform-1.7.1.ebuild,v 1.2 2015/06/04 19:02:21 kensington Exp $
+# $Id: 2b279cfe110b527bba1a894b2d18dd947a8a3dd3 $
 
 EAPI=5
 

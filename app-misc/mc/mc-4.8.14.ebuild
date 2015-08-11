@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.8.14.ebuild,v 1.1 2015/04/03 23:34:25 slyfox Exp $
+# $Id: cebc4816d00f5998cf53110d5ec9a416e4887f8f $
 
 EAPI=5
 

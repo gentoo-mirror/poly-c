@@ -1,4 +1,4 @@
-DEFINED_PHASES=install preinst
+DEFINED_PHASES=install nofetch preinst
 DESCRIPTION=ICA Client for Citrix Presentation servers
 EAPI=5
 HOMEPAGE=http://www.citrix.com/
@@ -10,4 +10,4 @@ RESTRICT=mirror strip userpriv fetch
 SLOT=0
 SRC_URI=amd64? ( linuxx64-13.2.0.322243.tar.gz ) x86? ( linuxx86-13.2.0.322243.tar.gz )
 _eclasses_=eutils	351a78113be5b393c09a2c948701ad36	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361	versionator	99ae9d758cbe7cfed19170e7d48f5a9c
-_md5_=8a365a78f5da227b18cd329ddf6d6559
+_md5_=c901deac0f3e58061a8e5d68a3a9081c

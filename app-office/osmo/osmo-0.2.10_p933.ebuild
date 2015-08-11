@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/osmo/Attic/osmo-0.2.10.ebuild,v 1.10 2013/07/21 07:26:07 pacho dead $
+# $Id$
 
 EAPI=5
 inherit autotools eutils flag-o-matic

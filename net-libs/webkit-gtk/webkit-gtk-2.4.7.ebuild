@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/webkit-gtk-2.4.7.ebuild,v 1.5 2014/12/22 21:30:49 jer Exp $
+# $Id$
 
 EAPI="5"
 GCONF_DEBUG="no"

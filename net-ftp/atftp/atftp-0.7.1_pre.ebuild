@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/atftp/atftp-0.7-r2.ebuild,v 1.6 2012/05/13 11:13:32 swift Exp $
+# $Id$
 
 EAPI=5
 

@@ -11,4 +11,4 @@ RESTRICT=test
 SLOT=0
 SRC_URI=https://bitbucket.org/tagoh/liblangtag/downloads/liblangtag-0.5.7.tar.bz2
 _eclasses_=autotools	8056957fdccf2b3cd6e282a4b4551d1a	autotools-utils	0bf099a6e3dfeaf20a7a94504d8dd896	eutils	351a78113be5b393c09a2c948701ad36	libtool	7f78cd7d403808a350c9ae23f5821fb4	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361
-_md5_=df852d2503c0eebdf24738f8b98f6b44
+_md5_=268814753f9e84136db9f71c60b2a5eb

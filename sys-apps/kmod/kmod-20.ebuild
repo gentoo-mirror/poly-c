@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/kmod/kmod-20.ebuild,v 1.11 2015/06/08 03:39:57 vapier Exp $
+# $Id: d1d03d1154b074e60275df41b35a1c4f74dbe32a $
 
 EAPI=5
 

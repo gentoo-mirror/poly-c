@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udev/udev-222.ebuild,v 1.6 2015/07/24 14:12:53 aballier Exp $
+# $Id: 4d29b23babea404ea474d27fe63d07b1b18e3ab1 $
 
 EAPI=5
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/kbd/kbd-2.0.2.ebuild,v 1.2 2015/07/14 03:40:55 vapier Exp $
+# $Id: 8d8d16b66f15c55b937254508ff85b81c91d846d $
 
 EAPI=5
 

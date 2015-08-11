@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v3
-# $Header: app-emulation/e-uae/fs-uae,v 1.0 2013/12/08 07:19:41 frostwork Exp $
+# $Id$
 
 EAPI="2"
 

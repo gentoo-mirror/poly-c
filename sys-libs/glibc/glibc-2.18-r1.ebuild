@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/glibc-2.18-r1.ebuild,v 1.4 2014/04/05 16:05:07 vapier Exp $
+# $Id: da3d2d723dad0c4a5a277ba348b34092886f2286 $
 
 inherit eutils versionator toolchain-funcs flag-o-matic gnuconfig multilib systemd unpacker multiprocessing
 

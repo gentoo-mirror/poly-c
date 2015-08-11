@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ardour/ardour-4.0-r2.ebuild,v 1.2 2015/05/03 12:32:14 nativemad Exp $
+# $Id: 225267ba04cc1d207e9e99715d38ee3cb535f85d $
 
 EAPI=5
 

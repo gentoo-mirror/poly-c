@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/alsa-utils/alsa-utils-1.0.29.ebuild,v 1.10 2015/07/17 15:07:10 ago Exp $
+# $Id: f9c558c759fe635ae6a7c01250a5572db3cd735b $
 
 EAPI=5
 inherit eutils systemd udev

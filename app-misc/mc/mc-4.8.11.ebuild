@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.8.11.ebuild,v 1.11 2014/03/19 16:13:59 ago Exp $
+# $Id: 6b7bf3ce452a9c7203429d4a4eb496c2ebc305ef $
 
 EAPI=5
 

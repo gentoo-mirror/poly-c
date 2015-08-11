@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/sysstat/sysstat-11.0.4-r1.ebuild,v 1.1 2015/06/08 04:45:43 jer Exp $
+# $Id$
 
 EAPI=5
 inherit eutils multilib systemd toolchain-funcs

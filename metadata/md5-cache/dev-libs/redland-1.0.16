@@ -10,4 +10,4 @@ RDEPEND=|| ( dev-libs/libltdl:0 <sys-devel/libtool-2.4.3-r2:2 ) mysql? ( virtual
 SLOT=0
 SRC_URI=http://download.librdf.org/source/redland-1.0.16.tar.gz
 _eclasses_=autotools	8056957fdccf2b3cd6e282a4b4551d1a	db-use	a4966c7f4f7df444ead1212848c13cc9	eutils	351a78113be5b393c09a2c948701ad36	libtool	7f78cd7d403808a350c9ae23f5821fb4	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361	versionator	99ae9d758cbe7cfed19170e7d48f5a9c
-_md5_=075a666d59b5d2b8ada55dc5f42e36f2
+_md5_=4f7c98a919a134becc535d9cf7f2a11a
