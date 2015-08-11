@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
+EAPI=5
+
 inherit poly-c_ebuilds
 
 DESCRIPTION="Internet DJ Console"
@@ -28,7 +30,7 @@ DEPEND=">=media-sound/jack-audio-connection-kit-0.99.0-r1
 S="${WORKDIR}/${MY_P}"
 
 src_install() {
-	make DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${D}" install
 }
 
 pkg_postinst() {
