@@ -1,6 +1,7 @@
 DEFINED_PHASES=compile install setup
 DEPEND=ssl? ( >=dev-libs/openssl-0.9.8d )
 DESCRIPTION=shroudBNC is a modular IRC proxy written in C++.
+EAPI=0
 HOMEPAGE=http://www.shroudbnc.info/
 IUSE=ssl
 KEYWORDS=~amd64 ~x86

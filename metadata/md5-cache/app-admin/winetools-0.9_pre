@@ -1,5 +1,6 @@
 DEFINED_PHASES=install unpack
 DESCRIPTION=Graphical Wine tool for installing Windows programs under Wine
+EAPI=0
 HOMEPAGE=http://www.von-thadden.de/Joachim/WineTools/index.html
 IUSE=nls
 KEYWORDS=~amd64 ~x86

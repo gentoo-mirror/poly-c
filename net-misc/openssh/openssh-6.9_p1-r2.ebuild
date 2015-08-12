@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: fe41c28bf472b26678b0102cf63ab15567cb366c $
+# $Id: 4e68ce2254eb648a16dece2a2572808a637da0a6 $
 
 EAPI="4"
 inherit eutils user flag-o-matic multilib autotools pam systemd versionator
@@ -89,9 +89,8 @@ pkg_setup() {
 
 	# Make sure people who are using tcp wrappers are notified of its removal. #531156
 	if grep -qs '^ *sshd *:' "${EROOT}"/etc/hosts.{allow,deny} ; then
-		eerror "Sorry, but openssh no longer supports tcp-wrappers, and it seems like"
-		eerror "you're trying to use it.  Update your ${EROOT}etc/hosts.{allow,deny} please."
-		die "USE=tcpd no longer works"
+		ewarn "Sorry, but openssh no longer supports tcp-wrappers, and it seems like"
+		ewarn "you're trying to use it.  Update your ${EROOT}etc/hosts.{allow,deny} please."
 	fi
 }
 
@@ -204,6 +203,9 @@ src_configure() {
 		$(use_with ssl md5-passwords)
 		$(use_with ssl ssl-engine)
 	)
+
+	# The seccomp sandbox is broken on x32, so use the older method for now. #553748
+	use amd64 && [[ ${ABI} == "x32" ]] && myconf+=( --with-sandbox=rlimit )
 
 	# Special settings for Gentoo/FreeBSD 9.0 or later (see bug #391011)
 	if use elibc_FreeBSD && version_is_at_least 9.0 "$(uname -r|sed 's/\(.\..\).*/\1/')" ; then

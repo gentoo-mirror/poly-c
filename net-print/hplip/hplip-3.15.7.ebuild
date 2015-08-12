@@ -4,7 +4,7 @@
 
 EAPI=5
 
-PYTHON_COMPAT=( python{2_7,3_3,3_4} )
+PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="threads,xml"
 
 inherit eutils fdo-mime linux-info python-single-r1 udev autotools toolchain-funcs

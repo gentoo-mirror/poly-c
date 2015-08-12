@@ -1,5 +1,6 @@
 DEFINED_PHASES=install unpack
 DESCRIPTION=traGtor is a graphical user interface (GUI) for ffmpeg
+EAPI=0
 HOMEPAGE=http://mein-neues-blog.de/tragtor-gui-for-ffmpeg/
 KEYWORDS=~amd64 ~x86
 RDEPEND=dev-python/pygtk media-video/ffmpeg media-sound/id3v2
