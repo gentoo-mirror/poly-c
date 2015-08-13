@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5d57f3b6ef84e181aa1becb90ad4c43ae5411ecd $
+# $Id: e7d3760dab02b55a96e85d4289952110f13e1851 $
 
 EAPI="4"
 inherit eutils user flag-o-matic multilib autotools pam systemd versionator
@@ -11,7 +11,7 @@ PARCH=${P/_}
 
 HPN_PATCH="${PN}-7.0p1-hpnssh14v5.tar.xz"
 LDAP_PATCH="${PN}-lpk-6.8p1-0.3.14.patch.xz"
-#X509_VER="8.4" X509_PATCH="${PN}-6.9p1+x509-${X509_VER}.diff.gz"
+X509_VER="8.5" X509_PATCH="${PN}-${PV//_/}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.org/"
@@ -114,7 +114,7 @@ src_prepare() {
 	if use X509 ; then
 		pushd .. >/dev/null
 		#epatch "${WORKDIR}"/${PN}-6.8_p1-x509-${X509_VER}-glue.patch
-		epatch "${FILESDIR}"/${PN}-6.8_p1-sctp-x509-glue.patch
+		epatch "${FILESDIR}"/${PN}-7.0_p1-sctp-x509-glue.patch
 		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}
 		epatch "${FILESDIR}"/${PN}-6.3_p1-x509-hpn14v2-glue.patch
@@ -313,5 +313,17 @@ pkg_postinst() {
 		elog "Starting with openssh-6.7, support for USE=tcpd has been dropped by upstream."
 		elog "Make sure to update any configs that you might have.  Note that xinetd might"
 		elog "be an alternative for you as it supports USE=tcpd."
+	fi
+	if has_version "<${CATEGORY}/${PN}-7.1_p1" ; then #557388
+		elog "Starting with openssh-7.0, support for ssh-dss keys were disabled due to their"
+		elog "weak sizes.  If you rely on these key types, you can re-enable the key types by"
+		elog "adding to your sshd_config:"
+		elog "  PubkeyAcceptedKeyTypes=+ssh-dss"
+		elog "You should however generate new keys using rsa or ed25519."
+	fi
+	if ! use ssl && has_version "${CATEGORY}/${PN}[ssl]" ; then
+		elog "Be aware that by disabling openssl support in openssh, the server and clients"
+		elog "no longer support dss/rsa/ecdsa keys.  You will need to generate ed25519 keys"
+		elog "and update all clients/servers that utilize them."
 	fi
 }
