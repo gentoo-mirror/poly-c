@@ -1,4 +1,4 @@
-DEFINED_PHASES=install nofetch postinst postrm prerm unpack
+DEFINED_PHASES=install postinst postrm prerm unpack
 DEPEND=>=app-arch/rpm2targz-9.0.0.3g
 DESCRIPTION=ICA Client for Citrix Presentation servers
 EAPI=5

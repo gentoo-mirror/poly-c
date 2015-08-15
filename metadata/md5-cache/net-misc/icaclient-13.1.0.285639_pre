@@ -1,4 +1,4 @@
-DEFINED_PHASES=install nofetch preinst
+DEFINED_PHASES=install preinst
 DESCRIPTION=ICA Client for Citrix Presentation servers
 EAPI=5
 HOMEPAGE=http://www.citrix.com/

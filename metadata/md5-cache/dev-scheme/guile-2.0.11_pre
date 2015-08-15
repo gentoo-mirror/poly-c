@@ -1,4 +1,4 @@
-DEFINED_PHASES=config configure install
+DEFINED_PHASES=configure install
 DEPEND=>=dev-libs/boehm-gc-7.0[threads?] dev-libs/gmp dev-libs/libffi dev-libs/libltdl >=dev-libs/libunistring-0.9.3 sys-devel/gettext virtual/pkgconfig
 DESCRIPTION=GNU Ubiquitous Intelligent Language for Extensions
 EAPI=5
