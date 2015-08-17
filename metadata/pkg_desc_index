@@ -47,7 +47,7 @@ media-libs/opus 1.1.1_beta: Open versatile codec designed for interactive speech
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
 media-sound/alsa-utils 1.0.27.2 1.0.28 1.0.28-r1 1.0.29: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
 media-sound/ameter 0.44_pre: Ameter is an Alsa meter plugin
-media-sound/ardour 4.0-r1 4.0-r2 4.1 4.2: Digital Audio Workstation
+media-sound/ardour 4.0-r1 4.0-r2 4.1 4.2-r1: Digital Audio Workstation
 media-sound/clementine 1.2.2 1.2.3: A modern music player and library organizer based on Amarok 1.4 and Qt4
 media-sound/cutmp3 2.1.2_pre 3.0_pre 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
 media-sound/idjc 0.8.14_pre 0.8.15_pre: Internet DJ Console
@@ -57,6 +57,7 @@ media-sound/ossp 1.3.1 1.3.2: OSS Proxy Daemon is Linux userland OSS sound devic
 media-sound/qamix 0.0.7e_pre: QAMix is a configurable mixer for ALSA. Interfaces for AC 97 cards and Soundblaster Live are provided.
 media-sound/qmmp 0.8.7_pre: Qt4-based audio player with winamp/xmms skins support
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
+media-video/mkvtoolnix 8.3.0_pre: Tools to create, alter, and inspect Matroska files
 media-video/smplayer 14.9.0.6994: Great Qt GUI front-end for mplayer/mpv
 media-video/tragtor 0.8.45: traGtor is a graphical user interface (GUI) for ffmpeg
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
