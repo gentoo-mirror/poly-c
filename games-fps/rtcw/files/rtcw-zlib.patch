@@ -1,0 +1,16 @@
+Index: code/qcommon/ioapi.h
+===================================================================
+diff --git a/trunk/SP/code/qcommon/ioapi.h b/trunk/SP/code/qcommon/ioapi.h
+--- a/trunk/SP/code/qcommon/ioapi.h	(revision 762)
++++ b/trunk/SP/code/qcommon/ioapi.h	(working copy)
+@@ -31,6 +31,10 @@
+ #endif
+ #endif
+ 
++#ifndef OF
++#define OF(x) x
++#endif
++
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
