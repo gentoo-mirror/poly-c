@@ -13,7 +13,7 @@ app-office/ledger 3.1: A double-entry accounting system with a command-line repo
 app-office/osmo 0.2.10 0.2.10_p933: A handy personal organizer
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/liblangtag 0.5.7_pre: An interface library to access tags for identifying languages
-dev-db/ctdb 2.5.4: A cluster implementation of the TDB database used to store temporary data
+dev-db/ctdb 2.5.4 2.5.5: A cluster implementation of the TDB database used to store temporary data
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-libs/Ice 3.6.0_pre: ICE middleware C++ library and generator tools
 dev-libs/boost 1.59.0_pre: Boost Libraries for C++
@@ -94,12 +94,13 @@ sys-apps/man 1.6g: Standard commands to read man pages
 sys-apps/moreutils 0.57_pre: a growing collection of the unix tools that nobody thought to write thirty years ago
 sys-apps/portage 2.2.8-r2: Portage is the package management and distribution system for Gentoo
 sys-apps/usb_modeswitch 2.2.5_p20150627_pre: USB_ModeSwitch is a tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
+sys-apps/util-linux 2.27_rc1: Various useful Linux utilities
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.00_p5107-r2 2.02_beta2-r3 2.02_beta2-r6 2.02_beta2-r7: GNU GRUB boot loader
 sys-devel/autogen 5.18.5_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
-sys-fs/udev 216 217 218 219 220-r3 222 224 224-r1: Linux dynamic and persistent device naming support (aka userspace devfs)
+sys-fs/udev 216 217 218 219 220-r3 222 224 224-r1 224-r2: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
