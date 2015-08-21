@@ -97,9 +97,11 @@ src_prepare(){
 		done
 	done
 
-	sed "/^CFLAGS=/s@=.*\$@=${CFLAGS}@" -i SP/Makefile.local || die
+	local makefile="SP/Makefile.local"
 
-	echo "V=1" >> SP/Makefile.local
+	sed "/^CFLAGS=/s@=.*\$@=${CFLAGS}@" -i ${makefile} || die
+
+	echo "V=1" >> ${makefile}
 
 	use_switch client BUILD_CLIENT
 	use_switch curl USE_CURL
@@ -111,8 +113,8 @@ src_prepare(){
 	use_switch vorbis USE_CODEC_VORBIS
 	use_switch voip USE_VOIP
 
-	use curl && echo "USE_CURL_DLOPEN=0" >> SP/Makefile.local
-	use openal && echo "USE_OPENAL_DLOPEN=0" >> SP/Makefile.local
+	use curl && echo "USE_CURL_DLOPEN=0" >> ${makefile}
+	use openal && echo "USE_OPENAL_DLOPEN=0" >> ${makefile}
 }
 
 src_compile() {

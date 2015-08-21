@@ -75,10 +75,10 @@ net-im/pidgin 2.10.10 2.10.11: GTK Instant Messenger client
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/webkit-gtk 2.4.7 2.4.8 2.4.9: Open source web browser engine
-net-misc/dhcpcd 6.9.1: A fully featured, yet light weight RFC2131 compliant DHCP client
+net-misc/dhcpcd 6.9.1 6.9.2_pre: A fully featured, yet light weight RFC2131 compliant DHCP client
 net-misc/icaclient 13.2.0.322243_pre: ICA Client for Citrix Presentation servers
 net-misc/knemo 0.7.6-r2: The KDE Network Monitor
-net-misc/openssh 6.8_p1-r5 6.9_p1-r1 6.9_p1-r2 7.0_p1: Port of OpenBSD's free SSH release
+net-misc/openssh 6.8_p1-r5 6.9_p1-r1 6.9_p1-r2 7.0_p1 7.1_p1_pre: Port of OpenBSD's free SSH release
 net-misc/wicd 1.7.2.4-r3 1.7.3 1.7.3-r1: A lightweight wired and wireless network manager for Linux
 net-print/cups 2.0.4_pre: The Common Unix Printing System
 net-print/hplip 3.14.10 3.15.6 3.15.7: HP Linux Imaging and Printing. Includes printer, scanner, fax drivers and service tools
