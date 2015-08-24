@@ -23,6 +23,7 @@ dev-libs/icu 54.1-r1 55.1: International Components for Unicode
 dev-libs/libclc 0.0.1_pre20140101: OpenCL C library
 dev-libs/libpcre2 10.10_pre: Perl-compatible regular expression library
 dev-libs/mini-xml 2.9_pre: Small XML parsing library to read XML and XML-like data files
+dev-libs/nss 3.20_pre: Mozilla's Network Security Services library that implements PKI support
 dev-libs/redland 1.0.16: High-level interface for the Resource Description Framework
 dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 dev-python/google-apputils 0.4.0: Collection of utilities for building Python applications
