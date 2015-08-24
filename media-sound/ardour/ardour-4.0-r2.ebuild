@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 225267ba04cc1d207e9e99715d38ee3cb535f85d $
+# $Id: 3c42277b428dba9ebc17ce96e9ec3bfcf132357b $
 
 EAPI=5
 
@@ -84,10 +84,10 @@ src_unpack() {
 
 src_prepare(){
 	if ! [ ${PV} = 9999 ]; then
-		epatch "${FILESDIR}"/${PN}-4.0-revision-naming.patch
+		epatch "${FILESDIR}"/${PN}-4.x-revision-naming.patch
 		touch "${S}/libs/ardour/revision.cc"
 	fi
-	$(use lv2 || epatch "${FILESDIR}"/${PN}-4.0-lv2.patch)
+	use lv2 || epatch "${FILESDIR}"/${PN}-4.0-lv2.patch
 	epatch "${FILESDIR}"/${PN}-3.5.403-sse.patch
 	#sed -e 's/'FLAGS\'\,\ compiler_flags'/'FLAGS\'\,\ program_flags'/g' -i "${S}"/wscript
 	#sed -e 's/'compiler_flags.append\ \(\'-DPROGRAM_'/'program_flags.append\ \(\'-DPROGRAM_'/g' -i "${S}"/wscript

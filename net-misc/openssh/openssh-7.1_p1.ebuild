@@ -1,13 +1,13 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e7d3760dab02b55a96e85d4289952110f13e1851 $
+# $Id: 2078e873e1f89afdfc8609b2f5552657162e6514 $
 
 EAPI="4"
-inherit eutils user flag-o-matic multilib autotools pam systemd versionator poly-c_ebuilds
+inherit eutils user flag-o-matic multilib autotools pam systemd versionator
 
 # Make it more portable between straight releases
 # and _p? releases.
-PARCH=${MY_P/_}
+PARCH=${P/_}
 
 HPN_PATCH="${PN}-7.0p1-hpnssh14v5.tar.xz"
 LDAP_PATCH="${PN}-lpk-6.8p1-0.3.14.patch.xz"

@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0c3fc633b29be14b9eecb190d9972a93473d4574 $
+# $Id: 40fc50dd413db114cb1a81b52323f20eaab623be $
 
 EAPI=5
 inherit eutils systemd udev
@@ -19,7 +19,7 @@ IUSE="doc +libsamplerate +ncurses nls selinux"
 
 CDEPEND=">=media-libs/alsa-lib-1.0.27.1
 	libsamplerate? ( media-libs/libsamplerate )
-	ncurses? ( >=sys-libs/ncurses-5.7-r7 )"
+	ncurses? ( >=sys-libs/ncurses-5.7-r7:5= )"
 DEPEND="${CDEPEND}
 	virtual/pkgconfig
 	doc? ( app-text/xmlto )"

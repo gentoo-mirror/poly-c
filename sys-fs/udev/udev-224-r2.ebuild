@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 19cba30d000d3b9888aa48fa6eb5f061b510aae2 $
+# $Id: 38922debf6cdbf11155d41e13b46fadd1118d433 $
 
 EAPI=5
 
@@ -120,6 +120,7 @@ src_prepare() {
 		EPATCH_SUFFIX=patch EPATCH_FORCE=yes epatch
 	fi
 
+	epatch "${FILESDIR}/224-0002-Use-getxpid-syscall-on-alpha-for-raw_getpid.patch"
 	epatch "${DISTDIR}"/${FIXUP_PATCH}
 	rm man/systemd-hwdb.xml || die
 
