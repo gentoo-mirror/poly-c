@@ -1,0 +1,953 @@
+--- avogadro-1.1.1/avogadro/src/CMakeLists.txt
++++ avogadro-1.1.1/avogadro/src/CMakeLists.txt
+@@ -19,6 +19,7 @@
+ include_directories(
+   ${CMAKE_CURRENT_SOURCE_DIR}
+   ${OPENBABEL2_INCLUDE_DIR}
++  ${EIGEN3_INCLUDE_DIR}
+   ${EIGEN2_INCLUDE_DIR}
+   ${CMAKE_CURRENT_BINARY_DIR}
+ )
+--- avogadro-1.1.1/avogadro/src/config.h.in
++++ avogadro-1.1.1/avogadro/src/config.h.in
+@@ -37,4 +37,6 @@
+ 
+ #define VERSION "@Avogadro_VERSION_FULL@"
+ 
++#cmakedefine EIGEN2_SUPPORT_STAGE10_FULL_EIGEN2_API
++
+ #endif  // AVOCONFIG_H
+--- avogadro-1.1.1/avogadro/src/mainwindow.h
++++ avogadro-1.1.1/avogadro/src/mainwindow.h
+@@ -24,6 +24,8 @@
+ #ifndef MAINWINDOW_H
+ #define MAINWINDOW_H
+ 
++#include "config.h"
++
+ #include <Eigen/Geometry>
+ #include "ui_mainwindow.h"
+ #include "flattabwidget.h"
+--- avogadro-1.1.1/cmake/modules/AvogadroUse.cmake
++++ avogadro-1.1.1/cmake/modules/AvogadroUse.cmake
+@@ -12,8 +12,18 @@
+ 
+ # Add the Avogadro modules directory to the CMake module path
+ set(CMAKE_MODULE_PATH ${Avogadro_PLUGIN_DIR}/cmake ${CMAKE_MODULE_PATH})
+-find_package(Eigen2 REQUIRED)
+-include_directories(${EIGEN2_INCLUDE_DIR})
++
++# First, try to find Eigen3
++find_package(Eigen3)
++if(EIGEN3_FOUND)
++  include_directories(${EIGEN3_INCLUDE_DIR})
++# If Eigen3 wasn't found, find Eigen2. It will be required.
++else(EIGEN3_FOUND)
++  message("Eigen3 not found. Trying to find Eigen2...")
++  find_package(Eigen2 REQUIRED)
++  include_directories(${EIGEN2_INCLUDE_DIR})
++endif(EIGEN3_FOUND)
++
+ if(Avogadro_ENABLE_GLSL)
+   find_package(GLEW)
+   if(GLEW_FOUND)
+--- avogadro-1.1.1/libavogadro/examples/thirdPartyExtensions/03-ViewPlane/viewplaneextension.cpp
++++ avogadro-1.1.1/libavogadro/examples/thirdPartyExtensions/03-ViewPlane/viewplaneextension.cpp
+@@ -22,6 +22,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include "viewplaneextension.h"
+ 
+ #include <avogadro/atom.h>
+--- avogadro-1.1.1/libavogadro/examples/thirdPartyExtensions/04-RotateSelection/rotateselectiondialog.cpp
++++ avogadro-1.1.1/libavogadro/examples/thirdPartyExtensions/04-RotateSelection/rotateselectiondialog.cpp
+@@ -14,6 +14,8 @@
+   GNU General Public License for more details.
+  ***********************************************************************/
+ 
++#include "config.h"
++
+ #include "rotateselectiondialog.h"
+ 
+ #include <Eigen/Core>
+--- avogadro-1.1.1/libavogadro/examples/thirdPartyExtensions/04-RotateSelection/rotateselectiondialog.h
++++ avogadro-1.1.1/libavogadro/examples/thirdPartyExtensions/04-RotateSelection/rotateselectiondialog.h
+@@ -17,6 +17,8 @@
+ #ifndef ROTATESELECTIONDIALOG_H
+ #define ROTATESELECTIONDIALOG_H
+ 
++#include "config.h"
++
+ #include <Eigen/Core>
+ 
+ #include <QtGui/QDialog>
+--- avogadro-1.1.1/libavogadro/examples/thirdPartyExtensions/04-RotateSelection/rotateselectionextension.cpp
++++ avogadro-1.1.1/libavogadro/examples/thirdPartyExtensions/04-RotateSelection/rotateselectionextension.cpp
+@@ -22,6 +22,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include "rotateselectionextension.h"
+ #include "rotateselectiondialog.h"
+ 
+--- avogadro-1.1.1/libavogadro/src/animation.cpp
++++ avogadro-1.1.1/libavogadro/src/animation.cpp
+@@ -20,6 +20,8 @@
+   GNU General Public License for more details.
+  ***********************************************************************/
+ 
++#include "config.h"
++
+ #include "animation.h"
+ 
+ #include <avogadro/molecule.h>
+--- avogadro-1.1.1/libavogadro/src/animation.h
++++ avogadro-1.1.1/libavogadro/src/animation.h
+@@ -24,6 +24,8 @@
+ #ifndef ANIMATION_H
+ #define ANIMATION_H
+ 
++#include "config.h"
++
+ #include "global.h"
+ 
+ #include <QObject>
+--- avogadro-1.1.1/libavogadro/src/camera.cpp
++++ avogadro-1.1.1/libavogadro/src/camera.cpp
+@@ -23,6 +23,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include "camera.h"
+ #include "glwidget.h"
+ #include <avogadro/molecule.h>
+--- avogadro-1.1.1/libavogadro/src/camera.h
++++ avogadro-1.1.1/libavogadro/src/camera.h
+@@ -30,6 +30,8 @@
+ #ifndef CAMERA_H
+ #define CAMERA_H
+ 
++#include "config.h"
++
+ #include <avogadro/global.h>
+ #include <Eigen/Geometry>
+ #include <QPoint>
+--- avogadro-1.1.1/libavogadro/src/CMakeLists.txt
++++ avogadro-1.1.1/libavogadro/src/CMakeLists.txt
+@@ -11,6 +11,7 @@
+   "${libavogadro_BINARY_DIR}/include;${tmp_include_dirs}")
+ include_directories(
+   ${CMAKE_CURRENT_BINARY_DIR}
++  ${EIGEN3_INCLUDE_DIR}
+   ${EIGEN2_INCLUDE_DIR}
+   ${OPENBABEL2_INCLUDE_DIR}
+ )
+--- avogadro-1.1.1/libavogadro/src/cylinder_p.cpp
++++ avogadro-1.1.1/libavogadro/src/cylinder_p.cpp
+@@ -22,6 +22,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include "cylinder_p.h"
+ 
+ #ifdef ENABLE_GLSL
+--- avogadro-1.1.1/libavogadro/src/cylinder_p.h
++++ avogadro-1.1.1/libavogadro/src/cylinder_p.h
+@@ -25,6 +25,8 @@
+ #ifndef CYLINDER_H
+ #define CYLINDER_H
+ 
++#include "config.h"
++
+ #include <avogadro/global.h>
+ 
+ #include <Eigen/Core>
+--- avogadro-1.1.1/libavogadro/src/engines/axesengine.cpp
++++ avogadro-1.1.1/libavogadro/src/engines/axesengine.cpp
+@@ -23,6 +23,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include "axesengine.h"
+ 
+ #include <avogadro/color.h>
+--- avogadro-1.1.1/libavogadro/src/engines/cartoonengine.cpp
++++ avogadro-1.1.1/libavogadro/src/engines/cartoonengine.cpp
+@@ -23,6 +23,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include "cartoonengine.h"
+ #include "cartoonmeshgenerator.h"
+ 
+--- avogadro-1.1.1/libavogadro/src/engines/cartoonmeshgenerator.cpp
++++ avogadro-1.1.1/libavogadro/src/engines/cartoonmeshgenerator.cpp
+@@ -33,6 +33,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include "cartoonmeshgenerator.h"
+ 
+ #include <avogadro/molecule.h>
+--- avogadro-1.1.1/libavogadro/src/engines/cartoonmeshgenerator.h
++++ avogadro-1.1.1/libavogadro/src/engines/cartoonmeshgenerator.h
+@@ -36,6 +36,8 @@
+ #ifndef CARTOONMESHGENERATOR_H
+ #define CARTOONMESHGENERATOR_H
+ 
++#include "config.h"
++
+ #include <avogadro/global.h>
+ #include <avogadro/color3f.h>
+ 
+--- avogadro-1.1.1/libavogadro/src/engines/ribbonengine.cpp
++++ avogadro-1.1.1/libavogadro/src/engines/ribbonengine.cpp
+@@ -22,6 +22,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include "ribbonengine.h"
+ 
+ #include <avogadro/molecule.h>
+--- avogadro-1.1.1/libavogadro/src/extensions/animationextension.cpp
++++ avogadro-1.1.1/libavogadro/src/extensions/animationextension.cpp
+@@ -19,6 +19,8 @@
+   GNU General Public License for more details.
+  ***********************************************************************/
+ 
++#include "config.h"
++
+ #include "animationextension.h"
+ #include "trajvideomaker.h"
+ #include <avogadro/molecule.h>
+--- avogadro-1.1.1/libavogadro/src/extensions/crystallography/avospglib.h
++++ avogadro-1.1.1/libavogadro/src/extensions/crystallography/avospglib.h
+@@ -18,6 +18,8 @@
+ #ifndef AVOSPGLIB_H
+ #define AVOSPGLIB_H
+ 
++#include "config.h"
++
+ #include <Eigen/Core>
+ 
+ #include <QtCore/QList>
+--- avogadro-1.1.1/libavogadro/src/extensions/crystallography/ceundo.h
++++ avogadro-1.1.1/libavogadro/src/extensions/crystallography/ceundo.h
+@@ -21,6 +21,8 @@
+ #ifndef CEUNDO_H
+ #define CEUNDO_H
+ 
++#include "config.h"
++
+ #include "crystallographyextension.h"
+ 
+ #include <avogadro/molecule.h>
+--- avogadro-1.1.1/libavogadro/src/extensions/crystallography/crystallographyextension.cpp
++++ avogadro-1.1.1/libavogadro/src/extensions/crystallography/crystallographyextension.cpp
+@@ -27,6 +27,8 @@
+  * @todo Find portable method to ensure that the cell matrix widget is 3 lines of text high.
+  */
+ 
++#include "config.h"
++
+ #include "crystallographyextension.h"
+ 
+ #include "avospglib.h"
+--- avogadro-1.1.1/libavogadro/src/extensions/crystallography/crystallographyextension.h
++++ avogadro-1.1.1/libavogadro/src/extensions/crystallography/crystallographyextension.h
+@@ -18,6 +18,8 @@
+ #ifndef CRYSTALLOGRAPHYEXTENSION_H
+ #define CRYSTALLOGRAPHYEXTENSION_H
+ 
++#include "config.h"
++
+ #include "ui/ceslabbuilder.h"
+ 
+ #include <avogadro/extension.h>
+--- avogadro-1.1.1/libavogadro/src/extensions/crystallography/ui/cematrixeditor.h
++++ avogadro-1.1.1/libavogadro/src/extensions/crystallography/ui/cematrixeditor.h
+@@ -18,6 +18,8 @@
+ #ifndef CEMATRIXEDITOR_H
+ #define CEMATRIXEDITOR_H
+ 
++#include "config.h"
++
+ #include "ceabstracteditor.h"
+ 
+ #include <Eigen/Core>
+--- avogadro-1.1.1/libavogadro/src/extensions/crystallography/ui/ceslabbuilder.cpp
++++ avogadro-1.1.1/libavogadro/src/extensions/crystallography/ui/ceslabbuilder.cpp
+@@ -17,6 +17,8 @@
+   GNU General Public License for more details.
+  ***********************************************************************/
+ 
++#include "config.h"
++
+ #include "ceslabbuilder.h"
+ 
+ #include "../ceundo.h"
+--- avogadro-1.1.1/libavogadro/src/extensions/crystallography/ui/cetranslatewidget.h
++++ avogadro-1.1.1/libavogadro/src/extensions/crystallography/ui/cetranslatewidget.h
+@@ -18,6 +18,8 @@
+ #ifndef CETRANSLATEWIDGET_H
+ #define CETRANSLATEWIDGET_H
+ 
++#include "config.h"
++
+ #include "ceabstractdockwidget.h"
+ #include "ui_cetranslatewidget.h"
+ 
+--- avogadro-1.1.1/libavogadro/src/extensions/povpainter.cpp
++++ avogadro-1.1.1/libavogadro/src/extensions/povpainter.cpp
+@@ -22,6 +22,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include "povpainter.h"
+ 
+ #include <avogadro/color.h>
+--- avogadro-1.1.1/libavogadro/src/extensions/povraydialog.h
++++ avogadro-1.1.1/libavogadro/src/extensions/povraydialog.h
+@@ -25,6 +25,8 @@
+ #ifndef POVRAYDIALOG_H
+ #define POVRAYDIALOG_H
+ 
++#include "config.h"
++
+ #include <QDialog>
+ #include <QList>
+ 
+--- avogadro-1.1.1/libavogadro/src/extensions/propmodel.cpp
++++ avogadro-1.1.1/libavogadro/src/extensions/propmodel.cpp
+@@ -20,6 +20,8 @@
+   GNU General Public License for more details.
+  ***********************************************************************/
+ 
++#include "config.h"
++
+ #include "propmodel.h"
+ // for recursively setting bond lengths, angles, etc.
+ #include "../tools/skeletontree.h"
+--- avogadro-1.1.1/libavogadro/src/extensions/qtaim/qtaimcriticalpointlocator.cpp
++++ avogadro-1.1.1/libavogadro/src/extensions/qtaim/qtaimcriticalpointlocator.cpp
+@@ -22,6 +22,8 @@
+   02110-1301, USA.
+ **********************************************************************/
+ 
++#include "config.h"
++
+ #include "qtaimcriticalpointlocator.h"
+ #include "qtaimwavefunction.h"
+ #include "qtaimodeintegrator.h"
+--- avogadro-1.1.1/libavogadro/src/extensions/qtaim/qtaimlsodaintegrator.h
++++ avogadro-1.1.1/libavogadro/src/extensions/qtaim/qtaimlsodaintegrator.h
+@@ -25,6 +25,8 @@
+ #ifndef QTAIMLSODAINTEGRATOR_H
+ #define QTAIMLSODAINTEGRATOR_H
+ 
++#include "config.h"
++
+ #include <QDebug>
+ #include <QList>
+ #include <QVector3D>
+--- avogadro-1.1.1/libavogadro/src/extensions/qtaim/qtaimmathutilities.cpp
++++ avogadro-1.1.1/libavogadro/src/extensions/qtaim/qtaimmathutilities.cpp
+@@ -22,6 +22,8 @@
+   02110-1301, USA.
+ **********************************************************************/
+ 
++#include "config.h"
++
+ #include "qtaimmathutilities.h"
+ 
+ #include <cmath>
+--- avogadro-1.1.1/libavogadro/src/extensions/qtaim/qtaimmathutilities.h
++++ avogadro-1.1.1/libavogadro/src/extensions/qtaim/qtaimmathutilities.h
+@@ -24,6 +24,8 @@
+ #ifndef QTAIMMATHUTILITIES_H
+ #define QTAIMMATHUTILITIES_H
+ 
++#include "config.h"
++
+ #include <QtGlobal>
+ 
+ #include <Eigen/Core>
+--- avogadro-1.1.1/libavogadro/src/extensions/qtaim/qtaimodeintegrator.h
++++ avogadro-1.1.1/libavogadro/src/extensions/qtaim/qtaimodeintegrator.h
+@@ -25,6 +25,8 @@
+ #ifndef QTAIMODEINTEGRATOR_H
+ #define QTAIMODEINTEGRATOR_H
+ 
++#include "config.h"
++
+ #include <QDebug>
+ #include <QList>
+ #include <QVector3D>
+--- avogadro-1.1.1/libavogadro/src/extensions/qtaim/qtaimwavefunctionevaluator.h
++++ avogadro-1.1.1/libavogadro/src/extensions/qtaim/qtaimwavefunctionevaluator.h
+@@ -8,6 +8,8 @@
+ #ifndef QTAIMWAVEFUNCTIONEVALUATOR_H
+ #define QTAIMWAVEFUNCTIONEVALUATOR_H
+ 
++#include "config.h"
++
+ #include "qtaimwavefunction.h"
+ 
+ #include <Eigen/Core>
+--- avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/atom.h
++++ avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/atom.h
+@@ -17,6 +17,8 @@
+ #ifndef OQ_ATOM_H
+ #define OQ_ATOM_H
+ 
++#include "config.h"
++
+ #include "molecule.h"
+ 
+ #include <Eigen/Core>
+--- avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/CMakeLists.txt
++++ avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/CMakeLists.txt
+@@ -1,5 +1,11 @@
+ find_package(Qt4 4.6 REQUIRED)
+-find_package(Eigen2 REQUIRED)
++find_package(Eigen3)
++if(NOT EIGEN3_FOUND)
++  message(STATUS "Cannot find Eigen3, trying Eigen2")
++  find_package(Eigen2 REQUIRED)
++else()
++  set (EIGEN2_SUPPORT_STAGE10_FULL_EIGEN2_API TRUE)
++endif()
+ 
+ include_directories(${QT_INCLUDE_DIR} ${EIGEN2_INCLUDE_DIR})
+ 
+--- avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/cube.h
++++ avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/cube.h
+@@ -17,6 +17,8 @@
+ #ifndef OQ_CUBE_H
+ #define OQ_CUBE_H
+ 
++#include "config.h"
++
+ #include "openqubeabi.h"
+ 
+ #include <vector>
+--- avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/gamessukout.h
++++ avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/gamessukout.h
+@@ -17,6 +17,8 @@
+ #ifndef GAMESSUKOUT_H
+ #define GAMESSUKOUT_H
+ 
++#include "config.h"
++
+ #include "gaussianset.h"
+ 
+ #include <Eigen/Core>
+--- avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/gamessus.h
++++ avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/gamessus.h
+@@ -17,6 +17,8 @@
+ #ifndef GAMESSUS_H
+ #define GAMESSUS_H
+ 
++#include "config.h"
++
+ #include <QtCore/QIODevice>
+ #include <Eigen/Core>
+ #include <vector>
+--- avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/gaussianfchk.h
++++ avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/gaussianfchk.h
+@@ -17,6 +17,8 @@
+ #ifndef GAUSSIANFCHK_H
+ #define GAUSSIANFCHK_H
+ 
++#include "config.h"
++
+ #include <QtCore/QIODevice>
+ #include <Eigen/Core>
+ #include <vector>
+--- avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/gaussianset.h
++++ avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/gaussianset.h
+@@ -18,6 +18,8 @@
+ #ifndef GAUSSIANSET_H
+ #define GAUSSIANSET_H
+ 
++#include "config.h"
++
+ #include "basisset.h"
+ 
+ #include <QtCore/QFuture>
+--- avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/molden.h
++++ avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/molden.h
+@@ -17,6 +17,8 @@
+ #ifndef MOLDEN_H
+ #define MOLDEN_H
+ 
++#include "config.h"
++
+ #include <Eigen/Core>
+ #include <vector>
+ 
+--- avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/molecule.h
++++ avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/molecule.h
+@@ -17,6 +17,8 @@
+ #ifndef OQ_MOLECULE_H
+ #define OQ_MOLECULE_H
+ 
++#include "config.h"
++
+ #include "openqubeabi.h"
+ 
+ #include "atom.h"
+--- avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/mopacaux.h
++++ avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/mopacaux.h
+@@ -17,6 +17,8 @@
+ #ifndef MOPACAUX_H
+ #define MOPACAUX_H
+ 
++#include "config.h"
++
+ #include <QtCore/QTextStream>
+ #include <Eigen/Core>
+ #include <vector>
+--- avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/slaterset.cpp
++++ avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/slaterset.cpp
+@@ -14,6 +14,8 @@
+ 
+ ******************************************************************************/
+ 
++#include "config.h"
++
+ #include "slaterset.h"
+ 
+ #ifdef WIN32
+--- avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/slaterset.h
++++ avogadro-1.1.1/libavogadro/src/extensions/surfaces/openqube/slaterset.h
+@@ -17,6 +17,8 @@
+ #ifndef SLATERSET_H
+ #define SLATERSET_H
+ 
++#include "config.h"
++
+ #include "basisset.h"
+ 
+ #include <QtCore/QFuture>
+--- avogadro-1.1.1/libavogadro/src/extensions/surfaces/surfacedialog.h
++++ avogadro-1.1.1/libavogadro/src/extensions/surfaces/surfacedialog.h
+@@ -25,6 +25,8 @@
+ #ifndef SURFACEDIALOG_H
+ #define SURFACEDIALOG_H
+ 
++#include "config.h"
++
+ #include <QDialog>
+ 
+ #include "ui_surfacedialog.h"
+--- avogadro-1.1.1/libavogadro/src/extensions/surfaces/surfaceextension.cpp
++++ avogadro-1.1.1/libavogadro/src/extensions/surfaces/surfaceextension.cpp
+@@ -22,6 +22,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include "surfaceextension.h"
+ 
+ #include <openqube/basisset.h>
+--- avogadro-1.1.1/libavogadro/src/extensions/surfaces/vdwsurface.h
++++ avogadro-1.1.1/libavogadro/src/extensions/surfaces/vdwsurface.h
+@@ -26,6 +26,8 @@
+ #ifndef VDWSURFACE_H
+ #define VDWSURFACE_H
+ 
++#include "config.h"
++
+ #include <QObject>
+ #include <QFuture>
+ #include <QFutureWatcher>
+--- avogadro-1.1.1/libavogadro/src/extensions/swcntbuilder/swcntbuilderwidget.cpp
++++ avogadro-1.1.1/libavogadro/src/extensions/swcntbuilder/swcntbuilderwidget.cpp
+@@ -15,6 +15,8 @@
+   limitations under the License.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include "swcntbuilderwidget.h"
+ 
+ #include <avogadro/dockwidget.h>
+--- avogadro-1.1.1/libavogadro/src/glpainter_p.cpp
++++ avogadro-1.1.1/libavogadro/src/glpainter_p.cpp
+@@ -26,6 +26,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include "glpainter_p.h"
+ #include "glwidget.h"
+ #include "camera.h"
+--- avogadro-1.1.1/libavogadro/src/glwidget.h
++++ avogadro-1.1.1/libavogadro/src/glwidget.h
+@@ -27,6 +27,8 @@
+ #ifndef GLWIDGET_H
+ #define GLWIDGET_H
+ 
++#include "config.h"
++
+ #include <avogadro/global.h>
+ 
+ #include <Eigen/Core>
+--- avogadro-1.1.1/libavogadro/src/meshgenerator.cpp
++++ avogadro-1.1.1/libavogadro/src/meshgenerator.cpp
+@@ -22,6 +22,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include "meshgenerator.h"
+ 
+ #include <Eigen/Geometry>
+--- avogadro-1.1.1/libavogadro/src/meshgenerator.h
++++ avogadro-1.1.1/libavogadro/src/meshgenerator.h
+@@ -25,6 +25,8 @@
+  #ifndef MESHGENERATOR_H
+  #define MESHGENERATOR_H
+ 
++#include "config.h"
++
+ #include <avogadro/global.h>
+ 
+ #include <Eigen/Core>
+--- avogadro-1.1.1/libavogadro/src/mesh.h
++++ avogadro-1.1.1/libavogadro/src/mesh.h
+@@ -25,6 +25,8 @@
+ #ifndef MESH_H
+ #define MESH_H
+ 
++#include "config.h"
++
+ #include <avogadro/primitive.h>
+ #include <Eigen/Core>
+ 
+--- avogadro-1.1.1/libavogadro/src/molecule.cpp
++++ avogadro-1.1.1/libavogadro/src/molecule.cpp
+@@ -23,6 +23,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include "molecule.h"
+ 
+ #include "atom.h"
+--- avogadro-1.1.1/libavogadro/src/moleculefile.h
++++ avogadro-1.1.1/libavogadro/src/moleculefile.h
+@@ -25,6 +25,8 @@
+ #ifndef MOLECULEFILE_H
+ #define MOLECULEFILE_H
+ 
++#include "config.h"
++
+ #include <avogadro/global.h>
+ 
+ #include <QString>
+--- avogadro-1.1.1/libavogadro/src/neighborlist.h
++++ avogadro-1.1.1/libavogadro/src/neighborlist.h
+@@ -25,6 +25,8 @@
+ #ifndef NEIGHBORLIST_H
+ #define NEIGHBORLIST_H
+ 
++#include "config.h"
++
+ #include <avogadro/molecule.h>
+ 
+ #include <Eigen/Core>
+--- avogadro-1.1.1/libavogadro/src/obeigenconv.h
++++ avogadro-1.1.1/libavogadro/src/obeigenconv.h
+@@ -19,6 +19,8 @@
+ #ifndef OBEIGENCONV_H
+ #define OBEIGENCONV_H
+ 
++#include "config.h"
++
+ #include <openbabel/math/vector3.h>
+ #include <openbabel/math/matrix3x3.h>
+ 
+--- avogadro-1.1.1/libavogadro/src/primitive.h
++++ avogadro-1.1.1/libavogadro/src/primitive.h
+@@ -26,6 +26,8 @@
+ #ifndef PRIMITIVE_H
+ #define PRIMITIVE_H
+ 
++#include "config.h"
++
+ #include "global.h"
+ 
+ #include <QObject>
+--- avogadro-1.1.1/libavogadro/src/python/eigen.cpp
++++ avogadro-1.1.1/libavogadro/src/python/eigen.cpp
+@@ -1,4 +1,6 @@
+ // Last update: timvdm 19 June 2009
++#include "config.h"
++
+ #include <boost/python/detail/wrap_python.hpp>
+ #include <numpy/arrayobject.h> 
+ #include <boost/python.hpp>
+--- avogadro-1.1.1/libavogadro/src/python/engine.cpp
++++ avogadro-1.1.1/libavogadro/src/python/engine.cpp
+@@ -1,6 +1,8 @@
+ // Last update: timvdm 18 June 2009
+ #include <boost/python.hpp>
+ 
++#include "config.h"
++
+ #include <Eigen/Core>
+ 
+ #include <avogadro/engine.h>
+--- avogadro-1.1.1/libavogadro/src/python/std_vector.cpp
++++ avogadro-1.1.1/libavogadro/src/python/std_vector.cpp
+@@ -1,3 +1,5 @@
++#include "config.h"
++
+ #include <boost/python.hpp>
+ #include <boost/tuple/tuple.hpp>
+ 
+--- avogadro-1.1.1/libavogadro/src/sphere_p.h
++++ avogadro-1.1.1/libavogadro/src/sphere_p.h
+@@ -25,6 +25,8 @@
+ #ifndef SPHERE_H
+ #define SPHERE_H
+ 
++#include "config.h"
++
+ #include <avogadro/global.h>
+ 
+ #include <Eigen/Core>
+--- avogadro-1.1.1/libavogadro/src/surfacemeshgenerator.h
++++ avogadro-1.1.1/libavogadro/src/surfacemeshgenerator.h
+@@ -25,6 +25,8 @@
+ #ifndef SURFACEMESHGENERATOR_H
+ #define SURFACEMESHGENERATOR_H
+ 
++#include "config.h"
++
+ #include <avogadro/global.h>
+ 
+ #include <QThread>
+--- avogadro-1.1.1/libavogadro/src/textmatrixeditor.h
++++ avogadro-1.1.1/libavogadro/src/textmatrixeditor.h
+@@ -25,6 +25,8 @@
+ #ifndef TEXTMATRIXEDITOR_H
+ #define TEXTMATRIXEDITOR_H
+ 
++#include "config.h"
++
+ #include <avogadro/global.h> // For A_EXPORT
+ 
+ #include <QtGui/QTextEdit>
+--- avogadro-1.1.1/libavogadro/src/textrenderer_p.h
++++ avogadro-1.1.1/libavogadro/src/textrenderer_p.h
+@@ -26,6 +26,8 @@
+ #ifndef TEXTRENDERER_H
+ #define TEXTRENDERER_H
+ 
++#include "config.h"
++
+ #include <avogadro/global.h>
+ #include <Eigen/Core>
+ 
+--- avogadro-1.1.1/libavogadro/src/tools/bondcentrictool.h
++++ avogadro-1.1.1/libavogadro/src/tools/bondcentrictool.h
+@@ -29,6 +29,8 @@
+ #ifndef BONDCENTRICTOOL_H
+ #define BONDCENTRICTOOL_H
+ 
++#include "config.h"
++
+ #include "skeletontree.h"
+ 
+ #include <avogadro/glwidget.h>
+--- avogadro-1.1.1/libavogadro/src/tools/clickmeasuretool.cpp
++++ avogadro-1.1.1/libavogadro/src/tools/clickmeasuretool.cpp
+@@ -23,6 +23,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include "clickmeasuretool.h"
+ 
+ #include <avogadro/navigate.h>
+--- avogadro-1.1.1/libavogadro/src/tools/clickmeasuretool.h
++++ avogadro-1.1.1/libavogadro/src/tools/clickmeasuretool.h
+@@ -26,6 +26,8 @@
+ #ifndef CLICKMEASURETOOL_H
+ #define CLICKMEASURETOOL_H
+ 
++#include "config.h"
++
+ #include <avogadro/glwidget.h>
+ #include <avogadro/tool.h>
+ 
+--- avogadro-1.1.1/libavogadro/src/tools/drawcommand.h
++++ avogadro-1.1.1/libavogadro/src/tools/drawcommand.h
+@@ -26,6 +26,8 @@
+ #ifndef DRAWCOMMAND_H
+ #define DRAWCOMMAND_H
+ 
++#include "config.h"
++
+ #include <QUndoCommand>
+ #include <Eigen/Core>
+ 
+--- avogadro-1.1.1/libavogadro/src/tools/drawtool.cpp
++++ avogadro-1.1.1/libavogadro/src/tools/drawtool.cpp
+@@ -25,6 +25,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include "drawtool.h"
+ #include "drawcommand.h"
+ 
+--- avogadro-1.1.1/libavogadro/src/tools/eyecandy.h
++++ avogadro-1.1.1/libavogadro/src/tools/eyecandy.h
+@@ -25,6 +25,8 @@
+ #ifndef EYECANDY_H
+ #define EYECANDY_H
+ 
++#include "config.h"
++
+ #include <Eigen/Core>
+ 
+ namespace Avogadro {
+--- avogadro-1.1.1/libavogadro/src/tools/selectrotatetool.cpp
++++ avogadro-1.1.1/libavogadro/src/tools/selectrotatetool.cpp
+@@ -24,6 +24,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include "selectrotatetool.h"
+ #include <avogadro/atom.h>
+ #include <avogadro/bond.h>
+--- avogadro-1.1.1/libavogadro/src/tools/selectrotatetool.h
++++ avogadro-1.1.1/libavogadro/src/tools/selectrotatetool.h
+@@ -28,6 +28,8 @@
+ #ifndef SELECTROTATETOOL_H
+ #define SELECTROTATETOOL_H
+ 
++#include "config.h"
++
+ #include <avogadro/tool.h>
+ #include <avogadro/glwidget.h>
+ 
+--- avogadro-1.1.1/libavogadro/src/tools/skeletontree.h
++++ avogadro-1.1.1/libavogadro/src/tools/skeletontree.h
+@@ -30,6 +30,8 @@
+ #ifndef SKELETONTREE_H
+ #define SKELETONTREE_H
+ 
++#include "config.h"
++
+ #include <QObject>
+ #include <QList>
+ 
+--- avogadro-1.1.1/libavogadro/src/zmatrix.cpp
++++ avogadro-1.1.1/libavogadro/src/zmatrix.cpp
+@@ -24,6 +24,8 @@
+ 
+ #include "zmatrix.h"
+ 
++#include "config.h"
++
+ #include <avogadro/global.h>
+ 
+ #include <avogadro/molecule.h>
+--- avogadro-1.1.1/libavogadro/tests/drawcommandtest.cpp
++++ avogadro-1.1.1/libavogadro/tests/drawcommandtest.cpp
+@@ -22,6 +22,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include <QtTest>
+ #include <Eigen/Core>
+ #include <avogadro/molecule.h>
+--- avogadro-1.1.1/libavogadro/tests/hydrogenscommandtest.cpp
++++ avogadro-1.1.1/libavogadro/tests/hydrogenscommandtest.cpp
+@@ -22,6 +22,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include <QtTest>
+ #include <Eigen/Core>
+ #include <avogadro/molecule.h>
+--- avogadro-1.1.1/libavogadro/tests/moleculebench.cpp
++++ avogadro-1.1.1/libavogadro/tests/moleculebench.cpp
+@@ -23,6 +23,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include <QtTest>
+ 
+ #include <avogadro/atom.h>
+--- avogadro-1.1.1/libavogadro/tests/moleculefiletest.cpp
++++ avogadro-1.1.1/libavogadro/tests/moleculefiletest.cpp
+@@ -23,6 +23,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include <QtTest>
+ #include <avogadro/moleculefile.h>
+ #include <avogadro/molecule.h>
+--- avogadro-1.1.1/libavogadro/tests/moleculetest.cpp
++++ avogadro-1.1.1/libavogadro/tests/moleculetest.cpp
+@@ -22,6 +22,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include <QtTest>
+ #include <avogadro/molecule.h>
+ #include <avogadro/atom.h>
+--- avogadro-1.1.1/libavogadro/tests/neighborlisttest.cpp
++++ avogadro-1.1.1/libavogadro/tests/neighborlisttest.cpp
+@@ -22,6 +22,8 @@
+   02110-1301, USA.
+  **********************************************************************/
+ 
++#include "config.h"
++
+ #include <QtTest>
+ #include <avogadro/neighborlist.h>
+ #include <avogadro/molecule.h>

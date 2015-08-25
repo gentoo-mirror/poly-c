@@ -16,8 +16,8 @@ KEYWORDS="~amd64 ~x86"
 IUSE="opengl curl debug"
 
 RDEPEND="dev-games/physfs
-	dev-libs/boost
-	media-libs/glew
+	dev-libs/boost:=
+	media-libs/glew:=
 	media-libs/libsdl[joystick]
 	media-libs/libvorbis
 	media-libs/openal

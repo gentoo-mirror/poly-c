@@ -84,6 +84,7 @@ net-misc/wicd 1.7.2.4-r3 1.7.3 1.7.3-r1: A lightweight wired and wireless networ
 net-print/cups 2.0.4_pre: The Common Unix Printing System
 net-print/hplip 3.14.10 3.15.6 3.15.7: HP Linux Imaging and Printing. Includes printer, scanner, fax drivers and service tools
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
+sci-chemistry/avogadro 1.1.1: Advanced molecular editor that uses Qt4 and OpenGL
 sys-apps/firmware-addon-dell 2.2.9: Additional firmware tools for dell computers
 sys-apps/firmware-extract 2.0.13: Additional firmware tools for dell computers
 sys-apps/firmware-tools 2.1.14: Firmware tools for dell computers
@@ -93,10 +94,9 @@ sys-apps/kbd 1.15.5-r1 2.0.1 2.0.1-r1 2.0.2 2.0.3: Keyboard and console utilitie
 sys-apps/kmod 20 21: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g: Standard commands to read man pages
-sys-apps/moreutils 0.57_pre: a growing collection of the unix tools that nobody thought to write thirty years ago
 sys-apps/portage 2.2.8-r2: Portage is the package management and distribution system for Gentoo
 sys-apps/usb_modeswitch 2.2.5_p20150627_pre: USB_ModeSwitch is a tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
-sys-apps/util-linux 2.27_rc1: Various useful Linux utilities
+sys-apps/util-linux 2.27_rc1 2.27_rc2: Various useful Linux utilities
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.00_p5107-r2 2.02_beta2-r3 2.02_beta2-r6 2.02_beta2-r7: GNU GRUB boot loader
