@@ -17,3 +17,6 @@ dev-libs/ewahboolarray
 # WIP
 =app-misc/gramps-4.2.0_pre
 
+# too many revdeps broken
+=dev-libs/boost-1.59.0_pre
+=dev-utils/boost-build-1.59.0_pre
