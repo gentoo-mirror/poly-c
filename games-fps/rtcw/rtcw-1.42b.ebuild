@@ -6,7 +6,7 @@ EAPI=5
 
 SCM=""
 [[ "${PV}" = 9999 ]] && SCM="git-r3"
-inherit eutils games ${SCM}
+inherit eutils games unpacker ${SCM}
 unset SCM
 
 DESCRIPTION="Return to Castle Wolfenstein - IORTCW Project"
@@ -20,7 +20,11 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
-LICENSE="GPL-2"
+WOLF_POINTRELEASE="wolf-linux-1.41b.x86.run"
+SRC_URI+=" mirror://idsoftware/wolf/linux/${WOLF_POINTRELEASE}"
+# iortcw is GPL-2 but the point release files still have the original copyrights
+# from ID-software
+LICENSE="GPL-2 RTCW"
 SLOT="0"
 IUSE="+client curl mumble openal opus server truetype voip vorbis"
 
@@ -68,6 +72,16 @@ use_switch() {
 		echo "${cfg_option}=${cfg_val}" >> ${makefile}
 	fi
 }	
+
+src_unpack() {
+	if [[ "${PV}" = 9999 ]] ; then
+		git-r3_src_unpack
+	else
+		default
+	fi
+
+	unpack_makeself "${DISTDIR}/${WOLF_POINTRELEASE}"
+}
 
 src_prepare(){
 	epatch "${FILESDIR}/${PN}-zlib.patch"
@@ -140,6 +154,10 @@ src_install() {
 	#		|| die
 	#fi
 
+	# install pk3 files from the point release
+	insinto ${dir}/main
+	doins ${WORKDIR}/main/*.pk3
+
 	doicon -s scalable misc/iortcw.svg
 	make_desktop_entry rtcwsp "Return to Castle Wolfenstein (SP)" iortcw
 	prepgamesdirs
@@ -147,8 +165,8 @@ src_install() {
 
 pkg_postinst() {
 	games_pkg_postinst
-	elog "You need to copy pak0.pk3, mp_pak0.pk3, mp_pak1.pk3, mp_pak2.pk3,"
-	elog "sp_pak1.pk3 and sp_pak2.pk3 from a Window installation into ${dir}/main/"
+	elog "You need to copy pak0.pk3, mp_pak0.pk3 and sp_pak1.pk3 from a"
+	elog "Window installation or your install media into ${dir}/main/"
 	elog
 	elog "To play the game run:"
 	elog " rtcwsp (single-player)"
