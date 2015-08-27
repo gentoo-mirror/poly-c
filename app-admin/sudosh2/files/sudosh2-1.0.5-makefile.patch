@@ -1,0 +1,11 @@
+diff -Nur sudosh2-1.0.5_orig/src/Makefile.am sudosh2-1.0.5/src/Makefile.am
+--- sudosh2-1.0.5_orig/src/Makefile.am	2014-01-23 00:26:55.000000000 +0100
++++ sudosh2-1.0.5/src/Makefile.am	2015-08-27 16:29:17.977232389 +0200
+@@ -8,6 +8,6 @@
+ 
+ install-sudosh.conf:
+ 	test -z "$(sysconfdir)" || $(mkdir_p) "$(DESTDIR)$(sysconfdir)"
+-	test -f $(sysconfdir)/sudosh.conf || $(INSTALL) -o 0 -g 0 -m 0444 '$(srcdir)/sudosh.conf' '$(DESTDIR)$(sysconfdir)/sudosh.conf'
++	test -f $(sysconfdir)/sudosh.conf || $(INSTALL) -o 0 -g 0 -m 0444 $(srcdir)/sudosh.conf $(DESTDIR)$(sysconfdir)/sudosh.conf
+ 
+ install: install-am install-sudosh.conf

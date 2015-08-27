@@ -1,4 +1,5 @@
 app-admin/cgmanager 0.37: Control Group manager daemon
+app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-admin/winetools 0.9_pre: Graphical Wine tool for installing Windows programs under Wine
 app-arch/xz-utils 5.0.5-r1 5.0.7 5.0.8 5.2.0 5.2.1-r1: utils for managing LZMA compressed files
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
