@@ -24,13 +24,11 @@ dev-libs/icu 54.1-r1 55.1: International Components for Unicode
 dev-libs/libclc 0.0.1_pre20140101: OpenCL C library
 dev-libs/libpcre2 10.10_pre: Perl-compatible regular expression library
 dev-libs/mini-xml 2.9_pre: Small XML parsing library to read XML and XML-like data files
-dev-libs/nss 3.20_pre: Mozilla's Network Security Services library that implements PKI support
 dev-libs/redland 1.0.16: High-level interface for the Resource Description Framework
 dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 dev-python/google-apputils 0.4.0: Collection of utilities for building Python applications
 dev-scheme/guile 2.0.11_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.59.0_pre: A system for large project software construction, which is simple to use and powerful
-dev-util/cmake 3.3.0: Cross platform Make
 dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
 dev-util/kdevplatform 1.7.1: KDE development support libraries and apps
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
