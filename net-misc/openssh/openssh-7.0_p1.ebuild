@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e7d3760dab02b55a96e85d4289952110f13e1851 $
+# $Id: b7448a255f7acacfd233e7cb36b9f8245f626fae $
 
 EAPI="4"
 inherit eutils user flag-o-matic multilib autotools pam systemd versionator
@@ -19,7 +19,7 @@ SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
 	mirror://gentoo/${PN}-6.8_p1-sctp.patch.xz
 	${HPN_PATCH:+hpn? (
 		mirror://gentoo/${HPN_PATCH}
-		http://dev.gentoo.org/~polynomial-c/${HPN_PATCH}
+		https://dev.gentoo.org/~polynomial-c/${HPN_PATCH}
 		mirror://sourceforge/hpnssh/${HPN_PATCH}
 	)}
 	${LDAP_PATCH:+ldap? ( mirror://gentoo/${LDAP_PATCH} )}
@@ -318,7 +318,7 @@ pkg_postinst() {
 		elog "Starting with openssh-7.0, support for ssh-dss keys were disabled due to their"
 		elog "weak sizes.  If you rely on these key types, you can re-enable the key types by"
 		elog "adding to your sshd_config:"
-		elog "  PubkeyAcceptedKeyTypes=+ssh-dss"
+		elog "	PubkeyAcceptedKeyTypes=+ssh-dss"
 		elog "You should however generate new keys using rsa or ed25519."
 	fi
 	if ! use ssl && has_version "${CATEGORY}/${PN}[ssl]" ; then

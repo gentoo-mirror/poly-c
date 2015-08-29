@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2078e873e1f89afdfc8609b2f5552657162e6514 $
+# $Id: 709e6f97c8aeaa097bbeca56700fba60cf859565 $
 
 EAPI="4"
 inherit eutils user flag-o-matic multilib autotools pam systemd versionator
@@ -11,7 +11,7 @@ PARCH=${P/_}
 
 HPN_PATCH="${PN}-7.0p1-hpnssh14v5.tar.xz"
 LDAP_PATCH="${PN}-lpk-6.8p1-0.3.14.patch.xz"
-#X509_VER="8.5" X509_PATCH="${PN}-${PV//_/}+x509-${X509_VER}.diff.gz"
+X509_VER="8.6" X509_PATCH="${PN}-${PV//_/}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.org/"
@@ -112,7 +112,7 @@ src_prepare() {
 
 	if use X509 ; then
 		pushd .. >/dev/null
-		#epatch "${WORKDIR}"/${PN}-6.8_p1-x509-${X509_VER}-glue.patch
+		epatch "${FILESDIR}"/${PN}-7.1_p1-hpn-x509-glue.patch
 		epatch "${FILESDIR}"/${PN}-7.0_p1-sctp-x509-glue.patch
 		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}

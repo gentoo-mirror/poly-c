@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 3d25bc065288c3fec2291d86e2b37318a4f74c76 $
+# $Id: f1461a19cc9871353c4f0930a03661bad2a93147 $
 
 EAPI=5
 
@@ -11,7 +11,7 @@ inherit autotools flag-o-matic eutils toolchain-funcs multilib perl-app gnome2 p
 DESCRIPTION="GTK Instant Messenger client"
 HOMEPAGE="http://pidgin.im/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2
-	http://dev.gentoo.org/~polynomial-c/${PN}-eds-3.6.patch.bz2"
+	https://dev.gentoo.org/~polynomial-c/${PN}-eds-3.6.patch.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"

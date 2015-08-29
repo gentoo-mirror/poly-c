@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 7faaa6c5c7049ca641d66aaca04e967332abd8ae $
+# $Id: 590a22fb0bacddb31b56665ce2cafd8dbf1cb3ce $
 
 EAPI=5
 WANT_AUTOCONF="2.1"
@@ -17,11 +17,11 @@ MOZ_P="${P}"
 MY_MOZ_P="${PN}-${MOZ_PV}"
 
 if [[ ${PV} == *_pre* ]] ; then
-	MOZ_HTTP_URI="http://archive.mozilla.org/pub/${PN}/candidates/${MOZ_PV}-candidates/build${PV##*_pre}"
+	MOZ_HTTP_URI="https://archive.mozilla.org/pub/${PN}/candidates/${MOZ_PV}-candidates/build${PV##*_pre}"
 	MOZ_LANGPACK_PREFIX="linux-i686/xpi/"
 	# And the langpack stuff stays at eclass defaults
 else
-	MOZ_HTTP_URI="http://archive.mozilla.org/pub/${PN}/releases/${MOZ_PV}"
+	MOZ_HTTP_URI="https://archive.mozilla.org/pub/${PN}/releases/${MOZ_PV}"
 	MOZ_LANGPACK_PREFIX="langpack/${MY_MOZ_P}."
 	MOZ_LANGPACK_SUFFIX=".langpack.xpi"
 fi
@@ -53,9 +53,9 @@ IUSE="+chatzilla +crypt +gmp-autoupdate +ipc +mailclient minimal pulseaudio +roa
 
 SRC_URI="${SRC_URI}
 	${MOZ_HTTP_URI}/source/${MY_MOZ_P}.source.tar.bz2 -> ${P}.source.tar.bz2
-	http://dev.gentoo.org/~axs/mozilla/patchsets/${PATCHFF}.tar.xz
-	http://dev.gentoo.org/~polynomial-c/mozilla/patchsets/${PATCH}.tar.xz
-	http://dev.gentoo.org/~polynomial-c/mozilla/patchsets/${PATCHFF}.tar.xz
+	https://dev.gentoo.org/~axs/mozilla/patchsets/${PATCHFF}.tar.xz
+	https://dev.gentoo.org/~polynomial-c/mozilla/patchsets/${PATCH}.tar.xz
+	https://dev.gentoo.org/~polynomial-c/mozilla/patchsets/${PATCHFF}.tar.xz
 	mailclient? ( crypt? ( http://www.enigmail.net/download/source/enigmail-${EMVER}.tar.gz ) )"
 
 ASM_DEPEND=">=dev-lang/yasm-1.1"

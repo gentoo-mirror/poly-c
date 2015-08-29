@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 7a52239032e1af728d34b0d950863d9a7ebfdedc $
+# $Id: b377fcb2f390979fa239978c60230a2bd40f5483 $
 
 EAPI=5
 
@@ -18,7 +18,7 @@ else
 fi
 
 DESCRIPTION="library and tools for managing linux kernel modules"
-HOMEPAGE="http://git.kernel.org/?p=utils/kernel/kmod/kmod.git"
+HOMEPAGE="https://git.kernel.org/?p=utils/kernel/kmod/kmod.git"
 
 LICENSE="LGPL-2"
 SLOT="0"

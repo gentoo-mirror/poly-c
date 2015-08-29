@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0f6718aa04bd4340191e07b2a43d386551a193f5 $
+# $Id: ed6aa18a417fe42786b4e89234b31524b5048232 $
 
 EAPI=5
 
@@ -19,11 +19,11 @@ if [[ ${PV} != 9999 ]]; then
 		# The quote style is to work with <=bash-4.2 and >=bash-4.3 #503860
 		MY_P=${P/_/'~'}
 		SRC_URI="mirror://gnu-alpha/${PN}/${MY_P}.tar.xz
-			http://dev.gentoo.org/~floppym/dist/${P}-gentoo-r3.tar.xz"
+			https://dev.gentoo.org/~floppym/dist/${P}-gentoo-r3.tar.xz"
 		S=${WORKDIR}/${MY_P}
 	else
 		SRC_URI="mirror://gnu/${PN}/${P}.tar.xz
-			http://dev.gentoo.org/~floppym/dist/${P}.tar.xz"
+			https://dev.gentoo.org/~floppym/dist/${P}.tar.xz"
 		S=${WORKDIR}/${P%_*}
 	fi
 	KEYWORDS="amd64 x86"
@@ -40,7 +40,7 @@ SRC_URI+=" fonts? ( mirror://gnu/unifont/${UNIFONT}/${UNIFONT}.pcf.gz )
 	themes? ( mirror://sourceforge/dejavu/${DEJAVU}.zip )"
 
 DESCRIPTION="GNU GRUB boot loader"
-HOMEPAGE="http://www.gnu.org/software/grub/"
+HOMEPAGE="https://www.gnu.org/software/grub/"
 
 # Includes licenses for dejavu and unifont
 LICENSE="GPL-3 fonts? ( GPL-2-with-font-exception ) themes? ( BitstreamVera )"
@@ -300,7 +300,7 @@ pkg_postinst() {
 	mount-boot_pkg_postinst
 
 	elog "For information on how to configure GRUB2 please refer to the guide:"
-	elog "    http://wiki.gentoo.org/wiki/GRUB2_Quick_Start"
+	elog "    https://wiki.gentoo.org/wiki/GRUB2_Quick_Start"
 
 	if has_version 'sys-boot/grub:0'; then
 		elog "A migration guide for GRUB Legacy users is available:"

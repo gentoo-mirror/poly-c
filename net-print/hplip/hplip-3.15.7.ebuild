@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9e993be2d29b161c2bc3d59d05396a8dfe4554ad $
+# $Id: a3203842220221786e2502afea18412749f8139e $
 
 EAPI=5
 
@@ -12,7 +12,7 @@ inherit eutils fdo-mime linux-info python-single-r1 udev autotools toolchain-fun
 DESCRIPTION="HP Linux Imaging and Printing. Includes printer, scanner, fax drivers and service tools"
 HOMEPAGE="http://hplipopensource.com/hplip-web/index.html"
 SRC_URI="mirror://sourceforge/hplip/${P}.tar.gz
-		http://dev.gentoo.org/~billie/distfiles/${PN}-3.15.6-patches-1.tar.xz"
+		https://dev.gentoo.org/~billie/distfiles/${PN}-3.15.6-patches-1.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"

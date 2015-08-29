@@ -1,13 +1,13 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8f1ac10614dd89e8539004cfeec06da33bdfb0e3 $
+# $Id: 094a6bec349f9ebd458bad3bccaea7a33daf3371 $
 
 EAPI=4
 
 inherit eutils
 
 DESCRIPTION="Wrapper for java-config"
-HOMEPAGE="http://www.gentoo.org/proj/en/java"
+HOMEPAGE="https://www.gentoo.org/proj/en/java"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"

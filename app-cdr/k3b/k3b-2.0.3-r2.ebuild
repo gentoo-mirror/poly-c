@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 68619e53c0a4b0346de0aafd7de7deb4d36daeab $
+# $Id: 95a09a50641e168e95c255a293ab5cc375faa283 $
 
 EAPI=5
 
@@ -71,6 +71,13 @@ REQUIRED_USE="
 	mp3? ( encode )
 	sox? ( encode )
 "
+
+src_prepare() {
+	kde4-base_src_prepare
+
+	# bug 558640
+	sed -i -e "/^add_subdirectory( doc )/d" CMakeLists.txt || die
+}
 
 src_configure() {
 	mycmakeargs=(

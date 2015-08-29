@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8cdd11a12c3ddbf89783acb136041a03743e956b $
+# $Id: 78a56513e599545131bce3dbe7fbe0d95423f958 $
 
 EAPI=5
 
@@ -8,14 +8,14 @@ if [ "${PV}" = "9999" ]; then
 	EGIT_REPO_URI="git://anongit.gentoo.org/proj/udev-gentoo-scripts.git"
 	inherit git-r3
 else
-	SRC_URI="http://dev.gentoo.org/~williamh/dist/${P}.tar.gz"
+	SRC_URI="https://dev.gentoo.org/~williamh/dist/${P}.tar.gz"
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 fi
 
 inherit eutils
 
 DESCRIPTION="udev startup scripts for openrc"
-HOMEPAGE="http://www.gentoo.org"
+HOMEPAGE="https://www.gentoo.org"
 
 LICENSE="GPL-2"
 SLOT="0"

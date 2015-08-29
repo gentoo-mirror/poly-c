@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 38922debf6cdbf11155d41e13b46fadd1118d433 $
+# $Id: 85f15a89eb3031a6dd94e386cb6409e5d88ee647 $
 
 EAPI=5
 
@@ -13,11 +13,11 @@ else
 	patchset=
 	FIXUP_PATCH="${PN}-221-revert-systemd-messup.patch.xz"
 	SRC_URI="https://github.com/systemd/systemd/archive/v${PV}.tar.gz -> systemd-${PV}.tar.gz
-		http://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}"
+		https://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}"
 	if [[ -n "${patchset}" ]]; then
 		SRC_URI="${SRC_URI}
-			http://dev.gentoo.org/~ssuominen/${P}-patches-${patchset}.tar.xz
-			http://dev.gentoo.org/~williamh/dist/${P}-patches-${patchset}.tar.xz"
+			https://dev.gentoo.org/~ssuominen/${P}-patches-${patchset}.tar.xz
+			https://dev.gentoo.org/~williamh/dist/${P}-patches-${patchset}.tar.xz"
 	fi
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 fi
@@ -386,7 +386,7 @@ pkg_postinst() {
 		if [[ ${path} == /dev && ${fstype} != devtmpfs ]]; then
 			ewarn "You need to edit your /dev line in ${fstab} to have devtmpfs"
 			ewarn "filesystem. Otherwise udev won't be able to boot."
-			ewarn "See, http://bugs.gentoo.org/453186"
+			ewarn "See, https://bugs.gentoo.org/453186"
 		fi
 	done < "${fstab}"
 
@@ -430,13 +430,13 @@ pkg_postinst() {
 	elog
 	elog "For more information on udev on Gentoo, upgrading, writing udev rules, and"
 	elog "fixing known issues visit:"
-	elog "http://wiki.gentoo.org/wiki/Udev"
-	elog "http://wiki.gentoo.org/wiki/Udev/upgrade"
+	elog "https://wiki.gentoo.org/wiki/Udev"
+	elog "https://wiki.gentoo.org/wiki/Udev/upgrade"
 
 	
 	# http://cgit.freedesktop.org/systemd/systemd/commit/rules/50-udev-default.rules?id=3dff3e00e044e2d53c76fa842b9a4759d4a50e69
-	# http://bugs.gentoo.org/246847
-	# http://bugs.gentoo.org/514174
+	# https://bugs.gentoo.org/246847
+	# https://bugs.gentoo.org/514174
 	enewgroup input
 
 	# Update hwdb database in case the format is changed by udev version.

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 57d3bd04dbc5f4a5c2ccf7cc8cfde2151a38a903 $
+# $Id: 73ab21a6bc6d86304ae6173a4e27b433322f8f45 $
 
 EAPI="5"
 
@@ -235,7 +235,7 @@ src_prepare() {
 	# config.h:792: warning: ignoring #pragma STDC FENV_ACCESS [-Wunknown-pragmas]
 	# config.h:793: warning: ignoring #pragma STDC FP_CONTRACT [-Wunknown-pragmas]
 	#
-	# http://gcc.gnu.org/c99status.html
+	# https://gcc.gnu.org/c99status.html
 	if [[ "$(tc-getCC)" == *"gcc"* ]] ; then
 		sed -i 's/ifndef __FAST_MATH__/if 0/g' configure.ac || die
 	fi

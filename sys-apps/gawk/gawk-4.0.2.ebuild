@@ -1,13 +1,13 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0440ee37610647e471299b2fab5678dba8bb20df $
+# $Id: dd8a966819306beffc3d75d8c11989858aa4f691 $
 
 EAPI="4"
 
 inherit eutils toolchain-funcs multilib
 
 DESCRIPTION="GNU awk pattern-matching language"
-HOMEPAGE="http://www.gnu.org/software/gawk/gawk.html"
+HOMEPAGE="https://www.gnu.org/software/gawk/gawk.html"
 SRC_URI="mirror://gnu/gawk/${P}.tar.xz"
 
 LICENSE="GPL-2"

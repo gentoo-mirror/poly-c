@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 07cf97ac9e6378125c5c488f556980d84f576b4d $
+# $Id: 668393291291b33a0fa473164f207256ddf71d2b $
 
 # Require EAPI 2 since we now require at least python-2.6 (for python 3
 # syntax support) which also requires EAPI 2.
@@ -83,7 +83,7 @@ PDEPEND="
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
 # NOTE: FEATURES=installsources requires debugedit and rsync
 
-SRC_ARCHIVES="http://dev.gentoo.org/~dolsen/releases/portage"
+SRC_ARCHIVES="https://dev.gentoo.org/~dolsen/releases/portage"
 
 prefix_src_archives() {
 	local x y
