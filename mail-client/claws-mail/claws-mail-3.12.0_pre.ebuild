@@ -12,7 +12,7 @@ inherit autotools-utils multilib gnome2-utils eutils python-single-r1 poly-c_ebu
 DESCRIPTION="An email client (and news reader) based on GTK+"
 HOMEPAGE="http://www.claws-mail.org/"
 
-SRC_URI="mirror://sourceforge/${PN}/Claws%20Mail/${MY_PV}/${MY_P}.tar.xz"
+SRC_URI="http://www.claws-mail.org/download.php?file=releases/${MY_P}.tar.xz"
 
 SLOT="0"
 LICENSE="GPL-3"
