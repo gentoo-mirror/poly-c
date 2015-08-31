@@ -13,6 +13,7 @@ app-misc/mc 4.8.11 4.8.12 4.8.13 4.8.13-r1 4.8.14: GNU Midnight Commander is a t
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
 app-office/osmo 0.2.10 0.2.10_p933: A handy personal organizer
 app-shells/rssh 2.3.4: Restricted shell for SSHd
+app-shells/zsh 5.1_pre: UNIX Shell similar to the Korn shell
 app-text/liblangtag 0.5.7_pre: An interface library to access tags for identifying languages
 dev-db/ctdb 2.5.4 2.5.5: A cluster implementation of the TDB database used to store temporary data
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
