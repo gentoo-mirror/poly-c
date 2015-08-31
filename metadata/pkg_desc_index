@@ -13,6 +13,7 @@ app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LD
 app-misc/mc 4.8.11 4.8.12 4.8.13 4.8.13-r1 4.8.14: GNU Midnight Commander is a text based file manager
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
 app-office/osmo 0.2.10 0.2.10_p933: A handy personal organizer
+app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-shells/zsh 5.1_pre: UNIX Shell similar to the Korn shell
 app-text/liblangtag 0.5.7_pre: An interface library to access tags for identifying languages
