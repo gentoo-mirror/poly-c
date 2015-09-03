@@ -27,7 +27,7 @@ else
 fi
 
 MOZCONFIG_OPTIONAL_WIFI=1
-#MOZCONFIG_OPTIONAL_JIT="enabled"
+MOZCONFIG_OPTIONAL_JIT="enabled"
 inherit check-reqs flag-o-matic toolchain-funcs eutils mozconfig-v6.39 multilib pax-utils fdo-mime autotools mozextension nsplugins mozlinguas
 
 PATCHFF="firefox-38.0-patches-0.3"
@@ -188,9 +188,7 @@ src_configure() {
 	# It doesn't compile on alpha without this LDFLAGS
 	use alpha && append-ldflags "-Wl,--no-relax"
 
-	if use chatzilla ; then
-		MEXTENSIONS+=",irc"
-	else
+	if ! use chatzilla ; then
 		MEXTENSIONS+=",-irc"
 	fi
 	if ! use roaming ; then
@@ -213,10 +211,6 @@ src_configure() {
 	mozconfig_annotate '' --with-default-mozilla-five-home=${MOZILLA_FIVE_HOME}
 
 	mozconfig_annotate '' --enable-safe-browsing
-
-	# jit needs to be enabled unconditionally (bug #544436)
-	mozconfig_annotate '' --enable-ion
-	mozconfig_annotate '' --enable-yarr-jit
 
 	mozconfig_use_enable mailclient mailnews
 
