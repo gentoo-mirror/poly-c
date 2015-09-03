@@ -112,9 +112,7 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-power/cpupower 3.10.81 3.10.82 3.10.83 3.10.85 3.10.86 3.10.87 3.12.43 3.12.44 3.12.45 3.12.46 3.12.47 3.14.45 3.14.46 3.14.47 3.14.49 3.14.50 3.14.51 3.18.15 3.18.16 3.18.17 3.18.19 3.18.20 3.18.21 4.1.5 4.1.6: Shows and sets processor power related values
-www-client/seamonkey 2.33.1-r1 2.35_alpha0: Seamonkey Web Browser
+www-client/seamonkey 2.33.1-r1 2.35_pre3 2.35: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
-x11-apps/xdpyinfo 1.3.2_pre: Display information utility for X
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
-x11-apps/xmodmap 1.0.9_pre: utility for modifying keymaps and pointer button mappings in X
 x11-wm/afterstep 2.2.12_pre: A feature rich NeXTish window manager

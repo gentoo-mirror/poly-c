@@ -17,20 +17,20 @@ MOZ_P="${P}"
 MY_MOZ_P="${PN}-${MOZ_PV}"
 
 if [[ ${PV} == *_pre* ]] ; then
-	MOZ_FTP_URI="ftp://ftp.mozilla.org/pub/${PN}/candidates/${MOZ_PV}-candidates/build${PV##*_pre}"
+	MOZ_HTTP_URI="https://archive.mozilla.org/pub/${PN}/candidates/${MOZ_PV}-candidates/build${PV##*_pre}"
 	MOZ_LANGPACK_PREFIX="linux-i686/xpi/"
 	# And the langpack stuff stays at eclass defaults
 else
-	MOZ_FTP_URI="ftp://ftp.mozilla.org/pub/${PN}/releases/${MOZ_PV}"
+	MOZ_HTTP_URI="https://archive.mozilla.org/pub/${PN}/releases/${MOZ_PV}"
 	MOZ_LANGPACK_PREFIX="langpack/${MY_MOZ_P}."
 	MOZ_LANGPACK_SUFFIX=".langpack.xpi"
 fi
 
 MOZCONFIG_OPTIONAL_WIFI=1
 #MOZCONFIG_OPTIONAL_JIT="enabled"
-inherit check-reqs flag-o-matic toolchain-funcs eutils mozconfig-v5.36 multilib pax-utils fdo-mime autotools mozextension nsplugins mozlinguas
+inherit check-reqs flag-o-matic toolchain-funcs eutils mozconfig-v6.39 multilib pax-utils fdo-mime autotools mozextension nsplugins mozlinguas
 
-PATCHFF="firefox-38.0-patches-0.1"
+PATCHFF="firefox-38.0-patches-0.3"
 PATCH="${PN}-2.33-patches-01"
 EMVER="1.8.2"
 
@@ -52,14 +52,14 @@ LICENSE="MPL-2.0 GPL-2 LGPL-2.1"
 IUSE="+chatzilla +crypt +gmp-autoupdate +ipc +mailclient minimal pulseaudio +roaming selinux test"
 
 SRC_URI="${SRC_URI}
-	http://www.gentoofan.org/gentoo/misc/${MY_MOZ_P}.source.tar.bz2 -> ${P}.source.tar.bz2
-	http://dev.gentoo.org/~axs/mozilla/patchsets/${PATCHFF}.tar.xz
-	http://dev.gentoo.org/~polynomial-c/mozilla/patchsets/${PATCH}.tar.xz
-	mailclient? ( crypt? ( http://www.enigmail.net/download/source/enigmail-${EMVER}.tar.gz ) )"
+	${MOZ_HTTP_URI}/source/${MY_MOZ_P}.source.tar.bz2 -> ${P}.source.tar.bz2
+	https://dev.gentoo.org/~axs/mozilla/patchsets/${PATCHFF}.tar.xz
+	https://dev.gentoo.org/~polynomial-c/mozilla/patchsets/${PATCH}.tar.xz
+	mailclient? ( crypt? ( https://www.enigmail.net/download/source/enigmail-${EMVER}.tar.gz ) )"
 
 ASM_DEPEND=">=dev-lang/yasm-1.1"
 
-RDEPEND=">=dev-libs/nss-3.17.4
+RDEPEND=">=dev-libs/nss-3.19.2
 	>=dev-libs/nspr-4.10.8
 	mailclient? ( crypt? ( || (
 				( >=app-crypt/gnupg-2.0
@@ -68,8 +68,7 @@ RDEPEND=">=dev-libs/nss-3.17.4
 						app-crypt/pinentry[qt4]
 					)
 				)
-				=app-crypt/gnupg-1.4* ) ) )
-	system-sqlite? ( >=dev-db/sqlite-3.8.7.4:3[secure-delete,debug=] )"
+				=app-crypt/gnupg-1.4* ) ) )"
 
 DEPEND="${RDEPEND}
 	!elibc_glibc? ( !elibc_uclibc?  ( dev-libs/libexecinfo ) )
@@ -126,9 +125,7 @@ src_prepare() {
 	EPATCH_SUFFIX="patch" \
 	EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}/firefox"
-
 	popd &>/dev/null || die
-	# drop -Wl,--build-id from LDFLAGS, bug #465466
 
 	# Shell scripts sometimes contain DOS line endings; bug 391889
 	grep -rlZ --include="*.sh" $'\r$' . |
