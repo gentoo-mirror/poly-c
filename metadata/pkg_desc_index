@@ -28,6 +28,7 @@ dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 54.1-r1 55.1: International Components for Unicode
 dev-libs/libclc 0.0.1_pre20140101: OpenCL C library
 dev-libs/libpcre2 10.10_pre: Perl-compatible regular expression library
+dev-libs/libusb 1.0.20_rc3: Userspace access to USB devices
 dev-libs/mini-xml 2.9_pre: Small XML parsing library to read XML and XML-like data files
 dev-libs/redland 1.0.16: High-level interface for the Resource Description Framework
 dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
@@ -83,7 +84,6 @@ net-im/pidgin 2.10.10 2.10.11: GTK Instant Messenger client
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/webkit-gtk 2.4.7 2.4.8 2.4.9: Open source web browser engine
-net-misc/dhcp 4.3.3_pre: ISC Dynamic Host Configuration Protocol (DHCP) client/server
 net-misc/openssh 6.8_p1-r5 6.9_p1-r1 6.9_p1-r2 7.0_p1 7.1_p1: Port of OpenBSD's free SSH release
 net-misc/wicd 1.7.2.4-r3 1.7.3 1.7.3-r1: A lightweight wired and wireless network manager for Linux
 net-print/cups 2.1.0_pre: The Common Unix Printing System
@@ -95,7 +95,7 @@ sys-apps/firmware-addon-dell 2.2.9: Additional firmware tools for dell computers
 sys-apps/firmware-extract 2.0.13: Additional firmware tools for dell computers
 sys-apps/firmware-tools 2.1.14: Firmware tools for dell computers
 sys-apps/gawk 4.0.2 4.1.0 4.1.1-r1 4.1.2 4.1.3: GNU awk pattern-matching language
-sys-apps/iproute2 3.8.0 3.17.0 3.19.0 4.0.0-r2 4.1.0 4.1.1 4.2.0_pre: kernel routing and traffic control utilities
+sys-apps/iproute2 3.8.0 3.17.0 3.19.0 4.0.0-r2 4.1.0 4.1.1 4.2.0: kernel routing and traffic control utilities
 sys-apps/kbd 1.15.5-r1 2.0.1 2.0.1-r1 2.0.2 2.0.3: Keyboard and console utilities
 sys-apps/kmod 20 21: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
@@ -109,8 +109,9 @@ sys-boot/grub 2.00_p5107-r2 2.02_beta2-r3 2.02_beta2-r6 2.02_beta2-r7: GNU GRUB 
 sys-devel/autogen 5.18.5_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
+sys-fs/btrfs-progs 4.2_pre: Btrfs filesystem utilities
 sys-fs/lvm2 2.02.129_pre: User-land utilities for LVM2 (device-mapper) software
-sys-fs/udev 216 217 218 219 220-r3 222 224 224-r1 224-r2 225_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
+sys-fs/udev 216 217 218 219 220-r3 222 224 224-r1 224-r2 225_pre 225: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine

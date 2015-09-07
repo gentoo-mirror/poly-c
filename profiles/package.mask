@@ -23,3 +23,4 @@ dev-libs/ewahboolarray
 
 # doesn't build abi_x86_32
 =app-crypt/heimdal-1.6_rc2
+=dev-libs/libusb-1.0.20_rc3
