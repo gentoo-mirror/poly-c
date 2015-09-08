@@ -16,8 +16,8 @@ else
 		https://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}"
 	if [[ -n "${patchset}" ]]; then
 		SRC_URI="${SRC_URI}
-			https://dev.gentoo.org/~ssuominen/${MY_P}-patches-${patchset}.tar.xz
-			https://dev.gentoo.org/~williamh/dist/${MY_P}-patches-${patchset}.tar.xz"
+			https://dev.gentoo.org/~ssuominen/${P}-patches-${patchset}.tar.xz
+			https://dev.gentoo.org/~williamh/dist/${P}-patches-${patchset}.tar.xz"
 	fi
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 fi
@@ -153,6 +153,12 @@ src_prepare() {
 		echo '#define secure_getenv(x) NULL' >> config.h.in
 		sed -i -e '/error.*secure_getenv/s:.*:#define secure_getenv(x) NULL:' src/shared/missing.h || die
 	fi
+}
+
+src_configure() {
+	# Prevent conflicts with i686 cross toolchain, bug 559726
+	tc-export AR CC NM OBJCOPY RANLIB
+	multilib-minimal_src_configure
 }
 
 multilib_src_configure() {
