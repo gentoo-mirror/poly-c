@@ -87,6 +87,7 @@ net-libs/webkit-gtk 2.4.7 2.4.8 2.4.9: Open source web browser engine
 net-misc/openssh 6.8_p1-r5 6.9_p1-r1 6.9_p1-r2 7.0_p1 7.1_p1: Port of OpenBSD's free SSH release
 net-misc/wicd 1.7.2.4-r3 1.7.3 1.7.3-r1: A lightweight wired and wireless network manager for Linux
 net-print/cups 2.1.0_pre: The Common Unix Printing System
+net-print/cups-filters 1.0.75_pre: Cups PDF filters
 net-print/hplip 3.14.10 3.15.6 3.15.7: HP Linux Imaging and Printing. Includes printer, scanner, fax drivers and service tools
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sci-chemistry/avogadro 1.1.1: Advanced molecular editor that uses Qt4 and OpenGL
@@ -102,7 +103,6 @@ sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g: Standard commands to read man pages
 sys-apps/portage 2.2.8-r2: Portage is the package management and distribution system for Gentoo
 sys-apps/usb_modeswitch 2.2.5_p20150627_pre: USB_ModeSwitch is a tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
-sys-apps/util-linux 2.27_rc1 2.27_rc2: Various useful Linux utilities
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.00_p5107-r2 2.02_beta2-r3 2.02_beta2-r6 2.02_beta2-r7: GNU GRUB boot loader
@@ -116,7 +116,7 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-power/cpupower 3.10.81 3.10.82 3.10.83 3.10.85 3.10.86 3.10.87 3.12.43 3.12.44 3.12.45 3.12.46 3.12.47 3.14.45 3.14.46 3.14.47 3.14.49 3.14.50 3.14.51 3.18.15 3.18.16 3.18.17 3.18.19 3.18.20 3.18.21 4.1.5 4.1.6: Shows and sets processor power related values
-www-client/seamonkey 2.33.1-r1 2.35 2.38_beta1_pre1: Seamonkey Web Browser
+www-client/seamonkey 2.33.1-r1 2.35 2.38_beta1: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-wm/afterstep 2.2.12_pre: A feature rich NeXTish window manager
