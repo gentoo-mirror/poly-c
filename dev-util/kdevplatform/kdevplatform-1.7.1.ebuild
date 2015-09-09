@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2b279cfe110b527bba1a894b2d18dd947a8a3dd3 $
+# $Id: f15ed0fbffe039c31c3064c9df4baa9171e19e5d $
 
 EAPI=5
 
@@ -21,7 +21,7 @@ IUSE="+classbrowser cvs debug +konsole reviewboard subversion"
 if [[ $PV == *9999 ]]; then
 	KEYWORDS=""
 else
-	KEYWORDS="amd64 ~ppc x86"
+	KEYWORDS="amd64 ppc x86"
 fi
 
 RESTRICT="test"
