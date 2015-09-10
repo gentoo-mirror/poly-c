@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="2"
+EAPI=5
 
 inherit eutils fdo-mime multilib versionator
 
@@ -28,12 +28,25 @@ IUSE="doc"
 
 DEPEND="app-arch/gzip"
 
-RDEPEND="doc? ( www-plugins/adobe-flash  )
-	amd64? ( app-emulation/emul-linux-x86-compat
-		>=app-emulation/emul-linux-x86-qtlibs-20081109 )
+RDEPEND="dev-libs/glib[abi_x86_32(-)]
+	media-libs/fontconfig[abi_x86_32(-)]
+	media-libs/freetype[abi_x86_32(-)]
+	media-libs/libpng[abi_x86_32(-)]
+	sys-libs/zlib[abi_x86_32(-)]
+	x11-libs/libICE[abi_x86_32(-)]
+	x11-libs/libSM[abi_x86_32(-)]
+	x11-libs/libX11[abi_x86_32(-)]
+	x11-libs/libXext[abi_x86_32(-)]
+	x11-libs/libXi[abi_x86_32(-)]
+	x11-libs/libXrandr[abi_x86_32(-)]
+	x11-libs/libXrender[abi_x86_32(-)]
+	doc? ( www-plugins/adobe-flash  )
 	!<app-emulation/packettracer-52"
 
 S="${WORKDIR}/${MY_P}"
+
+PT_HOME="/opt/${MY_P}"
+QA_PREBUILT="${PT_HOME#/}/*"
 
 LANGS="de es ru"
 
@@ -77,8 +90,6 @@ src_prepare() {
 }
 
 src_install() {
-	local PT_HOME="/opt/${MY_P}"
-
 	#dodir "${PKT_HOME}"
 	#cp -R "${S}/" "${D}${PKT_HOME}/" || die "Install failed!"
 	insinto ${PT_HOME}
