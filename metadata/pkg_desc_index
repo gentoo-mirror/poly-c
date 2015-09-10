@@ -3,6 +3,7 @@ app-admin/winetools 0.9_pre: Graphical Wine tool for installing Windows programs
 app-arch/xz-utils 5.0.5-r1 5.0.7 5.0.8 5.2.0 5.2.1-r1: utils for managing LZMA compressed files
 app-backup/dar 2.4.18_pre: A full featured backup tool, aimed for disks (floppy,CDR(W),DVDR(W),zip,jazz etc.)
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
+app-crypt/gpgme 1.6.0_pre: GnuPG Made Easy is a library for making GnuPG easier to use
 app-crypt/heimdal 1.6_rc2: Kerberos 5 implementation from KTH
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
 app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
@@ -28,6 +29,7 @@ dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 54.1-r1 55.1: International Components for Unicode
 dev-libs/libclc 0.0.1_pre20140101: OpenCL C library
+dev-libs/libgpg-error 1.20_pre: Contains error handling functions used by GnuPG software
 dev-libs/libpcre2 10.10_pre: Perl-compatible regular expression library
 dev-libs/libusb 1.0.20_rc3: Userspace access to USB devices
 dev-libs/mini-xml 2.9_pre: Small XML parsing library to read XML and XML-like data files
