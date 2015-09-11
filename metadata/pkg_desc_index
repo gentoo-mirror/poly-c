@@ -4,6 +4,7 @@ app-admin/winetools 0.9_pre: Graphical Wine tool for installing Windows programs
 app-arch/xz-utils 5.0.5-r1 5.0.7 5.0.8 5.2.0 5.2.1-r1: utils for managing LZMA compressed files
 app-backup/dar 2.4.18_pre: A full featured backup tool, aimed for disks (floppy,CDR(W),DVDR(W),zip,jazz etc.)
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
+app-crypt/gnupg 2.1.8_pre: The GNU Privacy Guard, a GPL OpenPGP implementation
 app-crypt/heimdal 1.6_rc2: Kerberos 5 implementation from KTH
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
 app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
