@@ -24,3 +24,6 @@ dev-libs/ewahboolarray
 # doesn't build abi_x86_32
 =app-crypt/heimdal-1.6_rc2
 =dev-libs/libusb-1.0.20_rc3
+
+# Fails to install
+=app-text/calibre-2.38.0_pre
