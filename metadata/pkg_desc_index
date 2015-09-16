@@ -48,7 +48,6 @@ games-strategy/boswars 9999: Futuristic real-time strategy game
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 lxde-base/lxsession 0.4.9.2 0.4.9.2-r1 0.4.9.2-r2 0.4.9.2-r3: LXDE session manager (lite version)
-mail-client/claws-mail 3.12.0_pre: An email client (and news reader) based on GTK+
 media-libs/gst-plugins-base 1.5.2_pre 1.5.90_pre: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.5.2_pre 1.5.90_pre: Basepack of plugins for GStreamer
 media-libs/gstreamer 1.5.2_pre 1.5.90_pre: Open source multimedia framework
@@ -89,7 +88,6 @@ net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/webkit-gtk 2.4.7 2.4.8 2.4.9: Open source web browser engine
 net-misc/openssh 6.8_p1-r5 6.9_p1-r1 6.9_p1-r2 7.0_p1 7.1_p1: Port of OpenBSD's free SSH release
 net-print/cups 2.1.0_pre: The Common Unix Printing System
-net-print/cups-filters 1.0.76_pre: Cups PDF filters
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sci-chemistry/avogadro 1.1.1: Advanced molecular editor that uses Qt4 and OpenGL
 sys-apps/dbus 1.10.0_pre: A message bus system, a simple way for applications to talk to each other
@@ -107,10 +105,10 @@ sys-apps/usb_modeswitch 2.2.5_p20150627_pre: USB_ModeSwitch is a tool for contro
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.00_p5107-r2 2.02_beta2-r3 2.02_beta2-r6 2.02_beta2-r7: GNU GRUB boot loader
-sys-devel/autogen 5.18.5_pre: Program and text file generation
+sys-devel/autogen 5.18.5_pre 5.18.6_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
-sys-fs/lvm2 2.02.129_pre 2.02.130_pre: User-land utilities for LVM2 (device-mapper) software
+sys-fs/lvm2 2.02.129_pre 2.02.130_pre 2.02.131_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 217 218 219 220-r3 222 224 224-r1 224-r2 225 226_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
