@@ -3,12 +3,12 @@
 # $Id$
 
 EAPI=5
-inherit autotools eutils pam readme.gentoo systemd versionator poly-c_ebuilds
+inherit autotools eutils pam readme.gentoo systemd versionator
 
-TRUNK_VERSION="$(get_version_component_range 1-2 ${MY_PV})"
+TRUNK_VERSION="$(get_version_component_range 1-2)"
 DESCRIPTION="A lightweight display manager"
 HOMEPAGE="http://www.freedesktop.org/wiki/Software/LightDM"
-SRC_URI="https://launchpad.net/${PN}/${TRUNK_VERSION}/${MY_PV}/+download/${MY_P}.tar.xz
+SRC_URI="https://launchpad.net/${PN}/${TRUNK_VERSION}/${PV}/+download/${P}.tar.xz
 	mirror://gentoo/introspection-20110205.m4.tar.bz2"
 
 LICENSE="GPL-3 LGPL-3"
