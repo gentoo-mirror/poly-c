@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 185037f356356bfdd329a8211c71d1ff4348c705 $
+# $Id: 841dac14f263feefb79befc97e08d31fe769c37e $
 
 EAPI=5
 WANT_AUTOCONF="2.1"
@@ -44,7 +44,7 @@ if [[ ${PV} == *_pre* ]] ; then
 else
 	# This is where arch teams should change the KEYWORDS.
 
-	KEYWORDS="~alpha ~amd64 ~arm ~ppc ~ppc64 ~x86"
+	KEYWORDS="~alpha amd64 ~arm ~ppc ~ppc64 x86"
 fi
 
 SLOT="0"

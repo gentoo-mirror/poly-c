@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: b9cf6abf10ad5abbf821a0612bf62d9fba4a1937 $
+# $Id: 9ddc665c32671d180f5fc61d1ecec1237e70c4a9 $
 
 EAPI="4"
 inherit eutils user flag-o-matic multilib autotools pam systemd versionator
@@ -48,8 +48,8 @@ LIB_DEPEND="
 	selinux? ( >=sys-libs/libselinux-1.28[static-libs(+)] )
 	skey? ( >=sys-auth/skey-1.1.5-r1[static-libs(+)] )
 	ssl? (
-		>=dev-libs/openssl-0.9.6d:0[bindist=]
-		dev-libs/openssl[static-libs(+)]
+		>=dev-libs/openssl-0.9.8f:0[bindist=]
+		dev-libs/openssl:0[static-libs(+)]
 	)
 	>=sys-libs/zlib-1.2.3[static-libs(+)]"
 RDEPEND="
