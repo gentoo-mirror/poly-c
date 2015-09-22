@@ -84,7 +84,6 @@ net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/webkit-gtk 2.4.7 2.4.8 2.4.9: Open source web browser engine
 net-misc/openssh 6.8_p1-r5 6.9_p1-r1 6.9_p1-r2 7.0_p1 7.1_p1 7.1_p1-r1: Port of OpenBSD's free SSH release
-net-misc/telnet-bsd 1.2-r1: Telnet and telnetd ported from OpenBSD with IPv6 support
 net-print/cups 2.1.0_pre: The Common Unix Printing System
 net-print/hplip 3.15.9_pre: HP Linux Imaging and Printing. Includes printer, scanner, fax drivers and service tools
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
