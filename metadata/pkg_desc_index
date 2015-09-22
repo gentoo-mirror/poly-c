@@ -112,7 +112,7 @@ sys-fs/udev 216 217 218 219 220-r3 222 224 224-r1 224-r2 225 226_pre: Linux dyna
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 3.10.86 3.10.87 3.10.88 3.12.45 3.12.46 3.12.47 3.14.50 3.14.51 3.14.52 3.18.19 3.18.20 3.18.21 4.1.5 4.1.6 4.1.7: Shows and sets processor power related values
+sys-power/cpupower 3.10.87 3.10.88 3.10.89 3.12.45 3.12.46 3.12.47 3.14.51 3.14.52 3.14.53 3.18.19 3.18.20 3.18.21 4.1.6 4.1.7 4.1.8: Shows and sets processor power related values
 www-client/midori 0.5.11: A lightweight web browser based on WebKitGTK+
 www-client/seamonkey 2.33.1-r1 2.35 2.38_beta1: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
