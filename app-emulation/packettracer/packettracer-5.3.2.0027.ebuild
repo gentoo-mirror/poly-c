@@ -82,9 +82,16 @@ pkg_nofetch() {
 }
 
 src_prepare() {
-	for file in install set_ptenv.sh tpl.linguist tpl.packettracer \
-							extensions/ptaplayer bin/linguist; do
-		 rm -fr  ${file} || die "unable to rm ${file}"
+	local rmfiles=(
+			install
+			set_ptenv.sh
+			tpl.linguist
+			tpl.packettracer
+			extensions/ptaplayer
+			bin/linguist
+		      )
+	for fle in ${rmfiles[@]} ; do
+		 rm -r ${fle} || die "unable to rm ${fle}"
 	done
 	use !doc && rm -fr "${S}/"help/default/tutorials
 }

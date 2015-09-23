@@ -11,4 +11,4 @@ RESTRICT=fetch mirror strip
 SLOT=0
 SRC_URI=http://cisco.netacad.net/cnams/resourcewindow/noncurr/downloadTools/app_files/PacketTracer532_Generic_Ubuntu.tar.gz linguas_de? ( http://cisco.netacad.net/cnams/resourcewindow/noncurr/downloadTools/app_files/PT53-german-v1.0.ptl ) linguas_es? ( http://cisco.netacad.net/cnams/resourcewindow/noncurr/downloadTools/app_files/spanish_PT_v53.ptl ) linguas_ru? ( http://cisco.netacad.net/cnams/resourcewindow/noncurr/downloadTools/app_files/RUSSIAN5.3.ptl )
 _eclasses_=eutils	351a78113be5b393c09a2c948701ad36	fdo-mime	92d07846ea8ea54172f8c0112a47ae3d	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	4b8d3388c0a6e798504e20ba30b49361	versionator	99ae9d758cbe7cfed19170e7d48f5a9c
-_md5_=8220ce7f705c686baf5babe8815c4e58
+_md5_=cf986f96d0281f31a8ebc6175662a11c
