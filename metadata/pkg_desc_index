@@ -1,3 +1,4 @@
+app-admin/sudo 1.8.15_beta2: Allows users or groups to run commands as other users
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-admin/winetools 0.9_pre: Graphical Wine tool for installing Windows programs under Wine
 app-arch/xz-utils 5.0.5-r1 5.0.7 5.0.8 5.2.0 5.2.1-r1: utils for managing LZMA compressed files
