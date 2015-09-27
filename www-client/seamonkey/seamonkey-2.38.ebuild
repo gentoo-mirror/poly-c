@@ -7,7 +7,7 @@ WANT_AUTOCONF="2.1"
 
 # This list can be updated with scripts/get_langs.sh from the mozilla overlay
 MOZ_LANGS=(be ca cs de en en-GB en-US es-AR es-ES fi fr gl hu it ja lt nb-NO nl
-	    pl pt-PT ru sk tr uk zh-CN zh-TW)
+	    pl pt-PT ru sk sv-SE tr uk zh-CN zh-TW)
 
 MOZ_PV="${PV/_pre*}"
 MOZ_PV="${MOZ_PV/_alpha/a}"
@@ -28,7 +28,7 @@ fi
 
 MOZCONFIG_OPTIONAL_WIFI=1
 MOZCONFIG_OPTIONAL_JIT="enabled"
-inherit check-reqs flag-o-matic toolchain-funcs eutils mozconfig-v6.40 multilib pax-utils fdo-mime autotools mozextension nsplugins mozlinguas
+inherit check-reqs flag-o-matic toolchain-funcs eutils mozconfig-v6.41 multilib pax-utils fdo-mime autotools mozextension nsplugins mozlinguas
 
 PATCHFF="firefox-40.0-patches-0.01"
 PATCH="${PN}-2.33-patches-01"
