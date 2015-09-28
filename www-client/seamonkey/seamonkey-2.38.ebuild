@@ -37,15 +37,8 @@ EMVER="1.8.2"
 DESCRIPTION="Seamonkey Web Browser"
 HOMEPAGE="http://www.seamonkey-project.org"
 
-if [[ ${PV} == *_pre* ]] ; then
-	# pre-releases. No need for arch teams to change KEYWORDS here.
-
-	KEYWORDS="~alpha ~amd64 ~arm ~ppc ~ppc64 ~x86"
-else
-	# This is where arch teams should change the KEYWORDS.
-
-	KEYWORDS="~alpha ~amd64 ~arm ~ppc ~ppc64 ~x86"
-fi
+[[ ${PV} != *_pre* ]] && \
+KEYWORDS="~alpha ~amd64 ~arm ~ppc ~ppc64 ~x86"
 
 SLOT="0"
 LICENSE="MPL-2.0 GPL-2 LGPL-2.1"
