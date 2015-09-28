@@ -85,6 +85,7 @@ net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/webkit-gtk 2.4.7 2.4.8 2.4.9 2.10.0_pre: Open source web browser engine
 net-misc/openssh 6.8_p1-r5 6.9_p1-r1 6.9_p1-r2 7.0_p1 7.1_p1 7.1_p1-r1: Port of OpenBSD's free SSH release
 net-print/cups 2.1.0_pre: The Common Unix Printing System
+net-wireless/hostapd 2.5_pre: IEEE 802.11 wireless LAN Host AP daemon
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sci-chemistry/avogadro 1.1.1: Advanced molecular editor that uses Qt4 and OpenGL
 sys-apps/dbus 1.10.0_pre: A message bus system, a simple way for applications to talk to each other
@@ -115,4 +116,3 @@ sys-power/cpupower 3.10.87 3.10.88 3.10.89 3.12.45 3.12.46 3.12.47 3.14.51 3.14.
 www-client/seamonkey 2.35 2.38: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
-x11-misc/xosview 1.17_pre: X11 operating system viewer
