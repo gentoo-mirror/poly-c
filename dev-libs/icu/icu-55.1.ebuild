@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 18963fe582973e007bb4c469d8d79e2bb549f7f3 $
+# $Id: 896fda0d68b8633844d7dffaf5e6648d7f2ffd06 $
 
 EAPI=5
 
@@ -18,6 +18,7 @@ KEYWORDS="alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86
 IUSE="debug doc examples static-libs"
 
 DEPEND="
+	virtual/pkgconfig
 	doc? (
 		app-doc/doxygen[dot]
 	)
