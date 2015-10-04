@@ -27,3 +27,6 @@ dev-libs/ewahboolarray
 
 # Fails to install
 =app-text/calibre-2.38.0_pre
+
+# Fails to build
+=app-backup/dar-2.5.0_pre
