@@ -12,19 +12,22 @@ SRC_URI="mirror://sourceforge/dar/${MY_P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~amd64-linux"
-IUSE="acl dar32 dar64 doc gcrypt lzo nls static static-libs"
+IUSE="acl dar32 dar64 doc gcrypt gpg lzo nls static static-libs"
 
 RESTRICT="test" # need to be run as root
 
 RDEPEND=">=sys-libs/zlib-1.2.3:=
-	!static? ( app-arch/bzip2:= )
+	!static? ( app-arch/bzip2:=
+		    app-arch/xz-utils:= )
 	acl? ( !static? ( sys-apps/attr:= ) )
 	gcrypt? ( dev-libs/libgcrypt:0= )
+	gpg? ( app-crypt/gpgme )
 	lzo? ( !static? ( dev-libs/lzo:= ) )
 	nls? ( virtual/libintl )"
 DEPEND="${RDEPEND}
-	static? ( app-arch/bzip2[static-libs] )
-	static? ( sys-libs/zlib[static-libs] )
+	static? ( app-arch/bzip2[static-libs]
+		    app-arch/xz-utils[static-libs]
+		    sys-libs/zlib[static-libs] )
 	acl? ( static? ( sys-apps/attr[static-libs] ) )
 	lzo? ( static? ( dev-libs/lzo[static-libs] ) )
 	nls? ( sys-devel/gettext )
@@ -35,27 +38,28 @@ pkg_setup() {
 }
 
 src_configure() {
-	local myconf="--disable-upx"
+	local myconf=( --disable-upx )
 
 	# Bug 103741
 	filter-flags -fomit-frame-pointer
 
-	use acl || myconf="${myconf} --disable-ea-support"
-	use dar32 && myconf="${myconf} --enable-mode=32"
-	use dar64 && myconf="${myconf} --enable-mode=64"
-	use doc || myconf="${myconf} --disable-build-html"
-	# use examples && myconf="${myconf} --enable-examples"
-	use gcrypt || myconf="${myconf} --disable-libgcrypt-linking"
-	use lzo || myconf="${myconf} --disable-liblzo2-linking"
-	use nls || myconf="${myconf} --disable-nls"
+	use acl || myconf+=( --disable-ea-support )
+	use dar32 && myconf+=( --enable-mode=32 )
+	use dar64 && myconf+=( --enable-mode=64 )
+	use doc || myconf+=( --disable-build-html )
+	# use examples && myconf+=( --enable-examples )
+	use gcrypt || myconf+=( --disable-libgcrypt-linking )
+	use gpg || myconf+=( --disable-gpgme-linking )
+	use lzo || myconf+=( --disable-liblzo2-linking )
+	use nls || myconf=( --disable-nls )
 	if ! use static ; then
-		myconf="${myconf} --disable-dar-static"
+		myconf+=( --disable-dar-static )
 		if ! use static-libs ; then
-			myconf="${myconf} --disable-static"
+			myconf+=( --disable-static )
 		fi
 	fi
 
-	econf ${myconf} || die
+	econf ${myconf[@]} || die
 }
 
 src_install() {
