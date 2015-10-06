@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 72c60897e706bdbf3e8b97a7fbf24b5b6b439422 $
+# $Id: a55cf5130888d4bfba3a242d74f7fe410f18ebd5 $
 
 EAPI=5
 
@@ -16,7 +16,7 @@ else
 	SRC_URI="http://www.freedesktop.org/software/systemd/systemd-${PV}.tar.xz
 		https://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}"
 	if [[ -n "${patchset}" ]]; then
-		SRC_URI="${SRC_URI}
+		SRC_URI+="
 			https://dev.gentoo.org/~ssuominen/${P}-patches-${patchset}.tar.xz
 			https://dev.gentoo.org/~williamh/dist/${P}-patches-${patchset}.tar.xz"
 	fi
