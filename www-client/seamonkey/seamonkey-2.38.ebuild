@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: /usr/local/portage/www-client/seamonkey/seamonkey-2.38.ebuild $
+# $Id: 77c945df628f1bffed2a246a451be881ccef432e $
 
 EAPI=5
 WANT_AUTOCONF="2.1"
@@ -30,7 +30,7 @@ MOZCONFIG_OPTIONAL_WIFI=1
 MOZCONFIG_OPTIONAL_JIT="enabled"
 inherit check-reqs flag-o-matic toolchain-funcs eutils mozconfig-v6.41 multilib pax-utils fdo-mime autotools mozextension nsplugins mozlinguas
 
-PATCHFF="firefox-40.0-patches-0.01"
+PATCHFF="firefox-41.0-patches-01"
 PATCH="${PN}-2.33-patches-01"
 EMVER="1.8.2"
 

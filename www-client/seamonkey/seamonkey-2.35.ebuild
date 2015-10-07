@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 841dac14f263feefb79befc97e08d31fe769c37e $
+# $Id: d39821d8c632026c7169c1c61e531131ef38c77c $
 
 EAPI=5
 WANT_AUTOCONF="2.1"
@@ -30,7 +30,7 @@ MOZCONFIG_OPTIONAL_WIFI=1
 MOZCONFIG_OPTIONAL_JIT="enabled"
 inherit check-reqs flag-o-matic toolchain-funcs eutils mozconfig-v6.39 multilib pax-utils fdo-mime autotools mozextension nsplugins mozlinguas
 
-PATCHFF="firefox-38.0-patches-0.3"
+PATCHFF="firefox-38.0-patches-04"
 PATCH="${PN}-2.33-patches-01"
 EMVER="1.8.2"
 
