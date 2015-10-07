@@ -28,3 +28,5 @@ dev-libs/ewahboolarray
 # Fails to install
 =app-text/calibre-2.38.0_pre
 
+# Fails to compile
+=dev-util/cmake-3.4.0_rc1

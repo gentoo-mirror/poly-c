@@ -119,8 +119,6 @@ src_prepare() {
 	EPATCH_SUFFIX="patch" \
 	EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}/firefox"
-	epatch "${FILESDIR}"/firefox-38-hppa-js-syntax-error.patch #556196
-	epatch "${FILESDIR}"/firefox-38-dont-hardcode-libc-soname.patch #557956
 	popd &>/dev/null || die
 
 	# Shell scripts sometimes contain DOS line endings; bug 391889

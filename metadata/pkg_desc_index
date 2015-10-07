@@ -1,4 +1,4 @@
-app-admin/sudo 1.8.15_beta2 1.8.15_beta5 1.8.15_rc1: Allows users or groups to run commands as other users
+app-admin/sudo 1.8.15_beta5 1.8.15_rc1 1.8.15_rc2: Allows users or groups to run commands as other users
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-admin/winetools 0.9_pre: Graphical Wine tool for installing Windows programs under Wine
 app-arch/xz-utils 5.0.8 5.2.0 5.2.1-r1 5.2.2: utils for managing LZMA compressed files
@@ -34,6 +34,7 @@ dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 dev-python/google-apputils 0.4.0: Collection of utilities for building Python applications
 dev-scheme/guile 2.0.11_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.59.0_pre: A system for large project software construction, which is simple to use and powerful
+dev-util/cmake 3.4.0_rc1: Cross platform Make
 dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-arcade/supertux 0.3.4_pre 0.3.5a_pre: A game similar to Super Mario Bros.
