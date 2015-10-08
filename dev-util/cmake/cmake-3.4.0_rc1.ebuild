@@ -131,6 +131,9 @@ src_prepare() {
 		-e "s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}/|g" \
 		Modules/Platform/{UnixPaths,Darwin}.cmake || die "sed failed"
 
+	#
+	sed '/SET CMP0053/s@NEW@OLD@' -i CMakeLists.txt || die
+
 	cmake_src_bootstrap
 }
 
