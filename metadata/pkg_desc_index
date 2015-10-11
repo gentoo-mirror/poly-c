@@ -18,6 +18,7 @@ app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gent
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/calibre 2.38.0_pre 2.40.0_pre: Ebook management application
 app-text/liblangtag 0.5.7_pre: An interface library to access tags for identifying languages
+app-text/poppler 0.37.0_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-db/ctdb 2.5.4 2.5.5: A cluster implementation of the TDB database used to store temporary data
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-libs/Ice 3.6.0_pre: ICE middleware C++ library and generator tools
