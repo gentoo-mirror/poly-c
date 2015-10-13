@@ -10,5 +10,5 @@ RDEPEND=>=dev-libs/boehm-gc-7.0[threads?] dev-libs/gmp dev-libs/libffi dev-libs/
 RESTRICT=mirror
 SLOT=12
 SRC_URI=mirror://gnu/guile/guile-2.0.11.tar.gz
-_eclasses_=eutils	43da5163ba106e87d22d2e7d6d67537f	flag-o-matic	85dc1eac3c64d8141374490ed64122e5	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	1dfcad7b3f439dbc511d76c49f23da0d
+_eclasses_=eutils	43da5163ba106e87d22d2e7d6d67537f	flag-o-matic	85dc1eac3c64d8141374490ed64122e5	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
 _md5_=5952e3bdc9df97ed00ac002e0a0b8513
