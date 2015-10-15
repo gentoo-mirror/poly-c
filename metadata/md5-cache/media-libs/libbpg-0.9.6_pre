@@ -1,0 +1,13 @@
+DEFINED_PHASES=install prepare
+DESCRIPTION=BPG (Better Portable Graphics) is a new image format
+EAPI=5
+HOMEPAGE=http://bellard.org/bpg/
+IUSE=x265
+KEYWORDS=~amd64 ~x86
+LICENSE=LGPL-2.1 BSD
+RDEPEND=media-libs/libjpeg-turbo media-libs/libpng:0 x265? ( media-libs/x265:= )
+RESTRICT=mirror
+SLOT=0
+SRC_URI=http://bellard.org/bpg/libbpg-0.9.6.tar.gz
+_eclasses_=eutils	43da5163ba106e87d22d2e7d6d67537f	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=77147014edf914dfbb7d5865d944065e

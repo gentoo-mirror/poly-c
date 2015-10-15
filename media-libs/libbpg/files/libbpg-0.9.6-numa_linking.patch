@@ -1,0 +1,11 @@
+--- libbpg-0.9.6/Makefile
++++ libbpg-0.9.6/Makefile
+@@ -179,7 +179,7 @@
+ LIBS+=-lm -lpthread
+ 
+ BPGDEC_LIBS:=-lpng $(LIBS)
+-BPGENC_LIBS+=-lpng -ljpeg $(LIBS)
++BPGENC_LIBS+=-lpng -ljpeg -lnuma $(LIBS)
+ BPGVIEW_LIBS:=-lSDL_image -lSDL $(LIBS)
+ 
+ endif #!CONFIG_WIN32

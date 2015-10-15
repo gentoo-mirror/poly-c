@@ -1,0 +1,15 @@
+DEFINED_PHASES=compile configure install postinst preinst prepare setup test unpack
+DEPEND=!games-fps/etlegacy-bin opengl? ( >=media-libs/glew-1.10.0 media-libs/libsdl2[sound,video,X] virtual/jpeg:0 virtual/opengl curl? ( net-misc/curl ) freetype? ( media-libs/freetype ) gettext? ( sys-devel/gettext ) jansson? ( dev-libs/jansson ) renderer-gles? ( media-libs/mesa[gles1] ) openal? ( media-libs/openal ) vorbis? ( media-libs/libvorbis ) lua? ( >=dev-lang/lua-5.1 ) ) !dedicated? ( >=media-libs/glew-1.10.0 media-libs/libsdl2[sound,video,X] virtual/jpeg:0 virtual/opengl curl? ( net-misc/curl ) freetype? ( media-libs/freetype ) gettext? ( sys-devel/gettext ) jansson? ( dev-libs/jansson ) renderer-gles? ( media-libs/mesa[gles1] ) openal? ( media-libs/openal ) vorbis? ( media-libs/libvorbis ) lua? ( >=dev-lang/lua-5.1 ) ) sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=Wolfenstein: Enemy Territory 2.60b compatible client/server
+EAPI=5
+HOMEPAGE=http://www.etlegacy.com/
+IUSE=+opengl dedicated omnibot +curl +vorbis +openal +freetype lua curses autoupdate renderer2 renderer-gles ipv6 irc renderer-dynamic crouch +gettext jansson
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-3 RTCW-ETEULA
+RDEPEND=!games-fps/etlegacy-bin opengl? ( >=media-libs/glew-1.10.0 media-libs/libsdl2[sound,video,X] virtual/jpeg:0 virtual/opengl curl? ( net-misc/curl ) freetype? ( media-libs/freetype ) gettext? ( sys-devel/gettext ) jansson? ( dev-libs/jansson ) renderer-gles? ( media-libs/mesa[gles1] ) openal? ( media-libs/openal ) vorbis? ( media-libs/libvorbis ) lua? ( >=dev-lang/lua-5.1 ) ) !dedicated? ( >=media-libs/glew-1.10.0 media-libs/libsdl2[sound,video,X] virtual/jpeg:0 virtual/opengl curl? ( net-misc/curl ) freetype? ( media-libs/freetype ) gettext? ( sys-devel/gettext ) jansson? ( dev-libs/jansson ) renderer-gles? ( media-libs/mesa[gles1] ) openal? ( media-libs/openal ) vorbis? ( media-libs/libvorbis ) lua? ( >=dev-lang/lua-5.1 ) ) games-misc/games-envd
+REQUIRED_USE=omnibot? ( x86 )
+RESTRICT=mirror
+SLOT=0
+SRC_URI=https://github.com/etlegacy/etlegacy/archive/v2.74.tar.gz -> etlegacy-2.74.tar.gz
+_eclasses_=base	84d9f879f57a8316ff02be0373a3d6f9	cmake-utils	f474224ef49d530640a43a04ae94928e	eutils	43da5163ba106e87d22d2e7d6d67537f	fdo-mime	92d07846ea8ea54172f8c0112a47ae3d	flag-o-matic	85dc1eac3c64d8141374490ed64122e5	games	4dae170e58f773c484e07d18ef441804	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	user	906f3c8eb3a2350a4f1191a89baa3e46
+_md5_=b2a82a9bc4808cf4c100b26db72c824a

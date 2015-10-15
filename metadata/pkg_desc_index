@@ -40,18 +40,17 @@ dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-arcade/supertux 0.3.4_pre 0.3.5a_pre: A game similar to Super Mario Bros.
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - a series of minor additions to Enemy Territory to make it more fun
-games-fps/etlegacy 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
+games-fps/etlegacy 2.74 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.42b 9999: Return to Castle Wolfenstein - IORTCW Project
 games-strategy/boswars 9999: Futuristic real-time strategy game
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
-games-util/xqf 1.0.6.2_pre: A server browser for many FPS games (frontend for qstat)
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 lxde-base/lxsession 0.4.9.2 0.4.9.2-r1 0.4.9.2-r2 0.4.9.2-r3: LXDE session manager (lite version)
 media-libs/gst-plugins-base 1.5.2_pre 1.5.91_pre 1.6.0_pre: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.5.2_pre 1.5.91_pre 1.6.0_pre: Basepack of plugins for GStreamer
 media-libs/gstreamer 1.5.2_pre 1.5.91_pre 1.6.0_pre: Open source multimedia framework
 media-libs/harfbuzz 1.0.4_pre 1.0.5_pre: An OpenType text shaping engine
-media-libs/libbpg 0.9.5_pre: BPG (Better Portable Graphics) is a new image format
+media-libs/libbpg 0.9.5_pre 0.9.6_pre: BPG (Better Portable Graphics) is a new image format
 media-libs/libdvdcss 1.3.99: A portable abstraction library for DVD decryption
 media-libs/opus 1.1.1_beta: Open versatile codec designed for interactive speech and audio transmission over the internet
 media-plugins/gst-plugins-libav 1.5.2_pre 1.5.91_pre 1.6.0_pre: FFmpeg based gstreamer plugin
@@ -67,7 +66,6 @@ media-sound/ossp 1.3.1 1.3.2: OSS Proxy Daemon is Linux userland OSS sound devic
 media-sound/qamix 0.0.7e_pre: QAMix is a configurable mixer for ALSA. Interfaces for AC 97 cards and Soundblaster Live are provided.
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 10: Download files from the public broadcasting services
-media-video/ffmpeg 2.8.1_pre: Complete solution to record, convert and stream audio and video. Includes libavcodec
 media-video/tragtor 0.8.45 0.9.2: traGtor is a graphical user interface (GUI) for ffmpeg
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
 media-video/vlc 2.2.1: VLC media player - Video player and streamer
