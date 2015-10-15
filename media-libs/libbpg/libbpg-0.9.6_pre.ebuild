@@ -11,12 +11,14 @@ HOMEPAGE="http://bellard.org/bpg/"
 SRC_URI="http://bellard.org/bpg/${MY_P}.tar.gz"
 LICENSE="LGPL-2.1 BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 IUSE="x265"
 
-RDEPEND="${DEPEND}
-	media-libs/libjpeg-turbo
+DEPEND="dev-util/cmake"
+
+RDEPEND="media-libs/libjpeg-turbo
 	media-libs/libpng:0
+	sys-process/numactl
 	x265? ( media-libs/x265:= )"
 
 src_prepare() {
@@ -30,9 +32,9 @@ src_prepare() {
 		-e '/install/s@-s@@' \
 		-i Makefile || die
 
-	if use x265 ; then
+	if ! use x265 ; then
 		sed \
-			-e '/^#USE_X265=/s@#@@' \
+			-e '/^USE_X265=/s@^@#@' \
 			-i Makefile || die
 	fi
 }
