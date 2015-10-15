@@ -7,7 +7,7 @@ EAPI=5
 EGIT_REPO_URI="git://github.com/${PN}/${PN}.git"
 [[ ${PV} == "9999" ]] && GIT_ECLASS="git-r3"
 
-inherit cmake-utils games fdo-mime ${GIT_ECLASS}
+inherit cmake-utils games fdo-mime versionator ${GIT_ECLASS}
 
 DESCRIPTION="Wolfenstein: Enemy Territory 2.60b compatible client/server"
 HOMEPAGE="http://www.etlegacy.com/"
@@ -60,6 +60,14 @@ RDEPEND="${DEPEND}"
 QA_TEXTRELS="usr/share/games/etlegacy/legacy/omni-bot/omnibot_et.so"
 
 S="${WORKDIR}/${P/_rc/rc}"
+
+src_prepare() {
+	if [[ "${PV}" != 9999 ]] ; then
+		sed -e "/^set(ETLEGACY_VERSION_MINOR/s@[[:digit:]]\+@$(get_version_component_range 2)@" \
+		    -e 's@-dirty@@' \
+		    -i cmake/ETLVersion.cmake || die
+	fi
+}
 
 src_configure() {
 	# path and build type
