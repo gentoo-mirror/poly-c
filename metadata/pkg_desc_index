@@ -20,7 +20,7 @@ app-text/calibre 2.40.0_pre 2.41.0_pre: Ebook management application
 app-text/liblangtag 0.5.7_pre: An interface library to access tags for identifying languages
 app-text/poppler 0.37.0_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-db/ctdb 2.5.4 2.5.5: A cluster implementation of the TDB database used to store temporary data
-dev-db/sqlite 3.9.0_pre: A SQL Database Engine in a C Library
+dev-db/sqlite 3.9.0_pre 3.9.1_pre: A SQL Database Engine in a C Library
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-libs/Ice 3.6.0_pre: ICE middleware C++ library and generator tools
 dev-libs/boost 1.59.0_pre: Boost Libraries for C++
