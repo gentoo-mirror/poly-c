@@ -7,12 +7,12 @@ EAPI=5
 inherit autotools-utils poly-c_ebuilds
 
 DESCRIPTION="An interface library to access tags for identifying languages"
-HOMEPAGE="http://tagoh.bitbucket.org/liblangtag/"
+HOMEPAGE="https://tagoh.bitbucket.org/liblangtag/"
 SRC_URI="https://bitbucket.org/tagoh/${PN}/downloads/${MY_P}.tar.bz2"
 
 LICENSE="|| ( LGPL-3 MPL-1.1 )"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~ppc ~x86"
+KEYWORDS="amd64 ~arm ~ppc x86"
 IUSE="introspection static-libs test"
 
 RDEPEND="
@@ -26,6 +26,8 @@ DEPEND="${RDEPEND}
 
 # Upstream expect liblangtag to be installed when one runs tests...
 RESTRICT="test"
+
+PATCHES=(  )
 
 src_configure() {
 	local myeconfargs=(

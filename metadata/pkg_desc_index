@@ -1,3 +1,4 @@
+app-accessibility/speech-dispatcher 0.8.3_pre: Speech synthesis interface
 app-admin/sudo 1.8.15_beta5 1.8.15_rc1 1.8.15_rc2: Allows users or groups to run commands as other users
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-admin/winetools 0.9_pre: Graphical Wine tool for installing Windows programs under Wine
@@ -8,6 +9,7 @@ app-crypt/heimdal 1.6_rc2: Kerberos 5 implementation from KTH
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
 app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
 app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
+app-i18n/enca 1.15_pre: ENCA detects the character coding of a file and converts it if desired
 app-misc/gramps 4.2.0_pre: Genealogical Research and Analysis Management Programming System
 app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
@@ -17,35 +19,70 @@ app-office/osmo 0.2.10 0.2.10_p933: A handy personal organizer
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/calibre 2.40.0_pre 2.41.0_pre: Ebook management application
+app-text/evince 3.18.0_pre: Simple document viewer for GNOME
+app-text/iso-codes 3.62_pre: ISO language, territory, currency, script codes and their translations
 app-text/liblangtag 0.5.7_pre: An interface library to access tags for identifying languages
-app-text/poppler 0.37.0_pre: PDF rendering library based on the xpdf-3.0 code base
+app-text/po4a 0.47_pre: Tools for helping translation of documentation
+app-text/qpdf 5.1.3_pre: A command-line program that does structural, content-preserving transformations on PDF files
+app-text/yelp-tools 3.18.0_pre: Collection of tools for building and converting documentation
+dev-cpp/atkmm 2.24.1_pre: C++ interface for the ATK library
+dev-cpp/cairomm 1.12.0_pre: C++ bindings for the Cairo vector graphics library
+dev-cpp/glibmm 2.46.1_pre: C++ interface for glib2
+dev-cpp/gtkmm 3.18.0_pre: C++ interface for GTK+
+dev-cpp/pangomm 2.38.1_pre: C++ interface for pango
 dev-db/ctdb 2.5.4 2.5.5: A cluster implementation of the TDB database used to store temporary data
 dev-db/sqlite 3.9.0_pre 3.9.1_pre: A SQL Database Engine in a C Library
+dev-db/unixODBC 2.3.3_pre: A complete ODBC driver manager
+dev-java/ant-core 1.9.5_pre: Java-based build tool similar to 'make' that uses XML configuration files
+dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
+dev-java/icedtea-web 1.6.1_pre: FOSS Java browser plugin and Web Start implementation
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
+dev-lang/vala 0.30.0_pre: Compiler for the GObject type system
 dev-libs/Ice 3.6.0_pre: ICE middleware C++ library and generator tools
+dev-libs/atk 2.18.0_pre: GTK+ & GNOME Accessibility Toolkit
 dev-libs/boost 1.59.0_pre: Boost Libraries for C++
+dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
+dev-libs/glib 2.46.1_pre: The GLib library of C routines
+dev-libs/gobject-introspection 1.46.0_pre: Introspection infrastructure for generating gobject library bindings for various languages
+dev-libs/gobject-introspection-common 1.46.0_pre: Build infrastructure for GObject Introspection
 dev-libs/icu 54.1-r1 55.1: International Components for Unicode
 dev-libs/libclc 0.0.1_pre20140101: OpenCL C library
+dev-libs/libgusb 0.2.7_pre: GObject wrapper for libusb
+dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.10_pre: Perl-compatible regular expression library
+dev-libs/libsigc++ 2.6.1_pre: Typesafe callback system for standard C++
 dev-libs/libusb 1.0.20_rc3: Userspace access to USB devices
 dev-libs/mini-xml 2.9_pre: Small XML parsing library to read XML and XML-like data files
 dev-libs/redland 1.0.16: High-level interface for the Resource Description Framework
+dev-libs/vala-common 0.30.0_pre: Build infrastructure for packages that use Vala
 dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
+dev-perl/Cairo 1.106.0_pre: Perl interface to the cairo library
+dev-perl/Net-SSLeay 1.720.0_pre: Net::SSLeay module for perl
+dev-perl/Pango 1.226.0_pre: Layout and render international text
+dev-perl/glib-perl 1.314.0_pre: Glib - Perl wrappers for the GLib utility and Object libraries
+dev-perl/gtk2-perl 1.249.600_pre: Perl bindings for GTK2
 dev-python/google-apputils 0.4.0: Collection of utilities for building Python applications
+dev-python/pygobject 3.18.0_pre: GLib's GObject library bindings for Python
 dev-ruby/parslet 1.7.1: A small PEG based parser library
 dev-scheme/guile 2.0.11_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.59.0_pre: A system for large project software construction, which is simple to use and powerful
 dev-util/cmake 3.4.0_rc1: Cross platform Make
 dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
+dev-util/gdbus-codegen 2.46.1_pre: GDBus code and documentation generator
+dev-util/gtk-update-icon-cache 3.16.7_pre: GTK update icon cache
+dev-util/ragel 7.0.0.5_pre: Compiles finite state machines from regular languages into executable code
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-arcade/supertux 0.3.4_pre 0.3.5a_pre: A game similar to Super Mario Bros.
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - a series of minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.74 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.42b 9999: Return to Castle Wolfenstein - IORTCW Project
+games-misc/opengfx 0.5.3_pre: OpenGFX data files for OpenTTD
 games-strategy/boswars 9999: Futuristic real-time strategy game
+games-util/nml 0.4.2: Compiler of NML files into grf/nfo files
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
+gnome-extra/yelp-xsl 3.18.1_pre: XSL stylesheets for yelp
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 lxde-base/lxsession 0.4.9.2 0.4.9.2-r1 0.4.9.2-r2 0.4.9.2-r3: LXDE session manager (lite version)
 media-libs/gst-plugins-base 1.5.2_pre 1.5.91_pre 1.6.0_pre: Basepack of plugins for gstreamer
@@ -59,7 +96,7 @@ media-plugins/gst-plugins-libav 1.5.2_pre 1.5.91_pre 1.6.0_pre: FFmpeg based gst
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
 media-sound/alsa-utils 1.0.27.2 1.0.28 1.0.28-r1 1.0.29: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
 media-sound/ameter 0.44_pre: Ameter is an Alsa meter plugin
-media-sound/ardour 4.0-r1 4.0-r2 4.1 4.2-r1: Digital Audio Workstation
+media-sound/ardour 4.0-r1 4.0-r2 4.1 4.2-r1 4.3_pre: Digital Audio Workstation
 media-sound/clementine 1.2.2 1.2.3: A modern music player and library organizer based on Amarok 1.4 and Qt4
 media-sound/cutmp3 2.1.2_pre 3.0_pre 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
 media-sound/idjc 0.8.14_pre 0.8.15_pre: Internet DJ Console
@@ -68,6 +105,7 @@ media-sound/ossp 1.3.1 1.3.2: OSS Proxy Daemon is Linux userland OSS sound devic
 media-sound/qamix 0.0.7e_pre: QAMix is a configurable mixer for ALSA. Interfaces for AC 97 cards and Soundblaster Live are provided.
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 10: Download files from the public broadcasting services
+media-video/mkvtoolnix 8.5.0_pre: Tools to create, alter, and inspect Matroska files
 media-video/tragtor 0.8.45 0.9.2: traGtor is a graphical user interface (GUI) for ffmpeg
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
 media-video/vlc 2.2.1: VLC media player - Video player and streamer
@@ -108,6 +146,7 @@ sys-boot/grub 2.00_p5107-r2 2.02_beta2-r3 2.02_beta2-r6 2.02_beta2-r7: GNU GRUB 
 sys-devel/autogen 5.18.5_pre 5.18.6_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
+sys-fs/btrfs-progs 4.2.3_pre: Btrfs filesystem utilities
 sys-fs/lvm2 2.02.129_pre 2.02.130_pre 2.02.131_pre 2.02.132_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 217 218 219 220-r3 222 224 224-r1 224-r2 225 226_pre 227_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
@@ -117,3 +156,5 @@ sys-power/cpupower 3.10.88 3.10.89 3.10.90 3.12.45 3.12.46 3.12.47 3.14.52 3.14.
 www-client/seamonkey 2.35 2.38: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
+x11-libs/gtk+ 3.18.2_pre: Gimp ToolKit +
+x11-libs/pango 1.38.1_pre: Internationalized text layout and rendering library
