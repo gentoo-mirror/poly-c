@@ -31,3 +31,4 @@ dev-libs/ewahboolarray
 
 # Fails to compile
 =dev-util/cmake-3.4.0_rc1
+=dev-util/cmake-3.4.0_rc2
