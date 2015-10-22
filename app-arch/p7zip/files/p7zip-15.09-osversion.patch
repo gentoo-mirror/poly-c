@@ -1,0 +1,29 @@
+--- p7zip_15.09/CPP/7zip/UI/FileManager/FM.cpp
++++ p7zip_15.09/CPP/7zip/UI/FileManager/FM.cpp
+@@ -354,26 +354,7 @@
+ 
+ bool IsLargePageSupported()
+ {
+-  #ifdef _WIN64
+   return true;
+-  #elif defined(_WIN32)	
+-  OSVERSIONINFO versionInfo;
+-  versionInfo.dwOSVersionInfoSize = sizeof(versionInfo);
+-  if (!::GetVersionEx(&versionInfo))
+-    return false;
+-  if (versionInfo.dwPlatformId != VER_PLATFORM_WIN32_NT || versionInfo.dwMajorVersion < 5)
+-    return false;
+-  if (versionInfo.dwMajorVersion > 5)
+-    return true;
+-  if (versionInfo.dwMinorVersion < 1)
+-    return false;
+-  if (versionInfo.dwMinorVersion > 1)
+-    return true;
+-  // return IsWow64();
+-  return false;
+-  #else
+-  return false;
+-  #endif
+ }
+ 
+ #if 0 // ifndef UNDER_CE

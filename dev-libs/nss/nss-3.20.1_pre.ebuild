@@ -24,9 +24,9 @@ IUSE="+cacert +nss-pem utils"
 CDEPEND=">=dev-db/sqlite-3.8.2[${MULTILIB_USEDEP}]
 	>=sys-libs/zlib-1.2.8-r1[${MULTILIB_USEDEP}]"
 DEPEND=">=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}]
-	>=dev-libs/nspr-${NSPR_VER}[${MULTILIB_USEDEP}]
+	>=dev-libs/nspr-${NSPR_VER}_pre[${MULTILIB_USEDEP}]
 	${CDEPEND}"
-RDEPEND=">=dev-libs/nspr-${NSPR_VER}[${MULTILIB_USEDEP}]
+RDEPEND=">=dev-libs/nspr-${NSPR_VER}_pre[${MULTILIB_USEDEP}]
 	${CDEPEND}
 	abi_x86_32? (
 		!<=app-emulation/emul-linux-x86-baselibs-20140508-r12

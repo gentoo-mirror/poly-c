@@ -1,4 +1,2 @@
 =app-backup/dar-2.5.0_pre gpg
 app-office/osmo sync
-=dev-db/sqlite-3.9.0_pre tcl test tools
-=dev-db/sqlite-3.9.1_pre tcl test tools

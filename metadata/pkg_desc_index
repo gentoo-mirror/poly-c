@@ -2,6 +2,7 @@ app-accessibility/speech-dispatcher 0.8.3_pre: Speech synthesis interface
 app-admin/sudo 1.8.15_beta5 1.8.15_rc1 1.8.15_rc2: Allows users or groups to run commands as other users
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-admin/winetools 0.9_pre: Graphical Wine tool for installing Windows programs under Wine
+app-arch/p7zip 15.09_pre: Port of 7-Zip archiver for Unix
 app-arch/xz-utils 5.0.8 5.2.0 5.2.1-r1 5.2.2: utils for managing LZMA compressed files
 app-backup/dar 2.4.18_pre 2.4.19_pre 2.5.0_pre 2.5.1_pre: A full featured backup tool, aimed for disks (floppy,CDR(W),DVDR(W),zip,jazz etc.)
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
@@ -32,7 +33,6 @@ dev-cpp/glibmm 2.46.1_pre: C++ interface for glib2
 dev-cpp/gtkmm 3.18.0_pre: C++ interface for GTK+
 dev-cpp/pangomm 2.38.1_pre: C++ interface for pango
 dev-db/ctdb 2.5.4 2.5.5: A cluster implementation of the TDB database used to store temporary data
-dev-db/sqlite 3.9.0_pre 3.9.1_pre: A SQL Database Engine in a C Library
 dev-db/unixODBC 2.3.3_pre: A complete ODBC driver manager
 dev-java/ant-core 1.9.5_pre 1.9.6_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
@@ -71,7 +71,7 @@ dev-python/pygobject 3.18.0_pre: GLib's GObject library bindings for Python
 dev-ruby/parslet 1.7.1: A small PEG based parser library
 dev-scheme/guile 2.0.11_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.59.0_pre: A system for large project software construction, which is simple to use and powerful
-dev-util/cmake 3.4.0_rc1: Cross platform Make
+dev-util/cmake 3.4.0_rc1 3.4.0_rc2: Cross platform Make
 dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
 dev-util/gdbus-codegen 2.46.1_pre: GDBus code and documentation generator
 dev-util/gtk-update-icon-cache 3.16.7_pre: GTK update icon cache
