@@ -157,7 +157,7 @@ sys-fs/udev 216 217 218 219 220-r3 222 224 224-r1 224-r2 225 226_pre 227_pre: Li
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 3.10.88 3.10.89 3.10.90 3.12.45 3.12.46 3.12.47 3.14.52 3.14.53 3.14.54 3.18.20 3.18.21 3.18.22 4.1.8 4.1.9 4.1.10: Shows and sets processor power related values
+sys-power/cpupower 3.10.89 3.10.90 3.10.91 3.12.46 3.12.47 3.12.49 3.14.53 3.14.54 3.14.55 3.18.20 3.18.21 3.18.22 4.1.9 4.1.10 4.1.11: Shows and sets processor power related values
 www-client/seamonkey 2.35 2.38: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
