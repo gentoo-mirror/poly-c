@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 284390bebc2242716f5b1a1dbc63b1389dae6015 $
+# $Id: 120d48d28a25dbf0a947421d38a070f9be6cc78d $
 
 EAPI=5
 inherit eutils systemd udev
@@ -27,6 +27,7 @@ RDEPEND="${CDEPEND}
 	selinux? ( sec-policy/selinux-alsa )"
 
 src_prepare() {
+	epatch "${FILESDIR}"/${P}-cross-compile.patch
 	epatch_user
 }
 
