@@ -11,5 +11,5 @@ REQUIRED_USE=kde? ( wxwidgets )
 RESTRICT=mirror
 SLOT=0
 SRC_URI=mirror://sourceforge/p7zip/p7zip_15.09_src_all.tar.bz2
-_eclasses_=eutils	43da5163ba106e87d22d2e7d6d67537f	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	wxwidgets	e0c7fd61275cea7156be4143ba8c673a
+_eclasses_=eutils	43da5163ba106e87d22d2e7d6d67537f	flag-o-matic	85dc1eac3c64d8141374490ed64122e5	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	wxwidgets	2a19d3cd9b18703ae9fb53123722061c
 _md5_=acfcc504746d9cf0849333efa594075f
