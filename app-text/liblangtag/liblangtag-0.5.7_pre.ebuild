@@ -12,7 +12,7 @@ SRC_URI="https://bitbucket.org/tagoh/${PN}/downloads/${MY_P}.tar.bz2"
 
 LICENSE="|| ( LGPL-3 MPL-1.1 )"
 SLOT="0"
-KEYWORDS="amd64 ~arm ~ppc x86"
+KEYWORDS="~amd64 ~arm ~ppc ~x86"
 IUSE="introspection static-libs test"
 
 RDEPEND="
