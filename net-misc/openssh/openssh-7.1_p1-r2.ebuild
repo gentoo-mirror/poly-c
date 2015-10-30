@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 7e645fd93784c42e808e6927ebcc9637a8b23f06 $
+# $Id: 048f3190e6ef4b02f361b190f437c1160d57d935 $
 
 EAPI="4"
 inherit eutils user flag-o-matic multilib autotools pam systemd versionator
@@ -9,7 +9,7 @@ inherit eutils user flag-o-matic multilib autotools pam systemd versionator
 # and _p? releases.
 PARCH=${P/_}
 
-HPN_PATCH="${PN}-7.1p1-hpnssh14v9.tar.xz"
+HPN_PATCH="${PARCH}-hpnssh14v9.tar.xz"
 LDAP_PATCH="${PN}-lpk-6.8p1-0.3.14.patch.xz"
 X509_VER="8.6" X509_PATCH="${PN}-${PV//_/}+x509-${X509_VER}.diff.gz"
 
@@ -115,7 +115,9 @@ src_prepare() {
 
 	if use X509 ; then
 		pushd .. >/dev/null
+		pushd ${HPN_PATCH%.*.*} >/dev/null
 		epatch "${FILESDIR}"/${PN}-7.1_p1-hpn-x509-glue.patch
+		popd >/dev/null
 		epatch "${FILESDIR}"/${PN}-7.0_p1-sctp-x509-glue.patch
 		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}

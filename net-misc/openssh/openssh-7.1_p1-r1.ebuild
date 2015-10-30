@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 41f49c8d28f5616a658e182f323e939ead3e5466 $
+# $Id: beebed51f8578b3c752b26d1f464ee5911c73635 $
 
 EAPI="4"
 inherit eutils user flag-o-matic multilib autotools pam systemd versionator
@@ -115,7 +115,9 @@ src_prepare() {
 
 	if use X509 ; then
 		pushd .. >/dev/null
+		pushd ${HPN_PATCH%.*.*} >/dev/null
 		epatch "${FILESDIR}"/${PN}-7.1_p1-hpn-x509-glue.patch
+		popd >/dev/null
 		epatch "${FILESDIR}"/${PN}-7.0_p1-sctp-x509-glue.patch
 		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}
