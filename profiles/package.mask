@@ -26,8 +26,8 @@ dev-libs/ewahboolarray
 =dev-libs/libusb-1.0.20_rc3
 
 # Fails to install
-=app-text/calibre-2.40.0_pre
 =app-text/calibre-2.41.0_pre
+=app-text/calibre-2.42.0_pre
 
 # Fails to compile
 =dev-util/cmake-3.4.0_rc1

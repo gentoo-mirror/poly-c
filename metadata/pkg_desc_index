@@ -20,7 +20,7 @@ app-office/ledger 3.1: A double-entry accounting system with a command-line repo
 app-office/osmo 0.2.10 0.2.10_p933: A handy personal organizer
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/calibre 2.40.0_pre 2.41.0_pre: Ebook management application
+app-text/calibre 2.41.0_pre 2.42.0_pre: Ebook management application
 app-text/evince 3.18.0_pre 3.18.1_pre: Simple document viewer for GNOME
 app-text/iso-codes 3.62_pre: ISO language, territory, currency, script codes and their translations
 app-text/liblangtag 0.5.7_pre: An interface library to access tags for identifying languages
