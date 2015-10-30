@@ -15,6 +15,7 @@ app-misc/gramps 4.2.0_pre: Genealogical Research and Analysis Management Program
 app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
 app-misc/mc 4.8.11 4.8.12 4.8.13 4.8.13-r1 4.8.14: GNU Midnight Commander is a text based file manager
+app-misc/tmux 2.1_pre: Terminal multiplexer
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
 app-office/osmo 0.2.10 0.2.10_p933: A handy personal organizer
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
@@ -87,6 +88,7 @@ kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as power
 lxde-base/lxsession 0.4.9.2 0.4.9.2-r1 0.4.9.2-r2 0.4.9.2-r3: LXDE session manager (lite version)
 media-fonts/terminus-font 4.40_pre: A clean fixed font for the console and X11
 media-gfx/graphite2 1.3.3_pre: Library providing rendering capabilities for complex non-Roman writing systems
+media-gfx/inkscape 0.91: A SVG based generic vector-drawing program
 media-libs/aubio 0.4.2_pre: Library for audio labelling
 media-libs/harfbuzz 1.0.5_pre 1.0.6_pre: An OpenType text shaping engine
 media-libs/libbpg 0.9.5_pre 0.9.6_pre: BPG (Better Portable Graphics) is a new image format
@@ -96,7 +98,7 @@ media-libs/opus 1.1.1_beta: Open versatile codec designed for interactive speech
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
 media-sound/alsa-utils 1.0.27.2 1.0.28 1.0.28-r1 1.0.29: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
 media-sound/ameter 0.44_pre: Ameter is an Alsa meter plugin
-media-sound/ardour 4.0-r1 4.0-r2 4.1 4.2-r1 4.3_pre: Digital Audio Workstation
+media-sound/ardour 4.0-r1 4.0-r2 4.1 4.2-r1 4.3_pre 4.4: Digital Audio Workstation
 media-sound/clementine 1.2.2 1.2.3: A modern music player and library organizer based on Amarok 1.4 and Qt4
 media-sound/cutmp3 2.1.2_pre 3.0_pre 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
 media-sound/idjc 0.8.14_pre 0.8.15_pre: Internet DJ Console
@@ -153,11 +155,11 @@ sys-fs/udev 216 217 218 219 220-r3 222 224 224-r1 224-r2 225 226_pre 227_pre: Li
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 3.10.90 3.10.91 3.10.92 3.12.46 3.12.47 3.12.49 3.14.54 3.14.55 3.14.56 3.18.20 3.18.21 3.18.22 4.1.10 4.1.11 4.1.12: Shows and sets processor power related values
+sys-power/cpupower 3.10.90 3.10.91 3.10.92 3.12.46 3.12.47 3.12.49 3.14.54 3.14.55 3.14.56 3.18.21 3.18.22 3.18.23 4.1.10 4.1.11 4.1.12: Shows and sets processor power related values
 www-client/seamonkey 2.35 2.38: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
-x11-base/xorg-server 1.17.3_pre 1.17.4_pre: X.Org X servers
+x11-libs/cairo 1.14.4_pre: A vector graphics library with cross-device output support
 x11-libs/gtk+ 3.18.2_pre: Gimp ToolKit +
 x11-libs/pango 1.38.1_pre: Internationalized text layout and rendering library
 x11-libs/vte 0.42.1_pre: Library providing a virtual terminal emulator widget
