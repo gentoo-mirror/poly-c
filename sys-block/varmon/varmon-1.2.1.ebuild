@@ -1,23 +1,24 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
 EAPI=5
 
-inherit poly-c_ebuilds
+inherit eutils poly-c_ebuilds
 
 DESCRIPTION="VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family"
 HOMEPAGE="http://julien.danjou.info/projects/varmon"
 #SRC_URI="http://julien.danjou.info/${PN}/${P}.tar.gz"
-COMMIT_ID="dc44dfdc58a2cf2f393e5c24f9b227e2fdde1e35"
-SRC_URI="http://git.naquadah.org/?p=varmon.git;a=snapshot;h=${COMMIT_ID};sf=tgz -> ${P}.tar.gz"
+SRC_URI="https://github.com/jd/varmon/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 DEPEND=""
 
-S="${WORKDIR}/${PN}-${COMMIT_ID:0:7}"
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-tinfo.patch
+}
 
 src_install() {
 	exeinto /sbin

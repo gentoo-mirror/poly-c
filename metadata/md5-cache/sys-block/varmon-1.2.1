@@ -1,4 +1,4 @@
-DEFINED_PHASES=install postinst
+DEFINED_PHASES=install postinst prepare
 DESCRIPTION=VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 EAPI=5
 HOMEPAGE=http://julien.danjou.info/projects/varmon
@@ -6,6 +6,6 @@ KEYWORDS=~amd64 ~x86
 LICENSE=GPL-2
 RESTRICT=mirror
 SLOT=0
-SRC_URI=http://git.naquadah.org/?p=varmon.git;a=snapshot;h=dc44dfdc58a2cf2f393e5c24f9b227e2fdde1e35;sf=tgz -> varmon-1.2.1.tar.gz
-_eclasses_=poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435
-_md5_=8595902014bc10a4ef61d0e956d0f190
+SRC_URI=https://github.com/jd/varmon/archive/v1.2.1.tar.gz -> varmon-1.2.1.tar.gz
+_eclasses_=eutils	43da5163ba106e87d22d2e7d6d67537f	multilib	df4e4d5cfd3d137d0c248e1991c0e4d6	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_md5_=f35ff415e9d59ce40ba8e73b9880fa77

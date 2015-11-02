@@ -1,0 +1,11 @@
+--- varmon-1.2.1/Makefile
++++ varmon-1.2.1/Makefile
+@@ -4,7 +4,7 @@
+ #        Julien Danjou <julien@danjou.info>
+ 
+ varmon: varmon.c
+-	gcc $(CFLAGS) -o varmon varmon.c -W -Wall -lncurses $(LDFLAGS)
++	gcc -W -Wall $(CFLAGS) $(LDFLAGS) -o varmon varmon.c -lncurses -ltinfo
+ 
+ clean:
+ 	rm -f *.o core varmon
