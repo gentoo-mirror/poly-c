@@ -89,7 +89,6 @@ lxde-base/lxsession 0.4.9.2 0.4.9.2-r1 0.4.9.2-r2 0.4.9.2-r3: LXDE session manag
 media-fonts/terminus-font 4.40_pre: A clean fixed font for the console and X11
 media-gfx/graphite2 1.3.3_pre: Library providing rendering capabilities for complex non-Roman writing systems
 media-gfx/inkscape 0.91: A SVG based generic vector-drawing program
-media-libs/aubio 0.4.2_pre: Library for audio labelling
 media-libs/gst-plugins-base 1.6.1_pre: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.6.1_pre: Basepack of plugins for GStreamer
 media-libs/gstreamer 1.6.1_pre: Open source multimedia framework
@@ -154,16 +153,15 @@ sys-devel/autogen 5.18.5_pre 5.18.6_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
 sys-fs/btrfs-progs 4.2.3_pre: Btrfs filesystem utilities
-sys-fs/lvm2 2.02.129_pre 2.02.130_pre 2.02.131_pre 2.02.132_pre: User-land utilities for LVM2 (device-mapper) software
+sys-fs/lvm2 2.02.129_pre 2.02.130_pre 2.02.131_pre 2.02.132_pre 2.02.133_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 217 218 219 220-r3 222 224 224-r1 224-r2 225 226_pre 227_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-power/cpupower 3.10.90 3.10.91 3.10.92 3.12.46 3.12.47 3.12.49 3.14.54 3.14.55 3.14.56 3.18.21 3.18.22 3.18.23 4.1.10 4.1.11 4.1.12: Shows and sets processor power related values
-www-client/seamonkey 2.35 2.38 2.39_beta1_pre1: Seamonkey Web Browser
+www-client/seamonkey 2.35 2.38 2.39_beta1: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
-x11-libs/cairo 1.14.4_pre: A vector graphics library with cross-device output support
 x11-libs/gtk+ 3.18.2_pre: Gimp ToolKit +
 x11-libs/pango 1.38.1_pre: Internationalized text layout and rendering library
 x11-libs/vte 0.42.1_pre: Library providing a virtual terminal emulator widget

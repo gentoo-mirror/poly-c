@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 048f3190e6ef4b02f361b190f437c1160d57d935 $
+# $Id: 7ab7d10c45c89969583fc8156add61bb98399d07 $
 
 EAPI="4"
 inherit eutils user flag-o-matic multilib autotools pam systemd versionator
@@ -208,12 +208,6 @@ src_configure() {
 
 	# The seccomp sandbox is broken on x32, so use the older method for now. #553748
 	use amd64 && [[ ${ABI} == "x32" ]] && myconf+=( --with-sandbox=rlimit )
-
-	# Special settings for Gentoo/FreeBSD 9.0 or later (see bug #391011)
-	if use elibc_FreeBSD && version_is_at_least 9.0 "$(uname -r|sed 's/\(.\..\).*/\1/')" ; then
-		myconf+=( --disable-utmp --disable-wtmp --disable-wtmpx )
-		append-ldflags -lutil
-	fi
 
 	econf "${myconf[@]}"
 }
