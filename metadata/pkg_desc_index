@@ -57,6 +57,7 @@ dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.10_pre: Perl-compatible regular expression library
 dev-libs/libsigc++ 2.6.1_pre: Typesafe callback system for standard C++
 dev-libs/libusb 1.0.20_rc3: Userspace access to USB devices
+dev-libs/libxml2 2.9.2-r1: Version 2 of the library to manipulate XML files
 dev-libs/mini-xml 2.9_pre: Small XML parsing library to read XML and XML-like data files
 dev-libs/nspr 4.10.10_pre: Netscape Portable Runtime
 dev-libs/nss 3.20.1_pre: Mozilla's Network Security Services library that implements PKI support

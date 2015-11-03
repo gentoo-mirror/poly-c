@@ -29,6 +29,6 @@ dev-libs/ewahboolarray
 =app-text/calibre-2.41.0_pre
 =app-text/calibre-2.42.0_pre
 
-# Fails to compile
-#=dev-util/cmake-3.4.0_rc1
-#=dev-util/cmake-3.4.0_rc2
+# Requires changes in cmake-utils.eclass
+=dev-util/cmake-3.4.0_rc1
+=dev-util/cmake-3.4.0_rc2
