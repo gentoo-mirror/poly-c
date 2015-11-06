@@ -46,7 +46,6 @@ dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/glib 2.46.1_pre: The GLib library of C routines
-dev-libs/gmp 6.1.0_pre: Library for arithmetic on arbitrary precision integers, rational numbers, and floating-point numbers
 dev-libs/gobject-introspection 1.46.0_pre: Introspection infrastructure for generating gobject library bindings for various languages
 dev-libs/gobject-introspection-common 1.46.0_pre: Build infrastructure for GObject Introspection
 dev-libs/icu 54.1-r1 55.1: International Components for Unicode
