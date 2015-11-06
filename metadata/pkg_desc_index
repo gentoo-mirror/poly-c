@@ -67,6 +67,7 @@ dev-perl/glib-perl 1.314.0_pre: Glib - Perl wrappers for the GLib utility and Ob
 dev-perl/gtk2-perl 1.249.600_pre: Perl bindings for GTK2
 dev-python/google-apputils 0.4.0: Collection of utilities for building Python applications
 dev-python/pygobject 3.18.0_pre: GLib's GObject library bindings for Python
+dev-qt/qtwidgets 5.5.1: Set of UI elements for creating classic desktop-style user interfaces for the Qt5 framework
 dev-ruby/parslet 1.7.1: A small PEG based parser library
 dev-scheme/guile 2.0.11_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.59.0_pre: A system for large project software construction, which is simple to use and powerful
@@ -113,7 +114,6 @@ media-tv/mediathekview-bin 10: Download files from the public broadcasting servi
 media-video/mkvtoolnix 8.5.2_pre: Tools to create, alter, and inspect Matroska files
 media-video/tragtor 0.8.45 0.9.2: traGtor is a graphical user interface (GUI) for ffmpeg
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
-media-video/vlc 2.2.1: VLC media player - Video player and streamer
 net-analyzer/arpalert 1.0.3_pre 1.1.3_pre 2.0.11_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/medusa 2.1.1: A Modular,Parallel,Multiprotocol, Network Login Auditor
 net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
