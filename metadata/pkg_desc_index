@@ -22,7 +22,6 @@ app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gent
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/calibre 2.41.0_pre 2.42.0_pre: Ebook management application
 app-text/evince 3.18.0_pre 3.18.1_pre: Simple document viewer for GNOME
-app-text/iso-codes 3.62_pre: ISO language, territory, currency, script codes and their translations
 app-text/liblangtag 0.5.7_pre: An interface library to access tags for identifying languages
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 app-text/qpdf 5.1.3_pre: A command-line program that does structural, content-preserving transformations on PDF files
@@ -50,7 +49,6 @@ dev-libs/gobject-introspection 1.46.0_pre: Introspection infrastructure for gene
 dev-libs/gobject-introspection-common 1.46.0_pre: Build infrastructure for GObject Introspection
 dev-libs/icu 54.1-r1 55.1: International Components for Unicode
 dev-libs/libclc 0.0.1_pre20140101: OpenCL C library
-dev-libs/libgusb 0.2.7_pre: GObject wrapper for libusb
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.10_pre: Perl-compatible regular expression library
 dev-libs/libsigc++ 2.6.1_pre: Typesafe callback system for standard C++
@@ -148,7 +146,6 @@ sys-apps/man 1.6g: Standard commands to read man pages
 sys-apps/portage 2.2.8-r2: Portage is the package management and distribution system for Gentoo
 sys-apps/usb_modeswitch 2.2.5_p20150627_pre: USB_ModeSwitch is a tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
-sys-block/gparted 0.24.0_pre: Gnome Partition Editor
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.00_p5107-r2 2.02_beta2-r3 2.02_beta2-r6 2.02_beta2-r7: GNU GRUB boot loader
 sys-devel/autogen 5.18.5_pre 5.18.6_pre: Program and text file generation
