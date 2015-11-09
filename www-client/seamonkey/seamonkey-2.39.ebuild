@@ -71,11 +71,7 @@ DEPEND="${RDEPEND}
 	x86? ( ${ASM_DEPEND}
 		virtual/opengl )"
 
-if [[ ${PV} == *beta* ]] ; then
-	S="${WORKDIR}/${PN}-${MOZ_PV}"
-else
-	S="${WORKDIR}/comm-release"
-fi
+S="${WORKDIR}/${PN}-${MOZ_PV}"
 
 BUILD_OBJ_DIR="${S}/seamonk"
 
