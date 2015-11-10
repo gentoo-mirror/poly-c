@@ -1,7 +1,7 @@
 # masked for testing
-=www-client/seamonkey-2.39_alpha*
-=www-client/seamonkey-2.39_beta*
-=www-client/seamonkey-2.39_pre*
+=www-client/seamonkey-2.40_alpha*
+=www-client/seamonkey-2.40_beta*
+=www-client/seamonkey-2.40_pre*
 
 # segfaults
 app-misc/kenny
@@ -24,10 +24,6 @@ dev-libs/ewahboolarray
 # doesn't build abi_x86_32
 =app-crypt/heimdal-1.6_rc2
 =dev-libs/libusb-1.0.20_rc3
-
-# Fails to install
-=app-text/calibre-2.41.0_pre
-=app-text/calibre-2.42.0_pre
 
 # Missing dependencies
 media-radio/liquidsoap

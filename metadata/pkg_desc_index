@@ -19,7 +19,6 @@ app-office/ledger 3.1: A double-entry accounting system with a command-line repo
 app-office/osmo 0.2.10 0.2.10_p933: A handy personal organizer
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/calibre 2.41.0_pre 2.42.0_pre: Ebook management application
 app-text/evince 3.18.0_pre 3.18.1_pre: Simple document viewer for GNOME
 app-text/liblangtag 0.5.7_pre: An interface library to access tags for identifying languages
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
@@ -161,6 +160,7 @@ www-client/seamonkey 2.38 2.39: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-base/xorg-server 1.18.0_pre: X.Org X servers
-x11-libs/gtk+ 3.18.2_pre: Gimp ToolKit +
+x11-drivers/xf86-video-ati 7.5.99_pre: ATI video driver
+x11-libs/gtk+ 3.18.2_pre 3.18.3_pre: Gimp ToolKit +
 x11-libs/pango 1.38.1_pre: Internationalized text layout and rendering library
 x11-libs/vte 0.42.1_pre: Library providing a virtual terminal emulator widget
