@@ -1,0 +1,53 @@
+#!/sbin/runscript
+
+script=${RC_SVCNAME#*.}
+scriptfile="/etc/liquidsoap/${script}.liq"
+command=/usr/bin/liquidsoap
+command_args="--daemon ${scriptfile}"
+start_stop_daemon_args="--user liquidsoap:liquidsoap --nicelevel -15 "
+pidfile="/var/run/liquidsoap/${script}.pid"
+name=${RC_SVCNAME}
+
+description="Liquidsoap deamon that obeys ${scriptfile}"
+extra_commands="check"
+description_check="Check and evaluate stream scripts without interupting streaming."
+
+depend() {
+    need localmount
+    use net
+    after alsasound icecast
+}
+
+_script_exists() {
+    if [ "${script}" = "${RC_SVCNAME}" ]; then
+        eerror "You have to create an init script for each stream script:"
+        eerror "ln -s liquidsoap /etc/init.d/liquidsoap.<script>"
+        eerror "where script refers to /etc/liquidsoap/<script>.liq"
+        return 1
+    fi
+
+    if [ ! -f "${scriptfile}" ]; then
+        eerror "${scriptfile} not found"
+        return 1
+    fi
+}
+
+check() {
+    _script_exists || return 1
+    einfo "Checking ${scriptfile}"
+    check_result=`$command --check-lib ${scriptfile}`
+    eend $? ${check_result}
+    return $?
+}
+
+start_pre() {
+    _script_exists || return 1
+}
+
+start() {
+    start-stop-daemon --start  \
+        ${start_stop_daemon_args} \
+        --make-pidfile ${pidfile} \
+        --exec ${command} \
+        -- ${command_args}
+}

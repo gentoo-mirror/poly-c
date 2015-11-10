@@ -1,0 +1,23 @@
+diff -ur liquidsoap-1.0.1-original/Makefile.defs.in liquidsoap-1.0.1/Makefile.defs.in
+--- liquidsoap-1.0.1-original/Makefile.defs.in	2012-11-17 12:44:50.523532064 -0600
++++ liquidsoap-1.0.1/Makefile.defs.in	2012-11-17 12:45:27.051557788 -0600
+@@ -58,7 +58,7 @@
+ OCAML_MINOR=@OCAML_MINOR@
+ OCAML_REVISION=@OCAML_REVISION@
+ OCAML_HAS_FIRST_CLASS_MODULES=@OCAML_HAS_FIRST_CLASS_MODULES@
+-NEED_TCP_NODELAY=@NEED_TCP_NODELAY@
++NEED_TCP_NODELAY=
+ 
+ liquidsoap_PLUGINS=@PLUGINS@
+ 
+diff -ur liquidsoap-1.0.1-original/src/tools/liq_sockets.ml.in liquidsoap-1.0.1/src/tools/liq_sockets.ml.in
+--- liquidsoap-1.0.1-original/src/tools/liq_sockets.ml.in	2012-11-17 12:44:50.513531777 -0600
++++ liquidsoap-1.0.1/src/tools/liq_sockets.ml.in	2012-11-17 12:45:56.645391608 -0600
+@@ -20,6 +20,5 @@
+ 
+  *****************************************************************************)
+ 
+-@TCP_NODELAY_VALUE@
+-
++let set_tcp_nodelay fd v = Unix.setsockopt fd Unix.TCP_NODELAY v
+ 
