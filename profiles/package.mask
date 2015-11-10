@@ -31,3 +31,6 @@ dev-libs/ewahboolarray
 
 # Missing dependencies
 media-radio/liquidsoap
+
+# ABI incompatibilities
+=media-libs/libvpx-1.5.0_pre
