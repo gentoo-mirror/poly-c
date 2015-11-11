@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 79c1a8b1a62f6d0935736fe33594328f7054f961 $
+# $Id: a7dc45a5398c5fb5f9f9e0dabef4bcb9b244d978 $
 
 EAPI="4"
 inherit eutils user flag-o-matic multilib autotools pam systemd versionator
@@ -176,7 +176,6 @@ src_prepare() {
 
 src_configure() {
 	addwrite /dev/ptmx
-	addpredict /etc/skey/skeykeys # skey configure code triggers this
 
 	use debug && append-cppflags -DSANDBOX_SECCOMP_FILTER_DEBUG
 	use static && append-ldflags -static

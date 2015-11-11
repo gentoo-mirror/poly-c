@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 77c945df628f1bffed2a246a451be881ccef432e $
+# $Id: 3eef5723cc506d8903018eb2fa58d9df7538a4cc $
 
 EAPI=5
 WANT_AUTOCONF="2.1"
@@ -52,8 +52,8 @@ SRC_URI="${SRC_URI}
 
 ASM_DEPEND=">=dev-lang/yasm-1.1"
 
-RDEPEND=">=dev-libs/nss-3.19.2
-	>=dev-libs/nspr-4.10.8
+RDEPEND=">=dev-libs/nss-3.20.1
+	>=dev-libs/nspr-4.10.10
 	mailclient? ( crypt? ( || (
 				( >=app-crypt/gnupg-2.0
 					|| (

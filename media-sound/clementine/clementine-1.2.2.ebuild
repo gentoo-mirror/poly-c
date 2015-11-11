@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9a65d1032530e7f367124af52473ab2fd4a8d3af $
+# $Id: 9eb2fe105b3e76ee5f2b2c1c3c3b75a5732b747a $
 
 EAPI=5
 
@@ -87,8 +87,9 @@ DOCS="Changelog"
 # https://github.com/clementine-player/Clementine/issues/3935
 RESTRICT="test"
 
+# Switch to ^ when we switch to EAPI=6.
 [[ ${PV} == *9999* ]] || \
-S="${WORKDIR}/${P^}"
+S="${WORKDIR}/C${P:1}"
 
 PATCHES=(
 	"${FILESDIR}"/${P}-fix-build.patch
