@@ -11,7 +11,7 @@ HOMEPAGE="http://qpdf.sourceforge.net/"
 SRC_URI="mirror://sourceforge/qpdf/${MY_P}.tar.gz"
 
 LICENSE="Artistic-2"
-SLOT="0/13" # subslot = libqpdf soname version
+SLOT="0/17" # subslot = libqpdf soname version
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~m68k-mint ~sparc-solaris"
 IUSE="doc examples static-libs test"
 
