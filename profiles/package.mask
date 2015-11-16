@@ -30,3 +30,4 @@ media-radio/liquidsoap
 
 # Fails to build
 =net-libs/webkit-gtk-2.11.1_pre
+=dev-libs/nss-3.21_pre
