@@ -240,4 +240,4 @@ diff -urN a/nss/manifest.mn b/nss/manifest.mn
  RELEASE = nss
  
 -DIRS = coreconf lib cmd external_tests
-+DIRS = coreconf lib cmd config external_tests
++DIRS = coreconf lib cmd config
