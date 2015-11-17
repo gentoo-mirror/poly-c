@@ -124,7 +124,6 @@ net-libs/glib-networking 2.46.1_pre: Network-related giomodules for glib
 net-libs/nghttp2 1.4.0_pre: HTTP/2 C Library
 net-libs/webkit-gtk 2.4.7 2.4.8 2.4.9 2.10.3_pre 2.11.1_pre: Open source web browser engine
 net-misc/openssh 6.8_p1-r5 6.9_p1-r1 6.9_p1-r2 7.0_p1 7.1_p1 7.1_p1-r1 7.1_p1-r2: Port of OpenBSD's free SSH release
-net-misc/wget 1.17_pre: Network utility to retrieve files from the WWW
 net-print/cups 2.1.0_pre: The Common Unix Printing System
 net-print/hplip 3.15.11_pre: HP Linux Imaging and Printing. Includes printer, scanner, fax drivers and service tools
 net-wireless/bluez 5.36_pre: Bluetooth Tools and System Daemons for Linux
