@@ -84,7 +84,6 @@ media-fonts/terminus-font 4.40_pre: A clean fixed font for the console and X11
 media-gfx/graphite2 1.3.3_pre: Library providing rendering capabilities for complex non-Roman writing systems
 media-gfx/inkscape 0.91: A SVG based generic vector-drawing program
 media-libs/alsa-lib 1.1.0_pre: Advanced Linux Sound Architecture Library
-media-libs/harfbuzz 1.0.5_pre 1.0.6_pre: An OpenType text shaping engine
 media-libs/libbpg 0.9.5_pre 0.9.6_pre: BPG (Better Portable Graphics) is a new image format
 media-libs/libdvdcss 1.3.99: A portable abstraction library for DVD decryption
 media-libs/libmikmod 3.3.8_pre: A library to play a wide range of module formats
@@ -129,7 +128,7 @@ net-print/hplip 3.15.11_pre: HP Linux Imaging and Printing. Includes printer, sc
 net-wireless/bluez 5.36_pre: Bluetooth Tools and System Daemons for Linux
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sci-chemistry/avogadro 1.1.1: Advanced molecular editor that uses Qt4 and OpenGL
-sys-apps/dbus 1.10.0_pre 1.10.2_pre: A message bus system, a simple way for applications to talk to each other
+sys-apps/dbus 1.10.2_pre 1.10.4_pre: A message bus system, a simple way for applications to talk to each other
 sys-apps/firmware-addon-dell 2.2.9: Additional firmware tools for dell computers
 sys-apps/firmware-extract 2.0.13: Additional firmware tools for dell computers
 sys-apps/firmware-tools 2.1.14: Firmware tools for dell computers
@@ -150,7 +149,7 @@ sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being u
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
 sys-fs/btrfs-progs 4.2.3_pre 4.3.1_pre: Btrfs filesystem utilities
 sys-fs/lvm2 2.02.129_pre 2.02.130_pre 2.02.131_pre 2.02.132_pre 2.02.133_pre 2.02.134_pre: User-land utilities for LVM2 (device-mapper) software
-sys-fs/udev 216 217 218 219 220-r3 222 224 224-r1 224-r2 225 226_pre 227_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
+sys-fs/udev 216 217 218 219 220-r3 222 224 224-r1 224-r2 225 226_pre 227_pre 228_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
@@ -161,5 +160,3 @@ www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugi
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-base/xorg-server 1.18.0_pre: X.Org X servers
 x11-drivers/xf86-input-evdev 2.10.0_pre: Generic Linux input driver
-x11-libs/gtk+ 3.18.5_pre: Gimp ToolKit +
-x11-libs/vte 0.42.1_pre: Library providing a virtual terminal emulator widget
