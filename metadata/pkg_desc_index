@@ -23,6 +23,7 @@ app-text/liblangtag 0.5.7_pre 0.5.8_pre: An interface library to access tags for
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 app-text/qpdf 5.1.3_pre 6.0.0_pre: A command-line program that does structural, content-preserving transformations on PDF files
 app-text/xmlto 0.0.27_pre: script for converting XML and DocBook formatted documents to a variety of output formats
+dev-cpp/glibmm 2.46.2_pre: C++ interface for glib2
 dev-cpp/gtkmm 3.18.0_pre: C++ interface for GTK+
 dev-db/ctdb 2.5.4 2.5.5: A cluster implementation of the TDB database used to store temporary data
 dev-db/unixODBC 2.3.3_pre: A complete ODBC driver manager
@@ -41,7 +42,7 @@ dev-libs/libclc 0.0.1_pre20140101: OpenCL C library
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.10_pre: Perl-compatible regular expression library
 dev-libs/libusb 1.0.20_rc3: Userspace access to USB devices
-dev-libs/libxml2 2.9.2-r1: Version 2 of the library to manipulate XML files
+dev-libs/libxml2 2.9.2-r1 2.9.3_pre: Version 2 of the library to manipulate XML files
 dev-libs/mini-xml 2.9_pre: Small XML parsing library to read XML and XML-like data files
 dev-libs/nss 3.21_pre: Mozilla's Network Security Services library that implements PKI support
 dev-libs/redland 1.0.16: High-level interface for the Resource Description Framework
