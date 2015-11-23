@@ -9,5 +9,5 @@ RDEPEND=sys-libs/readline sys-libs/ncurses media-sound/mpg123
 RESTRICT=mirror
 SLOT=0
 SRC_URI=http://www.puchalla-online.de/cutmp3-3.0.tar.bz2
-_eclasses_=eutils	f813d23e417656bf3917483643165d5a	multilib	3972ca401cf7dbb430df9995f5d8d580	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_eclasses_=eutils	f20548a2f7b0128068388cd2ec26708a	multilib	3972ca401cf7dbb430df9995f5d8d580	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
 _md5_=61e0cfc7376967dd6b96c6a3b2f37a39
