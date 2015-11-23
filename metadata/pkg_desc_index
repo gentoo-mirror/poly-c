@@ -22,7 +22,6 @@ app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/liblangtag 0.5.7_pre 0.5.8_pre: An interface library to access tags for identifying languages
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 app-text/qpdf 5.1.3_pre 6.0.0_pre: A command-line program that does structural, content-preserving transformations on PDF files
-app-text/xmlto 0.0.27_pre: script for converting XML and DocBook formatted documents to a variety of output formats
 dev-cpp/glibmm 2.46.2_pre: C++ interface for glib2
 dev-cpp/gtkmm 3.18.0_pre: C++ interface for GTK+
 dev-db/ctdb 2.5.4 2.5.5: A cluster implementation of the TDB database used to store temporary data
@@ -134,6 +133,7 @@ sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management 
 sys-boot/grub 2.00_p5107-r2 2.02_beta2-r3 2.02_beta2-r6 2.02_beta2-r7: GNU GRUB boot loader
 sys-devel/autogen 5.18.5_pre 5.18.6_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
+sys-devel/flex 2.6.0_pre: The Fast Lexical Analyzer
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
 sys-fs/btrfs-progs 4.2.3_pre 4.3.1_pre: Btrfs filesystem utilities
 sys-fs/lvm2 2.02.129_pre 2.02.130_pre 2.02.131_pre 2.02.132_pre 2.02.133_pre 2.02.134_pre: User-land utilities for LVM2 (device-mapper) software

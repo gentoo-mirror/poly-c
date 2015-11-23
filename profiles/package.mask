@@ -30,6 +30,3 @@ media-radio/liquidsoap
 
 # Fails to build
 =net-libs/webkit-gtk-2.11.1_pre
-
-# Causes sandbox issues in other packages
-=app-text/xmlto-0.0.27_pre
