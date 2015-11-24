@@ -9,5 +9,6 @@ RDEPEND=>=dev-python/pygtk-2.6.1 >=dev-python/eyeD3-0.6.4 >=media-sound/lame-3.9
 RESTRICT=mirror
 SLOT=0
 SRC_URI=mirror://sourceforge/idjc/idjc-0.8.14.tar.gz
+_eclass_exported_funcs=pkg_postinst:- src_install:-
 _eclasses_=poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435
 _md5_=06bf65ece40c93f85a7a9271e880c40e

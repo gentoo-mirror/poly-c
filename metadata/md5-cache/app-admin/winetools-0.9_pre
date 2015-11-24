@@ -9,5 +9,6 @@ RDEPEND=app-emulation/wine nls? ( sys-devel/gettext ) x11-misc/xdialog
 RESTRICT=mirror
 SLOT=0
 SRC_URI=http://www.openoffice.de/wt/winetools-0.9jo-III.tar.gz
+_eclass_exported_funcs=src_unpack:- src_install:-
 _eclasses_=eutils	f20548a2f7b0128068388cd2ec26708a	multilib	3972ca401cf7dbb430df9995f5d8d580	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
 _md5_=e81039b92750f5325563483a49754003

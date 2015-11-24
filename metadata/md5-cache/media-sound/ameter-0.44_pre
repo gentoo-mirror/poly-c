@@ -9,5 +9,6 @@ RDEPEND=>=media-libs/alsa-lib-1.0.11_rc2 media-libs/libsdl media-libs/sdl-image
 RESTRICT=mirror
 SLOT=0
 SRC_URI=http://laugeo.free.fr/ameter-0.44.tar.gz
+_eclass_exported_funcs=src_unpack:- src_compile:- src_install:-
 _eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	eutils	f20548a2f7b0128068388cd2ec26708a	libtool	b75230758539a7da029e24afdb693960	multilib	3972ca401cf7dbb430df9995f5d8d580	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
 _md5_=cf91166d14a914d50db837ce9a62f031
