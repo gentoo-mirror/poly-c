@@ -3,10 +3,9 @@ app-admin/sudo 1.8.15_rc1 1.8.15_rc2 1.8.15_rc3: Allows users or groups to run c
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-admin/winetools 0.9_pre: Graphical Wine tool for installing Windows programs under Wine
 app-arch/xz-utils 5.0.8 5.2.0 5.2.1-r1 5.2.2: utils for managing LZMA compressed files
-app-backup/dar 2.4.18_pre 2.4.19_pre 2.5.1_pre 2.5.2_pre: A full featured backup tool, aimed for disks (floppy,CDR(W),DVDR(W),zip,jazz etc.)
+app-backup/dar 2.4.18_pre 2.4.19_pre 2.4.20_pre 2.5.1_pre 2.5.2_pre: A full featured backup tool, aimed for disks (floppy,CDR(W),DVDR(W),zip,jazz etc.)
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
 app-crypt/heimdal 1.6_rc2: Kerberos 5 implementation from KTH
-app-crypt/mit-krb5 1.14_pre: MIT Kerberos V
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
 app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
 app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
@@ -133,10 +132,9 @@ sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management 
 sys-boot/grub 2.00_p5107-r2 2.02_beta2-r3 2.02_beta2-r6 2.02_beta2-r7: GNU GRUB boot loader
 sys-devel/autogen 5.18.5_pre 5.18.6_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
-sys-devel/flex 2.6.0_pre: The Fast Lexical Analyzer
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
 sys-fs/btrfs-progs 4.2.3_pre 4.3.1_pre: Btrfs filesystem utilities
-sys-fs/lvm2 2.02.129_pre 2.02.130_pre 2.02.131_pre 2.02.132_pre 2.02.133_pre 2.02.134_pre: User-land utilities for LVM2 (device-mapper) software
+sys-fs/lvm2 2.02.129_pre 2.02.130_pre 2.02.131_pre 2.02.132_pre 2.02.133_pre 2.02.134_pre 2.02.135_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 217 218 219 220-r3 222 224 224-r1 224-r2 225 226_pre 227_pre 228_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
