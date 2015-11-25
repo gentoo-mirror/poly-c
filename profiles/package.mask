@@ -30,3 +30,10 @@ media-radio/liquidsoap
 
 # Fails to build
 >=net-libs/webkit-gtk-2.11.1_pre
+
+# broken deps
+=app-text/libetonyek-0.1.4_pre
+=dev-util/mdds-1.0.0_pre
+
+# Fails to install
+=www-apps/ampache-3.8.0_pre
