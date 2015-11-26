@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4f4a6652a00b1bc1ff71ee12979ad3042a33a071 $
+# $Id: dedabe165758aa4612a10928cc52e25665bdfbb5 $
 
 EAPI=5
 
@@ -16,7 +16,7 @@ SRC_URI="
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm hppa ~ia64 ppc ppc64 sparc x86 ~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="alpha amd64 arm hppa ia64 ppc ppc64 sparc x86 ~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="dbus debug doc eds gadu gnutls +gstreamer +gtk idn meanwhile mxit msn myspace"
 IUSE+=" networkmanager nls perl silc ssl tcl tk spell gadu sasl ncurses"
 IUSE+=" groupwise prediction python +xscreensaver zephyr zeroconf" # mono"

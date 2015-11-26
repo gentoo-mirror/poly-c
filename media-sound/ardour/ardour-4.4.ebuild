@@ -70,7 +70,7 @@ DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen[dot] )"
 
 pkg_setup() {
-	if has_version \>=dev-libs/libsigc++-2.6.0_pre ; then
+	if has_version \>=dev-libs/libsigc++-2.6 ; then
 		append-cxxflags -std=c++11
 	fi
 }

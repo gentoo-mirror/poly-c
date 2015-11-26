@@ -20,6 +20,7 @@ app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gent
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/libetonyek 0.1.4_pre: Library parsing Apple Keynote presentations
 app-text/liblangtag 0.5.7_pre 0.5.8_pre: An interface library to access tags for identifying languages
+app-text/libmwaw 0.3.7_pre: Library parsing many pre-OSX MAC text formats
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 app-text/qpdf 5.1.3_pre 6.0.0_pre: A command-line program that does structural, content-preserving transformations on PDF files
 dev-cpp/glibmm 2.46.2_pre: C++ interface for glib2
