@@ -18,6 +18,7 @@ app-office/ledger 3.1: A double-entry accounting system with a command-line repo
 app-office/osmo 0.2.10 0.2.10_p933: A handy personal organizer
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
+app-text/calibre 2.45.0_pre: Ebook management application
 app-text/libetonyek 0.1.4_pre: Library parsing Apple Keynote presentations
 app-text/liblangtag 0.5.7_pre 0.5.8_pre: An interface library to access tags for identifying languages
 app-text/libmwaw 0.3.7_pre: Library parsing many pre-OSX MAC text formats
@@ -117,6 +118,7 @@ net-libs/nghttp2 1.5.0_pre: HTTP/2 C Library
 net-libs/webkit-gtk 2.4.7 2.4.8 2.4.9 2.11.1_pre 2.11.2_pre: Open source web browser engine
 net-misc/openssh 6.8_p1-r5 6.9_p1-r1 6.9_p1-r2 7.0_p1 7.1_p1 7.1_p1-r1 7.1_p1-r2: Port of OpenBSD's free SSH release
 net-print/cups 2.1.0_pre: The Common Unix Printing System
+net-print/cups-filters 1.2.0_pre: Cups PDF filters
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sci-chemistry/avogadro 1.1.1: Advanced molecular editor that uses Qt4 and OpenGL
 sys-apps/dbus 1.10.2_pre 1.10.4_pre: A message bus system, a simple way for applications to talk to each other
