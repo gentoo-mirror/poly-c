@@ -39,7 +39,6 @@ dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 54.1-r1 55.1: International Components for Unicode
-dev-libs/libassuan 2.4.0_pre: IPC library used by GnuPG and GPGME
 dev-libs/libclc 0.0.1_pre20140101: OpenCL C library
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.10_pre 10.20_pre: Perl-compatible regular expression library
@@ -53,7 +52,6 @@ dev-perl/Pango 1.226.0_pre: Layout and render international text
 dev-perl/glib-perl 1.314.0_pre: Glib - Perl wrappers for the GLib utility and Object libraries
 dev-perl/gtk2-perl 1.249.600_pre: Perl bindings for GTK2
 dev-python/google-apputils 0.4.0: Collection of utilities for building Python applications
-dev-qt/qtwidgets 5.5.1: Set of UI elements for creating classic desktop-style user interfaces for the Qt5 framework
 dev-ruby/parslet 1.7.1: A small PEG based parser library
 dev-scheme/guile 2.0.11_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.59.0_pre: A system for large project software construction, which is simple to use and powerful
@@ -67,6 +65,8 @@ games-arcade/supertux 0.3.4_pre 0.3.5a_pre: A game similar to Super Mario Bros.
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - a series of minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.74 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.42b 9999: Return to Castle Wolfenstein - IORTCW Project
+games-strategy/0ad 0.0.19_alpha_pre: A free, real-time strategy game
+games-strategy/0ad-data 0.0.19_alpha_pre: Data files for 0ad
 games-strategy/boswars 9999: Futuristic real-time strategy game
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
