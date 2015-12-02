@@ -1,0 +1,14 @@
+--- dhcpcd-6.9.4/dhcpcd.c
++++ dhcpcd-6.9.4/dhcpcd.c
+@@ -1174,9 +1174,11 @@
+ 	    ifp->carrier != LINK_DOWN)
+ 	{
+ 		dhcp_renew(ifp);
++#ifdef INET6
+ 		if ((ifp->options->options & DHCPCD_RARENEW) == DHCPCD_RARENEW)
+ 			ipv6nd_startrs(ifp);
+ 		dhcp6_renew(ifp);
++#endif
+ 	}
+ }
+ 
