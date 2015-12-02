@@ -3,23 +3,24 @@
 # $Id: 120d48d28a25dbf0a947421d38a070f9be6cc78d $
 
 EAPI=5
-inherit eutils systemd udev poly-c_ebuilds
+inherit eutils systemd udev
 
 ADRIVER_PV="1.0.25"
 
 DESCRIPTION="Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)"
 HOMEPAGE="http://www.alsa-project.org/"
-SRC_URI="mirror://alsaproject/utils/${MY_P}.tar.bz2
+SRC_URI="mirror://alsaproject/utils/${P}.tar.bz2
 	mirror://alsaproject/driver/alsa-driver-${ADRIVER_PV}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0.9"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86"
-IUSE="doc +libsamplerate +ncurses nls selinux"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~sh sparc x86"
+IUSE="bat doc +libsamplerate +ncurses nls selinux"
 
 CDEPEND=">=media-libs/alsa-lib-${PV}
 	libsamplerate? ( media-libs/libsamplerate )
-	ncurses? ( >=sys-libs/ncurses-5.7-r7:0= )"
+	ncurses? ( >=sys-libs/ncurses-5.7-r7:0= )
+	bat? ( sci-libs/fftw )"
 DEPEND="${CDEPEND}
 	virtual/pkgconfig
 	doc? ( app-text/xmlto )"
@@ -37,6 +38,7 @@ src_configure() {
 	# --disable-alsaconf because it doesn't work with sys-apps/kmod wrt #456214
 	econf \
 		--disable-maintainer-mode \
+		$(use_enable bat) \
 		$(use_enable libsamplerate alsaloop) \
 		$(use_enable nls) \
 		$(use_enable ncurses alsamixer) \
