@@ -54,7 +54,7 @@ fi
 
 src_prepare()
 {
-	epatch "${FILESDIR}"/${MY_P}-fix_noipv6.patch
+	epatch "${FILESDIR}"/${MY_P}-fix_noipv6_build.patch
 
 	epatch_user
 }
