@@ -117,7 +117,6 @@ net-misc/openssh 6.8_p1-r5 6.9_p1-r1 6.9_p1-r2 7.0_p1 7.1_p1 7.1_p1-r1 7.1_p1-r2
 net-print/cups 2.1.1_pre 2.1.2_pre: The Common Unix Printing System
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sci-chemistry/avogadro 1.1.1: Advanced molecular editor that uses Qt4 and OpenGL
-sys-apps/dbus 1.10.4_pre 1.10.6_pre: A message bus system, a simple way for applications to talk to each other
 sys-apps/firmware-addon-dell 2.2.9: Additional firmware tools for dell computers
 sys-apps/firmware-extract 2.0.13: Additional firmware tools for dell computers
 sys-apps/firmware-tools 2.1.14: Firmware tools for dell computers
