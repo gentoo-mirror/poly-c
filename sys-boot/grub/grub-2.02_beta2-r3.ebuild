@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: a43dd0b29e53023288bf7e857f345d853b88408e $
+# $Id: 63fe13a0b2dd78047f129d7b6643d603fbc09161 $
 
 EAPI=5
 
@@ -87,7 +87,7 @@ DEPEND="${RDEPEND}
 	grub_platforms_qemu? ( media-libs/freetype:2 )
 	grub_platforms_ieee1275? ( media-libs/freetype:2 )
 	grub_platforms_loongson? ( media-libs/freetype:2 )
-	grub_platforms_xen? ( app-emulation/xen-tools )
+	grub_platforms_xen? ( app-emulation/xen-tools:= )
 	static? (
 		app-arch/xz-utils[static-libs(+)]
 		truetype? (

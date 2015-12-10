@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ed6aa18a417fe42786b4e89234b31524b5048232 $
+# $Id: 7c320db845964b660508cb483ed2178df41c2916 $
 
 EAPI=5
 
@@ -80,7 +80,7 @@ DEPEND="${RDEPEND}
 	sys-apps/help2man
 	sys-apps/texinfo
 	fonts? ( media-libs/freetype:2 )
-	grub_platforms_xen? ( app-emulation/xen-tools )
+	grub_platforms_xen? ( app-emulation/xen-tools:= )
 	static? (
 		app-arch/xz-utils[static-libs(+)]
 		truetype? (
