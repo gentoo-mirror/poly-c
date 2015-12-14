@@ -25,6 +25,7 @@ app-text/libmwaw 0.3.7_pre: Library parsing many pre-OSX MAC text formats
 app-text/libodfgen 0.1.5_pre: Library to generate ODF documents from libwpd and libwpg
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 app-text/qpdf 5.1.3_pre 6.0.0_pre: A command-line program that does structural, content-preserving transformations on PDF files
+dev-cpp/gtkglextmm 1.2.0-r2: C++ bindings for gtkglext
 dev-db/ctdb 2.5.4 2.5.5: A cluster implementation of the TDB database used to store temporary data
 dev-db/unixODBC 2.3.3_pre: A complete ODBC driver manager
 dev-java/ant-core 1.9.5_pre 1.9.6_pre: Java-based build tool similar to 'make' that uses XML configuration files
