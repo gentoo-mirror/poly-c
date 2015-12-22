@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c617cab82b7353325f93f70df028eded2255a235 $
+# $Id: 90e03995228d3bcd8adbcc89a1e07cf09b72e8e3 $
 
 EAPI=5
 
@@ -26,7 +26,7 @@ if [[ ${PV} != 9999 ]]; then
 			https://dev.gentoo.org/~floppym/dist/${P}.tar.xz"
 		S=${WORKDIR}/${P%_*}
 	fi
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="amd64 x86"
 else
 	inherit git-r3
 	EGIT_REPO_URI="git://git.sv.gnu.org/grub.git
@@ -60,7 +60,7 @@ REQUIRED_USE="
 # xorriso (dev-libs/libisoburn): Used on runtime for mkrescue
 RDEPEND="
 	app-arch/xz-utils
-	>=sys-libs/ncurses-5.2-r5
+	>=sys-libs/ncurses-5.2-r5:0=
 	debug? (
 		sdl? ( media-libs/libsdl )
 	)
@@ -312,5 +312,14 @@ pkg_postinst() {
 		optfeature "Detect other operating systems (grub-mkconfig)" sys-boot/os-prober
 		optfeature "Create rescue media (grub-mkrescue)" dev-libs/libisoburn
 		optfeature "Enable RAID device detection" sys-fs/mdadm
+	else
+		local v
+		for v in ${REPLACING_VERSIONS}; do
+			if ! version_is_at_least 2.02_beta2-r8 ${v}; then
+				ewarn "Please re-run grub2-install to address a security flaw when using"
+				ewarn "username/password authentication in grub."
+				ewarn "See bug 568326 for more information."
+			fi
+		done
 	fi
 }

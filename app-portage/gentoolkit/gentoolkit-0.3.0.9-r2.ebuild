@@ -1,13 +1,13 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 182dc47c090734624108fa614875514468572729 $
+# $Id: f1d049783c9e89e98f040846f268ac40a435702e $
 
 EAPI="5"
 
 PYTHON_COMPAT=(python{2_7,3_3,3_4} pypy)
 PYTHON_REQ_USE="xml(+),threads(+)"
 
-inherit distutils-r1
+inherit distutils-r1 eutils
 
 DESCRIPTION="Collection of administration scripts for Gentoo"
 HOMEPAGE="https://www.gentoo.org/proj/en/portage/tools/index.xml"
@@ -37,6 +37,7 @@ PATCHES=(
 )
 
 python_prepare_all() {
+	epatch "${FILESDIR}/0.3.1-setup.py-print.patch"
 	python_setup
 	echo VERSION="${PVR}" "${PYTHON}" setup.py set_version
 	VERSION="${PVR}" "${PYTHON}" setup.py set_version
