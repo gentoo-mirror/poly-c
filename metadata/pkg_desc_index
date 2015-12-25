@@ -22,7 +22,6 @@ app-text/liblangtag 0.5.7_pre 0.5.8_pre: An interface library to access tags for
 app-text/libmwaw 0.3.7_pre: Library parsing many pre-OSX MAC text formats
 app-text/libodfgen 0.1.5_pre: Library to generate ODF documents from libwpd and libwpg
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
-app-text/qpdf 5.1.3_pre 6.0.0_pre: A command-line program that does structural, content-preserving transformations on PDF files
 dev-db/ctdb 2.5.4 2.5.5: A cluster implementation of the TDB database used to store temporary data
 dev-db/unixODBC 2.3.3_pre: A complete ODBC driver manager
 dev-java/ant-core 1.9.5_pre 1.9.6_pre: Java-based build tool similar to 'make' that uses XML configuration files
@@ -80,6 +79,7 @@ media-libs/harfbuzz 1.1.1_pre 1.1.2_pre: An OpenType text shaping engine
 media-libs/libbpg 0.9.5_pre 0.9.6_pre: BPG (Better Portable Graphics) is a new image format
 media-libs/libdvdcss 1.3.99 1.4.0: A portable abstraction library for DVD decryption
 media-libs/libmygpo-qt 1.0.8_pre: Qt/C++ library wrapping the gpodder.net webservice
+media-libs/libvisio 0.1.4_pre: Library parsing the visio documents
 media-libs/libwebp 0.4.4_pre: A lossy image compression format
 media-libs/openal 1.17.1_pre: A software implementation of the OpenAL 3D audio API
 media-plugins/gst-plugins-libav 1.6.2_pre: FFmpeg based gstreamer plugin
@@ -104,7 +104,6 @@ net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugi
 net-analyzer/nagios-plugins 1.4.16-r2 1.4.16-r3: Nagios 1.4.16 plugins - Pack of plugins to make Nagios work properly
 net-analyzer/nikto 2.1.2_pre 2.1.5_pre: Web Server vulnerability scanner.
 net-analyzer/ntopng 1.1.6932: Next generation network traffic analyzer
-net-analyzer/vnstat 1.15_pre: Console-based network traffic monitor that keeps statistics of network usage
 net-dialup/mingetty 1.08: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-firewall/iptables 1.6.0_pre: Linux kernel (2.4+) firewall, NAT and packet mangling tools
