@@ -84,7 +84,7 @@ src_unpack() {
 }
 
 src_prepare(){
-	epatch "${FILESDIR}/${PN}-zlib.patch"
+	#epatch "${FILESDIR}/${PN}-zlib.patch"
 	cp "${FILESDIR}/Makefile.local" "${S}/SP/"
 
 	# remove bundled libs
