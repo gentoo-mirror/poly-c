@@ -23,9 +23,9 @@ src_prepare() {
 	eautoreconf
 }
 
-src_configure() {
-	econf --with-defshell
-}
+#src_configure() {
+#	econf --with-defshell
+#}
 
 pkg_postinst() {
 	einfo "Configure sudosh to be used with sudo"
