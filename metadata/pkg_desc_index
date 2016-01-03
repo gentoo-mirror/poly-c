@@ -36,7 +36,6 @@ dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 54.1-r1 55.1: International Components for Unicode
 dev-libs/libburn 1.4.2_pre: Libburn is an open-source library for reading, mastering and writing optical discs
 dev-libs/libclc 0.0.1_pre20140101: OpenCL C library
-dev-libs/libgusb 0.2.8_pre: GObject wrapper for libusb
 dev-libs/libisofs 1.4.2_pre: libisofs is an open-source library for reading, mastering and writing optical discs
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.10_pre 10.20_pre: Perl-compatible regular expression library
@@ -107,7 +106,7 @@ net-dialup/mingetty 1.08: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-firewall/iptables 1.6.0_pre: Linux kernel (2.4+) firewall, NAT and packet mangling tools
 net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
-net-im/pidgin 2.10.10 2.10.11: GTK Instant Messenger client
+net-im/pidgin 2.10.10 2.10.11 2.10.12: GTK Instant Messenger client
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/nghttp2 1.5.0_pre: HTTP/2 C Library
@@ -131,7 +130,7 @@ sys-apps/portage 2.2.8-r2: Portage is the package management and distribution sy
 sys-apps/usb_modeswitch 2.2.5_p20150627_pre 2.2.6_p20151101_pre: USB_ModeSwitch is a tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
-sys-boot/grub 2.00_p5107-r2 2.02_beta2-r3 2.02_beta2-r6 2.02_beta2-r7 2.02_beta2-r8: GNU GRUB boot loader
+sys-boot/grub 2.00_p5107-r2 2.02_beta2-r3 2.02_beta2-r6 2.02_beta2-r7 2.02_beta2-r8 2.02_beta2-r9: GNU GRUB boot loader
 sys-devel/autogen 5.18.6_pre 5.18.7_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
