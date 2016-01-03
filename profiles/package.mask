@@ -38,5 +38,5 @@ media-radio/liquidsoap
 # Fails to install
 =www-apps/ampache-3.8.0_pre
 
-# Masked for testing with media-libs/gegl:0.3
-=media-gfx/gimp-2.8.16_pre-r1
+# Not all dependencies available yet.
+=media-plugins/gst-plugins-meta-1.7.1_pre
