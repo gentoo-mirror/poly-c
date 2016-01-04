@@ -1,3 +1,2 @@
->=app-backup/dar-2.5.0_pre gpg
 app-office/osmo sync
 media-radio/liquidsoup shout
