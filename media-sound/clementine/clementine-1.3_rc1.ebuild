@@ -117,6 +117,7 @@ src_configure() {
 		-DBUILD_WERROR=OFF
 		-DLINGUAS="${langs}"
 		-DBUNDLE_PROJECTM_PRESETS=OFF
+		-DUSE_SYSTEM_PROJECTM=ON
 		$(cmake-utils_use cdda ENABLE_AUDIOCD)
 		$(cmake-utils_use dbus ENABLE_DBUS)
 		$(cmake-utils_use udisks ENABLE_DEVICEKIT)
@@ -127,7 +128,7 @@ src_configure() {
 		-DENABLE_GIO=ON
 		$(cmake-utils_use wiimote ENABLE_WIIMOTEDEV)
 		$(cmake-utils_use projectm ENABLE_VISUALISATIONS)
-		#$(cmake-utils_use ayatana ENABLE_SOUNDMENU)
+		$(usex projectm '-DUSE_SYSTEM_PROJECTM=ON' '')
 		$(cmake-utils_use box ENABLE_BOX)
 		$(cmake-utils_use dropbox ENABLE_DROPBOX)
 		$(cmake-utils_use googledrive ENABLE_GOOGLE_DRIVE)

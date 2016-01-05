@@ -18,7 +18,7 @@
  pkg_check_modules(LIBPULSE libpulse)
  pkg_check_modules(LIBXML libxml-2.0)
  pkg_check_modules(QJSON REQUIRED QJson)
-@@ -275,13 +275,13 @@
+@@ -275,13 +275,14 @@
  
  optional_component(VISUALISATIONS ON "Visualisations")
  
@@ -34,6 +34,7 @@
 -  set(HAVE_SPOTIFY_DOWNLOADER ON)
 -endif()
 +  set(HAVE_SPOTIFY_DOWNLOADER OFF)
++  set(HAVE_SPOTIFY_BLOB OFF)
 +#endif()
  
  # Find DBus if it's enabled

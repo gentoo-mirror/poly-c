@@ -175,6 +175,9 @@ src_configure() {
 	mozconfig_init
 	mozconfig_config
 
+	# We want rpath support to prevent unneeded hacks on different libc variants
+	append-ldflags -Wl,-rpath="${MOZILLA_FIVE_HOME}"
+
 	# It doesn't compile on alpha without this LDFLAGS
 	use alpha && append-ldflags "-Wl,--no-relax"
 
