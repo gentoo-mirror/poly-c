@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9eb2fe105b3e76ee5f2b2c1c3c3b75a5732b747a $
+# $Id: 9e0a825931fc62ea7a83fa703b20ac46ba5711c0 $
 
 EAPI=5
 
@@ -51,7 +51,7 @@ COMMON_DEPEND="
 	ayatana? ( dev-libs/libindicate-qt )
 	cdda? ( dev-libs/libcdio )
 	ipod? ( >=media-libs/libgpod-0.8.0 )
-	lastfm? ( >=media-libs/liblastfm-1 )
+	lastfm? ( >=media-libs/liblastfm-1[qt4(+)] )
 	mtp? ( >=media-libs/libmtp-1.0.0 )
 	moodbar? ( sci-libs/fftw:3.0 )
 	projectm? ( media-libs/glew )
