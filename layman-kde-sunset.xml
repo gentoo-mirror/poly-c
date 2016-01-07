@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<layman>
+    <overlay
+	    contact="gentoo-desktop+subscribe@lists.gentoo.org"
+	    name="kde-sunset"
+	    src="https://anongit.gentoo.org/git/proj/kde-sunset.git"
+	    type="git">
+	<link>
+	    https://gitweb.gentoo.org/proj/kde-sunset.git/
+	</link>
+	<description>
+	    User-maintained overlay for old KDE packages removed from the tree, such as KDE3.
+	</description>
+    </overlay>
+</layman>
