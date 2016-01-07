@@ -14,7 +14,7 @@ if [[ ${PV} == "9999" ]] ; then
 	KEYWORDS="~ppc64"
 else
 	SRC_URI="http://sf.net/projects/libwpd/files/${PN}/${MY_P}/${MY_P}.tar.xz"
-	KEYWORDS="~alpha amd64 ~arm ~hppa ~mips ~ppc64 x86 ~x86-fbsd"
+	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~mips ~ppc64 ~x86 ~x86-fbsd"
 fi
 
 LICENSE="|| ( MPL-2.0 LGPL-2.1 )"
