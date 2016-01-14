@@ -1,6 +1,6 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4de381c1dd3d385739800bd9d898be7abef14df2 $
+# $Id: 4c4758a16b5da57e7f29ec749e69f7c9f9583ec6 $
 
 EAPI=5
 
@@ -30,7 +30,7 @@ REQUIRED_USE="
 
 # qca dep is temporary for bug #489850
 COMMON_DEPEND="
-	dev-db/sqlite
+	dev-db/sqlite:=
 	>=dev-libs/glib-2.24.1-r1
 	dev-libs/libxml2
 	dev-libs/protobuf:=
@@ -43,7 +43,7 @@ COMMON_DEPEND="
 	media-libs/gstreamer:1.0
 	media-libs/gst-plugins-base:1.0
 	media-libs/libechonest:=
-	>=media-libs/libmygpo-qt-1.0.8_pre
+	>=media-libs/libmygpo-qt-1.0.8
 	>=media-libs/taglib-1.8[mp4]
 	sys-libs/zlib
 	virtual/glu

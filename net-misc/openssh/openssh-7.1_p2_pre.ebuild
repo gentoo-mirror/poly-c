@@ -1,72 +1,66 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ed55efdf038f5dc01089f93dd3c36bafe9f96777 $
+# $Id: 584f3848d12d45e24bc4960aa7e977138e330ba4 $
 
-EAPI="4"
-inherit eutils user flag-o-matic multilib autotools pam systemd versionator
+EAPI=5
+inherit eutils user flag-o-matic multilib autotools pam systemd versionator poly-c_ebuilds
 
 # Make it more portable between straight releases
 # and _p? releases.
-PARCH=${P/_}
+PARCH=${MY_P/_}
 
-HPN_PATCH="${PN}-6.8p1-r5-hpnssh14v5.tar.xz"
+HPN_PATCH="${PARCH/p2/p1}-hpnssh14v9.tar.xz"
 LDAP_PATCH="${PN}-lpk-6.8p1-0.3.14.patch.xz"
-X509_VER="8.3.1" X509_PATCH="${PARCH}+x509-${X509_VER}.diff.gz"
+X509_VER="8.6" #X509_PATCH="${PN}-${PV//_p2/p1}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.org/"
 SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
-	mirror://gentoo/${P}-sctp.patch.xz
+	mirror://gentoo/${PN}-6.8_p1-sctp.patch.xz
 	${HPN_PATCH:+hpn? (
 		mirror://gentoo/${HPN_PATCH}
-		https://dev.gentoo.org/~vapier/dist/${HPN_PATCH}
 		mirror://sourceforge/hpnssh/${HPN_PATCH}
 	)}
 	${LDAP_PATCH:+ldap? ( mirror://gentoo/${LDAP_PATCH} )}
-	${X509_PATCH:+X509? (
-		http://roumenpetrov.info/openssh/x509-${X509_VER}/${X509_PATCH}
-		mirror://gentoo/${P}-x509-${X509_VER}-glue.patch.xz
-	)}
+	${X509_PATCH:+X509? ( http://roumenpetrov.info/openssh/x509-${X509_VER}/${X509_PATCH} )}
 	"
 
 LICENSE="BSD GPL-2"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
-# Probably want to drop ssh1/ssl defaulting to on in a future version.
-IUSE="bindist debug ${HPN_PATCH:++}hpn kerberos kernel_linux ldap ldns libedit pam +pie sctp selinux skey +ssh1 +ssl static X X509"
-REQUIRED_USE="pie? ( !static )
+# Probably want to drop ssl defaulting to on in a future version.
+IUSE="bindist debug ${HPN_PATCH:++}hpn kerberos kernel_linux ldap ldns libedit libressl pam +pie sctp selinux skey ssh1 +ssl static X X509"
+REQUIRED_USE="ldns? ( ssl )
+	pie? ( !static )
 	ssh1? ( ssl )
 	static? ( !kerberos !pam )
 	X509? ( !ldap ssl )"
 
-LIB_DEPEND="sctp? ( net-misc/lksctp-tools[static-libs(+)] )
+LIB_DEPEND="
+	ldns? (
+		net-libs/ldns[static-libs(+)]
+		!bindist? ( net-libs/ldns[ecdsa,ssl] )
+		bindist? ( net-libs/ldns[-ecdsa,ssl] )
+	)
+	libedit? ( dev-libs/libedit[static-libs(+)] )
+	sctp? ( net-misc/lksctp-tools[static-libs(+)] )
 	selinux? ( >=sys-libs/libselinux-1.28[static-libs(+)] )
 	skey? ( >=sys-auth/skey-1.1.5-r1[static-libs(+)] )
-	libedit? ( dev-libs/libedit[static-libs(+)] )
 	ssl? (
-		>=dev-libs/openssl-0.9.6d:0[bindist=]
-		dev-libs/openssl[static-libs(+)]
+		!libressl? (
+			>=dev-libs/openssl-0.9.8f:0[bindist=]
+			dev-libs/openssl:0[static-libs(+)]
+		)
+		libressl? ( dev-libs/libressl[static-libs(+)] )
 	)
 	>=sys-libs/zlib-1.2.3[static-libs(+)]"
 RDEPEND="
-	!static? (
-		${LIB_DEPEND//\[static-libs(+)]}
-		ldns? (
-			!bindist? ( net-libs/ldns[ecdsa,ssl] )
-			bindist? ( net-libs/ldns[-ecdsa,ssl] )
-		)
-	)
+	!static? ( ${LIB_DEPEND//\[static-libs(+)]} )
 	pam? ( virtual/pam )
 	kerberos? ( virtual/krb5 )
 	ldap? ( net-nds/openldap )"
 DEPEND="${RDEPEND}
-	static? (
-		${LIB_DEPEND}
-		ldns? (
-			!bindist? ( net-libs/ldns[ecdsa,ssl,static-libs(+)] )
-			bindist? ( net-libs/ldns[-ecdsa,ssl,static-libs(+)] )
-		)
-	)
+	static? ( ${LIB_DEPEND} )
 	virtual/pkgconfig
 	virtual/os-headers
 	sys-devel/autoconf"
@@ -97,9 +91,8 @@ pkg_setup() {
 
 	# Make sure people who are using tcp wrappers are notified of its removal. #531156
 	if grep -qs '^ *sshd *:' "${EROOT}"/etc/hosts.{allow,deny} ; then
-		eerror "Sorry, but openssh no longer supports tcp-wrappers, and it seems like"
-		eerror "you're trying to use it.  Update your ${EROOT}etc/hosts.{allow,deny} please."
-		die "USE=tcpd no longer works"
+		ewarn "Sorry, but openssh no longer supports tcp-wrappers, and it seems like"
+		ewarn "you're trying to use it.  Update your ${EROOT}etc/hosts.{allow,deny} please."
 	fi
 }
 
@@ -120,32 +113,36 @@ src_prepare() {
 	# don't break .ssh/authorized_keys2 for fun
 	sed -i '/^AuthorizedKeysFile/s:^:#:' sshd_config || die
 
-	epatch "${FILESDIR}"/${PN}-6.8_p1-sshd-gssapi-multihomed.patch #378361
 	if use X509 ; then
 		pushd .. >/dev/null
-		epatch "${WORKDIR}"/${P}-x509-${X509_VER}-glue.patch
-		epatch "${FILESDIR}"/${P}-sctp-x509-glue.patch
+		pushd ${HPN_PATCH%.*.*} >/dev/null
+		epatch "${FILESDIR}"/${PN}-7.1_p1-hpn-x509-glue.patch
+		popd >/dev/null
+		epatch "${FILESDIR}"/${PN}-7.0_p1-sctp-x509-glue.patch
 		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}
 		epatch "${FILESDIR}"/${PN}-6.3_p1-x509-hpn14v2-glue.patch
+		epatch "${FILESDIR}"/${PN}-6.9_p1-x509-warnings.patch
 		save_version X509
 	fi
 	if use ldap ; then
+		sed \
+			-e '#define SSH_VERSION/s@6\.3@7.1@' \
+			-e '/#define SSH_PORTABLE/s@p1@p2@' \
+			-i "${WORKDIR}"/${LDAP_PATCH%.*} \
+			|| die
 		epatch "${WORKDIR}"/${LDAP_PATCH%.*}
 		save_version LPK
 	fi
 	epatch "${FILESDIR}"/${PN}-4.7_p1-GSSAPI-dns.patch #165444 integrated into gsskex
 	epatch "${FILESDIR}"/${PN}-6.7_p1-openssl-ignore-status.patch
-	epatch "${FILESDIR}"/${PN}-6.8_p1-ssh-keygen-no-ssh1.patch #544078
-	epatch "${FILESDIR}"/${PN}-6.8_p1-teraterm.patch #547944
 	# The X509 patchset fixes this independently.
 	use X509 || epatch "${FILESDIR}"/${PN}-6.8_p1-ssl-engine-configure.patch
-	epatch "${WORKDIR}"/${P}-sctp.patch
+	epatch "${WORKDIR}"/${PN}-6.8_p1-sctp.patch
 	if use hpn ; then
-		# The teraterm patch pulled in an upstream update.
-		pushd "${WORKDIR}"/${HPN_PATCH%.*.*} >/dev/null
-		epatch "${FILESDIR}"/${PN}-6.8_p1-teraterm-hpn-glue.patch
-		popd >/dev/null
+		sed '/#define SSH_PORTABLE/s@p1@p2@' \
+			-i "${WORKDIR}"/${HPN_PATCH%.*.*}/0004-support-dynamically-sized-receive-buffers.patch \
+			|| die
 		EPATCH_FORCE="yes" EPATCH_SUFFIX="patch" \
 			EPATCH_MULTI_MSG="Applying HPN patchset ..." \
 			epatch "${WORKDIR}"/${HPN_PATCH%.*.*}
@@ -216,11 +213,8 @@ src_configure() {
 		$(use_with ssl ssl-engine)
 	)
 
-	# Special settings for Gentoo/FreeBSD 9.0 or later (see bug #391011)
-	if use elibc_FreeBSD && version_is_at_least 9.0 "$(uname -r|sed 's/\(.\..\).*/\1/')" ; then
-		myconf+=( --disable-utmp --disable-wtmp --disable-wtmpx )
-		append-ldflags -lutil
-	fi
+	# The seccomp sandbox is broken on x32, so use the older method for now. #553748
+	use amd64 && [[ ${ABI} == "x32" ]] && myconf+=( --with-sandbox=rlimit )
 
 	econf "${myconf[@]}"
 }
@@ -254,12 +248,6 @@ src_install() {
 	# Send locale environment variables #367017
 	SendEnv LANG LC_*
 	EOF
-
-	# This instruction is from the HPN webpage,
-	# Used for the server logging functionality
-	if [[ -n ${HPN_PATCH} ]] && use hpn ; then
-		keepdir /var/empty/dev
-	fi
 
 	if ! use X509 && [[ -n ${LDAP_PATCH} ]] && use ldap ; then
 		insinto /etc/openldap/schema/
@@ -321,14 +309,28 @@ pkg_postinst() {
 		elog "algorithm (ECDSA).  You are encouraged to manually update your stored"
 		elog "keys list as servers update theirs.  See ssh-keyscan(1) for more info."
 	fi
-	ewarn "Remember to merge your config files in /etc/ssh/ and then"
-	ewarn "reload sshd: '/etc/init.d/sshd reload'."
-	# This instruction is from the HPN webpage,
-	# Used for the server logging functionality
-	if [[ -n ${HPN_PATCH} ]] && use hpn ; then
-		einfo "For the HPN server logging patch, you must ensure that"
-		einfo "your syslog application also listens at /var/empty/dev/log."
+	if has_version "<${CATEGORY}/${PN}-6.9_p1" ; then
+		elog "Starting with openssh-6.9p1, ssh1 support is disabled by default."
 	fi
-	elog "Note: openssh-6.7 versions no longer support USE=tcpd as upstream has"
-	elog "      dropped it.  Make sure to update any configs that you might have."
+	if has_version "<${CATEGORY}/${PN}-7.0_p1" ; then
+		elog "Starting with openssh-6.7, support for USE=tcpd has been dropped by upstream."
+		elog "Make sure to update any configs that you might have.  Note that xinetd might"
+		elog "be an alternative for you as it supports USE=tcpd."
+	fi
+	if has_version "<${CATEGORY}/${PN}-7.1_p1" ; then #557388 #555518
+		elog "Starting with openssh-7.0, support for ssh-dss keys were disabled due to their"
+		elog "weak sizes.  If you rely on these key types, you can re-enable the key types by"
+		elog "adding to your sshd_config or ~/.ssh/config files:"
+		elog "	PubkeyAcceptedKeyTypes=+ssh-dss"
+		elog "You should however generate new keys using rsa or ed25519."
+
+		elog "Starting with openssh-7.0, the default for PermitRootLogin changed from 'yes'"
+		elog "to 'prohibit-password'.  That means password auth for root users no longer works"
+		elog "out of the box.  If you need this, please update your sshd_config explicitly."
+	fi
+	if ! use ssl && has_version "${CATEGORY}/${PN}[ssl]" ; then
+		elog "Be aware that by disabling openssl support in openssh, the server and clients"
+		elog "no longer support dss/rsa/ecdsa keys.  You will need to generate ed25519 keys"
+		elog "and update all clients/servers that utilize them."
+	fi
 }

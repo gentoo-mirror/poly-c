@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id: 26b5e1ebf018763a9c831abed8cfc9fd42209ac7 $
 
-EAPI=2
+EAPI=5
 
 GAME="enemy-territory"
 MOD_DESC="Minor additions to Enemy Territory to make it more fun"

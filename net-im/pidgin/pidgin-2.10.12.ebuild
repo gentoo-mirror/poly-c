@@ -61,7 +61,10 @@ RDEPEND="
 	)
 	msn? (
 		gnutls? ( net-libs/gnutls )
-		!gnutls? ( >=dev-libs/nss-3.15.4 )
+		!gnutls? (
+			dev-libs/nspr
+			dev-libs/nss
+		)
 	)
 	meanwhile? ( net-libs/meanwhile )
 	silc? ( >=net-im/silc-toolkit-1.0.1 )
