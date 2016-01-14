@@ -115,7 +115,7 @@ net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/nghttp2 1.5.0_pre: HTTP/2 C Library
 net-libs/webkit-gtk 2.4.7 2.4.8 2.4.9 2.11.1_pre 2.11.2_pre: Open source web browser engine
-net-misc/openssh 7.1_p1-r2 7.1_p1-r3 7.1_p2_pre: Port of OpenBSD's free SSH release
+net-misc/openssh 7.1_p1-r2 7.1_p1-r3 7.1_p2: Port of OpenBSD's free SSH release
 net-print/cups-filters 1.6.0_pre: Cups PDF filters
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sys-apps/firmware-addon-dell 2.2.9: Additional firmware tools for dell computers

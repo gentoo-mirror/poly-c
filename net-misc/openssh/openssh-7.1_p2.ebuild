@@ -1,17 +1,18 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 584f3848d12d45e24bc4960aa7e977138e330ba4 $
+# $Id: 153649a27ab03841632b1811d66933eb9bcd9937 $
 
-EAPI=5
+EAPI="5"
+
 inherit eutils user flag-o-matic multilib autotools pam systemd versionator poly-c_ebuilds
 
 # Make it more portable between straight releases
 # and _p? releases.
-PARCH=${MY_P/_}
+PARCH=${P/_}
 
-HPN_PATCH="${PARCH/p2/p1}-hpnssh14v9.tar.xz"
-LDAP_PATCH="${PN}-lpk-6.8p1-0.3.14.patch.xz"
-X509_VER="8.6" #X509_PATCH="${PN}-${PV//_p2/p1}+x509-${X509_VER}.diff.gz"
+HPN_PATCH="${PARCH}-hpnssh14v10.tar.xz"
+LDAP_PATCH="${PN}-lpk-7.1p2-0.3.14.patch.xz"
+X509_VER="8.6" X509_PATCH="${PN}-${PV/_}+x509-${X509_VER}.diff.xz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.org/"
@@ -121,7 +122,7 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-7.0_p1-sctp-x509-glue.patch
 		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}
-		epatch "${FILESDIR}"/${PN}-6.3_p1-x509-hpn14v2-glue.patch
+		epatch "${FILESDIR}"/${PN}-7.1_p2-x509-hpn14v2-glue.patch
 		epatch "${FILESDIR}"/${PN}-6.9_p1-x509-warnings.patch
 		save_version X509
 	fi
@@ -207,8 +208,7 @@ src_configure() {
 		$(use_with selinux)
 		$(use_with skey)
 		$(use_with ssh1)
-		# The X509 patch deletes this option entirely.
-		$(use X509 || use_with ssl openssl)
+		$(use_with ssl openssl)
 		$(use_with ssl md5-passwords)
 		$(use_with ssl ssl-engine)
 	)

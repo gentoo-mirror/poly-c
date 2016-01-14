@@ -1,6 +1,6 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 584f3848d12d45e24bc4960aa7e977138e330ba4 $
+# $Id: 07f0e7fcf6d6497aa6bfd6dca8e72f78df21d05c $
 
 EAPI=5
 inherit eutils user flag-o-matic multilib autotools pam systemd versionator
@@ -9,7 +9,7 @@ inherit eutils user flag-o-matic multilib autotools pam systemd versionator
 # and _p? releases.
 PARCH=${P/_}
 
-HPN_PATCH="${PARCH/}-hpnssh14v9.tar.xz"
+HPN_PATCH="${PARCH}-hpnssh14v9.tar.xz"
 LDAP_PATCH="${PN}-lpk-6.8p1-0.3.14.patch.xz"
 X509_VER="8.6" X509_PATCH="${PN}-${PV//_}+x509-${X509_VER}.diff.gz"
 
@@ -27,7 +27,7 @@ SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
 
 LICENSE="BSD GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
+KEYWORDS="~alpha amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
 # Probably want to drop ssl defaulting to on in a future version.
 IUSE="bindist debug ${HPN_PATCH:++}hpn kerberos kernel_linux ldap ldns libedit libressl pam +pie sctp selinux skey ssh1 +ssl static X X509"
 REQUIRED_USE="ldns? ( ssl )
@@ -115,9 +115,11 @@ src_prepare() {
 
 	if use X509 ; then
 		pushd .. >/dev/null
-		pushd ${HPN_PATCH%.*.*} >/dev/null
-		epatch "${FILESDIR}"/${PN}-7.1_p1-hpn-x509-glue.patch
-		popd >/dev/null
+		if use hpn ; then
+			pushd ${HPN_PATCH%.*.*} >/dev/null
+			epatch "${FILESDIR}"/${PN}-7.1_p1-hpn-x509-glue.patch
+			popd >/dev/null
+		fi
 		epatch "${FILESDIR}"/${PN}-7.0_p1-sctp-x509-glue.patch
 		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}
