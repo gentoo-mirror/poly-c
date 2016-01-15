@@ -4,7 +4,7 @@
 
 EAPI="5"
 
-inherit eutils user flag-o-matic multilib autotools pam systemd versionator poly-c_ebuilds
+inherit eutils user flag-o-matic multilib autotools pam systemd versionator
 
 # Make it more portable between straight releases
 # and _p? releases.
@@ -116,22 +116,19 @@ src_prepare() {
 
 	if use X509 ; then
 		pushd .. >/dev/null
-		pushd ${HPN_PATCH%.*.*} >/dev/null
-		epatch "${FILESDIR}"/${PN}-7.1_p1-hpn-x509-glue.patch
-		popd >/dev/null
+		if use hpn ; then
+			pushd ${HPN_PATCH%.*.*} >/dev/null
+			epatch "${FILESDIR}"/${PN}-7.1_p1-hpn-x509-glue.patch
+			popd >/dev/null
+		fi
 		epatch "${FILESDIR}"/${PN}-7.0_p1-sctp-x509-glue.patch
 		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}
-		epatch "${FILESDIR}"/${PN}-7.1_p2-x509-hpn14v2-glue.patch
+		epatch "${FILESDIR}"/${PN}-7.1_p2-x509-hpn14v10-glue.patch
 		epatch "${FILESDIR}"/${PN}-6.9_p1-x509-warnings.patch
 		save_version X509
 	fi
 	if use ldap ; then
-		sed \
-			-e '#define SSH_VERSION/s@6\.3@7.1@' \
-			-e '/#define SSH_PORTABLE/s@p1@p2@' \
-			-i "${WORKDIR}"/${LDAP_PATCH%.*} \
-			|| die
 		epatch "${WORKDIR}"/${LDAP_PATCH%.*}
 		save_version LPK
 	fi
@@ -141,9 +138,6 @@ src_prepare() {
 	use X509 || epatch "${FILESDIR}"/${PN}-6.8_p1-ssl-engine-configure.patch
 	epatch "${WORKDIR}"/${PN}-6.8_p1-sctp.patch
 	if use hpn ; then
-		sed '/#define SSH_PORTABLE/s@p1@p2@' \
-			-i "${WORKDIR}"/${HPN_PATCH%.*.*}/0004-support-dynamically-sized-receive-buffers.patch \
-			|| die
 		EPATCH_FORCE="yes" EPATCH_SUFFIX="patch" \
 			EPATCH_MULTI_MSG="Applying HPN patchset ..." \
 			epatch "${WORKDIR}"/${HPN_PATCH%.*.*}

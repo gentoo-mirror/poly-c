@@ -20,6 +20,7 @@ app-text/libetonyek 0.1.4_pre 0.1.5_pre: Library parsing Apple Keynote presentat
 app-text/libodfgen 0.1.5_pre 0.1.6_pre: Library to generate ODF documents from libwpd and libwpg
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 app-text/poppler 0.40.0_pre: PDF rendering library based on the xpdf-3.0 code base
+dev-db/sqlite 3.10.1_pre: A SQL Database Engine in a C Library
 dev-db/unixODBC 2.3.3_pre: A complete ODBC driver manager
 dev-java/ant-core 1.9.5_pre 1.9.6_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
