@@ -96,7 +96,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.02.67-createinitrd.patch #301331
 	epatch "${FILESDIR}"/${PN}-2.02.99-locale-muck.patch #330373
 	epatch "${FILESDIR}"/${PN}-2.02.70-asneeded.patch # -Wl,--as-needed
-	epatch "${FILESDIR}"/${PN}-2.02.129-dynamic-static-ldflags.patch #332905
+	epatch "${FILESDIR}"/${PN}-2.02.138-dynamic-static-ldflags.patch #332905
 	epatch "${FILESDIR}"/${PN}-2.02.129-static-pkgconfig-libs.patch #370217, #439414 + blkid
 	epatch "${FILESDIR}"/${PN}-2.02.130-pthread-pkgconfig.patch #492450
 
