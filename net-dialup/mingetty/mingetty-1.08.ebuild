@@ -1,6 +1,8 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 7e382a426aa4964a5daef8f2126f39e2ee1bfb72 $
+# $Id: b12c705b84373dfbec63affea110bf9a5066cf3a $
+
+EAPI=5
 
 inherit toolchain-funcs eutils
 
@@ -13,9 +15,7 @@ SLOT="0"
 KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 s390 sparc x86"
 IUSE="unicode"
 
-src_unpack() {
-	unpack ${A}
-
+src_prepare() {
 	if use unicode ; then
 		epatch "${FILESDIR}"/${P}-utf8.patch
 	else
@@ -28,10 +28,10 @@ src_unpack() {
 }
 
 src_compile() {
-	emake CFLAGS="${CFLAGS} -Wall -W -pipe -D_GNU_SOURCE" CC="$(tc-getCC)" || die "compile failed"
+	emake CFLAGS="${CFLAGS} -Wall -W -pipe -D_GNU_SOURCE" CC="$(tc-getCC)"
 }
 
 src_install () {
 	dodir /sbin /usr/share/man/man8
-	emake DESTDIR="${D}" install || die "install failed"
+	emake DESTDIR="${D}" install
 }

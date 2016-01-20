@@ -1,8 +1,8 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 094a6bec349f9ebd458bad3bccaea7a33daf3371 $
+# $Id: 7e8286f4bd776000c0744b7f4f8c2e9182388ace $
 
-EAPI=4
+EAPI=5
 
 inherit eutils
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm ~hppa ppc ppc64 ~sparc x86 ~amd64-fbsd ~x86-fbsd"
+KEYWORDS="alpha amd64 arm ~hppa ppc64 ~sparc x86 ~amd64-fbsd ~x86-fbsd"
 IUSE=""
 
 DEPEND="!<dev-java/java-config-1.3"

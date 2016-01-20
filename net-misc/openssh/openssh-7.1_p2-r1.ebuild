@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 762e35d9e2fd6bc06c3f813ddbc18f91ef76d0f8 $
+# $Id: 5c418d414b8d87d756940c23e23c5a7bf92dfcff $
 
 EAPI="5"
 
@@ -12,7 +12,7 @@ PARCH=${P/_}
 
 HPN_PATCH="${PARCH}-hpnssh14v10.tar.xz"
 LDAP_PATCH="${PN}-lpk-7.1p2-0.3.14.patch.xz"
-X509_VER="8.6" X509_PATCH="${PN}-${PV/_}+x509-${X509_VER}.diff.xz"
+X509_VER="8.7" X509_PATCH="${PN}-${PV/_}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.org/"
@@ -28,7 +28,7 @@ SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
 
 LICENSE="BSD GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
 # Probably want to drop ssl defaulting to on in a future version.
 IUSE="bindist debug ${HPN_PATCH:++}hpn kerberos kernel_linux ldap ldns libedit libressl pam +pie sctp selinux skey ssh1 +ssl static X X509"
 REQUIRED_USE="ldns? ( ssl )
@@ -125,7 +125,6 @@ src_prepare() {
 		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}
 		epatch "${FILESDIR}"/${PN}-7.1_p2-x509-hpn14v10-glue.patch
-		epatch "${FILESDIR}"/${PN}-6.9_p1-x509-warnings.patch
 		save_version X509
 	fi
 	if use ldap ; then
