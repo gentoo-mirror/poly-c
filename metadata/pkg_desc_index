@@ -19,7 +19,6 @@ app-text/calibre 2.46.0_pre 2.47.0_pre: Ebook management application
 app-text/libetonyek 0.1.4_pre 0.1.5_pre: Library parsing Apple Keynote presentations
 app-text/libodfgen 0.1.5_pre 0.1.6_pre: Library to generate ODF documents from libwpd and libwpg
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
-app-text/poppler 0.40.0_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-db/sqlite 3.10.1_pre: A SQL Database Engine in a C Library
 dev-db/unixODBC 2.3.3_pre: A complete ODBC driver manager
 dev-java/ant-core 1.9.5_pre 1.9.6_pre: Java-based build tool similar to 'make' that uses XML configuration files
@@ -126,7 +125,6 @@ net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/nghttp2 1.5.0_pre: HTTP/2 C Library
 net-libs/webkit-gtk 2.4.7 2.4.8 2.4.9 2.11.1_pre 2.11.2_pre: Open source web browser engine
 net-misc/openssh 7.1_p1-r2 7.1_p1-r3 7.1_p2: Port of OpenBSD's free SSH release
-net-print/cups-filters 1.6.0_pre: Cups PDF filters
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sys-apps/firmware-addon-dell 2.2.9: Additional firmware tools for dell computers
 sys-apps/firmware-extract 2.0.13: Additional firmware tools for dell computers
@@ -139,7 +137,6 @@ sys-apps/kmod 20 21 22: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g: Standard commands to read man pages
 sys-apps/portage 2.2.8-r2: Portage is the package management and distribution system for Gentoo
-sys-apps/usb_modeswitch 2.2.5_p20150627_pre 2.2.6_p20151101_pre: USB_ModeSwitch is a tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.00_p5107-r2 2.02_beta2-r3 2.02_beta2-r6 2.02_beta2-r7 2.02_beta2-r8 2.02_beta2-r9: GNU GRUB boot loader
