@@ -4,12 +4,12 @@
 
 EAPI=5
 
-inherit bash-completion-r1 eutils multilib toolchain-funcs
+inherit bash-completion-r1 eutils multilib toolchain-funcs poly-c_ebuilds
 
 libbtrfs_soname=0
 
-if [[ ${PV} != 9999 ]]; then
-	MY_PV=v${PV/_/-}
+if [[ ${MY_PV} != 9999 ]]; then
+	MY_PV=v${MY_PV/_/-}
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86"
 	SRC_URI="https://www.kernel.org/pub/linux/kernel/people/kdave/${PN}/${PN}-${MY_PV}.tar.xz"
 	S="${WORKDIR}"/${PN}-${MY_PV}
@@ -54,13 +54,13 @@ DEPEND="${RDEPEND}
 	)
 "
 
-if [[ ${PV} == 9999 ]]; then
+if [[ ${MY_PV} == 9999 ]]; then
 	DEPEND+=" sys-devel/gnuconfig"
 fi
 
 src_prepare() {
 	epatch_user
-	if [[ ${PV} == 9999 ]]; then
+	if [[ ${MY_PV} == 9999 ]]; then
 		eautoreconf
 		mkdir config || die
 		local automakedir="$(autotools_run_tool --at-output automake --print-libdir)"

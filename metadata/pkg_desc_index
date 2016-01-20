@@ -19,7 +19,7 @@ app-text/calibre 2.46.0_pre 2.47.0_pre: Ebook management application
 app-text/libetonyek 0.1.4_pre 0.1.5_pre: Library parsing Apple Keynote presentations
 app-text/libodfgen 0.1.5_pre 0.1.6_pre: Library to generate ODF documents from libwpd and libwpg
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
-dev-db/sqlite 3.10.1_pre: A SQL Database Engine in a C Library
+dev-db/sqlite 3.10.1_pre 3.10.2_pre: A SQL Database Engine in a C Library
 dev-db/unixODBC 2.3.3_pre: A complete ODBC driver manager
 dev-java/ant-core 1.9.5_pre 1.9.6_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
@@ -126,6 +126,7 @@ net-libs/nghttp2 1.5.0_pre: HTTP/2 C Library
 net-libs/webkit-gtk 2.4.7 2.4.8 2.4.9 2.11.1_pre 2.11.2_pre: Open source web browser engine
 net-misc/openssh 7.1_p1-r2 7.1_p1-r3 7.1_p2: Port of OpenBSD's free SSH release
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
+sys-apps/coreutils 8.25_pre: Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)
 sys-apps/firmware-addon-dell 2.2.9: Additional firmware tools for dell computers
 sys-apps/firmware-extract 2.0.13: Additional firmware tools for dell computers
 sys-apps/firmware-tools 2.1.14: Firmware tools for dell computers
@@ -143,7 +144,7 @@ sys-boot/grub 2.00_p5107-r2 2.02_beta2-r3 2.02_beta2-r6 2.02_beta2-r7 2.02_beta2
 sys-devel/autogen 5.18.6_pre 5.18.7_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
-sys-fs/btrfs-progs 4.4_rc1: Btrfs filesystem utilities
+sys-fs/btrfs-progs 4.4_pre: Btrfs filesystem utilities
 sys-fs/lvm2 2.02.138_pre 2.02.139_pre 2.02.140_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 217 218 219 220-r3 222 224 224-r1 224-r2 225 226_pre 227_pre 228: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
