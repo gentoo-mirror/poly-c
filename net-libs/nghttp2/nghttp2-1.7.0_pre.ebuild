@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -8,12 +8,12 @@ EAPI="5"
 
 inherit multilib-minimal poly-c_ebuilds
 
-if [[ ${PV} == 9999 ]] ; then
+if [[ ${MY_PV} == 9999 ]] ; then
 	EGIT_REPO_URI="https://github.com/tatsuhiro-t/nghttp2.git"
 	inherit git-2
 else
 	SRC_URI="https://github.com/tatsuhiro-t/nghttp2/releases/download/v${MY_PV}/${MY_P}.tar.gz"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
+	KEYWORDS="alpha amd64 ~arm ~arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc x86"
 fi
 
 DESCRIPTION="HTTP/2 C Library"
@@ -24,16 +24,16 @@ SLOT="0/1.14" # <C++>.<C> SONAMEs
 IUSE="cxx debug hpack-tools jemalloc libressl static-libs test +threads utils xml"
 
 RDEPEND="
-	cxx? ( dev-libs/boost[${MULTILIB_USEDEP},threads] )
+	cxx? ( dev-libs/boost:=[${MULTILIB_USEDEP},threads] )
 	hpack-tools? ( >=dev-libs/jansson-2.5 )
 	jemalloc? ( dev-libs/jemalloc )
 	utils? (
 		>=dev-libs/libev-4.15
-		!libressl? ( >=dev-libs/openssl-1.0.2:0 )
+		!libressl? ( >=dev-libs/openssl-1.0.2:0[-bindist] )
 		libressl? ( dev-libs/libressl )
 		>=sys-libs/zlib-1.2.3
 	)
-	xml? ( >=dev-libs/libxml2-2.7.7 )"
+	xml? ( >=dev-libs/libxml2-2.7.7:2 )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	test? ( >=dev-util/cunit-2.1[${MULTILIB_USEDEP}] )"
