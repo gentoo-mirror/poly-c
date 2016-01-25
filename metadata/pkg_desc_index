@@ -30,10 +30,8 @@ dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/crypto++ 5.6.3_pre: C++ class library of cryptographic schemes
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
-dev-libs/icu 54.1-r1 55.1: International Components for Unicode
-dev-libs/libburn 1.4.2_pre: Libburn is an open-source library for reading, mastering and writing optical discs
+dev-libs/icu 54.1-r1 55.1 56.1: International Components for Unicode
 dev-libs/libclc 0.0.1_pre20140101: OpenCL C library
-dev-libs/libisofs 1.4.2_pre: libisofs is an open-source library for reading, mastering and writing optical discs
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.21_pre: Perl-compatible regular expression library
 dev-libs/libusb 1.0.20_rc3: Userspace access to USB devices
@@ -49,7 +47,6 @@ dev-python/google-apputils 0.4.0: Collection of utilities for building Python ap
 dev-ruby/parslet 1.7.1: A small PEG based parser library
 dev-scheme/guile 2.0.11_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.59.0_pre: A system for large project software construction, which is simple to use and powerful
-dev-util/cmake 3.4.0_rc2 3.4.0_rc3: Cross platform Make
 dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
 dev-util/gtk-update-icon-cache 3.16.7_pre: GTK update icon cache
 dev-util/mdds 1.0.0_pre: A collection of multi-dimensional data structure and indexing algorithm
@@ -125,7 +122,6 @@ net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/nghttp2 1.5.0_pre: HTTP/2 C Library
 net-libs/webkit-gtk 2.4.7 2.4.8 2.4.9 2.11.1_pre 2.11.2_pre: Open source web browser engine
 net-misc/openssh 7.1_p1-r2 7.1_p1-r3 7.1_p2 7.1_p2-r1: Port of OpenBSD's free SSH release
-net-print/cups-filters 1.7.0_pre 1.8.1_pre: Cups PDF filters
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sys-apps/firmware-addon-dell 2.2.9: Additional firmware tools for dell computers
 sys-apps/firmware-extract 2.0.13: Additional firmware tools for dell computers
@@ -153,7 +149,7 @@ sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-power/cpupower 3.10.93 3.10.94 3.10.95 3.12.46 3.12.47 3.12.49 3.14.57 3.14.58 3.14.59 3.18.23 3.18.24 3.18.25 4.1.14 4.1.15 4.1.16: Shows and sets processor power related values
 www-apps/ampache 3.8.0_pre: Ampache is a PHP-based tool for managing, updating and playing your audio files via a web interface
 www-client/midori 0.5.11: A lightweight web browser based on WebKitGTK+
-www-client/seamonkey 2.38 2.39: Seamonkey Web Browser
+www-client/seamonkey 2.38 2.39 2.40_pre4: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-base/xorg-server 1.18.0_pre: X.Org X servers
