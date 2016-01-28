@@ -1,12 +1,12 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4c4758a16b5da57e7f29ec749e69f7c9f9583ec6 $
+# $Id: 79b9c7d773799559fadc8182684d7216e3843132 $
 
 EAPI=5
 
 EGIT_REPO_URI="https://github.com/clementine-player/Clementine.git"
 
-LANGS=" af ar be bg bn br bs ca cs cy da de el en_CA en_GB eo es es_AR et eu fa fi fr ga gl he hi hr hu hy ia id is it ja ka kk ko lt lv mr ms nb nl oc pa pl pt pt_BR ro ru sk sl sr sr@latin sv te tr uk uz vi zh_CN zh_TW"
+LANGS=" af ar be bg bn br bs ca cs cy da de el en_CA en_GB eo es et eu fa fi fr ga gl he he_IL hi hr hu hy ia id is it ja ka kk ko lt lv mr ms my nb nl oc pa pl pt pt_BR ro ru si_LK sk sl sr sr@latin sv te tr tr_TR uk uz vi zh_CN zh_TW"
 
 inherit cmake-utils flag-o-matic fdo-mime gnome2-utils virtualx
 [[ ${PV} == *9999* ]] && inherit git-2
@@ -42,7 +42,7 @@ COMMON_DEPEND="
 	>=media-libs/chromaprint-0.6
 	media-libs/gstreamer:1.0
 	media-libs/gst-plugins-base:1.0
-	media-libs/libechonest:=
+	media-libs/libechonest:=[qt4]
 	>=media-libs/libmygpo-qt-1.0.8
 	>=media-libs/taglib-1.8[mp4]
 	sys-libs/zlib
