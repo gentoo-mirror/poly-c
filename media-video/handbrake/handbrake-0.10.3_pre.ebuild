@@ -95,6 +95,9 @@ src_prepare() {
 	# Fix missing x265 link flag
 	epatch "${FILESDIR}"/${PN}-9999-fix-missing-x265-link-flag.patch
 
+	# Get rid of libav specific code when using ffmpeg
+	use libav || EPATCH_OPTS="-R" epatch "${FILESDIR}/${MY_P}-nolibav.patch"
+
 	cd "${S}/gtk"
 	# Don't run autogen.sh.
 	sed -i '/autogen.sh/d' module.rules || die "Removing autogen.sh call failed"
