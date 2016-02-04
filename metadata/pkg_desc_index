@@ -33,7 +33,6 @@ dev-libs/icu 54.1-r1 55.1 56.1: International Components for Unicode
 dev-libs/libclc 0.0.1_pre20140101: OpenCL C library
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.21_pre: Perl-compatible regular expression library
-dev-libs/libusb 1.0.20_rc3: Userspace access to USB devices
 dev-libs/mini-xml 2.9_pre: Small XML parsing library to read XML and XML-like data files
 dev-libs/redland 1.0.16: High-level interface for the Resource Description Framework
 dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
@@ -121,7 +120,6 @@ net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
 net-im/pidgin 2.10.10 2.10.11 2.10.12 2.10.12-r1: GTK Instant Messenger client
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
-net-libs/nghttp2 1.7.0_pre: HTTP/2 C Library
 net-libs/webkit-gtk 2.4.7 2.4.8 2.4.9 2.11.2_pre 2.11.4_pre: Open source web browser engine
 net-misc/openssh 7.1_p1-r2 7.1_p1-r3 7.1_p2 7.1_p2-r1: Port of OpenBSD's free SSH release
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
