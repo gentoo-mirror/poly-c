@@ -55,13 +55,17 @@ dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
 dev-util/gtk-update-icon-cache 3.16.7_pre: GTK update icon cache
 dev-util/mdds 1.0.0_pre: A collection of multi-dimensional data structure and indexing algorithm
 dev-util/ragel 7.0.0.5_pre: Compiles finite state machines from regular languages into executable code
+dev-util/xdelta 3.0.11_pre: a binary diff and differential compression tools. VCDIFF (RFC 3284) delta compression
+dev-vcs/bzr 2.7.0_pre: Bazaar is a next generation distributed version control system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.74 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.42b 9999: Return to Castle Wolfenstein - IORTCW Project
+games-misc/opengfx 0.5.4_pre: OpenGFX data files for OpenTTD
 games-strategy/0ad 0.0.19_alpha_pre: A free, real-time strategy game
 games-strategy/0ad-data 0.0.19_alpha_pre: Data files for 0ad
 games-strategy/boswars 9999: Futuristic real-time strategy game
+games-util/nml 0.4.4_pre: Compiler of NML files into grf/nfo files
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 lxde-base/lxsession 0.4.9.2 0.4.9.2-r1 0.4.9.2-r2 0.4.9.2-r3: LXDE session manager (lite version)
