@@ -23,6 +23,7 @@ app-text/po4a 0.47_pre: Tools for helping translation of documentation
 dev-db/unixODBC 2.3.3_pre: A complete ODBC driver manager
 dev-java/ant-core 1.9.5_pre 1.9.6_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
+dev-java/icedtea-web 1.6.2_pre: FOSS Java browser plugin and Web Start implementation
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-libs/Ice 3.6.0_pre: ICE middleware C++ library and generator tools
 dev-libs/boost 1.59.0_pre: Boost Libraries for C++
@@ -34,7 +35,9 @@ dev-libs/icu 54.1-r1 55.1 56.1: International Components for Unicode
 dev-libs/libclc 0.0.1_pre20140101: OpenCL C library
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.21_pre: Perl-compatible regular expression library
+dev-libs/librevenge 0.0.4_pre: A helper library for REVerse ENGineered formats filters
 dev-libs/mini-xml 2.9_pre: Small XML parsing library to read XML and XML-like data files
+dev-libs/protobuf-c 1.2.0_pre: code generator and runtime libraries to use Protocol Buffers (protobuf) from pure C
 dev-libs/redland 1.0.16: High-level interface for the Resource Description Framework
 dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 dev-perl/Net-DNS 1.40.0_pre: Perl Net::DNS - Perl DNS Resolver Module
