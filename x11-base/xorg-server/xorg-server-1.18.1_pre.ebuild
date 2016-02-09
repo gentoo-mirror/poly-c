@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -6,14 +6,14 @@ EAPI=5
 
 XORG_DOC=doc
 inherit xorg-2 multilib versionator flag-o-matic poly-c_x
-EGIT_REPO_URI="git://anongit.freedesktop.org/git/xorg/xserver"
+EGIT_REPO_URI="git://anongit.freedesktop.org/xorg/xserver"
 
 DESCRIPTION="X.Org X servers"
 SLOT="0/${MY_PV}"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
 
 IUSE_SERVERS="dmx kdrive xephyr xnest xorg xvfb"
-IUSE="${IUSE_SERVERS} glamor ipv6 libressl minimal nptl selinux +suid systemd tslib +udev unwind wayland"
+IUSE="${IUSE_SERVERS} glamor ipv6 libressl minimal selinux +suid systemd tslib +udev unwind wayland"
 
 CDEPEND=">=app-eselect/eselect-opengl-1.3.0
 	!libressl? ( dev-libs/openssl:0 )
@@ -67,7 +67,7 @@ CDEPEND=">=app-eselect/eselect-opengl-1.3.0
 	!minimal? (
 		>=x11-libs/libX11-1.1.5
 		>=x11-libs/libXext-1.0.5
-		>=media-libs/mesa-10.3.4-r1[nptl=]
+		>=media-libs/mesa-10.3.4-r1
 	)
 	tslib? ( >=x11-libs/tslib-1.0 )
 	udev? ( >=virtual/udev-150 )
@@ -90,9 +90,9 @@ DEPEND="${CDEPEND}
 	>=x11-proto/fixesproto-5.0
 	>=x11-proto/fontsproto-2.1.3
 	>=x11-proto/glproto-1.4.17-r1
-	>=x11-proto/inputproto-2.2.99.1
+	>=x11-proto/inputproto-2.3
 	>=x11-proto/kbproto-1.0.3
-	>=x11-proto/randrproto-1.4.0
+	>=x11-proto/randrproto-1.5.0
 	>=x11-proto/recordproto-1.13.99.1
 	>=x11-proto/renderproto-0.11
 	>=x11-proto/resourceproto-1.2.0
@@ -105,7 +105,7 @@ DEPEND="${CDEPEND}
 	>=x11-proto/xf86rushproto-1.1.2
 	>=x11-proto/xf86vidmodeproto-2.2.99.1
 	>=x11-proto/xineramaproto-1.1.3
-	>=x11-proto/xproto-7.0.26
+	>=x11-proto/xproto-7.0.28
 	>=x11-proto/presentproto-1.0
 	>=x11-proto/dri3proto-1.0
 	dmx? (
@@ -129,7 +129,7 @@ RDEPEND="${CDEPEND}
 "
 
 PDEPEND="
-	xorg? ( >=x11-base/xorg-drivers-1.17 )"
+	xorg? ( >=x11-base/xorg-drivers-$(get_version_component_range 1-2) )"
 
 REQUIRED_USE="!minimal? (
 		|| ( ${IUSE_SERVERS} )
@@ -144,7 +144,7 @@ PATCHES=(
 	"${UPSTREAMED_PATCHES[@]}"
 	"${FILESDIR}"/${PN}-1.12-unloadsubmodule.patch
 	# needed for new eselect-opengl, bug #541232
-	"${FILESDIR}"/${PN}-1.17-support-multiple-Files-sections.patch
+	"${FILESDIR}"/${PN}-1.18-support-multiple-Files-sections.patch
 )
 
 pkg_pretend() {
@@ -157,7 +157,7 @@ src_configure() {
 	# localstatedir is used for the log location; we need to override the default
 	#	from ebuild.sh
 	# sysconfdir is used for the xorg.conf location; same applies
-	# NOTE: fop is used for doc generating ; and i have no idea if gentoo
+	# NOTE: fop is used for doc generating; and I have no idea if Gentoo
 	#	package it somewhere
 	XORG_CONFIGURE_OPTIONS=(
 		$(use_enable ipv6)
@@ -173,7 +173,6 @@ src_configure() {
 		$(use_enable wayland xwayland)
 		$(use_enable !minimal record)
 		$(use_enable !minimal xfree86-utils)
-		$(use_enable !minimal install-libxf86config)
 		$(use_enable !minimal dri)
 		$(use_enable !minimal dri2)
 		$(use_enable !minimal glx)
@@ -181,7 +180,6 @@ src_configure() {
 		$(use_enable xnest)
 		$(use_enable xorg)
 		$(use_enable xvfb)
-		$(use_enable nptl glx-tls)
 		$(use_enable udev config-udev)
 		$(use_with doc doxygen)
 		$(use_with doc xmlto)
@@ -208,7 +206,7 @@ src_install() {
 
 	server_based_install
 
-	if ! use minimal &&	use xorg; then
+	if ! use minimal && use xorg; then
 		# Install xorg.conf.example into docs
 		dodoc "${AUTOTOOLS_BUILD_DIR}"/hw/xfree86/xorg.conf.example
 	fi

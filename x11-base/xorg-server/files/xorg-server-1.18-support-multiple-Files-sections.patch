@@ -1,13 +1,4 @@
-From a140d7ce3f37f30b4fed27c5a70ebcc4ed13c612 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Micha=C5=82=20G=C3=B3rny?= <mgorny@gentoo.org>
-Date: Tue, 24 Feb 2015 12:57:24 +0100
-Subject: [PATCH] config: Support multiple 'Files' sections
-
----
- hw/xfree86/parser/Files.c       | 8 ++++++--
- hw/xfree86/parser/configProcs.h | 2 +-
- hw/xfree86/parser/read.c        | 2 +-
- 3 files changed, 8 insertions(+), 4 deletions(-)
+See http://lists.x.org/archives/xorg-devel/2015-February/045755.html
 
 diff --git a/hw/xfree86/parser/Files.c b/hw/xfree86/parser/Files.c
 index 849bf92..5cc3ec7 100644
@@ -35,10 +26,10 @@ index 849bf92..5cc3ec7 100644
          while ((token = xf86getToken(FilesTab)) != ENDSECTION) {
          switch (token) {
 diff --git a/hw/xfree86/parser/configProcs.h b/hw/xfree86/parser/configProcs.h
-index 774e2a2..b9fdebb 100644
+index 171f8e8..e8199fe 100644
 --- a/hw/xfree86/parser/configProcs.h
 +++ b/hw/xfree86/parser/configProcs.h
-@@ -37,7 +37,7 @@ void xf86freeDeviceList(XF86ConfDevicePtr ptr);
+@@ -36,7 +36,7 @@ void xf86freeDeviceList(XF86ConfDevicePtr ptr);
  int xf86validateDevice(XF86ConfigPtr p);
  
  /* Files.c */
@@ -60,6 +51,3 @@ index 327c02a..e0d6139 100644
              }
              else if (xf86nameCompare(xf86_lex_val.str, "serverflags") == 0) {
                  free(xf86_lex_val.str);
--- 
-2.3.0
-
