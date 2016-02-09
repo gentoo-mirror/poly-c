@@ -187,6 +187,21 @@ REQUIRED_USE="
 	xv? ( xcb )
 "
 
+PATCHES=(
+	# Fix build system mistake.
+	"${FILESDIR}"/${PN}-2.1.0-fix-libtremor-libs.patch
+
+	# Patch up incompatibilities and reconfigure autotools.
+	"${FILESDIR}"/${PN}-9999-libva-1.2.1-compat.patch
+
+	# Fix up broken audio when skipping using a fixed reversed bisected commit.
+	"${FILESDIR}"/${PN}-2.1.0-TomWij-bisected-PA-broken-underflow.patch
+
+	# Bug #541678
+	"${FILESDIR}"/qt4-select.patch
+
+)
+
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
@@ -220,28 +235,12 @@ src_prepare() {
 	# We are not in a real git checkout due to the absence of a .git directory.
 	touch src/revision.txt || die
 
-	# PATCHES
-	# Fix build system mistake.
-	eapply "${FILESDIR}"/${PN}-2.1.0-fix-libtremor-libs.patch
-
-	# Patch up incompatibilities and reconfigure autotools.
-	eapply "${FILESDIR}"/${PN}-9999-libva-1.2.1-compat.patch
-
-	# Patch for bug 541928
-	#eapply "${FILESDIR}"/${PN}-2.2.0-xcb_vdpau.patch
-
-	# Fix up broken audio when skipping using a fixed reversed bisected commit.
-	eapply "${FILESDIR}"/${PN}-2.1.0-TomWij-bisected-PA-broken-underflow.patch
-
-	# Bug #541678
-	eapply "${FILESDIR}"/qt4-select.patch
+	default
 
 	# Don't use --started-from-file when not using dbus.
 	if ! use dbus ; then
 		sed -i 's/ --started-from-file//' share/vlc.desktop.in || die
 	fi
-
-	default
 
 	eautoreconf
 

@@ -13,4 +13,4 @@ SLOT=0/5-8
 SRC_URI=http://download.videolan.org/pub/videolan/vlc/2.2.2/vlc-2.2.2.tar.xz
 _eclass_exported_funcs=pkg_postinst:- pkg_setup:- src_prepare:- src_configure:- src_test:- src_install:-
 _eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	eutils	28fb3e5852485af1c348d446b0b98389	flag-o-matic	d270fa247153df66074f795fa42dba3e	libtool	b75230758539a7da029e24afdb693960	multilib	3972ca401cf7dbb430df9995f5d8d580	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85	virtualx	86c9305a59b3e0459e7fbef3a5f30b96
-_md5_=f39610cdd6aa83539067d3a58ab7f7cf
+_md5_=e5bdedef62938d454db37f08e5646bc4
