@@ -74,15 +74,17 @@ lxde-base/lxsession 0.4.9.2 0.4.9.2-r1 0.4.9.2-r2 0.4.9.2-r3: LXDE session manag
 media-fonts/terminus-font 4.40_pre: A clean fixed font for the console and X11
 media-gfx/graphite2 1.3.3_pre 1.3.4_pre 1.3.5_pre: Library providing rendering capabilities for complex non-Roman writing systems
 media-libs/chromaprint 1.3_pre: A client-side library that implements a custom algorithm for extracting fingerprints
+media-libs/glm 0.9.7.2_pre: OpenGL Mathematics
 media-libs/gst-plugins-bad 1.7.1_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.7.1_pre: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.7.1_pre: Basepack of plugins for GStreamer
 media-libs/gst-plugins-ugly 1.7.1_pre: Basepack of plugins for gstreamer
 media-libs/gstreamer 1.7.1_pre: Open source multimedia framework
 media-libs/libbpg 0.9.5_pre 0.9.6_pre: BPG (Better Portable Graphics) is a new image format
+media-libs/libcdr 0.1.2_pre: Library parsing the Corel cdr documents
 media-libs/libdvdcss 1.3.99 1.4.0: A portable abstraction library for DVD decryption
 media-libs/libmygpo-qt 1.0.8_pre: Qt/C++ library wrapping the gpodder.net webservice
-media-libs/libvisio 0.1.4_pre: Library parsing the visio documents
+media-libs/libvisio 0.1.4_pre 0.1.5_pre: Library parsing the visio documents
 media-libs/libwebp 0.4.4_pre: A lossy image compression format
 media-plugins/gst-plugins-a52dec 1.7.1_pre: plugin for gstreamer
 media-plugins/gst-plugins-cdparanoia 1.7.1_pre: plugin for gstreamer
