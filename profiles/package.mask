@@ -1,7 +1,7 @@
 # masked for testing
-=www-client/seamonkey-2.40_alpha*
-=www-client/seamonkey-2.40_beta*
-=www-client/seamonkey-2.40_pre*
+=www-client/seamonkey-2.41_alpha*
+=www-client/seamonkey-2.41_beta*
+=www-client/seamonkey-2.41_pre*
 
 # segfaults
 app-misc/kenny
