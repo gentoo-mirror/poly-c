@@ -40,3 +40,6 @@ media-radio/liquidsoap
 
 # doesn't compile
 =dev-util/ragel-7.0.0.6_pre
+
+# breaks some packages
+=media-video/ffmpeg-3.0_pre
