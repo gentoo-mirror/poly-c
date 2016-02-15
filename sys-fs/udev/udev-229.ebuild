@@ -1,10 +1,10 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c9d46a5646cc8bde375c10a1d136f0b068ff1cb3 $
+# $Id: sys-fs/udev/udev-229.ebuild $
 
 EAPI=6
 
-inherit autotools bash-completion-r1 eutils linux-info multilib multilib-minimal toolchain-funcs udev user versionator poly-c_ebuilds
+inherit autotools bash-completion-r1 eutils linux-info multilib multilib-minimal toolchain-funcs udev user versionator
 
 if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://anongit.freedesktop.org/systemd/systemd"
@@ -12,7 +12,7 @@ if [[ ${PV} = 9999* ]]; then
 else
 	patchset=
 	FIXUP_PATCH="${PN}-221-revert-systemd-messup.patch.xz"
-	SRC_URI="https://github.com/systemd/systemd/archive/v${MY_PV}.tar.gz -> systemd-${MY_PV}.tar.gz
+	SRC_URI="https://github.com/systemd/systemd/archive/v${PV}.tar.gz -> systemd-${PV}.tar.gz
 		https://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}"
 	if [[ -n "${patchset}" ]]; then
 		SRC_URI+="
@@ -65,7 +65,7 @@ RDEPEND="${COMMON_DEPEND}
 PDEPEND=">=sys-apps/hwids-20140304[udev]
 	>=sys-fs/udev-init-scripts-26"
 
-S=${WORKDIR}/systemd-${MY_PV}
+S=${WORKDIR}/systemd-${PV}
 
 # The multilib-build.eclass doesn't handle situation where the installed headers
 # are different in ABIs. In this case, we install libgudev headers in native
@@ -121,7 +121,6 @@ src_prepare() {
 	fi
 
 	eapply "${WORKDIR}"/${FIXUP_PATCH/.xz}
-	#rm man/systemd-hwdb.xml || die
 
 	cat <<-EOF > "${T}"/40-gentoo.rules
 	# Gentoo specific floppy and usb groups
