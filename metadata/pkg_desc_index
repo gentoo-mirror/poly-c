@@ -83,7 +83,6 @@ media-libs/libdvdcss 1.3.99 1.4.0: A portable abstraction library for DVD decryp
 media-libs/libmygpo-qt 1.0.8_pre: Qt/C++ library wrapping the gpodder.net webservice
 media-libs/libvisio 0.1.4_pre 0.1.5_pre: Library parsing the visio documents
 media-libs/libwebp 0.4.4_pre: A lossy image compression format
-media-libs/mesa 11.1.2_pre: OpenGL-like graphic library for Linux
 media-plugins/gst-plugins-a52dec 1.7.1_pre: plugin for gstreamer
 media-plugins/gst-plugins-cdparanoia 1.7.1_pre: plugin for gstreamer
 media-plugins/gst-plugins-dts 1.7.1_pre: GStreamer plugin for MPEG-1/2 video encoding
@@ -155,7 +154,7 @@ sys-devel/autogen 5.18.6_pre 5.18.7_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
 sys-fs/btrfs-progs 4.4_pre: Btrfs filesystem utilities
-sys-fs/lvm2 2.02.138_pre 2.02.139_pre 2.02.140_pre 2.02.141_pre: User-land utilities for LVM2 (device-mapper) software
+sys-fs/lvm2 2.02.140_pre 2.02.141_pre 2.02.142_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 217 218 219 220-r3 222 224 224-r1 224-r2 225 226_pre 227_pre 228 229: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
