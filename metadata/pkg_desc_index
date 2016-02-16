@@ -19,6 +19,7 @@ app-text/calibre 2.46.0_pre 2.47.0_pre: Ebook management application
 app-text/libetonyek 0.1.4_pre 0.1.5_pre: Library parsing Apple Keynote presentations
 app-text/libodfgen 0.1.5_pre 0.1.6_pre: Library to generate ODF documents from libwpd and libwpg
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
+dev-db/sqlite 3.11.0_pre: A SQL Database Engine in a C Library
 dev-db/unixODBC 2.3.3_pre: A complete ODBC driver manager
 dev-java/ant-core 1.9.5_pre 1.9.6_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
@@ -60,6 +61,7 @@ games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor addition
 games-fps/etlegacy 2.74 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.42b 9999: Return to Castle Wolfenstein - IORTCW Project
 games-misc/opengfx 0.5.4_pre: OpenGFX data files for OpenTTD
+games-rpg/manaplus 1.6.2.13_pre: OpenSource 2D MMORPG client for Evol Online and The Mana World
 games-strategy/0ad 0.0.19_alpha_pre: A free, real-time strategy game
 games-strategy/0ad-data 0.0.19_alpha_pre: Data files for 0ad
 games-strategy/boswars 9999: Futuristic real-time strategy game
@@ -159,7 +161,7 @@ sys-fs/udev 216 217 218 219 220-r3 222 224 224-r1 224-r2 225 226_pre 227_pre 228
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 3.10.94 3.10.95 3.10.96 3.12.46 3.12.47 3.12.49 3.14.58 3.14.59 3.14.60 3.18.24 3.18.25 3.18.26 4.1.15 4.1.16 4.1.17: Shows and sets processor power related values
+sys-power/cpupower 3.10.94 3.10.95 3.10.96 3.12.46 3.12.47 3.12.49 3.14.58 3.14.59 3.14.60 3.18.25 3.18.26 3.18.27 4.1.16 4.1.17 4.1.18: Shows and sets processor power related values
 www-client/midori 0.5.11: A lightweight web browser based on WebKitGTK+
 www-client/seamonkey 2.38 2.39 2.40_pre4: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
