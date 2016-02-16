@@ -23,7 +23,6 @@ dev-libs/ewahboolarray
 
 # doesn't build abi_x86_32
 =app-crypt/heimdal-1.6_rc2
-=dev-libs/libusb-1.0.20_rc3
 
 # Missing dependencies
 media-radio/liquidsoap
@@ -41,5 +40,3 @@ media-radio/liquidsoap
 # doesn't compile
 =dev-util/ragel-7.0.0.6_pre
 
-# breaks some packages
-=media-video/ffmpeg-3.0_pre
