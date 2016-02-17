@@ -3,27 +3,27 @@
 # $Id$
 
 EAPI=5
-inherit games poly-c_ebuilds
+[[ ${PV} == 9999 ]] && SCM="autotools git-r3"
+inherit games ${SCM}
+unset SCM
 
 DESCRIPTION="OpenSource 2D MMORPG client for Evol Online and The Mana World"
 HOMEPAGE="http://manaplus.evolonline.org"
-SRC_URI="http://download.evolonline.org/manaplus/download/${MY_PV}/manaplus-${MY_PV}.tar.xz"
+if [[ ${PV} == 9999 ]] ; then
+	EGIT_REPO_URI="https://github.com/ManaPlus/ManaPlus.git"
+else
+	SRC_URI="http://download.evolonline.org/manaplus/download/${MY_PV}/manaplus-${MY_PV}.tar.xz"
+	KEYWORDS="~amd64 ~x86"
+fi
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE="nls opengl"
+IUSE="mumble nls opengl +sdl2 test"
 
 RDEPEND="
 	>=dev-games/physfs-1.0.0
 	dev-libs/libxml2
 	media-libs/libpng:0=
-	media-libs/libsdl2[X,opengl?,video]
-	media-libs/sdl2-gfx
-	media-libs/sdl2-image[png]
-	media-libs/sdl2-mixer[vorbis]
-	media-libs/sdl2-net
-	media-libs/sdl2-ttf
 	net-misc/curl
 	sys-libs/zlib
 	x11-libs/libX11
@@ -33,22 +33,47 @@ RDEPEND="
 	media-fonts/wqy-microhei
 	media-fonts/liberation-fonts
 	media-fonts/mplus-outline-fonts
+	mumble? ( media-sound/mumble )
 	nls? ( virtual/libintl )
-	opengl? ( virtual/opengl )"
+	opengl? ( virtual/opengl )
+	sdl2? (
+		media-libs/libsdl2[X,opengl?,video]
+		media-libs/sdl2-gfx
+		media-libs/sdl2-image[png]
+		media-libs/sdl2-mixer[vorbis]
+		media-libs/sdl2-net
+		media-libs/sdl2-ttf
+	)
+	!sdl2? (
+		media-libs/libsdl[X,opengl?,video]
+		media-libs/sdl-gfx
+		media-libs/sdl-image[png]
+		media-libs/sdl-mixer[vorbis]
+		media-libs/sdl-net
+		media-libs/sdl-ttf
+	)"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	nls? ( sys-devel/gettext )"
 
+src_prepare() {
+	if [[ ${PV} == 9999 ]] ; then
+		eautoreconf
+	fi
+}
+
 src_configure() {
 	CONFIG_SHELL=/bin/bash \
 	egamesconf \
-		--with-sdl2 \
 		--without-internalsdlgfx \
 		--localedir=/usr/share/locale \
 		--prefix="/usr" \
 		--bindir="${GAMES_BINDIR}" \
+		$(use_with mumble) \
+		$(use_enable nls) \
 		$(use_with opengl) \
-		$(use_enable nls)
+		$(use_with sdl2) \
+		$(use_enable test unittests)
 }
 
 src_install() {
@@ -68,4 +93,8 @@ src_install() {
 	dosym /usr/share/fonts/wqy-microhei/wqy-microhei.ttc "${GAMES_DATADIR}"/${PN}/data/fonts/wqy-microhei.ttf
 
 	prepgamesdirs
+}
+
+src_test() {
+	make check
 }
