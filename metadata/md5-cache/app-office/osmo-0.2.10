@@ -9,5 +9,5 @@ RDEPEND=>=x11-libs/gtk+-2.12:2 >=dev-libs/libtar-1.2.11-r3 dev-libs/libxml2:2 de
 SLOT=0
 SRC_URI=mirror://sourceforge/osmo-pim/osmo-0.2.10.tar.gz
 _eclass_exported_funcs=src_prepare:- src_configure:- src_install:-
-_eclasses_=eutils	28fb3e5852485af1c348d446b0b98389	flag-o-matic	d270fa247153df66074f795fa42dba3e	multilib	3972ca401cf7dbb430df9995f5d8d580	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_eclasses_=eutils	9d81603248f2ba3ec59124320d123e5e	flag-o-matic	d270fa247153df66074f795fa42dba3e	multilib	3972ca401cf7dbb430df9995f5d8d580	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
 _md5_=3b0ebe51df49dc50d6e914897da4afc9

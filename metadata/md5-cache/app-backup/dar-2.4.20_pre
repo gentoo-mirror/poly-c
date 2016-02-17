@@ -11,5 +11,5 @@ RESTRICT=test
 SLOT=0
 SRC_URI=mirror://sourceforge/dar/dar-2.4.20.tar.gz
 _eclass_exported_funcs=pkg_setup:- src_configure:- src_install:-
-_eclasses_=confutils	18995f74ac4ffafb7ad853dfe133f209	eutils	28fb3e5852485af1c348d446b0b98389	flag-o-matic	d270fa247153df66074f795fa42dba3e	multilib	3972ca401cf7dbb430df9995f5d8d580	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_eclasses_=confutils	18995f74ac4ffafb7ad853dfe133f209	eutils	9d81603248f2ba3ec59124320d123e5e	flag-o-matic	d270fa247153df66074f795fa42dba3e	multilib	3972ca401cf7dbb430df9995f5d8d580	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
 _md5_=459e0fe1c4e7479d8603abf26c3dd16f
