@@ -18,24 +18,25 @@ fi
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="mumble nls opengl +sdl2 test"
+IUSE="mumble nls opengl pugixml +sdl2 test"
 
 RDEPEND="
 	>=dev-games/physfs-1.0.0
-	dev-libs/libxml2
+	media-fonts/dejavu
+	media-fonts/liberation-fonts
+	media-fonts/mplus-outline-fonts
+	media-fonts/wqy-microhei
 	media-libs/libpng:0=
 	net-misc/curl
 	sys-libs/zlib
+	x11-apps/xmessage
 	x11-libs/libX11
 	x11-misc/xdg-utils
-	x11-apps/xmessage
-	media-fonts/dejavu
-	media-fonts/wqy-microhei
-	media-fonts/liberation-fonts
-	media-fonts/mplus-outline-fonts
 	mumble? ( media-sound/mumble )
 	nls? ( virtual/libintl )
 	opengl? ( virtual/opengl )
+	pugixml? ( dev-libs/pugixml )
+	!pugixml? ( dev-libs/libxml2 )
 	sdl2? (
 		media-libs/libsdl2[X,opengl?,video]
 		media-libs/sdl2-gfx
@@ -72,6 +73,7 @@ src_configure() {
 		$(use_with mumble) \
 		$(use_enable nls) \
 		$(use_with opengl) \
+		$(usex pugixml '--enable-libxml=pugixml' '--enable-libxml=libxml' ) \
 		$(use_with sdl2) \
 		$(use_enable test unittests)
 }
