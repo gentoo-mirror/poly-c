@@ -32,7 +32,7 @@ media-radio/liquidsoap
 =dev-util/mdds-1.0.0_pre
 
 # Not all dependencies available yet.
-=media-plugins/gst-plugins-meta-1.7.1_pre
+=media-plugins/gst-plugins-meta-1.7*
 
 # Fails to link
 =dev-libs/crypto++-5.6.3_pre
