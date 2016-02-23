@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+# $Id: a34b27486951a76b761314be0140e2d395946dca $
 
 EAPI=5
 [[ ${PV} == 9999 ]] && SCM="autotools git-r3"
@@ -16,7 +16,7 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
-LICENSE="GPL-2"
+LICENSE="GPL-2+"
 SLOT="0"
 IUSE="mumble nls opengl pugixml +sdl2 test"
 
@@ -73,7 +73,7 @@ src_configure() {
 		$(use_with mumble) \
 		$(use_enable nls) \
 		$(use_with opengl) \
-		$(usex pugixml '--enable-libxml=pugixml' '--enable-libxml=libxml' ) \
+		--enable-libxml=$(usex pugixml pugixml libxml ) \
 		$(use_with sdl2) \
 		$(use_enable test unittests)
 }
