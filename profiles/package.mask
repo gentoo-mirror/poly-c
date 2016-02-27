@@ -17,10 +17,6 @@ dev-libs/ewahboolarray
 # WIP
 =app-misc/gramps-4.2.0_pre
 
-# too many revdeps broken
-=dev-libs/boost-1.59.0_pre
-=dev-utils/boost-build-1.59.0_pre
-
 # doesn't build abi_x86_32
 =app-crypt/heimdal-1.6_rc2
 
@@ -28,7 +24,6 @@ dev-libs/ewahboolarray
 media-radio/liquidsoap
 
 # broken deps
->=app-text/libetonyek-0.1.4_pre
 =dev-util/mdds-1.0.0_pre
 
 # Not all dependencies available yet.
