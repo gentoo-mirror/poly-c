@@ -1,0 +1,32 @@
+https://bugs.gentoo.org/339338
+https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=597382
+
+--- mingetty-1.08/mingetty.c
++++ mingetty-1.08/mingetty.c
+@@ -422,12 +422,20 @@
+ 		while ((logname = get_logname ()) == 0)
+ 			/* do nothing */ ;
+ 
+-	if (ch_root)
+-		chroot (ch_root);
+-	if (ch_dir)
+-		chdir (ch_dir);
+-	if (priority)
+-		nice (priority);
++	if (ch_root) {
++		if (chroot (ch_root))
++			error ("chroot(): %s", strerror (errno));
++		if (chdir("/"))
++			error ("chdir(\"/\"): %s", strerror (errno));
++	}
++	if (ch_dir) {
++		if (chdir (ch_dir))
++			error ("chdir(): %s", strerror (errno));
++	}
++	if (priority) {
++		if (nice (priority))
++			error ("nice(): %s", strerror (errno));
++	}
+ 
+ 	execl (loginprog, loginprog, autologin? "-f" : "--", logname, NULL);
+ 	error ("%s: can't exec %s: %s", tty, loginprog, strerror (errno));

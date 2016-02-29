@@ -117,7 +117,7 @@ net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugi
 net-analyzer/nagios-plugins 1.4.16-r2 1.4.16-r3: Nagios 1.4.16 plugins - Pack of plugins to make Nagios work properly
 net-analyzer/nikto 2.1.2_pre 2.1.5_pre: Web Server vulnerability scanner.
 net-analyzer/ntopng 1.1.6932: Next generation network traffic analyzer
-net-dialup/mingetty 1.08: A compact getty program for virtual consoles only
+net-dialup/mingetty 1.08 1.08-r1: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-firewall/iptables 1.6.0_pre: Linux kernel (2.4+) firewall, NAT and packet mangling tools
 net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
