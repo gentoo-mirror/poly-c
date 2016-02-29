@@ -168,9 +168,6 @@ src_prepare() {
 		printf '#define SSH_RELEASE SSH_VERSION SSH_PORTABLE %s\n' "${macros}"
 	) > version.h
 
-	# kill logjam issue with fire
-	sed '/DH_GRP_MIN/s@1024@2048@' -i dh.h || die
-
 	eautoreconf
 }
 
