@@ -28,7 +28,7 @@ dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/crypto++ 5.6.3_pre: C++ class library of cryptographic schemes
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
-dev-libs/icu 54.1-r1 55.1 56.1: International Components for Unicode
+dev-libs/icu 54.1-r1 55.1 56.1 56.1-r1: International Components for Unicode
 dev-libs/libclc 0.0.1_pre20140101: OpenCL C library
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.21_pre: Perl-compatible regular expression library
@@ -58,7 +58,7 @@ games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor addition
 games-fps/etlegacy 2.74 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.42b 9999: Return to Castle Wolfenstein - IORTCW Project
 games-misc/opengfx 0.5.4_pre: OpenGFX data files for OpenTTD
-games-rpg/manaplus 1.6.2.13 9999: OpenSource 2D MMORPG client for Evol Online and The Mana World
+games-rpg/manaplus 1.6.2.13 1.6.2.27 9999: OpenSource 2D MMORPG client for Evol Online and The Mana World
 games-strategy/0ad 0.0.19_alpha_pre: A free, real-time strategy game
 games-strategy/0ad-data 0.0.19_alpha_pre: Data files for 0ad
 games-strategy/boswars 9999: Futuristic real-time strategy game
