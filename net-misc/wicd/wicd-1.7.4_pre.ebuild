@@ -133,7 +133,7 @@ src_install() {
 		rm "${WORKDIR}/Icone Wicd Lucid"/signal*
 		cp "${WORKDIR}/Icone Wicd Lucid"/*.png "${D}"/usr/share/pixmaps/wicd/
 	fi
-	readme.gentoo_src_install
+	readme.gentoo_create_doc
 }
 
 pkg_postinst() {
