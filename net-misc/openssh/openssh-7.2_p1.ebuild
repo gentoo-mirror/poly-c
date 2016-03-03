@@ -1,29 +1,29 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5c418d414b8d87d756940c23e23c5a7bf92dfcff $
+# $Id: ca15fb2339974747a86ca7d92eeb2e832e0ec505 $
 
 EAPI="5"
 
-inherit eutils user flag-o-matic multilib autotools pam systemd versionator poly-c_ebuilds
+inherit eutils user flag-o-matic multilib autotools pam systemd versionator
 
 # Make it more portable between straight releases
 # and _p? releases.
-PARCH=${MY_P/_}
+PARCH=${P/_}
 
-HPN_PATCH="${PN}-7.2p1-hpnssh14v10.tar.xz"
+HPN_PATCH="${PARCH}-hpnssh14v10.tar.xz"
 LDAP_PATCH="${PN}-lpk-7.2p1-0.3.14.patch.xz"
-X509_VER="8.7" X509_PATCH=""
+X509_VER="8.8" X509_PATCH="${PN}-${PV/_}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.org/"
 SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
-	https://dev.gentoo.org/~polynomial-c/${PN}-7.2_p1-sctp.patch.xz
+	mirror://gentoo/${PN}-7.2_p1-sctp.patch.xz
 	${HPN_PATCH:+hpn? (
 		mirror://gentoo/${HPN_PATCH}
 		mirror://sourceforge/hpnssh/${HPN_PATCH}
 		https://dev.gentoo.org/~polynomial-c/${HPN_PATCH}
 	)}
-	${LDAP_PATCH:+ldap? ( https://dev.gentoo.org/~polynomial-c/${LDAP_PATCH} )}
+	${LDAP_PATCH:+ldap? ( mirror://gentoo/${LDAP_PATCH} )}
 	${X509_PATCH:+X509? ( http://roumenpetrov.info/openssh/x509-${X509_VER}/${X509_PATCH} )}
 	"
 
@@ -125,8 +125,8 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-7.2_p1-sctp-x509-glue.patch
 		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}
-		epatch "${FILESDIR}"/${PN}-7.1_p2-x509-hpn14v10-glue.patch
-		save_version X509
+		#epatch "${FILESDIR}"/${PN}-7.1_p2-x509-hpn14v10-glue.patch
+		#save_version X509
 	fi
 	if use ldap ; then
 		epatch "${WORKDIR}"/${LDAP_PATCH%.*}
@@ -134,7 +134,6 @@ src_prepare() {
 	fi
 	epatch "${FILESDIR}"/${PN}-7.2_p1-GSSAPI-dns.patch #165444 integrated into gsskex
 	epatch "${FILESDIR}"/${PN}-6.7_p1-openssl-ignore-status.patch
-	# The X509 patchset fixes this independently.
 	epatch "${WORKDIR}"/${PN}-7.2_p1-sctp.patch
 	if use hpn ; then
 		EPATCH_FORCE="yes" EPATCH_SUFFIX="patch" \
