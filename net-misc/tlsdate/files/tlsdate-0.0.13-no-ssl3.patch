@@ -1,0 +1,20 @@
+--- ioerror-tlsdate-ae33169/src/tlsdate-helper.c
++++ ioerror-tlsdate-ae33169/src/tlsdate-helper.c
+@@ -1133,11 +1133,15 @@
+   {
+     verb ("V: using SSLv23_client_method()");
+     ctx = SSL_CTX_new(SSLv23_client_method());
+-  } else if (0 == strcmp("sslv3", protocol))
++  }
++#ifndef OPENSSL_NO_SSL3_METHOD
++  else if (0 == strcmp("sslv3", protocol))
+   {
+     verb ("V: using SSLv3_client_method()");
+     ctx = SSL_CTX_new(SSLv3_client_method());
+-  } else if (0 == strcmp("tlsv1", protocol))
++  }
++#endif
++  else if (0 == strcmp("tlsv1", protocol))
+   {
+     verb ("V: using TLSv1_client_method()");
+     ctx = SSL_CTX_new(TLSv1_client_method());
