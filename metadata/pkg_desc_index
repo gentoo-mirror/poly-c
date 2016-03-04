@@ -149,7 +149,7 @@ sys-apps/man 1.6g: Standard commands to read man pages
 sys-apps/portage 2.2.8-r2: Portage is the package management and distribution system for Gentoo
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
-sys-boot/grub 2.00_p5107-r2 2.02_beta2-r3 2.02_beta2-r6 2.02_beta2-r7 2.02_beta2-r8 2.02_beta2-r9: GNU GRUB boot loader
+sys-boot/grub 2.00_p5107-r2 2.02_beta2-r3 2.02_beta2-r6 2.02_beta2-r7 2.02_beta2-r8 2.02_beta2-r9 2.02_beta3: GNU GRUB boot loader
 sys-devel/autogen 5.18.6_pre 5.18.7_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
