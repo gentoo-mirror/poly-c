@@ -43,6 +43,7 @@ dev-perl/Pango 1.226.0_pre: Layout and render international text
 dev-perl/Text-Unidecode 1.270.0_pre: Plain ASCII transliterations of Unicode text
 dev-perl/gtk2-perl 1.249.600_pre 1.249.700_pre: Perl bindings for GTK2
 dev-python/google-apputils 0.4.0: Collection of utilities for building Python applications
+dev-qt/qtcore 4.8.7-r1: Cross-platform application development framework
 dev-ruby/parslet 1.7.1: A small PEG based parser library
 dev-scheme/guile 2.0.11_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/cmake 3.5.0_rc2 3.5.0_rc3: Cross platform Make
@@ -113,7 +114,7 @@ media-video/handbrake 0.10.3_pre 0.10.5_pre: Open-source, GPL-licensed, multipla
 media-video/tragtor 0.8.45 0.9.2: traGtor is a graphical user interface (GUI) for ffmpeg
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
 net-analyzer/arpalert 1.0.3_pre 1.1.3_pre 2.0.11_pre: arpalert is used for monitoring ethernet networks
-net-analyzer/medusa 2.1.1: A Modular,Parallel,Multiprotocol, Network Login Auditor
+net-analyzer/medusa 2.1.1 2.2: A Modular,Parallel,Multiprotocol, Network Login Auditor
 net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
 net-analyzer/nagios-plugins 1.4.16-r2 1.4.16-r3: Nagios 1.4.16 plugins - Pack of plugins to make Nagios work properly
 net-analyzer/nikto 2.1.2_pre 2.1.5_pre: Web Server vulnerability scanner.
@@ -125,6 +126,7 @@ net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
 net-im/pidgin 2.10.10 2.10.11 2.10.12 2.10.12-r1: GTK Instant Messenger client
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
+net-libs/nghttp2 1.8.0_pre: HTTP/2 C Library
 net-libs/webkit-gtk 2.11.5_pre 2.11.91_pre: Open source web browser engine
 net-misc/openssh 7.1_p1-r2 7.1_p1-r3 7.1_p2 7.1_p2-r1 7.2_p1: Port of OpenBSD's free SSH release
 net-misc/wicd 1.7.4_pre: A lightweight wired and wireless network manager for Linux
