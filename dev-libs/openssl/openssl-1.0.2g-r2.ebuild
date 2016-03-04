@@ -65,6 +65,8 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-1.0.2-ipv6.patch
 		epatch "${FILESDIR}"/${PN}-1.0.2a-x32-asm.patch #542618
 		epatch "${FILESDIR}"/${PN}-1.0.1p-default-source.patch #554338
+		epatch "${FILESDIR}"/${PN}-1.0.2g-disable_ssl3_tests.patch
+		epatch "${FILESDIR}"/${PN}-1.0.2g-soversion.patch
 
 		epatch_user #332661
 	fi
@@ -156,7 +158,9 @@ multilib_src_configure() {
 		enable-mdc2 \
 		enable-rc5 \
 		enable-tlsext \
-		no-ssl \
+		no-ssl2 \
+		no-ssl3 \
+		no-ssl3-method \
 		$(use_ssl asm) \
 		$(use_ssl gmp gmp -lgmp) \
 		$(use_ssl kerberos krb5 --with-krb5-flavor=${krb5}) \
