@@ -133,6 +133,7 @@ net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/nghttp2 1.8.0_pre: HTTP/2 C Library
 net-libs/webkit-gtk 2.11.5_pre 2.11.91_pre: Open source web browser engine
 net-misc/openssh 7.1_p1-r2 7.1_p1-r3 7.1_p2 7.1_p2-r1 7.2_p1: Port of OpenBSD's free SSH release
+net-misc/putty 0.67_pre: A Free Telnet/SSH Client
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-misc/wicd 1.7.4_pre: A lightweight wired and wireless network manager for Linux
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
