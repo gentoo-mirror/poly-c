@@ -160,7 +160,7 @@ sys-fs/udev 216 217 218 219 220-r3 222 224 224-r1 224-r2 225 226_pre 227_pre 228
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 3.10.94 3.10.95 3.10.96 3.12.46 3.12.47 3.12.49 3.14.58 3.14.59 3.14.60 3.18.25 3.18.26 3.18.27 4.1.16 4.1.17 4.1.18: Shows and sets processor power related values
+sys-power/cpupower 3.10.95 3.10.96 3.10.99 3.12.46 3.12.47 3.12.49 3.14.59 3.14.60 3.14.63 3.18.26 3.18.27 3.18.28 4.1.17 4.1.18 4.1.19: Shows and sets processor power related values
 www-client/midori 0.5.11: A lightweight web browser based on WebKitGTK+
 www-client/seamonkey 2.38 2.39 2.40_pre4: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
