@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 1bf9466cffffb277f31019cb3c06bb64afe2912c $
+# $Id: 3968b3a1dda8db0a183adefcf11433579561bc28 $
 
 EAPI=5
 
@@ -34,6 +34,7 @@ src_prepare() {
 	local variable
 
 	epatch "${FILESDIR}/${PN}-remove-bashisms.patch"
+	epatch "${FILESDIR}/${PN}-flagparser.patch"
 	epatch_user
 
 	# Disable renaming as it is stupind thing to do
