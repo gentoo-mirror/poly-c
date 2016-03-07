@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 239306a2debe996d995471ff5e5e29077d6d87f8 $
+# $Id: 48b6fbfe81bb7ab9c43e8d7acbadb6d7d46e6fa7 $
 
 EAPI=5
 
@@ -26,7 +26,7 @@ if [[ ${PV} != 9999 ]]; then
 			https://dev.gentoo.org/~floppym/dist/${P}.tar.xz"
 		S=${WORKDIR}/${P%_*}
 	fi
-	KEYWORDS="amd64 ~x86"
+	KEYWORDS="amd64 x86"
 else
 	inherit git-r3
 	EGIT_REPO_URI="git://git.sv.gnu.org/grub.git
