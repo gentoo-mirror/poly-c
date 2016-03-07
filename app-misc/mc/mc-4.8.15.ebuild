@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id: 42df13459e2924f58bc536b74cf2f90c7380c72b $
 
-EAPI=5
+EAPI=6
 
 inherit autotools eutils flag-o-matic
 
@@ -41,20 +41,23 @@ DEPEND="${RDEPEND}
 
 [[ -n ${LIVE_EBUILD} ]] && DEPEND="${DEPEND} dev-vcs/cvs" # needed only for SCM source tree (autopoint uses cvs)
 
+PATCHES=(
+	"${FILESDIR}/${PN}-4.8.13-tinfo.patch"
+	"${FILESDIR}/${PN}-4.8.9-fix-too-long-german-strings.patch"
+	"${FILESDIR}/${PN}-4.8.13-restore_saved_replace_string.patch"
+	"${FILESDIR}/${PN}-4.8.15-potfiles.patch"
+	"${FILESDIR}/${PN}-4.8.15-ebuild_syntax_EAPI-6.patch"
+)
+
+S=${WORKDIR}/${MY_P}
+
 src_prepare() {
 	[[ -n ${LIVE_EBUILD} ]] && ./autogen.sh
 
-	epatch "${FILESDIR}"/${PN}-4.8.13-tinfo.patch
+	default
 
-	epatch "${FILESDIR}"/${PN}-4.8.9-fix-too-long-german-strings.patch \
-		"${FILESDIR}"/${PN}-4.8.13-restore_saved_replace_string.patch \
-		"${FILESDIR}"/${PN}-4.8.15-potfiles.patch
-
-	epatch_user
 	eautoreconf
 }
-
-S=${WORKDIR}/${MY_P}
 
 src_configure() {
 	local myscreen=ncurses
