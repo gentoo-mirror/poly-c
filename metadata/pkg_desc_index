@@ -1,3 +1,4 @@
+app-admin/cgmanager 0.40_pre: Control Group manager daemon
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-admin/winetools 0.9_pre: Graphical Wine tool for installing Windows programs under Wine
 app-arch/xz-utils 5.0.8 5.2.0 5.2.1-r1 5.2.2: utils for managing LZMA compressed files
