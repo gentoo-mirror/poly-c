@@ -35,8 +35,7 @@ src_prepare() {
 src_configure() {
 	econf \
 		--with-distro=gentoo \
-		$(use_enable pam pam-module) \
-		--with-pamdir="$(getpam_mod_dir)" \
+		--with-pamdir="$(usex pam "$(getpam_mod_dir)" none)" \
 		--with-init-script=systemd
 }
 
