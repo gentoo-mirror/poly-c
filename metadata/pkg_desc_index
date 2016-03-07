@@ -24,6 +24,7 @@ dev-java/ant-core 1.9.5_pre 1.9.6_pre: Java-based build tool similar to 'make' t
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
 dev-java/icedtea-web 1.6.2_pre: FOSS Java browser plugin and Web Start implementation
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
+dev-lang/ruby 2.1.7: An object-oriented scripting language
 dev-libs/Ice 3.6.0_pre: ICE middleware C++ library and generator tools
 dev-libs/boost 1.60.0_pre: Boost Libraries for C++
 dev-libs/botan 1.11.21_pre: A C++ crypto library
