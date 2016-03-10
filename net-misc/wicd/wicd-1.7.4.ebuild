@@ -1,17 +1,17 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+# $Id: bc4f53bb0c45512179c834389809cac0ffb5c7fb $
 
 EAPI=6
 
 PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="ncurses?,xml"
 
-inherit eutils distutils-r1 linux-info readme.gentoo-r1 systemd poly-c_ebuilds
+inherit eutils distutils-r1 linux-info readme.gentoo-r1 systemd
 
 DESCRIPTION="A lightweight wired and wireless network manager for Linux"
 HOMEPAGE="https://launchpad.net/wicd"
-SRC_URI="https://launchpad.net/wicd/1.7/${MY_PV}/+download/${MY_P}.tar.gz
+SRC_URI="https://launchpad.net/wicd/1.7/${PV}/+download/${P}.tar.gz
 	mac4lin? ( https://dev.gentoo.org/~anarchy/dist/wicd-mac4lin-icons.tar.xz )
 	ambiance? ( http://freetimesblog.altervista.org/blog/wp-content/uploads/downloads/2010/05/Icone-Wicd-Lucid.tar.gz )"
 

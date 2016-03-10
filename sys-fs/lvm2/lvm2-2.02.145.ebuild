@@ -1,14 +1,14 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+# $Id: 1d68e3059651dc3b774b3b409114be9e08b5b17e $
 
 EAPI=6
-inherit autotools eutils linux-info multilib systemd toolchain-funcs udev flag-o-matic poly-c_ebuilds
+inherit autotools eutils linux-info multilib systemd toolchain-funcs udev flag-o-matic
 
 DESCRIPTION="User-land utilities for LVM2 (device-mapper) software"
 HOMEPAGE="https://sources.redhat.com/lvm2/"
-SRC_URI="ftp://sources.redhat.com/pub/lvm2/${PN/lvm/LVM}.${MY_PV}.tgz
-	ftp://sources.redhat.com/pub/lvm2/old/${PN/lvm/LVM}.${MY_PV}.tgz"
+SRC_URI="ftp://sources.redhat.com/pub/lvm2/${PN/lvm/LVM}.${PV}.tgz
+	ftp://sources.redhat.com/pub/lvm2/old/${PN/lvm/LVM}.${PV}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -45,13 +45,14 @@ RDEPEND="${DEPEND_COMMON}
 DEPEND="${DEPEND_COMMON}
 	virtual/pkgconfig
 	>=sys-devel/binutils-2.20.1-r1
+	sys-devel/autoconf-archive
 	static? (
 		selinux? ( sys-libs/libselinux[static-libs] )
 		udev? ( >=sys-fs/eudev-3.1.2[static-libs] )
 		>=sys-apps/util-linux-2.16[static-libs]
 	)"
 
-S=${WORKDIR}/${PN/lvm/LVM}.${MY_PV}
+S=${WORKDIR}/${PN/lvm/LVM}.${PV}
 
 PATCHES=(
 	# Gentoo specific modification(s):
