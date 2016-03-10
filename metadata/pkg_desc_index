@@ -59,6 +59,7 @@ dev-util/ragel 7.0.0.5_pre 7.0.0.6_pre: Compiles finite state machines from regu
 dev-util/xdelta 3.0.11_pre: a binary diff and differential compression tools. VCDIFF (RFC 3284) delta compression
 dev-vcs/bzr 2.7.0_pre: Bazaar is a next generation distributed version control system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
+games-engines/scummvm 1.8.0_pre: Reimplementation of the SCUMM game engine used in Lucasarts adventures
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.74 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.42b 9999: Return to Castle Wolfenstein - IORTCW Project
