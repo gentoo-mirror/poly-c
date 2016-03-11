@@ -67,7 +67,7 @@ https://bugzilla.mindrot.org/show_bug.cgi?id=1008
  Forward (delegate) credentials to the server.
  The default is
  .Dq no .
-+note that this option applies to protocol version 2 connections using GSSAPI.
++Note that this option applies to protocol version 2 connections using GSSAPI.
 +.It Cm GSSAPITrustDns
 +Set to
 +.Dq yes to indicate that the DNS is trusted to securely canonicalize

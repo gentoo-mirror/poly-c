@@ -1,18 +1,18 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ca15fb2339974747a86ca7d92eeb2e832e0ec505 $
+# $Id: 7613ed8a3ddfca0a1058bec24a6c3838e3d86553 $
 
 EAPI="5"
 
-inherit eutils user flag-o-matic multilib autotools pam systemd versionator poly-c_ebuilds
+inherit eutils user flag-o-matic multilib autotools pam systemd versionator
 
 # Make it more portable between straight releases
 # and _p? releases.
-PARCH=${MY_P/_}
+PARCH=${P/_}
 
 HPN_PATCH="${PARCH}-hpnssh14v10.tar.xz"
 LDAP_PATCH="${PN}-lpk-7.2p2-0.3.14.patch.xz"
-#X509_VER="8.8" X509_PATCH="${PN}-7.2p1+x509-${X509_VER}.diff.gz"
+X509_VER="8.9" X509_PATCH="${PN}-${PV/_}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.org/"
@@ -23,7 +23,7 @@ SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
 		mirror://sourceforge/hpnssh/${HPN_PATCH}
 		https://dev.gentoo.org/~polynomial-c/${HPN_PATCH}
 	)}
-	${LDAP_PATCH:+ldap? ( https://dev.gentoo.org/~polynomial-c/${LDAP_PATCH} )}
+	${LDAP_PATCH:+ldap? ( mirror://gentoo/${LDAP_PATCH} )}
 	${X509_PATCH:+X509? ( http://roumenpetrov.info/openssh/x509-${X509_VER}/${X509_PATCH} )}
 	"
 
@@ -117,11 +117,11 @@ src_prepare() {
 
 	if use X509 ; then
 		pushd .. >/dev/null
-		#if use hpn ; then
-		#	pushd ${HPN_PATCH%.*.*} >/dev/null
-		#	epatch "${FILESDIR}"/${PN}-7.1_p1-hpn-x509-glue.patch
-		#	popd >/dev/null
-		#fi
+		if use hpn ; then
+			pushd ${HPN_PATCH%.*.*} >/dev/null
+			epatch "${FILESDIR}"/${PN}-7.2_p2-hpn-x509-glue.patch
+			popd >/dev/null
+		fi
 		epatch "${FILESDIR}"/${PN}-7.2_p1-sctp-x509-glue.patch
 		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}
