@@ -136,7 +136,6 @@ net-misc/openssh 7.1_p1-r2 7.1_p1-r3 7.1_p2 7.1_p2-r1 7.2_p1 7.2_p2: Port of Ope
 net-misc/putty 0.67_pre: A Free Telnet/SSH Client
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
-net-misc/wicd 1.7.4: A lightweight wired and wireless network manager for Linux
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sys-apps/firmware-addon-dell 2.2.9: Additional firmware tools for dell computers
 sys-apps/firmware-extract 2.0.13: Additional firmware tools for dell computers
