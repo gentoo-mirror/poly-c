@@ -88,7 +88,7 @@ src_configure() {
 
 src_compile() {
 	default
-	emake -C po update-po
+	use nls && emake -C po update-po
 }
 
 src_install() {

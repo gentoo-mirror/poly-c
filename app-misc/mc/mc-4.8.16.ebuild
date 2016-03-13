@@ -1,8 +1,8 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5b989ad173d24dd896b057d3dcb85a793435b668 $
+# $Id: 42df13459e2924f58bc536b74cf2f90c7380c72b $
 
-EAPI=5
+EAPI=6
 
 inherit autotools eutils flag-o-matic
 
@@ -14,7 +14,7 @@ SRC_URI="http://www.midnight-commander.org/downloads/${MY_P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="+edit gpm mclib nls samba sftp +slang spell test X +xdg"
 
 REQUIRED_USE="spell? ( edit )"
@@ -25,7 +25,7 @@ RDEPEND=">=dev-libs/glib-2.8:2
 	samba? ( net-fs/samba )
 	sftp? ( net-libs/libssh2 )
 	slang? ( >=sys-libs/slang-2 )
-	!slang? ( sys-libs/ncurses )
+	!slang? ( sys-libs/ncurses:0= )
 	spell? ( app-text/aspell )
 	X? ( x11-libs/libX11
 		x11-libs/libICE
@@ -41,19 +41,22 @@ DEPEND="${RDEPEND}
 
 [[ -n ${LIVE_EBUILD} ]] && DEPEND="${DEPEND} dev-vcs/cvs" # needed only for SCM source tree (autopoint uses cvs)
 
+PATCHES=(
+	"${FILESDIR}/${PN}-4.8.13-tinfo.patch"
+	"${FILESDIR}/${PN}-4.8.9-fix-too-long-german-strings.patch"
+	"${FILESDIR}/${PN}-4.8.13-restore_saved_replace_string.patch"
+	"${FILESDIR}/${PN}-4.8.15-ebuild_syntax_EAPI-6.patch"
+)
+
+S=${WORKDIR}/${MY_P}
+
 src_prepare() {
 	[[ -n ${LIVE_EBUILD} ]] && ./autogen.sh
 
-	epatch "${FILESDIR}"/${PN}-4.8.13-tinfo.patch
+	default
 
-	epatch "${FILESDIR}"/${PN}-4.8.9-fix-too-long-german-strings.patch \
-		"${FILESDIR}"/${PN}-4.8.13-restore_saved_replace_string.patch
-
-	epatch_user
 	eautoreconf
 }
-
-S=${WORKDIR}/${MY_P}
 
 src_configure() {
 	local myscreen=ncurses
