@@ -270,7 +270,7 @@ src_install() {
 		python_optimize
 	fi
 
-	dodoc finch/plugins/pietray.py
+	dodoc ${DOCS} finch/plugins/pietray.py
 	docompress -x /usr/share/doc/${PF}/pietray.py
 
 	prune_libtool_files --all
