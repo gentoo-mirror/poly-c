@@ -1,8 +1,8 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=2
+EAPI=6
 
 inherit eutils poly-c_ebuilds
 
@@ -15,8 +15,8 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="kde"
-RDEPEND="sys-libs/readline
-	sys-libs/ncurses
+RDEPEND="sys-libs/readline:0=
+	sys-libs/ncurses:0=
 	media-sound/mpg123"
 DEPEND=""
 
@@ -24,7 +24,8 @@ src_prepare() {
 	sed -e "s:@VERSION@:${MY_PV}:" "${FILESDIR}/${PATCH}" \
 		> "${T}/${PATCH}" \
 			|| die "sed ${PATCH} failed"
-	epatch "${T}/${PATCH}"
+	eapply "${T}/${PATCH}"
+	eapply_user
 }
 
 src_install() {
