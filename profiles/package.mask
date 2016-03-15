@@ -35,3 +35,5 @@ media-radio/liquidsoap
 # doesn't compile
 =dev-util/ragel-7.0.0.6_pre
 
+# problems with mount/swap
+=sys-apps/util-linux-2.28_rc1
