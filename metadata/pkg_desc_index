@@ -34,6 +34,7 @@ dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 54.1-r1 55.1 56.1 56.1-r1: International Components for Unicode
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.21_pre: Perl-compatible regular expression library
+dev-libs/libsigc++ 2.8.0_pre: Typesafe callback system for standard C++
 dev-libs/mini-xml 2.9_pre: Small XML parsing library to read XML and XML-like data files
 dev-libs/openssl 1.0.2g-r2: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf-c 1.2.0_pre: code generator and runtime libraries to use Protocol Buffers (protobuf) from pure C
@@ -145,6 +146,7 @@ sys-boot/grub 2.02_beta2-r8 2.02_beta2-r9 2.02_beta3-r1: GNU GRUB boot loader
 sys-devel/autogen 5.18.6_pre 5.18.7_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
+sys-fs/btrfs-progs 4.5_rc1: Btrfs filesystem utilities
 sys-fs/lvm2 2.02.146_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225 228 229-r2: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
