@@ -37,7 +37,7 @@ dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.21_pre: Perl-compatible regular expression library
 dev-libs/libsigc++ 2.8.0_pre: Typesafe callback system for standard C++
 dev-libs/mini-xml 2.9_pre: Small XML parsing library to read XML and XML-like data files
-dev-libs/openssl 1.0.2g-r2: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/openssl 1.0.2g-r2 1.1.0_pre4: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf-c 1.2.0_pre: code generator and runtime libraries to use Protocol Buffers (protobuf) from pure C
 dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 dev-perl/Net-DNS 1.40.0_pre: Perl Net::DNS - Perl DNS Resolver Module

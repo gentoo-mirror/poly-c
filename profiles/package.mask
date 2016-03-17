@@ -37,3 +37,6 @@ media-radio/liquidsoap
 
 # problems with mount/swap
 =sys-apps/util-linux-2.28_rc1
+
+# WIP
+=dev-libs/openssl-1.1.0_pre*

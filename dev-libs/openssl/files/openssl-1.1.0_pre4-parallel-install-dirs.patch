@@ -1,0 +1,38 @@
+--- openssl-1.1.0-pre4/Makefile.in
++++ openssl-1.1.0-pre4/Makefile.in
+@@ -559,12 +559,19 @@
+ 	@$(MAKE) SDIRS='$(SDIRS)' clean
+ 	@$(MAKE) TAR='$(TAR)' TARFLAGS='$(TARFLAGS)' $(DISTTARVARS) tar
+ 
+-install: all install_docs install_sw
++install: install_docs install_sw
+ 
+ uninstall: uninstall_sw uninstall_docs
+ 
+-install_sw:
++install_dirs:
+ 	@$(PERL) $(TOP)/util/mkdir-p.pl $(INSTALLDIRS)
++	@$(PERL) $(TOP)/util/mkdir-p.pl \
++		$(DESTDIR)$(MANDIR)/man1 \
++		$(DESTDIR)$(MANDIR)/man3 \
++		$(DESTDIR)$(MANDIR)/man5 \
++		$(DESTDIR)$(MANDIR)/man7
++
++install_sw: install_dirs
+ 	@set -e; for i in include/openssl/*.h; do \
+ 	(cp $$i $(DESTDIR)$(INSTALLTOP)/$$i; \
+ 	chmod 644 $(DESTDIR)$(INSTALLTOP)/$$i ); \
+@@ -724,12 +731,7 @@
+ 		done; \
+ 	done
+ 
+-install_docs:
+-	@$(PERL) $(TOP)/util/mkdir-p.pl \
+-		$(DESTDIR)$(MANDIR)/man1 \
+-		$(DESTDIR)$(MANDIR)/man3 \
+-		$(DESTDIR)$(MANDIR)/man5 \
+-		$(DESTDIR)$(MANDIR)/man7
++install_docs: install_dirs
+ 	here="`pwd`"; \
+ 	filecase=; \
+ 	case "$(PLATFORM)" in DJGPP|Cygwin*|mingw*|darwin*-*-cc) \
