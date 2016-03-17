@@ -7,7 +7,7 @@ inherit eutils multilib toolchain-funcs
 
 DESCRIPTION="Shows and sets processor power related values"
 HOMEPAGE="http://www.kernel.org/"
-SRC_URI="mirror://kernel/linux/kernel/v3.x/linux-${PV}.tar.xz"
+SRC_URI="mirror://kernel/linux/kernel/v4.x/linux-${PV}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
