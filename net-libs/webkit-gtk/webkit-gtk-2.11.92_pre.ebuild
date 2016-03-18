@@ -2,12 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 CMAKE_MAKEFILE_GENERATOR="ninja"
 GCONF_DEBUG="no"
 PYTHON_COMPAT=( python2_7 )
 
-inherit check-reqs cmake-utils eutils flag-o-matic gnome2 pax-utils python-any-r1 toolchain-funcs versionator virtualx poly-c_ebuilds
+inherit autotools check-reqs cmake-utils flag-o-matic gnome2-utils pax-utils python-any-r1 toolchain-funcs versionator virtualx xdg poly-c_ebuilds
 
 MY_P="webkitgtk-${MY_PV}"
 DESCRIPTION="Open source web browser engine"
@@ -16,7 +16,7 @@ SRC_URI="http://www.webkitgtk.org/releases/${MY_P}.tar.xz"
 
 LICENSE="LGPL-2+ BSD"
 SLOT="4/37" # soname version of libwebkit2gtk-4.0
-KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 
 IUSE="coverage doc +egl +geoloc gles2 +gstreamer +introspection +jit libsecret +opengl spell wayland +webgl X"
 REQUIRED_USE="
@@ -115,6 +115,18 @@ S="${WORKDIR}/${MY_P}"
 
 CHECKREQS_DISK_BUILD="18G" # and even this might not be enough, bug #417307
 
+PATCHES=(
+	# Debian patches to fix support for some arches
+	# https://bugs.webkit.org/show_bug.cgi?id=129540
+	"${FILESDIR}"/${PN}-2.6.0-hppa-platform.patch
+	"${FILESDIR}"/${PN}-2.6.0-ia64-platform.patch
+	# https://bugs.webkit.org/show_bug.cgi?id=129542
+	"${FILESDIR}"/${PN}-2.8.1-ia64-malloc.patch
+
+	# https://bugs.webkit.org/show_bug.cgi?id=148379
+	"${FILESDIR}"/${PN}-2.8.5-webkit2gtkinjectedbundle-j1.patch
+)
+
 pkg_pretend() {
 	if [[ ${MERGE_TYPE} != "binary" ]] && is-flagq "-g*" && ! is-flagq "-g*0" ; then
 		einfo "Checking for sufficient disk space to build ${PN} with debugging CFLAGS"
@@ -135,16 +147,12 @@ pkg_setup() {
 }
 
 src_prepare() {
-	# Debian patches to fix support for some arches
-	# https://bugs.webkit.org/show_bug.cgi?id=129540
-	epatch "${FILESDIR}"/${PN}-2.6.0-{hppa,ia64}-platform.patch
-	# https://bugs.webkit.org/show_bug.cgi?id=129542
-	epatch "${FILESDIR}"/${PN}-2.8.1-ia64-malloc.patch
+	xdg_src_prepare
 
-	# https://bugs.webkit.org/show_bug.cgi?id=148379
-	epatch "${FILESDIR}"/${PN}-2.8.5-webkit2gtkinjectedbundle-j1.patch
-
-	gnome2_src_prepare
+	gnome2_environment_reset
+	gnome2_omf_fix
+	gnome2_disable_deprecation_warning
+	elibtoolize
 }
 
 src_configure() {
@@ -183,14 +191,14 @@ src_configure() {
 
 	local ruby_interpreter=""
 
-	if has_version "virtual/rubygems[ruby_targets_ruby22]"; then
+	if has_version "virtual/rubygems[ruby_targets_ruby23]"; then
+		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby23)"
+	elif has_version "virtual/rubygems[ruby_targets_ruby22]"; then
 		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby22)"
 	elif has_version "virtual/rubygems[ruby_targets_ruby21]"; then
 		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby21)"
-	elif has_version "virtual/rubygems[ruby_targets_ruby20]"; then
-		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby20)"
 	else
-		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby19)"
+		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby20)"
 	fi
 
 	# TODO: Check Web Audio support
@@ -198,16 +206,16 @@ src_configure() {
 	#
 	# FTL_JIT requires llvm
 	local mycmakeargs=(
-		$(cmake-utils_use_enable test API_TESTS)
-		$(cmake-utils_use_enable doc GTKDOC)
-		$(cmake-utils_use_enable geoloc GEOLOCATION)
-		$(cmake-utils_use_find_package gles2 OpenGLES2)
-		$(cmake-utils_use_enable gles2 GLES2)
-		$(cmake-utils_use_enable gstreamer VIDEO)
-		$(cmake-utils_use_enable gstreamer WEB_AUDIO)
-		$(cmake-utils_use_enable introspection)
-		$(cmake-utils_use_enable jit)
-		$(cmake-utils_use_enable libsecret CREDENTIAL_STORAGE)
+		-DENABLE_API_TESTS="$(usex test)"
+		-DENABLE_GTKDOC="$(usex doc)"
+		-DENABLE_GEOLOCATION="$(usex geoloc)"
+		-DENABLE_OpenGLES2="$(usex gles2)"
+		-DENABLE_GLES2="$(usex gles2)"
+		-DENABLE_VIDEO="$(usex gstreamer)"
+		-DENABLE_WEB_AUDIO="$(usex gstreamer)"
+		-DENABLE_introspection="$(usex introspection)"
+		-DENABLE_jit="$(usex jit)"
+		-DENABLE_CREDENTIAL_STORAGE="$(usex libsecret)"
 		$(cmake-utils_use_enable spell SPELLCHECK SPELLCHECK)
 		$(cmake-utils_use_enable wayland WAYLAND_TARGET)
 		$(cmake-utils_use_enable webgl WEBGL)
