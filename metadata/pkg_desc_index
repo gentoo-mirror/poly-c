@@ -148,7 +148,7 @@ sys-devel/autogen 5.18.6_pre 5.18.7_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
 sys-fs/btrfs-progs 4.5_rc1 4.5_rc2: Btrfs filesystem utilities
-sys-fs/lvm2 2.02.146_pre: User-land utilities for LVM2 (device-mapper) software
+sys-fs/lvm2 2.02.146_pre 2.02.147_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225 228 229-r2: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
