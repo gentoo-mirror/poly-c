@@ -216,12 +216,12 @@ src_configure() {
 		-DENABLE_introspection="$(usex introspection)"
 		-DENABLE_jit="$(usex jit)"
 		-DENABLE_CREDENTIAL_STORAGE="$(usex libsecret)"
-		$(cmake-utils_use_enable spell SPELLCHECK SPELLCHECK)
-		$(cmake-utils_use_enable wayland WAYLAND_TARGET)
-		$(cmake-utils_use_enable webgl WEBGL)
+		-DENABLE_SPELLCHECK="$(usex spell)"
+		-DENABLE_WAYLAND_TARGET="$(usex wayland)"
+		-DENABLE_WEBGL="$(usex webgl)"
 		$(cmake-utils_use_find_package egl EGL)
 		$(cmake-utils_use_find_package opengl OpenGL)
-		$(cmake-utils_use_enable X X11_TARGET)
+		-DENABLE_X11_TARGET="$(usex X)"
 		-DCMAKE_BUILD_TYPE=Release
 		-DPORT=GTK
 		-DENABLE_PLUGIN_PROCESS_GTK2=ON

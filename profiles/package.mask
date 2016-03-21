@@ -40,4 +40,3 @@ media-radio/liquidsoap
 
 # WIP
 =dev-libs/openssl-1.1.0_pre*
-=net-libs/webkit-gtk-2.11.92_pre

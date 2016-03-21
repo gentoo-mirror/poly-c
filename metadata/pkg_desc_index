@@ -1,6 +1,7 @@
 app-admin/sudo 1.8.16_rc1: Allows users or groups to run commands as other users
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-admin/winetools 0.9_pre: Graphical Wine tool for installing Windows programs under Wine
+app-arch/tar 1.28.90: Use this to make tarballs :)
 app-arch/xz-utils 5.0.8 5.2.0 5.2.1-r1 5.2.2: utils for managing LZMA compressed files
 app-backup/dar 2.4.19_pre 2.4.20_pre 2.5.3_pre: A full featured backup tool, aimed for disks (floppy,CDR(W),DVDR(W),zip,jazz etc.)
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
