@@ -1,0 +1,31 @@
+--- dracut-044/dracut.cmdline.7
++++ dracut-044/dracut.cmdline.7
+@@ -449,6 +449,11 @@
+ do not check, if LUKS partition is in
+ \fI/etc/crypttab\fR
+ .RE
++.PP
++\fBrd\&.luks\&.mappername\fR\fI<mapper name>\fR
++.Rs 4
++Set specific name for the mapper device\&.
++.RE
+ .SS "crypto LUKS \- key on removable device support"
+ .PP
+ \fBrd\&.luks\&.key=\fR\fI<keypath>\fR:\fI<keydev>\fR:\fI<luksdev>\fR
+--- dracut-044/modules.d/90crypt/cryptroot-ask.sh
++++ dracut-044/modules.d/90crypt/cryptroot-ask.sh
+@@ -15,8 +15,12 @@
+     device="$1"
+ fi
+ 
+-# default luksname - luks-UUID
+-luksname=$2
++if [ -z "$(getarg rd.luks.mappername)" ] ; then
++    # default luksname - luks-UUID
++    luksname=$2
++else
++    luksname="$(getarg rd.luks.mappername)"
++fi
+ 
+ # number of tries
+ numtries=${3:-10}
