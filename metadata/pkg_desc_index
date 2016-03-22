@@ -145,7 +145,6 @@ sys-apps/util-linux 2.28_rc1: Various useful Linux utilities
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.02_beta2-r8 2.02_beta2-r9 2.02_beta3-r1: GNU GRUB boot loader
-sys-boot/plymouth 0.9.2: Graphical boot animation (splash) and logger
 sys-devel/autogen 5.18.6_pre 5.18.7_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
