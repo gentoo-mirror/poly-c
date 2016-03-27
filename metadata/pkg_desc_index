@@ -69,6 +69,7 @@ kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as power
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r1: An extensible mail filter which can identify and tag spam
 media-fonts/terminus-font 4.40_pre: A clean fixed font for the console and X11
+media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
 media-libs/gegl 0.3.6_pre: A graph based image processing framework
 media-libs/gst-plugins-bad 1.7.91_pre 1.8.0_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.7.91_pre 1.8.0_pre: Basepack of plugins for gstreamer
