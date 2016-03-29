@@ -10,6 +10,7 @@ app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
 app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
 app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
+app-emulation/wine 1.8.1_pre: Free implementation of Windows(tm) on Unix
 app-misc/gramps 4.2.0_pre: Genealogical Research and Analysis Management Programming System
 app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
@@ -112,7 +113,7 @@ media-sound/qamix 0.0.7e_pre: QAMix is a configurable mixer for ALSA. Interfaces
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 10: Download files from the public broadcasting services
 media-video/handbrake 0.10.3_pre 0.10.5_pre: Open-source, GPL-licensed, multiplatform, multithreaded video transcoder
-media-video/mkvtoolnix 9.0.0_pre: Tools to create, alter, and inspect Matroska files
+media-video/mkvtoolnix 9.0.0_pre 9.0.1_pre: Tools to create, alter, and inspect Matroska files
 media-video/tragtor 0.8.45 0.9.2: traGtor is a graphical user interface (GUI) for ffmpeg
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
 net-analyzer/arpalert 1.0.3_pre 1.1.3_pre 2.0.11_pre: arpalert is used for monitoring ethernet networks
