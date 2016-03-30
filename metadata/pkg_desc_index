@@ -130,6 +130,7 @@ net-im/pidgin 2.10.10 2.10.11 2.10.12 2.10.12-r1 2.10.12-r2: GTK Instant Messeng
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/webkit-gtk 2.11.92_pre 2.12.0_pre: Open source web browser engine
+net-misc/openntpd 5.9_p1_pre: Lightweight NTP server ported from OpenBSD
 net-misc/openssh 7.1_p1-r2 7.1_p1-r3 7.1_p2 7.1_p2-r1 7.2_p1 7.2_p2: Port of OpenBSD's free SSH release
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
