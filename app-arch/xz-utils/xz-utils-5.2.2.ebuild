@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 358098a8e7f512b706f4a31fed011e7bfe78f94f $
+# $Id: 34283d59161717e73c8639bae52de259a89974ce $
 
 # Remember: we cannot leverage autotools in this ebuild in order
 #           to avoid circular deps with autotools
@@ -58,12 +58,12 @@ multilib_src_configure() {
 
 multilib_src_install() {
 	default
-	multilib_is_native_abi && gen_usr_ldscript liblzma.so
+	gen_usr_ldscript liblzma.so
 
 	# shuffle around stuff we don't need in /
 	dodir /usr/$(get_libdir)
-	mv -f "${ED}"/$(get_libdir)/pkgconfig "${ED}"/usr/$(get_libdir)
-	mv -f "${ED}"/$(get_libdir)/*.a "${ED}"/usr/$(get_libdir)
+	mv "${ED}"/$(get_libdir)/pkgconfig "${ED}"/usr/$(get_libdir) || die
+	mv "${ED}"/$(get_libdir)/*.a "${ED}"/usr/$(get_libdir) || die
 }
 
 multilib_src_install_all() {

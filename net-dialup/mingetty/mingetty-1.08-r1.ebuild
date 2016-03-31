@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f21ede3077dd6ca9500d903b97fd51ff7e488a86 $
+# $Id: e07dd751ac44c5eef649b33bcd7e27b68df7cb16 $
 
 EAPI=6
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha amd64 ~arm hppa ~ia64 ~mips ppc ppc64 ~s390 ~sparc ~x86"
+KEYWORDS="~alpha amd64 arm hppa ~ia64 ~mips ppc ppc64 ~s390 ~sparc ~x86"
 IUSE="unicode"
 
 PATCHES=(
