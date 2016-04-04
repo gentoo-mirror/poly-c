@@ -46,7 +46,6 @@ dev-perl/Text-Unidecode 1.270.0_pre: Plain ASCII transliterations of Unicode tex
 dev-python/google-apputils 0.4.0: Collection of utilities for building Python applications
 dev-python/m2crypto 0.23.0: M2Crypto: A Python crypto and SSL toolkit
 dev-qt/qtcore 4.8.6-r2 4.8.7-r1: Cross-platform application development framework
-dev-ruby/parslet 1.7.1: A small PEG based parser library
 dev-scheme/guile 2.0.11_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/cmake 3.5.0_rc2 3.5.0_rc3: Cross platform Make
 dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
