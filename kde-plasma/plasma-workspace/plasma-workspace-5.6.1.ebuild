@@ -153,7 +153,7 @@ src_install() {
 	insinto /etc/plasma/shutdown
 	doins "${FILESDIR}/10-agent-shutdown.sh"
 
-	if ! use waland ; then
+	if ! use wayland ; then
 		rm -r "${ED}"/usr/share/wayland-sessions \
 			|| die
 	fi
