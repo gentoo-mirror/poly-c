@@ -28,7 +28,7 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/icedtea-web 1.6.2_pre: FOSS Java browser plugin and Web Start implementation
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/ruby 2.1.7: An object-oriented scripting language
-dev-libs/Ice 3.6.0_pre: ICE middleware C++ library and generator tools
+dev-libs/Ice 3.6.0_pre 3.6.2_pre: ICE middleware C++ library and generator tools
 dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/crypto++ 5.6.3_pre: C++ class library of cryptographic schemes
