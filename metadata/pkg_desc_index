@@ -37,6 +37,7 @@ dev-libs/icu 54.1-r1 55.1 56.1 56.1-r1 57.1: International Components for Unicod
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.21_pre: Perl-compatible regular expression library
 dev-libs/libsigc++ 2.8.0_pre: Typesafe callback system for standard C++
+dev-libs/libsodium 1.0.9_pre: A portable fork of NaCl, a higher-level cryptographic library
 dev-libs/mini-xml 2.9_pre: Small XML parsing library to read XML and XML-like data files
 dev-libs/openssl 1.0.2g-r2 1.1.0_pre4: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf-c 1.2.0_pre: code generator and runtime libraries to use Protocol Buffers (protobuf) from pure C
