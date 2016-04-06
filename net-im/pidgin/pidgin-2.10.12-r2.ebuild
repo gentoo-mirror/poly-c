@@ -93,8 +93,9 @@ DEPEND="$RDEPEND
 
 DOCS="AUTHORS HACKING NEWS README ChangeLog"
 
-REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )
-		dbus? ( ${PYTHON_REQUIRED_USE} )"
+REQUIRED_USE="dbus? ( ${PYTHON_REQUIRED_USE} )
+		networkmanager? ( dbus )
+		python? ( ${PYTHON_REQUIRED_USE} )"
 
 # Enable Default protocols
 DYNAMIC_PRPLS="irc,jabber,oscar,yahoo,simple"
@@ -172,12 +173,10 @@ src_configure() {
 	replace-flags -O? -O2
 	use pie && append-cflags -fPIE -pie
 
-	local myconf
+	local myconf=()
 
 	if use gadu; then
 		DYNAMIC_PRPLS="${DYNAMIC_PRPLS},gg"
-			myconf="${myconf} --with-gadu-includes=."
-			myconf="${myconf} --with-gadu-libs=."
 	fi
 
 	use groupwise && DYNAMIC_PRPLS+=",novell"
@@ -192,22 +191,22 @@ src_configure() {
 	if use ssl || use msn ; then
 		if use gnutls ; then
 			einfo "Disabling NSS, using GnuTLS"
-			myconf="${myconf} --enable-nss=no --enable-gnutls=yes"
-			myconf="${myconf} --with-gnutls-includes=/usr/include/gnutls"
-			myconf="${myconf} --with-gnutls-libs=/usr/$(get_libdir)"
+			myconf+=( --enable-nss=no --enable-gnutls=yes )
+			myconf+=( --with-gnutls-includes=/usr/include/gnutls )
+			myconf+=( --with-gnutls-libs=/usr/$(get_libdir) )
 		else
 			einfo "Disabling GnuTLS, using NSS"
-			myconf="${myconf} --enable-gnutls=no --enable-nss=yes"
+			myconf+=( --enable-gnutls=no --enable-nss=yes )
 		fi
 	else
 		einfo "No SSL support selected"
-		myconf="${myconf} --enable-gnutls=no --enalbe-ssl=no"
+		myconf+=( --enable-gnutls=no --enalbe-ssl=no )
 	fi
 
 	if use dbus || { use ncurses && use python; }; then
-		myconf+=" --with-python=${PYTHON}"
+		myconf+=( --with-python=${PYTHON} )
 	else
-		myconf+=" --without-python"
+		myconf+=( --without-python )
 	fi
 
 	econf \
@@ -239,7 +238,7 @@ src_configure() {
 		--with-dynamic-prpls="${DYNAMIC_PRPLS}" \
 		--disable-mono \
 		--x-includes="${EPREFIX}"/usr/include/X11 \
-		${myconf}
+		${myconf[@]}
 		#$(use_enable mono) \
 }
 

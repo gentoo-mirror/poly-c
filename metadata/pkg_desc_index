@@ -58,8 +58,8 @@ games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor addition
 games-fps/etlegacy 2.74 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.42b 9999: Return to Castle Wolfenstein - IORTCW Project
 games-rpg/manaplus 1.6.2.13 1.6.2.27 1.6.3.26 9999: OpenSource 2D MMORPG client for Evol Online and The Mana World
-games-strategy/0ad 0.0.19_alpha_pre: A free, real-time strategy game
-games-strategy/0ad-data 0.0.19_alpha_pre: Data files for 0ad
+games-strategy/0ad 0.0.19_alpha_pre 0.0.20_alpha_pre: A free, real-time strategy game
+games-strategy/0ad-data 0.0.19_alpha_pre 0.0.20_alpha_pre: Data files for 0ad
 games-strategy/boswars 9999: Futuristic real-time strategy game
 games-util/joystick 1.4.9_pre: joystick testing utilities
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
@@ -121,7 +121,7 @@ net-analyzer/ntopng 1.1.6932: Next generation network traffic analyzer
 net-dialup/mingetty 1.08 1.08-r1: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
-net-im/pidgin 2.10.10 2.10.11 2.10.12 2.10.12-r1 2.10.12-r2: GTK Instant Messenger client
+net-im/pidgin 2.10.11 2.10.12-r2: GTK Instant Messenger client
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/webkit-gtk 2.11.92_pre 2.12.0_pre: Open source web browser engine
