@@ -64,7 +64,7 @@ games-strategy/boswars 9999: Futuristic real-time strategy game
 games-util/joystick 1.4.9_pre: joystick testing utilities
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
-kde-plasma/plasma-workspace 5.6.1: KDE Plasma workspace
+kde-plasma/plasma-workspace 5.6.2: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r1: An extensible mail filter which can identify and tag spam
 media-fonts/terminus-font 4.40_pre: A clean fixed font for the console and X11
