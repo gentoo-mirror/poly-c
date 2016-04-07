@@ -3,7 +3,7 @@ app-admin/winetools 0.9_pre: Graphical Wine tool for installing Windows programs
 app-arch/p7zip 15.14.1_pre: Port of 7-Zip archiver for Unix
 app-arch/tar 1.28.90: Use this to make tarballs :)
 app-arch/xz-utils 5.2.2: utils for managing LZMA compressed files
-app-backup/dar 2.4.19_pre 2.4.20_pre 2.5.3_pre: A full featured backup tool, aimed for disks (floppy,CDR(W),DVDR(W),zip,jazz etc.)
+app-backup/dar 2.4.20 2.5.3: A full featured backup tool, aimed for disks (floppy,CDR(W),DVDR(W),zip,jazz etc.)
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
 app-crypt/heimdal 1.6_rc2: Kerberos 5 implementation from KTH
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
@@ -37,9 +37,7 @@ dev-libs/icu 54.1-r1 55.1 56.1 56.1-r1 57.1: International Components for Unicod
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.21_pre: Perl-compatible regular expression library
 dev-libs/libsigc++ 2.8.0_pre: Typesafe callback system for standard C++
-dev-libs/mini-xml 2.9_pre: Small XML parsing library to read XML and XML-like data files
 dev-libs/openssl 1.0.2g-r2 1.1.0_pre4: full-strength general purpose cryptography library (including SSL and TLS)
-dev-libs/protobuf-c 1.2.0_pre: code generator and runtime libraries to use Protocol Buffers (protobuf) from pure C
 dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 dev-perl/Net-DNS 1.40.0_pre: Perl Net::DNS - Perl DNS Resolver Module
 dev-perl/Text-Unidecode 1.270.0_pre: Plain ASCII transliterations of Unicode text
@@ -61,13 +59,11 @@ games-rpg/manaplus 1.6.2.13 1.6.2.27 1.6.3.26 9999: OpenSource 2D MMORPG client 
 games-strategy/0ad 0.0.19_alpha_pre 0.0.20_alpha_pre: A free, real-time strategy game
 games-strategy/0ad-data 0.0.19_alpha_pre 0.0.20_alpha_pre: Data files for 0ad
 games-strategy/boswars 9999: Futuristic real-time strategy game
-games-util/joystick 1.4.9_pre: joystick testing utilities
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/plasma-workspace 5.6.2: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r1: An extensible mail filter which can identify and tag spam
-media-fonts/terminus-font 4.40_pre: A clean fixed font for the console and X11
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
 media-libs/gegl 0.3.6_pre: A graph based image processing framework
 media-libs/gst-plugins-bad 1.7.91_pre 1.8.0_pre: Less plugins for GStreamer

@@ -1,13 +1,13 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
-inherit confutils eutils flag-o-matic poly-c_ebuilds
+EAPI=6
+inherit flag-o-matic
 
 DESCRIPTION="A full featured backup tool, aimed for disks (floppy,CDR(W),DVDR(W),zip,jazz etc.)"
 HOMEPAGE="http://dar.linux.free.fr/"
-SRC_URI="mirror://sourceforge/dar/${MY_P}.tar.gz"
+SRC_URI="mirror://sourceforge/dar/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -30,9 +30,9 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )
 	doc? ( app-doc/doxygen )"
 
-pkg_setup() {
-	confutils_use_conflict dar32 dar64
-}
+REQUIRED_USE="?? ( dar32 dar64 )"
+
+DOCS="AUTHORS ChangeLog NEWS README THANKS TODO"
 
 src_configure() {
 	local myconf="--disable-upx"
@@ -55,15 +55,15 @@ src_configure() {
 		fi
 	fi
 
-	econf ${myconf} || die
+	econf ${myconf}
 }
 
 src_install() {
-	emake DESTDIR="${D}" pkgdatadir="${EPREFIX}"/usr/share/doc/${PF}/html install || die
+	emake DESTDIR="${D}" pkgdatadir="${EPREFIX}"/usr/share/doc/${PF}/html install
+
+	einstalldocs
 
 	if ! use static-libs ; then
-		find "${ED}" "(" -name '*.la' -o -name '*.a' ")" -delete || die
+		prune_libtool_files --all
 	fi
-
-	dodoc AUTHORS ChangeLog NEWS README THANKS TODO || die
 }

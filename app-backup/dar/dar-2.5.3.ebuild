@@ -1,18 +1,18 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
-inherit confutils eutils flag-o-matic poly-c_ebuilds
+EAPI=6
+inherit flag-o-matic
 
 DESCRIPTION="A full featured backup tool, aimed for disks (floppy,CDR(W),DVDR(W),zip,jazz etc.)"
 HOMEPAGE="http://dar.linux.free.fr/"
-SRC_URI="mirror://sourceforge/dar/${MY_P}.tar.gz"
+SRC_URI="mirror://sourceforge/dar/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~amd64-linux"
-IUSE="acl dar32 dar64 doc gcrypt gpg lzo nls static static-libs"
+IUSE="acl dar32 dar64 doc gcrypt gpgme lzo nls static static-libs"
 
 RESTRICT="test" # need to be run as root
 
@@ -21,9 +21,11 @@ RDEPEND=">=sys-libs/zlib-1.2.3:=
 		    app-arch/xz-utils:= )
 	acl? ( !static? ( sys-apps/attr:= ) )
 	gcrypt? ( dev-libs/libgcrypt:0= )
-	gpg? ( app-crypt/gpgme )
+	gpgme? ( app-crypt/gpgme
+		 dev-libs/libgpg-error )
 	lzo? ( !static? ( dev-libs/lzo:= ) )
 	nls? ( virtual/libintl )"
+
 DEPEND="${RDEPEND}
 	static? ( app-arch/bzip2[static-libs]
 		    app-arch/xz-utils[static-libs]
@@ -33,9 +35,9 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )
 	doc? ( app-doc/doxygen )"
 
-pkg_setup() {
-	confutils_use_conflict dar32 dar64
-}
+REQUIRED_USE="?? ( dar32 dar64 )"
+
+DOCS="AUTHORS ChangeLog NEWS README THANKS TODO"
 
 src_configure() {
 	local myconf=( --disable-upx )
@@ -49,7 +51,7 @@ src_configure() {
 	use doc || myconf+=( --disable-build-html )
 	# use examples && myconf+=( --enable-examples )
 	use gcrypt || myconf+=( --disable-libgcrypt-linking )
-	use gpg || myconf+=( --disable-gpgme-linking )
+	use gpgme || myconf+=( --disable-gpgme-linking )
 	use lzo || myconf+=( --disable-liblzo2-linking )
 	use nls || myconf=( --disable-nls )
 	if ! use static ; then
@@ -59,15 +61,15 @@ src_configure() {
 		fi
 	fi
 
-	econf ${myconf[@]} || die
+	econf ${myconf[@]}
 }
 
 src_install() {
-	emake DESTDIR="${D}" pkgdatadir="${EPREFIX}"/usr/share/doc/${PF}/html install || die
+	emake DESTDIR="${D}" pkgdatadir="${EPREFIX}"/usr/share/doc/${PF}/html install
+
+	einstalldocs
 
 	if ! use static-libs ; then
-		find "${ED}" "(" -name '*.la' -o -name '*.a' ")" -delete || die
+		prune_libtool_files --all
 	fi
-
-	dodoc AUTHORS ChangeLog NEWS README THANKS TODO || die
 }
