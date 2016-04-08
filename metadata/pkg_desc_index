@@ -3,7 +3,6 @@ app-admin/winetools 0.9_pre: Graphical Wine tool for installing Windows programs
 app-arch/p7zip 15.14.1_pre: Port of 7-Zip archiver for Unix
 app-arch/tar 1.28.90: Use this to make tarballs :)
 app-arch/xz-utils 5.2.2: utils for managing LZMA compressed files
-app-backup/dar 2.4.20 2.5.3: A full featured backup tool, aimed for disks (floppy,CDR(W),DVDR(W),zip,jazz etc.)
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
 app-crypt/heimdal 1.6_rc2: Kerberos 5 implementation from KTH
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
