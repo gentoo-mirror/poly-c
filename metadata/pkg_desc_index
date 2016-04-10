@@ -18,6 +18,7 @@ app-office/osmo 0.2.10 0.2.10_p933: A handy personal organizer
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/calibre 2.53.0_pre 2.54.0_pre: Ebook management application
+app-text/liblangtag 0.6.0_pre: An interface library to access tags for identifying languages
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 app-text/poppler 0.42.0_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-db/unixODBC 2.3.3_pre: A complete ODBC driver manager
@@ -57,6 +58,7 @@ games-rpg/manaplus 1.6.2.13 1.6.2.27 1.6.3.26 9999: OpenSource 2D MMORPG client 
 games-strategy/0ad 0.0.19_alpha_pre 0.0.20_alpha_pre: A free, real-time strategy game
 games-strategy/0ad-data 0.0.19_alpha_pre 0.0.20_alpha_pre: Data files for 0ad
 games-strategy/boswars 9999: Futuristic real-time strategy game
+games-strategy/warzone2100 3.1.4_pre: 3D real-time strategy game
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/plasma-workspace 5.6.2: KDE Plasma workspace

@@ -1,10 +1,10 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8253943bf835d54567a328951e90c1c1e462f307 $
+# $Id: 4d4cea33f3a03750d52f87bf3ff49913389eca39 $
 
 EAPI="4"
 
-inherit autotools eutils vcs-snapshot user
+inherit autotools vcs-snapshot user
 
 DESCRIPTION="Update local time over HTTPS"
 HOMEPAGE="https://github.com/ioerror/tlsdate"
@@ -12,7 +12,7 @@ SRC_URI="https://github.com/ioerror/tlsdate/tarball/${P} -> ${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~s390 ~sh ~sparc ~x86"
+KEYWORDS="amd64 arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~s390 ~sh ~sparc ~x86"
 IUSE="dbus +seccomp static-libs"
 
 DEPEND="dev-libs/openssl
