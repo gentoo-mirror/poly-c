@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+# $Id: 0b616f0955c541a5483be56bbea4410925a020ac $
 
 EAPI=6
 
@@ -23,11 +23,9 @@ COMMON_DEPEND="udev? ( virtual/udev )"
 DEPEND="${COMMON_DEPEND}"
 RDEPEND="${COMMON_DEPEND}"
 
-src_prepare() {
-	default
-
-	sed '/^XCC=/s:-Wall -Werror::' -i configure || die
-}
+PATCHES=(
+	"${FILESDIR}/${P}-configure_test_fix.patch"
+)
 
 src_configure() {
 	local dev hooks rundir
