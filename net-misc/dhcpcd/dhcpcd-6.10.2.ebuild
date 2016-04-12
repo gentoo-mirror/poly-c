@@ -4,9 +4,9 @@
 
 EAPI=6
 
-inherit eutils systemd toolchain-funcs poly-c_ebuilds
+inherit eutils systemd toolchain-funcs
 
-MY_P="${MY_P/_alpha/-alpha}"
+MY_P="${P/_alpha/-alpha}"
 MY_P="${MY_P/_beta/-beta}"
 MY_P="${MY_P/_rc/-rc}"
 SRC_URI="http://roy.marples.name/downloads/${PN}/${MY_P}.tar.xz"
