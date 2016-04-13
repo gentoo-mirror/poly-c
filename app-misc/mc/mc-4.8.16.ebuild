@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4d076d249835fda8f9fd6d3afc5dbfddb0d7fc2e $
+# $Id: 32d1189fb272a763cbbac7715e5811e97215769e $
 
 EAPI=6
 
@@ -42,10 +42,11 @@ DEPEND="${RDEPEND}
 [[ -n ${LIVE_EBUILD} ]] && DEPEND="${DEPEND} dev-vcs/cvs" # needed only for SCM source tree (autopoint uses cvs)
 
 PATCHES=(
-	"${FILESDIR}/${PN}-4.8.13-tinfo.patch"
-	"${FILESDIR}/${PN}-4.8.9-fix-too-long-german-strings.patch"
-	"${FILESDIR}/${PN}-4.8.13-restore_saved_replace_string.patch"
-	"${FILESDIR}/${PN}-4.8.16-ebuild_syntax_EAPI-6.patch"
+	"${FILESDIR}"/${PN}-4.8.13-tinfo.patch
+	"${FILESDIR}"/${PN}-4.8.9-fix-too-long-german-strings.patch
+	"${FILESDIR}"/${PN}-4.8.13-restore_saved_replace_string.patch
+	"${FILESDIR}"/${PN}-4.8.16-ebuild_syntax_EAPI-6.patch
+	"${FILESDIR}"/${PN}-4.8.16-makedev.patch
 )
 
 S=${WORKDIR}/${MY_P}
