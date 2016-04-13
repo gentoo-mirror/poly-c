@@ -35,10 +35,5 @@ media-radio/liquidsoap
 # doesn't compile
 =dev-util/ragel-7.0.0.6_pre
 
-# problems with mount/swap (segfaults)
-=sys-apps/util-linux-2.28_rc1
-=sys-apps/util-linux-2.28_rc2
-=sys-apps/util-linux-2.28_rc99
-
 # WIP
 =dev-libs/openssl-1.1.0_pre*
