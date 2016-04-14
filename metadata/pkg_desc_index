@@ -66,6 +66,7 @@ lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r1: An extensible mail filter which can identify and tag spam
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
 media-libs/gegl 0.3.6_pre: A graph based image processing framework
+media-libs/glm 0.9.7.3_pre: OpenGL Mathematics
 media-libs/gst-plugins-bad 1.7.91_pre 1.8.0_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.7.91_pre 1.8.0_pre: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.7.91_pre 1.8.0_pre: Basepack of plugins for GStreamer
