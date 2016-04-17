@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5b989ad173d24dd896b057d3dcb85a793435b668 $
+# $Id: 5586086e9e635f66956e6a78636009e674cf35f4 $
 
 EAPI=5
 
@@ -45,6 +45,8 @@ src_prepare() {
 	[[ -n ${LIVE_EBUILD} ]] && ./autogen.sh
 
 	epatch "${FILESDIR}"/${PN}-4.8.13-tinfo.patch
+
+	epatch "${FILESDIR}"/${PN}-4.8.16-makedev.patch
 
 	epatch "${FILESDIR}"/${PN}-4.8.9-fix-too-long-german-strings.patch \
 		"${FILESDIR}"/${PN}-4.8.13-restore_saved_replace_string.patch

@@ -1,6 +1,6 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e56367b51b45a2cdd9a8a03ce10e7c34c00a3eca $
+# $Id: 365c019baf15fe65b0d7f86452033758f99c14f8 $
 
 EAPI=5
 
@@ -29,10 +29,10 @@ MULTILIB_WRAPPED_HEADERS=(
 )
 
 PATCHES=(
-	"${FILESDIR}/${PN}-4.8.5-moc-boost-lexical-cast.patch"
 	"${FILESDIR}/${PN}-4.8.5-honor-ExcludeSocketNotifiers-in-glib-event-loop.patch" # bug 514968
 	"${FILESDIR}/${PN}-4.8.5-qeventdispatcher-recursive.patch" # bug 514968
 	"${FILESDIR}/${PN}-4.8.6-QNAM-corruptions-fix.patch" # bug 548622
+	"${FILESDIR}/${PN}-4.8.6-moc-boost-1.60.patch" # bug 556104
 	"${FILESDIR}/${PN}-4.8.7-no-ssl3.patch"
 )
 

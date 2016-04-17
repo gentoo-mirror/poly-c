@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4cad971fe74506311dd1f2079b0bbdf028c12e93 $
+# $Id: 4f010789d8315c88fa568a36b9c2b9ba83dd0454 $
 
 EAPI=6
 
@@ -14,7 +14,7 @@ SRC_URI="http://www.midnight-commander.org/downloads/${MY_P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="+edit gpm mclib nls samba sftp +slang spell test X +xdg"
 
 REQUIRED_USE="spell? ( edit )"
@@ -43,10 +43,11 @@ DEPEND="${RDEPEND}
 
 PATCHES=(
 	"${FILESDIR}/${PN}-4.8.13-tinfo.patch"
+	"${FILESDIR}/${PN}-4.8.16-makedev.patch"
 	"${FILESDIR}/${PN}-4.8.9-fix-too-long-german-strings.patch"
 	"${FILESDIR}/${PN}-4.8.13-restore_saved_replace_string.patch"
 	"${FILESDIR}/${PN}-4.8.15-potfiles.patch"
-	"${FILESDIR}/${PN}-4.8.15-ebuild_syntax_EAPI-6.patch"
+	"${FILESDIR}/${PN}-4.8.16-ebuild_syntax_EAPI-6.patch"
 )
 
 S=${WORKDIR}/${MY_P}

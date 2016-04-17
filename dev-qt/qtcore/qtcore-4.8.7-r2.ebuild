@@ -1,6 +1,6 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c2d986be2f8c4b11e954964d449904cd15758370 $
+# $Id: 61f4256057c7bdc38c617f9de6ccd16358d92d3d $
 
 EAPI=5
 inherit qt4-build-multilib
@@ -20,7 +20,7 @@ DEPEND="
 	icu? ( dev-libs/icu:=[${MULTILIB_USEDEP}] )
 	ssl? (
 		!libressl? ( >=dev-libs/openssl-1.0.1h-r2:0[${MULTILIB_USEDEP}] )
-		libressl? ( dev-libs/libressl[${MULTILIB_USEDEP}] )
+		libressl? ( dev-libs/libressl:=[${MULTILIB_USEDEP}] )
 	)
 "
 RDEPEND="${DEPEND}"
@@ -35,9 +35,9 @@ MULTILIB_WRAPPED_HEADERS=(
 )
 
 PATCHES=(
-	"${FILESDIR}/${PN}-4.8.5-moc-boost-lexical-cast.patch"
 	"${FILESDIR}/${PN}-4.8.5-honor-ExcludeSocketNotifiers-in-glib-event-loop.patch" # bug 514968
 	"${FILESDIR}/${PN}-4.8.5-qeventdispatcher-recursive.patch" # bug 514968
+	"${FILESDIR}/${PN}-4.8.6-moc-boost-1.60.patch" # bug 556104
 	"${FILESDIR}/${PN}-4.8.7-no-ssl3.patch"
 )
 
