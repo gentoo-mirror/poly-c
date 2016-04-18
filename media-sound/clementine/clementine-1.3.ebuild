@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: debdf11b3bf8db0e56abb6c56a294a3c24931b24 $
+# $Id: 2e126575406b72ae214519aebe46bb067e3c84cf $
 
 EAPI=6
 
@@ -95,7 +95,7 @@ S="${WORKDIR}/C${MY_P:1}"
 PATCHES=(
 	"${FILESDIR}/${PN}-1.2.3-libraryquery.patch"
 	"${FILESDIR}/${PN}-1.3_rc1-cmake.patch"
-	"${FILESDIR}/${PN}-1.3_rc1-fix-tokenizer.patch"
+	"${FILESDIR}/${PN}-1.3-fix-tokenizer.patch"
 )
 
 src_prepare() {
