@@ -37,3 +37,6 @@ media-radio/liquidsoap
 
 # WIP
 =dev-libs/openssl-1.1.0_pre*
+
+# Breaks reverse deps
+=app-text/hunspell-1.4.0_pre
