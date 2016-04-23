@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: a228a728880628af9c9b2722b260e8f89c3160cd $
+# $Id: e480cf769761a56a7e0dc3220872e1c5ae589d1f $
 
 EAPI=6
 
@@ -23,7 +23,7 @@ else
 fi
 
 DESCRIPTION="Linux dynamic and persistent device naming support (aka userspace devfs)"
-HOMEPAGE="http://www.freedesktop.org/wiki/Software/systemd"
+HOMEPAGE="https://www.freedesktop.org/wiki/Software/systemd"
 
 LICENSE="LGPL-2.1 MIT GPL-2"
 SLOT="0"
@@ -119,6 +119,7 @@ src_prepare() {
 	if [[ -n "${patchset}" ]]; then
 		eapply "${WORKDIR}/patch"
 	fi
+	eapply "${FILESDIR}"/${PN}-229-sysmacros.patch #580200
 
 	eapply "${WORKDIR}"/${FIXUP_PATCH/.xz}
 

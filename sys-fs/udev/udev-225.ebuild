@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2ab9928d90455a962ccb75b1b15e3cb6ccb4b8ea $
+# $Id: 0a0ed205241c40a4fcddb63507f76536aaa87682 $
 
 EAPI=5
 
@@ -23,7 +23,7 @@ else
 fi
 
 DESCRIPTION="Linux dynamic and persistent device naming support (aka userspace devfs)"
-HOMEPAGE="http://www.freedesktop.org/wiki/Software/systemd"
+HOMEPAGE="https://www.freedesktop.org/wiki/Software/systemd"
 
 LICENSE="LGPL-2.1 MIT GPL-2"
 SLOT="0"

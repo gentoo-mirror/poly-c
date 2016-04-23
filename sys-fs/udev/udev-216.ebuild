@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5f05596abf6a07f20b5157b28f430282231059fe $
+# $Id: 24ebcfb43ad6f10035d0a5d748f4a1cdfac69072 $
 
 EAPI=5
 
@@ -13,7 +13,7 @@ if [[ ${PV} = 9999* ]]; then
 else
 	patchset=2
 	FIXUP_PATCH="${PN}-216-revert-systemd-messup.patch.xz"
-	SRC_URI="http://www.freedesktop.org/software/systemd/systemd-${PV}.tar.xz
+	SRC_URI="https://www.freedesktop.org/software/systemd/systemd-${PV}.tar.xz
 		https://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}"
 	if [[ -n "${patchset}" ]]; then
 		SRC_URI+="
@@ -24,7 +24,7 @@ else
 fi
 
 DESCRIPTION="Linux dynamic and persistent device naming support (aka userspace devfs)"
-HOMEPAGE="http://www.freedesktop.org/wiki/Software/systemd"
+HOMEPAGE="https://www.freedesktop.org/wiki/Software/systemd"
 
 LICENSE="LGPL-2.1 MIT GPL-2"
 SLOT="0"
