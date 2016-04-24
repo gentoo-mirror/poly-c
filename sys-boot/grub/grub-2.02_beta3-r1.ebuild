@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 87d786d64fa31b461710a86846d0b2af65c4545d $
+# $Id: 43291a0473bdc025dcec1ab7982daa6399cc3e97 $
 
 EAPI=6
 
@@ -34,6 +34,7 @@ PATCHES=(
 	"${FILESDIR}"/gfxpayload.patch
 	"${FILESDIR}"/grub-2.02_beta2-KERNEL_GLOBS.patch
 	"${FILESDIR}"/2.02_beta3-10_linux-UUID.patch
+	"${FILESDIR}"/2.02_beta3-sysmacros.patch
 )
 
 DEJAVU=dejavu-sans-ttf-2.35

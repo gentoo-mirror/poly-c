@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: fca0bca542325557b0250495405397ad4f2f2762 $
+# $Id: f658ecc61e7a3bdec58c8873be91e135d0949757 $
 
 EAPI=6
 
@@ -53,7 +53,7 @@ RDEPEND="${COMMON_DEPEND}
 	|| (
 		media-video/mplayer[bidi?,libass,png,X]
 		(
-			>=media-video/mpv-0.6.2[libass,X]
+			>=media-video/mpv-0.10.0[libass,X]
 			streaming? ( >=net-misc/youtube-dl-2014.11.26 )
 		)
 	)
