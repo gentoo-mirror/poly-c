@@ -54,7 +54,7 @@ dev-vcs/bzr 2.7.0_pre: Bazaar is a next generation distributed version control s
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.74 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
-games-fps/rtcw 1.42b 9999: Return to Castle Wolfenstein - IORTCW Project
+games-fps/rtcw 1.42b 1.42d 9999: Return to Castle Wolfenstein - IORTCW Project
 games-rpg/manaplus 1.6.2.13 1.6.2.27 1.6.3.26 9999: OpenSource 2D MMORPG client for Evol Online and The Mana World
 games-strategy/0ad 0.0.19_alpha_pre 0.0.20_alpha_pre: A free, real-time strategy game
 games-strategy/0ad-data 0.0.19_alpha_pre 0.0.20_alpha_pre: Data files for 0ad

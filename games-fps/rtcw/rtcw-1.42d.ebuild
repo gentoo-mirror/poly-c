@@ -73,6 +73,10 @@ use_switch() {
 	fi
 }	
 
+PATCHES=(
+	"${FILESDIR}/${PN}-1.42d-zlib.patch"
+)
+
 src_unpack() {
 	if [[ "${PV}" = 9999 ]] ; then
 		git-r3_src_unpack
@@ -84,8 +88,8 @@ src_unpack() {
 }
 
 src_prepare(){
-	epatch "${FILESDIR}/${PN}-1.42b-zlib.patch"
-	cp "${FILESDIR}/Makefile.local" "${S}/SP/"
+	epatch "${PATCHES[@]}"
+	cp "${FILESDIR}/Makefile.local" "${S}/SP/" || die
 
 	# remove bundled libs
 	local bundled_libs bundle bdir tdir
@@ -100,7 +104,7 @@ src_prepare(){
 		libvorbis-1.3.4
 		opus-1.1
 		opusfile-0.6
-		zlib
+		zlib-1.2.8
 	)
 	for bundle in ${bundled_libs[@]} ; do
 		for tdir in MP SP ; do

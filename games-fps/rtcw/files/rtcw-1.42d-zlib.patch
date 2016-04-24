@@ -1,0 +1,40 @@
+--- iortcw-1.42d/SP/code/qcommon/files.c
++++ iortcw-1.42d/SP/code/qcommon/files.c
+@@ -38,7 +38,7 @@
+ 
+ #include "q_shared.h"
+ #include "qcommon.h"
+-#include "../zlib-1.2.8/unzip.h"
++#include <minizip/unzip.h>
+ 
+ /*
+ =============================================================================
+--- iortcw-1.42d/SP/Makefile
++++ iortcw-1.42d/SP/Makefile
+@@ -1137,7 +1137,7 @@
+   ZLIB_CFLAGS = -DNO_GZIP -I$(ZDIR)
+ else
+   ZLIB_CFLAGS ?= $(shell pkg-config --silence-errors --cflags zlib || true)
+-  ZLIB_LIBS ?= $(shell pkg-config --silence-errors --libs zlib || echo -lz)
++  ZLIB_LIBS ?= $(shell pkg-config --silence-errors --libs zlib || echo -lz) $(shell pkg-config --silence-errors --libs minizip || echo -lminizip)
+ endif
+ BASE_CFLAGS += $(ZLIB_CFLAGS)
+ LIBS += $(ZLIB_LIBS)
+@@ -1647,8 +1647,6 @@
+   $(B)/client/q_math.o \
+   $(B)/client/q_shared.o \
+   \
+-  $(B)/client/unzip.o \
+-  $(B)/client/ioapi.o \
+   $(B)/client/puff.o \
+   $(B)/client/vm.o \
+   $(B)/client/vm_interpreted.o \
+@@ -2245,8 +2243,6 @@
+   $(B)/ded/q_math.o \
+   $(B)/ded/q_shared.o \
+   \
+-  $(B)/ded/unzip.o \
+-  $(B)/ded/ioapi.o \
+   $(B)/ded/vm.o \
+   $(B)/ded/vm_interpreted.o \
+   \

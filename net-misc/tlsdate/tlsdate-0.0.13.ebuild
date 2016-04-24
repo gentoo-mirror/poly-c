@@ -4,7 +4,7 @@
 
 EAPI="4"
 
-inherit autotools vcs-snapshot user
+inherit autotools eutils vcs-snapshot user
 
 DESCRIPTION="Update local time over HTTPS"
 HOMEPAGE="https://github.com/ioerror/tlsdate"
