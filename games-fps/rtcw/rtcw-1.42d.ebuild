@@ -31,7 +31,10 @@ IUSE="+client curl mumble openal opus server truetype voip vorbis"
 REQUIRED_USE="|| ( client server )
 		voip? ( opus )"
 
-DEPEND="client?	(
+CDEPEND="sys-libs/zlib[minizip]"
+
+DEPEND="${CDEPEND}
+	client? (
 		media-libs/libsdl2
 		x11-libs/libX11
 		x11-libs/libXau
@@ -40,7 +43,8 @@ DEPEND="client?	(
 		virtual/opengl
 	)"
 	
-RDEPEND="client? ( media-libs/libsdl2
+RDEPEND="${CDEPEND}
+	client? ( media-libs/libsdl2
 		virtual/opengl
 		virtual/jpeg:0
 		curl? ( net-misc/curl )
