@@ -54,7 +54,7 @@ dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision cont
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.74 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.42b 1.42d 9999: Return to Castle Wolfenstein - IORTCW Project
-games-rpg/manaplus 1.6.2.13 1.6.2.27 1.6.3.26 9999: OpenSource 2D MMORPG client for Evol Online and The Mana World
+games-rpg/manaplus 1.6.2.13 1.6.2.27 1.6.3.26 1.6.4.23_pre 9999: OpenSource 2D MMORPG client for Evol Online and The Mana World
 games-strategy/0ad 0.0.19_alpha_pre 0.0.20_alpha_pre: A free, real-time strategy game
 games-strategy/0ad-data 0.0.19_alpha_pre 0.0.20_alpha_pre: Data files for 0ad
 games-strategy/boswars 9999: Futuristic real-time strategy game
@@ -152,6 +152,7 @@ sys-fs/lvm2 2.02.149_pre 2.02.150_pre 2.02.151_pre: User-land utilities for LVM2
 sys-fs/udev 216 225 228 229-r2: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
+sys-libs/libseccomp 2.3.1_pre: high level interface to Linux seccomp filter
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-power/cpupower 3.18.29 3.18.30 3.18.31 4.1.20 4.1.21 4.1.22 4.4.6 4.4.7 4.4.8: Shows and sets processor power related values
 www-client/midori 0.5.11: A lightweight web browser based on WebKitGTK+
