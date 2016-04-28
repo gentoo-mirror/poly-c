@@ -1,0 +1,9 @@
+#!/sbin/openrc-run
+# Copyright 1999-2016 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Id$
+
+description="NUMA daemon that manages application locality"
+pidfile="/var/run/numad.pid"
+command="/usr/sbin/numad"
+command_args="${DAEMON_ARGS}"
