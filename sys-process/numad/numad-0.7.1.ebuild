@@ -23,9 +23,8 @@ IUSE=""
 
 CONFIG_CHECK="~NUMA ~CPUSETS"
 
-PATCHES=(
-	"${FILESDIR}/${P}-destdir.patch"
-)
+#PATCHES=(
+#)
 
 src_prepare() {
 	default
