@@ -1,12 +1,12 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 43291a0473bdc025dcec1ab7982daa6399cc3e97 $
+# $Id: ab057948df5fd2f7f6fe0d7581f209104b054cb2 $
 
 EAPI=6
 
 if [[ ${PV} == 9999  ]]; then
 	PYTHON_COMPAT=( python{2_7,3_3,3_4,3_5} )
-	inherit autotools python-any-r1
+	inherit python-any-r1
 fi
 
 inherit autotools bash-completion-r1 flag-o-matic multibuild pax-utils toolchain-funcs versionator
@@ -152,12 +152,8 @@ src_prepare() {
 		sed -i -e 's/^\* GRUB:/* GRUB2:/' -e 's/(grub)/(grub2)/' docs/grub.texi || die
 	fi
 
-	if [[ ${PV} == 9999 ]]; then
-		python_setup
-		bash autogen.sh || die
-		autopoint() { :; }
-		eautoreconf
-	fi
+	autopoint() { :; }
+	eautoreconf
 }
 
 grub_do() {
@@ -223,6 +219,19 @@ grub_configure() {
 	ECONF_SOURCE="${S}" econf "${myeconfargs[@]}"
 }
 
+grub_get_platforms() {
+	MULTIBUILD_VARIANTS=()
+	local platform
+	for platform in "${GRUB_ALL_PLATFORMS[@]}"; do
+		if use "grub_platforms_${platform}"; then
+			MULTIBUILD_VARIANTS+=( "${platform}" )
+		fi
+	done
+	if (( ${#MULTIBUILD_VARIANTS[@]} == 0 )); then
+		MULTIBUILD_VARIANTS=( guessed )
+	fi
+}
+
 src_configure() {
 	# Bug 508758.
 	replace-flags -O3 -O2
@@ -244,7 +253,7 @@ src_configure() {
 	tc-export BUILD_CC # Bug 485592
 
 	# Portage will take care of cleaning up GRUB_PLATFORMS
-	MULTIBUILD_VARIANTS=( ${GRUB_PLATFORMS:-guessed} )
+	grub_get_platforms
 	grub_do grub_configure
 }
 
