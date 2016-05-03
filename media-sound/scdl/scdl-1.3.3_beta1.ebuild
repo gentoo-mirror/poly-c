@@ -9,6 +9,7 @@ PYTHON_COMPAT=( python3_{3,4,5} )
 inherit distutils-r1
 
 MY_PV="${PV/_beta/b}"
+MY_P="${PN}-${MY_PV}"
 
 DESCRIPTION="Soundcloud Music Downloader"
 HOMEPAGE="https://github.com/flyingrub/scdl"
@@ -20,7 +21,13 @@ IUSE=""
 
 DEPEND="${PYTHON_DEPEND}"
 RDEPEND="${DEPEND}
+	dev-python/docopt[${PYTHON_USEDEP}]
+	dev-python/soundcloud-python[${PYTHON_USEDEP}]
+	dev-python/termcolor[${PYTHON_USEDEP}]
+	dev-python/wget[${PYTHON_USEDEP}]
+	>=media-libs/mutagen-1.32[${PYTHON_USEDEP}]
 	!!media-sound/soundcloud-dl"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
-S="${WORKDIR}/${PN}-${MY_PV}"
+S="${WORKDIR}/${MY_P}"
+

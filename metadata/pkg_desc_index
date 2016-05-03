@@ -41,6 +41,8 @@ dev-perl/Net-DNS 1.40.0_pre: Perl Net::DNS - Perl DNS Resolver Module
 dev-perl/Text-Unidecode 1.270.0_pre: Plain ASCII transliterations of Unicode text
 dev-python/google-apputils 0.4.0: Collection of utilities for building Python applications
 dev-python/m2crypto 0.23.0: M2Crypto: A Python crypto and SSL toolkit
+dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
+dev-python/wget 3.2: pure python download utility
 dev-qt/qtcore 4.8.6-r2 4.8.7-r2: Cross-platform application development framework
 dev-scheme/guile 2.0.11_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/cmake 3.5.0_rc2 3.5.0_rc3: Cross platform Make
