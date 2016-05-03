@@ -16,7 +16,8 @@ RDEPEND="app-shells/bash
 	net-misc/curl
 	sys-apps/coreutils
 	sys-apps/grep
-	sys-apps/sed"
+	sys-apps/sed
+	!!media-sound/scdl"
 
 src_install() {
 	default
