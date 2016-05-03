@@ -31,3 +31,8 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 S="${WORKDIR}/${MY_P}"
 
+src_install() {
+	distutils-r1_src_install
+
+	dodoc config/${PN}.cfg
+}
