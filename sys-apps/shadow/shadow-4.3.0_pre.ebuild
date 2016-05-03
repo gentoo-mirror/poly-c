@@ -33,6 +33,7 @@ RDEPEND="acl? ( sys-apps/acl )
 DEPEND="${RDEPEND}
 	app-arch/xz-utils
 	app-text/docbook-xml-dtd
+	app-text/gnome-doc-utils
 	dev-libs/libxslt
 	nls? ( sys-devel/gettext )"
 RDEPEND+="
