@@ -24,19 +24,22 @@ COMMON_DEPEND="dev-qt/qtcore:5
 	x11-libs/libxcb:0
 	x11-libs/xcb-util
 	x11-libs/xcb-util-image
-	x11-libs/xcb-util-wm"
+	x11-libs/xcb-util-wm
+	x11-misc/xcompmgr"
 
-DEPEND="$COMMON_DEPEND
+DEPEND="${COMMON_DEPEND}
 	dev-qt/linguist-tools:5"
 
-RDEPEND="$COMMON_DEPEND
+RDEPEND="${COMMON_DEPEND}
+	app-admin/sysstat
 	kde-frameworks/oxygen-icons
-	x11-misc/numlockx
-	x11-wm/fluxbox
-	x11-apps/xbacklight
 	media-sound/alsa-utils
 	sys-power/acpi
-	app-admin/sysstat"
+	x11-apps/xbacklight
+	x11-misc/numlockx
+	x11-wm/fluxbox"
+
+S="${WORKDIR}/${MY_P}-Release"
 
 src_configure(){
 	eqmake5 PREFIX="${ROOT}usr" L_BINDIR="${ROOT}usr/bin" \
