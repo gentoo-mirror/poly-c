@@ -1,0 +1,52 @@
+From c107b627961eb62b4bcf7f6a40e37eeb152624a7 Mon Sep 17 00:00:00 2001
+From: Ken Moore <moorekou@gmail.com>
+Date: Fri, 6 May 2016 08:04:54 -0400
+Subject: [PATCH] Add a check for the existence of the log dir before starting
+ the processes.
+
+---
+ src-qt5/core/lumina-session/main.cpp    | 5 +----
+ src-qt5/core/lumina-session/session.cpp | 5 ++++-
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/src-qt5/core/lumina-session/main.cpp b/src-qt5/core/lumina-session/main.cpp
+index 0ed3067..8f89e95 100644
+--- a/src-qt5/core/lumina-session/main.cpp
++++ b/src-qt5/core/lumina-session/main.cpp
+@@ -9,9 +9,6 @@
+ #include <QProcess>
+ #include <QString>
+ 
+-
+-
+-
+ #include "session.h"
+ #include <LuminaUtils.h>
+ #include <LuminaOS.h>
+@@ -39,7 +36,7 @@ int main(int argc, char ** argv)
+     setenv("XDG_CURRENT_DESKTOP","Lumina",1);
+     unsetenv("QT_QPA_PLATFORMTHEME"); //causes issues with Lumina themes - not many people have this by default...
+     //Check for any missing user config files
+-
++    
+     //Start X11 if needed
+ 
+     //Configure X11 monitors if needed
+diff --git a/src-qt5/core/lumina-session/session.cpp b/src-qt5/core/lumina-session/session.cpp
+index 0e8f80a..380ee37 100644
+--- a/src-qt5/core/lumina-session/session.cpp
++++ b/src-qt5/core/lumina-session/session.cpp
+@@ -45,9 +45,12 @@ void LSession::procFinished(){
+ }
+ 
+ void LSession::startProcess(QString ID, QString command){
+-  QString logfile = QDir::homePath()+"/.lumina/logs/"+ID+".log";
++  QString dir = QDir::homePath()+"/.lumina/logs";
++  if(!QFile::exists(dir)){ QDir tmp(dir); tmp.mkpath(dir); }
++  QString logfile = dir+"/"+ID+".log";
+   if(QFile::exists(logfile+".old")){ QFile::remove(logfile+".old"); }
+   if(QFile::exists(logfile)){ QFile::rename(logfile,logfile+".old"); }
++
+   QProcess *proc = new QProcess();
+   proc->setProcessChannelMode(QProcess::MergedChannels);
+   proc->setProcessEnvironment( QProcessEnvironment::systemEnvironment() );

@@ -6,9 +6,12 @@ EAPI=6
 
 inherit qmake-utils poly-c_ebuilds
 
+PATCH_V="${MY_PV##${MY_PV%%_*}}"
+MY_PV="${MY_PV%%_*}-Release${PATCH_V/_/-}"
+
 DESCRIPTION="Lumina desktop environment"
 HOMEPAGE="http://lumina-desktop.org/"
-SRC_URI="https://github.com/pcbsd/lumina/archive/v${MY_PV}-Release.tar.gz -> ${MY_P}.tar.gz"
+SRC_URI="https://github.com/pcbsd/lumina/archive/v${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
@@ -39,7 +42,7 @@ RDEPEND="${COMMON_DEPEND}
 	x11-misc/numlockx
 	x11-wm/fluxbox"
 
-S="${WORKDIR}/${MY_P}-Release"
+S="${WORKDIR}/${PN}-${MY_PV}"
 
 src_configure(){
 	eqmake5 PREFIX="${ROOT}usr" L_BINDIR="${ROOT}usr/bin" \
