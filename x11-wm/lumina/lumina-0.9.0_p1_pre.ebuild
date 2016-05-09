@@ -56,4 +56,5 @@ src_install(){
 	default
 	mv "${D}"/etc/luminaDesktop.conf.dist "${D}"/etc/luminaDesktop.conf || die
 	mv "${D}"/?umina-* "${D}"/usr/bin || die
+	rm "${D}"/start-lumina-desktop || die
 }

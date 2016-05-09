@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ac1804e31e9d35d7914af78fe249f8c97dc48c5e $
+# $Id: 6c8e2975c4d81a5619f6392307a750dcd6a07456 $
 
 EAPI=6
 
@@ -14,7 +14,7 @@ LICENSE="BSD"
 
 SLOT="0/$(get_version_component_range 1-2)"
 
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd"
+KEYWORDS="~alpha amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd"
 IUSE="debug doc examples static-libs"
 
 DEPEND="
@@ -59,7 +59,7 @@ src_prepare() {
 }
 
 src_configure() {
-	# Use C++11 now.
+	# Use C++11
 	append-cxxflags -std=c++11
 
 	if tc-is-cross-compiler; then
@@ -128,7 +128,8 @@ multilib_src_install() {
 	default
 
 	if multilib_is_native_abi && use doc; then
-		dohtml -p api -r doc/html/
+		docinto html
+		dodoc -r doc/html/*
 	fi
 }
 
