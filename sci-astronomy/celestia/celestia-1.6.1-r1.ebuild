@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 05d3bf9d2dffe1224cba9d4e8d9e1b91f307c68b $
+# $Id: 8b1f3a648f85968da393eb9b5c017fcae9200406 $
 
 EAPI=5
 WANT_AUTOMAKE="1.11"
@@ -18,9 +18,9 @@ IUSE="cairo gnome gtk lua nls pch theora threads"
 
 RDEPEND="
 	virtual/opengl
-	virtual/jpeg
+	virtual/jpeg:0
 	media-libs/libpng:0=
-	lua? ( >=dev-lang/lua-5.0 )
+	lua? ( >=dev-lang/lua-5.0:* )
 	gtk? ( !gnome? ( x11-libs/gtk+:2 >=x11-libs/gtkglext-1.0 ) )
 	gnome? (
 		x11-libs/gtk+:2

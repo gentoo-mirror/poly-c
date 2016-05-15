@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 193b66eeb7f0ed9e34af0ef294b8dc2fb332f6de $
+# $Id: 76f11327839145f0472f4b718d0f6449ed3f971e $
 
 EAPI=5
 [[ ${PV} == 9999 ]] && SCM="autotools git-r3"
@@ -13,7 +13,7 @@ if [[ ${PV} == 9999 ]] ; then
 	EGIT_REPO_URI="https://github.com/ManaPlus/ManaPlus.git"
 else
 	SRC_URI="http://download.evolonline.org/manaplus/download/${PV}/manaplus-${PV}.tar.xz"
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="amd64 ~x86"
 fi
 
 LICENSE="GPL-2+"

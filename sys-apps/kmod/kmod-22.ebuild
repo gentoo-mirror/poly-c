@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ee2b045a4bfd968577985d1e3ece8442636dab8b $
+# $Id: e81eb5362b57285626ff79c70e423c9b1b913fc2 $
 
 EAPI=5
 
@@ -13,7 +13,7 @@ if [[ ${PV} == 9999* ]]; then
 	inherit autotools git-2
 else
 	SRC_URI="mirror://kernel/linux/utils/kernel/kmod/${P}.tar.xz"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
+	KEYWORDS="~alpha amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 	inherit libtool
 fi
 
@@ -156,7 +156,7 @@ src_install() {
 	softdep ohci_hcd pre: ehci_hcd
 	EOF
 
-	insinto /etc/modprobe.d
+	insinto /lib/modprobe.d
 	doins "${T}"/usb-load-ehci-first.conf #260139
 
 	newinitd "${FILESDIR}"/kmod-static-nodes-r1 kmod-static-nodes
