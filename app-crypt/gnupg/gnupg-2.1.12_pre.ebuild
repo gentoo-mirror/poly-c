@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 
 inherit eutils flag-o-matic toolchain-funcs poly-c_ebuilds
 
@@ -57,11 +57,11 @@ RDEPEND="!static? ( ${COMMON_DEPEND_LIBS} )
 
 REQUIRED_USE="smartcard? ( !static )"
 
-S="${WORKDIR}/${MY_P}"
+PATCHES=(
+	"${FILESDIR}/${MY_P}-sig-check-correction.diff"
+)
 
-src_prepare() {
-	epatch_user
-}
+S="${WORKDIR}/${MY_P}"
 
 src_configure() {
 	local myconf=()

@@ -21,6 +21,7 @@ app-office/libreoffice-l10n 5.1.3.2_pre: Translations for the Libreoffice suite
 app-office/osmo 0.2.10 0.2.10_p933: A handy personal organizer
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
+app-text/enchant 1.6.0: Spellchecker wrapping library
 app-text/hunspell 1.3.4_pre 1.4.1_pre: Hunspell spell checker - an improved replacement for myspell in OOo
 app-text/liblangtag 0.6.0_pre: An interface library to access tags for identifying languages
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
@@ -35,6 +36,7 @@ dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/crypto++ 5.6.3_pre: C++ class library of cryptographic schemes
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 54.1-r1 55.1 56.1 56.1-r1 57.1: International Components for Unicode
+dev-libs/libevdev 1.5.1_pre: Handler library for evdev events
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.21_pre: Perl-compatible regular expression library
 dev-libs/libsigc++ 2.8.0_pre: Typesafe callback system for standard C++
