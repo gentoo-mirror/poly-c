@@ -39,5 +39,7 @@ media-radio/liquidsoap
 =dev-libs/openssl-1.1.0_pre*
 
 # Breaks reverse deps
->=app-text/hunspell-1.4.0_pre
 =app-text/liblangtag-0.6.0_pre
+
+# breaks creation of new users with useradd
+=sys-apps/shadow-4.3.0_pre

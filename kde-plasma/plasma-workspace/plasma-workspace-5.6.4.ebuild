@@ -1,9 +1,10 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: cf3fefa989dd9bbd5bcb79921399ec2f35a6a6f4 $
+# $Id$
 
 EAPI=6
 
+FRAMEWORKS_MINIMAL="5.20.0"
 KDE_HANDBOOK="forceoptional"
 KDE_TEST="forceoptional"
 VIRTUALX_REQUIRED="test"
@@ -13,6 +14,7 @@ DESCRIPTION="KDE Plasma workspace"
 KEYWORDS="~amd64 ~arm ~x86"
 IUSE="dbus +geolocation gps prison qalculate wayland"
 
+# drop qtgui subslot operator when QT_MINIMAL >= 5.6.0
 COMMON_DEPEND="
 	$(add_frameworks_dep baloo)
 	$(add_frameworks_dep kactivities)
@@ -47,6 +49,7 @@ COMMON_DEPEND="
 	$(add_frameworks_dep ktexteditor)
 	$(add_frameworks_dep ktextwidgets)
 	$(add_frameworks_dep kwallet)
+	wayland? ( $(add_frameworks_dep kwayland) )
 	$(add_frameworks_dep kwidgetsaddons)
 	$(add_frameworks_dep kwindowsystem)
 	$(add_frameworks_dep kxmlgui)
@@ -54,14 +57,13 @@ COMMON_DEPEND="
 	$(add_frameworks_dep plasma)
 	$(add_frameworks_dep solid)
 	$(add_plasma_dep kscreenlocker)
-	$(add_plasma_dep kwayland)
 	$(add_plasma_dep kwin)
 	$(add_plasma_dep libkscreen)
 	$(add_plasma_dep libksysguard)
 	$(add_qt_dep qtconcurrent)
 	$(add_qt_dep qtdbus)
 	$(add_qt_dep qtdeclarative 'widgets')
-	$(add_qt_dep qtgui 'jpeg')
+	$(add_qt_dep qtgui 'jpeg' '' '' '5=')
 	$(add_qt_dep qtnetwork)
 	$(add_qt_dep qtscript)
 	$(add_qt_dep qtsql)
