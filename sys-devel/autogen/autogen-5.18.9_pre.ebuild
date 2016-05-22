@@ -8,7 +8,8 @@ inherit eutils poly-c_ebuilds
 
 DESCRIPTION="Program and text file generation"
 HOMEPAGE="http://www.gnu.org/software/autogen/"
-SRC_URI="mirror://gnu/${PN}/rel${MY_PV}/${MY_P}.tar.xz"
+SRC_URI="mirror://gnu/${PN}/rel${MY_PV}/${MY_P}.tar.xz
+	mirror://gnu/${PN}/${MY_P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"

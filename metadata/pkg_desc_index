@@ -150,7 +150,7 @@ sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/gparted 0.26.0_pre: Gnome Partition Editor
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.02_beta2-r8 2.02_beta2-r9 2.02_beta3-r1: GNU GRUB boot loader
-sys-devel/autogen 5.18.6_pre 5.18.7_pre: Program and text file generation
+sys-devel/autogen 5.18.7_pre 5.18.9_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
 sys-fs/lvm2 2.02.152_pre 2.02.153_pre 2.02.154_pre: User-land utilities for LVM2 (device-mapper) software
