@@ -154,6 +154,7 @@ sys-boot/grub 2.02_beta2-r8 2.02_beta2-r9 2.02_beta3-r1: GNU GRUB boot loader
 sys-devel/autogen 5.18.7_pre 5.18.9_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
+sys-devel/make 4.2: Standard tool to compile source trees
 sys-fs/lvm2 2.02.152_pre 2.02.153_pre 2.02.154_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225 228 229-r2 230_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
