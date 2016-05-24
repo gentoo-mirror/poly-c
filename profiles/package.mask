@@ -47,3 +47,6 @@ media-radio/liquidsoap
 # broken python formatting
 =x11-libs/libxcb-1.12_pre
 =x11-proto/xcb-proto-1.12_pre
+
+# Header mismatch between ABIs
+=dev-libs/libxslt-1.1.29_pre

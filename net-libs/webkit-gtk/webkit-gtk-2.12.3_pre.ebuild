@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -6,8 +6,9 @@ EAPI=6
 CMAKE_MAKEFILE_GENERATOR="ninja"
 GCONF_DEBUG="no"
 PYTHON_COMPAT=( python2_7 )
+USE_RUBY="ruby20 ruby21 ruby22 ruby23"
 
-inherit autotools check-reqs cmake-utils flag-o-matic gnome2-utils pax-utils python-any-r1 toolchain-funcs versionator virtualx xdg poly-c_ebuilds
+inherit autotools check-reqs cmake-utils flag-o-matic gnome2-utils pax-utils python-any-r1 ruby-single toolchain-funcs versionator virtualx xdg poly-c_ebuilds
 
 MY_P="webkitgtk-${MY_PV}"
 DESCRIPTION="Open source web browser engine"
@@ -18,14 +19,19 @@ LICENSE="LGPL-2+ BSD"
 SLOT="4/37" # soname version of libwebkit2gtk-4.0
 KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 
-IUSE="coverage doc +egl +geoloc gles2 +gstreamer +introspection +jit libsecret +opengl spell wayland +webgl X"
+IUSE="aqua coverage doc +egl +geoloc gles2 gnome-keyring +gstreamer +introspection +jit nsplugin +opengl spell wayland +webgl X"
+# seccomp
+
+# webgl needs gstreamer, bug #560612
 REQUIRED_USE="
 	geoloc? ( introspection )
 	gles2? ( egl )
 	introspection? ( gstreamer )
-	webgl? ( ^^ ( gles2 opengl ) )
+	nsplugin? ( X )
+	webgl? ( gstreamer
+		^^ ( gles2 opengl ) )
 	!webgl? ( ?? ( gles2 opengl ) )
-	|| ( wayland X )
+	|| ( aqua wayland X )
 "
 
 # Tests fail to link for inexplicable reasons
@@ -34,7 +40,7 @@ RESTRICT="test"
 
 # use sqlite, svg by default
 # Aqua support in gtk3 is untested
-# gtk2 is needed for plugin process support, should we add a USE flag to configure this?
+# Dependencies found at Source/cmake/OptionsGTK.cmake
 RDEPEND="
 	dev-db/sqlite:3=
 	>=dev-libs/glib-2.36:2
@@ -55,16 +61,17 @@ RDEPEND="
 	x11-libs/libnotify
 	>=x11-libs/pango-1.30.0
 
-	>=x11-libs/gtk+-2.24.10:2
-
+	aqua? ( >=x11-libs/gtk+-3.14:3[aqua] )
 	egl? ( media-libs/mesa[egl] )
 	geoloc? ( >=app-misc/geoclue-2.1.5:2.0 )
 	gles2? ( media-libs/mesa[gles2] )
+	gnome-keyring? ( app-crypt/libsecret )
 	gstreamer? (
 		>=media-libs/gstreamer-1.2:1.0
-		>=media-libs/gst-plugins-base-1.2:1.0 )
-	introspection? ( >=dev-libs/gobject-introspection-1.32.0 )
-	libsecret? ( app-crypt/libsecret )
+		>=media-libs/gst-plugins-base-1.2:1.0
+		>=media-libs/gst-plugins-bad-1.5.0:1.0[opengl?] )
+	introspection? ( >=dev-libs/gobject-introspection-1.32.0:= )
+	nsplugin? ( >=x11-libs/gtk+-2.24.10:2 )
 	opengl? ( virtual/opengl
 		x11-libs/cairo[opengl] )
 	spell? ( >=app-text/enchant-0.22:= )
@@ -77,28 +84,27 @@ RDEPEND="
 		x11-libs/cairo[X]
 		>=x11-libs/gtk+-3.14:3[X]
 		x11-libs/libX11
+		x11-libs/libXcomposite
 		x11-libs/libXrender
 		x11-libs/libXt )
 "
+
+# Control knob is private and set to off
+# seccomp? ( sys-libs/libseccomp )
 
 # paxctl needed for bug #407085
 # Need real bison, not yacc
 DEPEND="${RDEPEND}
 	${PYTHON_DEPS}
+	${RUBY_DEPS}
 	>=dev-lang/perl-5.10
-	|| (
-		virtual/rubygems[ruby_targets_ruby20]
-		virtual/rubygems[ruby_targets_ruby21]
-		virtual/rubygems[ruby_targets_ruby22]
-		virtual/rubygems[ruby_targets_ruby19]
-	)
 	>=app-accessibility/at-spi2-core-2.5.3
 	>=dev-libs/atk-2.8.0
 	>=dev-util/gtk-doc-am-1.10
 	>=dev-util/gperf-3.0.1
 	>=sys-devel/bison-2.4.3
 	>=sys-devel/flex-2.5.34
-	|| ( >=sys-devel/gcc-4.7 >=sys-devel/clang-3.3 )
+	|| ( >=sys-devel/gcc-4.9 >=sys-devel/clang-3.3 )
 	sys-devel/gettext
 	virtual/pkgconfig
 
@@ -117,25 +123,29 @@ S="${WORKDIR}/${MY_P}"
 CHECKREQS_DISK_BUILD="18G" # and even this might not be enough, bug #417307
 
 PATCHES=(
-	# Debian patches to fix support for some arches
-	# https://bugs.webkit.org/show_bug.cgi?id=129540
-	"${FILESDIR}"/${PN}-2.6.0-hppa-platform.patch
-	"${FILESDIR}"/${PN}-2.6.0-ia64-platform.patch
-	# https://bugs.webkit.org/show_bug.cgi?id=129542
-	"${FILESDIR}"/${PN}-2.8.1-ia64-malloc.patch
+	# https://bugs.gentoo.org/show_bug.cgi?id=555504
+	"${FILESDIR}"/${PN}-2.8.5-fix-ia64-build.patch
+
+	# https://bugs.gentoo.org/show_bug.cgi?id=564352
+	"${FILESDIR}"/${PN}-2.8.5-fix-alpha-build.patch
 
 	# https://bugs.webkit.org/show_bug.cgi?id=148379
 	"${FILESDIR}"/${PN}-2.8.5-webkit2gtkinjectedbundle-j1.patch
 )
 
 pkg_pretend() {
-	if [[ ${MERGE_TYPE} != "binary" ]] && is-flagq "-g*" && ! is-flagq "-g*0" ; then
-		einfo "Checking for sufficient disk space to build ${PN} with debugging CFLAGS"
-		check-reqs_pkg_pretend
-	fi
+	if [[ ${MERGE_TYPE} != "binary" ]] ; then
+		if is-flagq "-g*" && ! is-flagq "-g*0" ; then
+			einfo "Checking for sufficient disk space to build ${PN} with debugging CFLAGS"
+			check-reqs_pkg_pretend
+		fi
+		if ! test-flag-CXX -std=c++11 ; then
+			die "You need at least GCC 4.9.x or Clang >= 3.3 for C++11-specific compiler flags"
+		fi
 
-	if [[ ${MERGE_TYPE} != "binary" ]] && ! test-flag-CXX -std=c++11; then
-		die "You need at least GCC 4.7.x or Clang >= 3.3 for C++11-specific compiler flags"
+		if [[ $(tc-getCXX) == *g++* && $(gcc-version) < 4.9 ]] ; then
+			die 'The active compiler needs to be gcc 4.9 (or newer)'
+		fi
 	fi
 }
 
@@ -167,6 +177,9 @@ src_configure() {
 	# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=648761
 	use alpha && append-ldflags "-Wl,--no-relax"
 
+	# ld segfaults on ia64 with LDFLAGS --as-needed, bug #555504
+	use ia64 && append-ldflags "-Wl,--no-as-needed"
+
 	# Sigbuses on SPARC with mcpu and co., bug #???
 	use sparc && filter-flags "-mvis"
 
@@ -178,7 +191,7 @@ src_configure() {
 	if ! use ia64; then
 		append-ldflags "-Wl,--no-keep-memory"
 	fi
-	if ! $(tc-getLD) --version | grep -q "GNU gold"; then
+	if ! tc-ld-is-gold ; then
 		append-ldflags "-Wl,--reduce-memory-overheads"
 	fi
 
@@ -206,29 +219,41 @@ src_configure() {
 	# should somehow let user select between them?
 	#
 	# FTL_JIT requires llvm
+	#
+	# opengl needs to be explicetly handled, bug #576634
+
+	local opengl_enabled
+	if use opengl || use gles2; then
+		opengl_enabled=ON
+	else
+		opengl_enabled=OFF
+	fi
+
 	local mycmakeargs=(
+		-DENABLE_QUARTZ_TARGET="$(usex aqua)"
 		-DENABLE_API_TESTS="$(usex test)"
 		-DENABLE_GTKDOC="$(usex doc)"
 		-DENABLE_GEOLOCATION="$(usex geoloc)"
 		-DENABLE_OpenGLES2="$(usex gles2)"
 		-DENABLE_GLES2="$(usex gles2)"
+		-DENABLE_CREDENTIAL_STORAGE="$(usex gnome-keyring)"
 		-DENABLE_VIDEO="$(usex gstreamer)"
 		-DENABLE_WEB_AUDIO="$(usex gstreamer)"
-		-DENABLE_introspection="$(usex introspection)"
-		-DENABLE_jit="$(usex jit)"
-		-DENABLE_CREDENTIAL_STORAGE="$(usex libsecret)"
+		-DENABLE_INTROSPECTION="$(usex introspection)"
+		-DENABLE_JIT="$(usex jit)"
+		-DENABLE_PLUGIN_PROCESS_GTK2="$(usex nsplugin)"
 		-DENABLE_SPELLCHECK="$(usex spell)"
 		-DENABLE_WAYLAND_TARGET="$(usex wayland)"
 		-DENABLE_WEBGL="$(usex webgl)"
 		$(cmake-utils_use_find_package egl EGL)
 		$(cmake-utils_use_find_package opengl OpenGL)
 		-DENABLE_X11_TARGET="$(usex X)"
+		-DENABLE_OPENGL=${opengl_enabled}
 		-DCMAKE_BUILD_TYPE=Release
 		-DPORT=GTK
-		-DENABLE_PLUGIN_PROCESS_GTK2=ON
 		${ruby_interpreter}
 	)
-	if $(tc-getLD) --version | grep -q "GNU gold"; then
+	if tc-ld-is-gold ; then
 		mycmakeargs+=( -DUSE_LD_GOLD=ON )
 	else
 		mycmakeargs+=( -DUSE_LD_GOLD=OFF )
@@ -253,5 +278,6 @@ src_install() {
 
 	# Prevents crashes on PaX systems, bug #522808
 	use jit && pax-mark m "${ED}usr/bin/jsc" "${ED}usr/libexec/webkit2gtk-4.0/WebKitWebProcess"
-	pax-mark m "${ED}usr/libexec/webkit2gtk-4.0/WebKitPluginProcess"{,2}
+	pax-mark m "${ED}usr/libexec/webkit2gtk-4.0/WebKitPluginProcess"
+	use nsplugin && pax-mark m "${ED}usr/libexec/webkit2gtk-4.0/WebKitPluginProcess"2
 }
