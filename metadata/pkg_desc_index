@@ -40,6 +40,7 @@ dev-libs/libevdev 1.5.1_pre: Handler library for evdev events
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.21_pre: Perl-compatible regular expression library
 dev-libs/libsigc++ 2.8.0_pre: Typesafe callback system for standard C++
+dev-libs/libxml2 2.9.4_pre: Version 2 of the library to manipulate XML files
 dev-libs/openssl 1.0.2g-r2 1.0.2h 1.1.0_pre4: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 dev-perl/Net-DNS 1.40.0_pre: Perl Net::DNS - Perl DNS Resolver Module
@@ -63,6 +64,7 @@ games-rpg/manaplus 1.6.2.13 1.6.2.27 1.6.3.26 1.6.4.23_pre 9999: OpenSource 2D M
 games-strategy/0ad 0.0.19_alpha_pre 0.0.20_alpha_pre: A free, real-time strategy game
 games-strategy/0ad-data 0.0.19_alpha_pre 0.0.20_alpha_pre: Data files for 0ad
 games-strategy/boswars 9999: Futuristic real-time strategy game
+games-strategy/freeciv 2.5.4_pre: multiplayer strategy game (Civilization Clone)
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/plasma-workspace 5.6.4: KDE Plasma workspace
@@ -159,7 +161,7 @@ sys-fs/udev 216 225 228 229-r2 230_pre: Linux dynamic and persistent device nami
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 3.18.31 3.18.32 3.18.33 4.1.22 4.1.23 4.1.24 4.4.9 4.4.10 4.4.11 4.5.5: Shows and sets processor power related values
+sys-power/cpupower 3.18.32 3.18.33 3.18.34 4.1.23 4.1.24 4.1.25 4.4.9 4.4.10 4.4.11 4.5.5: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 www-client/seamonkey 2.38 2.39 2.40: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
