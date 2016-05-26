@@ -1,5 +1,13 @@
 --- udev-init-scripts-30/init.d/udev
 +++ udev-init-scripts-30/init.d/udev
+@@ -1,5 +1,5 @@
+-#!/sbin/runscript
+-# Copyright 1999-2013 Gentoo Foundation
++#!/sbin/openrc-run
++# Copyright 1999-2016 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ 
+ command_args="--daemon ${udev_opts}"
 @@ -14,6 +14,19 @@
  	keyword -lxc -systemd-nspawn -vserver
  }
