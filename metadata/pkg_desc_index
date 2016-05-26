@@ -60,10 +60,7 @@ games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor addition
 games-fps/etlegacy 2.74 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.42b 1.42d 9999: Return to Castle Wolfenstein - IORTCW Project
 games-rpg/manaplus 1.6.2.13 1.6.2.27 1.6.3.26 1.6.4.23_pre 9999: OpenSource 2D MMORPG client for Evol Online and The Mana World
-games-strategy/0ad 0.0.19_alpha_pre 0.0.20_alpha_pre: A free, real-time strategy game
-games-strategy/0ad-data 0.0.19_alpha_pre 0.0.20_alpha_pre: Data files for 0ad
 games-strategy/boswars 9999: Futuristic real-time strategy game
-games-strategy/freeciv 2.5.4_pre: multiplayer strategy game (Civilization Clone)
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/plasma-workspace 5.6.4: KDE Plasma workspace
@@ -155,7 +152,7 @@ sys-devel/autogen 5.18.7_pre 5.18.9_pre 5.18.10_pre: Program and text file gener
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
 sys-fs/lvm2 2.02.152_pre 2.02.153_pre 2.02.154_pre: User-land utilities for LVM2 (device-mapper) software
-sys-fs/udev 216 225 228 229-r2 230_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
+sys-fs/udev 216 225 228 229-r2 230: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine

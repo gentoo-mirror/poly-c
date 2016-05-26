@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit autotools bash-completion-r1 eutils linux-info multilib multilib-minimal toolchain-funcs udev user versionator poly-c_ebuilds
+inherit autotools bash-completion-r1 linux-info multilib multilib-minimal toolchain-funcs udev user versionator
 
 if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://anongit.freedesktop.org/systemd/systemd"
@@ -12,7 +12,7 @@ if [[ ${PV} = 9999* ]]; then
 else
 	patchset=
 	FIXUP_PATCH="${PN}-230-revert-systemd-messup.patch.xz"
-	SRC_URI="https://github.com/systemd/systemd/archive/v${MY_PV}.tar.gz -> systemd-${MY_PV}.tar.gz
+	SRC_URI="https://github.com/systemd/systemd/archive/v${PV}.tar.gz -> systemd-${PV}.tar.gz
 		https://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}"
 	if [[ -n "${patchset}" ]]; then
 		SRC_URI+="
@@ -65,7 +65,7 @@ RDEPEND="${COMMON_DEPEND}
 PDEPEND=">=sys-apps/hwids-20140304[udev]
 	>=sys-fs/udev-init-scripts-26"
 
-S=${WORKDIR}/systemd-${MY_PV}
+S=${WORKDIR}/systemd-${PV}
 
 # The multilib-build.eclass doesn't handle situation where the installed headers
 # are different in ABIs. In this case, we install libgudev headers in native
@@ -117,9 +117,8 @@ src_prepare() {
 
 	# backport some patches
 	if [[ -n "${patchset}" ]]; then
-		eapply "${WORKDIR}/patch"
+		eapply "${WORKDIR}"/patch
 	fi
-	#eapply "${FILESDIR}"/${PN}-229-sysmacros.patch #580200
 
 	eapply "${WORKDIR}"/${FIXUP_PATCH/.xz}
 
@@ -135,7 +134,8 @@ src_prepare() {
 	# stub out the am_path_libcrypt function
 	echo 'AC_DEFUN([AM_PATH_LIBGCRYPT],[:])' > m4/gcrypt.m4
 
-	default
+	# apply user patches
+	eapply_user
 
 	eautoreconf
 
