@@ -241,11 +241,11 @@ src_install() {
 
 	if use !device-mapper-only ; then
 		newinitd "${FILESDIR}"/dmeventd.initd-2.02.67-r1 dmeventd
-		newinitd "${FILESDIR}"/lvm.rc-2.02.105-r2 lvm
+		newinitd "${FILESDIR}"/lvm.rc-2.02.116-r6 lvm
 		newconfd "${FILESDIR}"/lvm.confd-2.02.28-r2 lvm
 
 		newinitd "${FILESDIR}"/lvm-monitoring.initd-2.02.105-r2 lvm-monitoring
-		newinitd "${FILESDIR}"/lvmetad.initd-2.02.105-r2 lvmetad
+		newinitd "${FILESDIR}"/lvmetad.initd-2.02.116-r3 lvmetad
 	fi
 
 	if use clvm; then
