@@ -1,8 +1,8 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 494bbe959c3cf4ab79c69ba4238e8ba1ced459c1 $
+# $Id$
 
-EAPI=5
+EAPI="5"
 
 inherit eutils flag-o-matic toolchain-funcs multilib multilib-minimal
 
@@ -249,16 +249,8 @@ multilib_src_install_all() {
 	keepdir ${SSL_CNF_DIR}/private
 }
 
-pkg_preinst() {
-	has_version ${CATEGORY}/${PN}:0.9.8 && return 0
-	preserve_old_lib /usr/$(get_libdir)/lib{crypto,ssl}.so.0.9.8
-}
-
 pkg_postinst() {
 	ebegin "Running 'c_rehash ${EROOT%/}${SSL_CNF_DIR}/certs/' to rebuild hashes #333069"
 	c_rehash "${EROOT%/}${SSL_CNF_DIR}/certs" >/dev/null
 	eend $?
-
-	has_version ${CATEGORY}/${PN}:0.9.8 && return 0
-	preserve_old_lib_notify /usr/$(get_libdir)/lib{crypto,ssl}.so.0.9.8
 }

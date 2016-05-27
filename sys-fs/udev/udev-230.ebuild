@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e480cf769761a56a7e0dc3220872e1c5ae589d1f $
+# $Id: 298e12b0c13a191194429cf428176b0ad6637629 $
 
 EAPI=6
 
@@ -448,7 +448,7 @@ pkg_postinst() {
 	if use hwdb && has_version 'sys-apps/hwids[udev]'; then
 		udev-hwdb --root="${ROOT}" update
 		# Only reload when we are not upgrading to avoid potential race w/ incompatible hwdb.bin and the running udevd
-		# http://cgit.freedesktop.org/systemd/systemd/commit/?id=1fab57c209035f7e66198343074e9cee06718bda
+		# https://cgit.freedesktop.org/systemd/systemd/commit/?id=1fab57c209035f7e66198343074e9cee06718bda
 		[[ -z ${REPLACING_VERSIONS} ]] && udev_reload
 	fi
 }
