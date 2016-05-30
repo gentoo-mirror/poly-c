@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e480cf769761a56a7e0dc3220872e1c5ae589d1f $
+# $Id: b0c36c8eeaccf8710ac49e3cc2f729a31464cb51 $
 
 EAPI=6
 
@@ -87,7 +87,7 @@ check_default_rules() {
 
 pkg_setup() {
 	if [[ ${MERGE_TYPE} != buildonly ]]; then
-		CONFIG_CHECK="~BLK_DEV_BSG ~DEVTMPFS ~!IDE ~INOTIFY_USER ~!SYSFS_DEPRECATED ~!SYSFS_DEPRECATED_V2 ~SIGNALFD ~EPOLL ~FHANDLE ~NET ~!FW_LOADER_USER_HELPER"
+		CONFIG_CHECK="~BLK_DEV_BSG ~DEVTMPFS ~!IDE ~INOTIFY_USER ~!SYSFS_DEPRECATED ~!SYSFS_DEPRECATED_V2 ~SIGNALFD ~EPOLL ~FHANDLE ~NET ~!FW_LOADER_USER_HELPER ~UNIX"
 		linux-info_pkg_setup
 
 		# CONFIG_FHANDLE was introduced by 2.6.39
