@@ -43,10 +43,3 @@ media-radio/liquidsoap
 
 # breaks creation of new users with useradd
 =sys-apps/shadow-4.3.0_pre
-
-# broken python formatting
-=x11-libs/libxcb-1.12_pre
-=x11-proto/xcb-proto-1.12_pre
-
-# Header mismatch between ABIs
-=dev-libs/libxslt-1.1.29_pre

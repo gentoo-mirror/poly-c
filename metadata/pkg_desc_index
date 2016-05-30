@@ -35,12 +35,9 @@ dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/crypto++ 5.6.3_pre: C++ class library of cryptographic schemes
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 54.1-r1 55.1 56.1 56.1-r1 57.1: International Components for Unicode
-dev-libs/libevdev 1.5.1_pre: Handler library for evdev events
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.21_pre: Perl-compatible regular expression library
 dev-libs/libsigc++ 2.8.0_pre: Typesafe callback system for standard C++
-dev-libs/libxml2 2.9.4_pre: Version 2 of the library to manipulate XML files
-dev-libs/libxslt 1.1.29_pre: XSLT libraries and tools
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2g-r2 1.0.2h 1.0.2h-r1 1.1.0_pre4: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
@@ -149,7 +146,6 @@ sys-apps/portage 2.2.8-r2: Portage is the package management and distribution sy
 sys-apps/shadow 4.3.0_pre: Utilities to deal with user accounts
 sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
-sys-block/gparted 0.26.0_pre: Gnome Partition Editor
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.02_beta2-r8 2.02_beta2-r9 2.02_beta3-r1: GNU GRUB boot loader
 sys-devel/autogen 5.18.7_pre 5.18.9_pre 5.18.10_pre: Program and text file generation
@@ -166,6 +162,4 @@ www-client/seamonkey 2.38 2.39 2.40: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-libs/cairo 1.15.2_pre: A vector graphics library with cross-device output support
-x11-libs/libxcb 1.12_pre: X C-language Bindings library
-x11-proto/xcb-proto 1.12_pre: X C-language Bindings protocol headers
 x11-wm/lumina 0.9.0_p1_pre: Lumina desktop environment
