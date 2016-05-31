@@ -23,7 +23,6 @@ app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/enchant 1.6.0: Spellchecker wrapping library
 app-text/liblangtag 0.6.0_pre: An interface library to access tags for identifying languages
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
-dev-db/sqlite 3.13.0_pre: A SQL Database Engine in a C Library
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
 dev-java/icedtea-web 1.6.2_pre: FOSS Java browser plugin and Web Start implementation
