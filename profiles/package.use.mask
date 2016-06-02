@@ -1,2 +1,0 @@
-app-office/osmo sync
-media-radio/liquidsoup shout
