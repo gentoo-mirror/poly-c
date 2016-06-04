@@ -47,7 +47,6 @@ dev-python/wget 3.2: pure python download utility
 dev-qt/qtcore 4.8.6-r2 4.8.7-r2: Cross-platform application development framework
 dev-scheme/guile 2.0.11_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
-dev-util/mdds 1.0.0_pre: A collection of multi-dimensional data structure and indexing algorithm
 dev-util/ragel 7.0.0.5_pre 7.0.0.6_pre: Compiles finite state machines from regular languages into executable code
 dev-vcs/bzr 2.7.0_pre: Bazaar is a next generation distributed version control system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
@@ -60,7 +59,7 @@ games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/plasma-workspace 5.6.4: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
-mail-filter/spamassassin 3.4.1-r2: An extensible mail filter which can identify and tag spam
+mail-filter/spamassassin 3.4.1-r2 3.4.1-r3: An extensible mail filter which can identify and tag spam
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
 media-libs/gegl 0.3.6_pre: A graph based image processing framework
 media-libs/glm 0.9.7.3_pre: OpenGL Mathematics
@@ -146,11 +145,11 @@ sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.02_beta2-r8 2.02_beta2-r9 2.02_beta3-r1: GNU GRUB boot loader
-sys-devel/autogen 5.18.7_pre 5.18.9_pre 5.18.10_pre: Program and text file generation
+sys-devel/autogen 5.18.9_pre 5.18.10_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
 sys-fs/lvm2 2.02.152_pre 2.02.153_pre 2.02.154_pre: User-land utilities for LVM2 (device-mapper) software
-sys-fs/udev 216 225 228 229-r2 230: Linux dynamic and persistent device naming support (aka userspace devfs)
+sys-fs/udev 216 225-r1 228 229-r2 230-r1: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine

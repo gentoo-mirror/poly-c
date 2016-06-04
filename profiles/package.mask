@@ -23,9 +23,6 @@ dev-libs/ewahboolarray
 # Missing dependencies
 media-radio/liquidsoap
 
-# broken deps
-=dev-util/mdds-1.0.0_pre
-
 # Not all dependencies available yet.
 >=media-plugins/gst-plugins-meta-1.7.0
 

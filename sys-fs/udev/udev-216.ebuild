@@ -301,8 +301,8 @@ multilib_src_install() {
 			MANPAGES="man/udev.link.5 man/udev.7 man/udevadm.8 man/udevd.8"
 			MANPAGES_ALIAS="man/systemd-udevd.8"
 			pkgconfiglib_DATA="${pkgconfiglib_DATA}"
-			INSTALL_DIRS='$(sysconfdir)/udev/rules.d \
-					$(sysconfdir)/udev/hwdb.d \
+			INSTALL_DIRS='$(sysconfdir)/udev/rules.d
+					$(sysconfdir)/udev/hwdb.d
 					$(sysconfdir)/udev/network'
 			dist_bashcompletion_DATA="shell-completion/bash/udevadm"
 			networkdir=/lib/udev/network
