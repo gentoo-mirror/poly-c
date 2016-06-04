@@ -27,6 +27,13 @@ PATCHES=(
 	"${FILESDIR}/${MY_P}-governor_script_fixes.patch"
 )
 
+src_prepare() {
+	default
+
+	# Increase CPU limit from 8 to 16
+	sed '/NCPU_MAX/s@8@16@' -i cpupower.c || die
+}
+
 src_install() {
 	gkrellm-plugin_src_install
 

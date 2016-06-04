@@ -1,6 +1,10 @@
 --- gkrellm2-cpupower-0.1.5/cpufreqnextgovernor
 +++ gkrellm2-cpupower-0.1.5/cpufreqnextgovernor
-@@ -3,10 +3,10 @@
+@@ -1,12 +1,14 @@
+ #!/bin/bash
+ 
++LANG=C
++
  cpu="$1"
  
  # determine actual governor
