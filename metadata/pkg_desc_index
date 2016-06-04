@@ -59,7 +59,7 @@ games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/plasma-workspace 5.6.4: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
-mail-filter/spamassassin 3.4.1-r2 3.4.1-r3: An extensible mail filter which can identify and tag spam
+mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
 media-libs/gegl 0.3.6_pre: A graph based image processing framework
 media-libs/glm 0.9.7.3_pre: OpenGL Mathematics
