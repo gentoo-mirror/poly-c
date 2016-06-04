@@ -1,0 +1,26 @@
+From 0660d40e1a3926db100e26934665b89246c14d97 Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Sat, 4 Jun 2016 20:03:23 +0200
+Subject: [PATCH 5/5] cpupower.c: Use correct version in definition.
+
+Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
+---
+ cpupower.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cpupower.c b/cpupower.c
+index ccc72d9..fd918d6 100644
+--- a/cpupower.c
++++ b/cpupower.c
+@@ -55,7 +55,7 @@
+ #include <cpufreq.h>
+ 
+ /* version number */
+-#define  VERSION        "0.1"
++#define  VERSION        "0.1.5"
+ 
+ /* name in the configuration tree */
+ #define  CONFIG_NAME	"CPUpower"
+-- 
+2.8.3
+

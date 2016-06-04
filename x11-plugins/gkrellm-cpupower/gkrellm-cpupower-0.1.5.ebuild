@@ -23,19 +23,13 @@ S="${WORKDIR}/${MY_P}"
 
 PLUGIN_SO="cpupower.so"
 
-PATCHES=(
-	"${FILESDIR}/${MY_P}-governor_script_fixes.patch"
-)
-
 src_prepare() {
-	default
-
-	# Increase CPU limit from 8 to 16
-	sed '/NCPU_MAX/s@8@16@' -i cpupower.c || die
+	eapply ${FILESDIR}/*.patch
+	eapply_user
 }
 
 src_install() {
 	gkrellm-plugin_src_install
-
 	dosbin cpufreqnextgovernor
+	emake DESTDIR="${D}" install-sudo
 }

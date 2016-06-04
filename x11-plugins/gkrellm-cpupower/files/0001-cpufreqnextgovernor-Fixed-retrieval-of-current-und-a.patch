@@ -1,0 +1,38 @@
+From fc5c8cacc0b10d4b8b88297af6f1117cc85f2d0d Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Sat, 4 Jun 2016 19:56:48 +0200
+Subject: [PATCH 1/5] cpufreqnextgovernor: Fixed retrieval of current und
+ available governors.
+
+Set LANG to C or else output might be localized which breaks the sed search
+strings.
+
+Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
+---
+ cpufreqnextgovernor | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/cpufreqnextgovernor b/cpufreqnextgovernor
+index 92df6b4..e6dc9f9 100755
+--- a/cpufreqnextgovernor
++++ b/cpufreqnextgovernor
+@@ -1,12 +1,14 @@
+ #!/bin/bash
+ 
++LANG=C
++
+ cpu="$1"
+ 
+ # determine actual governor
+-actual_gov=`cpupower -c $cpu frequency-info -p | tail -n 1 | sed 's/.*\ //'`
++actual_gov=`cpupower -c $cpu frequency-info -p | sed -n '/governor/s@.*"\([[:alpha:]]\+\)".*@\1@p'`
+ 
+ # determine available governors
+-avail_gov=`cpupower -c $cpu frequency-info -g | tail -n 1`
++avail_gov=`cpupower -c $cpu frequency-info -g | sed -n '/available/s@.*: @@p'`
+ 
+ avail_gov1=`echo $avail_gov | sed "s/.*$actual_gov//"`
+ avail_gov2=`echo $avail_gov | sed "s/$actual_gov.*//"`
+-- 
+2.8.3
+
