@@ -12,7 +12,8 @@ DESCRIPTION="GKrellm plugin for changing CPU frequencies via cpupower"
 HOMEPAGE="https://github.com/sainsaar/gkrellm2-cpupower"
 SRC_URI="https://github.com/sainsaar/gkrellm2-cpupower/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
 
-RDEPEND="sys-power/cpupower"
+RDEPEND="app-admin/sudo
+	sys-power/cpupower"
 
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
