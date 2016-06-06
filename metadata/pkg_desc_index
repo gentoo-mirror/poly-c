@@ -107,6 +107,7 @@ media-video/guvcview 2.0.4_pre: GTK+ UVC Viewer
 media-video/smplayer 16.4.0-r2: Great Qt GUI front-end for mplayer/mpv
 media-video/tragtor 0.8.45 0.9.2: traGtor is a graphical user interface (GUI) for ffmpeg
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
+media-video/vlc 2.2.4_pre: VLC media player - Video player and streamer
 net-analyzer/arpalert 1.0.3_pre 1.1.3_pre 2.0.11_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/medusa 2.1.1 2.2: A Modular,Parallel,Multiprotocol, Network Login Auditor
 net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
