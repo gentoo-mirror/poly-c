@@ -15,6 +15,7 @@ app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LD
 app-misc/mc 4.8.14 4.8.15 4.8.16 4.8.17: GNU Midnight Commander is a text based file manager
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
+app-shells/dash 0.5.9: DASH is a direct descendant of the NetBSD version of ash (the Almquist SHell) and is POSIX compliant
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/enchant 1.6.0: Spellchecker wrapping library
 app-text/liblangtag 0.6.0_pre: An interface library to access tags for identifying languages
@@ -149,6 +150,7 @@ sys-devel/autogen 5.18.9_pre 5.18.10_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
 sys-devel/gcc 5.4.0_pre: The GNU Compiler Collection
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
+sys-fs/btrfs-progs 4.6_rc1: Btrfs filesystem utilities
 sys-fs/lvm2 2.02.153_pre 2.02.154_pre 2.02.155_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
