@@ -40,3 +40,6 @@ media-radio/liquidsoap
 
 # breaks creation of new users with useradd
 =sys-apps/shadow-4.3.0_pre
+
+# No debian patches yet
+=app-shells/dash-0.5.9

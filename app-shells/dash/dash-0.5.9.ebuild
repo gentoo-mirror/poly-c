@@ -12,7 +12,8 @@ MY_P="${PN}-${MY_PV}"
 
 DESCRIPTION="DASH is a direct descendant of the NetBSD version of ash (the Almquist SHell) and is POSIX compliant"
 HOMEPAGE="http://gondor.apana.org.au/~herbert/dash/"
-SRC_URI="http://gondor.apana.org.au/~herbert/dash/files/${MY_P}.tar.gz"
+SRC_URI="http://gondor.apana.org.au/~herbert/dash/files/${MY_P}.tar.gz
+	https://wh0rd.org/dump/${PN}-0.5.9-dumb-echo.patch"
 if [[ -n "${DEB_PATCH}" ]] ; then
 	DEB_PF="${PN}_${MY_PV}-${DEB_PATCH}"
 	SRC_URI+=" mirror://debian/pool/main/d/dash/${DEB_PF}.diff.gz"
@@ -30,13 +31,17 @@ DEPEND="${RDEPEND}
 
 S=${WORKDIR}/${MY_P}
 
+PATCHES=(
+	"${DISTDIR}"/${PN}-0.5.9-dumb-echo.patch #337329 #527848
+	"${FILESDIR}"/${PN}-0.5.8.1-eval-warnx.patch
+)
+
 src_prepare() {
 	if [[ -n "${DEB_PATCH}" ]] ; then
 		epatch "${WORKDIR}"/${DEB_PF}.diff
 		epatch */debian/diff/*
 	fi
-	#epatch "${FILESDIR}"/${PN}-0.5.8.1-dumb-echo.patch #337329 #527848
-	epatch "${FILESDIR}"/${PN}-0.5.8.1-eval-warnx.patch
+	epatch "${PATCHES[@]}"
 
 	# Fix the invalid sort
 	sed -i -e 's/LC_COLLATE=C/LC_ALL=C/g' src/mkbuiltins
