@@ -43,3 +43,5 @@ media-radio/liquidsoap
 
 # No debian patches yet
 =app-shells/dash-0.5.9
+
+=app-admin/sudo-1.8.17_rc*

@@ -9,7 +9,7 @@ LICENSE=GPL-2
 RDEPEND=dev-libs/lzo:2= sys-apps/util-linux:0=[static-libs(+)?] sys-libs/zlib:0= convert? ( sys-fs/e2fsprogs:0= sys-libs/e2fsprogs-libs:0= )
 RESTRICT=test
 SLOT=0/0
-SRC_URI=https://www.kernel.org/pub/linux/kernel/people/kdave/btrfs-progs/btrfs-progs-v4.6-rc1.tar.xz
+SRC_URI=https://www.kernel.org/pub/linux/kernel/people/kdave/btrfs-progs/btrfs-progs-v4.6.tar.xz
 _eclass_exported_funcs=src_prepare:- src_configure:- src_compile:- src_install:-
-_eclasses_=bash-completion-r1	acf715fa09463f043fbfdc1640f3fb85	multilib	d062ae4ba2fc40a19c11de2ad89b6616	toolchain-funcs	d513d423d449877e49d99af3f7af7acb
-_md5_=0d1f91259968bf810febdd1558d38431
+_eclasses_=bash-completion-r1	acf715fa09463f043fbfdc1640f3fb85	multilib	d062ae4ba2fc40a19c11de2ad89b6616	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	d513d423d449877e49d99af3f7af7acb
+_md5_=9599db4c36420f52a3a7c50414b61620

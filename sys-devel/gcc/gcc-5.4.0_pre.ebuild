@@ -48,9 +48,9 @@ src_prepare() {
 	fi
 	is_crosscompile && EPATCH_EXCLUDE+=" 05_all_gcc-spec-env.patch"
 
-	EPATCH_EXCLUDE+="36_all_gcc-ia64-pr60465.patch
+	EPATCH_EXCLUDE+=" 36_all_gcc-ia64-pr60465.patch
 			85_all_gcc5-aarch64-pr65689.patch
-			91_all_pr69140-msabi-stack-alignment.patch"
+			91_all_pr69140-msabi-stack-alignment.patch5~"
 
 	toolchain_src_prepare
 }

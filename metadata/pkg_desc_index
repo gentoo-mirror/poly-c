@@ -1,5 +1,6 @@
 app-accessibility/speech-dispatcher 0.8.4_pre: Speech synthesis interface
 app-admin/remotebox 2.0: Open Source VirtualBox Client with Remote Management
+app-admin/sudo 1.8.17_rc1: Allows users or groups to run commands as other users
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-arch/xz-utils 5.2.2: utils for managing LZMA compressed files
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
@@ -151,8 +152,8 @@ sys-devel/autogen 5.18.9_pre 5.18.10_pre: Program and text file generation
 sys-devel/binutils-config 3-r3 4: Utility to change the binutils version being used
 sys-devel/gcc 5.4.0_pre: The GNU Compiler Collection
 sys-devel/gettext 0.19.5.1-r1: GNU locale utilities
-sys-fs/btrfs-progs 4.6_rc1: Btrfs filesystem utilities
-sys-fs/lvm2 2.02.153_pre 2.02.154_pre 2.02.155_pre: User-land utilities for LVM2 (device-mapper) software
+sys-fs/btrfs-progs 4.6_rc99: Btrfs filesystem utilities
+sys-fs/lvm2 2.02.154_pre 2.02.155_pre 2.02.156_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
