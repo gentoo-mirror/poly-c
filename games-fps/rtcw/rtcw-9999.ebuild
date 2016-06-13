@@ -21,7 +21,8 @@ else
 fi
 
 WOLF_POINTRELEASE="wolf-linux-1.41b.x86.run"
-SRC_URI+=" mirror://idsoftware/wolf/linux/${WOLF_POINTRELEASE}"
+SRC_URI+=" mirror://idsoftware/wolf/linux/${WOLF_POINTRELEASE}
+	https://github.com/iortcw/iortcw/releases/download/1.42d/patch-data-141.zip"
 # iortcw is GPL-2 but the point release files still have the original copyrights
 # from ID-software
 LICENSE="GPL-2 RTCW"
