@@ -45,3 +45,9 @@ media-radio/liquidsoap
 =app-shells/dash-0.5.9
 
 =app-admin/sudo-1.8.17_rc*
+
+# WIP
+=app-emulation/virtualbox-5.1.0_beta*
+=app-emulation/virtualbox-bin-5.1*
+=app-emulation/virtualbox-modules-5.1.0_beta*
+=app-emulation/virtualbox-extpack-oracle-5.1*
