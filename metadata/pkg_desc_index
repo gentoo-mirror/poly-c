@@ -130,6 +130,7 @@ net-libs/libndp 1.6_pre: Library for Neighbor Discovery Protocol
 net-libs/webkit-gtk 2.12.2_pre 2.12.3_pre: Open source web browser engine
 net-misc/dhcpcd 6.11.0: A fully featured, yet light weight RFC2131 compliant DHCP client
 net-misc/networkmanager 1.2.2_pre: A set of co-operative tools that make networking simple and straightforward
+net-misc/ns 3.25: A discrete-event network simulator for Internet systems.
 net-misc/openssh 7.1_p2-r1 7.2_p2: Port of OpenBSD's free SSH release
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS

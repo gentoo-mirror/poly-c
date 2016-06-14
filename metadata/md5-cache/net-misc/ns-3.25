@@ -1,0 +1,15 @@
+DEFINED_PHASES=compile configure install setup
+DEPEND=dev-db/sqlite dev-libs/boost dev-libs/libxml2 sci-libs/gsl:= gtk? ( dev-libs/atk dev-libs/glib:2 media-libs/fontconfig media-libs/freetype x11-libs/cairo x11-libs/gdk-pixbuf x11-libs/gtk+:2 x11-libs/pango )
+DESCRIPTION=A discrete-event network simulator for Internet systems.
+EAPI=6
+HOMEPAGE=https://www.nsnam.org/
+IUSE=debug examples gtk test python_targets_python2_7
+KEYWORDS=~amd64 ~x86
+LICENSE=GPLv2
+RDEPEND=dev-db/sqlite dev-libs/boost dev-libs/libxml2 sci-libs/gsl:= gtk? ( dev-libs/atk dev-libs/glib:2 media-libs/fontconfig media-libs/freetype x11-libs/cairo x11-libs/gdk-pixbuf x11-libs/gtk+:2 x11-libs/pango )
+REQUIRED_USE=python_targets_python2_7
+SLOT=0
+SRC_URI=https://www.nsnam.org/release/ns-allinone-3.25.tar.bz2
+_eclass_exported_funcs=pkg_setup:- src_configure:- src_compile:waf-utils src_install:waf-utils
+_eclasses_=multilib	d062ae4ba2fc40a19c11de2ad89b6616	multiprocessing	e32940a7b2a9992ad217eccddb84d548	python-single-r1	2ebea8fbab356d63110245129a67a6dd	python-utils-r1	c0ed2a2f233d3af6dd556048695dc5cb	toolchain-funcs	c9d9187f4caa4026a0ceddd8dfceb3c1	waf-utils	c21174962af5ca8091b66f58612797ce
+_md5_=3ea0df2d88bb81127b8c534ca498cb2d
