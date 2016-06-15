@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5700645c25a0b74454e48f22b0238e79d6427d64 $
+# $Id: 438e794112895924129974c5771942ee100ee4e6 $
 
 EAPI=5
 
@@ -12,7 +12,7 @@ inherit distutils-r1
 MY_PN="M2Crypto"
 
 DESCRIPTION="M2Crypto: A Python crypto and SSL toolkit"
-HOMEPAGE="https://github.com/martinpaljak/M2Crypto https://pypi.python.org/pypi/M2Crypto"
+HOMEPAGE="https://gitlab.com/m2crypto/m2crypto https://pypi.python.org/pypi/M2Crypto"
 SRC_URI="mirror://pypi/${MY_PN:0:1}/${MY_PN}/${MY_PN}-${PV}.tar.gz"
 
 LICENSE="BSD"
