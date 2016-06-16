@@ -1,0 +1,11 @@
+--- a/tests/openpgp/mds.test
++++ b/tests/openpgp/mds.test
+@@ -63,7 +63,7 @@
+ 
+ [ "$failed" != "" ] && error "$failed failed for empty string"
+ 
+-echo_n "abcdefghijklmnopqrstuvwxyz" | $GPG --with-colons --print-mds >y
++printf "abcdefghijklmnopqrstuvwxyz" | $GPG --with-colons --print-mds >y
+ if have_hash_algo "MD5"; then
+   test_one ":1:"    "C3FCD3D76192E4007DFB496CCA67E13B"
+ fi
