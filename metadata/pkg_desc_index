@@ -128,6 +128,7 @@ net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/gnutls 3.5.1: A TLS 1.2 and SSL 3.0 implementation for the GNU project
 net-libs/libndp 1.6_pre: Library for Neighbor Discovery Protocol
 net-libs/webkit-gtk 2.12.2_pre 2.12.3_pre: Open source web browser engine
+net-misc/aria2 1.24.0_pre: A download utility with segmented downloading with BitTorrent support
 net-misc/dhcpcd 6.11.0: A fully featured, yet light weight RFC2131 compliant DHCP client
 net-misc/networkmanager 1.2.2_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.25: A discrete-event network simulator for Internet systems.
