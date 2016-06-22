@@ -4,7 +4,6 @@ app-admin/sudo 1.8.17_rc1 1.8.17_rc2: Allows users or groups to run commands as 
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-arch/xz-utils 5.2.2: utils for managing LZMA compressed files
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
-app-crypt/gnupg 2.1.13_pre: The GNU Privacy Guard, a GPL OpenPGP implementation
 app-crypt/heimdal 1.6_rc2: Kerberos 5 implementation from KTH
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
@@ -31,7 +30,6 @@ app-text/po4a 0.47_pre: Tools for helping translation of documentation
 app-text/poppler 0.45.0_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
-dev-java/icedtea-web 1.6.2_pre: FOSS Java browser plugin and Web Start implementation
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/ruby 2.1.7: An object-oriented scripting language
 dev-libs/Ice 3.6.0_pre 3.6.2_pre: ICE middleware C++ library and generator tools
@@ -134,10 +132,9 @@ net-libs/gnutls 3.5.1: A TLS 1.2 and SSL 3.0 implementation for the GNU project
 net-libs/libndp 1.6_pre: Library for Neighbor Discovery Protocol
 net-libs/webkit-gtk 2.12.2_pre 2.12.3_pre: Open source web browser engine
 net-misc/aria2 1.24.0_pre: A download utility with segmented downloading with BitTorrent support
-net-misc/dhcpcd 6.11.0: A fully featured, yet light weight RFC2131 compliant DHCP client
 net-misc/networkmanager 1.2.2_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.25: A discrete-event network simulator for Internet systems.
-net-misc/openssh 7.1_p2-r1 7.2_p2: Port of OpenBSD's free SSH release
+net-misc/openssh 7.1_p2-r1 7.2_p2 7.2_p2-r1: Port of OpenBSD's free SSH release
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-print/cups-filters 1.9.0_pre: Cups PDF filters
@@ -164,7 +161,7 @@ sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management 
 sys-boot/grub 2.02_beta2-r8 2.02_beta2-r9 2.02_beta3-r1: GNU GRUB boot loader
 sys-devel/autogen 5.18.9_pre 5.18.10_pre: Program and text file generation
 sys-fs/btrfs-progs 4.6_rc99: Btrfs filesystem utilities
-sys-fs/lvm2 2.02.154_pre 2.02.155_pre 2.02.156_pre: User-land utilities for LVM2 (device-mapper) software
+sys-fs/lvm2 2.02.155_pre 2.02.156_pre 2.02.157_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library

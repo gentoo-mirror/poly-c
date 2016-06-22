@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5ecd7709c6c8a316d9f005b4e4a0a54da81eb048 $
+# $Id: 502b34cd9e7f3d086e7c9ab79c1853084a4d5f06 $
 
 EAPI=6
 WANT_AUTOCONF="2.1"
@@ -282,7 +282,7 @@ src_install() {
 		for plugin in gmp-gmpopenh264 ; do
 			echo "pref(\"media.${plugin}.autoupdate\", false);" >> \
 				"${S}/${BUILD_OBJ_DIR}/dist/bin/browser/defaults/preferences/all-gentoo.js" \
-				|| dir
+				|| die
 		done
 	fi
 
