@@ -42,7 +42,7 @@ dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.21_pre: Perl-compatible regular expression library
 dev-libs/libsigc++ 2.8.0_pre: Typesafe callback system for standard C++
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
-dev-libs/openssl 1.0.2g-r2 1.0.2h 1.0.2h-r1 1.1.0_pre4: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/openssl 1.0.2g-r2 1.0.2h 1.0.2h-r1 1.0.2h-r2 1.1.0_pre4: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 dev-perl/Net-DNS 1.40.0_pre: Perl Net::DNS - Perl DNS Resolver Module
 dev-perl/Text-Unidecode 1.270.0_pre: Plain ASCII transliterations of Unicode text
@@ -132,7 +132,6 @@ net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/gnutls 3.5.1: A TLS 1.2 and SSL 3.0 implementation for the GNU project
 net-libs/libndp 1.6_pre: Library for Neighbor Discovery Protocol
 net-libs/webkit-gtk 2.12.2_pre 2.12.3_pre: Open source web browser engine
-net-misc/aria2 1.24.0_pre: A download utility with segmented downloading with BitTorrent support
 net-misc/networkmanager 1.2.2_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.25: A discrete-event network simulator for Internet systems.
 net-misc/openssh 7.1_p2-r1 7.2_p2 7.2_p2-r1: Port of OpenBSD's free SSH release
@@ -161,13 +160,13 @@ sys-block/gparted 0.26.1_pre: Gnome Partition Editor
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.02_beta2-r8 2.02_beta2-r9 2.02_beta3-r1: GNU GRUB boot loader
 sys-devel/autogen 5.18.9_pre 5.18.10_pre: Program and text file generation
-sys-fs/btrfs-progs 4.6_rc99: Btrfs filesystem utilities
+sys-fs/btrfs-progs 4.6_rc99 4.6.1_pre: Btrfs filesystem utilities
 sys-fs/lvm2 2.02.155_pre 2.02.156_pre 2.02.157_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 3.18.33 3.18.34 3.18.35 4.1.24 4.1.25 4.1.26 4.4.11 4.4.12 4.4.13 4.5.5 4.5.6 4.5.7: Shows and sets processor power related values
+sys-power/cpupower 3.18.33 3.18.34 3.18.35 4.1.25 4.1.26 4.1.27 4.4.12 4.4.13 4.4.14 4.5.5 4.5.6 4.5.7: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3: standard informational utilities and process-handling tools
 www-client/seamonkey 2.38 2.39 2.40: Seamonkey Web Browser
