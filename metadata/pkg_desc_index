@@ -127,7 +127,7 @@ net-analyzer/ntopng 1.1.6932: Next generation network traffic analyzer
 net-dialup/mingetty 1.08 1.08-r1: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
-net-im/pidgin 2.10.11 2.10.12-r2: GTK Instant Messenger client
+net-im/pidgin 2.10.11 2.10.12-r2 2.11.0: GTK Instant Messenger client
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/gnutls 3.5.1: A TLS 1.2 and SSL 3.0 implementation for the GNU project
