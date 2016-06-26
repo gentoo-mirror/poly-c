@@ -42,7 +42,8 @@ RDEPEND="
 		xscreensaver? ( x11-libs/libXScrnSaver )
 		spell? ( >=app-text/gtkspell-2.0.2:2 )
 		eds? ( >=gnome-extra/evolution-data-server-3.6:= )
-		prediction? ( >=dev-db/sqlite-3.3:3 ) )
+		prediction? ( >=dev-db/sqlite-3.3:3 )
+	)
 	gstreamer? ( media-libs/gstreamer:1.0
 		media-libs/gst-plugins-base:1.0
 		>=net-libs/farstream-0.2.7:0.2 )
@@ -192,8 +193,8 @@ src_configure() {
 		if use gnutls ; then
 			einfo "Disabling NSS, using GnuTLS"
 			myconf+=( --enable-nss=no --enable-gnutls=yes )
-			myconf+=( --with-gnutls-includes=/usr/include/gnutls )
-			myconf+=( --with-gnutls-libs=/usr/$(get_libdir) )
+			myconf+=( --with-gnutls-includes="${EPREFIX}/usr/include/gnutls" )
+			myconf+=( --with-gnutls-libs="${EPREFIX}/usr/$(get_libdir)" )
 		else
 			einfo "Disabling GnuTLS, using NSS"
 			myconf+=( --enable-gnutls=no --enable-nss=yes )
@@ -273,4 +274,8 @@ src_install() {
 	docompress -x /usr/share/doc/${PF}/pietray.py
 
 	prune_libtool_files --all
+}
+
+src_test() {
+	emake check
 }
