@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 502b34cd9e7f3d086e7c9ab79c1853084a4d5f06 $
+# $Id: 3c5e6169e2f0195c73b46d5f3bae2bf8bd33286e $
 
 EAPI=6
 WANT_AUTOCONF="2.1"
@@ -38,7 +38,7 @@ DESCRIPTION="Seamonkey Web Browser"
 HOMEPAGE="http://www.seamonkey-project.org"
 
 [[ ${PV} != *_pre* ]] && \
-KEYWORDS="~alpha ~amd64 ~arm ~ppc ~ppc64 ~x86"
+KEYWORDS="~alpha amd64 ~arm ~ppc ~ppc64 x86"
 
 SLOT="0"
 LICENSE="MPL-2.0 GPL-2 LGPL-2.1"

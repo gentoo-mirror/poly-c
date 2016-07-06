@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 872513bf327b9aaa5242259f6ef310e4d78d3036 $
+# $Id: 5cfedf59f1033c55eca2c49574077d40a993755f $
 
 EAPI=5
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://kde/stable/${PN}/${PV}/src/${P}.tar.xz"
 
 LICENSE="LGPL-2.1"
 SLOT="2"
-KEYWORDS="alpha amd64 ~arm ~arm64 hppa ~ia64 ~ppc ~ppc64 ~sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
+KEYWORDS="alpha amd64 ~arm ~arm64 hppa ~ia64 ppc ~ppc64 ~sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 
 IUSE="botan debug doc examples gcrypt gpg libressl logger nss +openssl pkcs11 +qt4 qt5 sasl softstore test"
 REQUIRED_USE="|| ( qt4 qt5 )"

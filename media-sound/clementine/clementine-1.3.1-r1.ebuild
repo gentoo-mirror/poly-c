@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: d3af6df61d02f06ab272891567131f98dff3c179 $
+# $Id: 4c1168c1ebd75ab3ff014b09b81239e227935196 $
 
 EAPI=6
 
@@ -65,7 +65,7 @@ COMMON_DEPEND="
 # 06-fix-numeric-locale.patch
 # 08-stdlib.h-for-rand.patch
 RDEPEND="${COMMON_DEPEND}
-	dbus? ( udisks? ( sys-fs/udisks:2 ) )
+	dbus? ( udisks? ( sys-fs/udisks:0 ) )
 	mms? ( media-plugins/gst-plugins-libmms:1.0 )
 	mtp? ( gnome-base/gvfs )
 	media-plugins/gst-plugins-meta:1.0
