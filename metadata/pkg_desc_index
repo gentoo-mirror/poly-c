@@ -60,7 +60,6 @@ games-rpg/manaplus 1.6.2.13 1.6.2.27 1.6.3.26 1.6.4.23_pre 9999: OpenSource 2D M
 games-strategy/boswars 9999: Futuristic real-time strategy game
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
-kde-plasma/plasma-workspace 5.6.4: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-gfx/gimp 2.9.2-r1: GNU Image Manipulation Program
