@@ -4,11 +4,11 @@
 
 EAPI=6
 
-inherit autotools libtool eutils multilib-minimal versionator poly-c_ebuilds
+inherit autotools libtool eutils multilib-minimal versionator
 
 DESCRIPTION="A TLS 1.2 and SSL 3.0 implementation for the GNU project"
 HOMEPAGE="http://www.gnutls.org/"
-SRC_URI="mirror://gnupg/gnutls/v$(get_version_component_range 1-2)/${MY_P}.tar.xz"
+SRC_URI="mirror://gnupg/gnutls/v$(get_version_component_range 1-2)/${P}.tar.xz"
 
 # LGPL-3 for libgnutls library and GPL-3 for libgnutls-extra library.
 # soon to be relicensed as LGPL-2.1 unless heartbeat extension enabled.
