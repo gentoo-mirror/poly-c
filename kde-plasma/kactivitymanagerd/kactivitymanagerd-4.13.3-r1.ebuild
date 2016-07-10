@@ -10,9 +10,10 @@ inherit kde4-base
 DESCRIPTION="KDE Activity Manager Daemon"
 KEYWORDS="amd64 ~arm x86 ~x86-fbsd ~amd64-linux ~x86-linux"
 IUSE=""
+SLOT="4"
 
 RDEPEND="
-	!<kde-base/kactivities-4.13.3-r1
+	!<kde-plasma/kactivities-4.13.3-r1
 	!kde-frameworks/kactivities
 "
 
