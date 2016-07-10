@@ -31,7 +31,7 @@ DEPEND="${RDEPEND}
 	>=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}]
 "
 
-S="${WORKDIR}/${MY_PN}-${PV}"
+S="${WORKDIR}/${MY_PN}-${MY_PV}"
 
 multilib_src_configure() {
 	GST_PLUGINS_BUILD=""
