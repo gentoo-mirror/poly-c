@@ -1,19 +1,15 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 
-PV="${PV%_*}"
-P="${PN}-${PV}"
-S="${WORKDIR}/${P}"
-
-inherit eutils flag-o-matic multilib-minimal
+inherit eutils multilib-minimal poly-c_ebuilds
 
 MY_PN="gst-libav"
 DESCRIPTION="FFmpeg based gstreamer plugin"
-HOMEPAGE="http://gstreamer.freedesktop.org/modules/gst-libav.html"
-SRC_URI="http://gstreamer.freedesktop.org/src/${MY_PN}/${MY_PN}-${PV}.tar.xz"
+HOMEPAGE="https://gstreamer.freedesktop.org/modules/gst-libav.html"
+SRC_URI="https://gstreamer.freedesktop.org/src/${MY_PN}/${MY_PN}-${MY_PV}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="1.0"
@@ -24,10 +20,10 @@ IUSE="libav +orc"
 RDEPEND="
 	app-arch/bzip2
 	app-arch/xz-utils
-	>=media-libs/gstreamer-${PV}_pre:1.0[${MULTILIB_USEDEP}]
-	>=media-libs/gst-plugins-base-${PV}_pre:1.0[${MULTILIB_USEDEP}]
-	!libav? ( >=media-video/ffmpeg-2.2:0=[${MULTILIB_USEDEP}] )
-	libav? ( >=media-video/libav-10:0=[${MULTILIB_USEDEP}] )
+	>=dev-libs/glib-2.40.0:2[${MULTILIB_USEDEP}]
+	>=media-libs/gstreamer-${PV}:1.0[${MULTILIB_USEDEP}]
+	>=media-libs/gst-plugins-base-${PV}:1.0[${MULTILIB_USEDEP}]
+	!libav? ( >=media-video/ffmpeg-2.8.5:0=[${MULTILIB_USEDEP}] )
 	orc? ( >=dev-lang/orc-0.4.17[${MULTILIB_USEDEP}] )
 "
 DEPEND="${RDEPEND}
@@ -39,7 +35,22 @@ S="${WORKDIR}/${MY_PN}-${PV}"
 
 multilib_src_configure() {
 	GST_PLUGINS_BUILD=""
-	# always use system ffmpeg/libav if possible
+	# Upstream dropped support for system libav and won't work
+	# for preserving its compat anymore, forcing us to rely on internal
+	# ffmpeg copy if we don't want to cause unresolvable blockers for
+	# libav setups.
+	# https://bugzilla.gnome.org/show_bug.cgi?id=758183
+	# Prefer system ffmpeg for -libav
+	local myconf
+
+	if use libav; then
+		ewarn "Using internal ffmpeg copy as upstream dropped the"
+		ewarn "the support for compiling against system libav"
+		ewarn "http://bugzilla.gnome.org/show_bug.cgi?id=758183"
+	else
+		myconf="--with-system-libav"
+	fi
+
 	ECONF_SOURCE=${S} \
 	econf \
 		--disable-maintainer-mode \
@@ -47,7 +58,8 @@ multilib_src_configure() {
 		--with-package-origin="https://www.gentoo.org" \
 		--disable-fatal-warnings \
 		--with-system-libav \
-		$(use_enable orc)
+		$(use_enable orc) \
+		${myconf}
 }
 
 multilib_src_compile() {

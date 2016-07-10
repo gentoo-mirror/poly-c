@@ -1,8 +1,8 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 GST_ORG_MODULE=gst-plugins-base
 
 PV="${PV%_*}"
@@ -18,5 +18,6 @@ RDEPEND=">=media-sound/cdparanoia-3.10.2-r6[${MULTILIB_USEDEP}]"
 DEPEND="${RDEPEND}"
 
 src_prepare() {
+	default
 	gstreamer_system_link gst-libs/gst/audio:gstreamer-audio
 }

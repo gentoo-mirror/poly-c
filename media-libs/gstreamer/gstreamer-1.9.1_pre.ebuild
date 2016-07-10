@@ -1,14 +1,14 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 
-inherit bash-completion-r1 eutils multilib multilib-minimal pax-utils poly-c_ebuilds
+inherit bash-completion-r1 multilib multilib-minimal pax-utils poly-c_ebuilds
 
 DESCRIPTION="Open source multimedia framework"
-HOMEPAGE="http://gstreamer.freedesktop.org/"
-SRC_URI="http://${PN}.freedesktop.org/src/${PN}/${MY_P}.tar.xz"
+HOMEPAGE="https://gstreamer.freedesktop.org/"
+SRC_URI="https://${PN}.freedesktop.org/src/${PN}/${MY_P}.tar.xz"
 
 LICENSE="LGPL-2+"
 SLOT="1.0"
@@ -16,12 +16,11 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x8
 IUSE="+caps +introspection nls +orc test"
 
 RDEPEND="
-	>=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.40.0:2[${MULTILIB_USEDEP}]
 	caps? ( sys-libs/libcap )
-	introspection? ( >=dev-libs/gobject-introspection-1.31.1 )
+	introspection? ( >=dev-libs/gobject-introspection-1.31.1:= )
 "
 DEPEND="${RDEPEND}
-	app-arch/xz-utils
 	>=dev-util/gtk-doc-am-1.12
 	sys-devel/bison
 	sys-devel/flex
@@ -48,8 +47,7 @@ src_configure() {
 multilib_src_configure() {
 	# Set 'libexecdir' to ABI-specific location for the library spawns
 	# helpers from there.
-	# Disable static archives, dependency tracking and examples
-	# to speed up build time
+	# Disable static archives and examples to speed up build time
 	# Disable debug, as it only affects -g passing (debugging symbols), this must done through make.conf in gentoo
 	local myconf=(
 		--libexecdir="${EPREFIX}"/usr/$(get_libdir)

@@ -1,8 +1,8 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 GST_ORG_MODULE="gst-plugins-good"
 
 PV="${PV%_*}"
@@ -12,7 +12,7 @@ S="${WORKDIR}/${P}"
 inherit eutils flag-o-matic gstreamer
 
 DESCRIPTION="Basepack of plugins for GStreamer"
-HOMEPAGE="http://gstreamer.freedesktop.org/"
+HOMEPAGE="https://gstreamer.freedesktop.org/"
 
 LICENSE="LGPL-2.1+"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd"
@@ -20,7 +20,7 @@ IUSE="+orc"
 
 # dtmf plugin moved from bad to good in 1.2
 RDEPEND="
-	>=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}]
+	>=dev-libs/glib-2.40.0:2[${MULTILIB_USEDEP}]
 	>=media-libs/gst-plugins-base-${PV}_pre:${SLOT}[${MULTILIB_USEDEP}]
 	>=media-libs/gstreamer-${PV}_pre:${SLOT}[${MULTILIB_USEDEP}]
 	>=app-arch/bzip2-1.0.6-r4[${MULTILIB_USEDEP}]
@@ -32,13 +32,6 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.12
 "
-
-src_prepare() {
-	# Disable test due to missing files
-	# https://bugzilla.gnome.org/show_bug.cgi?id=757087
-	sed -e 's:\(tcase_add_test.*test_splitmuxsrc\):// \1:' \
-		-i tests/check/elements/splitmux.c || die
-}
 
 multilib_src_configure() {
 	# Always enable optional bz2 support for matroska
