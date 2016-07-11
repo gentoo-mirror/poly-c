@@ -1,7 +1,7 @@
 From 10ba492047b1ad80adeeb878e7f155a13638da7f Mon Sep 17 00:00:00 2001
 From: Michael Olbrich <m.olbrich@pengutronix.de>
 Date: Wed, 18 May 2016 10:43:51 +0200
-Subject: sleep-monitor-upower: add missing include
+Subject: [PATCH] sleep-monitor-upower: add missing include
 
 Otherwise building fails with:
 
@@ -9,6 +9,9 @@ Otherwise building fails with:
   nm-sleep-monitor-upower.c:132:67: error: expected declaration specifiers or '...' before '(' token
 
 https://mail.gnome.org/archives/networkmanager-list/2016-May/msg00053.html
+---
+ src/nm-sleep-monitor-upower.c | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/src/nm-sleep-monitor-upower.c b/src/nm-sleep-monitor-upower.c
 index 5f0ff24..8d07190 100644
@@ -23,5 +26,5 @@ index 5f0ff24..8d07190 100644
  #include "nm-sleep-monitor.h"
  
 -- 
-cgit v0.10.2
+2.9.0
 
