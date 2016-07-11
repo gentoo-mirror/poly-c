@@ -1,10 +1,9 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: aeb81ee0da3b60a7f2add385339fba59a5d33f90 $
+# $Id$
 
 EAPI=6
 
-FRAMEWORKS_MINIMAL="5.20.0"
 KDE_HANDBOOK="forceoptional"
 KDE_TEST="forceoptional"
 VIRTUALX_REQUIRED="test"
@@ -12,9 +11,9 @@ inherit kde5 multilib qmake-utils
 
 DESCRIPTION="KDE Plasma workspace"
 KEYWORDS="~amd64 ~arm ~x86"
-IUSE="dbus +geolocation gps prison qalculate wayland"
+IUSE="+calendar +geolocation gps prison qalculate wayland"
 
-# drop qtgui subslot operator when QT_MINIMAL >= 5.6.0
+# drop kde-frameworks/plasma subslot operator when FRAMEWORKS_MINIMAL >= 5.24.0
 COMMON_DEPEND="
 	$(add_frameworks_dep baloo)
 	$(add_frameworks_dep kactivities)
@@ -36,6 +35,7 @@ COMMON_DEPEND="
 	$(add_frameworks_dep kiconthemes)
 	$(add_frameworks_dep kidletime)
 	$(add_frameworks_dep kio)
+	$(add_frameworks_dep kitemmodels)
 	$(add_frameworks_dep kitemviews)
 	$(add_frameworks_dep kjobwidgets)
 	$(add_frameworks_dep kjs)
@@ -49,27 +49,26 @@ COMMON_DEPEND="
 	$(add_frameworks_dep ktexteditor)
 	$(add_frameworks_dep ktextwidgets)
 	$(add_frameworks_dep kwallet)
-	wayland? ( $(add_frameworks_dep kwayland) )
 	$(add_frameworks_dep kwidgetsaddons)
 	$(add_frameworks_dep kwindowsystem)
 	$(add_frameworks_dep kxmlgui)
 	$(add_frameworks_dep kxmlrpcclient)
-	$(add_frameworks_dep plasma)
+	$(add_frameworks_dep plasma '' '' '5=')
 	$(add_frameworks_dep solid)
 	$(add_plasma_dep kscreenlocker)
 	$(add_plasma_dep kwin)
-	$(add_plasma_dep libkscreen)
 	$(add_plasma_dep libksysguard)
 	$(add_qt_dep qtconcurrent)
 	$(add_qt_dep qtdbus)
 	$(add_qt_dep qtdeclarative 'widgets')
-	$(add_qt_dep qtgui 'jpeg' '' '' '5=')
+	$(add_qt_dep qtgui 'jpeg')
 	$(add_qt_dep qtnetwork)
 	$(add_qt_dep qtscript)
 	$(add_qt_dep qtsql)
 	$(add_qt_dep qtwidgets)
 	$(add_qt_dep qtx11extras)
 	$(add_qt_dep qtxml)
+	dev-libs/libdbusmenu-qt[qt5]
 	media-libs/phonon[qt5]
 	sys-libs/zlib
 	x11-libs/libICE
@@ -81,11 +80,12 @@ COMMON_DEPEND="
 	x11-libs/libXrender
 	x11-libs/xcb-util
 	x11-libs/xcb-util-image
-	dbus? ( dev-libs/libdbusmenu-qt[qt5] )
+	calendar? ( $(add_kdeapps_dep kholidays) )
 	geolocation? ( $(add_frameworks_dep networkmanager-qt) )
 	gps? ( sci-geosciences/gpsd )
 	prison? ( media-libs/prison:5 )
 	qalculate? ( sci-libs/libqalculate )
+	wayland? ( $(add_frameworks_dep kwayland) )
 "
 RDEPEND="${COMMON_DEPEND}
 	$(add_frameworks_dep kded)
@@ -119,10 +119,7 @@ DEPEND="${COMMON_DEPEND}
 	x11-proto/xproto
 "
 
-PATCHES=(
-	"${FILESDIR}/${PN}-5.4-startkde-script.patch"
-	"${FILESDIR}/${PN}-5.6.0-rpath.patch"
-)
+PATCHES=( "${FILESDIR}/${PN}-5.4-startkde-script.patch" )
 
 RESTRICT="test"
 
@@ -135,7 +132,7 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_find_package dbus dbusmenu-qt5)
+		$(cmake-utils_use_find_package calendar KF5Holidays)
 		$(cmake-utils_use_find_package geolocation KF5NetworkManagerQt)
 		$(cmake-utils_use_find_package gps libgps)
 		$(cmake-utils_use_find_package prison KF5Prison)
