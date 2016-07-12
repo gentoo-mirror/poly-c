@@ -40,8 +40,9 @@ RDEPEND="!app-emulation/virtualbox-bin
 		x11-libs/libXt
 		opengl? ( virtual/opengl media-libs/freeglut )
 		qt5? (
-			dev-qt/qtgui:5
 			dev-qt/qtcore:5
+			dev-qt/qtgui:5
+			dev-qt/qtprintsupport:5
 			opengl? ( dev-qt/qtopengl:5 )
 			x11-libs/libXinerama
 		)
@@ -53,7 +54,7 @@ RDEPEND="!app-emulation/virtualbox-bin
 	udev? ( >=virtual/udev-171 )
 	vnc? ( >=net-libs/libvncserver-0.9.9 )"
 DEPEND="${RDEPEND}
-	>=dev-util/kbuild-0.1.9998_pre20131130
+	>=dev-util/kbuild-0.1.9998_pre20131130-r1
 	>=dev-lang/yasm-0.6.2
 	sys-devel/bin86
 	sys-libs/libcap
@@ -116,8 +117,7 @@ REQUIRED_USE="
 
 pkg_setup() {
 	if ! use headless && ! use qt5 ; then
-		einfo "No USE=\"qt5\" selected, this build will not include"
-		einfo "any Qt frontend."
+		einfo "No USE=\"qt5\" selected, this build will not include any Qt frontend."
 	elif use headless && use qt5 ; then
 		einfo "You selected USE=\"headless qt5\", defaulting to"
 		einfo "USE=\"headless\", this build will not include any X11/Qt frontend."
@@ -196,7 +196,7 @@ src_configure() {
 	use vboxwebsrv && myconf+=( --enable-webservice )
 	use vnc        && myconf+=( --enable-vnc )
 	if ! use headless ; then
-		use qt5 || myconf+=( --disable-qt5 )
+		use qt5 || myconf+=( --disable-qt )
 	else
 		myconf+=( --build-headless --disable-opengl )
 	fi
@@ -322,14 +322,14 @@ src_install() {
 			dosym ${vbox_inst_path}/VBox /usr/bin/${each}
 		done
 
-		if use opengl && use qt4 ; then
-			vbox_inst VBoxTestOGL
-			pax-mark -m "${D}"${vbox_inst_path}/VBoxTestOGL
-		fi
-
 		if use qt5 ; then
 			vbox_inst VirtualBox 4750
 			pax-mark -m "${D}"${vbox_inst_path}/VirtualBox
+
+			if use opengl ; then
+				vbox_inst VBoxTestOGL
+				pax-mark -m "${D}"${vbox_inst_path}/VBoxTestOGL
+			fi
 
 			for each in virtualbox VirtualBox ; do
 				dosym ${vbox_inst_path}/VBox /usr/bin/${each}

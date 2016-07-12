@@ -1,0 +1,11 @@
+--- mgba-0.4.1/src/util/vfs/vfs-zip.c
++++ mgba-0.4.1/src/util/vfs/vfs-zip.c
+@@ -34,7 +34,7 @@
+ 	BLOCK_SIZE = 1024
+ };
+ #else
+-#include "third-party/zlib/contrib/minizip/unzip.h"
++#include <minizip/unzip.h>
+ #include "util/memory.h"
+ 
+ struct VDirEntryZip {
