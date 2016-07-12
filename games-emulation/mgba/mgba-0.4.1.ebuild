@@ -14,7 +14,8 @@ LICENSE="MPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="ffmpeg imagemagick opengl qt5 +sdl"
-REQUIRED_USE="|| ( qt5 sdl )"
+REQUIRED_USE="|| ( qt5 sdl )
+		qt5? ( opengl )"
 
 RDEPEND="
 	media-libs/libpng
@@ -32,8 +33,6 @@ RDEPEND="
 	sdl? ( media-libs/libsdl2[X,sound,joystick,video,opengl?] )"
 DEPEND="${RDEPEND}
 	>=dev-util/cmake-3.2.2"
-
-REQUIRED_USE="qt5? ( opengl )"
 
 PATCHES=(
 	"${FILESDIR}/${PN}-0.4.1-external_minizip.patch"
@@ -86,13 +85,13 @@ src_install() {
 }
 
 pkg_preinst() {
-	if use qt5; then
+	if use qt5 ; then
 		gnome2_icon_savelist
 	fi
 }
 
 pkg_postinst() {
-	if use qt5; then
+	if use qt5 ; then
 		fdo-mime_desktop_database_update
 		gnome2_icon_cache_update
 	fi
@@ -101,7 +100,7 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	if use qt5; then
+	if use qt5 ; then
 		fdo-mime_desktop_database_update
 		gnome2_icon_cache_update
 	fi
