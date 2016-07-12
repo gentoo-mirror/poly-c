@@ -48,6 +48,7 @@ media-radio/liquidsoap
 
 # WIP
 =app-emulation/virtualbox-5.1.0_rc*
+=app-emulation/virtualbox-additions-5.1.0_rc*
 =app-emulation/virtualbox-bin-5.1*
-=app-emulation/virtualbox-modules-5.1.0_rc*
 =app-emulation/virtualbox-extpack-oracle-5.1*
+=app-emulation/virtualbox-modules-5.1.0_rc*
