@@ -22,7 +22,7 @@ RDEPEND="
 	sys-libs/zlib[minizip]
 	ffmpeg? ( virtual/ffmpeg )
 	imagemagick? ( media-gfx/imagemagick )
-	opengl? ( media-libs/mesa )
+	opengl? ( virtual/opengl )
 	qt5? (
 		dev-qt/qtcore:5
 		dev-qt/qtgui:5

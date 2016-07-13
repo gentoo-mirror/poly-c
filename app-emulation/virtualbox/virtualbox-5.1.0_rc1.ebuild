@@ -43,6 +43,8 @@ RDEPEND="!app-emulation/virtualbox-bin
 			dev-qt/qtcore:5
 			dev-qt/qtgui:5
 			dev-qt/qtprintsupport:5
+			dev-qt/qtwidgets:5
+			dev-qt/qtx11extras:5
 			opengl? ( dev-qt/qtopengl:5 )
 			x11-libs/libXinerama
 		)
