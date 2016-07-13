@@ -36,6 +36,7 @@ dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/crypto++ 5.6.3_pre: C++ class library of cryptographic schemes
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 54.1-r1 55.1 56.1 56.1-r1 57.1: International Components for Unicode
+dev-libs/libgpg-error 1.23_pre: Contains error handling functions used by GnuPG software
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.21_pre: Perl-compatible regular expression library
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
