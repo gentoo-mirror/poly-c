@@ -8,11 +8,6 @@ app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
 app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
 app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
-app-emulation/virtualbox 5.1.0_rc1: Family of powerful x86 virtualization products for enterprise and home use
-app-emulation/virtualbox-additions 5.1.0_rc1: CD image containing guest additions for VirtualBox
-app-emulation/virtualbox-bin 5.1.0.108607_rc1: Family of powerful x86 virtualization products for enterprise as well as home use
-app-emulation/virtualbox-extpack-oracle 5.1.0.108607_rc1: PUEL extensions for VirtualBox
-app-emulation/virtualbox-modules 5.1.0_rc1: Kernel Modules for Virtualbox
 app-misc/gramps 4.2.0_pre: Genealogical Research and Analysis Management Programming System
 app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
@@ -37,6 +32,7 @@ dev-libs/crypto++ 5.6.3_pre: C++ class library of cryptographic schemes
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 54.1-r1 55.1 56.1 56.1-r1 57.1: International Components for Unicode
 dev-libs/libgpg-error 1.23_pre: Contains error handling functions used by GnuPG software
+dev-libs/libisofs 1.4.4_pre: Open-source library for reading, mastering and writing optical discs
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.21_pre: Perl-compatible regular expression library
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
@@ -68,9 +64,9 @@ kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
 kde-plasma/plasma-workspace 5.7.0: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
-media-gfx/gimp 2.9.2-r1: GNU Image Manipulation Program
+media-gfx/gimp 2.9.2-r1 2.9.4_pre: GNU Image Manipulation Program
+media-libs/babl 0.1.18_pre: A dynamic, any to any, pixel format conversion library
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
-media-libs/fontconfig 2.12.0_pre: A library for configuring and customizing font access
 media-libs/glm 0.9.7.3_pre: OpenGL Mathematics
 media-libs/gst-plugins-bad 1.9.1_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.9.1_pre: Basepack of plugins for gstreamer
@@ -152,7 +148,7 @@ sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g: Standard commands to read man pages
 sys-apps/portage 2.2.8-r2: Portage is the package management and distribution system for Gentoo
 sys-apps/shadow 4.3.0_pre: Utilities to deal with user accounts
-sys-auth/pam_yubico 2.22_pre: Library for authenticating against PAM with a Yubikey
+sys-auth/pam_yubico 2.22_pre 2.23_pre: Library for authenticating against PAM with a Yubikey
 sys-auth/ykclient 2.15_pre: Yubico C client library
 sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
