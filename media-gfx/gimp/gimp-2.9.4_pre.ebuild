@@ -37,8 +37,8 @@ RDEPEND=">=dev-libs/glib-2.30.2:2
 	dev-libs/libxml2
 	dev-libs/libxslt
 	x11-themes/hicolor-icon-theme
-	>=media-libs/babl-0.1.14
-	>=media-libs/gegl-0.3.8_pre:0.3[cairo]
+	>=media-libs/babl-0.1.18_pre
+	>=media-libs/gegl-0.3.8:0.3[cairo]
 	>=dev-libs/glib-2.43
 	aalib? ( media-libs/aalib )
 	alsa? ( media-libs/alsa-lib )
@@ -114,8 +114,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.9.2-gegl038.patch # bug 586828
-
 	sed -i -e 's/== "xquartz"/= "xquartz"/' configure.ac || die #494864
 	eautoreconf  # If you remove this: remove dev-util/gtk-doc-am from DEPEND, too
 
