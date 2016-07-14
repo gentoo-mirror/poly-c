@@ -45,7 +45,7 @@ dev-python/m2crypto 0.23.0: M2Crypto: A Python crypto and SSL toolkit
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtcore 4.8.6-r2 4.8.7-r2: Cross-platform application development framework
-dev-scheme/guile 2.0.11_pre: GNU Ubiquitous Intelligent Language for Extensions
+dev-scheme/guile 2.0.11_pre 2.0.12_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
 dev-util/ragel 7.0.0.5_pre 7.0.0.6_pre: Compiles finite state machines from regular languages into executable code
 dev-vcs/bzr 2.7.0_pre: Bazaar is a next generation distributed version control system
@@ -57,6 +57,7 @@ games-fps/rtcw 1.42b 1.42d 9999: Return to Castle Wolfenstein - IORTCW Project
 games-rpg/manaplus 1.6.2.13 1.6.2.27 1.6.3.26 1.6.4.23_pre 9999: OpenSource 2D MMORPG client for Evol Online and The Mana World
 games-strategy/boswars 9999: Futuristic real-time strategy game
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
+kde-apps/kde4-l10n 15.12.3-r1: KDE internationalization package
 kde-base/kactivities 4.13.3-r2: KDE Activity Manager
 kde-base/kdebase-startkde 4.11.22-r1: Startkde script, which starts a complete KDE session, and associated scripts
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
