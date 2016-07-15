@@ -31,7 +31,6 @@ dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/crypto++ 5.6.3_pre: C++ class library of cryptographic schemes
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 54.1-r1 55.1 56.1 56.1-r1 57.1: International Components for Unicode
-dev-libs/libgpg-error 1.23_pre: Contains error handling functions used by GnuPG software
 dev-libs/libisofs 1.4.4_pre: Open-source library for reading, mastering and writing optical discs
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libpcre2 10.21_pre: Perl-compatible regular expression library
@@ -57,7 +56,8 @@ games-fps/rtcw 1.42b 1.42d 9999: Return to Castle Wolfenstein - IORTCW Project
 games-rpg/manaplus 1.6.2.13 1.6.2.27 1.6.3.26 1.6.4.23_pre 9999: OpenSource 2D MMORPG client for Evol Online and The Mana World
 games-strategy/boswars 9999: Futuristic real-time strategy game
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
-kde-apps/kde4-l10n 15.12.3-r1: KDE internationalization package
+kde-apps/kde4-l10n 16.04.2: KDE internationalization package
+kde-apps/ksnapshot 15.08.3-r1: KDE Screenshot Utility
 kde-base/kactivities 4.13.3-r2: KDE Activity Manager
 kde-base/kdebase-startkde 4.11.22-r1: Startkde script, which starts a complete KDE session, and associated scripts
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
