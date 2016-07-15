@@ -100,7 +100,7 @@ media-plugins/gst-plugins-taglib 1.9.1_pre: GStreamer taglib based tag handler
 media-plugins/gst-plugins-vaapi 1.9.1_pre: Hardware accelerated video decoding through VA-API plugin
 media-plugins/gst-plugins-vpx 1.9.1_pre: GStreamer decoder for vpx video format
 media-plugins/gst-plugins-x264 1.9.1_pre: plugin for gstreamer
-media-radio/liquidsoap 1.1.1: A swiss-army knife for multimedia streaming, notably used for netradios.
+media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
 media-sound/alsa-utils 1.0.27.2 1.0.28 1.0.28-r1 1.0.29 1.1.0 1.1.1: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
 media-sound/ameter 0.44_pre: Ameter is an Alsa meter plugin
@@ -164,7 +164,7 @@ sys-fs/udev 216 225-r1 228 229-r2 230-r1: Linux dynamic and persistent device na
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 3.18.33 3.18.34 3.18.35 4.1.25 4.1.26 4.1.27 4.4.13 4.4.14 4.4.15 4.5.5 4.5.6 4.5.7 4.6.4: Shows and sets processor power related values
+sys-power/cpupower 4.1.26 4.1.27 4.1.28 4.4.13 4.4.14 4.4.15 4.5.5 4.5.6 4.5.7 4.6.4: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3: standard informational utilities and process-handling tools
 www-client/seamonkey 2.39 2.40: Seamonkey Web Browser

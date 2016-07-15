@@ -9,12 +9,12 @@
 ## ./configure finds GD and SDL no matter what, so they're not
 ## optional
 
-EAPI=5
+EAPI=6
 inherit autotools eutils findlib systemd
 
 DESCRIPTION="A swiss-army knife for multimedia streaming, notably used for netradios."
 HOMEPAGE="http://liquidsoap.fm/"
-SRC_URI="mirror://sourceforge/savonet/${P}.tar.bz2"
+SRC_URI="https://github.com/savonet/liquidsoap/archive/${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="GPL-2"
 
 SLOT="0"
@@ -78,6 +78,8 @@ pkg_setup() {
 }
 
 src_prepare() {
+	default
+
 	#has_version '>=dev-lang/ocaml-4' &&  epatch "${FILESDIR}/ocaml-4.patch"
 
 	einfo "Sandboxing Makefile.defs.in ..."

@@ -23,7 +23,7 @@ IUSE="introspection"
 RDEPEND="dev-libs/json-c
 	${PYTHON_DEPS}
 	media-libs/babl
-	media-libs/gegl:0.3[introspection?]
+	media-libs/gegl:0[introspection?]
 	introspection? ( dev-libs/gobject-introspection )
 	!media-gfx/mypaint"
 
