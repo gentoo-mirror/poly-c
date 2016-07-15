@@ -47,4 +47,4 @@ media-radio/liquidsoap
 =app-admin/sudo-1.8.17_rc*
 
 # WIP
-=media-gfx/gimp-2.9.4_pre
+# =dev-lang/python-3.5.2_pre

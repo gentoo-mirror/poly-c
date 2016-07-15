@@ -21,60 +21,60 @@ for lang in ${LANGS}; do
 	IUSE+=" linguas_${lang}"
 done
 
-RDEPEND=">=dev-libs/glib-2.30.2:2
+RDEPEND="app-arch/bzip2
+	>=app-arch/xz-utils-5.0.0
 	>=dev-libs/atk-2.2.0
-	>=x11-libs/gtk+-2.24.10:2
-	dev-util/gtk-update-icon-cache
-	>=x11-libs/gdk-pixbuf-2.31:2
-	>=x11-libs/cairo-1.12.2
-	>=x11-libs/pango-1.29.4
-	xpm? ( x11-libs/libXpm )
-	>=media-libs/freetype-2.1.7
-	>=media-libs/harfbuzz-0.9.19
-	>=media-libs/gexiv2-0.6.1
-	>=media-libs/fontconfig-2.2.0
-	sys-libs/zlib
+	>=dev-libs/glib-2.43:2
 	dev-libs/libxml2
 	dev-libs/libxslt
-	x11-themes/hicolor-icon-theme
+	dev-util/gdbus-codegen
+	dev-util/gtk-update-icon-cache
 	>=media-libs/babl-0.1.18_pre
+	>=media-libs/fontconfig-2.2.0
+	>=media-libs/freetype-2.1.7
 	>=media-libs/gegl-0.3.8:0.3[cairo]
-	>=dev-libs/glib-2.43
+	>=media-libs/gexiv2-0.6.1
+	>=media-libs/harfbuzz-0.9.19
+	>=media-libs/lcms-2.2:2
+	>=media-libs/libmypaint-1.3.0_beta1
+	>=media-libs/libpng-1.2.37:0
+	sys-libs/zlib
+	virtual/jpeg:0
+	>=x11-libs/cairo-1.12.2
+	>=x11-libs/gdk-pixbuf-2.31:2
+	>=x11-libs/gtk+-2.24.10:2
+	x11-libs/libXcursor
+	>=x11-libs/pango-1.29.4
+	x11-themes/hicolor-icon-theme
 	aalib? ( media-libs/aalib )
 	alsa? ( media-libs/alsa-lib )
 	aqua? ( x11-libs/gtk-mac-integration )
-	dev-util/gdbus-codegen
 	gnome? ( gnome-base/gvfs )
-	webkit? ( >=net-libs/webkit-gtk-1.6.1:2 )
-	virtual/jpeg:0
 	jpeg2k? ( media-libs/jasper )
-	>=media-libs/lcms-2.2:2
 	mng? ( media-libs/libmng )
 	openexr? ( >=media-libs/openexr-1.6.1 )
 	pdf? ( >=app-text/poppler-0.12.4[cairo] >=app-text/poppler-data-0.4.7 )
-	>=media-libs/libpng-1.2.37:0
+	postscript? ( app-text/ghostscript-gpl )
 	python?	(
 		${PYTHON_DEPS}
 		>=dev-python/pygtk-2.10.4:2[${PYTHON_USEDEP}]
 	)
-	tiff? ( >=media-libs/tiff-3.5.7:0 )
 	svg? ( >=gnome-base/librsvg-2.36.0:2 )
-	wmf? ( >=media-libs/libwmf-0.2.8 )
-	x11-libs/libXcursor
-	sys-libs/zlib
-	app-arch/bzip2
-	>=app-arch/xz-utils-5.0.0
-	postscript? ( app-text/ghostscript-gpl )
-	udev? ( virtual/libgudev:= )"
+	tiff? ( >=media-libs/tiff-3.5.7:0 )
+	udev? ( virtual/libgudev:= )
+	webkit? ( >=net-libs/webkit-gtk-1.6.1:2 )
+	xpm? ( x11-libs/libXpm )
+	wmf? ( >=media-libs/libwmf-0.2.8 )"
+# dev-util/gtk-doc-am due to our call to eautoreconf below (bug #386453)
 DEPEND="${RDEPEND}
-	sys-apps/findutils
-	virtual/pkgconfig
+	dev-util/gtk-doc-am
 	>=dev-util/intltool-0.40.1
-	>=sys-devel/gettext-0.19
-	doc? ( >=dev-util/gtk-doc-1 )
-	>=sys-devel/libtool-2.2
+	sys-apps/findutils
 	>=sys-devel/automake-1.11
-	dev-util/gtk-doc-am"  # due to our call to eautoreconf below (bug #386453)
+	>=sys-devel/gettext-0.19
+	>=sys-devel/libtool-2.2
+	virtual/pkgconfig
+	doc? ( >=dev-util/gtk-doc-1 )"
 
 DOCS="AUTHORS ChangeLog* HACKING NEWS README*"
 
@@ -83,30 +83,30 @@ S="${WORKDIR}/${MY_P}"
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 pkg_setup() {
-	G2CONF="--enable-default-binary \
+	G2CONF="
 		--disable-silent-rules \
-		$(use_with !aqua x) \
-		--without-libmypaint \
-		$(use_with aalib aa) \
-		$(use_with alsa) \
+		--enable-default-binary \
+		--with-xmc \
+		--without-xvfb-run \
 		$(use_enable altivec) \
-		$(use_with webkit) \
-		$(use_with jpeg2k libjasper) \
-		$(use_with postscript gs) \
 		$(use_enable cpu_flags_x86_mmx mmx) \
-		$(use_with mng libmng) \
-		$(use_with openexr) \
-		$(use_with pdf poppler) \
+		$(use_enable cpu_flags_x86_sse sse) \
 		$(use_enable python) \
 		$(use_enable smp mp) \
-		$(use_enable cpu_flags_x86_sse sse) \
+		$(use_with aalib aa) \
+		$(use_with alsa) \
+		$(use_with !aqua x) \
+		$(use_with mng libmng) \
+		$(use_with openexr) \
+		$(use_with jpeg2k libjasper) \
+		$(use_with pdf poppler) \
+		$(use_with postscript gs) \
 		$(use_with svg librsvg) \
 		$(use_with tiff libtiff) \
 		$(use_with udev gudev) \
+		$(use_with webkit) \
 		$(use_with wmf) \
-		--with-xmc \
-		$(use_with xpm libxpm) \
-		--without-xvfb-run"
+		$(use_with xpm libxpm)"
 
 	if use python; then
 		python-single-r1_pkg_setup
@@ -114,6 +114,8 @@ pkg_setup() {
 }
 
 src_prepare() {
+	epatch "${FILESDIR}/${PN}-2.9.4-gegl.patch"
+
 	sed -i -e 's/== "xquartz"/= "xquartz"/' configure.ac || die #494864
 	eautoreconf  # If you remove this: remove dev-util/gtk-doc-am from DEPEND, too
 
