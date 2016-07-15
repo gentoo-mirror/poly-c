@@ -32,7 +32,7 @@ RDEPEND="app-arch/bzip2
 	>=media-libs/babl-0.1.18_pre
 	>=media-libs/fontconfig-2.2.0
 	>=media-libs/freetype-2.1.7
-	>=media-libs/gegl-0.3.8:0.3[cairo]
+	>=media-libs/gegl-0.3.8:0[cairo]
 	>=media-libs/gexiv2-0.6.1
 	>=media-libs/harfbuzz-0.9.19
 	>=media-libs/lcms-2.2:2
@@ -114,7 +114,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}-2.9.4-gegl.patch"
+	#epatch "${FILESDIR}/${PN}-2.9.4-gegl.patch"
 
 	sed -i -e 's/== "xquartz"/= "xquartz"/' configure.ac || die #494864
 	eautoreconf  # If you remove this: remove dev-util/gtk-doc-am from DEPEND, too

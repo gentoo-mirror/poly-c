@@ -24,7 +24,8 @@ RDEPEND="dev-libs/json-c
 	${PYTHON_DEPS}
 	media-libs/babl
 	media-libs/gegl:0.3[introspection?]
-	introspection? ( dev-libs/gobject-introspection )"
+	introspection? ( dev-libs/gobject-introspection )
+	!media-gfx/mypaint"
 
 DEPEND="${RDEPEND}
 	sys-apps/sed"

@@ -69,6 +69,7 @@ mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter w
 media-gfx/gimp 2.9.2-r1 2.9.4_pre: GNU Image Manipulation Program
 media-libs/babl 0.1.18_pre: A dynamic, any to any, pixel format conversion library
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
+media-libs/gegl 0.3.8: A graph based image processing framework
 media-libs/glm 0.9.7.3_pre: OpenGL Mathematics
 media-libs/gst-plugins-bad 1.9.1_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.9.1_pre: Basepack of plugins for gstreamer
