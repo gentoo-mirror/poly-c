@@ -35,16 +35,11 @@ media-radio/liquidsoap
 # WIP
 =dev-libs/openssl-1.1.0_pre*
 
-# Breaks reverse deps
-=app-text/liblangtag-0.6.0_pre
-
 # breaks creation of new users with useradd
 =sys-apps/shadow-4.3.0_pre
 
 # No debian patches yet
 =app-shells/dash-0.5.9
-
-=app-admin/sudo-1.8.17_rc*
 
 # WIP
 =dev-lang/python-3.5.2_pre

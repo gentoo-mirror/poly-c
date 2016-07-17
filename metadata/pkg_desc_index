@@ -19,7 +19,6 @@ app-shells/dash 0.5.9: DASH is a direct descendant of the NetBSD version of ash 
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/calibre 2.59.0_pre 2.60.0_pre: Ebook management application
 app-text/enchant 1.6.0: Spellchecker wrapping library
-app-text/liblangtag 0.6.0_pre: An interface library to access tags for identifying languages
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
@@ -58,6 +57,7 @@ games-rpg/manaplus 1.6.2.13 1.6.2.27 1.6.3.26 1.6.4.23_pre 9999: OpenSource 2D M
 games-strategy/boswars 9999: Futuristic real-time strategy game
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 kde-apps/kde4-l10n 16.04.2: KDE internationalization package
+kde-apps/kdepim-icons 4.14.10: KDE PIM icons
 kde-apps/kdepim-runtime 4.14.11_pre20160211: KDE PIM runtime plugin collection
 kde-apps/ksnapshot 15.08.3-r1: KDE Screenshot Utility
 kde-base/kactivities 4.13.3-r2: KDE Activity Manager
