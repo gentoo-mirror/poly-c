@@ -35,14 +35,11 @@ media-radio/liquidsoap
 # WIP
 =dev-libs/openssl-1.1.0_pre*
 
-# breaks creation of new users with useradd
+# breaks creation of new users with useradd (no login shell in /etc/passwd)
 =sys-apps/shadow-4.3.0_pre
 
 # No debian patches yet
 =app-shells/dash-0.5.9
-
-# WIP
-=dev-lang/python-3.5.2_pre
 
 # Masked as these are development versions
 =x11-libs/cairo-1.15*

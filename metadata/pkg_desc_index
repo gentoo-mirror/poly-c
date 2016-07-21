@@ -24,7 +24,6 @@ app-text/po4a 0.47_pre: Tools for helping translation of documentation
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
-dev-lang/python 3.5.2_pre: An interpreted, interactive, object-oriented programming language
 dev-lang/ruby 2.1.7: An object-oriented scripting language
 dev-libs/Ice 3.6.0_pre 3.6.2_pre: ICE middleware C++ library and generator tools
 dev-libs/botan 1.11.21_pre: A C++ crypto library
@@ -72,7 +71,7 @@ lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-fonts/dejavu 2.36_pre: DejaVu fonts, bitstream vera with ISO-8859-2 characters
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
-media-libs/glm 0.9.7.3_pre: OpenGL Mathematics
+media-libs/glm 0.9.7.3_pre 0.9.7.6_pre: OpenGL Mathematics
 media-libs/gst-plugins-bad 1.9.1_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.9.1_pre: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.9.1_pre: Basepack of plugins for GStreamer
