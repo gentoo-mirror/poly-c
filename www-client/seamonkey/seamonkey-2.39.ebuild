@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5d1acd03f6b15dee5cb867cbb4c785142bc9f528 $
+# $Id: d668866cb3fbd68a0b03ea3b768f1a8b051189f6 $
 
 EAPI=5
 WANT_AUTOCONF="2.1"
@@ -42,7 +42,7 @@ KEYWORDS="~alpha ~amd64 ~arm ~ppc ~ppc64 ~x86"
 
 SLOT="0"
 LICENSE="MPL-2.0 GPL-2 LGPL-2.1"
-IUSE="+chatzilla +crypt gmp-autoupdate +ipc +mailclient minimal pulseaudio +roaming selinux test"
+IUSE="+chatzilla +crypt +gmp-autoupdate +ipc +mailclient minimal pulseaudio +roaming selinux test"
 
 SRC_URI="${SRC_URI}
 	${MOZ_HTTP_URI}/source/${MY_MOZ_P}.source.tar.xz -> ${P}.source.tar.xz
@@ -278,7 +278,7 @@ src_install() {
 	if ! use gmp-autoupdate ; then
 		for plugin in gmp-gmpopenh264 ; do
 			echo "pref(\"media.${plugin}.autoupdate\", false);" >> \
-				"${S}/${BUILD_OBJ_DIR}/dist/bin/browser/defaults/preferences/all-gentoo.js" \
+				"${BUILD_OBJ_DIR}/dist/bin/browser/defaults/preferences/all-gentoo.js" \
 				|| die
 		done
 	fi

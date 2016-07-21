@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4de381c1dd3d385739800bd9d898be7abef14df2 $
+# $Id: 316efe6c7c20593637c9059808ed8b7df936ad31 $
 
 EAPI=5
 
@@ -31,7 +31,7 @@ REQUIRED_USE="
 # qca dep is temporary for bug #489850
 COMMON_DEPEND="
 	app-crypt/qca:2[qt4(+)]
-	>=dev-qt/qtcore-4.5:4
+	>=dev-qt/qtcore-4.5:4[ssl]
 	>=dev-qt/qtgui-4.5:4
 	dbus? ( >=dev-qt/qtdbus-4.5:4 )
 	>=dev-qt/qtopengl-4.5:4
