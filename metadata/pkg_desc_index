@@ -18,7 +18,7 @@ app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gent
 app-portage/repoman 2.3.0: Repoman is a Quality Assurance tool for Gentoo ebuilds
 app-shells/dash 0.5.9: DASH is a direct descendant of the NetBSD version of ash (the Almquist SHell) and is POSIX compliant
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/calibre 2.59.0_pre 2.60.0_pre: Ebook management application
+app-text/calibre 2.60.0_pre 2.63.0_pre: Ebook management application
 app-text/enchant 1.6.0: Spellchecker wrapping library
 app-text/libmwaw 0.3.8_pre: Library parsing many pre-OSX MAC text formats
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
