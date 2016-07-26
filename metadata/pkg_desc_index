@@ -41,6 +41,8 @@ dev-libs/openssl 1.0.2g-r2 1.0.2h 1.0.2h-r1 1.0.2h-r2 1.1.0_pre4: full-strength 
 dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 dev-perl/Net-DNS 1.40.0_pre: Perl Net::DNS - Perl DNS Resolver Module
 dev-perl/Text-Unidecode 1.270.0_pre: Plain ASCII transliterations of Unicode text
+dev-python/cryptography 1.4_pre: Library providing cryptographic recipes and primitives
+dev-python/cryptography-vectors 1.4_pre: Test vectors for the cryptography package
 dev-python/google-apputils 0.4.0: Collection of utilities for building Python applications
 dev-python/m2crypto 0.23.0: M2Crypto: A Python crypto and SSL toolkit
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API

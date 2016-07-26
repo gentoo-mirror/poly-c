@@ -110,7 +110,7 @@ src_prepare() {
 '-e', 's|^CXXFLAGS .*|\\\\\\\\0 ${CXXFLAGS}|', \
 '-e', 's|^LFLAGS .*|\\\\\\\\0 ${LDFLAGS}|', \
 '-i', 'Makefile'])" \
-		-i setup/extensions.py || die "sed failed to patch extensions.py"
+		-i setup/extensions.json || die "sed failed to patch extensions.py"
 
 	# use system beautifulsoup, instead of bundled
 	rm -f "${S}"/src/calibre/ebooks/BeautifulSoup.py \
