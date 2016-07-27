@@ -43,3 +43,6 @@ media-radio/liquidsoap
 
 # Masked as these are development versions
 =x11-libs/cairo-1.15*
+
+# build system changes
+=app-text/calibre-2.63.0_pre
