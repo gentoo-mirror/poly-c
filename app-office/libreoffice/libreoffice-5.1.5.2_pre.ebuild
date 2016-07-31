@@ -11,22 +11,20 @@ CMAKE_REQUIRED="never"
 PYTHON_COMPAT=( python{2_7,3_4,3_5} )
 PYTHON_REQ_USE="threads,xml"
 
+inherit multiprocessing autotools bash-completion-r1 check-reqs eutils java-pkg-opt-2 kde4-base pax-utils python-single-r1 multilib toolchain-funcs flag-o-matic versionator poly-c_ebuilds
+
 # experimental ; release ; old
 # Usually the tarballs are moved a lot so this should make
 # everyone happy.
 DEV_URI="
 	http://dev-builds.libreoffice.org/pre-releases/src
-	http://download.documentfoundation.org/libreoffice/src/${PV:0:5}/
-	http://download.documentfoundation.org/libreoffice/old/${PV}/
+	http://download.documentfoundation.org/libreoffice/src/${MY_PV:0:5}/
+	http://download.documentfoundation.org/libreoffice/old/${MY_PV}/
 "
 ADDONS_URI="http://dev-www.libreoffice.org/src/"
 
 BRANDING="${PN}-branding-gentoo-0.8.tar.xz"
 # PATCHSET="${P}-patchset-01.tar.xz"
-
-[[ ${PV} == *9999* ]] && SCM_ECLASS="git-r3"
-inherit multiprocessing autotools bash-completion-r1 check-reqs eutils java-pkg-opt-2 kde4-base pax-utils python-single-r1 multilib toolchain-funcs flag-o-matic versionator ${SCM_ECLASS}
-unset SCM_ECLASS
 
 DESCRIPTION="A full office productivity suite"
 HOMEPAGE="http://www.libreoffice.org"
@@ -38,19 +36,17 @@ SRC_URI="branding? ( http://dev.gentoo.org/~dilfridge/distfiles/${BRANDING} )"
 # Help is used for the image generator
 MODULES="core help"
 # Only release has the tarballs
-if [[ ${PV} != *9999* ]]; then
-	for i in ${DEV_URI}; do
-		for mod in ${MODULES}; do
-			if [[ ${mod} == core ]]; then
-				SRC_URI+=" ${i}/${P}.tar.xz"
-			else
-				SRC_URI+=" ${i}/${PN}-${mod}-${PV}.tar.xz"
-			fi
-		done
-		unset mod
+for i in ${DEV_URI}; do
+	for mod in ${MODULES}; do
+		if [[ ${mod} == core ]]; then
+			SRC_URI+=" ${i}/${MY_P}.tar.xz"
+		else
+			SRC_URI+=" ${i}/${PN}-${mod}-${MY_PV}.tar.xz"
+		fi
 	done
-	unset i
-fi
+	unset mod
+done
+unset i
 unset DEV_URI
 
 # Really required addons
@@ -84,7 +80,6 @@ $(printf 'libreoffice_extensions_%s ' ${LO_EXTS})"
 
 LICENSE="|| ( LGPL-3 MPL-1.1 )"
 SLOT="0"
-[[ ${PV} == *9999* ]] || \
 KEYWORDS="~amd64 ~arm ~x86 ~amd64-linux ~x86-linux"
 
 COMMON_DEPEND="${PYTHON_DEPS}
@@ -186,13 +181,7 @@ RDEPEND="${COMMON_DEPEND}
 	vlc? ( media-video/vlc )
 "
 
-if [[ ${PV} != *9999* ]]; then
-	PDEPEND="=app-office/libreoffice-l10n-$(get_version_component_range 1-2)*"
-else
-	# Translations are not reliable on live ebuilds
-	# rather force people to use english only.
-	PDEPEND="!app-office/libreoffice-l10n"
-fi
+PDEPEND="=app-office/libreoffice-l10n-$(get_version_component_range 1-2)*"
 
 # FIXME: cppunit should be moved to test conditional
 #        after everything upstream is under gbuild
@@ -302,25 +291,11 @@ src_unpack() {
 	[[ -n ${PATCHSET} ]] && unpack ${PATCHSET}
 	use branding && unpack "${BRANDING}"
 
-	if [[ ${PV} != *9999* ]]; then
-		unpack "${P}.tar.xz"
-		for mod in ${MODULES}; do
-			[[ ${mod} == core ]] && continue
-			unpack "${PN}-${mod}-${PV}.tar.xz"
-		done
-	else
-		local base_uri branch checkout mypv
-		base_uri="git://anongit.freedesktop.org"
-		for mod in ${MODULES}; do
-			branch="master"
-			mypv=${PV/.9999}
-			[[ ${mypv} != ${PV} ]] && branch="${PN}-${mypv/./-}"
-			git-r3_fetch "${base_uri}/${PN}/${mod}" "refs/heads/${branch}"
-			[[ ${mod} != core ]] && checkout="${S}/${mod}"
-			[[ ${mod} == help ]] && checkout="helpcontent2" # doesn't match on help
-			git-r3_checkout "${base_uri}/${PN}/${mod}" ${checkout}
-		done
-	fi
+	unpack "${MY_P}.tar.xz"
+	for mod in ${MODULES}; do
+		[[ ${mod} == core ]] && continue
+		unpack "${PN}-${mod}-${MY_PV}.tar.xz"
+	done
 }
 
 src_prepare() {
