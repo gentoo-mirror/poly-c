@@ -61,6 +61,7 @@ games-rpg/manaplus 1.6.2.13 1.6.2.27 1.6.3.26 1.6.4.23_pre 1.6.7.16_pre 9999: Op
 games-strategy/boswars 9999: Futuristic real-time strategy game
 games-strategy/warzone2100 3.2.0_pre 3.2.1_pre: 3D real-time strategy game
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
+kde-apps/kde-wallpapers 15.08.3-r2: KDE wallpapers
 kde-apps/kde4-l10n 16.04.2: KDE internationalization package
 kde-apps/kdepim-icons 4.14.10: KDE PIM icons
 kde-apps/kdepim-runtime 4.14.11_pre20160211: KDE PIM runtime plugin collection
