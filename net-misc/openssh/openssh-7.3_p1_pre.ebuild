@@ -11,7 +11,7 @@ inherit eutils user flag-o-matic multilib autotools pam systemd versionator poly
 PARCH=${MY_P/_}
 
 HPN_PATCH="${PN}-7.3p1-hpnssh14v10.tar.xz"
-LDAP_PATCH="${PN}-lpk-7.2p2-0.3.14.patch.xz"
+#LDAP_PATCH="${PN}-lpk-7.2p2-0.3.14.patch.xz"
 #X509_VER="8.9" X509_PATCH="${PN}-${PV/_}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"

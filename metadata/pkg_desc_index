@@ -146,7 +146,6 @@ net-print/hplip 3.16.7_pre: HP Linux Imaging and Printing - Print, scan, fax dri
 net-wireless/bluez 5.40_pre 5.41_pre: Bluetooth Tools and System Daemons for Linux
 net-wireless/iw 4.7_pre: nl80211-based configuration utility for wireless devices using the mac80211 kernel stack
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
-sci-libs/fftw 3.3.5_pre: Fast C library for the Discrete Fourier Transform
 sys-apps/firmware-addon-dell 2.2.9: Additional firmware tools for dell computers
 sys-apps/firmware-extract 2.0.13: Additional firmware tools for dell computers
 sys-apps/firmware-tools 2.1.14: Firmware tools for dell computers
