@@ -1,23 +1,24 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 282823eb3a85723e252eb5abc11543c4d8045f34 $
+# $Id: 871c3c4844907652c32dd12d4122d8100a4f3445 $
 
 EAPI="5"
 
-inherit eutils user flag-o-matic multilib autotools pam systemd versionator poly-c_ebuilds
+inherit eutils user flag-o-matic multilib autotools pam systemd versionator
 
 # Make it more portable between straight releases
 # and _p? releases.
-PARCH=${MY_P/_}
+PARCH=${P/_}
 
 HPN_PATCH="${PN}-7.3p1-hpnssh14v10.tar.xz"
-#LDAP_PATCH="${PN}-lpk-7.2p2-0.3.14.patch.xz"
+SCTP_PATCH="${PN}-7.3_p1-sctp.patch.xz"
+LDAP_PATCH="${PN}-lpk-7.3p1-0.3.14.patch.xz"
 #X509_VER="8.9" X509_PATCH="${PN}-${PV/_}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.org/"
 SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
-	https://dev.gentoo.org/~polynomial-c/${PN}-7.3_p1-sctp.patch.xz
+	${SCTP_PATCH:+mirror://gentoo/${SCTP_PATCH}}
 	${HPN_PATCH:+hpn? (
 		mirror://gentoo/${HPN_PATCH}
 		mirror://sourceforge/hpnssh/${HPN_PATCH}
@@ -134,7 +135,7 @@ src_prepare() {
 	fi
 	epatch "${FILESDIR}"/${PN}-7.2_p1-GSSAPI-dns.patch #165444 integrated into gsskex
 	epatch "${FILESDIR}"/${PN}-6.7_p1-openssl-ignore-status.patch
-	epatch "${WORKDIR}"/${PN}-7.3_p1-sctp.patch
+	epatch "${WORKDIR}"/${SCTP_PATCH%.*}
 	if use hpn ; then
 		EPATCH_FORCE="yes" EPATCH_SUFFIX="patch" \
 			EPATCH_MULTI_MSG="Applying HPN patchset ..." \
@@ -238,14 +239,10 @@ src_install() {
 	SendEnv LANG LC_*
 	EOF
 
-	# Allow root password logins for live-cds
 	if use livecd ; then
 		sed -i \
-			-e "/PermitRootLogin/c\\
-\\
-# By popular demand, we're allowing root login with password on livecds\\
-PermitRootLogin Yes\\
-" "${ED}"/etc/ssh/sshd_config
+			-e '/^#PermitRootLogin/c# Allow root login with password on livecds.\nPermitRootLogin Yes' \
+			"${ED}"/etc/ssh/sshd_config || die
 	fi
 
 	if ! use X509 && [[ -n ${LDAP_PATCH} ]] && use ldap ; then

@@ -46,3 +46,6 @@ media-radio/liquidsoap
 
 # build system changes
 =app-text/calibre-2.63.0_pre
+
+# doesn't compile
+=media-gfx/fontforge-20160404_pre

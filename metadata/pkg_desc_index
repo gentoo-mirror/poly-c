@@ -74,6 +74,7 @@ kde-plasma/plasma-workspace 5.7.2: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-fonts/dejavu 2.36_pre: DejaVu fonts, bitstream vera with ISO-8859-2 characters
+media-gfx/fontforge 20160404_pre: postscript font editor and converter
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
 media-libs/glew 2.0.0_pre: The OpenGL Extension Wrangler Library
 media-libs/gst-plugins-bad 1.9.1_pre: Less plugins for GStreamer
@@ -139,7 +140,7 @@ net-libs/libndp 1.6_pre: Library for Neighbor Discovery Protocol
 net-libs/webkit-gtk 2.13.3_pre 2.13.4_pre: Open source web browser engine
 net-misc/networkmanager 1.2.2: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.25: A discrete-event network simulator for Internet systems.
-net-misc/openssh 7.1_p2-r1 7.2_p2 7.2_p2-r1 7.3_p1_pre: Port of OpenBSD's free SSH release
+net-misc/openssh 7.1_p2-r1 7.2_p2 7.2_p2-r1 7.3_p1: Port of OpenBSD's free SSH release
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-print/hplip 3.16.7_pre: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
