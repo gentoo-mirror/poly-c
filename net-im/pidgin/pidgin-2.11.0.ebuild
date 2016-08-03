@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e95202763dacc7621b5cc676263766b396374b9a $
+# $Id: 9d574dbfdc949ee9276ea3a26c2edf91037114bf $
 
 EAPI=6
 
@@ -148,7 +148,7 @@ pkg_setup() {
 		elog "You did not pick the ncurses or gtk use flags, only libpurple"
 		elog "will be built."
 	fi
-	if use python || use dbus ; then
+	if use python && use dbus ; then
 		python-single-r1_pkg_setup
 	fi
 
