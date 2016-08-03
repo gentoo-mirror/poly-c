@@ -1,5 +1,6 @@
 app-accessibility/speech-dispatcher 0.8.4_pre: Speech synthesis interface
 app-admin/littleutils 1.0.36: The littleutils are a collection of small and simple utilities
+app-admin/logrotate 3.10.0_pre: Rotates, compresses, and mails system logs
 app-admin/remotebox 2.0: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-arch/xz-utils 5.2.2: utils for managing LZMA compressed files
@@ -14,8 +15,8 @@ app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
 app-misc/mc 4.8.14 4.8.15 4.8.16 4.8.17: GNU Midnight Commander is a text based file manager
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
-app-office/libreoffice 5.1.5.2_pre: A full office productivity suite
-app-office/libreoffice-l10n 5.1.5.2_pre: Translations for the Libreoffice suite
+app-office/libreoffice 5.1.5.2_pre 5.2.0.4_pre: A full office productivity suite
+app-office/libreoffice-l10n 5.1.5.2_pre 5.2.0.4_pre: Translations for the Libreoffice suite
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/dash 0.5.9: DASH is a direct descendant of the NetBSD version of ash (the Almquist SHell) and is POSIX compliant
 app-shells/rssh 2.3.4: Restricted shell for SSHd
@@ -59,6 +60,7 @@ games-fps/etlegacy 2.74 9999: Wolfenstein: Enemy Territory 2.60b compatible clie
 games-fps/rtcw 1.42b 1.42d 9999: Return to Castle Wolfenstein - IORTCW Project
 games-rpg/manaplus 1.6.2.13 1.6.2.27 1.6.3.26 1.6.4.23_pre 1.6.7.16_pre 9999: OpenSource 2D MMORPG client for Evol Online and The Mana World
 games-strategy/boswars 9999: Futuristic real-time strategy game
+games-strategy/freeciv 2.5.5_pre: multiplayer strategy game (Civilization Clone)
 games-strategy/warzone2100 3.2.0_pre 3.2.1_pre: 3D real-time strategy game
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 kde-apps/kde-wallpapers 15.08.3-r2: KDE wallpapers
@@ -73,7 +75,7 @@ kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
 kde-plasma/plasma-workspace 5.7.3: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
-media-fonts/dejavu 2.36_pre: DejaVu fonts, bitstream vera with ISO-8859-2 characters
+media-fonts/dejavu 2.36_pre 2.37_pre: DejaVu fonts, bitstream vera with ISO-8859-2 characters
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
 media-libs/glew 2.0.0_pre: The OpenGL Extension Wrangler Library
 media-libs/gst-plugins-bad 1.9.1_pre: Less plugins for GStreamer
