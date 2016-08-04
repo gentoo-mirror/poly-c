@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+# $Id: c4cc3d4bc6bf2b65f9d9b988a9b1681c94f006f8 $
 
 EAPI=6
 GNOME_ORG_MODULE="NetworkManager"
@@ -57,7 +57,7 @@ COMMON_DEPEND="
 	ppp? ( >=net-dialup/ppp-2.4.5:=[ipv6] )
 	resolvconf? ( net-dns/openresolv )
 	systemd? ( >=sys-apps/systemd-209:0= )
-	!systemd? ( || ( >=sys-auth/consolekit-1.0.0 ) )
+	!systemd? ( || ( sys-power/upower sys-power/upower-pm-utils ) )
 	teamd? ( >=net-misc/libteam-1.9 )
 "
 RDEPEND="${COMMON_DEPEND}
@@ -122,8 +122,10 @@ src_prepare() {
 	DOC_CONTENTS="To modify system network connections without needing to enter the
 		root password, add your user account to the 'plugdev' group."
 
-	# Don't build examples, they are not needed and can cause build failure
-	sed -e '/^\s*examples\s*\\*/d' -i Makefile.{am,in} || die
+	local PATCHES=(
+		# https://bugs.gentoo.org/590432
+		"${FILESDIR}/1.2.4-upower.patch"
+	)
 
 	use vala && vala_src_prepare
 	gnome2_src_prepare
@@ -178,7 +180,7 @@ multilib_src_configure() {
 		$(multilib_native_enable concheck) \
 		--with-crypto=$(usex nss nss gnutls) \
 		--with-session-tracking=$(multilib_native_usex systemd systemd $(multilib_native_usex consolekit consolekit no)) \
-		--with-suspend-resume=$(multilib_native_usex systemd systemd consolekit) \
+		--with-suspend-resume=$(multilib_native_usex systemd systemd upower) \
 		$(multilib_native_use_enable bluetooth bluez5-dun) \
 		$(multilib_native_use_enable introspection) \
 		$(multilib_native_use_enable ppp) \
@@ -204,6 +206,13 @@ multilib_src_configure() {
 			ln -s "${S}"/docs/${d}/html docs/${d}/html || die
 		done
 	fi
+
+	# Disable examples
+	cat > examples/Makefile <<-EOF
+	.PHONY: all install
+	all:
+	install:
+	EOF
 }
 
 multilib_src_compile() {
