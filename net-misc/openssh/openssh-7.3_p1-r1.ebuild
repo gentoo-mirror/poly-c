@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 871c3c4844907652c32dd12d4122d8100a4f3445 $
+# $Id: a915481516db37d6c43d205c31cae042529c32de $
 
 EAPI="5"
 
@@ -13,7 +13,7 @@ PARCH=${P/_}
 HPN_PATCH="${PN}-7.3p1-hpnssh14v10.tar.xz"
 SCTP_PATCH="${PN}-7.3_p1-sctp.patch.xz"
 LDAP_PATCH="${PN}-lpk-7.3p1-0.3.14.patch.xz"
-#X509_VER="8.9" X509_PATCH="${PN}-${PV/_}+x509-${X509_VER}.diff.gz"
+X509_VER="9.0" X509_PATCH="${PN}-${PV/_}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.org/"
@@ -123,7 +123,7 @@ src_prepare() {
 			epatch "${FILESDIR}"/${PN}-7.2_p2-hpn-x509-glue.patch
 			popd >/dev/null
 		fi
-		epatch "${FILESDIR}"/${PN}-7.2_p1-sctp-x509-glue.patch
+		epatch "${FILESDIR}"/${PN}-7.3_p1-sctp-x509-glue.patch
 		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}
 		#epatch "${FILESDIR}"/${PN}-7.1_p2-x509-hpn14v10-glue.patch
@@ -133,7 +133,7 @@ src_prepare() {
 		epatch "${WORKDIR}"/${LDAP_PATCH%.*}
 		save_version LPK
 	fi
-	epatch "${FILESDIR}"/${PN}-7.2_p1-GSSAPI-dns.patch #165444 integrated into gsskex
+	epatch "${FILESDIR}"/${PN}-7.3_p1-GSSAPI-dns.patch #165444 integrated into gsskex
 	epatch "${FILESDIR}"/${PN}-6.7_p1-openssl-ignore-status.patch
 	epatch "${WORKDIR}"/${SCTP_PATCH%.*}
 	if use hpn ; then
@@ -251,7 +251,8 @@ src_install() {
 	fi
 
 	doman contrib/ssh-copy-id.1
-	dodoc ChangeLog CREDITS OVERVIEW README* TODO sshd_config
+	dodoc CREDITS OVERVIEW README* TODO sshd_config
+	use X509 || dodoc ChangeLog
 
 	diropts -m 0700
 	dodir /etc/skel/.ssh

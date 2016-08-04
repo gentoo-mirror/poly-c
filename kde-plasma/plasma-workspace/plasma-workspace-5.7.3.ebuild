@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 093665283fcb598e37f2630611484ebe8edb8e11 $
+# $Id: fb1f5e0417a6540384781634c4dbd5a998b23c95 $
 
 EAPI=6
 
@@ -93,6 +93,7 @@ RDEPEND="${COMMON_DEPEND}
 	$(add_plasma_dep kde-cli-tools)
 	$(add_plasma_dep ksysguard)
 	$(add_plasma_dep milou)
+	$(add_plasma_dep plasma-integration)
 	$(add_qt_dep qdbus)
 	$(add_qt_dep qtgraphicaleffects)
 	$(add_qt_dep qtpaths)

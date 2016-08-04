@@ -1,6 +1,5 @@
 app-accessibility/speech-dispatcher 0.8.4_pre: Speech synthesis interface
 app-admin/littleutils 1.0.36: The littleutils are a collection of small and simple utilities
-app-admin/logrotate 3.10.0_pre: Rotates, compresses, and mails system logs
 app-admin/remotebox 2.0: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-arch/xz-utils 5.2.2: utils for managing LZMA compressed files
@@ -142,7 +141,7 @@ net-libs/webkit-gtk 2.13.3_pre 2.13.4_pre: Open source web browser engine
 net-misc/curl 7.50.1_pre: A Client that groks URLs
 net-misc/networkmanager 1.2.2: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.25: A discrete-event network simulator for Internet systems.
-net-misc/openssh 7.1_p2-r1 7.2_p2 7.2_p2-r1 7.3_p1: Port of OpenBSD's free SSH release
+net-misc/openssh 7.1_p2-r1 7.2_p2 7.2_p2-r1 7.3_p1-r1: Port of OpenBSD's free SSH release
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-print/hplip 3.16.7_pre: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
