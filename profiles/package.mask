@@ -46,3 +46,6 @@ media-radio/liquidsoap
 
 # build system changes
 =app-text/calibre-2.63.0_pre
+
+# smplayer-16.8.0 fails to build
+=media-video/smplayer-16.8.0
