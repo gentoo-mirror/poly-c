@@ -1,10 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit eutils multilib libtool flag-o-matic toolchain-funcs multilib-minimal poly-c_ebuilds
+inherit eutils libtool flag-o-matic toolchain-funcs multilib-minimal poly-c_ebuilds
 
 DESCRIPTION="Perl-compatible regular expression library"
 HOMEPAGE="http://www.pcre.org/"
@@ -44,6 +44,8 @@ MULTILIB_CHOST_TOOLS=(
 )
 
 src_prepare() {
+	default
+
 	local pc
 	for pc in *.pc.in ; do
 		echo "Libs.private: @PTHREAD_CFLAGS@" >> ${pc} #454478
