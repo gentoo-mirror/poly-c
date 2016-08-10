@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c4cc3d4bc6bf2b65f9d9b988a9b1681c94f006f8 $
+# $Id: c37e2512a27d481c9e35d7c47fd4cc5e0b550252 $
 
 EAPI=6
 GNOME_ORG_MODULE="NetworkManager"
@@ -209,8 +209,9 @@ multilib_src_configure() {
 
 	# Disable examples
 	cat > examples/Makefile <<-EOF
-	.PHONY: all install
+	.PHONY: all check install
 	all:
+	check:
 	install:
 	EOF
 }
@@ -273,8 +274,8 @@ multilib_src_install_all() {
 	insinto /usr/share/polkit-1/rules.d/
 	doins "${FILESDIR}/01-org.freedesktop.NetworkManager.settings.modify.system.rules"
 
-	# Remove any empty directories
-	find "${D}" -type d -empty -delete || die
+	# Remove empty /run/NetworkManager
+	rmdir "${D}"/run/NetworkManager "${D}"/run || die
 }
 
 pkg_postinst() {
