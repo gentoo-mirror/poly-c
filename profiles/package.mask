@@ -49,3 +49,6 @@ media-radio/liquidsoap
 
 # smplayer-16.8.0 fails to build
 =media-video/smplayer-16.8.0
+
+# Breaks midori browser
+=net-libs/webkit-gtk-2.13*

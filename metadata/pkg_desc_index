@@ -6,9 +6,11 @@ app-arch/xz-utils 5.2.2: utils for managing LZMA compressed files
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
 app-crypt/heimdal 1.6_rc2: Kerberos 5 implementation from KTH
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
+app-editors/nano 2.6.3_pre: GNU GPL'd Pico clone with more functionality
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
 app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
 app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
+app-misc/fedmsg 0.17.2: Utilities used around Fedora Infrastructure to send and receive messages
 app-misc/gramps 4.2.0_pre: Genealogical Research and Analysis Management Programming System
 app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
@@ -55,7 +57,7 @@ games-emulation/mgba 0.4.1: A new Game Boy Advance emulator written in C.
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.74 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.42b 1.42d 9999: Return to Castle Wolfenstein - IORTCW Project
-games-rpg/manaplus 1.6.2.13 1.6.2.27 1.6.3.26 1.6.4.23_pre 1.6.7.16_pre 9999: OpenSource 2D MMORPG client for Evol Online and The Mana World
+games-rpg/manaplus 1.6.7.30_pre 9999: OpenSource 2D MMORPG client for Evol Online and The Mana World
 games-strategy/boswars 9999: Futuristic real-time strategy game
 games-strategy/freeciv 2.5.5_pre: multiplayer strategy game (Civilization Clone)
 games-strategy/warzone2100 3.2.0_pre 3.2.1_pre: 3D real-time strategy game
@@ -168,7 +170,7 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/binutils-libs 2.27_pre: Core binutils libraries (libbfd, libopcodes, libiberty) for external packages
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.1.27 4.1.28 4.1.30 4.4.15 4.4.16 4.4.17 4.5.5 4.5.6 4.5.7 4.6.4 4.6.5: Shows and sets processor power related values
+sys-power/cpupower 4.1.27 4.1.28 4.1.30 4.4.15 4.4.16 4.4.17 4.5.5 4.5.6 4.5.7 4.6.4 4.6.5 4.6.6: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 www-client/seamonkey 2.39 2.40 2.42.2.0_p0: Seamonkey Web Browser
