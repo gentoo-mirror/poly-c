@@ -6,7 +6,6 @@ app-arch/xz-utils 5.2.2: utils for managing LZMA compressed files
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
 app-crypt/heimdal 1.6_rc2: Kerberos 5 implementation from KTH
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
-app-editors/nano 2.6.3_pre: GNU GPL'd Pico clone with more functionality
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
 app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
 app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
@@ -62,7 +61,7 @@ games-strategy/boswars 9999: Futuristic real-time strategy game
 games-strategy/freeciv 2.5.5_pre: multiplayer strategy game (Civilization Clone)
 games-strategy/warzone2100 3.2.0_pre 3.2.1_pre: 3D real-time strategy game
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
-kde-apps/kde-wallpapers 15.08.3-r2: KDE wallpapers
+kde-apps/kde-wallpapers 15.08.3 15.08.3-r2: KDE wallpapers
 kde-apps/kde4-l10n 16.04.2: KDE internationalization package
 kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
