@@ -52,3 +52,6 @@ media-radio/liquidsoap
 
 # Breaks midori browser
 =net-libs/webkit-gtk-2.13*
+
+# ships with empty source tarballs.
+=media-sound/ardour-5.0_pre

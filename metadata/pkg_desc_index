@@ -111,7 +111,7 @@ media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming,
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
 media-sound/alsa-utils 1.0.27.2 1.0.28 1.0.28-r1 1.0.29 1.1.0 1.1.1 1.1.2: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
 media-sound/ameter 0.44_pre: Ameter is an Alsa meter plugin
-media-sound/ardour 4.0-r2 4.1 4.2-r1 4.4: Digital Audio Workstation
+media-sound/ardour 5.0.0_pre: Digital Audio Workstation
 media-sound/clementine 1.2.3 1.3.1-r2: A modern music player and library organizer based on Amarok 1.4 and Qt4
 media-sound/cutmp3 2.1.2_pre 3.0_pre 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
 media-sound/idjc 0.8.16: Internet DJ Console has two media players, jingles player, crossfader, VoIP and streaming

@@ -31,11 +31,6 @@ RDEPEND="bzip2? ( app-arch/bzip2 )
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	userland_GNU? ( >=sys-apps/findutils-4.4.0 )"
-RDEPEND="${RDEPEND}
-	abi_x86_32? (
-		!<=app-emulation/emul-linux-x86-baselibs-20131008-r2
-		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
-	)"
 
 S=${WORKDIR}/${MY_P}
 
@@ -46,10 +41,6 @@ MULTILIB_CHOST_TOOLS=(
 src_prepare() {
 	default
 
-	local pc
-	for pc in *.pc.in ; do
-		echo "Libs.private: @PTHREAD_CFLAGS@" >> ${pc} #454478
-	done
 	elibtoolize
 }
 
