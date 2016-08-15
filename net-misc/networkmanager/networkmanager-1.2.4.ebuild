@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c37e2512a27d481c9e35d7c47fd4cc5e0b550252 $
+# $Id: 99cd3f3bea6c040e4769a75dd742838ec68c6d29 $
 
 EAPI=6
 GNOME_ORG_MODULE="NetworkManager"
@@ -208,6 +208,7 @@ multilib_src_configure() {
 	fi
 
 	# Disable examples
+	# https://bugzilla.gnome.org/show_bug.cgi?id=769711
 	cat > examples/Makefile <<-EOF
 	.PHONY: all check install
 	all:

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f1d049783c9e89e98f040846f268ac40a435702e $
+# $Id: 2ced6656779d38c26e3dad702dcc08d12e1cadfc $
 
 EAPI="5"
 
@@ -22,10 +22,8 @@ KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc
 DEPEND="sys-apps/portage[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}
 	!<=app-portage/gentoolkit-dev-0.2.7
-	|| ( >=sys-apps/coreutils-8.15 app-misc/realpath sys-freebsd/freebsd-bin )
 	sys-apps/gawk
-	sys-apps/gentoo-functions
-	sys-apps/grep"
+	sys-apps/gentoo-functions"
 
 PATCHES=(
 	"${FILESDIR}"/${PV}-revdep-rebuild-py-504654-1.patch
