@@ -18,7 +18,6 @@ app-office/ledger 3.1: A double-entry accounting system with a command-line repo
 app-office/libreoffice 5.1.5.2_pre 5.2.0.4_pre: A full office productivity suite
 app-office/libreoffice-l10n 5.1.5.2_pre 5.2.0.4_pre: Translations for the Libreoffice suite
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
-app-shells/dash 0.5.9: DASH is a direct descendant of the NetBSD version of ash (the Almquist SHell) and is POSIX compliant
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/libmwaw 0.3.8_pre: Library parsing many pre-OSX MAC text formats
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
@@ -75,7 +74,6 @@ kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
 kde-plasma/plasma-workspace 5.7.3: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
-media-fonts/dejavu 2.36_pre 2.37_pre: DejaVu fonts, bitstream vera with ISO-8859-2 characters
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
 media-libs/gst-plugins-bad 1.9.1_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.9.1_pre: Basepack of plugins for gstreamer
@@ -141,7 +139,6 @@ net-misc/ns 3.25: A discrete-event network simulator for Internet systems.
 net-misc/openssh 7.1_p2-r1 7.2_p2 7.2_p2-r1 7.3_p1-r1: Port of OpenBSD's free SSH release
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
-net-print/hplip 3.16.7_pre: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
 net-wireless/bluez 5.40_pre 5.41_pre: Bluetooth Tools and System Daemons for Linux
 net-wireless/iw 4.7_pre: nl80211-based configuration utility for wireless devices using the mac80211 kernel stack
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator

@@ -49,7 +49,7 @@ multilib_src_configure() {
 	use elibc_FreeBSD && export ac_cv_header_sha256_h=no #545714
 	ECONF_SOURCE="${S}" econf \
 		--bindir=/bin \
-		--libdir=/$(get_libdir) \
+		$(multilib_is_native_abi && echo --libdir=/$(get_libdir)) \
 		$(use_enable nls) \
 		$(use_enable threads) \
 		$(use_enable static-libs static) \
@@ -58,12 +58,14 @@ multilib_src_configure() {
 
 multilib_src_install() {
 	default
-	gen_usr_ldscript liblzma.so
 
-	# shuffle around stuff we don't need in /
-	dodir /usr/$(get_libdir)
-	mv "${ED}"/$(get_libdir)/pkgconfig "${ED}"/usr/$(get_libdir) || die
-	mv -f "${ED}"/$(get_libdir)/*.a "${ED}"/usr/$(get_libdir)
+	if multilib_is_native_abi ; then
+		# shuffle around stuff we don't need in /
+		dodir /usr/$(get_libdir)
+		mv "${ED}"/$(get_libdir)/pkgconfig "${ED}"/usr/$(get_libdir) || die
+		mv -f "${ED}"/$(get_libdir)/*.a "${ED}"/usr/$(get_libdir)
+		gen_usr_ldscript liblzma.so
+	fi
 }
 
 multilib_src_install_all() {
