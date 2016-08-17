@@ -109,6 +109,8 @@ src_prepare() {
 	if ! use streaming ; then
 		sed -e 's:DEFINES += YOUTUBE_SUPPORT:#&:' \
 			-i src/smplayer.pro || die
+		sed -e 's:^#define PLAYLIST_DOWNLOAD://&:' \
+			-i src/playlist.h || die
 	fi
 
 	# Commented out because it gives false positives
