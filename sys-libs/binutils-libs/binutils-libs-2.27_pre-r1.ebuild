@@ -50,7 +50,6 @@ pkgversion() {
 
 multilib_src_configure() {
 	local myconf=(
-		$(use_with zlib)
 		--enable-obsolete
 		--enable-shared
 		--enable-threads
@@ -72,6 +71,7 @@ multilib_src_configure() {
 		# Strip out broken static link flags.
 		# https://gcc.gnu.org/PR56750
 		--without-stage1-ldflags
+		--with-system-zlib
 	)
 
 	use multitarget && myconf+=( --enable-targets=all --enable-64-bit-bfd )
