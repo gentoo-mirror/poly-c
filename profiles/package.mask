@@ -1,7 +1,7 @@
 # masked for testing
-=www-client/seamonkey-2.41_alpha*
-=www-client/seamonkey-2.41_beta*
-=www-client/seamonkey-2.41_pre*
+=www-client/seamonkey-2.43_alpha*
+=www-client/seamonkey-2.43_beta*
+=www-client/seamonkey-2.43_pre*
 
 # segfaults
 app-misc/kenny
@@ -38,20 +38,11 @@ media-radio/liquidsoap
 # breaks creation of new users with useradd (no login shell in /etc/passwd)
 =sys-apps/shadow-4.3.0_pre
 
-# No debian patches yet
-=app-shells/dash-0.5.9
-
 # Masked as these are development versions
 =x11-libs/cairo-1.15*
-
-# build system changes
-=app-text/calibre-2.63.0_pre
 
 # smplayer-16.8.0 fails to build
 =media-video/smplayer-16.8.0
 
 # Breaks midori browser
 =net-libs/webkit-gtk-2.13*
-
-# ships with empty source tarballs.
-=media-sound/ardour-5.0_pre
