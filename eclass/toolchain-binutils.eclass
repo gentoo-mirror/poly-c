@@ -89,7 +89,7 @@ else
 	LICENSE="|| ( GPL-2 LGPL-2 )"
 fi
 IUSE="cxx multitarget nls static-libs test vanilla"
-if version_is_at_least 2.19 && ! version_is_at_least 2.26 ; then
+if ! version_is_at_least 2.26 ; then
 	IUSE+=" zlib"
 fi
 SLOT="${BVER}"
