@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 1997e4533ce240deffd49bf284f9c8592bd033ce $
+# $Id: 75d6dd14254ac563b844298a5f2a6fcf85bf9d79 $
 
 EAPI=5
 
@@ -102,7 +102,7 @@ RDEPEND+="
 		grub_platforms_efi-32? ( sys-boot/efibootmgr )
 		grub_platforms_efi-64? ( sys-boot/efibootmgr )
 	)
-	!multislot? ( !sys-boot/grub:0 )
+	!multislot? ( !sys-boot/grub:0 !sys-boot/grub-static )
 	nls? ( sys-devel/gettext )
 "
 
