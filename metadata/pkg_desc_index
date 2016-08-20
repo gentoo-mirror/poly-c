@@ -4,7 +4,6 @@ app-admin/remotebox 2.0: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-arch/xz-utils 5.2.2: utils for managing LZMA compressed files
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
-app-crypt/gnupg 2.1.15_pre: The GNU Privacy Guard, a GPL OpenPGP implementation
 app-crypt/heimdal 1.6_rc2: Kerberos 5 implementation from KTH
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
