@@ -51,6 +51,9 @@ src_unpack() {
 }
 
 src_prepare() {
+	pushd "${WORKDIR}/linux-${PV}" &>/dev/null || die
+	eapply "${FILESDIR}/${PN}-4.7-cpu_detection_fix.patch"
+	popd &>/dev/null || die
 	default
 	# -Wl,--as-needed compat
 	local libs="-lcpupower -lrt $($(tc-getPKG_CONFIG) --libs-only-l libpci)"
