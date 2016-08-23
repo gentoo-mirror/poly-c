@@ -1,7 +1,7 @@
 http://pkgs.fedoraproject.org/cgit/cdrkit.git/tree/cdrkit-1.1.11-cmakewarn.patch
 
---- CMakeLists.txt
-+++ CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
 @@ -1,3 +1,5 @@
 +cmake_minimum_required(VERSION 2.8)
 +cmake_policy(SET CMP0015 OLD)

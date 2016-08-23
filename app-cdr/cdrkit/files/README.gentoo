@@ -1,0 +1,4 @@
+These are from http://pkgs.fedoraproject.org/cgit/cdrkit.git/tree/?id=763f5bd6c288397a0157afa91b8bd0c4b6019d47
+to use external libcdio-paranoia instead of internal cdparanoia wrt http://bugs.gentoo.org/206939
+cdrkit-1.1.11-paranoiacdda.patch was modified to use upstream location of headers cdda.h and paranoia.h
+because Fedora is moving them to location of old libcdio for some reason

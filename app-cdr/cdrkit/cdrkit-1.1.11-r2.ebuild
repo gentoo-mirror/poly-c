@@ -1,14 +1,13 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id: 9b74a9c3d8fc27a4f27d9eda965ac7265a91d873 $
 
-EAPI=5
+EAPI=6
 inherit cmake-utils eutils
 
 DESCRIPTION="A set of tools for CD/DVD reading and recording, including cdrecord"
 HOMEPAGE="http://cdrkit.org"
-SRC_URI="mirror://debian/pool/main/c/${PN}/${PN}_${PV}.orig.tar.gz
-	https://dev.gentoo.org/~ssuominen/${P}-libcdio-paranoia.tar.xz"
+SRC_URI="mirror://debian/pool/main/c/${PN}/${PN}_${PV}.orig.tar.gz"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
@@ -25,12 +24,14 @@ RDEPEND="app-arch/bzip2
 DEPEND="${RDEPEND}
 	hfs? ( sys-apps/file )"
 
-src_prepare() {
-	epatch \
-		"${FILESDIR}"/${P}-cmakewarn.patch \
-		"${WORKDIR}"/patches/${P}-paranoiacdda.patch \
-		"${WORKDIR}"/patches/${P}-paranoiacdio.patch
+PATCHES=(
+	"${FILESDIR}"/${P}-cmakewarn.patch
+	"${FILESDIR}"/${P}-paranoiacdda.patch
+	"${FILESDIR}"/${P}-paranoiacdio.patch
+)
 
+src_prepare() {
+	default
 	echo '.so wodim.1' > ${T}/cdrecord.1
 	echo '.so genisoimage.1' > ${T}/mkisofs.1
 	echo '.so icedax.1' > ${T}/cdda2wav.1
