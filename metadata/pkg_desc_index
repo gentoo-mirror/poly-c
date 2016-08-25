@@ -137,7 +137,7 @@ net-im/pidgin 2.11.0: GTK Instant Messenger client
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/webkit-gtk 2.13.3_pre 2.13.4_pre: Open source web browser engine
-net-misc/networkmanager 1.2.2 1.2.4: A set of co-operative tools that make networking simple and straightforward
+net-misc/networkmanager 1.2.2 1.2.4 1.4.0_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.25: A discrete-event network simulator for Internet systems.
 net-misc/openssh 7.1_p2-r1 7.2_p2 7.2_p2-r1 7.3_p1-r1: Port of OpenBSD's free SSH release
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)

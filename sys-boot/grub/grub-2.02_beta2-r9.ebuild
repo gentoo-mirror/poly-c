@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 75d6dd14254ac563b844298a5f2a6fcf85bf9d79 $
+# $Id: 3bc7b41de711649166079228b455509bcea4665b $
 
 EAPI=5
 
@@ -290,7 +290,7 @@ pkg_postinst() {
 
 	if [[ -e "${ROOT%/}/boot/grub2/grub.cfg"  ]]; then
 		ewarn "The grub directory has changed from /boot/grub2 to /boot/grub."
-		ewarn "Please run grub2-install and grub2-mkconfig -o /boot/grub/grub.cfg."
+		ewarn "Please run $(usex multislot grub2 grub)-install and $(usex multislot grub2 grub)-mkconfig -o /boot/grub/grub.cfg."
 
 		if [[ ! -e "${ROOT%/}/boot/grub/grub.cfg" ]]; then
 			mkdir -p "${ROOT%/}/boot/grub"
@@ -318,7 +318,7 @@ pkg_postinst() {
 		local v
 		for v in ${REPLACING_VERSIONS}; do
 			if ! version_is_at_least 2.02_beta2-r8 ${v}; then
-				ewarn "Please re-run grub2-install to address a security flaw when using"
+				ewarn "Please re-run $(usex multislot grub2 grub)-install to address a security flaw when using"
 				ewarn "username/password authentication in grub."
 				ewarn "See bug 568326 for more information."
 			fi
