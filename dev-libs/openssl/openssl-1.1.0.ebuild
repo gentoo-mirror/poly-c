@@ -35,9 +35,9 @@ MULTILIB_WRAPPED_HEADERS=(
 )
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-1.1.0_pre4-ldflags.patch #327421
+	#"${FILESDIR}"/${PN}-1.1.0-ldflags.patch #327421
 	"${FILESDIR}"/${PN}-1.0.2a-x32-asm.patch #542618
-	"${FILESDIR}"/${PN}-1.1.0-threads.patch
+	#"${FILESDIR}"/${PN}-1.1.0-threads.patch
 )
 
 src_prepare() {
@@ -87,11 +87,11 @@ src_prepare() {
 		-e "1s,/usr/bin/env,${EPREFIX}&," \
 		-i Configure || die
 	# Remove test target when FEATURES=test isn't set
-	if ! use test ; then
-		sed \
-			-e '/^$config{dirs}/s@ "test",@@' \
-			-i Configure || die
-	fi
+	#if ! use test ; then
+	#	sed \
+	#		-e '/^$config{dirs}/s@ "test",@@' \
+	#		-i Configure || die
+	#fi
 	# The config script does stupid stuff to prompt the user.  Kill it.
 	sed -i '/stty -icanon min 0 time 50; read waste/d' config || die
 	./config --test-sanity || die "I AM NOT SANE"
