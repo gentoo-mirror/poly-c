@@ -16,8 +16,8 @@ app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
 app-misc/mc 4.8.14 4.8.15 4.8.16 4.8.17: GNU Midnight Commander is a text based file manager
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
-app-office/libreoffice 5.1.5.2_pre 5.2.0.4_pre: A full office productivity suite
-app-office/libreoffice-l10n 5.1.5.2_pre 5.2.0.4_pre: Translations for the Libreoffice suite
+app-office/libreoffice 5.1.5.2_pre 5.2.0.4_pre 5.2.1.2_pre: A full office productivity suite
+app-office/libreoffice-l10n 5.1.5.2_pre 5.2.0.4_pre 5.2.1.1_pre: Translations for the Libreoffice suite
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/libmwaw 0.3.8_pre: Library parsing many pre-OSX MAC text formats
@@ -163,6 +163,7 @@ sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.02_beta2-r8 2.02_beta2-r9 2.02_beta3-r1: GNU GRUB boot loader
 sys-devel/binutils 2.27_pre-r1: Tools necessary to build programs
+sys-fs/btrfs-progs 4.7.1_pre: Btrfs filesystem utilities
 sys-fs/lvm2 2.02.162_pre 2.02.163_pre 2.02.164_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
