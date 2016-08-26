@@ -14,20 +14,11 @@ SRC_URI="mirror://openssl/source/${MY_P}.tar.gz"
 LICENSE="openssl"
 SLOT="0/1.1.0"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
-IUSE="+asm bindist rfc3779 sctp cpu_flags_x86_sse2 static-libs test +tls-heartbeat vanilla zlib"
+IUSE="+asm bindist rfc3779 sctp cpu_flags_x86_sse2 static-libs test tls-heartbeat vanilla zlib"
 RESTRICT="!bindist? ( bindist )"
 
-# The blocks are temporary just to make sure people upgrade to a
-# version that lack runtime version checking.  We'll drop them in
-# the future.
 RDEPEND=">=app-misc/c_rehash-1.7-r1
-	zlib? ( >=sys-libs/zlib-1.2.8-r1[static-libs(+)?,${MULTILIB_USEDEP}] )
-	abi_x86_32? (
-		!<=app-emulation/emul-linux-x86-baselibs-20140508
-		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
-	)
-	!<net-misc/openssh-5.9_p1-r4
-	!<net-libs/neon-0.29.6-r1"
+	zlib? ( >=sys-libs/zlib-1.2.8-r1[static-libs(+)?,${MULTILIB_USEDEP}] )"
 DEPEND="${RDEPEND}
 	>=dev-lang/perl-5
 	sctp? ( >=net-misc/lksctp-tools-1.0.12 )
@@ -45,10 +36,6 @@ MULTILIB_WRAPPED_HEADERS=(
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.1.0_pre4-ldflags.patch #327421
-	#"${FILESDIR}"/${PN}-1.1.0_pre4-parallel-build.patch
-	#"${FILESDIR}"/${PN}-1.1.0_pre4-parallel-obj-headers.patch
-	#"${FILESDIR}"/${PN}-1.1.0_pre4-parallel-install-dirs.patch
-	#"${FILESDIR}"/${PN}-1.1.0_pre4-parallel-symlinking.patch #545028
 	"${FILESDIR}"/${PN}-1.0.2a-x32-asm.patch #542618
 	"${FILESDIR}"/${PN}-1.1.0-threads.patch
 )
@@ -99,8 +86,8 @@ src_prepare() {
 	sed \
 		-e "1s,/usr/bin/env,${EPREFIX}&," \
 		-i Configure || die
-	# Remove test target
-	if ! use test ; then
+	# Remove test target when FEATURES=test isn't set
+    	if ! use test ; then
 		sed \
 			-e '/^$config{dirs}/s@ "test",@@' \
 			-i Configure || die
@@ -152,6 +139,7 @@ multilib_src_configure() {
 		${sslout} \
 		$(use cpu_flags_x86_sse2 || echo "no-sse2") \
 		enable-camellia \
+		disable-deprecated \
 		$(use_ssl !bindist ec) \
 		${ec_nistp_64_gcc_128} \
 		enable-idea \
@@ -165,7 +153,7 @@ multilib_src_configure() {
 		$(use_ssl tls-heartbeat heartbeats) \
 		$(use_ssl zlib) \
 		--prefix="${EPREFIX}"/usr \
-		--openssldir="${EPREFIX}${SSL_CNF_DIR}" \
+		--openssldir="${EPREFIX}"${SSL_CNF_DIR} \
 		--libdir=$(get_libdir) \
 		shared threads \
 		|| die
