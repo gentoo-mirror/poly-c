@@ -4,17 +4,17 @@
 
 EAPI=5
 
-inherit eutils flag-o-matic toolchain-funcs multilib multilib-minimal poly-c_ebuilds
+inherit eutils flag-o-matic toolchain-funcs multilib multilib-minimal
 
-MY_P=${MY_P/_/-}
+MY_P=${P/_/-}
 DESCRIPTION="full-strength general purpose cryptography library (including SSL and TLS)"
 HOMEPAGE="http://www.openssl.org/"
 SRC_URI="mirror://openssl/source/${MY_P}.tar.gz"
 
 LICENSE="openssl"
-SLOT="0/1.1.0"
+SLOT="0/1.1" # .so version of libssl/libcrypto
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
-IUSE="+asm bindist rfc3779 sctp cpu_flags_x86_sse2 static-libs test tls-heartbeat vanilla zlib"
+IUSE="+asm bindist dsa rfc3779 sctp cpu_flags_x86_sse2 +sslv3 static-libs test tls-heartbeat vanilla zlib"
 RESTRICT="!bindist? ( bindist )"
 
 RDEPEND=">=app-misc/c_rehash-1.7-r1
@@ -87,11 +87,11 @@ src_prepare() {
 		-e "1s,/usr/bin/env,${EPREFIX}&," \
 		-i Configure || die
 	# Remove test target when FEATURES=test isn't set
-    	if ! use test ; then
+	if ! use test ; then
 		sed \
 			-e '/^$config{dirs}/s@ "test",@@' \
 			-i Configure || die
-	fi	
+	fi
 	# The config script does stupid stuff to prompt the user.  Kill it.
 	sed -i '/stty -icanon min 0 time 50; read waste/d' config || die
 	./config --test-sanity || die "I AM NOT SANE"
@@ -137,8 +137,10 @@ multilib_src_configure() {
 	echoit \
 	./${config} \
 		${sslout} \
+		--api=1.1.0 \
 		$(use cpu_flags_x86_sse2 || echo "no-sse2") \
 		enable-camellia \
+		enable-cmac \
 		disable-deprecated \
 		$(use_ssl !bindist ec) \
 		${ec_nistp_64_gcc_128} \
@@ -148,6 +150,7 @@ multilib_src_configure() {
 		no-ssl3 \
 		no-ssl3-method \
 		$(use_ssl asm) \
+		$(use_ssl dsa) \
 		$(use_ssl rfc3779) \
 		$(use_ssl sctp) \
 		$(use_ssl tls-heartbeat heartbeats) \
