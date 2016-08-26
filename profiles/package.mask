@@ -33,7 +33,7 @@ media-radio/liquidsoap
 =dev-util/ragel-7.0.0.6_pre
 
 # WIP
-=dev-libs/openssl-1.1.0_pre*
+=dev-libs/openssl-1.1.0_pre
 
 # breaks creation of new users with useradd (no login shell in /etc/passwd)
 =sys-apps/shadow-4.3.0_pre
