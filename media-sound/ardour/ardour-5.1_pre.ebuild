@@ -2,13 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI=5
 PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE='threads(+)'
 #EPYTHON='python2.7'
 inherit eutils toolchain-funcs flag-o-matic python-any-r1 waf-utils poly-c_ebuilds
-
-MY_P="${PN^}-${MY_PV}"
 
 DESCRIPTION="Digital Audio Workstation"
 HOMEPAGE="http://ardour.org/"
@@ -18,7 +16,8 @@ if [[ ${PV} == *9999* ]]; then
 	inherit git-r3
 else
 	KEYWORDS="~amd64 ~x86"
-	SRC_URI="https://www.gentoofan.org/files/${MY_P^}.tar.bz2 -> ${MY_P}.tar.bz2"
+	SRC_URI="http://fossies.org/linux/misc/Ardour-${MY_PV}.0.tar.bz2 -> ${MY_P}.tar.bz2"
+	S="${WORKDIR}/Ardour-${MY_PV}.0"
 fi
 
 LICENSE="GPL-2"
@@ -50,12 +49,12 @@ RDEPEND="
 	>=media-libs/taglib-1.7
 	media-libs/vamp-plugin-sdk
 	net-misc/curl
-	sci-libs/fftw:3.0
+	sci-libs/fftw:3.0[threads]
 	virtual/libusb:0
 	x11-libs/cairo
 	>=x11-libs/gtk+-2.8.1:2
 	x11-libs/pango
-	jack? ( >=media-sound/jack-audio-connection-kit-0.120 )
+	jack? ( virtual/jack )
 	lv2? (
 		>=media-libs/slv2-0.6.1
 		media-libs/lilv
@@ -72,8 +71,6 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	doc? ( app-doc/doxygen[dot] )"
 
-S="${WORKDIR}/${MY_P}"
-
 pkg_setup() {
 	if has_version \>=dev-libs/libsigc++-2.6 ; then
 		append-cxxflags -std=c++11
@@ -83,11 +80,10 @@ pkg_setup() {
 
 src_prepare(){
 	if ! [[ ${PV} == *9999* ]]; then
-		eapply "${FILESDIR}"/${PN}-4.x-revision-naming.patch
+		epatch "${FILESDIR}"/${PN}-4.x-revision-naming.patch
 		touch "${S}/libs/ardour/revision.cc"
 	fi
-	use lv2 || eapply "${FILESDIR}"/${PN}-4.0-lv2.patch
-	default
+	use lv2 || epatch "${FILESDIR}"/${PN}-4.0-lv2.patch
 	sed 's/'full-optimization\'\ :\ \\[.*'/'full-optimization\'\ :\ \'\','/' -i "${S}"/wscript || die
 	MARCH=$(get-flag march)
 	OPTFLAGS=""
@@ -117,7 +113,6 @@ src_prepare(){
 
 src_configure() {
 	tc-export CC CXX
-	export PV="${MY_PV:0:3}"
 	mkdir -p "${D}"
 	waf-utils_src_configure \
 		--destdir="${D}" \
@@ -135,12 +130,14 @@ src_install() {
 	waf-utils_src_install
 	mv ${PN}.1 ${PN}${SLOT}.1
 	doman ${PN}${SLOT}.1
-	newicon tools/misc_resources/icon/ardour_icon_tango_48px_red.png \
-		${PN}${SLOT}.png
+	newicon "${S}/gtk2_ardour/resources/Ardour-icon_48px.png" ${PN}${SLOT}.png
 	make_desktop_entry ardour5 ardour5 ardour5 AudioVideo
 }
 
 pkg_postinst() {
 	elog "If you are using Ardour and want to keep its development alive"
-	elog "then please consider to make a donation upstream at ${HOMEPAGE}"
+	elog "then please consider to make a donation upstream at ${HOMEPAGE}."
+	elog "Please do _not_ report problems with the package to ${PN} upstream."
+	elog "If you think you've found a bug, check the upstream binary package"
+	elog "before you report anything to upstream."
 }
