@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: a915481516db37d6c43d205c31cae042529c32de $
+# $Id: 753d73e981c45d791636d92709beb9a38504e3cd $
 
 EAPI="5"
 
@@ -13,7 +13,7 @@ PARCH=${P/_}
 HPN_PATCH="${PN}-7.3p1-hpnssh14v10.tar.xz"
 SCTP_PATCH="${PN}-7.3_p1-sctp.patch.xz"
 LDAP_PATCH="${PN}-lpk-7.3p1-0.3.14.patch.xz"
-X509_VER="9.0" X509_PATCH="${PN}-${PV/_}+x509-${X509_VER}.diff.gz"
+X509_VER="9.1" X509_PATCH="${PN}-${PV/_}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.org/"

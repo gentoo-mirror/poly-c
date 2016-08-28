@@ -13,8 +13,15 @@ SRC_URI="mirror://openssl/source/${MY_P}.tar.gz"
 
 LICENSE="openssl"
 SLOT="0/1.1" # .so version of libssl/libcrypto
+if has api098 ${USE} ; then
+	SLOT="0/0.9.8"
+elif has api100 ${USE} ; then
+	SLOT="0/1.0.0"
+elif has api110 ${USE} ; then
+	SLOT="0/1.1.0"
+fi
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
-IUSE="+asm bindist dsa rfc3779 sctp cpu_flags_x86_sse2 +sslv3 static-libs test tls-heartbeat vanilla zlib"
+IUSE="api098 +api100 api110 +asm bindist dsa rfc3779 sctp cpu_flags_x86_sse2 +sslv3 static-libs test tls-heartbeat vanilla zlib"
 RESTRICT="!bindist? ( bindist )"
 
 RDEPEND=">=app-misc/c_rehash-1.7-r1
@@ -28,6 +35,8 @@ DEPEND="${RDEPEND}
 	)"
 PDEPEND="app-misc/ca-certificates"
 
+REQUIRED_USE="^^ ( api098 api100 api110 )"
+
 S="${WORKDIR}/${MY_P}"
 
 MULTILIB_WRAPPED_HEADERS=(
@@ -35,7 +44,7 @@ MULTILIB_WRAPPED_HEADERS=(
 )
 
 PATCHES=(
-	#"${FILESDIR}"/${PN}-1.1.0-ldflags.patch #327421
+	"${FILESDIR}"/${PN}-1.1.0-ldflags.patch #327421
 	"${FILESDIR}"/${PN}-1.0.2a-x32-asm.patch #542618
 	#"${FILESDIR}"/${PN}-1.1.0-threads.patch
 )
@@ -121,13 +130,22 @@ multilib_src_configure() {
 	# See if our toolchain supports __uint128_t.  If so, it's 64bit
 	# friendly and can use the nicely optimized code paths. #460790
 	local ec_nistp_64_gcc_128
-	# Disable it for now though #469976
-	#if ! use bindist ; then
-	#	echo "__uint128_t i;" > "${T}"/128.c
-	#	if ${CC} ${CFLAGS} -c "${T}"/128.c -o /dev/null >&/dev/null ; then
-	#		ec_nistp_64_gcc_128="enable-ec_nistp_64_gcc_128"
-	#	fi
-	#fi
+	# Perhaps disable it again in case bug #469976 is still present?
+	if ! use bindist ; then
+		echo "__uint128_t i;" > "${T}"/128.c
+		if ${CC} ${CFLAGS} -c "${T}"/128.c -o /dev/null >&/dev/null ; then
+			ec_nistp_64_gcc_128="enable-ec_nistp_64_gcc_128"
+		fi
+	fi
+
+	local myapi="1.0.0"
+	if use api098 ; then
+		myapi="0.9.8"
+	elif use api100 ; then
+		myapi="1.0.0"
+	elif use api110 ; then
+		myapi="1.1.0"
+	fi
 
 	local sslout=$(./gentoo.config)
 	einfo "Use configuration ${sslout:-(openssl knows best)}"
@@ -137,11 +155,11 @@ multilib_src_configure() {
 	echoit \
 	./${config} \
 		${sslout} \
-		--api=1.1.0 \
+		--api=${myapi} \
 		$(use cpu_flags_x86_sse2 || echo "no-sse2") \
 		enable-camellia \
 		enable-cmac \
-		disable-deprecated \
+		$(usex api110 disable-deprecated enable-deprecated) \
 		$(use_ssl !bindist ec) \
 		${ec_nistp_64_gcc_128} \
 		enable-idea \
