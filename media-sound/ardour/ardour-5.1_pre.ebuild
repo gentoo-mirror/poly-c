@@ -8,6 +8,8 @@ PYTHON_REQ_USE='threads(+)'
 #EPYTHON='python2.7'
 inherit eutils toolchain-funcs flag-o-matic python-any-r1 waf-utils poly-c_ebuilds
 
+MY_PV="${MY_PV}.0"
+
 DESCRIPTION="Digital Audio Workstation"
 HOMEPAGE="http://ardour.org/"
 
@@ -16,8 +18,8 @@ if [[ ${PV} == *9999* ]]; then
 	inherit git-r3
 else
 	KEYWORDS="~amd64 ~x86"
-	SRC_URI="http://fossies.org/linux/misc/Ardour-${MY_PV}.0.tar.bz2 -> ${MY_P}.tar.bz2"
-	S="${WORKDIR}/Ardour-${MY_PV}.0"
+	SRC_URI="http://fossies.org/linux/misc/Ardour-${MY_PV}.tar.bz2 -> ${MY_P}.tar.bz2"
+	S="${WORKDIR}/Ardour-${MY_PV}"
 fi
 
 LICENSE="GPL-2"
@@ -80,7 +82,7 @@ pkg_setup() {
 
 src_prepare(){
 	if ! [[ ${PV} == *9999* ]]; then
-		epatch "${FILESDIR}"/${PN}-4.x-revision-naming.patch
+		epatch "${FILESDIR}"/${PN}-4.x_pre-revision-naming.patch
 		touch "${S}/libs/ardour/revision.cc"
 	fi
 	use lv2 || epatch "${FILESDIR}"/${PN}-4.0-lv2.patch
