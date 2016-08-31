@@ -1,4 +1,5 @@
 app-accessibility/speech-dispatcher 0.8.4_pre 0.8.5_pre: Speech synthesis interface
+app-admin/cpulimit 2.3_pre: Limits the CPU usage of a process
 app-admin/littleutils 1.0.36: The littleutils are a collection of small and simple utilities
 app-admin/remotebox 2.0: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
@@ -141,7 +142,6 @@ net-misc/ns 3.25: A discrete-event network simulator for Internet systems.
 net-misc/openssh 7.1_p2-r1 7.2_p2 7.2_p2-r1 7.3_p1-r2: Port of OpenBSD's free SSH release
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
-net-print/hplip 3.16.8_pre: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
 net-wireless/bluez 5.40_pre 5.41_pre: Bluetooth Tools and System Daemons for Linux
 net-wireless/iw 4.7_pre: nl80211-based configuration utility for wireless devices using the mac80211 kernel stack
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
