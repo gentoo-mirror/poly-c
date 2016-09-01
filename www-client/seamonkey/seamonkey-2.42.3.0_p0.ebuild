@@ -40,7 +40,7 @@ elif [[ ${PV} == *_p0 ]]; then
 	S="${WORKDIR}/thunderbird-${MOZ_PV/${SMPV}/${TB_MAJOR}}"
 	SRC_URI="${SRC_URI}
 	${MOZ_HTTP_URI}/source/${MY_MOZ_P/${MOZ_P}/thunderbird-${TB_MAJOR}}.source.tar.xz
-	https://dev.gentoo.org/~axs/distfiles/${PN}-2.42.2.0-l10n-sources.tar.xz
+	https://dev.gentoo.org/~axs/distfiles/${MY_MOZ_P}-l10n-sources.tar.xz
 	https://dev.gentoo.org/~axs/distfiles/chatzilla-2.42.tar.xz
 	https://dev.gentoo.org/~axs/distfiles/dom-inspector-2.0.16.tar.xz
 	"
