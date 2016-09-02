@@ -13,6 +13,10 @@ HOMEPAGE="http://wz2100.net/"
 SRC_URI="mirror://sourceforge/warzone2100/${MY_P}.tar.xz
 	videos? ( mirror://sourceforge/warzone2100/warzone2100/Videos/${VIDEOS_PV}/high-quality-en/sequences.wz -> ${VIDEOS_P} )"
 
+SRC_URI+=" 
+	https://github.com/Cyp/warzone2100/commit/d29cacac856882b153fa206c49091188af5d95aa.patch -> ${PN}-3.2.1-openssl110.patch
+	https://github.com/Cyp/warzone2100/commit/efe8bf60ec56565b96a26b041a965c925bc58c3b.patch -> ${PN}-3.2.1-openssl110_v2.patch"
+
 LICENSE="GPL-2+ CC-BY-SA-3.0 public-domain"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
@@ -54,6 +58,9 @@ RDEPEND="${RDEPEND}
 	media-fonts/dejavu"
 
 src_prepare() {
+	epatch \
+		"${DISTDIR}/${MY_P}-openssl110.patch" \
+		"${DISTDIR}/${MY_P}-openssl110_v2.patch"
 	sed -i -e 's/#top_builddir/top_builddir/' po/Makevars || die
 	sed '/appdata\.xml/d' -i icons/Makefile.am || die
 	eautoreconf
