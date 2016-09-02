@@ -23,7 +23,7 @@ RDEPEND="
 	>=dev-libs/glib-2.40.0:2[${MULTILIB_USEDEP}]
 	>=media-libs/gstreamer-${PV}:1.0[${MULTILIB_USEDEP}]
 	>=media-libs/gst-plugins-base-${PV}:1.0[${MULTILIB_USEDEP}]
-	!libav? ( >=media-video/ffmpeg-2.8.5:0=[${MULTILIB_USEDEP}] )
+	!libav? ( >=media-video/ffmpeg-3.1.3:0=[${MULTILIB_USEDEP}] )
 	orc? ( >=dev-lang/orc-0.4.17[${MULTILIB_USEDEP}] )
 "
 DEPEND="${RDEPEND}
