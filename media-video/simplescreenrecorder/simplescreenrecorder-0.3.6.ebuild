@@ -32,10 +32,10 @@ IUSE="+asm debug jack mp3 pulseaudio theora vorbis vpx x264 +qt4 qt5"
 REQUIRED_USE="^^ ( qt4 qt5 )"
 
 RDEPEND="
-	media-libs/alsa-lib:*
+	media-libs/alsa-lib:0=
 	media-libs/mesa[${MULTILIB_USEDEP}]
 	|| (
-		media-video/ffmpeg:0[vorbis?,vpx?,x264?,mp3?,theora?]
+		media-video/ffmpeg:0=[vorbis?,vpx?,x264?,mp3?,theora?]
 		media-video/libav[vorbis?,vpx?,x264?,mp3?,theora?]
 	)
 	x11-libs/libX11[${MULTILIB_USEDEP}]

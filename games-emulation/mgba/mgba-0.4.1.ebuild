@@ -21,7 +21,7 @@ RDEPEND="
 	media-libs/libpng
 	sys-libs/zlib[minizip]
 	ffmpeg? ( virtual/ffmpeg )
-	imagemagick? ( media-gfx/imagemagick )
+	imagemagick? ( media-gfx/imagemagick:= )
 	opengl? ( virtual/opengl )
 	qt5? (
 		dev-qt/qtcore:5
