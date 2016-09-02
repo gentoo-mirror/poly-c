@@ -46,3 +46,6 @@ media-radio/liquidsoap
 
 # ebuild broken right now
 =media-sound/ardour-5.1_pre
+
+# only builds with >=ffmpeg-3.1.3
+=media-plugins/gst-plugins-libav-1.9.2_pre
