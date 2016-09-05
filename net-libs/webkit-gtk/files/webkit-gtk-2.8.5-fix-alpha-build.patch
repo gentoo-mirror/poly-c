@@ -1,5 +1,5 @@
---- a/Source/JavaScriptCore/CMakeLists.txt
-+++ b/Source/JavaScriptCore/CMakeLists.txt
+--- a/Source/JavaScriptCore/CMakeLists.txt.orig 2015-08-06 11:21:27.000000000 +0300
++++ b/Source/JavaScriptCore/CMakeLists.txt      2015-10-29 17:47:10.535712494 +0300
 @@ -1146,6 +1146,7 @@
          list(APPEND JavaScriptCore_SOURCES ${DERIVED_SOURCES_DIR}/GeneratedJITStubs.obj)
      endif ()

@@ -36,7 +36,7 @@ dev-libs/Ice 3.6.0_pre 3.6.2_pre: ICE middleware C++ library and generator tools
 dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/crypto++ 5.6.3_pre: C++ class library of cryptographic schemes
-dev-libs/elfutils 0.167_pre 0.167: Libraries/utilities to handle ELF objects (drop in replacement for libelf)
+dev-libs/elfutils 0.167_pre: Libraries/utilities to handle ELF objects (drop in replacement for libelf)
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 54.1-r1 55.1 56.1 56.1-r1 57.1: International Components for Unicode
 dev-libs/jansson 2.8_pre: C library for encoding, decoding and manipulating JSON data
@@ -144,7 +144,7 @@ net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
 net-im/pidgin 2.11.0: GTK Instant Messenger client
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
-net-libs/webkit-gtk 2.13.3_pre 2.13.4_pre: Open source web browser engine
+net-libs/webkit-gtk 2.12.5_pre 2.13.3_pre 2.13.4_pre: Open source web browser engine
 net-misc/networkmanager 1.2.2 1.2.4 1.4.0_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.25: A discrete-event network simulator for Internet systems.
 net-misc/openssh 7.1_p2-r1 7.2_p2 7.2_p2-r1 7.3_p1-r2: Port of OpenBSD's free SSH release
@@ -171,6 +171,7 @@ sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.02_beta2-r8 2.02_beta2-r9 2.02_beta3-r1: GNU GRUB boot loader
 sys-devel/binutils 2.27_pre-r1: Tools necessary to build programs
+sys-fs/btrfs-progs 4.7.2_pre: Btrfs filesystem utilities
 sys-fs/lvm2 2.02.162_pre 2.02.163_pre 2.02.164_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
