@@ -1,0 +1,11 @@
+--- joe-4.3/configure.ac
++++ joe-4.3/configure.ac
+@@ -39,7 +39,7 @@
+ 	curses=$enableval, curses=yes)
+ 
+ if test "$curses" = "yes"; then
+-	search_libs="ncurses curses"
++	search_libs="tinfo ncurses curses"
+ fi
+ 
+ AC_ARG_ENABLE(termcap,
