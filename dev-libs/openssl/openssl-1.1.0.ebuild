@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: b4745fbd2436a2b262564acbaac1947a4a972cfb $
+# $Id: 0aea4eb0e13846c3e63f8949004bdd482e29fa65 $
 
 EAPI=5
 
@@ -44,7 +44,7 @@ MULTILIB_WRAPPED_HEADERS=(
 )
 
 PATCHES=(
-	#"${FILESDIR}"/${PN}-1.1.0-ldflags.patch #327421
+	"${FILESDIR}"/${PN}-1.1.0-ldflags.patch #327421
 	"${FILESDIR}"/${PN}-1.0.2a-x32-asm.patch #542618
 	#"${FILESDIR}"/${PN}-1.1.0-threads.patch
 )

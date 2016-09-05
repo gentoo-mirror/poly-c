@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5cfedf59f1033c55eca2c49574077d40a993755f $
+# $Id: 3ac1973e96effe8bfd35bfd686d41b7be8ce1ba2 $
 
 EAPI=5
 
@@ -28,8 +28,8 @@ RDEPEND="
 	gpg? ( app-crypt/gnupg )
 	nss? ( dev-libs/nss )
 	openssl? (
-		!libressl? ( >=dev-libs/openssl-1.0.1:0 )
-		libressl? ( dev-libs/libressl )
+		!libressl? ( >=dev-libs/openssl-1.0.1:0= )
+		libressl? ( dev-libs/libressl:= )
 	)
 	pkcs11? (
 		!libressl? ( dev-libs/openssl:0 )
