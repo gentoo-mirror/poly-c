@@ -27,6 +27,7 @@ app-text/iso-codes 3.70_pre: ISO language, territory, currency, script codes and
 app-text/libmwaw 0.3.8_pre: Library parsing many pre-OSX MAC text formats
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 dev-cpp/pangomm 2.40.1_pre: C++ interface for pango
+dev-games/openscenegraph 3.5.4_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
