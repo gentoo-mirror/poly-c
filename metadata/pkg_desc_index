@@ -173,13 +173,13 @@ sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management 
 sys-boot/grub 2.02_beta2-r8 2.02_beta2-r9 2.02_beta3-r1: GNU GRUB boot loader
 sys-devel/binutils 2.27_pre-r1: Tools necessary to build programs
 sys-fs/btrfs-progs 4.7.2_pre: Btrfs filesystem utilities
-sys-fs/lvm2 2.02.162_pre 2.02.163_pre 2.02.164_pre: User-land utilities for LVM2 (device-mapper) software
+sys-fs/lvm2 2.02.163_pre 2.02.164_pre 2.02.165_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/binutils-libs 2.27_pre-r1: Core binutils libraries (libbfd, libopcodes, libiberty) for external packages
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.17 4.4.18 4.4.19 4.6.6 4.6.7 4.7.1 4.7.2: Shows and sets processor power related values
+sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.18 4.4.19 4.4.20 4.6.7 4.7.1 4.7.2 4.7.3: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 www-client/links 2.13_pre: A fast and lightweight web browser running in both graphics and text mode
