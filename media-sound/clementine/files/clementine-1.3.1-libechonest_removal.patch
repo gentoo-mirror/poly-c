@@ -98,12 +98,12 @@
        NetworkProxyFactory::Instance());
 --- Clementine-1.3.1/src/songinfo/artistinfoview.cpp
 +++ Clementine-1.3.1/src/songinfo/artistinfoview.cpp
-@@ -16,25 +16,13 @@
+@@ -16,25 +16,12 @@
  */
  
  #include "artistinfoview.h"
 -#include "echonestbiographies.h"
- #include "echonestimages.h"
+-#include "echonestimages.h"
  #include "songinfofetcher.h"
  #include "songkickconcerts.h"
  #include "widgets/prettyimageview.h"

@@ -70,18 +70,18 @@ src_compile() {
 src_install() {
 	if use qt5 ; then
 		for size in 16 24 32 48 64 96 128 256; do
-			newicon -s ${size} res/mgba-${size}.png mgba.png
+			newicon -s ${size} res/${PN}-${size}.png ${PN}.png
 		done
-		doman doc/mgba-qt.6
-		domenu res/mgba-qt.desktop
-		dobin "${S}"_build/qt/mgba-qt
+		doman doc/${PN}-qt.6
+		domenu res/${PN}-qt.desktop
+		dobin ../${P}_build/qt/${PN}-qt
 	fi
 	if use sdl ; then
-		doman doc/mgba.6
-		newbin "${S}"_build/sdl/mgba mgba-sdl
+		doman doc/${PN}.6
+		newbin ../${P}_build/sdl/${PN} ${PN}-sdl
 	fi
 
-	dolib.so "${S}"_build/libmgba.so*
+	dolib.so ../${P}_build/lib${PN}.so*
 }
 
 pkg_preinst() {
