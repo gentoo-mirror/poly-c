@@ -19,7 +19,7 @@ app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LD
 app-misc/mc 4.8.14 4.8.15 4.8.16 4.8.17: GNU Midnight Commander is a text based file manager
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
 app-office/libreoffice 5.1.5.2_pre 5.2.0.4_pre 5.2.1.2_pre: A full office productivity suite
-app-office/libreoffice-l10n 5.1.5.2_pre 5.2.0.4_pre 5.2.1.1_pre: Translations for the Libreoffice suite
+app-office/libreoffice-l10n 5.1.5.2_pre 5.2.0.4_pre 5.2.1.2_pre: Translations for the Libreoffice suite
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/calibre 2.66.0_pre: Ebook management application
