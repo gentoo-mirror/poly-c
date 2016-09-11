@@ -41,9 +41,6 @@ media-radio/liquidsoap
 # Masked as these are development versions
 =x11-libs/cairo-1.15*
 
-# Breaks midori browser
-=net-libs/webkit-gtk-2.13*
-
 # ebuild broken right now
 =media-sound/ardour-5.1_pre
 
