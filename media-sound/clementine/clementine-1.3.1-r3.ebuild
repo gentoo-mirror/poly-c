@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 18f42ef7067eb76ec075cf7fec8005f1e8231dd4 $
+# $Id: d0baf97ed2ef296d3092726e9bbda7dd7305b775 $
 
 EAPI=6
 
@@ -94,6 +94,7 @@ S="${WORKDIR}/${MY_P^}"
 PATCHES=(
 	"${FILESDIR}/${PN}-1.2.3-libraryquery.patch"
 	"${FILESDIR}/${PN}-1.3-fix-tokenizer.patch"
+	"${FILESDIR}/${P}-fix-desktop-file.patch"
 	"${FILESDIR}/${PN}-1.3.1-libechonest_removal.patch"
 )
 
