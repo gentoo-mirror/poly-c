@@ -20,12 +20,9 @@ app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
 app-misc/mc 4.8.14 4.8.15 4.8.16 4.8.17: GNU Midnight Commander is a text based file manager
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
-app-office/libreoffice 5.1.5.2_pre 5.2.0.4_pre 5.2.1.2_pre: A full office productivity suite
-app-office/libreoffice-l10n 5.1.5.2_pre 5.2.0.4_pre 5.2.1.2_pre: Translations for the Libreoffice suite
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/calibre 2.66.0_pre 2.67.0_pre: Ebook management application
-app-text/libmwaw 0.3.8_pre: Library parsing many pre-OSX MAC text formats
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 dev-games/openscenegraph 3.5.4_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
@@ -58,7 +55,6 @@ dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtcore 4.8.6-r2 4.8.7-r2: Cross-platform application development framework
 dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
-dev-util/mdds 1.2.1_pre: A collection of multi-dimensional data structure and indexing algorithm
 dev-util/ragel 7.0.0.5_pre 7.0.0.6_pre: Compiles finite state machines from regular languages into executable code
 dev-vcs/bzr 2.7.0_pre: Bazaar is a next generation distributed version control system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
