@@ -66,7 +66,6 @@ games-fps/etlegacy 2.74 9999: Wolfenstein: Enemy Territory 2.60b compatible clie
 games-fps/rtcw 1.42b 1.42d 9999: Return to Castle Wolfenstein - IORTCW Project
 games-rpg/manaplus 1.6.8.14_pre 1.6.8.27_pre 9999: OpenSource 2D MMORPG client for Evol Online and The Mana World
 games-strategy/boswars 9999: Futuristic real-time strategy game
-games-strategy/freeciv 2.5.5_pre: multiplayer strategy game (Civilization Clone)
 games-strategy/warzone2100 3.2.0_pre 3.2.1_pre: 3D real-time strategy game
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 kde-apps/kde-wallpapers 15.08.3 15.08.3-r2: KDE wallpapers
