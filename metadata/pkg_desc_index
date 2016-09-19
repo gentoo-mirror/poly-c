@@ -161,7 +161,7 @@ sys-apps/kmod 20 21 22 23: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g: Standard commands to read man pages
 sys-apps/openrc 0.21.4: OpenRC manages the services, startup and shutdown of a host
-sys-apps/portage 2.2.8-r2: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.2.8-r2 2.3.1: Portage is the package management and distribution system for Gentoo
 sys-apps/shadow 4.3.0_pre: Utilities to deal with user accounts
 sys-auth/pam_yubico 2.22_pre 2.23_pre: Library for authenticating against PAM with a Yubikey
 sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers

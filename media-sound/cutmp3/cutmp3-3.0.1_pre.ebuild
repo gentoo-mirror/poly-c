@@ -29,7 +29,7 @@ src_prepare() {
 }
 
 src_install() {
-	emake install || die "emake failed"
+	emake install
 	if use kde ; then
 		insinto /usr/share/apps/konqueror/servicemenus
 		doins ${PN}.desktop
