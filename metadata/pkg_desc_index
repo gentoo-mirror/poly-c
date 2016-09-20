@@ -22,7 +22,6 @@ app-misc/mc 4.8.14 4.8.15 4.8.16 4.8.17: GNU Midnight Commander is a text based 
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/calibre 2.66.0_pre 2.67.0_pre: Ebook management application
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 dev-games/openscenegraph 3.5.4_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
@@ -32,6 +31,7 @@ dev-lang/nasm 2.12.02_pre: groovy little assembler
 dev-lang/orc 0.4.26_pre: The Oil Runtime Compiler, a just-in-time compiler for array operations
 dev-lang/ruby 2.1.7: An object-oriented scripting language
 dev-libs/Ice 3.6.0_pre 3.6.2_pre: ICE middleware C++ library and generator tools
+dev-libs/atk 2.22.0_pre: GTK+ & GNOME Accessibility Toolkit
 dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/crypto++ 5.6.3_pre: C++ class library of cryptographic schemes
@@ -182,6 +182,7 @@ www-client/links 2.13_pre: A fast and lightweight web browser running in both gr
 www-client/seamonkey 2.39 2.40 2.42.2.0_p0 2.42.3.0_p0: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
+x11-drivers/xf86-video-amdgpu 1.1.2_pre: Accelerated Open Source driver for AMDGPU cards
 x11-libs/cairo 1.15.2_pre: A vector graphics library with cross-device output support
 x11-libs/pango 1.40.3_pre: Internationalized text layout and rendering library
 x11-plugins/gkrellm-cpupower 0.1.5: GKrellm plugin for changing CPU frequencies via cpupower
