@@ -8,6 +8,7 @@ app-backup/fsarchiver 0.6.22_pre: Flexible filesystem archiver for backup and de
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
+app-crypt/gpgme 1.7.0_pre: GnuPG Made Easy is a library for making GnuPG easier to use
 app-crypt/heimdal 1.6_rc2: Kerberos 5 implementation from KTH
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
 app-editors/joe 4.3: A free ASCII-Text Screen Editor for UNIX
@@ -45,6 +46,7 @@ dev-libs/libsigc++ 2.10.0_pre: Typesafe callback system for standard C++
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2g-r2 1.0.2h 1.0.2h-r1 1.0.2h-r2 1.1.0: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf 3.0.2_pre: Google's Protocol Buffers -- an efficient method of encoding structured data
+dev-libs/wayland 1.12.0_pre: Wayland protocol libraries
 dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 dev-perl/Net-DNS 1.40.0_pre: Perl Net::DNS - Perl DNS Resolver Module
 dev-perl/Net-SSLeay 1.780.0_pre: Perl extension for using OpenSSL
@@ -82,7 +84,7 @@ kde-base/kactivities 4.13.3-r2: KDE Activity Manager
 kde-base/kdebase-startkde 4.11.22-r1: Startkde script, which starts a complete KDE session, and associated scripts
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
-kde-plasma/plasma-workspace 5.7.4: KDE Plasma workspace
+kde-plasma/plasma-workspace 5.7.4 5.7.5: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
@@ -172,6 +174,7 @@ sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.02_beta2-r8 2.02_beta2-r9 2.02_beta3-r1: GNU GRUB boot loader
 sys-devel/binutils 2.27_pre-r1: Tools necessary to build programs
+sys-fs/btrfs-progs 4.7.3_pre: Btrfs filesystem utilities
 sys-fs/lvm2 2.02.163_pre 2.02.164_pre 2.02.165_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
