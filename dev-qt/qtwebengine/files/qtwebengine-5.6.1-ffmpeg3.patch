@@ -1,0 +1,145 @@
+From 348cc71eb0691878389aecc3db4fb979ea299340 Mon Sep 17 00:00:00 2001
+From: Allan Sandfeld Jensen <allan.jensen@theqtcompany.com>
+Date: Wed, 20 Apr 2016 13:34:42 +0200
+Subject: [PATCH] Build against FFMPEG 3
+
+Updates a few constants to match names in deprecated old_fmt to
+the new format in FFMPEG 3.
+
+Since the names were already deprecated this also builds against
+FFMPEG 2.
+
+The only break in ABI is max_analyze_duration, so we added the
+define used by recent FFMPEG2 to indicate the old ABI.
+
+Task-number: QTBUG-52716
+Change-Id: I8d8015cc281010b0b1e05047d2b99bf6872c543e
+Reviewed-by: Michal Klocek <michal.klocek@qt.io>
+---
+ chromium/media/ffmpeg/ffmpeg_common.cc             | 28 +++++++++++-----------
+ chromium/media/ffmpeg/ffmpeg_common.h              |  4 ++--
+ .../filters/ffmpeg_aac_bitstream_converter.cc      |  2 +-
+ chromium/media/filters/ffmpeg_demuxer.cc           |  4 ++++
+ chromium/third_party/ffmpeg/libavformat/version.h  |  3 +++
+ 5 files changed, 24 insertions(+), 17 deletions(-)
+
+diff --git a/chromium/media/ffmpeg/ffmpeg_common.cc b/chromium/media/ffmpeg/ffmpeg_common.cc
+index 8bb1aba..6d9dd06 100644
+--- a/chromium/media/ffmpeg/ffmpeg_common.cc
++++ b/chromium/media/ffmpeg/ffmpeg_common.cc
+@@ -532,20 +532,20 @@ ChannelLayout ChannelLayoutToChromeChannelLayout(int64_t layout, int channels) {
+   }
+ }
+ 
+-VideoFrame::Format PixelFormatToVideoFormat(PixelFormat pixel_format) {
++VideoFrame::Format PixelFormatToVideoFormat(AVPixelFormat pixel_format) {
+   // The YUVJ alternatives are FFmpeg's (deprecated, but still in use) way to
+   // specify a pixel format and full range color combination
+   switch (pixel_format) {
+-    case PIX_FMT_YUV422P:
+-    case PIX_FMT_YUVJ422P:
++    case AV_PIX_FMT_YUV422P:
++    case AV_PIX_FMT_YUVJ422P:
+       return VideoFrame::YV16;
+-    case PIX_FMT_YUV444P:
+-    case PIX_FMT_YUVJ444P:
++    case AV_PIX_FMT_YUV444P:
++    case AV_PIX_FMT_YUVJ444P:
+       return VideoFrame::YV24;
+-    case PIX_FMT_YUV420P:
+-    case PIX_FMT_YUVJ420P:
++    case AV_PIX_FMT_YUV420P:
++    case AV_PIX_FMT_YUVJ420P:
+       return VideoFrame::YV12;
+-    case PIX_FMT_YUVA420P:
++    case AV_PIX_FMT_YUVA420P:
+       return VideoFrame::YV12A;
+     default:
+       DVLOG(1) << "Unsupported PixelFormat: " << pixel_format;
+@@ -553,20 +553,20 @@ VideoFrame::Format PixelFormatToVideoFormat(PixelFormat pixel_format) {
+   return VideoFrame::UNKNOWN;
+ }
+ 
+-PixelFormat VideoFormatToPixelFormat(VideoFrame::Format video_format) {
++AVPixelFormat VideoFormatToPixelFormat(VideoFrame::Format video_format) {
+   switch (video_format) {
+     case VideoFrame::YV16:
+-      return PIX_FMT_YUV422P;
++      return AV_PIX_FMT_YUV422P;
+     case VideoFrame::YV12:
+-      return PIX_FMT_YUV420P;
++      return AV_PIX_FMT_YUV420P;
+     case VideoFrame::YV12A:
+-      return PIX_FMT_YUVA420P;
++      return AV_PIX_FMT_YUVA420P;
+     case VideoFrame::YV24:
+-      return PIX_FMT_YUV444P;
++      return AV_PIX_FMT_YUV444P;
+     default:
+       DVLOG(1) << "Unsupported VideoFrame::Format: " << video_format;
+   }
+-  return PIX_FMT_NONE;
++  return AV_PIX_FMT_NONE;
+ }
+ 
+ bool FFmpegUTCDateToTime(const char* date_utc, base::Time* out) {
+diff --git a/chromium/media/ffmpeg/ffmpeg_common.h b/chromium/media/ffmpeg/ffmpeg_common.h
+index f519823..5fe9585 100644
+--- a/chromium/media/ffmpeg/ffmpeg_common.h
++++ b/chromium/media/ffmpeg/ffmpeg_common.h
+@@ -123,10 +123,10 @@ MEDIA_EXPORT SampleFormat
+ 
+ // Converts FFmpeg's pixel formats to its corresponding supported video format.
+ MEDIA_EXPORT VideoFrame::Format PixelFormatToVideoFormat(
+-    PixelFormat pixel_format);
++    AVPixelFormat pixel_format);
+ 
+ // Converts video formats to its corresponding FFmpeg's pixel formats.
+-PixelFormat VideoFormatToPixelFormat(VideoFrame::Format video_format);
++AVPixelFormat VideoFormatToPixelFormat(VideoFrame::Format video_format);
+ 
+ // Convert FFmpeg UTC representation (YYYY-MM-DD HH:MM:SS) to base::Time.
+ // Returns true and sets |*out| if |date_utc| contains a valid
+diff --git a/chromium/media/filters/ffmpeg_aac_bitstream_converter.cc b/chromium/media/filters/ffmpeg_aac_bitstream_converter.cc
+index 6a55b6a..616cd1f 100644
+--- a/chromium/media/filters/ffmpeg_aac_bitstream_converter.cc
++++ b/chromium/media/filters/ffmpeg_aac_bitstream_converter.cc
+@@ -19,7 +19,7 @@ bool GenerateAdtsHeader(
+     int private_stream, int channel_configuration, int originality, int home,
+     int copyrighted_stream, int copyright_start, int frame_length,
+     int buffer_fullness, int number_of_frames_minus_one, uint8* hdr) {
+-  DCHECK_EQ(codec, CODEC_ID_AAC);
++  DCHECK_EQ(codec, AV_CODEC_ID_AAC);
+ 
+   memset(reinterpret_cast<void *>(hdr), 0,
+          FFmpegAACBitstreamConverter::kAdtsHeaderSize);
+diff --git a/chromium/media/filters/ffmpeg_demuxer.cc b/chromium/media/filters/ffmpeg_demuxer.cc
+index ceeb6d5..7fd7f44 100644
+--- a/chromium/media/filters/ffmpeg_demuxer.cc
++++ b/chromium/media/filters/ffmpeg_demuxer.cc
+@@ -691,7 +691,11 @@ void FFmpegDemuxer::Initialize(DemuxerHost* host,
+   // this does not increase the amount of data downloaded.  The default value
+   // is 5 AV_TIME_BASE units (1 second each), which prevents some oddly muxed
+   // streams from being detected properly; this value was chosen arbitrarily.
++#if FF_API_PROBESIZE_32
+   format_context->max_analyze_duration2 = 60 * AV_TIME_BASE;
++#else
++  format_context->max_analyze_duration = 60 * AV_TIME_BASE;
++#endif
+ 
+   // Open the AVFormatContext using our glue layer.
+   CHECK(blocking_thread_.Start());
+diff --git a/chromium/third_party/ffmpeg/libavformat/version.h b/chromium/third_party/ffmpeg/libavformat/version.h
+index 99b7190..a6ddf6e 100644
+--- a/chromium/third_party/ffmpeg/libavformat/version.h
++++ b/chromium/third_party/ffmpeg/libavformat/version.h
+@@ -60,6 +60,9 @@
+ #ifndef FF_API_URL_FEOF
+ #define FF_API_URL_FEOF                 (LIBAVFORMAT_VERSION_MAJOR < 57)
+ #endif
++#ifndef FF_API_PROBESIZE_32
++#define FF_API_PROBESIZE_32             (LIBAVFORMAT_VERSION_MAJOR < 57)
++#endif
+ 
+ #ifndef FF_API_R_FRAME_RATE
+ #define FF_API_R_FRAME_RATE            1
