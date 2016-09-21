@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f1164896a1efc253af416c502dd7a9d6f01abe03 $
+# $Id: 21c584e3e9c7e277a062856cba1fcb1aa04ff349 $
 
 EAPI=6
 GNOME_ORG_MODULE="NetworkManager"
@@ -42,7 +42,7 @@ COMMON_DEPEND="
 	net-libs/libndp
 	>=net-libs/libsoup-2.40:2.4=
 	net-misc/iputils
-	sys-libs/readline:0
+	sys-libs/readline:0=
 	>=virtual/libgudev-165:=[${MULTILIB_USEDEP}]
 	audit? ( sys-process/audit )
 	bluetooth? ( >=net-wireless/bluez-5 )
