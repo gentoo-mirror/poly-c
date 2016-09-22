@@ -52,3 +52,9 @@ media-radio/liquidsoap
 
 # collides with kdepimlibs
 =app-crypt/gpgme-1.7.0_pre
+
+# breaks libreoffice
+=dev-libs/liborcus-0.12.0_pre
+
+# breaks older liborcus
+=dev-libs/libixion-0.12.0_pre

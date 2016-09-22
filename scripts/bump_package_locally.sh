@@ -7,7 +7,6 @@ IS_POLYC_EBUILD="${3:-true}"
 ECLASS_ADDON="${4:-poly-c_ebuilds}"
 OVERLAY_NAME="${5:-poly-c}"
 #PORTDIR="$(portageq get_repo_path / gentoo)"
-OVERLAYDIR="$(portageq get_repo_path / ${OVERLAY_NAME})"
 
 if [[ ! -f "${SOURCE_EBUILD}" ]] ; then
 	pritf '%s' "First argument is not a file."
@@ -27,7 +26,7 @@ case "${IS_POLYC_EBUILD}" in
 		:;
 	;;
 	*)
-		printf '%s' "Third argument must be \"true\" of \"false\"."
+		printf '%s' "Third argument must be \"true\" or \"false\"."
 		exit 4
 	;;
 esac
@@ -35,6 +34,7 @@ esac
 if [[ -z "${OVERLAY_NAME}" ]] ; then
 	printf '%s' "Please specify an overlay name."
 fi
+OVERLAYDIR="$(portageq get_repo_path / ${OVERLAY_NAME})"
 
 #if [[ ! -d "${PORTDIR}" ]] ; then
 #	printf '%s' "PORTDIR is empty or no directory."
@@ -63,9 +63,10 @@ if [[ ! -d "${TARGET_DIR}" ]] ; then
 fi
 
 cp "${SOURCE_EBUILD}" "${TARGET_EBUILD}" || exit 8
-ekeyword \~all "${TARGET_EBUILD}" &>/dev/null || exit 9
 
 if ${IS_POLYC_EBUILD} ; then
+	ekeyword \~all "${TARGET_EBUILD}" &>/dev/null || exit 9
+
 	sed \
 		-e 's@${PV}@${MY_PV}@g;s@${P}@${MY_P}@g' \
 		-e 's@${PV/@${MY_PV/@g;s@${P/@${MY_P/@g' \
@@ -107,14 +108,19 @@ if grep -Fq FILESDIR ${SOURCE_EBUILD} ; then
 		target_aux_dir="${TARGET_EBUILD%/*}/files"
 		mkdir -p "${target_aux_dir}" || exit 14
 		for file in $(eval echo ${AUX_FILES[@]}) ; do
-			if grep -q "/" <<< ${file} && [[ ! -d "${target_aux_dir}/${file%/*}" ]] ; then
-				mkdir -p "${target_aux_dir}/${file%/*}" || exit 15
+			if grep -q "/" <<< ${file} ; then
+				if [[ ! -d "${target_aux_dir}/${file%/*}" ]] ; then
+					mkdir -p "${target_aux_dir}/${file%/*}" || exit 15
+				fi
+				cp "${SOURCE_EBUILD%/*}/files/${file}" "${target_aux_dir}/${file%/*}" \
+					|| { retval=1 ; continue ; }
+			else
+				cp "${SOURCE_EBUILD%/*}/files/${file}" "${target_aux_dir}" \
+					|| { retval=1 ; continue ; } 
 			fi
-			cp "${SOURCE_EBUILD%/*}/files/${file}" "${target_aux_dir}" \
-				|| { retval=1 ; continue ; } 
 		done
 		[[ ${retval} -ne 0 ]] && exit 16
 	fi
 fi
 
-nice ebuild "${TARGET_EBUILD}" manifest
+nice ebuild "${TARGET_EBUILD}" manifest clean prepare clean
