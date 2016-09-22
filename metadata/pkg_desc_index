@@ -161,7 +161,7 @@ net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-misc/x2goclient 4.0.5.2_pre: The X2Go Qt client
 net-print/cups 2.2.0_pre: The Common Unix Printing System
-net-print/hplip 3.16.8: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
+net-print/hplip 3.16.8 3.16.9_pre: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sys-apps/dtc 1.4.2_pre: Open Firmware device tree compiler
 sys-apps/firmware-addon-dell 2.2.9: Additional firmware tools for dell computers
@@ -176,7 +176,6 @@ sys-apps/man 1.6g: Standard commands to read man pages
 sys-apps/openrc 0.21.4: OpenRC manages the services, startup and shutdown of a host
 sys-apps/portage 2.2.8-r2 2.3.1: Portage is the package management and distribution system for Gentoo
 sys-apps/shadow 4.3.0_pre: Utilities to deal with user accounts
-sys-auth/pam_yubico 2.22_pre 2.23_pre: Library for authenticating against PAM with a Yubikey
 sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
