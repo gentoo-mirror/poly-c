@@ -41,6 +41,8 @@ dev-libs/elfutils 0.167_pre: Libraries/utilities to handle ELF objects (drop in 
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 54.1-r1 55.1 56.1 56.1-r1 57.1: International Components for Unicode
 dev-libs/jansson 2.8_pre: C library for encoding, decoding and manipulating JSON data
+dev-libs/libburn 1.4.6_pre: Open-source library for reading, mastering and writing optical discs
+dev-libs/libisofs 1.4.6_pre: Open-source library for reading, mastering and writing optical discs
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libsigc++ 2.10.0_pre: Typesafe callback system for standard C++
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
