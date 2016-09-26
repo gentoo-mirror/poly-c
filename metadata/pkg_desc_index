@@ -8,7 +8,6 @@ app-backup/fsarchiver 0.6.22_pre: Flexible filesystem archiver for backup and de
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
-app-crypt/gpgme 1.7.0_pre: GnuPG Made Easy is a library for making GnuPG easier to use
 app-crypt/heimdal 1.6_rc2: Kerberos 5 implementation from KTH
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
 app-editors/joe 4.3: A free ASCII-Text Screen Editor for UNIX

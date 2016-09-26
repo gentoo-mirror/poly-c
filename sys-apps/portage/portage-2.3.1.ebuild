@@ -80,7 +80,10 @@ SRC_URI="mirror://gentoo/${PN}-${TARBALL_PV}.tar.bz2
 
 SRC_URI+=" https://github.com/gentoo/portage/commit/d10bafb2c84be84ee47a2204938df4b3b9f238c0.patch -> ${PN}-2.3.1-egencache_perms.patch"
 
-PATCHES=( "${DISTDIR}/${P}-egencache_perms.patch" )
+PATCHES=(
+	"${FILESDIR}/2.3.1-doc-Revert-URI-changes-related-to-docbook-schema.patch"
+	"${DISTDIR}/${P}-egencache_perms.patch"
+)
 
 pkg_setup() {
 	use epydoc && DISTUTILS_ALL_SUBPHASE_IMPLS=( python2.7 )

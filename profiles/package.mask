@@ -50,9 +50,6 @@ media-radio/liquidsoap
 # breaks simgear
 =dev-games/openscenegraph-3.5.4_pre
 
-# collides with kdepimlibs
-=app-crypt/gpgme-1.7.0_pre
-
 # breaks libreoffice
 =dev-libs/liborcus-0.12.0_pre
 
