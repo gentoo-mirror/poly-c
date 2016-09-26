@@ -1,7 +1,7 @@
 app-accessibility/speech-dispatcher 0.8.4_pre 0.8.5_pre: Speech synthesis interface
 app-admin/cpulimit 2.3_pre: Limits the CPU usage of a process
 app-admin/littleutils 1.0.36: The littleutils are a collection of small and simple utilities
-app-admin/remotebox 2.0: Open Source VirtualBox Client with Remote Management
+app-admin/remotebox 2.0 2.2: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-arch/xz-utils 5.2.2: utils for managing LZMA compressed files
 app-backup/fsarchiver 0.6.22_pre: Flexible filesystem archiver for backup and deployment tool
@@ -10,13 +10,10 @@ app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, inclu
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
 app-crypt/heimdal 1.6_rc2: Kerberos 5 implementation from KTH
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
-app-editors/joe 4.3: A free ASCII-Text Screen Editor for UNIX
 app-editors/nano 2.7.0_pre: GNU GPL'd Pico clone with more functionality
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
 app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
 app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
-app-misc/fedmsg 0.17.2: Utilities used around Fedora Infrastructure to send and receive messages
-app-misc/gramps 4.2.0_pre: Genealogical Research and Analysis Management Programming System
 app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
 app-misc/mc 4.8.14 4.8.15 4.8.16 4.8.17: GNU Midnight Commander is a text based file manager
@@ -30,7 +27,6 @@ dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar t
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/nasm 2.12.02_pre: groovy little assembler
-dev-lang/orc 0.4.26_pre: The Oil Runtime Compiler, a just-in-time compiler for array operations
 dev-lang/ruby 2.1.7: An object-oriented scripting language
 dev-libs/Ice 3.6.0_pre 3.6.2_pre: ICE middleware C++ library and generator tools
 dev-libs/atk 2.22.0_pre: GTK+ & GNOME Accessibility Toolkit
@@ -39,7 +35,7 @@ dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/crypto++ 5.6.3_pre: C++ class library of cryptographic schemes
 dev-libs/elfutils 0.167_pre: Libraries/utilities to handle ELF objects (drop in replacement for libelf)
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
-dev-libs/icu 54.1-r1 55.1 56.1 56.1-r1 57.1: International Components for Unicode
+dev-libs/icu 55.1 57.1: International Components for Unicode
 dev-libs/jansson 2.8_pre 2.9_pre: C library for encoding, decoding and manipulating JSON data
 dev-libs/libburn 1.4.6_pre: Open-source library for reading, mastering and writing optical discs
 dev-libs/libisofs 1.4.6_pre: Open-source library for reading, mastering and writing optical discs
@@ -48,14 +44,13 @@ dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/liborcus 0.12.0_pre: Standalone file import filter library for spreadsheet documents
 dev-libs/libsigc++ 2.10.0_pre: Typesafe callback system for standard C++
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
-dev-libs/openssl 1.0.2g-r2 1.0.2h 1.0.2h-r1 1.0.2h-r2 1.0.2i 1.1.0a: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/openssl 1.0.2g-r2 1.0.2h 1.0.2h-r1 1.0.2h-r2 1.0.2i 1.0.2j 1.1.0a: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf 3.0.2_pre: Google's Protocol Buffers -- an efficient method of encoding structured data
 dev-libs/wayland 1.12.0_pre: Wayland protocol libraries
 dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 dev-perl/Net-DNS 1.40.0_pre: Perl Net::DNS - Perl DNS Resolver Module
 dev-perl/Net-SSLeay 1.780.0_pre: Perl extension for using OpenSSL
 dev-perl/Text-Unidecode 1.270.0_pre: Plain ASCII transliterations of Unicode text
-dev-python/cryptography-vectors 1.4_pre 1.5_pre: Test vectors for the cryptography package
 dev-python/google-apputils 0.4.0: Collection of utilities for building Python applications
 dev-python/m2crypto 0.23.0: M2Crypto: A Python crypto and SSL toolkit
 dev-python/protobuf-python 3.0.2_pre: Google's Protocol Buffers - official Python bindings
@@ -64,11 +59,11 @@ dev-python/wget 3.2: pure python download utility
 dev-qt/qtcore 4.8.6-r2 4.8.7-r2: Cross-platform application development framework
 dev-qt/qtwebengine 5.6.1: Library for rendering dynamic web content in Qt5 C++ and QML applications
 dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
-dev-util/ragel 7.0.0.5_pre 7.0.0.6_pre: Compiles finite state machines from regular languages into executable code
+dev-util/meld 3.16.3_pre: A graphical diff and merge tool
 dev-vcs/bzr 2.7.0_pre: Bazaar is a next generation distributed version control system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 dev-vcs/git 2.10.0: stupid content tracker: distributed VCS designed for speed and efficiency
-games-emulation/mgba 0.4.1: A new Game Boy Advance emulator written in C.
+games-emulation/mgba 0.4.1 0.5.0: A new Game Boy Advance emulator written in C.
 games-emulation/vbam 2.0.0_pre1507: Game Boy, GBC, and GBA emulator forked from VisualBoyAdvance
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.74 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
@@ -200,4 +195,5 @@ x11-drivers/xf86-video-amdgpu 1.1.2_pre: Accelerated Open Source driver for AMDG
 x11-libs/cairo 1.15.2_pre: A vector graphics library with cross-device output support
 x11-libs/pango 1.40.3_pre: Internationalized text layout and rendering library
 x11-plugins/gkrellm-cpupower 0.1.5: GKrellm plugin for changing CPU frequencies via cpupower
+x11-terms/xterm 326_pre: Terminal Emulator for X Windows
 x11-wm/lumina 0.9.1_pre 1.0.0_pre 1.0.0_p2_pre: Lumina desktop environment
