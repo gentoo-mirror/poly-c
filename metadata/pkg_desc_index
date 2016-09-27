@@ -156,7 +156,7 @@ net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-misc/x2goclient 4.0.5.2_pre: The X2Go Qt client
 net-print/cups 2.2.0_pre: The Common Unix Printing System
-net-print/hplip 3.16.8 3.16.9_pre: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
+net-print/hplip 3.16.9: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sys-apps/dtc 1.4.2_pre: Open Firmware device tree compiler
 sys-apps/firmware-addon-dell 2.2.9: Additional firmware tools for dell computers

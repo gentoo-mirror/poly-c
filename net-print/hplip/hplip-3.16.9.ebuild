@@ -7,12 +7,13 @@ EAPI=6
 PYTHON_COMPAT=( python{2_7,3_3,3_4} )
 PYTHON_REQ_USE="threads,xml"
 
-inherit eutils linux-info python-single-r1 readme.gentoo-r1 udev autotools poly-c_ebuilds
+inherit eutils linux-info python-single-r1 readme.gentoo-r1 udev autotools
 
 DESCRIPTION="HP Linux Imaging and Printing - Print, scan, fax drivers and service tools"
 HOMEPAGE="http://hplipopensource.com/hplip-web/index.html"
-SRC_URI="mirror://sourceforge/hplip/${MY_P}.tar.gz
+SRC_URI="mirror://sourceforge/hplip/${P}.tar.gz
 		https://dev.gentoo.org/~billie/distfiles/${PN}-3.16.5-patches-1.tar.xz"
+
 SRC_URI+=" https://launchpadlibrarian.net/272338298/hplip-include-ppdh.patch -> ${PN}-3.16.5-cups22.patch"
 
 LICENSE="GPL-2"

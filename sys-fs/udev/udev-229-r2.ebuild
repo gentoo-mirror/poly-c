@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: b0c36c8eeaccf8710ac49e3cc2f729a31464cb51 $
+# $Id: 6227be825c03d5a2c05b3f808a1410f9f9bd1dad $
 
 EAPI=6
 
@@ -66,11 +66,6 @@ PDEPEND=">=sys-apps/hwids-20140304[udev]
 	>=sys-fs/udev-init-scripts-26"
 
 S=${WORKDIR}/systemd-${PV}
-
-# The multilib-build.eclass doesn't handle situation where the installed headers
-# are different in ABIs. In this case, we install libgudev headers in native
-# ABI but not for non-native ABI.
-multilib_check_headers() { :; }
 
 check_default_rules() {
 	# Make sure there are no sudden changes to upstream rules file

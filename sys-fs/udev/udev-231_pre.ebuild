@@ -67,11 +67,6 @@ PDEPEND=">=sys-apps/hwids-20140304[udev]
 
 S=${WORKDIR}/systemd-${MY_PV}
 
-# The multilib-build.eclass doesn't handle situation where the installed headers
-# are different in ABIs. In this case, we install libgudev headers in native
-# ABI but not for non-native ABI.
-multilib_check_headers() { :; }
-
 check_default_rules() {
 	# Make sure there are no sudden changes to upstream rules file
 	# (more for my own needs than anything else ...)
