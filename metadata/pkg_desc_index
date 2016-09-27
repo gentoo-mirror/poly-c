@@ -63,7 +63,6 @@ dev-util/meld 3.16.3_pre: A graphical diff and merge tool
 dev-vcs/bzr 2.7.0_pre: Bazaar is a next generation distributed version control system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 dev-vcs/git 2.10.0: stupid content tracker: distributed VCS designed for speed and efficiency
-games-emulation/mgba 0.4.1 0.5.0: A new Game Boy Advance emulator written in C.
 games-emulation/vbam 2.0.0_pre1507: Game Boy, GBC, and GBA emulator forked from VisualBoyAdvance
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.74 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
@@ -178,7 +177,7 @@ sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management 
 sys-boot/grub 2.02_beta2-r8 2.02_beta2-r9 2.02_beta3-r1: GNU GRUB boot loader
 sys-devel/binutils 2.27_pre-r1: Tools necessary to build programs
 sys-fs/btrfs-progs 4.7.3_pre: Btrfs filesystem utilities
-sys-fs/lvm2 2.02.163_pre 2.02.164_pre 2.02.165_pre: User-land utilities for LVM2 (device-mapper) software
+sys-fs/lvm2 2.02.164_pre 2.02.165_pre 2.02.166_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/binutils-libs 2.27_pre-r1: Core binutils libraries (libbfd, libopcodes, libiberty) for external packages

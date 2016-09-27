@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 64dadcfefaae23d22706f82a50faa48e1814301c $
+# $Id: f54eadba3bde7fa10fb0fab696b1dca4ec840a2d $
 
 EAPI=6
 
@@ -23,7 +23,7 @@ if [[ ${PV} != 9999 ]]; then
 			https://dev.gentoo.org/~floppym/dist/${P}.tar.xz"
 		S=${WORKDIR}/${P%_*}
 	fi
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="amd64 ~x86"
 else
 	inherit git-r3
 	EGIT_REPO_URI="git://git.sv.gnu.org/grub.git
@@ -170,7 +170,7 @@ grub_configure() {
 	local platform
 
 	case ${MULTIBUILD_VARIANT} in
-		efi) platform=efi ;;
+		efi*) platform=efi ;;
 		xen*) platform=xen ;;
 		guessed) ;;
 		*) platform=${MULTIBUILD_VARIANT} ;;
