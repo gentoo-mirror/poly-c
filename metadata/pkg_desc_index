@@ -30,6 +30,7 @@ dev-lang/nasm 2.12.02_pre: groovy little assembler
 dev-lang/ruby 2.1.7: An object-oriented scripting language
 dev-libs/Ice 3.6.0_pre 3.6.2_pre: ICE middleware C++ library and generator tools
 dev-libs/atk 2.22.0_pre: GTK+ & GNOME Accessibility Toolkit
+dev-libs/boost 1.62.0_pre: Boost Libraries for C++
 dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/crypto++ 5.6.3_pre: C++ class library of cryptographic schemes
@@ -58,6 +59,7 @@ dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtcore 4.8.6-r2 4.8.7-r2: Cross-platform application development framework
 dev-qt/qtwebengine 5.6.1: Library for rendering dynamic web content in Qt5 C++ and QML applications
+dev-util/boost-build 1.62.0_pre: A system for large project software construction, simple to use and powerful
 dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
 dev-util/meld 3.16.3_pre: A graphical diff and merge tool
 dev-vcs/bzr 2.7.0_pre: Bazaar is a next generation distributed version control system
@@ -155,7 +157,6 @@ net-misc/ns 3.25: A discrete-event network simulator for Internet systems.
 net-misc/openssh 7.1_p2-r1 7.2_p2 7.2_p2-r1 7.3_p1-r2: Port of OpenBSD's free SSH release
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
-net-misc/x2goclient 4.0.5.2_pre: The X2Go Qt client
 net-print/cups 2.2.0_pre: The Common Unix Printing System
 net-print/hplip 3.16.9: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
@@ -184,6 +185,7 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/binutils-libs 2.27_pre-r1: Core binutils libraries (libbfd, libopcodes, libiberty) for external packages
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
+sys-libs/timezone-data 2016g_pre: Timezone data (/usr/share/zoneinfo) and utilities (tzselect/zic/zdump)
 sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.20 4.4.21 4.4.22 4.7.3 4.7.4 4.7.5: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
