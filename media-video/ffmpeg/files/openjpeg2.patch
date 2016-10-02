@@ -1,3 +1,6 @@
+https://bugs.gentoo.org/show_bug.cgi?id=595318
+https://trac.ffmpeg.org/ticket/5694
+
 diff -rupN ffmpeg-3.1.1/configure ffmpeg-3.1.1-new/configure
 --- ffmpeg-3.1.1/configure	2016-06-27 01:54:28.000000000 +0200
 +++ ffmpeg-3.1.1-new/configure	2016-07-27 22:25:36.585141648 +0200

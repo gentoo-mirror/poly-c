@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 19db1ed81bffd462fbc7ba589f788235114a9a7d $
+# $Id$
 
 EAPI=6
 
@@ -15,23 +15,11 @@ EAPI=6
 # doing so since such a case is unlikely.
 FFMPEG_SUBSLOT=55.57.57
 
-SCM=""
-if [ "${PV#9999}" != "${PV}" ] ; then
-	SCM="git-r3"
-	EGIT_REPO_URI="git://source.ffmpeg.org/ffmpeg.git"
-fi
-
-inherit eutils flag-o-matic multilib multilib-minimal toolchain-funcs ${SCM}
+inherit eutils flag-o-matic multilib multilib-minimal toolchain-funcs poly-c_ebuilds
 
 DESCRIPTION="Complete solution to record, convert and stream audio and video. Includes libavcodec"
 HOMEPAGE="http://ffmpeg.org/"
-if [ "${PV#9999}" != "${PV}" ] ; then
-	SRC_URI=""
-elif [ "${PV%_p*}" != "${PV}" ] ; then # Snapshot
-	SRC_URI="mirror://gentoo/${P}.tar.bz2"
-else # Release
-	SRC_URI="http://ffmpeg.org/releases/${P/_/-}.tar.bz2"
-fi
+SRC_URI="http://ffmpeg.org/releases/${MY_P/_/-}.tar.bz2"
 FFMPEG_REVISION="${PV#*_p}"
 
 SLOT="0/${FFMPEG_SUBSLOT}"
@@ -54,9 +42,7 @@ LICENSE="
 	)
 	samba? ( GPL-3 )
 "
-if [ "${PV#9999}" = "${PV}" ] ; then
-	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
-fi
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
 
 # Options to use as use_enable in the foo[:bar] form.
 # This will feed configure with $(use_enable foo bar)
@@ -284,18 +270,14 @@ RESTRICT="
 	gpl? ( openssl? ( bindist ) fdk? ( bindist ) )
 "
 
-PATCHES=( "${FILESDIR}/${P}-opj2.patch" )
-
-S=${WORKDIR}/${P/_/-}
+S=${WORKDIR}/${MY_P/_/-}
 
 MULTILIB_WRAPPED_HEADERS=(
 	/usr/include/libavutil/avconfig.h
 )
 
 src_prepare() {
-	if [[ "${PV%_p*}" != "${PV}" ]] ; then # Snapshot
-		export revision=git-N-${FFMPEG_REVISION}
-	fi
+	epatch "${FILESDIR}/openjpeg2.patch" #595318
 	default
 }
 
