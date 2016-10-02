@@ -20,7 +20,6 @@ app-misc/mc 4.8.14 4.8.15 4.8.16 4.8.17: GNU Midnight Commander is a text based 
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/liblangtag 0.6.1_pre: An interface library to access tags for identifying languages
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 dev-games/openscenegraph 3.5.4_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
@@ -38,10 +37,9 @@ dev-libs/elfutils 0.167_pre: Libraries/utilities to handle ELF objects (drop in 
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 55.1 57.1: International Components for Unicode
 dev-libs/jansson 2.8_pre 2.9_pre: C library for encoding, decoding and manipulating JSON data
-dev-libs/libixion 0.12.0_pre: General purpose formula parser & interpreter
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
-dev-libs/liborcus 0.12.0_pre: Standalone file import filter library for spreadsheet documents
 dev-libs/libsigc++ 2.10.0_pre: Typesafe callback system for standard C++
+dev-libs/nettle 3.3_pre: Low-level cryptographic library
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2g-r2 1.0.2h 1.0.2h-r1 1.0.2h-r2 1.0.2i 1.0.2j 1.1.0a: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf 3.0.2_pre: Google's Protocol Buffers -- an efficient method of encoding structured data
@@ -59,7 +57,6 @@ dev-qt/qtcore 4.8.6-r2 4.8.7-r2: Cross-platform application development framewor
 dev-qt/qtwebengine 5.6.1: Library for rendering dynamic web content in Qt5 C++ and QML applications
 dev-util/boost-build 1.62.0_pre: A system for large project software construction, simple to use and powerful
 dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
-dev-util/meld 3.16.3_pre: A graphical diff and merge tool
 dev-vcs/bzr 2.7.0_pre: Bazaar is a next generation distributed version control system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 dev-vcs/git 2.10.0: stupid content tracker: distributed VCS designed for speed and efficiency
