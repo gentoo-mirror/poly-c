@@ -17,7 +17,7 @@ app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
 app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
 app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
-app-misc/mc 4.8.14 4.8.15 4.8.16 4.8.17: GNU Midnight Commander is a text based file manager
+app-misc/mc 4.8.14 4.8.15 4.8.16 4.8.17 4.8.18: GNU Midnight Commander is a text based file manager
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
@@ -44,7 +44,6 @@ dev-libs/nettle 3.3_pre: Low-level cryptographic library
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2g-r2 1.0.2h 1.0.2h-r1 1.0.2h-r2 1.0.2i 1.0.2j 1.1.0a: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf 3.0.2_pre: Google's Protocol Buffers -- an efficient method of encoding structured data
-dev-libs/wayland 1.12.0_pre: Wayland protocol libraries
 dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 dev-perl/Net-DNS 1.40.0_pre: Perl Net::DNS - Perl DNS Resolver Module
 dev-perl/Net-SSLeay 1.780.0_pre: Perl extension for using OpenSSL
