@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c94e5f604578d35509c9db95cc7f22133b43b8aa $
+# $Id: 76a7913776f0b9c929a4d167df730dcb00e05977 $
 
 EAPI=6
 
@@ -122,6 +122,7 @@ DEPEND="${COMMON_DEPEND}
 
 PATCHES=(
 	"${FILESDIR}/${PN}-5.4-startkde-script.patch"
+	"${FILESDIR}/${PN}-5.7.3-unused-dep.patch"
 	"${FILESDIR}/${PN}-5.7.5-klipper-autostart.patch"
 )
 

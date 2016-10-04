@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f17421aa6be32738100da63c682c738d4a90b237 $
+# $Id: a99839a9dc85a456e2c8ac70eee43a1152b94ccd $
 
 EAPI=6
 GNOME_ORG_MODULE="NetworkManager"
@@ -17,20 +17,22 @@ HOMEPAGE="https://wiki.gnome.org/Projects/NetworkManager"
 LICENSE="GPL-2+"
 SLOT="0" # add subslot if libnm-util.so.2 or libnm-glib.so.4 bumps soname version
 
-IUSE="bluetooth connection-sharing consolekit +dhclient dhcpcd gnutls +introspection \
-kernel_linux +nss +modemmanager ncurses +ppp resolvconf selinux systemd teamd test \
-vala +wext +wifi"
+IUSE="audit bluetooth connection-sharing consolekit dhclient +dhcpcd gnutls +introspection \
+json kernel_linux +nss +modemmanager ncurses ofono +ppp resolvconf selinux \
+systemd teamd test vala +wext +wifi"
 
 REQUIRED_USE="
 	modemmanager? ( ppp )
+	vala? ( introspection )
 	wext? ( wifi )
 	^^ ( nss gnutls )
 "
 
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ppc ~ppc64 ~x86"
 
 # gobject-introspection-0.10.3 is needed due to gnome bug 642300
 # wpa_supplicant-0.7.3-r3 is needed due to bug 359271
+# TODO: need multilib janson (linked to libnm.so)
 COMMON_DEPEND="
 	>=sys-apps/dbus-1.2[${MULTILIB_USEDEP}]
 	>=dev-libs/dbus-glib-0.100[${MULTILIB_USEDEP}]
@@ -40,28 +42,36 @@ COMMON_DEPEND="
 	net-libs/libndp
 	>=net-libs/libsoup-2.40:2.4=
 	net-misc/iputils
-	sys-libs/readline:0
+	sys-apps/util-linux[${MULTILIB_USEDEP}]
+	sys-libs/readline:0=
 	>=virtual/libgudev-165:=[${MULTILIB_USEDEP}]
+	audit? ( sys-process/audit )
 	bluetooth? ( >=net-wireless/bluez-5 )
 	connection-sharing? (
 		net-dns/dnsmasq[dhcp]
 		net-firewall/iptables )
+	consolekit? ( >=sys-auth/consolekit-1.0.0 )
+	dhclient? ( >=net-misc/dhcp-4[client] )
+	dhcpcd? ( net-misc/dhcpcd )
 	gnutls? (
 		dev-libs/libgcrypt:0=[${MULTILIB_USEDEP}]
 		>=net-libs/gnutls-2.12:=[${MULTILIB_USEDEP}] )
+	introspection? ( >=dev-libs/gobject-introspection-0.10.3:= )
+	json? ( dev-libs/jansson )
 	modemmanager? ( >=net-misc/modemmanager-0.7.991 )
 	ncurses? ( >=dev-libs/newt-0.52.15 )
 	nss? ( >=dev-libs/nss-3.11:=[${MULTILIB_USEDEP}] )
-	dhclient? ( >=net-misc/dhcp-4[client] )
-	introspection? ( >=dev-libs/gobject-introspection-0.10.3:= )
+	ofono? ( net-misc/ofono )
 	ppp? ( >=net-dialup/ppp-2.4.5:=[ipv6] )
 	resolvconf? ( net-dns/openresolv )
+	selinux? ( sys-libs/libselinux )
 	systemd? ( >=sys-apps/systemd-209:0= )
-	!systemd? ( || ( sys-power/upower sys-power/upower-pm-utils ) )
+	!systemd? (
+		!consolekit? ( || ( sys-power/upower sys-power/upower-pm-utils ) )
+	)
 	teamd? ( >=net-misc/libteam-1.9 )
 "
 RDEPEND="${COMMON_DEPEND}
-	consolekit? ( sys-auth/consolekit )
 	wifi? ( >=net-wireless/wpa_supplicant-0.7.3-r3[dbus] )
 "
 DEPEND="${COMMON_DEPEND}
@@ -70,7 +80,7 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40
 	>=sys-devel/gettext-0.17
 	>=sys-kernel/linux-headers-2.6.29
-	virtual/pkgconfig
+	virtual/pkgconfig[${MULTILIB_USEDEP}]
 	vala? ( $(vala_depend) )
 	test? (
 		$(python_gen_any_dep '
@@ -116,17 +126,13 @@ pkg_pretend() {
 
 pkg_setup() {
 	enewgroup plugdev
+
+	use test && python-any-r1_pkg_setup
 }
 
 src_prepare() {
 	DOC_CONTENTS="To modify system network connections without needing to enter the
 		root password, add your user account to the 'plugdev' group."
-
-	# Don't build examples, they are not needed and can cause build failure
-	sed -e '/^\s*examples\s*\\*/d' -i Makefile.{am,in} || die
-
-	# Upstream patches from 1.2 branch
-	eapply "${FILESDIR}/${P}-sleep-monitor-upower-include.patch" #588278
 
 	use vala && vala_src_prepare
 	gnome2_src_prepare
@@ -158,6 +164,9 @@ multilib_src_configure() {
 
 	# ifnet plugin always disabled until someone volunteers to actively
 	# maintain and fix it
+	# Also disable dhcpcd support as it's also completely unmaintained
+	# and facing bugs like #563938 and many others
+	#
 	# We need --with-libnm-glib (and dbus-glib dep) as reverse deps are
 	# still not ready for removing that lib
 	ECONF_SOURCE=${S} \
@@ -181,14 +190,17 @@ multilib_src_configure() {
 		$(multilib_native_enable concheck) \
 		--with-crypto=$(usex nss nss gnutls) \
 		--with-session-tracking=$(multilib_native_usex systemd systemd $(multilib_native_usex consolekit consolekit no)) \
-		--with-suspend-resume=$(multilib_native_usex systemd systemd upower) \
+		--with-suspend-resume=$(multilib_native_usex systemd systemd $(multilib_native_usex consolekit consolekit upower)) \
+		$(multilib_native_use_with audit libaudit) \
 		$(multilib_native_use_enable bluetooth bluez5-dun) \
 		$(multilib_native_use_enable introspection) \
+		$(multilib_native_use_enable json json-validation) \
 		$(multilib_native_use_enable ppp) \
 		$(use_with dhclient) \
 		$(use_with dhcpcd) \
 		$(multilib_native_use_with modemmanager modem-manager-1) \
 		$(multilib_native_use_with ncurses nmtui) \
+		$(multilib_native_use_with ofono) \
 		$(multilib_native_use_with resolvconf) \
 		$(multilib_native_use_with selinux) \
 		$(multilib_native_use_with systemd systemd-journal) \
@@ -207,6 +219,15 @@ multilib_src_configure() {
 			ln -s "${S}"/docs/${d}/html docs/${d}/html || die
 		done
 	fi
+
+	# Disable examples
+	# https://bugzilla.gnome.org/show_bug.cgi?id=769711
+	cat > examples/Makefile <<-EOF
+	.PHONY: all check install
+	all:
+	check:
+	install:
+	EOF
 }
 
 multilib_src_compile() {
@@ -266,6 +287,9 @@ multilib_src_install_all() {
 	# Allow users in plugdev group to modify system connections
 	insinto /usr/share/polkit-1/rules.d/
 	doins "${FILESDIR}/01-org.freedesktop.NetworkManager.settings.modify.system.rules"
+
+	# Remove empty /run/NetworkManager
+	rmdir "${D}"/run/NetworkManager "${D}"/run || die
 }
 
 pkg_postinst() {
