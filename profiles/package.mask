@@ -43,3 +43,6 @@ media-radio/liquidsoap
 
 # breaks simgear
 =dev-games/openscenegraph-3.5.4_pre
+
+# Requires java8
+>=media-tv/mediathekview-bin-12

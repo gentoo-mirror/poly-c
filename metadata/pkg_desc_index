@@ -24,6 +24,7 @@ app-text/calibre 2.69.0_pre: Ebook management application
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 dev-games/openscenegraph 3.5.4_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
+dev-java/commons-compress 1.12_pre: Java API for working with archive files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/nasm 2.12.02_pre: groovy little assembler
@@ -124,7 +125,7 @@ media-sound/ossp 1.3.1 1.3.2: OSS Proxy Daemon is Linux userland OSS sound devic
 media-sound/qamix 0.0.7e_pre: QAMix is a configurable mixer for ALSA. Interfaces for AC 97 cards and Soundblaster Live are provided.
 media-sound/scdl 1.3.3_beta1: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
-media-tv/mediathekview-bin 10 11: Download files from the public broadcasting services
+media-tv/mediathekview-bin 11 12: Download files from the public broadcasting services
 media-video/simplescreenrecorder 0.3.6 9999: A Simple Screen Recorder
 media-video/smplayer 16.4.0-r2 16.7.0 16.8.0 16.9.0: Great Qt GUI front-end for mplayer/mpv
 media-video/tragtor 0.8.45 0.9.2: traGtor is a graphical user interface (GUI) for ffmpeg
@@ -140,6 +141,7 @@ net-dialup/mingetty 1.08 1.08-r1: A compact getty program for virtual consoles o
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
 net-im/pidgin 2.11.0: GTK Instant Messenger client
+net-irc/hexchat 2.12.1_pre: Graphical IRC client based on XChat
 net-irc/irssi 0.8.20_pre: A modular textUI IRC client with IPv6 support
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.

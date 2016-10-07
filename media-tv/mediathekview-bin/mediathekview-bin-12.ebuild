@@ -1,8 +1,8 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
 inherit java-pkg-2
 
@@ -19,8 +19,8 @@ DEPEND=">=virtual/jdk-1.7"
 RDEPEND=">=virtual/jre-1.7
 	media-video/vlc
 	media-video/flvstreamer
-	>=dev-java/commons-compress-1.8.1:0
-	>=dev-java/commons-lang-3.3.2:3.3
+	>=dev-java/commons-compress-1.12_pre:0
+	>=dev-java/commons-lang-3.4_pre:3.3
 	dev-java/jgoodies-common:1.8
 	dev-java/jgoodies-forms:1.8
 	dev-java/xz-java:0
@@ -29,14 +29,27 @@ RDEPEND=">=virtual/jre-1.7
 S="${WORKDIR}"
 
 src_prepare() {
-	rm lib/commons-compress-1.8.1.jar || die
-	rm lib/commons-lang3-3.3.2.jar || die
-	rm lib/jgoodies-common-1.8.0.jar || die
-	rm lib/jgoodies-forms-1.8.0.jar || die
-	rm lib/xz.jar || die
+	local mylib
+	local jarlibs=(
+		lib/commons-compress-1.12.jar
+		lib/commons-lang3-3.4.jar
+		lib/jgoodies-common-1.8.0.jar
+		lib/jgoodies-forms-1.8.0.jar
+		lib/xz.jar
+	)
+	for mylib in ${jarlibs[@]} ; do
+		if [[ -f "${mylib}" ]] ; then
+			rm ${mylib} || die
+		else
+			eerror "${mylib} no longer shipped."
+			die
+		fi
+	done
 
 	ewarn "Bundled libs remaining:"
 	ewarn "$(find lib -name '*.jar' | sort)"
+
+	default
 }
 
 src_compile() {
