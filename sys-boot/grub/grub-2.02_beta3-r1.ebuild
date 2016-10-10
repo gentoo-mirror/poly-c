@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f54eadba3bde7fa10fb0fab696b1dca4ec840a2d $
+# $Id: 45fcb9844b628b483bbb77053b001a6e97bb8fcf $
 
 EAPI=6
 
@@ -268,6 +268,8 @@ src_install() {
 
 	einstalldocs
 
+	dodoc "${FILESDIR}/grub.cfg.example"
+
 	if use multislot; then
 		mv "${ED%/}"/usr/share/info/grub{,2}.info || die
 	fi
@@ -279,8 +281,11 @@ src_install() {
 pkg_postinst() {
 	elog "For information on how to configure GRUB2 please refer to the guide:"
 	elog "    https://wiki.gentoo.org/wiki/GRUB2_Quick_Start"
+	elog
+	elog "For manual configuration, see /usr/share/doc/${PF}/grub.cfg.example"
 
 	if has_version 'sys-boot/grub:0'; then
+		elog
 		elog "A migration guide for GRUB Legacy users is available:"
 		elog "    https://wiki.gentoo.org/wiki/GRUB2_Migration"
 	fi

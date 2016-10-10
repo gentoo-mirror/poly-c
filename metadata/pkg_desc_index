@@ -22,6 +22,7 @@ app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gent
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/calibre 2.69.0_pre: Ebook management application
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
+app-text/poppler 0.48.0_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-games/openscenegraph 3.5.4_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
@@ -180,7 +181,7 @@ sys-libs/binutils-libs 2.27_pre-r1: Core binutils libraries (libbfd, libopcodes,
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/timezone-data 2016g_pre: Timezone data (/usr/share/zoneinfo) and utilities (tzselect/zic/zdump)
-sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.21 4.4.22 4.4.23 4.7.4 4.7.5 4.7.6: Shows and sets processor power related values
+sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.22 4.4.23 4.4.24 4.7.5 4.7.6 4.7.7: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 www-client/links 2.13_pre: A fast and lightweight web browser running in both graphics and text mode
