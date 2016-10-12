@@ -22,7 +22,6 @@ app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gent
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/calibre 2.69.0_pre: Ebook management application
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
-app-text/poppler 0.48.0_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-games/openscenegraph 3.5.4_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
@@ -142,7 +141,7 @@ net-dialup/mingetty 1.08 1.08-r1: A compact getty program for virtual consoles o
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
 net-im/pidgin 2.11.0: GTK Instant Messenger client
-net-irc/hexchat 2.12.1_pre: Graphical IRC client based on XChat
+net-irc/hexchat 2.12.1_pre 2.12.2_pre: Graphical IRC client based on XChat
 net-irc/irssi 0.8.20_pre: A modular textUI IRC client with IPv6 support
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
@@ -159,7 +158,7 @@ sys-apps/firmware-addon-dell 2.2.9: Additional firmware tools for dell computers
 sys-apps/firmware-extract 2.0.13: Additional firmware tools for dell computers
 sys-apps/firmware-tools 2.1.14: Firmware tools for dell computers
 sys-apps/gawk 4.0.2 4.1.2 4.1.3 4.1.4: GNU awk pattern-matching language
-sys-apps/iproute2 3.8.0 3.17.0 3.19.0 4.0.0-r2 4.1.0 4.1.1 4.2.0 4.3.0 4.4.0 4.5.0 4.6.0 4.7.0: kernel routing and traffic control utilities
+sys-apps/iproute2 3.8.0 3.17.0 3.19.0 4.0.0-r2 4.1.0 4.1.1 4.2.0 4.3.0 4.4.0 4.5.0 4.6.0 4.7.0 4.8.0: kernel routing and traffic control utilities
 sys-apps/kbd 1.15.5-r1 2.0.1 2.0.1-r1 2.0.2 2.0.3: Keyboard and console utilities
 sys-apps/kmod 20 21 22 23: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
