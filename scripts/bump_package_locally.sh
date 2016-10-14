@@ -94,7 +94,7 @@ if ${IS_POLYC_EBUILD} ; then
 	fi
 fi
 
-if grep -Fq FILESDIR ${SOURCE_EBUILD} ; then
+if grep -Fq FILESDIR ${SOURCE_EBUILD} && [[ "${TARGET_DIR}" != "${SOURCE_EBUILD%/*}" ]] ; then
 	retval=0
 	AUX_FILES=( $(\
 		grep -F FILESDIR "${SOURCE_EBUILD}" \
