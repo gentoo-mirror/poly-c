@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5a752e137f548eed725ba1f534fbdf0d0f98ca26 $
+# $Id: 1e92735f75e79f04359c61e30838dbee935c7ea6 $
 
 EAPI=6
 WANT_AUTOCONF="2.1"
@@ -30,7 +30,7 @@ if [[ ${PV} == *_pre* ]] ; then
 	SRC_URI="${SRC_URI}
 	${MOZ_HTTP_URI}/${P}.source.tar.xz
 	"
-elif [[ ${PV} == *_p0 ]]; then
+elif [[ ${PV} == *_p[0-9] ]]; then
 	# gentoo-unofficial release using thunderbird distfiles to build seamonkey instead
 	TB_MAJOR=45
 	SMPV="${PV%.[0-9].*}"
@@ -58,7 +58,7 @@ MOZCONFIG_OPTIONAL_WIFI=1
 MOZCONFIG_OPTIONAL_JIT="enabled"
 inherit check-reqs flag-o-matic toolchain-funcs eutils mozconfig-v6.45 multilib pax-utils fdo-mime autotools mozextension nsplugins mozlinguas-v2
 
-PATCHFF="firefox-45.0-patches-04"
+PATCHFF="firefox-45.0-patches-07"
 PATCH="${PN}-2.42-patches-01"
 EMVER="1.9.5"
 
