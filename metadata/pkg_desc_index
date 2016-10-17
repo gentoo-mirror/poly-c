@@ -151,7 +151,7 @@ net-misc/openssh 7.1_p2-r1 7.2_p2 7.2_p2-r1 7.3_p1-r2: Port of OpenBSD's free SS
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-print/cups 2.2.0_pre 2.2.1_pre: The Common Unix Printing System
-net-print/hplip 3.16.9: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
+net-print/hplip 3.16.9 3.16.9-r1: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sys-apps/dtc 1.4.2_pre: Open Firmware device tree compiler
 sys-apps/firmware-addon-dell 2.2.9: Additional firmware tools for dell computers
@@ -179,8 +179,7 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/binutils-libs 2.27_pre-r1: Core binutils libraries (libbfd, libopcodes, libiberty) for external packages
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-libs/timezone-data 2016g_pre: Timezone data (/usr/share/zoneinfo) and utilities (tzselect/zic/zdump)
-sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.22 4.4.23 4.4.24 4.7.5 4.7.6 4.7.7: Shows and sets processor power related values
+sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.23 4.4.24 4.4.25 4.7.6 4.7.7 4.7.8: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 www-client/links 2.13_pre: A fast and lightweight web browser running in both graphics and text mode
