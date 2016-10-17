@@ -31,7 +31,7 @@ DEPEND="app-arch/gzip"
 RDEPEND="dev-libs/glib[abi_x86_32(-)]
 	media-libs/fontconfig[abi_x86_32(-)]
 	media-libs/freetype[abi_x86_32(-)]
-	media-libs/libpng[abi_x86_32(-)]
+	media-libs/libpng:1.2[abi_x86_32(-)]
 	sys-libs/zlib[abi_x86_32(-)]
 	x11-libs/libICE[abi_x86_32(-)]
 	x11-libs/libSM[abi_x86_32(-)]
