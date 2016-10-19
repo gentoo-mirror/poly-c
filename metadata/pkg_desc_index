@@ -10,7 +10,6 @@ app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, inclu
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
 app-crypt/heimdal 1.6_rc2: Kerberos 5 implementation from KTH
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
-app-editors/nano 2.7.0_pre: GNU GPL'd Pico clone with more functionality
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
 app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
 app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
@@ -78,12 +77,10 @@ kde-base/kactivities 4.13.3-r2: KDE Activity Manager
 kde-base/kdebase-startkde 4.11.22-r1: Startkde script, which starts a complete KDE session, and associated scripts
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
-kde-plasma/plasma-workspace 5.7.4 5.7.5 5.8.0 5.8.1: KDE Plasma workspace
+kde-plasma/plasma-workspace 5.7.4 5.7.5 5.8.2: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
-media-libs/gexiv2 0.10.4_pre: GObject-based wrapper around the Exiv2 library
-media-libs/glm 0.9.8.0_pre: OpenGL Mathematics
 media-libs/gst-plugins-bad 1.9.2_pre 1.9.90_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.9.2_pre 1.9.90_pre: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.9.2_pre 1.9.90_pre: Basepack of plugins for GStreamer
