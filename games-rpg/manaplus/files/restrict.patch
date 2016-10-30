@@ -1,8 +1,0 @@
---- ManaPlus/src/localconsts.h
-+++ ManaPlus/src/localconsts.h
-@@ -247,3 +247,5 @@
- #ifdef HAVE_CONFIG_H
- #include "config.h"
- #endif
-+
-+#define restrict
