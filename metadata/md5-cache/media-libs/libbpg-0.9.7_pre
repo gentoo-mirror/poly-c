@@ -1,0 +1,15 @@
+DEFINED_PHASES=install prepare
+DEPEND=dev-util/cmake
+DESCRIPTION=BPG (Better Portable Graphics) is a new image format
+EAPI=6
+HOMEPAGE=http://bellard.org/bpg/
+IUSE=x265
+KEYWORDS=~amd64 ~x86
+LICENSE=LGPL-2.1 BSD
+RDEPEND=media-libs/libjpeg-turbo media-libs/libpng:0 sys-process/numactl x265? ( media-libs/x265:= )
+RESTRICT=mirror
+SLOT=0
+SRC_URI=http://bellard.org/bpg/libbpg-0.9.7.tar.gz
+_eclass_exported_funcs=src_prepare:- src_install:-
+_eclasses_=eutils	b83a2420b796f7c6eff682679d08fe25	multilib	165fc17c38d1b11dac2008280dab6e80	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	1b1da0c45c555989dc5d832b54880783
+_md5_=586d798a4874133f97c5135d39ee4f41
