@@ -39,7 +39,6 @@ dev-libs/crypto++ 5.6.3_pre: C++ class library of cryptographic schemes
 dev-libs/elfutils 0.167_pre: Libraries/utilities to handle ELF objects (drop in replacement for libelf)
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 55.1 57.1: International Components for Unicode
-dev-libs/jansson 2.8_pre 2.9_pre: C library for encoding, decoding and manipulating JSON data
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libsigc++ 2.10.0_pre: Typesafe callback system for standard C++
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
@@ -130,6 +129,7 @@ media-video/simplescreenrecorder 0.3.6 9999: A Simple Screen Recorder
 media-video/smplayer 16.4.0-r2 16.7.0 16.8.0 16.9.0: Great Qt GUI front-end for mplayer/mpv
 media-video/tragtor 0.8.45 0.9.2: traGtor is a graphical user interface (GUI) for ffmpeg
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
+media-video/vlc 2.2.4: VLC media player - Video player and streamer
 net-analyzer/arpalert 1.0.3_pre 1.1.3_pre 2.0.11_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/iptstate 2.2.6_pre: IP Tables State displays states being kept by iptables in a top-like format
 net-analyzer/medusa 2.1.1 2.2: A Modular,Parallel,Multiprotocol, Network Login Auditor
@@ -171,12 +171,11 @@ sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management 
 sys-boot/grub 2.02_beta2-r8 2.02_beta2-r9 2.02_beta3-r1: GNU GRUB boot loader
 sys-devel/binutils 2.27_pre-r1: Tools necessary to build programs
 sys-fs/btrfs-progs 4.8.2_pre: Btrfs filesystem utilities
-sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
+sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/binutils-libs 2.27_pre-r1: Core binutils libraries (libbfd, libopcodes, libiberty) for external packages
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-libs/timezone-data 2016i_pre: Timezone data (/usr/share/zoneinfo) and utilities (tzselect/zic/zdump)
 sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.28 4.4.29 4.4.30 4.7.10 4.8.5 4.8.6: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
