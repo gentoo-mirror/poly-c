@@ -69,6 +69,7 @@ if ${IS_POLYC_EBUILD} ; then
 	ekeyword \~all "${TARGET_EBUILD}" &>/dev/null || exit 10
 
 	sed \
+		-e 's@MY_PV@REAL_PV@;s@MY_P@REAL_P@g' \
 		-e 's@${PV}@${MY_PV}@g;s@${P}@${MY_P}@g' \
 		-e 's@${PV/@${MY_PV/@g;s@${P/@${MY_P/@g' \
 		-i "${TARGET_EBUILD}" || exit 11
@@ -102,7 +103,7 @@ if grep -Fq FILESDIR ${SOURCE_EBUILD} && [[ "${TARGET_DIR}" != "${SOURCE_EBUILD%
 			| sed \
 				-e 's@.*FILESDIR["}/]*\([[:alnum:]\${}/\.,_-]\+\).*@\1@' \
 				-e "s@\${PN}@$(qatom -F '%{PN}' ${PACKAGE})@g" \
-				-e "s@\${P}@$(qatom -F '%{PN}-%{PV}' ${PACKAGE})@g" \
+				-e "s@\${P}@$(qatom -F '%{P}' ${PACKAGE})@g" \
 	) )
 	printf '%s\n' "AUX_FILES: ${AUX_FILES[@]}"
 	if [[ -n "${AUX_FILES[@]}" ]] ; then
