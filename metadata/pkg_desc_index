@@ -175,6 +175,7 @@ sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232_pre: Linux dynamic and pers
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/binutils-libs 2.27_pre-r1: Core binutils libraries (libbfd, libopcodes, libiberty) for external packages
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
+sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.28 4.4.29 4.4.30 4.7.10 4.8.5 4.8.6: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
