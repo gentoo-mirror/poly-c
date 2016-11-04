@@ -1,12 +1,12 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 773be0e3713703e235e7168b350fac138bdd41b9 $
+# $Id: 2952e009f9aa9069b3c72b757950d7b488e5b760 $
 
 EAPI=6
 GNOME_ORG_MODULE="NetworkManager"
 GNOME2_LA_PUNT="yes"
 VALA_USE_DEPEND="vapigen"
-PYTHON_COMPAT=( python{2_7,3_3,3_4,3_5} )
+PYTHON_COMPAT=( python{2_7,3_4,3_5} )
 
 inherit bash-completion-r1 gnome2 linux-info multilib python-any-r1 systemd \
 	user readme.gentoo-r1 toolchain-funcs vala versionator virtualx udev multilib-minimal

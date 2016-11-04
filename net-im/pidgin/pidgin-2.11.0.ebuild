@@ -1,11 +1,11 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9d574dbfdc949ee9276ea3a26c2edf91037114bf $
+# $Id: fb06856ee72c6f293d9a9fe76d74ef1e7826cf5d $
 
 EAPI=6
 
 GENTOO_DEPEND_ON_PERL=no
-PYTHON_COMPAT=( python2_7 python3_{3,4} )
+PYTHON_COMPAT=( python2_7 python3_{4,5} )
 
 inherit autotools flag-o-matic eutils toolchain-funcs multilib perl-module python-single-r1
 

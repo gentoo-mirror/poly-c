@@ -1,10 +1,10 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2ced6656779d38c26e3dad702dcc08d12e1cadfc $
+# $Id: 111f8269bc978175297c74a7695c28e761ce8b08 $
 
 EAPI="5"
 
-PYTHON_COMPAT=(python{2_7,3_3,3_4} pypy)
+PYTHON_COMPAT=(python{2_7,3_4} pypy)
 PYTHON_REQ_USE="xml(+),threads(+)"
 
 inherit distutils-r1 eutils

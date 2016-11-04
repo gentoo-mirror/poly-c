@@ -277,7 +277,6 @@ multilib_src_install() {
 			install-pkgconfiglibDATA
 			install-pkgconfigdataDATA
 			install-dist_docDATA
-			libudev-install-hook
 			install-directories-hook
 			install-dist_bashcompletionDATA
 			install-dist_networkDATA
