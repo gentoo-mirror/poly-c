@@ -148,7 +148,7 @@ pkg_setup() {
 		elog "You did not pick the ncurses or gtk use flags, only libpurple"
 		elog "will be built."
 	fi
-	if use python && use dbus ; then
+	if use python || use dbus ; then
 		python-single-r1_pkg_setup
 	fi
 
