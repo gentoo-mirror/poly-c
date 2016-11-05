@@ -116,6 +116,7 @@ src_prepare() {
 	fi
 
 	eapply "${WORKDIR}"/${FIXUP_PATCH/.xz}
+	eapply "${FILESDIR}/${P}-pkgconfig.patch"
 
 	cat <<-EOF > "${T}"/40-gentoo.rules
 	# Gentoo specific floppy and usb groups
@@ -257,10 +258,10 @@ multilib_src_install() {
 		local pkgconfiglib_DATA="src/libudev/libudev.pc"
 
 		local targets=(
-			install-rootlibLTLIBRARIES
 			install-includeHEADERS
 			install-rootsbinPROGRAMS
 			install-rootbinPROGRAMS
+			install-rootlibLTLIBRARIES
 			install-rootlibexecPROGRAMS
 			install-udevlibexecPROGRAMS
 			install-dist_udevconfDATA
@@ -297,7 +298,8 @@ multilib_src_install() {
 
 		# install udevadm compatibility symlink
 		dosym {../sbin,bin}/udevadm
-		gen_usr_ldscript libudev.so
+		dosym ../../$(get_libdir)/libudev.so.1 \
+			/usr/$(get_libdir)/libudev.so
 	else
 		local lib_LTLIBRARIES="libudev.la"
 		local pkgconfiglib_DATA="src/libudev/libudev.pc"

@@ -1,0 +1,32 @@
+--- systemd-232/Makefile.am
++++ systemd-232/Makefile.am
+@@ -6053,6 +6053,7 @@
+ 
+ # ------------------------------------------------------------------------------
+ substitutions = \
++       '|rootlibdir=$(rootlibdir)|' \
+        '|rootlibexecdir=$(rootlibexecdir)|' \
+        '|rootbindir=$(rootbindir)|' \
+        '|bindir=$(bindir)|' \
+--- systemd-232/src/libsystemd/libsystemd.pc.in
++++ systemd-232/src/libsystemd/libsystemd.pc.in
+@@ -7,7 +7,7 @@
+ 
+ prefix=@prefix@
+ exec_prefix=@exec_prefix@
+-libdir=@libdir@
++libdir=@rootlibdir@
+ includedir=@includedir@
+ 
+ Name: systemd
+--- systemd-232/src/libudev/libudev.pc.in
++++ systemd-232/src/libudev/libudev.pc.in
+@@ -7,7 +7,7 @@
+ 
+ prefix=@prefix@
+ exec_prefix=@exec_prefix@
+-libdir=@libdir@
++libdir=@rootlibdir@
+ includedir=@includedir@
+ 
+ Name: libudev
