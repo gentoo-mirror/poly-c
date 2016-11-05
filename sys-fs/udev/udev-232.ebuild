@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f2164b45727d1a0553e64e797364b2972160b725 $
+# $Id: db5fafc0d7dcf4837d2e201018cdef379144b906 $
 
 EAPI=6
 
@@ -27,7 +27,7 @@ HOMEPAGE="https://www.freedesktop.org/wiki/Software/systemd"
 
 LICENSE="LGPL-2.1 MIT GPL-2"
 SLOT="0"
-IUSE="acl hwdb +kmod selinux static-libs"
+IUSE="acl hwdb +kmod selinux"
 
 RESTRICT="test"
 
@@ -138,11 +138,6 @@ src_prepare() {
 		check_default_rules
 	fi
 
-	# Restore possibility of running --enable-static wrt #472608
-	sed -i \
-		-e '/--enable-static is not supported by systemd/s:as_fn_error:echo:' \
-		configure || die
-
 	if ! use elibc_glibc; then #443030
 		echo '#define secure_getenv(x) NULL' >> config.h.in
 		sed -i -e '/error.*secure_getenv/s:.*:#define secure_getenv(x) NULL:' src/shared/missing.h || die
@@ -169,7 +164,6 @@ multilib_src_configure() {
 		--sbindir=/sbin
 		--libdir=/usr/$(get_libdir)
 		--docdir=/usr/share/doc/${PF}
-		$(multilib_native_use_enable static-libs static)
 		--disable-nls
 		$(multilib_native_use_enable hwdb)
 		--disable-dbus
@@ -259,11 +253,11 @@ multilib_src_compile() {
 
 multilib_src_install() {
 	if multilib_is_native_abi; then
-		local lib_LTLIBRARIES="libudev.la" \
-			pkgconfiglib_DATA="src/libudev/libudev.pc"
+		local rootlib_LTLIBRARIES="libudev.la"
+		local pkgconfiglib_DATA="src/libudev/libudev.pc"
 
 		local targets=(
-			install-libLTLIBRARIES
+			install-rootlibLTLIBRARIES
 			install-includeHEADERS
 			install-rootsbinPROGRAMS
 			install-rootbinPROGRAMS
@@ -287,7 +281,7 @@ multilib_src_install() {
 			rootlibexec_PROGRAMS=""
 			rootbin_PROGRAMS=""
 			rootsbin_PROGRAMS="udevd udevadm $(usex hwdb 'udev-hwdb' '')"
-			lib_LTLIBRARIES="${lib_LTLIBRARIES}"
+			rootlib_LTLIBRARIES="${rootlib_LTLIBRARIES}"
 			MANPAGES="man/udev.link.5 man/udev.7 man/udevadm.8 man/udevd.8 $(usex hwdb 'man/hwdb.7 man/udev-hwdb.8' '')"
 			MANPAGES_ALIAS="man/systemd-udevd.8 $(usex hwdb 'man/systemd-hwdb.8' '')"
 			pkgconfiglib_DATA="${pkgconfiglib_DATA}"
@@ -303,10 +297,11 @@ multilib_src_install() {
 
 		# install udevadm compatibility symlink
 		dosym {../sbin,bin}/udevadm
+		gen_usr_ldscript libudev.so
 	else
-		local lib_LTLIBRARIES="libudev.la" \
-			pkgconfiglib_DATA="src/libudev/libudev.pc" \
-			include_HEADERS="src/libudev/libudev.h"
+		local lib_LTLIBRARIES="libudev.la"
+		local pkgconfiglib_DATA="src/libudev/libudev.pc"
+		local include_HEADERS="src/libudev/libudev.h"
 
 		local targets=(
 			install-libLTLIBRARIES
