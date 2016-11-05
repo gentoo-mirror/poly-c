@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: db5fafc0d7dcf4837d2e201018cdef379144b906 $
+# $Id: 83e57cb83e7a53c072c1e969ce447e703fc5a71c $
 
 EAPI=6
 
@@ -116,7 +116,6 @@ src_prepare() {
 	fi
 
 	eapply "${WORKDIR}"/${FIXUP_PATCH/.xz}
-	eapply "${FILESDIR}/${P}-pkgconfig.patch"
 
 	cat <<-EOF > "${T}"/40-gentoo.rules
 	# Gentoo specific floppy and usb groups
@@ -129,6 +128,8 @@ src_prepare() {
 
 	# stub out the am_path_libcrypt function
 	echo 'AC_DEFUN([AM_PATH_LIBGCRYPT],[:])' > m4/gcrypt.m4
+
+	eapply "${FILESDIR}/systemd-${PV}-pkgconfig.patch"
 
 	# apply user patches
 	eapply_user
@@ -298,6 +299,9 @@ multilib_src_install() {
 
 		# install udevadm compatibility symlink
 		dosym {../sbin,bin}/udevadm
+
+		# Compatibility symlink for software that looks for libudev.so
+		# without using pkg-config
 		dosym ../../$(get_libdir)/libudev.so.1 \
 			/usr/$(get_libdir)/libudev.so
 	else
