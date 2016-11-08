@@ -38,6 +38,9 @@ src_prepare() {
 	# apply patches
 	default
 
+	# https://bugs.gentoo.org/599142
+	eapply -p4 "${FILESDIR}/${P}-ucol_getKeywordValuesForLocale_null_pointer.patch"
+
 	local variable
 
 	# Disable renaming as it is stupid thing to do
@@ -81,6 +84,7 @@ src_configure() {
 
 multilib_src_configure() {
 	local myeconfargs=(
+		--disable-layoutex
 		--disable-renaming
 		--disable-samples
 		$(use_enable debug)
