@@ -137,7 +137,8 @@ src_unpack() {
 src_prepare() {
 	# Apply our patches
 	eapply "${WORKDIR}"/seamonkey \
-		"${FILESDIR}"/${PN}-2.42.3.0-fix-chatzillaless-locale-building.patch
+		"${FILESDIR}"/${PN}-2.42.3.0-fix-chatzillaless-locale-building.patch \
+		"${FILESDIR}"/${PN}-2.46-harfbuzz_glib_linking.patch
 
 	# browser patches go here
 	pushd "${S}"/mozilla &>/dev/null || die
