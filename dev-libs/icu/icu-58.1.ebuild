@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e5fd0fdac8a392a1b15241d0006afdf806f33696 $
+# $Id: 4dc0099b3c48e5297fc2704056808a98ea7b9999 $
 
 EAPI=6
 
@@ -84,9 +84,9 @@ src_configure() {
 
 multilib_src_configure() {
 	local myeconfargs=(
-		--disable-layoutex
 		--disable-renaming
 		--disable-samples
+		--disable-layoutex
 		$(use_enable debug)
 		$(use_enable static-libs static)
 	)

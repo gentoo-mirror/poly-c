@@ -162,7 +162,6 @@ sys-apps/man 1.6g: Standard commands to read man pages
 sys-apps/openrc 0.21.4: OpenRC manages the services, startup and shutdown of a host
 sys-apps/portage 2.3.1: Portage is the package management and distribution system for Gentoo
 sys-apps/shadow 4.3.0_pre: Utilities to deal with user accounts
-sys-apps/util-linux 2.29_rc1 2.29_rc2: Various useful Linux utilities
 sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family

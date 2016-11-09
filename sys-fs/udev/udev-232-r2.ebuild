@@ -1,10 +1,10 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 83e57cb83e7a53c072c1e969ce447e703fc5a71c $
+# $Id: 5338a7addf2260fe1a9e74628a75af8af3ebe34e $
 
 EAPI=6
 
-inherit autotools bash-completion-r1 linux-info multilib-minimal toolchain-funcs udev user versionator poly-c_ebuilds
+inherit autotools bash-completion-r1 linux-info multilib-minimal toolchain-funcs udev user versionator
 
 if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://anongit.freedesktop.org/systemd/systemd"
@@ -12,7 +12,7 @@ if [[ ${PV} = 9999* ]]; then
 else
 	patchset=
 	FIXUP_PATCH="${PN}-232-revert-systemd-messup.patch.xz"
-	SRC_URI="https://github.com/systemd/systemd/archive/v${MY_PV}.tar.gz -> systemd-${MY_PV}.tar.gz
+	SRC_URI="https://github.com/systemd/systemd/archive/v${PV}.tar.gz -> systemd-${PV}.tar.gz
 		https://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}"
 	if [[ -n "${patchset}" ]]; then
 		SRC_URI+="
@@ -65,7 +65,7 @@ RDEPEND="${COMMON_DEPEND}
 PDEPEND=">=sys-apps/hwids-20140304[udev]
 	>=sys-fs/udev-init-scripts-26"
 
-S=${WORKDIR}/systemd-${MY_PV}
+S=${WORKDIR}/systemd-${PV}
 
 check_default_rules() {
 	# Make sure there are no sudden changes to upstream rules file
@@ -278,15 +278,15 @@ multilib_src_install() {
 			rootsbin_PROGRAMS="udevd udevadm $(usex hwdb 'udev-hwdb' '')"
 			rootlib_LTLIBRARIES="libudev.la"
 			pkgconfiglib_DATA="src/libudev/libudev.pc"
-			MANPAGES="man/udev.link.5 man/udev.7 man/udevadm.8 man/udevd.8 $(usex hwdb 'man/hwdb.7 man/udev-hwdb.8' '')"
-			MANPAGES_ALIAS="man/systemd-udevd.8 $(usex hwdb 'man/systemd-hwdb.8' '')"
+			pkgconfigdata_DATA="src/udev/udev.pc"
 			INSTALL_DIRS='$(sysconfdir)/udev/rules.d
 					$(sysconfdir)/udev/hwdb.d
 					$(sysconfdir)/udev/network'
 			dist_bashcompletion_DATA="shell-completion/bash/udevadm"
-			networkdir=/lib/udev/network
 			dist_network_DATA="network/99-default.link"
-			pkgconfigdata_DATA="src/udev/udev.pc"
+			MANPAGES="man/udev.link.5 man/udev.7 man/udevadm.8 man/udevd.8 $(usex hwdb 'man/hwdb.7 man/udev-hwdb.8' '')"
+			MANPAGES_ALIAS="man/systemd-udevd.8 $(usex hwdb 'man/systemd-hwdb.8' '')"
+			networkdir=/lib/udev/network
 		)
 		emake -j1 DESTDIR="${D}" "${targets[@]}"
 
@@ -315,9 +315,8 @@ multilib_src_install_all() {
 	dodoc TODO
 
 	prune_libtool_files --all
-	rm -f \
-		"${D}"/lib/udev/rules.d/99-systemd.rules \
-		"${D}"/usr/share/doc/${PF}/{LICENSE.*,GVARIANT-SERIALIZATION,DIFFERENCES,PORTING-DBUS1,sd-shutdown.h}
+	rm -f "${D}"/lib/udev/rules.d/99-systemd.rules
+	rm -f "${D}"/usr/share/doc/${PF}/{LICENSE.*,GVARIANT-SERIALIZATION,DIFFERENCES,PORTING-DBUS1,sd-shutdown.h}
 
 	# see src_prepare() for content of 40-gentoo.rules
 	insinto /lib/udev/rules.d

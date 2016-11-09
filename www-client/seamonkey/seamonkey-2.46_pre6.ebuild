@@ -64,7 +64,7 @@ MOZCONFIG_OPTIONAL_WIFI=1
 MOZCONFIG_OPTIONAL_JIT="enabled"
 inherit check-reqs flag-o-matic toolchain-funcs eutils mozconfig-v6.49 multilib pax-utils fdo-mime autotools mozextension nsplugins mozlinguas-v2
 
-PATCHFF="firefox-49.0-patches-02"
+PATCHFF="firefox-49.0-patches-03"
 PATCH="${PN}-2.46-patches-01"
 EMVER="1.9.5"
 
@@ -137,8 +137,7 @@ src_unpack() {
 src_prepare() {
 	# Apply our patches
 	eapply "${WORKDIR}"/seamonkey \
-		"${FILESDIR}"/${PN}-2.42.3.0-fix-chatzillaless-locale-building.patch \
-		"${FILESDIR}"/${PN}-2.46-harfbuzz_glib_linking.patch
+		"${FILESDIR}"/${PN}-2.42.3.0-fix-chatzillaless-locale-building.patch
 
 	# browser patches go here
 	pushd "${S}"/mozilla &>/dev/null || die
