@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4dc0099b3c48e5297fc2704056808a98ea7b9999 $
+# $Id: 449b5d5ef3747e157e544f7a43f4e8b34ff5455b $
 
 EAPI=6
 
@@ -32,14 +32,12 @@ MULTILIB_CHOST_TOOLS=(
 
 PATCHES=(
 	"${FILESDIR}/${PN}-58.1-remove-bashisms.patch"
+	"${FILESDIR}/${PN}-58.1-iterator.patch"
 )
 
 src_prepare() {
 	# apply patches
 	default
-
-	# https://bugs.gentoo.org/599142
-	eapply -p4 "${FILESDIR}/${P}-ucol_getKeywordValuesForLocale_null_pointer.patch"
 
 	local variable
 

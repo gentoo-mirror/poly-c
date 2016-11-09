@@ -1,7 +1,10 @@
-Index: /icu/trunk/source/common/ulist.c
+source: http://bugs.icu-project.org/trac/changeset/39484/
+
+
+Index: icu/common/ulist.c
 ===================================================================
---- /icu/trunk/source/common/ulist.c	(revision 39483)
-+++ /icu/trunk/source/common/ulist.c	(revision 39484)
+--- icu/common/ulist.c	(revision 39483)
++++ icu/common/ulist.c	(revision 39484)
 @@ -30,5 +30,4 @@
      
      int32_t size;
@@ -46,20 +49,20 @@ Index: /icu/trunk/source/common/ulist.c
      return (UList *)(en->context);
  }
 -
-Index: /icu/trunk/source/i18n/ucol_res.cpp
+Index: icu/i18n/ucol_res.cpp
 ===================================================================
---- /icu/trunk/source/i18n/ucol_res.cpp	(revision 39483)
-+++ /icu/trunk/source/i18n/ucol_res.cpp	(revision 39484)
+--- icu/i18n/ucol_res.cpp	(revision 39483)
++++ icu/i18n/ucol_res.cpp	(revision 39484)
 @@ -681,4 +681,5 @@
      }
      memcpy(en, &defaultKeywordValues, sizeof(UEnumeration));
 +    ulist_resetList(sink.values);  // Initialize the iterator.
      en->context = sink.values;
      sink.values = NULL;  // Avoid deletion in the sink destructor.
-Index: /icu/trunk/source/test/intltest/apicoll.cpp
+Index: icu/test/intltest/apicoll.cpp
 ===================================================================
---- /icu/trunk/source/test/intltest/apicoll.cpp	(revision 39483)
-+++ /icu/trunk/source/test/intltest/apicoll.cpp	(revision 39484)
+--- icu/test/intltest/apicoll.cpp	(revision 39483)
++++ icu/test/intltest/apicoll.cpp	(revision 39484)
 @@ -82,14 +82,7 @@
      col = Collator::createInstance(Locale::getEnglish(), success);
      if (U_FAILURE(success)){
@@ -112,10 +115,10 @@ Index: /icu/trunk/source/test/intltest/apicoll.cpp
 +    TESTCASE_AUTO(TestKeywordValues);
      TESTCASE_AUTO(TestOperators);
      TESTCASE_AUTO(TestDuplicate);
-Index: /icu/trunk/source/test/intltest/apicoll.h
+Index: icu/test/intltest/apicoll.h
 ===================================================================
---- /icu/trunk/source/test/intltest/apicoll.h	(revision 39483)
-+++ /icu/trunk/source/test/intltest/apicoll.h	(revision 39484)
+--- icu/test/intltest/apicoll.h	(revision 39483)
++++ icu/test/intltest/apicoll.h	(revision 39484)
 @@ -36,4 +36,5 @@
       */
      void TestProperty(/* char* par */);
