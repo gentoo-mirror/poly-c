@@ -1,0 +1,26 @@
+From 2616381f06173737c6a1603b467df9969bed30f9 Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Wed, 9 Nov 2016 15:47:51 +0100
+Subject: [PATCH 2/3] Added Gentoo parallel patch.
+
+This fixes a parallel build issue.
+---
+ src/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 21bc277..fcab638 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -9,7 +9,7 @@ pinlib_LIBRARIES = libemilia_pin.a
+ 
+ AM_CPPFLAGS = -I../base -I../addon @INCLTDL@
+ 
+-pinball_LDADD = ../src/libemilia_pin.a ../addon/libemilia_addon.a ../base/libemilia_base.a @LIBLTDL@
++pinball_LDADD = libemilia_pin.a ../addon/libemilia_addon.a ../base/libemilia_base.a @LIBLTDL@
+ pinball_LDFLAGS = -export-dynamic
+ 
+ pinball_SOURCES = Pinball.cpp
+-- 
+2.10.2
+

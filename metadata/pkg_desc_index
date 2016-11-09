@@ -56,6 +56,7 @@ dev-qt/qtwebengine 5.6.1 5.7.0: Library for rendering dynamic web content in Qt5
 dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
 dev-vcs/bzr 2.7.0_pre: Bazaar is a next generation distributed version control system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
+games-arcade/emilia-pinball 0.3.3: SDL OpenGL pinball game
 games-emulation/vbam 2.0.0_pre1507: Game Boy, GBC, and GBA emulator forked from VisualBoyAdvance
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.74 2.75 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
