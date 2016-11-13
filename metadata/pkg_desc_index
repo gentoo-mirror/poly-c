@@ -166,7 +166,6 @@ sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.02_beta2-r8 2.02_beta2-r9 2.02_beta3-r1: GNU GRUB boot loader
 sys-devel/binutils 2.27_pre-r1: Tools necessary to build programs
-sys-fs/btrfs-progs 4.8.2_pre: Btrfs filesystem utilities
 sys-fs/lvm2 2.02.167_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
