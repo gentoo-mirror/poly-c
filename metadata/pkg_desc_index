@@ -17,11 +17,13 @@ app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
 app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
 app-misc/mc 4.8.14 4.8.15 4.8.16 4.8.17 4.8.18: GNU Midnight Commander is a text based file manager
+app-misc/razertool 0.0.7-r3: Unofficial tool for controlling the Razer Copperhead mouse
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/calibre 2.71.0_pre: Ebook management application
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
+app-text/poppler 0.49.0_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-games/openscenegraph 3.5.4_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
@@ -76,7 +78,7 @@ kde-base/kactivities 4.13.3-r2: KDE Activity Manager
 kde-base/kdebase-startkde 4.11.22-r1: Startkde script, which starts a complete KDE session, and associated scripts
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
-kde-plasma/plasma-workspace 5.7.4 5.7.5 5.8.2 5.8.3: KDE Plasma workspace
+kde-plasma/plasma-workspace 5.7.4 5.7.5 5.8.2 5.8.3 5.8.3-r1: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
@@ -173,7 +175,7 @@ sys-libs/binutils-libs 2.27_pre-r1: Core binutils libraries (libbfd, libopcodes,
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.29 4.4.30 4.4.31 4.8.5 4.8.6 4.8.7: Shows and sets processor power related values
+sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.30 4.4.31 4.4.32 4.8.6 4.8.7 4.8.8: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 www-client/links 2.13_pre: A fast and lightweight web browser running in both graphics and text mode
