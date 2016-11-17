@@ -35,9 +35,9 @@ dev-libs/atk 2.22.0_pre: GTK+ & GNOME Accessibility Toolkit
 dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/crypto++ 5.6.3_pre: C++ class library of cryptographic schemes
-dev-libs/elfutils 0.167_pre: Libraries/utilities to handle ELF objects (drop in replacement for libelf)
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 55.1 57.1 58.1-r1: International Components for Unicode
+dev-libs/libev 4.23_pre: A high-performance event loop/event model with lots of feature
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libsigc++ 2.10.0_pre: Typesafe callback system for standard C++
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
@@ -78,7 +78,7 @@ kde-base/kactivities 4.13.3-r2: KDE Activity Manager
 kde-base/kdebase-startkde 4.11.22-r1: Startkde script, which starts a complete KDE session, and associated scripts
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
-kde-plasma/plasma-workspace 5.7.4 5.7.5 5.8.2 5.8.3 5.8.3-r1: KDE Plasma workspace
+kde-plasma/plasma-workspace 5.7.4 5.7.5 5.8.2 5.8.3 5.8.3-r1 5.8.3-r2: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
@@ -139,6 +139,7 @@ net-analyzer/ntopng 1.1.6932: Next generation network traffic analyzer
 net-dialup/mingetty 1.08 1.08-r1: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
+net-ftp/lftp 4.7.4_pre: A sophisticated ftp/sftp/http/https/torrent client and file transfer program
 net-im/pidgin 2.11.0: GTK Instant Messenger client
 net-irc/irssi 0.8.20_pre: A modular textUI IRC client with IPv6 support
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
@@ -167,11 +168,9 @@ sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.02_beta2-r8 2.02_beta2-r9 2.02_beta3-r1: GNU GRUB boot loader
-sys-devel/binutils 2.27_pre-r1: Tools necessary to build programs
 sys-fs/lvm2 2.02.167_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
-sys-libs/binutils-libs 2.27_pre-r1: Core binutils libraries (libbfd, libopcodes, libiberty) for external packages
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
