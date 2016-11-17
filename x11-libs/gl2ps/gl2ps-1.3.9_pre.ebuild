@@ -29,6 +29,11 @@ S=${WORKDIR}/${MY_P}-source
 
 PATCHES=( "${FILESDIR}"/${PN}-1.3.8-cmake.patch )
 
+src_prepare() {
+	cmake-utils_src_prepare
+	sed '/^install.*TODO\.txt/d' -i "${S}"/CMakeLists.txt || die
+}
+
 src_configure() {
 	local mycmakeargs=(
 		-DCMAKE_INSTALL_DOCDIR="share/doc/${PF}"
