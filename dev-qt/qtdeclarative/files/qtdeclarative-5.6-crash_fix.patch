@@ -1,0 +1,113 @@
+From ce0800060246e68fffc226b366cb4b0ea2e41ded Mon Sep 17 00:00:00 2001
+From: Erik Verbruggen <erik.verbruggen@theqtcompany.com>
+Date: Thu, 26 May 2016 17:46:24 +0200
+Subject: [PATCH] V4: tighten up various casts to check also check type.
+
+All those type conversions assumed that the content of a Value was
+either the requested type, or 0 (zero, a null pointer). Now, attempting
+to convert e.g. undefined to a string will fail, instead of returning a
+weird address.
+
+Change-Id: I0f567cdcc9cc9728d019f17693f4a6007394a9c6
+Reviewed-by: Lars Knoll <lars.knoll@qt.io>
+---
+ src/qml/jsruntime/qv4persistent_p.h |  4 ++--
+ src/qml/jsruntime/qv4value_p.h      | 13 +++++++++++--
+ src/qml/memory/qv4mm.cpp            |  5 +++--
+ 3 files changed, 16 insertions(+), 6 deletions(-)
+
+diff --git a/src/qml/jsruntime/qv4persistent_p.h b/src/qml/jsruntime/qv4persistent_p.h
+index 5b19264..a0ade20 100644
+--- a/src/qml/jsruntime/qv4persistent_p.h
++++ b/src/qml/jsruntime/qv4persistent_p.h
+@@ -118,7 +118,7 @@ public:
+     Managed *asManaged() const {
+         if (!val)
+             return 0;
+-        return val->as<Managed>();
++        return val->managed();
+     }
+     template<typename T>
+     T *as() const {
+@@ -167,7 +167,7 @@ public:
+     Managed *asManaged() const {
+         if (!val)
+             return 0;
+-        return val->as<Managed>();
++        return val->managed();
+     }
+     template <typename T>
+     T *as() const {
+diff --git a/src/qml/jsruntime/qv4value_p.h b/src/qml/jsruntime/qv4value_p.h
+index a8d9b0f..f99e24c 100644
+--- a/src/qml/jsruntime/qv4value_p.h
++++ b/src/qml/jsruntime/qv4value_p.h
+@@ -286,16 +286,22 @@ struct Q_QML_PRIVATE_EXPORT Value
+     }
+ 
+     Q_ALWAYS_INLINE String *stringValue() const {
++        if (!isString())
++            return nullptr;
+         return m() ? reinterpret_cast<String*>(const_cast<Value *>(this)) : 0;
+     }
+     Q_ALWAYS_INLINE Object *objectValue() const {
++        if (!isObject())
++            return nullptr;
+         return m() ? reinterpret_cast<Object*>(const_cast<Value *>(this)) : 0;
+     }
+     Q_ALWAYS_INLINE Managed *managed() const {
++        if (!isManaged())
++            return nullptr;
+         return m() ? reinterpret_cast<Managed*>(const_cast<Value *>(this)) : 0;
+     }
+     Q_ALWAYS_INLINE Heap::Base *heapObject() const {
+-        return m();
++        return isManaged() ? m() : nullptr;
+     }
+ 
+     Q_ALWAYS_INLINE quint64 &rawValueRef() {
+@@ -357,7 +363,10 @@ struct Q_QML_PRIVATE_EXPORT Value
+     }
+     template <typename T>
+     T *as() {
+-        return const_cast<T *>(const_cast<const Value *>(this)->as<T>());
++        if (isManaged())
++            return const_cast<T *>(const_cast<const Value *>(this)->as<T>());
++        else
++            return nullptr;
+     }
+ 
+     template<typename T> inline T *cast() {
+diff --git a/src/qml/memory/qv4mm.cpp b/src/qml/memory/qv4mm.cpp
+index 4fb2ace..2263580 100644
+--- a/src/qml/memory/qv4mm.cpp
++++ b/src/qml/memory/qv4mm.cpp
+@@ -382,6 +382,7 @@ static void drainMarkStack(QV4::ExecutionEngine *engine, Value *markBase)
+ {
+     while (engine->jsStackTop > markBase) {
+         Heap::Base *h = engine->popForGC();
++        Q_ASSERT(h); // at this point we should only have Heap::Base objects in this area on the stack. If not, weird things might happen.
+         Q_ASSERT (h->vtable()->markObjects);
+         h->vtable()->markObjects(h, engine);
+     }
+@@ -438,7 +439,7 @@ void MemoryManager::sweep(bool lastSweep)
+     for (PersistentValueStorage::Iterator it = m_weakValues->begin(); it != m_weakValues->end(); ++it) {
+         if (!(*it).isManaged())
+             continue;
+-        Managed *m = (*it).as<Managed>();
++        Managed *m = (*it).managed();
+         if (m->markBit())
+             continue;
+         // we need to call detroyObject on qobjectwrappers now, so that they can emit the destroyed
+@@ -676,7 +677,7 @@ void MemoryManager::collectFromJSStack() const
+     Value *v = engine->jsStackBase;
+     Value *top = engine->jsStackTop;
+     while (v < top) {
+-        Managed *m = v->as<Managed>();
++        Managed *m = v->managed();
+         if (m && m->inUse())
+             // Skip pointers to already freed objects, they are bogus as well
+             m->mark(engine);
+-- 
+2.7.4
+
