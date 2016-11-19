@@ -55,7 +55,6 @@ dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtcore 4.8.6-r2 4.8.7-r2: Cross-platform application development framework
 dev-qt/qtdbus 5.6.2 5.7.0: Qt5 module for inter-process communication over the D-Bus protocol
-dev-qt/qtdeclarative 5.6.2 5.7.0: The QML and Quick modules for the Qt5 framework
 dev-qt/qtwebengine 5.6.1 5.7.0: Library for rendering dynamic web content in Qt5 C++ and QML applications
 dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
 dev-vcs/bzr 2.7.0_pre: Bazaar is a next generation distributed version control system
@@ -180,7 +179,7 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.30 4.4.31 4.4.32 4.8.6 4.8.7 4.8.8: Shows and sets processor power related values
+sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.31 4.4.32 4.4.33 4.8.7 4.8.8 4.8.9: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 www-client/links 2.13_pre: A fast and lightweight web browser running in both graphics and text mode
