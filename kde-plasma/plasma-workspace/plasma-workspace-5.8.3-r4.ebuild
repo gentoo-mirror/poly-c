@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c97f621a5c86057571651d8e4698d594c6473325 $
+# $Id: 481701da45bddcd589b02e94a5fbd782a30e2117 $
 
 EAPI=6
 
@@ -67,6 +67,7 @@ COMMON_DEPEND="
 	$(add_qt_dep qtx11extras)
 	$(add_qt_dep qtxml)
 	dev-libs/libdbusmenu-qt[qt5]
+	|| ( >=kde-frameworks/kpackage-5.28.0-r1 <kde-frameworks/kpackage-5.28.0 )
 	media-libs/phonon[qt5]
 	sys-libs/zlib
 	x11-libs/libICE
