@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: b3b04687af98cfd0a3227f5dc1ce9e777ae0212a $
+# $Id: a93dc09f8c297e8cb8b23c69617c4fd1bfa55096 $
 
 EAPI=6
 
@@ -10,7 +10,7 @@ VIRTUALX_REQUIRED="test"
 inherit kde5 multilib qmake-utils
 
 DESCRIPTION="KDE Plasma workspace"
-KEYWORDS="amd64 ~arm ~x86"
+KEYWORDS="amd64 ~arm x86"
 IUSE="+calendar geolocation gps prison qalculate wayland"
 
 # drop kde-frameworks/plasma subslot operator when FRAMEWORKS_MINIMAL >= 5.24.0
@@ -106,9 +106,9 @@ RDEPEND="${COMMON_DEPEND}
 	x11-apps/xset
 	x11-apps/xsetroot
 	!dev-libs/xembed-sni-proxy
-	!kde-base/freespacenotifier:4
+	!kde-plasma/freespacenotifier:4
 	!kde-base/libtaskmanager:4
-	!kde-base/kcminit:4
+	!kde-plasma/kcminit:4
 	!kde-base/kdebase-startkde:4
 	!kde-base/klipper:4
 	!kde-base/krunner:4

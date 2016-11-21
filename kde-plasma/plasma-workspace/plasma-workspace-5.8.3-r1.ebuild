@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 700f60e581355ae604131a77701fd1254bfa508b $
+# $Id: 033053ff12686662a0890c0afdbbb3f67764270e $
 
 EAPI=6
 
@@ -105,9 +105,9 @@ RDEPEND="${COMMON_DEPEND}
 	x11-apps/xset
 	x11-apps/xsetroot
 	!dev-libs/xembed-sni-proxy
-	!kde-base/freespacenotifier:4
+	!kde-plasma/freespacenotifier:4
 	!kde-base/libtaskmanager:4
-	!kde-base/kcminit:4
+	!kde-plasma/kcminit:4
 	!kde-base/kdebase-startkde:4
 	!kde-base/klipper:4
 	!kde-base/krunner:4
