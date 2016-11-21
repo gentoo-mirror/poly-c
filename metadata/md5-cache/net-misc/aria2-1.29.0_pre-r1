@@ -13,4 +13,4 @@ SLOT=0
 SRC_URI=https://github.com/aria2/aria2/releases/download/release-1.29.0/aria2-1.29.0.tar.xz
 _eclass_exported_funcs=pkg_postinst:- pkg_setup:- src_prepare:- src_configure:- src_install:-
 _eclasses_=bash-completion-r1	acf715fa09463f043fbfdc1640f3fb85	multilib	165fc17c38d1b11dac2008280dab6e80	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	1b1da0c45c555989dc5d832b54880783
-_md5_=7d11b3b4faabb489e1317bcdb284cf31
+_md5_=21ee97dabe12d4c02ee1389b62329293

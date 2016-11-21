@@ -83,6 +83,7 @@ src_configure() {
 		$(use_enable metalink)
 		$(use_enable nls)
 		$(use_with sqlite sqlite3)
+		$(use_with ssh libssh2)
 		$(use_with adns libcares)
 		$(use_with libuv)
 		$(use_with jemalloc)
