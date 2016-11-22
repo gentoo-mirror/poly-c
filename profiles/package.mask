@@ -1,7 +1,7 @@
 # masked for testing
-=www-client/seamonkey-2.46_alpha*
-=www-client/seamonkey-2.46_beta*
-=www-client/seamonkey-2.46_pre*
+=www-client/seamonkey-2.47_alpha*
+=www-client/seamonkey-2.47_beta*
+=www-client/seamonkey-2.47_pre*
 
 # segfaults
 app-misc/kenny
@@ -37,9 +37,6 @@ media-radio/liquidsoap
 
 # Masked as these are development versions
 =x11-libs/cairo-1.15*
-
-# only builds with >=ffmpeg-3.1.3
-=media-plugins/gst-plugins-libav-1.9.2_pre
 
 # breaks simgear
 =dev-games/openscenegraph-3.5.4_pre

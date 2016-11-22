@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: a35c795fe710f295cda610d6bf470dd6dba99281 $
+# $Id: fc1bab70e89aee9fc34d0c13804aa4ffbc26eff7 $
 
 EAPI=6
 
@@ -66,9 +66,9 @@ PATCHES=(
 )
 
 src_prepare() {
-	default
+	use bidi || PATCHES+=( "${FILESDIR}"/${PN}-16.4.0-zero-bidi.patch )
 
-	use bidi || eapply "${FILESDIR}"/${PN}-16.4.0-zero-bidi.patch
+	default
 
 	# Upstream Makefile sucks
 	sed -i -e "/^PREFIX=/ s:/usr/local:${EPREFIX}/usr:" \
