@@ -132,6 +132,9 @@ src_prepare() {
 		-e "s|'xdg-mime', 'install'|'xdg-mime', 'install', '--novendor'|" \
 		-e "s|'xdg-desktop-menu', 'install'|'xdg-desktop-menu', 'install', '--novendor'|" \
 		-i "${S}"/src/calibre/linux.py || die 'sed failed'
+
+	# don't create/install uninstaller
+	sed '/self\.create_uninstaller()/d' -i src/calibre/linux.py || die
 }
 
 src_install() {
@@ -190,8 +193,8 @@ src_install() {
 		--staging-root="${ED}usr" \
 		--staging-libdir="${ED}usr/${libdir}" || die
 
-	grep -rlZ "${ED}" "${ED}" | xargs -0 sed -e "s:${D}:/:g" -i ||
-		die "failed to fix harcoded \$D in paths"
+	#grep -rlZ "${ED}" "${ED}" | xargs -0 sed -e "s:${D}:/:g" -i ||
+	#	die "failed to fix harcoded \$D in paths"
 
 	# The menu entries end up here due to '--mode user' being added to
 	# xdg-* options in src_prepare.
