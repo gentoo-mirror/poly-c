@@ -1,5 +1,5 @@
 app-accessibility/speech-dispatcher 0.8.4_pre 0.8.5_pre: Speech synthesis interface
-app-admin/cpulimit 2.3_pre: Limits the CPU usage of a process
+app-admin/cpulimit 2.3_pre 2.4_pre: Limits the CPU usage of a process
 app-admin/littleutils 1.0.36: The littleutils are a collection of small and simple utilities
 app-admin/remotebox 2.0 2.2: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
@@ -150,6 +150,7 @@ net-misc/openssh 7.1_p2-r1 7.2_p2 7.2_p2-r1 7.3_p1-r2: Port of OpenBSD's free SS
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-print/cups 2.2.0_pre 2.2.1_pre: The Common Unix Printing System
+net-print/hplip 3.16.11_pre: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sys-apps/dtc 1.4.2_pre: Open Firmware device tree compiler
 sys-apps/firmware-addon-dell 2.2.9: Additional firmware tools for dell computers
@@ -161,7 +162,6 @@ sys-apps/kbd 1.15.5-r1 2.0.1 2.0.1-r1 2.0.2 2.0.3: Keyboard and console utilitie
 sys-apps/kmod 20 21 22 23: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g: Standard commands to read man pages
-sys-apps/net-tools 1.60_p20161110235919: Standard Linux networking tools
 sys-apps/openrc 0.21.4: OpenRC manages the services, startup and shutdown of a host
 sys-apps/portage 2.3.1: Portage is the package management and distribution system for Gentoo
 sys-apps/shadow 4.3.0_pre: Utilities to deal with user accounts
