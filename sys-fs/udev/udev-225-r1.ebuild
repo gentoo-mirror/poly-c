@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 04c0006a348b1b2ac9296c06a8b9b4f0d66e22a4 $
+# $Id: 053e3b1d501e976947911d070a26ed9ac6649846 $
 
 EAPI=5
 
@@ -19,7 +19,7 @@ else
 			https://dev.gentoo.org/~ssuominen/${P}-patches-${patchset}.tar.xz
 			https://dev.gentoo.org/~williamh/dist/${P}-patches-${patchset}.tar.xz"
 	fi
-	KEYWORDS="alpha amd64 arm arm64 ~hppa ia64 m68k ~mips ppc ~ppc64 s390 sh sparc x86"
+	KEYWORDS="alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86"
 fi
 
 DESCRIPTION="Linux dynamic and persistent device naming support (aka userspace devfs)"
