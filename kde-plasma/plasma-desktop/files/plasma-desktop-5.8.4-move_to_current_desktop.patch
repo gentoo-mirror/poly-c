@@ -1,0 +1,26 @@
+From 039ab6aad9b0c0e51e84bc5104cdfb00d93b3c97 Mon Sep 17 00:00:00 2001
+From: Eike Hein <hein@kde.org>
+Date: Sun, 27 Nov 2016 03:49:39 +0900
+Subject: Fix "Move to Current Desktop" action moving to all desktops instead.
+
+BUG:372873
+---
+ applets/taskmanager/package/contents/ui/ContextMenu.qml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/applets/taskmanager/package/contents/ui/ContextMenu.qml b/applets/taskmanager/package/contents/ui/ContextMenu.qml
+index 1cbf252..8db86b2 100644
+--- a/applets/taskmanager/package/contents/ui/ContextMenu.qml
++++ b/applets/taskmanager/package/contents/ui/ContextMenu.qml
+@@ -217,7 +217,7 @@ PlasmaComponents.ContextMenu {
+                     return menu.visualParent && menu.visualParent.m.VirtualDesktop != virtualDesktopInfo.currentDesktop;
+                 });
+                 menuItem.clicked.connect(function() {
+-                    tasksModel.requestVirtualDesktop(menu.visualParent.modelIndex(), 0);
++                    tasksModel.requestVirtualDesktop(menu.visualParent.modelIndex(), virtualDesktopInfo.currentDesktop);
+                 });
+ 
+                 menuItem = menu.newMenuItem(virtualDesktopsMenu);
+-- 
+cgit v0.11.2
+
