@@ -24,7 +24,7 @@ You can access the portage-overlay directory via:
     http://www.gentoofan.org/gentoo/poly-c_overlay/
 
   RSYNC:
-    rsync://gentoofan.no-ip.org/poly-c
+    rsync://rsync.gentoofan.org/poly-c
       (this is no official rsync-mirror. Do NOT "emerge --sync" to this server!!)
 
   LAYMAN (You have to install app-portage/layman to use this method):

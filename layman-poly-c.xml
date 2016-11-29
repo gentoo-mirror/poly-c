@@ -3,7 +3,7 @@
     <overlay
 	    contact="polynomial-c@gentoo.org"
 	    name="poly-c"
-	    src="rsync://gentoofan.no-ip.org/poly-c"
+	    src="rsync://rsync.gentoofan.org/poly-c"
 	    type="rsync">
 	<link>
 	    http://www.gentoofan.org/gentoo
