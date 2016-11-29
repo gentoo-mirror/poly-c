@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+# $Id: 023719ccb4f9080124bec07a79bf7326e3918a4b $
 
 EAPI=6
 
@@ -110,7 +110,7 @@ RDEPEND="${COMMON_DEPEND}
 		qt4? ( dev-libs/sni-qt )
 	)
 	pulseaudio? ( $(add_plasma_dep plasma-pa ) )
-	qt4? ( kde-base/qguiplatformplugin_kde )
+	qt4? ( kde-plasma/qguiplatformplugin_kde:4 )
 	!kde-apps/kcontrol
 	!kde-apps/kdepasswd:4
 	!kde-apps/knetattach[handbook]
