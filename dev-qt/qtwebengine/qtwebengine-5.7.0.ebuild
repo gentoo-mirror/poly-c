@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: cdebff6bc72ca3e8a9db0ba480db337e64f756cf $
+# $Id: cf5d640aca227505e5e25727cc97acad7ba897ef $
 
 EAPI=6
 PYTHON_COMPAT=( python2_7 )
@@ -75,6 +75,11 @@ PATCHES=(
 )
 
 src_prepare() {
+	if use system-icu; then
+		# ensuire build against system headers - bug #601264
+		rm -r src/3rdparty/chromium/third_party/icu/source || die
+	fi
+
 	qt_use_disable_mod geolocation positioning \
 		src/core/core_common.pri \
 		src/core/core_gyp_generator.pro
