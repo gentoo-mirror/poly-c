@@ -40,6 +40,7 @@ dev-libs/libev 4.23_pre: A high-performance event loop/event model with lots of 
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libsigc++ 2.10.0_pre: Typesafe callback system for standard C++
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
+dev-libs/nss 3.27.2_pre: Mozilla's Network Security Services library that implements PKI support
 dev-libs/openssl 1.0.2j 1.1.0c: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf 3.0.2_pre: Google's Protocol Buffers -- an efficient method of encoding structured data
 dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
