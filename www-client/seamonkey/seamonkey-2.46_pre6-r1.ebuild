@@ -144,8 +144,8 @@ src_prepare() {
 	pushd "${S}"/mozilla &>/dev/null || die
 	rm -f "${WORKDIR}"/firefox/2000-firefox_gentoo_install_dirs.patch
 	eapply "${WORKDIR}"/firefox
-	#eapply "${FILESDIR}"/mozilla-secfix.patch
-	eapply	"${FILESDIR}"/mozilla-svg-crashfix.patch
+	eapply "${FILESDIR}"/mozilla-secfix.patch
+	#eapply	"${FILESDIR}"/mozilla-svg-crashfix.patch
 	popd &>/dev/null || die
 
 	# Shell scripts sometimes contain DOS line endings; bug 391889

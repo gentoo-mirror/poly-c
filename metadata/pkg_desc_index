@@ -18,11 +18,12 @@ app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LD
 app-misc/mc 4.8.14 4.8.15 4.8.16 4.8.17 4.8.18: GNU Midnight Commander is a text based file manager
 app-misc/razertool 0.0.7-r3: Unofficial tool for controlling the Razer Copperhead mouse
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
+app-office/libreoffice 5.2.4.1_pre: A full office productivity suite
+app-office/libreoffice-l10n 5.2.4.1_pre: Translations for the Libreoffice suite
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
-dev-db/sqlite 3.15.2_pre: A SQL Database Engine in a C Library
 dev-games/openscenegraph 3.5.4_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
@@ -40,7 +41,6 @@ dev-libs/libev 4.23_pre: A high-performance event loop/event model with lots of 
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libsigc++ 2.10.0_pre: Typesafe callback system for standard C++
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
-dev-libs/nss 3.27.2_pre: Mozilla's Network Security Services library that implements PKI support
 dev-libs/openssl 1.0.2j 1.1.0c: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf 3.0.2_pre: Google's Protocol Buffers -- an efficient method of encoding structured data
 dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
