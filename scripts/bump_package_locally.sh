@@ -69,6 +69,8 @@ if ${IS_POLYC_EBUILD} ; then
 	ekeyword \~all "${TARGET_EBUILD}" &>/dev/null || exit 10
 
 	sed \
+		-e "/FILESDIR/s@\${PV}@$(qatom -F '%{PV}' ${PACKAGE})@" \
+		-e "/FILESDIR/s@\${P}@\${PN}-$(qatom -F '%{PV}' ${PACKAGE})@" \
 		-e 's@MY_PV@REAL_PV@;s@MY_P@REAL_P@g' \
 		-e 's@${PV}@${MY_PV}@g;s@${P}@${MY_P}@g' \
 		-e 's@${PV/@${MY_PV/@g;s@${P/@${MY_P/@g' \
