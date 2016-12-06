@@ -14,9 +14,6 @@ net-analyzer/ntopng
 dev-libs/credis
 dev-libs/ewahboolarray
 
-# WIP
-=app-misc/gramps-4.2.0_pre
-
 # doesn't build abi_x86_32
 =app-crypt/heimdal-1.6_rc2
 
@@ -26,14 +23,8 @@ media-radio/liquidsoap
 # Not all dependencies available yet.
 >=media-plugins/gst-plugins-meta-1.9.0
 
-# Fails to link
-=dev-libs/crypto++-5.6.3_pre
-
 # Breaks nearly every reverse dependency
 =dev-libs/openssl-1.1*
-
-# breaks creation of new users with useradd (no login shell in /etc/passwd)
-=sys-apps/shadow-4.3.0_pre
 
 # Masked as these are development versions
 =x11-libs/cairo-1.15*
