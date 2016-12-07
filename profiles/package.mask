@@ -37,3 +37,6 @@ media-radio/liquidsoap
 
 # Missing deps
 >=net-libs/ortp-0.27.0_pre
+
+# requires libselinux
+=sys-fs/f2fs-tools-1.7.0_pre
