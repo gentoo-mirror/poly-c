@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 6c3ac7a9c326463e41b3655c080f373e320c2c41 $
+# $Id: 575fe1182da1cf98db82eede45dfb70dbfe8c678 $
 
 EAPI=6
 
@@ -82,7 +82,7 @@ COMMON_DEPEND="
 	calendar? ( $(add_kdeapps_dep kholidays) )
 	geolocation? ( $(add_frameworks_dep networkmanager-qt) )
 	gps? ( sci-geosciences/gpsd )
-	prison? ( media-libs/prison:5 )
+	prison? ( $(add_frameworks_dep prison) )
 	qalculate? ( sci-libs/libqalculate )
 	semantic-desktop? ( $(add_frameworks_dep baloo) )
 	wayland? ( $(add_frameworks_dep kwayland) )
@@ -110,9 +110,9 @@ RDEPEND="${COMMON_DEPEND}
 	!kde-plasma/libtaskmanager:4
 	!kde-plasma/kcminit:4
 	!kde-base/kdebase-startkde:4
-	!kde-base/klipper:4
-	!kde-base/krunner:4
-	!kde-base/ksmserver:4
+	!kde-plasma/klipper:4
+	!kde-plasma/krunner:4
+	!kde-plasma/ksmserver:4
 	!kde-plasma/ksplash:4
 	!kde-base/plasma-workspace:4
 "
