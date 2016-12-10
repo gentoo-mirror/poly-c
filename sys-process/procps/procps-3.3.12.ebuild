@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e0cf72cb4f0377369066801e87a899891e5e3bed $
+# $Id: fea54a1eaa6c0924b169bf92f6e5247193560a5f $
 
 EAPI=5
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/${PN}-ng/${PN}-ng-${PV}.tar.xz
 
 LICENSE="GPL-2"
 SLOT="0/5" # libprocps.so
-KEYWORDS="alpha ~amd64 arm ~arm64 hppa ~ia64 ~m68k ~mips ~ppc ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="alpha amd64 arm ~arm64 hppa ~ia64 ~m68k ~mips ~ppc ppc64 ~s390 ~sh ~sparc x86 ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="+kill +ncurses modern-top nls selinux static-libs systemd test unicode"
 
 RDEPEND="ncurses? ( >=sys-libs/ncurses-5.7-r7:=[unicode?] )
@@ -34,6 +34,9 @@ S="${WORKDIR}/${PN}-ng-${PV}"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.3.8-kill-neg-pid.patch # http://crbug.com/255209
+
+	# Upstream fixes
+	"${FILESDIR}"/${P}-strtod_nol_err.patch
 )
 
 src_prepare() {
