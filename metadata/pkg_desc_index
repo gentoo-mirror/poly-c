@@ -24,6 +24,7 @@ app-office/libreoffice 5.2.4.1_pre: A full office productivity suite
 app-office/libreoffice-l10n 5.2.4.1_pre: Translations for the Libreoffice suite
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
+app-shells/zsh 5.3_pre: UNIX Shell similar to the Korn shell
 app-text/calibre 2.74.0_pre: Ebook management application
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
@@ -38,7 +39,8 @@ dev-libs/atk 2.22.0_pre: GTK+ & GNOME Accessibility Toolkit
 dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
-dev-libs/icu 55.1 57.1 58.1-r1: International Components for Unicode
+dev-libs/icu 55.1 57.1 58.1-r1 58.2_pre: International Components for Unicode
+dev-libs/icu-layoutex 58.2_pre: External layout part of International Components for Unicode
 dev-libs/libev 4.23_pre: A high-performance event loop/event model with lots of feature
 dev-libs/libgcrypt 1.7.4_pre: General purpose crypto library based on the code used in GnuPG
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
