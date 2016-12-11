@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit eutils flag-o-matic toolchain-funcs autotools multilib-minimal poly-c_ebuilds
+inherit eutils flag-o-matic toolchain-funcs autotools multilib-minimal versionator poly-c_ebuilds
 
 DESCRIPTION="International Components for Unicode"
 HOMEPAGE="http://www.icu-project.org/"
@@ -12,7 +12,7 @@ SRC_URI="http://download.icu-project.org/files/icu4c/${MY_PV/_/}/icu4c-${MY_PV//
 
 LICENSE="BSD"
 
-SLOT="0/${MY_PV}"
+SLOT="0/$(get_version_component_range 1-2)"
 
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd"
 IUSE="debug doc examples static-libs"
