@@ -192,4 +192,3 @@ x11-libs/gl2ps 1.3.9_pre: OpenGL to PostScript printing library
 x11-libs/gtk+ 3.22.5_pre: Gimp ToolKit +
 x11-plugins/gkrellm-cpupower 0.1.5: GKrellm plugin for changing CPU frequencies via cpupower
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager
-x11-wm/lumina 0.9.1_pre 1.0.0_pre 1.0.0_p2_pre 1.1.0_pre: Lumina desktop environment
