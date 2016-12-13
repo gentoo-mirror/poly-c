@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 023719ccb4f9080124bec07a79bf7326e3918a4b $
+# $Id: 46e1c4bf396bd33176e2b43ca5dcfb41427e4ba8 $
 
 EAPI=6
 
@@ -115,7 +115,7 @@ RDEPEND="${COMMON_DEPEND}
 	!kde-apps/kdepasswd:4
 	!kde-apps/knetattach[handbook]
 	!kde-base/plasma-desktop:4
-	!kde-base/plasma-workspace:4
+	!kde-plasma/plasma-workspace:4
 	!kde-plasma/solid-actions-kcm:4
 	!kde-plasma/systemsettings:4
 	!kde-misc/kcm_touchpad

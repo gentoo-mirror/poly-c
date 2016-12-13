@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 914572361bba954a186a683a6beda28d54e65573 $
+# $Id: 66b9e919ff918eaf98e82311a04d81a33d9e2425 $
 
 EAPI=6
 
@@ -108,12 +108,12 @@ RDEPEND="${COMMON_DEPEND}
 	!kde-plasma/freespacenotifier:4
 	!kde-plasma/libtaskmanager:4
 	!kde-plasma/kcminit:4
-	!kde-base/kdebase-startkde:4
+	!kde-plasma/kdebase-startkde:4
 	!kde-plasma/klipper:4
 	!kde-plasma/krunner:4
 	!kde-plasma/ksmserver:4
 	!kde-plasma/ksplash:4
-	!kde-base/plasma-workspace:4
+	!kde-plasma/plasma-workspace:4
 "
 DEPEND="${COMMON_DEPEND}
 	x11-proto/xproto

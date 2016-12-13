@@ -4,7 +4,7 @@
 
 EAPI=5
 
-PYTHON_COMPAT=( python3_3 python3_4 )
+PYTHON_COMPAT=( python3_4 python3_5 )
 
 inherit eutils python-r1 poly-c_ebuilds
 
@@ -67,7 +67,7 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install
-	dodoc ANNOUNCE AUTHORS BUGS ChangeLog FAQ NEWS README*
+	dodoc ANNOUNCE AUTHORS BUGS FAQ NEWS README*
 
 	prune_libtool_files --all
 
