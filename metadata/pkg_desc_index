@@ -55,7 +55,7 @@ dev-python/protobuf-python 3.0.2_pre: Google's Protocol Buffers - official Pytho
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtcore 4.8.6-r2 4.8.7-r2: Cross-platform application development framework
-dev-qt/qtdbus 5.6.2 5.7.0: Qt5 module for inter-process communication over the D-Bus protocol
+dev-qt/qtdbus 5.6.2 5.7.1: Qt5 module for inter-process communication over the D-Bus protocol
 dev-qt/qtwebengine 5.6.1: Library for rendering dynamic web content in Qt5 C++ and QML applications
 dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
 dev-vcs/bzr 2.7.0_pre: Bazaar is a next generation distributed version control system
