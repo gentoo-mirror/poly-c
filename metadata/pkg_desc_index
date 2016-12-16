@@ -28,6 +28,7 @@ app-text/calibre 2.74.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre: ISO language, territory, currency, script codes and their translations
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
+app-text/poppler 0.50.0_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-games/openscenegraph 3.5.4_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
@@ -148,6 +149,7 @@ net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/bctoolbox 0.4.0_pre: Utilities library used by Belledonne Communications softwares like belle-sip, mediastreamer2 and linphone.
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
+net-misc/aria2 1.30.0_pre: A download utility with segmented downloading with BitTorrent support
 net-misc/networkmanager 1.2.4 1.4.0-r1 1.4.2: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.25: A discrete-event network simulator for Internet systems.
 net-misc/openssh 7.1_p2-r1 7.2_p2 7.2_p2-r1 7.3_p1-r2: Port of OpenBSD's free SSH release
@@ -179,7 +181,7 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.36 4.4.37 4.4.38 4.8.12 4.8.13 4.8.14: Shows and sets processor power related values
+sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.37 4.4.38 4.4.39 4.8.13 4.8.14 4.8.15: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 www-client/seamonkey 2.40 2.42.4.0_p1 2.46_pre6-r1: Seamonkey Web Browser
