@@ -40,6 +40,7 @@ dev-libs/atk 2.22.0_pre: GTK+ & GNOME Accessibility Toolkit
 dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
+dev-libs/gmp 6.1.2_pre: Library for arithmetic on arbitrary precision integers, rational numbers, and floating-point numbers
 dev-libs/icu 55.1 57.1 58.1-r1 58.2_pre: International Components for Unicode
 dev-libs/icu-layoutex 58.2_pre: External layout part of International Components for Unicode
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
