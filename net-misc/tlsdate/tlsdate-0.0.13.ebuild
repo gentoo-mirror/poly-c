@@ -1,8 +1,8 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5b1f523bbfd3b94b23f57f4b42844a0d3c16a928 $
+# $Id: dab1fa89695c52046efa763e16eab78a5a1373d5 $
 
-EAPI="4"
+EAPI=6
 
 inherit autotools eutils systemd vcs-snapshot user
 
@@ -15,10 +15,15 @@ SLOT="0"
 KEYWORDS="amd64 arm ~arm64 hppa ~ia64 ~m68k ~mips ~s390 ~sh ~sparc x86"
 IUSE="dbus +seccomp static-libs"
 
-DEPEND="dev-libs/openssl
-	dev-libs/libevent
+DEPEND="dev-libs/openssl:0=
+	dev-libs/libevent:=
 	dbus? ( sys-apps/dbus )"
 RDEPEND="${DEPEND}"
+
+PATCHES=(
+	"${FILESDIR}"/${P}-tlsdated-service.patch
+	"${FILESDIR}/${PN}-0.0.13-no-ssl3.patch"
+)
 
 src_prepare() {
 	# Use the system cert store rather than a custom one specific
@@ -27,8 +32,7 @@ src_prepare() {
 		-e 's:/tlsdate/ca-roots/tlsdate-ca-roots.conf:/ssl/certs/ca-certificates.crt:' \
 		Makefile.am || die
 
-	epatch "${FILESDIR}"/${P}-tlsdated-service.patch
-	epatch "${FILESDIR}/${PN}-0.0.13-no-ssl3.patch"
+	default
 
 	eautoreconf
 }

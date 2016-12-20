@@ -1,14 +1,14 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+# $Id: 449b5d5ef3747e157e544f7a43f4e8b34ff5455b $
 
 EAPI=6
 
-inherit eutils flag-o-matic toolchain-funcs autotools multilib-minimal versionator poly-c_ebuilds
+inherit eutils flag-o-matic toolchain-funcs autotools multilib-minimal versionator
 
 DESCRIPTION="International Components for Unicode"
 HOMEPAGE="http://www.icu-project.org/"
-SRC_URI="http://download.icu-project.org/files/icu4c/${MY_PV/_/}/icu4c-${MY_PV//./_}-src.tgz"
+SRC_URI="http://download.icu-project.org/files/icu4c/${PV/_/}/icu4c-${PV//./_}-src.tgz"
 
 LICENSE="BSD"
 
