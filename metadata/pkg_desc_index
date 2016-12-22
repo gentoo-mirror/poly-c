@@ -5,6 +5,7 @@ app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a log
 app-arch/lrzip 0.631_pre: Long Range ZIP or Lzma RZIP optimized for compressing large files
 app-arch/xz-utils 5.2.2: utils for managing LZMA compressed files
 app-backup/fsarchiver 0.6.22_pre: Flexible filesystem archiver for backup and deployment tool
+app-backup/snapper 0.4.1_pre: Command-line program for btrfs and ext4 snapshot management
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
@@ -40,6 +41,7 @@ dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 55.1 57.1 58.1-r1 58.2: International Components for Unicode
 dev-libs/icu-layoutex 58.2_pre: External layout part of International Components for Unicode
+dev-libs/libgpg-error 1.26_pre: Contains error handling functions used by GnuPG software
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libsigc++ 2.10.0_pre: Typesafe callback system for standard C++
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
