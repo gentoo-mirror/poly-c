@@ -16,7 +16,7 @@ IUSE="debug hfs unicode"
 
 RDEPEND="app-arch/bzip2
 	!app-cdr/cdrtools
-	dev-libs/libcdio-paranoia
+	dev-libs/libcdio-paranoia:=
 	sys-apps/file
 	sys-libs/zlib
 	unicode? ( virtual/libiconv )
