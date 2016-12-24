@@ -78,8 +78,6 @@ kde-apps/kdepim-runtime 4.14.11_pre20160211: KDE PIM runtime plugin collection
 kde-apps/kgpg 9999: Frontend for GnuPG, a powerful encryption utility by KDE
 kde-apps/ksnapshot 15.08.3-r1: KDE Screenshot Utility
 kde-apps/print-manager 16.08.1: Manage print jobs and printers in Plasma
-kde-base/kactivities 4.13.3-r2: KDE Activity Manager
-kde-base/kdebase-startkde 4.11.22-r1: Startkde script, which starts a complete KDE session, and associated scripts
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
 kde-plasma/plasma-desktop 5.8.4: KDE Plasma desktop
