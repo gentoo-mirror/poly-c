@@ -96,6 +96,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-1.3-fix-tokenizer.patch"
 	"${FILESDIR}/${P}-fix-desktop-file.patch"
 	"${FILESDIR}/${PN}-1.3.1-libechonest_removal.patch"
+	"${FILESDIR}/${PN}-chromaprint14.patch"
 )
 
 src_prepare() {
