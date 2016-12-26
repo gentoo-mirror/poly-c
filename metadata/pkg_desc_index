@@ -24,7 +24,7 @@ app-office/ledger 3.1: A double-entry accounting system with a command-line repo
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-shells/zsh 5.3.1_pre: UNIX Shell similar to the Korn shell
-app-text/calibre 2.74.0_pre 2.75.0_pre: Ebook management application
+app-text/calibre 2.74.0_pre 2.75.1_pre: Ebook management application
 app-text/iso-codes 3.72_pre: ISO language, territory, currency, script codes and their translations
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
@@ -84,7 +84,6 @@ kde-plasma/plasma-desktop 5.8.4: KDE Plasma desktop
 kde-plasma/plasma-workspace 5.7.4 5.7.5 5.8.2 5.8.3 5.8.3-r1 5.8.3-r4 5.8.4: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
-media-libs/babl 0.1.22_pre: A dynamic, any to any, pixel format conversion library
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
 media-libs/gst-plugins-bad 1.10.1_pre 1.10.2_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.10.1_pre 1.10.2_pre: Basepack of plugins for gstreamer
@@ -121,7 +120,7 @@ media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Soun
 media-sound/alsa-utils 1.0.27.2 1.0.28 1.0.28-r1 1.0.29 1.1.0 1.1.1 1.1.2 1.1.3: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
 media-sound/ameter 0.44_pre: Ameter is an Alsa meter plugin
 media-sound/ardour 5.1_pre: Digital Audio Workstation
-media-sound/clementine 1.2.3 1.3.1-r3: A modern music player and library organizer based on Amarok 1.4 and Qt4
+media-sound/clementine 1.2.3 1.3.1-r4: A modern music player and library organizer based on Amarok 1.4 and Qt4
 media-sound/cutmp3 2.1.2_pre 3.0_pre 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
 media-sound/idjc 0.8.16: Internet DJ Console has two media players, jingles player, crossfader, VoIP and streaming
 media-sound/ossp 1.3.1 1.3.2: OSS Proxy Daemon is Linux userland OSS sound device implementation using CUSE.
@@ -187,7 +186,6 @@ www-client/seamonkey 2.40 2.46: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-libs/cairo 1.15.2_pre 1.15.4_pre: A vector graphics library with cross-device output support
-x11-libs/gl2ps 1.3.9_pre: OpenGL to PostScript printing library
 x11-libs/gtk+ 3.22.5_pre: Gimp ToolKit +
 x11-plugins/gkrellm-cpupower 0.1.5: GKrellm plugin for changing CPU frequencies via cpupower
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager

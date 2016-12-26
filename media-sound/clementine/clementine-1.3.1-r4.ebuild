@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: d0baf97ed2ef296d3092726e9bbda7dd7305b775 $
+# $Id: ed118c2e4001c3e2cf9372c1a0cfd04bb01a6e0a $
 
 EAPI=6
 
@@ -41,7 +41,7 @@ COMMON_DEPEND="
 	>=media-libs/chromaprint-0.6
 	media-libs/gstreamer:1.0
 	media-libs/gst-plugins-base:1.0
-	>=media-libs/libmygpo-qt-1.0.8
+	>=media-libs/libmygpo-qt-1.0.9[qt4(+)]
 	>=media-libs/taglib-1.8[mp4(+)]
 	sys-libs/zlib
 	dev-libs/crypto++

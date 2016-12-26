@@ -58,6 +58,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	>=dev-python/pygments-2.0.1[${PYTHON_USEDEP}]
 	>=dev-python/python-dateutil-1.4.1[${PYTHON_USEDEP}]
 	>=dev-python/PyQt5-5.3.1[gui,svg,webkit,widgets,network,printsupport,${PYTHON_USEDEP}]
+	dev-python/six[${PYTHON_USEDEP}]
 	dev-qt/qtcore:5
 	dev-qt/qtgui:5
 	dev-qt/qtwidgets:5
