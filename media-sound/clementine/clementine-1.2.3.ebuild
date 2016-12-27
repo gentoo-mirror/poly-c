@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: fa386706c0180457bb968e820534d747b6395d5a $
+# $Id: 7c4c9565e9a11f342c9af827857700a9add94781 $
 
 EAPI=5
 
@@ -42,8 +42,8 @@ COMMON_DEPEND="
 	dev-libs/libxml2
 	dev-libs/protobuf:=
 	dev-libs/qjson
-	media-libs/libechonest:=
-	>=media-libs/libmygpo-qt-1.0.7
+	media-libs/libechonest:=[qt4(+)]
+	>=media-libs/libmygpo-qt-1.0.7[qt4(+)]
 	>=media-libs/chromaprint-0.6
 	media-libs/gstreamer:0.10
 	media-libs/gst-plugins-base:0.10
@@ -95,9 +95,9 @@ RESTRICT="test"
 S="${WORKDIR}/C${P:1}"
 
 PATCHES=(
-	"${FILESDIR}"/clementine-1.2.3-namespaces.patch
-	"${FILESDIR}"/${PN}-1.2.3-libraryquery.patch
-	"${FILESDIR}"/${P}-hide_boost_includes_from_q_moc.patch
+	"${FILESDIR}/clementine-1.2.3-namespaces.patch"
+	"${FILESDIR}/${P}-hide_boost_includes_from_q_moc.patch"
+	"${FILESDIR}/${PN}-1.2.3-libraryquery.patch"
 )
 
 src_prepare() {

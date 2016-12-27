@@ -1,3 +1,13 @@
+Remove depend upon media-libs/libechonest and its support from clementine due to echonest service
+was shutdown and this functionality is useless now and results in nothing but a slight security
+and privacy risk.
+See Gentoo bug #573712.
+Based upon patch extracted from upstream git; original patch info:
+commit a8a0f2e4fdd3d4b2fd23b8628a3abc27c290d01d
+Author: John Maguire <john.maguire@gmail.com>
+Date:   Mon Jun 27 14:45:40 2016 +0100
+
+    Remove echonest and update songkick concert fetcher.
 --- Clementine-1.3.1/CMakeLists.txt
 +++ Clementine-1.3.1/CMakeLists.txt
 @@ -365,9 +365,6 @@

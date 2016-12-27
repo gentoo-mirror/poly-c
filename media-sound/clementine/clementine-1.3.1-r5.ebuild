@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ed118c2e4001c3e2cf9372c1a0cfd04bb01a6e0a $
+# $Id: 4d23bb0c41309d354686b40010030adcd76c3e96 $
 
 EAPI=6
 
@@ -92,11 +92,11 @@ MY_P="${P/_}"
 S="${WORKDIR}/${MY_P^}"
 
 PATCHES=(
-	"${FILESDIR}/${PN}-1.2.3-libraryquery.patch"
-	"${FILESDIR}/${PN}-1.3-fix-tokenizer.patch"
-	"${FILESDIR}/${P}-fix-desktop-file.patch"
-	"${FILESDIR}/${PN}-1.3.1-libechonest_removal.patch"
-	"${FILESDIR}/${PN}-chromaprint14.patch"
+	"${FILESDIR}"/${PN}-1.2.3-libraryquery.patch
+	"${FILESDIR}"/${PN}-1.3-fix-tokenizer.patch
+	"${FILESDIR}"/${P}-fix-desktop-file.patch
+	"${FILESDIR}"/${P}-chromaprint14.patch #603662
+	"${FILESDIR}"/${P}-libechonest_removal.patch
 )
 
 src_prepare() {

@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0cebffd491888946b1fa6fbec55d304216b1610d $
+# $Id: 544b71df368dff0a18e6e908fe9ae314c65e8cb0 $
 
 EAPI=5
 
@@ -48,8 +48,8 @@ DEPEND="${CDEPEND}
 	sys-devel/gettext
 "
 RDEPEND="${CDEPEND}
-	$(add_kdebase_dep kdelibs 'udev')
 	app-cdr/cdrdao
+	kde-frameworks/kdelibs:4[udev]
 	media-sound/cdparanoia
 	virtual/cdrtools
 	dvd? (
