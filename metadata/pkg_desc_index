@@ -41,6 +41,7 @@ dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 55.1 57.1 58.1-r1 58.2: International Components for Unicode
 dev-libs/icu-layoutex 58.2_pre: External layout part of International Components for Unicode
+dev-libs/libev 4.24_pre: A high-performance event loop/event model with lots of feature
 dev-libs/libixion 0.12.2_pre: General purpose formula parser & interpreter
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libsigc++ 2.10.0_pre: Typesafe callback system for standard C++
