@@ -20,9 +20,9 @@ IUSE=""
 RDEPEND=">=dev-games/cegui-0.8.0[ogre,opengl]
 	>=dev-games/ogre-1.9.0[freeimage,ois,opengl]
 	dev-games/ois
-	dev-libs/boost
+	dev-libs/boost:=
 	media-libs/freetype:2
-	media-libs/glew
+	media-libs/glew:=
 	>=media-libs/libsfml-2
 	media-libs/libsndfile
 	media-libs/openal
