@@ -4,8 +4,6 @@ app-admin/remotebox 2.0 2.2: Open Source VirtualBox Client with Remote Managemen
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-arch/lrzip 0.631_pre: Long Range ZIP or Lzma RZIP optimized for compressing large files
 app-arch/xz-utils 5.2.2: utils for managing LZMA compressed files
-app-backup/fsarchiver 0.6.22_pre: Flexible filesystem archiver for backup and deployment tool
-app-backup/snapper 0.4.1_pre: Command-line program for btrfs and ext4 snapshot management
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
@@ -80,8 +78,8 @@ kde-apps/ksnapshot 15.08.3-r1: KDE Screenshot Utility
 kde-apps/print-manager 16.08.1: Manage print jobs and printers in Plasma
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
-kde-plasma/plasma-desktop 5.8.4: KDE Plasma desktop
-kde-plasma/plasma-workspace 5.7.4 5.7.5 5.8.2 5.8.3 5.8.3-r1 5.8.3-r4 5.8.4: KDE Plasma workspace
+kde-plasma/plasma-desktop 5.8.4 5.8.5: KDE Plasma desktop
+kde-plasma/plasma-workspace 5.7.4 5.7.5 5.8.2 5.8.3 5.8.3-r1 5.8.3-r4 5.8.4 5.8.5: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
