@@ -33,8 +33,8 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/nasm 2.12.02_pre: groovy little assembler
 dev-lang/ruby 2.1.7: An object-oriented scripting language
+dev-lang/swig 3.0.11_pre: Simplified Wrapper and Interface Generator
 dev-libs/atk 2.22.0_pre: GTK+ & GNOME Accessibility Toolkit
-dev-libs/boost 1.63.0: Boost Libraries for C++
 dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
@@ -128,7 +128,6 @@ media-sound/scdl 1.3.3_beta1: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12: Download files from the public broadcasting services
 media-video/handbrake 1.0.0_pre: Open-source, GPL-licensed, multiplatform, multithreaded video transcoder
-media-video/mkvtoolnix 9.7.1_pre: Tools to create, alter, and inspect Matroska files
 media-video/openshot 2.2.0_pre: Free, open-source, non-linear video editor to create and edit videos and movies
 media-video/simplescreenrecorder 0.3.6 9999: A Simple Screen Recorder
 media-video/smplayer 16.4.0-r2 16.9.0 16.11.0: Great Qt GUI front-end for mplayer/mpv
@@ -154,7 +153,6 @@ net-misc/networkmanager 1.2.4 1.4.0-r1 1.4.2 1.4.4_pre: A set of co-operative to
 net-misc/ns 3.25 3.26: A discrete-event network simulator for Internet systems.
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
-net-print/cups 2.2.0_pre 2.2.1_pre: The Common Unix Printing System
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sys-apps/dtc 1.4.2_pre: Open Firmware device tree compiler
 sys-apps/firmware-addon-dell 2.2.9: Additional firmware tools for dell computers
