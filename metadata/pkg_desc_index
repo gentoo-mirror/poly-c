@@ -3,7 +3,7 @@ app-admin/littleutils 1.0.36: The littleutils are a collection of small and simp
 app-admin/remotebox 2.0 2.2: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-arch/lrzip 0.631_pre: Long Range ZIP or Lzma RZIP optimized for compressing large files
-app-arch/xz-utils 5.2.2: utils for managing LZMA compressed files
+app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE

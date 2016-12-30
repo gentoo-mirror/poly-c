@@ -1,6 +1,6 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4d23bb0c41309d354686b40010030adcd76c3e96 $
+# $Id: 2f47610ecf079e82d081c98872aae40a77d23c77 $
 
 EAPI=6
 
@@ -19,7 +19,7 @@ SRC_URI="https://github.com/clementine-player/Clementine/archive/${PV/_}.tar.gz 
 LICENSE="GPL-3"
 SLOT="0"
 [[ ${PV} == *9999* ]] || \
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="amazoncloud box cdda +dbus debug dropbox googledrive ipod lastfm mms moodbar mtp projectm pulseaudio skydrive test +udisks vkontakte wiimote"
 IUSE+="${LANGS// / linguas_}"
 
