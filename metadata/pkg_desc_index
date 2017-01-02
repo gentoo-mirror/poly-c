@@ -3,6 +3,7 @@ app-admin/littleutils 1.0.36: The littleutils are a collection of small and simp
 app-admin/remotebox 2.0 2.2: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-arch/lrzip 0.631_pre: Long Range ZIP or Lzma RZIP optimized for compressing large files
+app-arch/plzip 1.6_pre1: Parallel lzip compressor
 app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
@@ -26,6 +27,7 @@ app-text/calibre 2.75.1_pre 2.76.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre: ISO language, territory, currency, script codes and their translations
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
+dev-db/lmdb 0.9.19_pre: An ultra-fast, ultra-compact key-value embedded data store
 dev-games/openscenegraph 3.5.4_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
@@ -129,7 +131,7 @@ media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12: Download files from the public broadcasting services
 media-video/handbrake 1.0.0_pre 1.0.1_pre: Open-source, GPL-licensed, multiplatform, multithreaded video transcoder
 media-video/openshot 2.2.0_pre: Free, open-source, non-linear video editor to create and edit videos and movies
-media-video/simplescreenrecorder 0.3.6 9999: A Simple Screen Recorder
+media-video/simplescreenrecorder 0.3.6 0.3.8 9999: A Simple Screen Recorder
 media-video/smplayer 16.4.0-r2 16.9.0 16.11.0: Great Qt GUI front-end for mplayer/mpv
 media-video/tragtor 0.8.45 0.9.2: traGtor is a graphical user interface (GUI) for ffmpeg
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
