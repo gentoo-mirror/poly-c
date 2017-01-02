@@ -26,7 +26,7 @@ else
 fi
 
 SLOT="0"
-IUSE="+asm debug jack mp3 pulseaudio theora vorbis vpx x264 +qt4 qt5"
+IUSE="+asm debug jack mp3 pulseaudio theora vorbis vpx x264 qt4 +qt5"
 REQUIRED_USE="^^ ( qt4 qt5 )"
 
 RDEPEND="
