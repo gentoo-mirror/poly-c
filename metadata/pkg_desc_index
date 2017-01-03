@@ -72,6 +72,7 @@ games-strategy/boswars 9999: Futuristic real-time strategy game
 games-strategy/opendungeons 0.7.1: An open source, real time strategy game based on the Dungeon Keeper series
 games-util/pyrocket 0.6: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
+games-util/x52pro-linux 9999: Saitek X52pro drivers & controller mapping software for Linux
 kde-apps/kde-wallpapers 15.08.3 15.08.3-r2: KDE wallpapers
 kde-apps/kde4-l10n 16.04.2: KDE internationalization package
 kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
