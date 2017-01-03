@@ -1,0 +1,20 @@
+--- x52pro-0.1.2/99-x52pro.rules
++++ x52pro-0.1.2/99-x52pro.rules
+@@ -2,13 +2,13 @@
+ SUBSYSTEM!="usb_device", GOTO="x52pro_rules_end"
+ 
+ #X52 Flight System
+-SYSFS{idVendor}=="06a3", SYSFS{idProduct}=="0255", GROUP="plugdev", MODE="660"
+-SYSFS{idVendor}=="06a3", SYSFS{idProduct}=="075c", GROUP="plugdev", MODE="660"
++ATTRS{idVendor}=="06a3", ATTRS{idProduct}=="0255", GROUP="plugdev", MODE="660"
++ATTRS{idVendor}=="06a3", ATTRS{idProduct}=="075c", GROUP="plugdev", MODE="660"
+ 
+ #X52 Pro Flight System
+-SYSFS{idVendor}=="06a3", SYSFS{idProduct}=="0762", GROUP="plugdev", MODE="660"
++ATTRS{idVendor}=="06a3", ATTRS{idProduct}=="0762", GROUP="plugdev", MODE="660"
+ 
+ #Pro Flight Yoke System
+-SYSFS{idVendor}=="06a3", SYSFS{idProduct}=="0bac", GROUP="plugdev", MODE="660"
++ATTRS{idVendor}=="06a3", ATTRS{idProduct}=="0bac", GROUP="plugdev", MODE="660"
+ 
+ LABEL="x52pro_rules_end"
