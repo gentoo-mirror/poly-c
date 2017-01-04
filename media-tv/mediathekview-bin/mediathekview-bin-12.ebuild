@@ -15,8 +15,8 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-DEPEND=">=virtual/jdk-1.7"
-RDEPEND=">=virtual/jre-1.7
+DEPEND=">=virtual/jdk-1.8"
+RDEPEND=">=virtual/jre-1.8
 	media-video/vlc
 	media-video/flvstreamer
 	>=dev-java/commons-compress-1.12_pre:0

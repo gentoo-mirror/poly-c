@@ -30,7 +30,7 @@ app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portab
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 dev-db/lmdb 0.9.19_pre: An ultra-fast, ultra-compact key-value embedded data store
 dev-db/sqlite 3.16.0_pre 3.16.1_pre: A SQL Database Engine in a C Library
-dev-games/openscenegraph 3.5.4_pre: Open source high performance 3D graphics toolkit
+dev-games/openscenegraph 3.5.4_pre 3.5.5_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
@@ -50,7 +50,6 @@ dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libsigc++ 2.10.0_pre: Typesafe callback system for standard C++
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2j 1.1.0c: full-strength general purpose cryptography library (including SSL and TLS)
-dev-libs/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 dev-perl/Net-DNS 1.40.0_pre: Perl Net::DNS - Perl DNS Resolver Module
 dev-perl/Net-SSLeay 1.780.0_pre: Perl extension for using OpenSSL
 dev-perl/Text-Unidecode 1.270.0_pre: Plain ASCII transliterations of Unicode text
@@ -193,3 +192,4 @@ x11-libs/cairo 1.15.2_pre 1.15.4_pre: A vector graphics library with cross-devic
 x11-libs/gtk+ 3.22.5_pre: Gimp ToolKit +
 x11-plugins/gkrellm-cpupower 0.1.5: GKrellm plugin for changing CPU frequencies via cpupower
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager
+x11-wm/lumina 1.2.0_pre: Lumina desktop environment
