@@ -34,4 +34,7 @@ src_prepare() {
 src_install() {
 	default
 	find "${ED}" \( -name "*.a" -o -name "*.la" \) -delete || die
+
+	insinto /lib/udev/rules.d
+	doins udev/99-saitek-x52pro.rules
 }
