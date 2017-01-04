@@ -1,6 +1,6 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9bd9df90abe66453f103567c6c328485ccdef904 $
+# $Id: 8c7e18bdf84fb763bddfa469967c42408e46d67a $
 
 EAPI=6
 inherit eutils systemd udev
@@ -40,7 +40,8 @@ src_configure() {
 		$(use_enable ncurses alsamixer) \
 		--disable-alsaconf \
 		--with-systemdsystemunitdir="$(systemd_get_systemunitdir)" \
-		--with-udev-rules-dir="$(get_udevdir)"/rules.d \
+		--with-udev-rules-dir="${EPREFIX}$(get_udevdir)"/rules.d \
+		--with-asound-state-dir="${EPREFIX}"/var/lib/alsa \
 		${myconf}
 }
 

@@ -1,14 +1,14 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: b723e5e3de0c76d45436853cf79797c9fa07e0d4 $
+# $Id: 9d30f51160f2152eab3b6240a06676a8bf0f2e63 $
 
 EAPI=6
 WANT_AUTOCONF="2.1"
 
 # This list can be updated with scripts/get_langs.sh from the mozilla overlay
 # note - could not roll langpacks for: ca fi
-MOZ_LANGS=(be cs de en-GB es-AR es-ES fr gl hu it ja lt nb-NO nl pl pt-PT ru sk
-	    sv-SE tr uk zh-CN zh-TW)
+MOZ_LANGS=(be ca cs de en-GB es-AR es-ES fi fr gl hu it ja lt nb-NO nl pl pt-PT
+	    ru sk sv-SE tr uk zh-CN zh-TW)
 
 MOZ_PV="${PV/_pre*}"
 MOZ_PV="${MOZ_PV/_alpha/a}"
