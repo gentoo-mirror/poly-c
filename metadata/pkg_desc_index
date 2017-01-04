@@ -29,7 +29,7 @@ app-text/iso-codes 3.72_pre: ISO language, territory, currency, script codes and
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 dev-db/lmdb 0.9.19_pre: An ultra-fast, ultra-compact key-value embedded data store
-dev-db/sqlite 3.16.0_pre: A SQL Database Engine in a C Library
+dev-db/sqlite 3.16.0_pre 3.16.1_pre: A SQL Database Engine in a C Library
 dev-games/openscenegraph 3.5.4_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
