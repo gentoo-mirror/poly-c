@@ -23,7 +23,6 @@ app-misc/razertool 0.0.7-r3: Unofficial tool for controlling the Razer Copperhea
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/ansifilter 2.4_pre: Handles text files containing ANSI terminal escape codes
 app-text/calibre 2.75.1_pre 2.76.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre: ISO language, territory, currency, script codes and their translations
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
@@ -189,7 +188,7 @@ www-client/seamonkey 2.40 2.46: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-libs/cairo 1.15.2_pre 1.15.4_pre: A vector graphics library with cross-device output support
-x11-libs/gtk+ 3.22.5_pre: Gimp ToolKit +
+x11-libs/gtk+ 3.22.6_pre: Gimp ToolKit +
 x11-plugins/gkrellm-cpupower 0.1.5: GKrellm plugin for changing CPU frequencies via cpupower
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager
 x11-wm/lumina 1.2.0_pre: Lumina desktop environment
