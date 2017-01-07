@@ -28,7 +28,7 @@ app-text/iso-codes 3.72_pre: ISO language, territory, currency, script codes and
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 dev-db/lmdb 0.9.19_pre: An ultra-fast, ultra-compact key-value embedded data store
-dev-db/sqlite 3.16.0_pre 3.16.1_pre: A SQL Database Engine in a C Library
+dev-db/sqlite 3.16.1_pre 3.16.2_pre: A SQL Database Engine in a C Library
 dev-games/openscenegraph 3.5.4_pre 3.5.5_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
@@ -98,6 +98,7 @@ media-libs/libdvdcss 1.3.99 1.4.0: A portable abstraction library for DVD decryp
 media-libs/libmygpo-qt 1.0.9_pre: Qt/C++ library wrapping the gpodder.net webservice
 media-libs/libopenshot 0.1.3_pre: Video editing library used by OpenShot
 media-libs/libshout-idjc 2.4.1: Libshout-idjc is libshout plus some extensions for IDJC
+media-libs/mesa 13.0.3_pre: OpenGL-like graphic library for Linux
 media-plugins/gst-plugins-a52dec 1.10.1_pre 1.10.2_pre: plugin for gstreamer
 media-plugins/gst-plugins-cdparanoia 1.10.1_pre 1.10.2_pre: plugin for gstreamer
 media-plugins/gst-plugins-dts 1.10.1_pre 1.10.2_pre: GStreamer plugin for MPEG-1/2 video encoding
@@ -131,7 +132,7 @@ media-sound/qamix 0.0.7e_pre: QAMix is a configurable mixer for ALSA. Interfaces
 media-sound/scdl 1.3.3_beta1: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12: Download files from the public broadcasting services
-media-video/handbrake 1.0.0_pre 1.0.1_pre: Open-source, GPL-licensed, multiplatform, multithreaded video transcoder
+media-video/handbrake 1.0.1_pre: Open-source, GPL-licensed, multiplatform, multithreaded video transcoder
 media-video/openshot 2.2.0_pre: Free, open-source, non-linear video editor to create and edit videos and movies
 media-video/simplescreenrecorder 0.3.8 9999: A Simple Screen Recorder
 media-video/smplayer 16.4.0-r2 16.9.0 16.11.0: Great Qt GUI front-end for mplayer/mpv
@@ -180,7 +181,7 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.37 4.4.38 4.4.39 4.8.13 4.8.14 4.8.15: Shows and sets processor power related values
+sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.38 4.4.39 4.4.40 4.8.14 4.8.15 4.8.16: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 www-client/firefox 50.1.0: Firefox Web Browser
