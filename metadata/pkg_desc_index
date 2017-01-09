@@ -48,7 +48,6 @@ dev-libs/libixion 0.12.2_pre: General purpose formula parser & interpreter
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/libsigc++ 2.10.0_pre: Typesafe callback system for standard C++
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
-dev-libs/nss 3.28.1_pre: Mozilla's Network Security Services library that implements PKI support
 dev-libs/openssl 1.0.2j 1.1.0c: full-strength general purpose cryptography library (including SSL and TLS)
 dev-perl/Net-DNS 1.40.0_pre: Perl Net::DNS - Perl DNS Resolver Module
 dev-perl/Net-SSLeay 1.780.0_pre: Perl extension for using OpenSSL
@@ -185,8 +184,6 @@ sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.38 4.4.39 4.4.40 4.8.14 4.8.15 4.8.16: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
-www-client/firefox 50.1.0: Firefox Web Browser
-www-client/seamonkey 2.40: Seamonkey Web Browser
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-libs/cairo 1.15.2_pre 1.15.4_pre: A vector graphics library with cross-device output support
