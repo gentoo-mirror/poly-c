@@ -140,7 +140,7 @@ media-video/smplayer 16.4.0-r2 16.9.0 16.11.0: Great Qt GUI front-end for mplaye
 media-video/tragtor 0.8.45 0.9.2: traGtor is a graphical user interface (GUI) for ffmpeg
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
 net-analyzer/arpalert 1.0.3_pre 1.1.3_pre 2.0.11_pre: arpalert is used for monitoring ethernet networks
-net-analyzer/fping 3.14_pre: A utility to ping multiple hosts at once
+net-analyzer/fping 3.15_pre: A utility to ping multiple hosts at once
 net-analyzer/iptstate 2.2.6_pre: IP Tables State displays states being kept by iptables in a top-like format
 net-analyzer/medusa 2.1.1 2.2: A Modular,Parallel,Multiprotocol, Network Login Auditor
 net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
