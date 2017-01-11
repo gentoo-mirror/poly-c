@@ -66,11 +66,11 @@ src_install() {
 	default
 	rm -rf "${D}"/trash
 
-	dodoc doc/nanorc.sample
+	dodoc doc/sample.nanorc
 	docinto html
 	dodoc doc/faq.html
 	insinto /etc
-	newins doc/nanorc.sample nanorc
+	newins doc/sample.nanorc nanorc
 	if ! use minimal ; then
 		# Enable colorization by default.
 		sed -i \

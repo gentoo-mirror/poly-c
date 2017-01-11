@@ -128,6 +128,7 @@ media-sound/clementine 1.2.3 1.3.1-r5: A modern music player and library organiz
 media-sound/cutmp3 2.1.2_pre 3.0_pre 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
 media-sound/idjc 0.8.16: Internet DJ Console has two media players, jingles player, crossfader, VoIP and streaming
 media-sound/ossp 1.3.1 1.3.2: OSS Proxy Daemon is Linux userland OSS sound device implementation using CUSE.
+media-sound/pulseaudio 9.99.1: A networked sound server with an advanced plugin system
 media-sound/qamix 0.0.7e_pre: QAMix is a configurable mixer for ALSA. Interfaces for AC 97 cards and Soundblaster Live are provided.
 media-sound/scdl 1.3.3_beta1: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
