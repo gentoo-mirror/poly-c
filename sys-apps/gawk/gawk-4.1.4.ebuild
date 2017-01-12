@@ -1,6 +1,6 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 7aa9f006e6e86a38b6769d9e7d5d58d903421a2f $
+# $Id: 0d421fbc32a5b6573a7a1664cefef7551f8e9aac $
 
 EAPI="5"
 
@@ -31,6 +31,12 @@ src_prepare() {
 	sed -i \
 		-e '/check-recursive all-recursive: check-for-shared-lib-support/d' \
 		extension/Makefile.in || die
+	# fix standards conflict on Solaris
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		sed -i \
+			-e '/\<_XOPEN_SOURCE\>/s/$/600/' \
+			extension/inplace.c || die
+	fi
 }
 
 src_configure() {
