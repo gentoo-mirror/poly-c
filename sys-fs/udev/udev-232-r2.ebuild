@@ -1,6 +1,6 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5338a7addf2260fe1a9e74628a75af8af3ebe34e $
+# $Id: 16d3cfc6b1e98a70c0c9c0f75ae20f21a923dca4 $
 
 EAPI=6
 
@@ -130,6 +130,7 @@ src_prepare() {
 	echo 'AC_DEFUN([AM_PATH_LIBGCRYPT],[:])' > m4/gcrypt.m4
 
 	eapply "${FILESDIR}/systemd-${PV}-pkgconfig.patch"
+	eapply "${FILESDIR}"/232-0002-build-sys-add-check-for-gperf-lookup-function-signat.patch
 
 	# apply user patches
 	eapply_user
@@ -419,8 +420,7 @@ pkg_postinst() {
 	elog "https://wiki.gentoo.org/wiki/Udev"
 	elog "https://wiki.gentoo.org/wiki/Udev/upgrade"
 
-	
-	# http://cgit.freedesktop.org/systemd/systemd/commit/rules/50-udev-default.rules?id=3dff3e00e044e2d53c76fa842b9a4759d4a50e69
+	# https://cgit.freedesktop.org/systemd/systemd/commit/rules/50-udev-default.rules?id=3dff3e00e044e2d53c76fa842b9a4759d4a50e69
 	# https://bugs.gentoo.org/246847
 	# https://bugs.gentoo.org/514174
 	enewgroup input

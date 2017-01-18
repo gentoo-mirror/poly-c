@@ -1,6 +1,6 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 375113a273206bd7aa9104d8a54f52670b76871a $
+# $Id: c7338d74630570813f0b0828b2de177f35e24052 $
 
 EAPI="5"
 
@@ -11,7 +11,7 @@ if [[ ${PV} == "9999" ]] ; then
 	EGIT_BRANCH="master"
 else
 	SRC_URI="ftp://ftp.kernel.org/pub/linux/utils/kbd/${P}.tar.xz"
-	KEYWORDS="alpha amd64 arm ~arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh ~sparc x86"
+	KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh ~sparc x86"
 fi
 
 inherit autotools eutils ${SCM}

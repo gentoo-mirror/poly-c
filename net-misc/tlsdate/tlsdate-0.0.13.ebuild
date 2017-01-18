@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0fd00b796858df694b060f00ed6e1796b0bb1d4b $
+# $Id: d4b0cd9f16927e7ef4ffb95b0ed466446a83af51 $
 
 EAPI=6
 
@@ -12,7 +12,7 @@ SRC_URI="https://github.com/ioerror/tlsdate/tarball/${P} -> ${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="amd64 arm ~arm64 hppa ~ia64 ~m68k ~mips ~s390 ~sh sparc x86"
+KEYWORDS="amd64 arm ~arm64 hppa ia64 ~m68k ~mips ~s390 ~sh sparc x86"
 IUSE="dbus +seccomp static-libs"
 
 DEPEND="dev-libs/openssl:0=

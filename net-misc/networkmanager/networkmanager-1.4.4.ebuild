@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8e90b83ec634b55de9ebcd31b4796328a1693b2d $
+# $Id: 54a3cb47332ceed4e9d70a27411976178ea13e03 $
 
 EAPI=6
 GNOME_ORG_MODULE="NetworkManager"
@@ -123,7 +123,7 @@ pkg_pretend() {
 
 pkg_setup() {
 	if use connection-sharing; then
-		CONFIG_CHECK="~CONFIG_NF_NAT_IPV4 ~CONFIG_NF_NAT_MASQUERADE_IPV4"
+		CONFIG_CHECK="~NF_NAT_IPV4 ~NF_NAT_MASQUERADE_IPV4"
 		linux-info_pkg_setup
 	fi
 
@@ -192,7 +192,7 @@ multilib_src_configure() {
 			$(multilib_native_enable concheck) \
 			--with-crypto=$(usex nss nss gnutls) \
 			--with-session-tracking=$(multilib_native_usex systemd systemd $(multilib_native_usex consolekit consolekit no)) \
-			--with-suspend-resume=$(multilib_native_usex systemd systemd $(multilib_native_usex consolekit consolekit no)) \
+			--with-suspend-resume=$(multilib_native_usex systemd systemd consolekit) \
 			$(multilib_native_use_with audit libaudit) \
 			$(multilib_native_use_enable bluetooth bluez5-dun) \
 			$(multilib_native_use_enable introspection) \
