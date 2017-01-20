@@ -1,0 +1,17 @@
+--- gst-plugins-bad-1.11.1/configure.ac
++++ gst-plugins-bad-1.11.1/configure.ac
+@@ -359,13 +359,13 @@
+     HAVE_IQA="no"
+   ])
+ 
+-  AM_CONDITIONAL(HAVE_DSSIM, test "x$HAVE_DSSIM" = "xyes")
+   if test "x$HAVE_DSSIM" = "xyes"; then
+     AC_DEFINE(HAVE_DSSIM, 1, [Define if you have dssim library])
+   fi
+   AC_SUBST(DSSIM_LIBS)
+   AC_SUBST(DSSIM_CFLAGS)
+ ])
++AM_CONDITIONAL(HAVE_DSSIM, test "x$HAVE_DSSIM" = "xyes")
+ 
+ dnl Orc
+ ORC_CHECK([0.4.17])

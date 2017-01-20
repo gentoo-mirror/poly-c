@@ -9,7 +9,7 @@ PV="${PV%_*}"
 P="${PN}-${PV}"
 S="${WORKDIR}/${P}"
 
-inherit eutils flag-o-matic gstreamer virtualx
+inherit autotools eutils flag-o-matic gstreamer virtualx
 
 DESCRIPTION="Less plugins for GStreamer"
 HOMEPAGE="https://gstreamer.freedesktop.org/"
@@ -50,8 +50,13 @@ DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.12
 "
 
+PATCHES=(
+	"${FILESDIR}/${P}-configure.patch"
+)
+
 src_prepare() {
 	default
+	eautoreconf
 	# FIXME: tests are slower than upstream expects
 	sed -e 's:/\* tcase_set_timeout.*:tcase_set_timeout (tc_chain, 5 * 60);:' \
 		-i tests/check/elements/audiomixer.c || die
