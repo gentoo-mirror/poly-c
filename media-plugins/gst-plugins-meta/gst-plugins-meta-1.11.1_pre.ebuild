@@ -46,7 +46,8 @@ RDEPEND="
 	modplug? ( >=media-plugins/gst-plugins-modplug-${PV}_pre:1.0[${MULTILIB_USEDEP}] )
 	mp3? (
 		>=media-libs/gst-plugins-ugly-${PV}_pre:1.0[${MULTILIB_USEDEP}]
-		>=media-plugins/gst-plugins-mad-${PV}_pre:1.0[${MULTILIB_USEDEP}] )
+		>=media-plugins/gst-plugins-mpg123-${PV}_pre:1.0[${MULTILIB_USEDEP}]
+		!media-plugins/gst-plugins-mad )
 	mpeg? ( >=media-plugins/gst-plugins-mpeg2dec-${PV}_pre:1.0[${MULTILIB_USEDEP}] )
 	opus? ( >=media-plugins/gst-plugins-opus-${PV}_pre:1.0[${MULTILIB_USEDEP}] )
 	oss? ( >=media-plugins/gst-plugins-oss-${PV}_pre:1.0[${MULTILIB_USEDEP}] )
