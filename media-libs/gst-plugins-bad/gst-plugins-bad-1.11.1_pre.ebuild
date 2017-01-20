@@ -83,6 +83,7 @@ multilib_src_configure() {
 		--disable-examples \
 		--disable-debug \
 		--disable-cocoa \
+		--disable-iqa \
 		--without-player-tests \
 		--disable-wgl \
 		--enable-shm \
