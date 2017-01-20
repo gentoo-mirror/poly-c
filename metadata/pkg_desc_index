@@ -149,7 +149,6 @@ net-analyzer/nagios-plugins 1.4.16-r2 1.4.16-r3: Nagios 1.4.16 plugins - Pack of
 net-analyzer/nikto 2.1.2_pre 2.1.5_pre: Web Server vulnerability scanner.
 net-analyzer/ntopng 1.1.6932: Next generation network traffic analyzer
 net-dialup/mingetty 1.08 1.08-r1: A compact getty program for virtual consoles only
-net-dns/libidn2 0.16_pre: An implementation of the IDNA2008 specifications (RFCs 5890, 5891, 5892, 5893)
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
 net-im/pidgin 2.11.0-r1: GTK Instant Messenger client
@@ -188,7 +187,7 @@ sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C 
 sys-libs/libcap 2.25: POSIX 1003.1e capabilities
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.41 4.4.42 4.4.43 4.8.17 4.9.3 4.9.4: Shows and sets processor power related values
+sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.42 4.4.43 4.4.44 4.9.3 4.9.4 4.9.5: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser

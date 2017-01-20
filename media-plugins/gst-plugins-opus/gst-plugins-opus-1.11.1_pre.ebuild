@@ -9,7 +9,7 @@ PV="${PV%_*}"
 P="${PN}-${PV}"
 S="${WORKDIR}/${P}"
 
-inherit gstreamer
+inherit autotools gstreamer
 
 DESCRIPTION="GStreamer plugin for Opus audio codec support"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd"
@@ -21,3 +21,12 @@ RDEPEND="${COMMON_DEPEND}
 	media-libs/gst-plugins-base:${SLOT}[${MULTILIB_USEDEP},ogg]
 "
 DEPEND="${COMMON_DEPEND}"
+
+PATCHES=(
+	"${FILESDIR}/${P/${PN##*-}/bad}-configure.patch"
+)
+
+src_prepare() {
+	default
+	eautoreconf
+}

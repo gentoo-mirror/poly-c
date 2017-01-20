@@ -9,10 +9,19 @@ PV="${PV%_*}"
 P="${PN}-${PV}"
 S="${WORKDIR}/${P}"
 
-inherit gstreamer
+inherit autotools gstreamer
 
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd"
 IUSE=""
 
 RDEPEND=">=media-libs/faad2-2.7-r3[${MULTILIB_USEDEP}]"
 DEPEND="${RDEPEND}"
+
+PATCHES=(
+	"${FILESDIR}/${P/${PN##*-}/bad}-configure.patch"
+)
+
+src_prepare() {
+	default
+	eautoreconf
+}
