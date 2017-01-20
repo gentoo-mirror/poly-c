@@ -107,7 +107,7 @@ media-plugins/gst-plugins-faad 1.10.2_pre 1.11.1_pre: plugin for gstreamer
 media-plugins/gst-plugins-flac 1.10.2_pre 1.11.1_pre: GStreamer encoder/decoder/tagger for FLAC
 media-plugins/gst-plugins-lame 1.10.2_pre 1.11.1_pre: plugin for gstreamer
 media-plugins/gst-plugins-libav 1.10.2_pre 1.11.1_pre: FFmpeg based gstreamer plugin
-media-plugins/gst-plugins-mad 1.10.2_pre 1.11.1_pre: plugin for gstreamer
+media-plugins/gst-plugins-mad 1.10.2_pre: plugin for gstreamer
 media-plugins/gst-plugins-meta 1.10.2_pre 1.11.1_pre: Meta ebuild to pull in gst plugins for apps
 media-plugins/gst-plugins-mpeg2dec 1.10.2_pre 1.11.1_pre: Libmpeg2 based decoder plug-in for gstreamer
 media-plugins/gst-plugins-mplex 1.10.2_pre 1.11.1_pre: GStreamer plugin for MPEG/DVD/SVCD/VCD video/audio multiplexing
