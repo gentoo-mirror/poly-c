@@ -90,7 +90,6 @@ kde-plasma/plasma-workspace 5.7.4 5.7.5 5.8.2 5.8.3 5.8.3-r1 5.8.3-r4 5.8.4 5.8.
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
-media-libs/freetype 2.7-r2: A high-quality and portable font engine
 media-libs/gd 2.2.4_pre: A graphics library for fast image creation
 media-libs/gst-plugins-bad 1.10.2_pre 1.11.1_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.10.2_pre 1.11.1_pre: Basepack of plugins for gstreamer
@@ -160,7 +159,7 @@ net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/bctoolbox 0.4.0_pre: Utilities library used by Belledonne Communications softwares like belle-sip, mediastreamer2 and linphone.
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
-net-misc/networkmanager 1.4.0-r1 1.4.4: A set of co-operative tools that make networking simple and straightforward
+net-misc/networkmanager 1.4.0-r1 1.4.4 1.4.4-r1: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.25 3.26: A discrete-event network simulator for Internet systems.
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
