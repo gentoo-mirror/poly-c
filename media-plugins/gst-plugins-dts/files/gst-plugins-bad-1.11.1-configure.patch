@@ -1,7 +1,7 @@
-From 98d64617e7628f211a4dde6a0c10dea378c50cbf Mon Sep 17 00:00:00 2001
+From 673150d63e6887503d0c467e13735a24d15ae7aa Mon Sep 17 00:00:00 2001
 From: Lars Wendler <polynomial-c@gentoo.org>
 Date: Fri, 20 Jan 2017 07:45:43 +0100
-Subject: [PATCH] Move AM_CONDITIONAL(HAVE_DSSIM) outside of if the iqa check
+Subject: [PATCH] Move AM_CONDITIONAL(HAVE_DSSIM) outside of the iqa check
  block
 
 or else configure fails with
