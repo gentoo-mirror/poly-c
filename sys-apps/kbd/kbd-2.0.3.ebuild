@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c123ddd35fc07e0dd0aed243fa46cb60dbea8828 $
+# $Id: d9faa4d1737e72e78921b1d5afea4e63f2a59025 $
 
 EAPI="5"
 
@@ -23,7 +23,8 @@ LICENSE="GPL-2"
 SLOT="0"
 IUSE="nls pam test"
 
-RDEPEND="pam? ( virtual/pam )"
+RDEPEND="pam? ( virtual/pam )
+	app-arch/gzip"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	test? ( dev-libs/check )
