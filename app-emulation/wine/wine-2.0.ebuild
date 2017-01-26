@@ -1,13 +1,13 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+# $Id: ef94c9b0db35b96c997b7f09589e6eea03c0d19f $
 
 EAPI=6
 
 PLOCALES="ar bg ca cs da de el en en_US eo es fa fi fr he hi hr hu it ja ko lt ml nb_NO nl or pa pl pt_BR pt_PT rm ro ru sk sl sr_RS@cyrillic sr_RS@latin sv te th tr uk wa zh_CN zh_TW"
 PLOCALE_BACKUP="en"
 
-inherit autotools eutils fdo-mime flag-o-matic gnome2-utils l10n multilib multilib-minimal pax-utils toolchain-funcs virtualx versionator poly-c_ebuilds
+inherit autotools eutils fdo-mime flag-o-matic gnome2-utils l10n multilib multilib-minimal pax-utils toolchain-funcs virtualx versionator
 
 if [[ ${MY_PV} == "9999" ]] ; then
 	EGIT_REPO_URI="git://source.winehq.org/git/wine.git http://source.winehq.org/git/wine.git"
@@ -17,7 +17,7 @@ if [[ ${MY_PV} == "9999" ]] ; then
 	#KEYWORDS=""
 else
 	MAJOR_V=$(get_version_component_range 1-2)
-	SRC_URI="https://dl.winehq.org/wine/source/${MAJOR_V}/${MY_P/_/-}.tar.bz2"
+	SRC_URI="https://dl.winehq.org/wine/source/${MAJOR_V}/${P}.tar.bz2"
 	KEYWORDS="-* ~amd64 ~x86 ~x86-fbsd"
 fi
 
@@ -26,9 +26,9 @@ VANILLA_MV="4.6.4"
 STAGING_GV="2.47"
 STAGING_MV="4.6.4"
 [[ ${MAJOR_V} == "1.8" ]] && SUFFIX="-unofficial"
-STAGING_P="wine-staging-${MY_PV/_/-}"
+STAGING_P="wine-staging-${PV}"
 STAGING_DIR="${WORKDIR}/${STAGING_P}${SUFFIX}"
-D3D9_P="wine-d3d9-${MY_PV/_/-}"
+D3D9_P="wine-d3d9-${PV}"
 D3D9_DIR="${WORKDIR}/wine-d3d9-patches-${D3D9_P}"
 WINE_GENTOO="wine-gentoo-2015.03.07"
 DESCRIPTION="Free implementation of Windows(tm) on Unix"
@@ -50,7 +50,7 @@ SRC_URI="${SRC_URI}
 	)
 	https://dev.gentoo.org/~tetromino/distfiles/${PN}/${WINE_GENTOO}.tar.bz2"
 
-if [[ ${MY_PV} == "9999" ]] ; then
+if [[ ${PV} == "9999" ]] ; then
 	STAGING_EGIT_REPO_URI="git://github.com/wine-compholio/wine-staging.git"
 	D3D9_EGIT_REPO_URI="git://github.com/sarnex/wine-d3d9-patches.git"
 else
@@ -193,7 +193,7 @@ usr/share/applications/wine-notepad.desktop
 usr/share/applications/wine-uninstaller.desktop
 usr/share/applications/wine-winecfg.desktop"
 
-S="${WORKDIR}/${MY_P/_/-}"
+S="${WORKDIR}/${P}"
 
 wine_compiler_check() {
 	[[ ${MERGE_TYPE} = "binary" ]] && return 0
