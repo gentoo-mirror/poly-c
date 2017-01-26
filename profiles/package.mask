@@ -37,3 +37,6 @@ media-radio/liquidsoap
 
 # Missing deps
 >=net-libs/ortp-0.27.0_pre
+
+# build breaks
+=net-misc/networkmanager-1.6.0_pre
