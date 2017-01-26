@@ -28,7 +28,6 @@ app-text/calibre 2.75.1_pre 2.76.0_pre 2.77.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre: ISO language, territory, currency, script codes and their translations
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
-dev-db/lmdb 0.9.19_pre: An ultra-fast, ultra-compact key-value embedded data store
 dev-db/sqlite 3.16.1_pre 3.16.2_pre: A SQL Database Engine in a C Library
 dev-games/openscenegraph 3.5.4_pre 3.5.5_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre 1.9.8_pre 1.10.0_pre: Java-based build tool similar to 'make' that uses XML configuration files
@@ -56,7 +55,6 @@ dev-perl/Net-SSLeay 1.780.0_pre: Perl extension for using OpenSSL
 dev-perl/Text-Unidecode 1.270.0_pre: Plain ASCII transliterations of Unicode text
 dev-python/google-apputils 0.4.0: Collection of utilities for building Python applications
 dev-python/m2crypto 0.23.0: M2Crypto: A Python crypto and SSL toolkit
-dev-python/protobuf-python 3.0.2_pre: Google's Protocol Buffers - official Python bindings
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtcore 4.8.6-r2 4.8.7-r2: Cross-platform application development framework
