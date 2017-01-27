@@ -30,6 +30,7 @@ app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portab
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 dev-db/sqlite 3.16.1_pre 3.16.2_pre: A SQL Database Engine in a C Library
 dev-games/openscenegraph 3.5.4_pre 3.5.5_pre: Open source high performance 3D graphics toolkit
+dev-games/physfs 2.0.3-r2: Abstraction layer for filesystem and archive access
 dev-java/ant-core 1.9.5_pre 1.9.6_pre 1.9.7_pre 1.9.8_pre 1.10.0_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
@@ -188,7 +189,6 @@ sys-libs/libcap 2.25: POSIX 1003.1e capabilities
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/libunwind 1.2_rc99: Portable and efficient API to determine the call-chain of a program
-sys-libs/zlib 1.2.8-r1: Standard (de)compression library
 sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.43 4.4.44 4.4.45 4.9.4 4.9.5 4.9.6: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
