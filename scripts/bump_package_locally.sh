@@ -101,7 +101,7 @@ if grep -Fq FILESDIR ${SOURCE_EBUILD} && [[ "${TARGET_DIR}" != "${SOURCE_EBUILD%
 	retval=0
 	AUX_FILES=( $(\
 		grep -F FILESDIR "${SOURCE_EBUILD}" \
-			| egrep -v '^[[:space:]]*#|\$\(' \
+			| grep -Ev '^[[:space:]]*#|\$\(' \
 			| sed \
 				-e 's@.*FILESDIR["}/]*\([[:alnum:]\${}/\.,_-]\+\).*@\1@' \
 				-e "s@\${PN}@$(qatom -F '%{PN}' ${PACKAGE})@g" \
@@ -113,14 +113,17 @@ if grep -Fq FILESDIR ${SOURCE_EBUILD} && [[ "${TARGET_DIR}" != "${SOURCE_EBUILD%
 		mkdir -p "${target_aux_dir}" || exit 15
 		for file in $(eval echo ${AUX_FILES[@]}) ; do
 			if grep -q "/" <<< ${file} ; then
-				if [[ ! -d "${target_aux_dir}/${file%/*}" ]] ; then
+				if [[ -d "${file}" ]] ; then
+					cp -ar "${SOURCE_EBUILD%/*}/files/${file}" "${target_aux_dir}" \
+						|| { retval=1 ; continue ; }
+				elif [[ ! -d "${target_aux_dir}/${file%/*}" ]] ; then
 					mkdir -p "${target_aux_dir}/${file%/*}" || exit 16
+					cp -a "${SOURCE_EBUILD%/*}/files/${file}" "${target_aux_dir}/${file%/*}" \
+						|| { retval=1 ; continue ; }
 				fi
-				cp "${SOURCE_EBUILD%/*}/files/${file}" "${target_aux_dir}/${file%/*}" \
-					|| { retval=1 ; continue ; }
 			else
-				cp "${SOURCE_EBUILD%/*}/files/${file}" "${target_aux_dir}" \
-					|| { retval=1 ; continue ; } 
+				cp -a "${SOURCE_EBUILD%/*}/files/${file}" "${target_aux_dir}" \
+					|| { retval=1 ; continue ; }
 			fi
 		done
 		[[ ${retval} -ne 0 ]] && exit 17
