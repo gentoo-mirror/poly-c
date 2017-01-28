@@ -8,8 +8,6 @@ app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
-app-crypt/heimdal 1.6_rc2: Kerberos 5 implementation from KTH
-app-crypt/mit-krb5 1.15_pre: MIT Kerberos V
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
 app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
@@ -35,7 +33,7 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/nasm 2.12.02_pre: groovy little assembler
 dev-lang/ruby 2.1.7: An object-oriented scripting language
-dev-lang/swig 3.0.11_pre: Simplified Wrapper and Interface Generator
+dev-lang/swig 3.0.12_pre: Simplified Wrapper and Interface Generator
 dev-libs/atk 2.22.0_pre: GTK+ & GNOME Accessibility Toolkit
 dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
