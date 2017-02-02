@@ -186,7 +186,7 @@ sys-libs/libcap 2.25: POSIX 1003.1e capabilities
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/libunwind 1.2_rc99: Portable and efficient API to determine the call-chain of a program
-sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.43 4.4.44 4.4.45 4.9.4 4.9.5 4.9.6: Shows and sets processor power related values
+sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.44 4.4.45 4.4.46 4.9.5 4.9.6 4.9.7: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
