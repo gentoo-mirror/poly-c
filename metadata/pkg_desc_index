@@ -4,6 +4,7 @@ app-admin/remotebox 2.0 2.2: Open Source VirtualBox Client with Remote Managemen
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-arch/lrzip 0.631_pre: Long Range ZIP or Lzma RZIP optimized for compressing large files
 app-arch/plzip 1.6_pre1: Parallel lzip compressor
+app-arch/snappy 1.1.4_pre: A high-speed compression/decompression library by Google
 app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
@@ -18,8 +19,6 @@ app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LD
 app-misc/mc 4.8.14 4.8.15 4.8.16 4.8.17 4.8.18 4.8.18-r1: GNU Midnight Commander is a text based file manager
 app-misc/razertool 0.0.7-r3: Unofficial tool for controlling the Razer Copperhead mouse
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
-app-office/libreoffice 5.2.5.1_pre: A full office productivity suite
-app-office/libreoffice-l10n 5.2.5.1_pre: Translations for the Libreoffice suite
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/calibre 2.77.0_pre 2.78.0_pre: Ebook management application
@@ -33,7 +32,6 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/nasm 2.12.02_pre: groovy little assembler
 dev-lang/ruby 2.1.7: An object-oriented scripting language
-dev-lang/swig 3.0.12_pre: Simplified Wrapper and Interface Generator
 dev-libs/atk 2.22.0_pre: GTK+ & GNOME Accessibility Toolkit
 dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
@@ -85,6 +83,7 @@ kde-plasma/plasma-desktop 5.8.4 5.8.5 5.8.5-r1: KDE Plasma desktop
 kde-plasma/plasma-workspace 5.8.5 5.9.0: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
+media-libs/babl 0.1.24_pre: A dynamic, any to any, pixel format conversion library
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
 media-libs/gst-plugins-bad 1.10.2_pre 1.10.3_pre 1.11.1_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.10.2_pre 1.10.3_pre 1.11.1_pre: Basepack of plugins for gstreamer
@@ -138,7 +137,6 @@ media-video/tragtor 0.8.45 0.9.2: traGtor is a graphical user interface (GUI) fo
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
 net-analyzer/arpalert 1.0.3_pre 1.1.3_pre 2.0.11_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/fping 3.15_pre: A utility to ping multiple hosts at once
-net-analyzer/iptstate 2.2.6_pre: IP Tables State displays states being kept by iptables in a top-like format
 net-analyzer/medusa 2.1.1 2.2: A Modular,Parallel,Multiprotocol, Network Login Auditor
 net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
 net-analyzer/nagios-plugins 1.4.16-r2 1.4.16-r3: Nagios 1.4.16 plugins - Pack of plugins to make Nagios work properly
