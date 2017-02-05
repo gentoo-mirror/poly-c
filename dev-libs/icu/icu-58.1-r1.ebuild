@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 98327a1856e3e6918980d2051b08ee007e1bac10 $
+# $Id: fc0a00e439983100ebfd95b768f770df601df30c $
 
 EAPI=6
 
@@ -14,7 +14,7 @@ LICENSE="BSD"
 
 SLOT="0/$(get_version_component_range 1-2)"
 
-KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~s390 sh sparc x86 ~amd64-fbsd ~x86-fbsd"
+KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd"
 IUSE="debug doc examples static-libs"
 
 DEPEND="
@@ -34,6 +34,15 @@ PATCHES=(
 	"${FILESDIR}/${PN}-58.1-remove-bashisms.patch"
 	"${FILESDIR}/${PN}-58.1-iterator.patch"
 )
+
+pkg_pretend() {
+	if tc-is-gcc ; then
+		if [[ $(gcc-major-version) == 4 && $(gcc-minor-version) -lt 9 \
+			|| $(gcc-major-version) -lt 4 ]] ; then
+				die "You need at least sys-devel/gcc-4.8.3"
+		fi
+	fi
+}
 
 src_prepare() {
 	# apply patches
@@ -62,6 +71,13 @@ src_prepare() {
 src_configure() {
 	# Use C++14
 	append-cxxflags -std=c++14
+
+	if tc-is-gcc ; then
+		if [[ $(gcc-major-version) == 4 && $(gcc-minor-version) -lt 9 \
+			|| $(gcc-major-version) -lt 4 ]] ; then
+				die "You need at least sys-devel/gcc-4.8.3"
+		fi
+	fi
 
 	if tc-is-cross-compiler; then
 		mkdir "${WORKDIR}"/host || die

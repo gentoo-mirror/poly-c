@@ -1,6 +1,6 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 10cee017f47802e237c4b0752652750a16e26cee $
+# $Id: bb291d118a771be2bd9d8c662cc9405664427023 $
 
 EAPI=6
 
@@ -127,11 +127,7 @@ QA_EXECSTACK="
 	lib*/grub/*/kernel.img
 "
 
-QA_WX_LOAD="
-	lib*/grub/*/kernel.exec
-	lib*/grub/*/kernel.img
-	lib*/grub/*/*.image
-"
+QA_WX_LOAD="lib/grub/*"
 
 QA_PRESTRIPPED="
 	lib.*/grub/.*/kernel.img
