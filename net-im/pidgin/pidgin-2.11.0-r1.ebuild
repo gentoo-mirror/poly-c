@@ -18,7 +18,7 @@ SRC_URI="
 
 LICENSE="GPL-2"
 SLOT="0/2" # libpurple version
-KEYWORDS="alpha amd64 arm hppa ia64 ppc ppc64 sparc x86 ~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="alpha amd64 arm hppa ia64 ppc ppc64 sparc x86 ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="dbus debug doc eds gadu gnutls +gstreamer +gtk idn meanwhile mxit msn myspace"
 IUSE+=" networkmanager nls perl pie silc ssl tcl tk spell gadu sasl ncurses"
 IUSE+=" groupwise prediction python +xscreensaver zephyr zeroconf" # mono"
