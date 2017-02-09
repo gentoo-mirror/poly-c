@@ -40,3 +40,6 @@ media-radio/liquidsoap
 
 # build breaks
 =net-misc/networkmanager-1.6.0_pre
+
+# fails to find xz java package
+=dev-java/ant-core-1.10.1_pre
