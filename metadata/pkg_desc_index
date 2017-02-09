@@ -23,7 +23,6 @@ app-misc/razertool 0.0.7-r3: Unofficial tool for controlling the Razer Copperhea
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/calibre 2.77.0_pre 2.78.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre: ISO language, territory, currency, script codes and their translations
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
@@ -183,7 +182,7 @@ sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C 
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/libunwind 1.2_rc99: Portable and efficient API to determine the call-chain of a program
-sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.45 4.4.46 4.4.47 4.9.6 4.9.7 4.9.8: Shows and sets processor power related values
+sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.46 4.4.47 4.4.48 4.9.7 4.9.8 4.9.9: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
