@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: fc0a00e439983100ebfd95b768f770df601df30c $
+# $Id: a2f78fc1986d4b576f2ebbb24327abca57162a0c $
 
 EAPI=6
 
@@ -39,7 +39,7 @@ pkg_pretend() {
 	if tc-is-gcc ; then
 		if [[ $(gcc-major-version) == 4 && $(gcc-minor-version) -lt 9 \
 			|| $(gcc-major-version) -lt 4 ]] ; then
-				die "You need at least sys-devel/gcc-4.8.3"
+				die "You need at least sys-devel/gcc-4.9"
 		fi
 	fi
 }
@@ -75,7 +75,7 @@ src_configure() {
 	if tc-is-gcc ; then
 		if [[ $(gcc-major-version) == 4 && $(gcc-minor-version) -lt 9 \
 			|| $(gcc-major-version) -lt 4 ]] ; then
-				die "You need at least sys-devel/gcc-4.8.3"
+				die "You need at least sys-devel/gcc-4.9"
 		fi
 	fi
 
