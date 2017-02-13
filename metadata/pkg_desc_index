@@ -1,5 +1,4 @@
 app-accessibility/speech-dispatcher 0.8.5_pre 0.8.6_pre: Speech synthesis interface
-app-admin/keepassxc 2.1.1 9999: KeePassXC - KeePass Cross-platform Community Edition
 app-admin/littleutils 1.0.36 1.0.37: The littleutils are a collection of small and simple utilities
 app-admin/remotebox 2.0 2.2: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
@@ -9,7 +8,6 @@ app-arch/snappy 1.1.4_pre: A high-speed compression/decompression library by Goo
 app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
-app-cdr/k3b 2.0.3-r2: The CD/DVD Kreator for KDE
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
 app-editors/bluefish 2.2.10_pre: A GTK HTML editor for the experienced web designer or programmer
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
@@ -23,7 +21,7 @@ app-misc/razertool 0.0.7-r3: Unofficial tool for controlling the Razer Copperhea
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/calibre 2.79.0_pre: Ebook management application
+app-text/calibre 2.79.0_pre 2.79.1_pre: Ebook management application
 app-text/iso-codes 3.72_pre: ISO language, territory, currency, script codes and their translations
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
@@ -142,6 +140,7 @@ net-analyzer/nagios-plugins 1.4.16-r2 1.4.16-r3: Nagios 1.4.16 plugins - Pack of
 net-analyzer/nikto 2.1.2_pre 2.1.5_pre: Web Server vulnerability scanner.
 net-analyzer/ntopng 1.1.6932: Next generation network traffic analyzer
 net-dialup/mingetty 1.08 1.08-r1: A compact getty program for virtual consoles only
+net-dns/libidn2 0.16: An implementation of the IDNA2008 specifications (RFCs 5890, 5891, 5892, 5893)
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
 net-im/gajim 0.16.7_pre: Jabber client written in PyGTK
@@ -150,6 +149,7 @@ net-irc/irssi 1.0.1_pre: A modular textUI IRC client with IPv6 support
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/bctoolbox 0.4.0_pre: Utilities library used by Belledonne Communications softwares like belle-sip, mediastreamer2 and linphone.
+net-libs/gnutls 3.5.9: A TLS 1.2 and SSL 3.0 implementation for the GNU project
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-misc/networkmanager 1.4.0-r1 1.4.4 1.4.4-r1 1.6.0_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.25 3.26: A discrete-event network simulator for Internet systems.
