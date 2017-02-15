@@ -79,12 +79,10 @@ kde-apps/print-manager 16.08.1: Manage print jobs and printers in Plasma
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
 kde-plasma/plasma-desktop 5.8.4 5.8.5 5.8.5-r1: KDE Plasma desktop
-kde-plasma/plasma-workspace 5.8.5 5.9.1: KDE Plasma workspace
+kde-plasma/plasma-workspace 5.8.5 5.9.2: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
-media-libs/babl 0.1.24_pre: A dynamic, any to any, pixel format conversion library
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
-media-libs/gegl 0.3.12_pre: A graph based image processing framework
 media-libs/gst-plugins-bad 1.10.2_pre 1.10.3_pre 1.11.1_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.10.2_pre 1.10.3_pre 1.11.1_pre: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.10.2_pre 1.10.3_pre 1.11.1_pre: Basepack of plugins for GStreamer
