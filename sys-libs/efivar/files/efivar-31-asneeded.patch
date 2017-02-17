@@ -1,0 +1,10 @@
+--- efivar-31/src/util.h
++++ efivar-31/src/util.h
+@@ -36,6 +36,7 @@
+  * I'm not actually sure when these appear, but they're present in the
+  * version in front of me.
+  */
++#define _GNU_SOURCE
+ #if defined(__GNUC__) && defined(__GNUC_MINOR__)
+ #if __GNUC__ >= 5 && __GNUC_MINOR__ >= 1
+ #define int_add(a, b, c) __builtin_add_overflow(a, b, c)

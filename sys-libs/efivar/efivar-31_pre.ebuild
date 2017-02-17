@@ -18,6 +18,10 @@ RDEPEND="dev-libs/popt"
 DEPEND="${RDEPEND}
 	>=sys-kernel/linux-headers-3.18"
 
+PATCHES=(
+	"${FILESDIR}/${PN}-31-asneeded.patch"
+)
+
 src_prepare() {
 	default
 	sed -i -e s/-Werror// gcc.specs || die
