@@ -168,7 +168,7 @@ sys-apps/portage 2.3.1: Portage is the package management and distribution syste
 sys-apps/usb_modeswitch 2.5.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
-sys-block/gparted 0.28.0_pre: Gnome Partition Editor
+sys-block/gparted 0.28.0_pre 0.28.1_pre: Gnome Partition Editor
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.02_beta2-r9 2.02_beta3-r1 2.02_rc1: GNU GRUB boot loader
 sys-fs/btrfs-progs 4.9.1_pre: Btrfs filesystem utilities
@@ -177,11 +177,10 @@ sys-fs/lvm2 2.02.167_pre 2.02.168_pre: User-land utilities for LVM2 (device-mapp
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/db 5.3.28-r2 6.1.29 6.2.23: Oracle Berkeley DB
-sys-libs/efivar 31_pre: Tools and library to manipulate EFI variables
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.1.30 4.1.31 4.1.32 4.4.47 4.4.48 4.4.49 4.9.8 4.9.9 4.9.10: Shows and sets processor power related values
+sys-power/cpupower 4.1.36 4.1.37 4.1.38 4.4.47 4.4.48 4.4.49 4.9.9 4.9.10 4.9.11: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 www-plugins/nspluginwrapper 1.4.4-r3: Netscape Plugin Wrapper - Load 32bit plugins on 64bit browser
