@@ -177,6 +177,7 @@ multilib_src_configure() {
 	ECONF_SOURCE=${S} \
 	runstatedir="/run" \
 		gnome2_src_configure \
+			--enable-dependency-tracking \
 			--disable-more-warnings \
 			--disable-static \
 			--localstatedir=/var \
@@ -292,9 +293,6 @@ multilib_src_install_all() {
 	# Allow users in plugdev group to modify system connections
 	insinto /usr/share/polkit-1/rules.d/
 	doins "${FILESDIR}/01-org.freedesktop.NetworkManager.settings.modify.system.rules"
-
-	# Remove empty /run/NetworkManager
-	rmdir "${D}"/run/NetworkManager "${D}"/run || die
 }
 
 pkg_postinst() {
