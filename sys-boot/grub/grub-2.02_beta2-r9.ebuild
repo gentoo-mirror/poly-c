@@ -1,6 +1,6 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 3bc7b41de711649166079228b455509bcea4665b $
+# $Id: 88bce98d42e985b373331c18d72944b05d49e271 $
 
 EAPI=5
 
@@ -109,11 +109,11 @@ RDEPEND+="
 DEPEND+=" !!=media-libs/freetype-2.5.4"
 
 STRIP_MASK="*/grub/*/*.{mod,img}"
-RESTRICT="test"
+RESTRICT="!test? ( test )"
 
 QA_EXECSTACK="
-	bin/grub*
-	sbin/grub*
+	bin/grub*-emu*
+	sbin/grub*-emu*
 	lib*/grub/*/*.mod
 	lib*/grub/*/*.module
 	lib*/grub/*/kernel.exec

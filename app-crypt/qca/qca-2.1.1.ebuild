@@ -1,6 +1,6 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 81e1b32b3442cc1dcf28c37c4638e1dadcb10e19 $
+# $Id: c24812af94a838ab128ac1465e58cc6771c2077d $
 
 EAPI=5
 
@@ -23,7 +23,7 @@ RDEPEND="
 	!app-crypt/qca-logger
 	!app-crypt/qca-ossl
 	!app-crypt/qca-pkcs11
-	botan? ( dev-libs/botan )
+	botan? ( dev-libs/botan:0 )
 	gcrypt? ( dev-libs/libgcrypt:= )
 	gpg? ( app-crypt/gnupg )
 	nss? ( dev-libs/nss )

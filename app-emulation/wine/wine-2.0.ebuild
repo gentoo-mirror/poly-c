@@ -9,7 +9,7 @@ PLOCALE_BACKUP="en"
 
 inherit autotools eutils fdo-mime flag-o-matic gnome2-utils l10n multilib multilib-minimal pax-utils toolchain-funcs virtualx versionator
 
-if [[ ${MY_PV} == "9999" ]] ; then
+if [[ ${PV} == "9999" ]] ; then
 	EGIT_REPO_URI="git://source.winehq.org/git/wine.git http://source.winehq.org/git/wine.git"
 	EGIT_BRANCH="master"
 	inherit git-r3

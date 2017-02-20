@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5588e17754851b524f6c4f9b5e579ce6a5b2399c $
+# $Id: d2588046ba8cd53763829e4f402cd41cc9b7bbd2 $
 
 EAPI=6
 
@@ -26,7 +26,7 @@ if [[ ${PV} != 9999 ]]; then
 		SRC_URI="mirror://gnu/${PN}/${P}.tar.xz"
 		S=${WORKDIR}/${P%_*}
 	fi
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="~amd64 ~arm64 ~x86"
 else
 	inherit git-r3
 	EGIT_REPO_URI="git://git.sv.gnu.org/grub.git
@@ -114,7 +114,7 @@ RDEPEND+="
 
 DEPEND+=" !!=media-libs/freetype-2.5.4"
 
-RESTRICT="strip test"
+RESTRICT="strip !test? ( test )"
 
 QA_EXECSTACK="bin/grub*-emu* lib/grub/*"
 QA_WX_LOAD="lib/grub/*"
