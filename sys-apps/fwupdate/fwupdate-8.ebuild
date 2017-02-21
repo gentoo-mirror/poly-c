@@ -16,5 +16,7 @@ IUSE=""
 RDEPEND="${DEPEND}"
 
 src_compile() {
-	emake EFIDIR="gentoo"
+	emake \
+		EFIDIR="gentoo" \
+		GNUEFIDIR="/usr/$(get_libdir)"
 }
