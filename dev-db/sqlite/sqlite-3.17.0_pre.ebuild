@@ -6,7 +6,7 @@ EAPI="6"
 
 inherit autotools eutils flag-o-matic multilib multilib-minimal toolchain-funcs versionator poly-c_ebuilds
 
-SRC_PV="$(printf "%u%02u%02u%02u" $(get_version_components))"
+SRC_PV="$(printf "%u%02u%02u%02u" $(get_version_components ${MY_PV}))"
 DOC_PV="${SRC_PV}"
 # DOC_PV="$(printf "%u%02u%02u00" $(get_version_components $(get_version_component_range 1-3)))"
 
