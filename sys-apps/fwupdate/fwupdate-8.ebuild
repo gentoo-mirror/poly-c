@@ -15,8 +15,17 @@ IUSE=""
 
 RDEPEND="${DEPEND}"
 
-src_compile() {
+do_make() {
 	emake \
 		EFIDIR="gentoo" \
-		GNUEFIDIR="/usr/$(get_libdir)"
+		GNUEFIDIR="/usr/$(get_libdir)" \
+		"${@}"
+}
+
+src_compile() {
+	do_make
+}
+
+src_install() {
+	do_make DESTDIR="${D}" install
 }

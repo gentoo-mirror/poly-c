@@ -179,6 +179,7 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/db 5.3.28-r2 6.1.29 6.2.23: Oracle Berkeley DB
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
+sys-libs/libsmbios 2.3.2: Provide access to (SM)BIOS information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-power/cpupower 4.1.36 4.1.37 4.1.38 4.4.48 4.4.49 4.4.50 4.9.9 4.9.10 4.9.11: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
