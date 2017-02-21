@@ -1,0 +1,13 @@
+DEFINED_PHASES=prepare
+DEPEND=app-arch/libarchive[zlib] >=dev-libs/confuse-2.8 dev-libs/libsodium sys-apps/help2man virtual/pkgconfig !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DESCRIPTION=Configurable embedded Linux firmware update creator and runner
+EAPI=6
+HOMEPAGE=https://github.com/fhunleth/fwup
+KEYWORDS=~amd64 ~x86
+LICENSE=Apache-2.0
+RDEPEND=app-arch/libarchive[zlib] >=dev-libs/confuse-2.8 dev-libs/libsodium
+SLOT=0
+SRC_URI=https://github.com/fhunleth/fwup/archive/v0.13.0.tar.gz -> fwup-0.13.0.tar.gz
+_eclass_exported_funcs=src_prepare:-
+_eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	bash-completion-r1	acf715fa09463f043fbfdc1640f3fb85	libtool	4890219c51da247200223277f993e054	multilib	165fc17c38d1b11dac2008280dab6e80	toolchain-funcs	1b1da0c45c555989dc5d832b54880783
+_md5_=a1bc1aeb064518504dbbe0c3d74d699b
