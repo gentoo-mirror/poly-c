@@ -33,7 +33,7 @@ RDEPEND="
 	)
 	doc? ( dev-util/gtk-doc )
 	elf? ( dev-libs/libelf )
-	uefi? ( >=sys-apps/fwup-0.5 )
+	uefi? ( >=sys-apps/fwupdate-5 )
 "
 DEPEND="
 	${RDEPEND}

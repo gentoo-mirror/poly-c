@@ -26,7 +26,6 @@ app-text/iso-codes 3.72_pre: ISO language, territory, currency, script codes and
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
 app-text/poppler 0.52.0_pre: PDF rendering library based on the xpdf-3.0 code base
-dev-db/sqlite 3.17.0_pre: A SQL Database Engine in a C Library
 dev-games/openscenegraph 3.5.4_pre 3.5.5_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.8_pre 1.10.0_pre 1.10.1_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
