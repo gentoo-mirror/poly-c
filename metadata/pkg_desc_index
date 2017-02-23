@@ -149,6 +149,7 @@ net-libs/bctoolbox 0.4.0_pre: Utilities library used by Belledonne Communication
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-misc/networkmanager 1.4.0-r1 1.4.4 1.4.4-r1 1.6.2_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.25 3.26: A discrete-event network simulator for Internet systems.
+net-misc/putty 0.68: A Free Telnet/SSH Client
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
