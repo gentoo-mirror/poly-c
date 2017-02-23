@@ -10,6 +10,7 @@ app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapsh
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
 app-editors/bluefish 2.2.10_pre: A GTK HTML editor for the experienced web designer or programmer
+app-editors/notepadqq 1.0.1: Notepad++-like editor for Linux
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
 app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
 app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
