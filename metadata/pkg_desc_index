@@ -151,6 +151,7 @@ net-misc/ns 3.25 3.26: A discrete-event network simulator for Internet systems.
 net-misc/putty 0.68: A Free Telnet/SSH Client
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
+net-misc/x2goclient 4.1.0.0_pre: The X2Go Qt client
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sys-apps/busybox 1.26.2: Utilities for rescue and embedded systems
 sys-apps/dtc 1.4.2_pre: Open Firmware device tree compiler
