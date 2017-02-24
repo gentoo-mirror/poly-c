@@ -29,7 +29,7 @@ media-radio/liquidsoap
 # Masked as these are development versions
 =x11-libs/cairo-1.15*
 
-# breaks simgear
+# breaks dev-games/simgear
 >=dev-games/openscenegraph-3.5.4_pre
 
 # Requires java8 and FXCollections
