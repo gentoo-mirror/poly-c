@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 3174ff9b4edab00a3a1829e04f866066e5591df7 $
+# $Id: a6c0ad06f05bf01d98bd428bc57a12bfb4dfec16 $
 
 EAPI=6
 GNOME_ORG_MODULE="NetworkManager"
@@ -28,7 +28,7 @@ REQUIRED_USE="
 	^^ ( nss gnutls )
 "
 
-KEYWORDS="~alpha amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc x86"
+KEYWORDS="~alpha amd64 arm ~arm64 ~ia64 ppc ppc64 ~sparc x86"
 
 # gobject-introspection-0.10.3 is needed due to gnome bug 642300
 # wpa_supplicant-0.7.3-r3 is needed due to bug 359271
