@@ -13,7 +13,7 @@ EGIT_REPO_URI="https://github.com/abperiasamy/rtl8812AU_8821AU_linux.git"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+#KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 MODULE_NAMES="8812au(net/wireless:)"
