@@ -182,7 +182,7 @@ multilib_src_install() {
 			# http://permalink.gmane.org/gmane.linux.bluez.kernel/53115
 			# http://comments.gmane.org/gmane.linux.bluez.kernel/54564
 			# gatttool is only built with readline, bug #530776
-			if use readline; then
+			if use deprecated && use readline; then
 				dobin attrib/gatttool
 				dobin tools/btmgmt
 			fi
