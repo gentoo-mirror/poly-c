@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 941254771837ecb0f76ba520bc51ce0db31a63c9 $
+# $Id: 2ca97f2bf9864520393a4d1ac8da062652f2955d $
 
 inherit eutils versionator toolchain-funcs flag-o-matic gnuconfig multilib systemd unpacker multiprocessing prefix
 

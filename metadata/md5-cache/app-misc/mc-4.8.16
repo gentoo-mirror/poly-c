@@ -12,4 +12,4 @@ SLOT=0
 SRC_URI=http://www.midnight-commander.org/downloads/mc-4.8.16.tar.xz
 _eclass_exported_funcs=pkg_postinst:- src_prepare:- src_configure:- src_compile:- src_install:-
 _eclasses_=autotools	7027963e8e8cc12c91117bdb9225dc26	eutils	3c847a0129fed780bd709b98e426f89c	flag-o-matic	979af9133d4de419fa98992355b07ca4	libtool	48b1b9f6194d2842456514d1184ca72e	multilib	0236be304ee52e7f179ed2f337075515	toolchain-funcs	53b75b4a49cf3e61530a523804045432
-_md5_=2d418060f4a007f9cc12435ec0884b10
+_md5_=1055ec43f4279524978844fe0d28581b

@@ -11,4 +11,4 @@ SLOT=0
 SRC_URI=mirror://sourceforge/smplayer/smplayer-16.9.0.tar.bz2
 _eclass_exported_funcs=src_prepare:- src_configure:- src_compile:- src_install:-
 _eclasses_=eutils	3c847a0129fed780bd709b98e426f89c	l10n	8f52d9ce1814aca2ed1a46920084ea66	multilib	0236be304ee52e7f179ed2f337075515	qmake-utils	ea78a9056543346cdc8cbbd07f16c6fb	toolchain-funcs	53b75b4a49cf3e61530a523804045432
-_md5_=5f9b5c85464770ea80a8c868f8c17291
+_md5_=239a491988ff97089102b2b98f65a30b

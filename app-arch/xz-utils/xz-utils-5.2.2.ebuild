@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4bf1d67889b4f6dcf2909fa83a6287f62bf252aa $
+# $Id: 227aa3cf924f38483e7b221e63f30b8d77242129 $
 
 # Remember: we cannot leverage autotools in this ebuild in order
 #           to avoid circular deps with autotools

@@ -1,6 +1,6 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 26436d563f822f966db52a0a16190d679fc1737a $
+# $Id: 3eb8517202d7c2a16c682332ca264a3d4c2d3a4d $
 
 EAPI=6
 inherit vala autotools
