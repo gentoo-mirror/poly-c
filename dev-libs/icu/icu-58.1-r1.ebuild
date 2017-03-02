@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ec51249281b6b472aba9ea020696023695c7a991 $
+# $Id: 288af0e8b0471220d7684f68f957bf1a761faf18 $
 
 EAPI=6
 
@@ -14,7 +14,7 @@ LICENSE="BSD"
 
 SLOT="0/$(get_version_component_range 1-2)"
 
-KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd"
+KEYWORDS="alpha amd64 arm arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd"
 IUSE="debug doc examples static-libs"
 
 DEPEND="

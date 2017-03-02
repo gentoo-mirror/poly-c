@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: /usr/local/portage/sys-libs/db/db-6.1.29.ebuild $
+# $Id: 75d89109cd91189d130a0a24c2af47508ab1992e $
 
 EAPI=5
 inherit eutils db flag-o-matic java-pkg-opt-2 autotools multilib multilib-minimal versionator toolchain-funcs
