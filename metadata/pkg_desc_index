@@ -2,12 +2,12 @@ app-accessibility/speech-dispatcher 0.8.5_pre 0.8.6_pre: Speech synthesis interf
 app-admin/littleutils 1.0.36 1.0.37: The littleutils are a collection of small and simple utilities
 app-admin/remotebox 2.0 2.2: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
-app-arch/lrzip 0.631_pre: Long Range ZIP or Lzma RZIP optimized for compressing large files
 app-arch/plzip 1.6_pre1: Parallel lzip compressor
 app-arch/snappy 1.1.4_pre: A high-speed compression/decompression library by Google
 app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
+app-crypt/mit-krb5 1.15.1_pre: MIT Kerberos V
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
 app-editors/bluefish 2.2.10_pre: A GTK HTML editor for the experienced web designer or programmer
 app-editors/notepadqq 1.0.1: Notepad++-like editor for Linux
@@ -42,7 +42,6 @@ dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 55.1 57.1 58.1-r1 58.2: International Components for Unicode
-dev-libs/libgcrypt 1.7.6_pre: General purpose crypto library based on the code used in GnuPG
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.1.0e: full-strength general purpose cryptography library (including SSL and TLS)

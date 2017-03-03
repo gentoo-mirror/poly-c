@@ -65,6 +65,15 @@ fi
 
 cp "${SOURCE_EBUILD}" "${TARGET_EBUILD}" || exit 9
 
+# Add git file hash to ebuild if we copy from a git repository
+if [[ "${FULL_PACKAGE}" = "${TARGET_PACKAGE}" ]] && [[ -d "${SOURCE_DIR}/.git" ]] ; then
+	if sed -n '3p' "${TARGET_EBUILD}" | grep -q '^# $Id' ; then
+		sed '3d' -i "${TARGET_EBUILD}" || exit 18
+	fi
+	sed "3i # \$Id: $(git hash-object "${SOURCE_EBUILD}") \$" \
+		-i "${TARGET_EBUILD}" || exit 19
+fi
+
 if ${IS_POLYC_EBUILD} ; then
 	ekeyword \~all "${TARGET_EBUILD}" &>/dev/null || exit 10
 
@@ -83,7 +92,7 @@ if ${IS_POLYC_EBUILD} ; then
 				-i "${TARGET_EBUILD}" || exit 11
 		else
 			sed \
-				-e "/^# \\\$Id\\\$\$/a\\\\ninherit ${ECLASS_ADDON}" \
+				-e "4i \\\\ninherit ${ECLASS_ADDON}" \
 				-i "${TARGET_EBUILD}" || exit 12
 		fi
 	elif grep -q '^inherit.*\\$' "${TARGET_EBUILD}" ; then
