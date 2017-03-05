@@ -123,7 +123,7 @@ media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Soun
 media-sound/alsa-utils 1.0.27.2 1.0.28 1.0.28-r1 1.0.29 1.1.0 1.1.1 1.1.2 1.1.3: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
 media-sound/ameter 0.44_pre: Ameter is an Alsa meter plugin
 media-sound/ardour 5.1_pre: Digital Audio Workstation
-media-sound/clementine 1.2.3 1.3.1-r5: A modern music player and library organizer based on Amarok 1.4 and Qt4
+media-sound/clementine 1.2.3 1.3.1-r5 1.3.1-r6: A modern music player and library organizer based on Amarok 1.4 and Qt4
 media-sound/cutmp3 2.1.2_pre 3.0_pre 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
 media-sound/idjc 0.8.16: Internet DJ Console has two media players, jingles player, crossfader, VoIP and streaming
 media-sound/ossp 1.3.1 1.3.2: OSS Proxy Daemon is Linux userland OSS sound device implementation using CUSE.
@@ -132,7 +132,6 @@ media-sound/qamix 0.0.7e_pre: QAMix is a configurable mixer for ALSA. Interfaces
 media-sound/scdl 1.3.3_beta1: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12: Download files from the public broadcasting services
-media-video/handbrake 1.0.1_pre 1.0.2_pre: Open-source, GPL-licensed, multiplatform, multithreaded video transcoder
 media-video/simplescreenrecorder 0.3.8 9999: A Simple Screen Recorder
 media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.1.0_pre 17.2.0_pre: Great Qt GUI front-end for mplayer/mpv
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
@@ -197,10 +196,7 @@ sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-libs/cairo 1.15.2_pre 1.15.4_pre: A vector graphics library with cross-device output support
-x11-libs/gtk+ 3.22.6_pre 3.22.7_pre 3.22.8_pre 3.22.9_pre: Gimp ToolKit +
-x11-libs/libXi 1.7.9_pre: X.Org Xi library
 x11-libs/pango 1.40.4_pre: Internationalized text layout and rendering library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-plugins/gkrellm-cpupower 0.1.5: GKrellm plugin for changing CPU frequencies via cpupower
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager
-x11-wm/lumina 1.2.0_pre: Lumina desktop environment
