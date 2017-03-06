@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: cefe19044fda7294df7edc18834c1cf9c177eb14 $
+# $Id: 6dfba6c726c4c10761111dd44d4bb57f0299d4ff $
 
 EAPI=6
 
@@ -134,7 +134,6 @@ src_configure() {
 		-DENABLE_GOOGLE_DRIVE="$(usex googledrive)"
 		-DENABLE_LIBPULSE="$(usex pulseaudio)"
 		-DENABLE_SKYDRIVE="$(usex skydrive)"
-		-DENABLE_VK=OFF
 		-DENABLE_SPOTIFY_BLOB=OFF
 		-DENABLE_BREAKPAD=OFF  #< disable crash reporting
 		-DUSE_BUILTIN_TAGLIB=OFF
@@ -144,6 +143,10 @@ src_configure() {
 		# force to find crypto++ see bug #548544
 		-DCRYPTOPP_LIBRARIES="crypto++"
 		-DCRYPTOPP_FOUND=ON
+		# avoid automagically enabling of ccache (bug #611010)
+		-DCCACHE_EXECUTABLE=OFF
+		# see https://github.com/clementine-player/Clementine/issues/5591
+		-DENABLE_VK=OFF
 		)
 
 	use !debug && append-cppflags -DQT_NO_DEBUG_OUTPUT

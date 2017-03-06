@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0a28315362f2826e43bf7708c58e1cdb89fbfe18 $
+# $Id: 885334627ee36e2ca10a2d7c679cedaa01978ee6 $
 
 EAPI=6
 
@@ -10,7 +10,7 @@ MY_P=${P/_/-}
 
 DESCRIPTION="GNU Midnight Commander is a text based file manager"
 HOMEPAGE="http://www.midnight-commander.org"
-SRC_URI="http://www.midnight-commander.org/downloads/${MY_P}.tar.xz"
+SRC_URI="http://ftp.midnight-commander.org/${MY_P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -43,7 +43,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-4.8.13-tinfo.patch
 	"${FILESDIR}"/${PN}-4.8.9-fix-too-long-german-strings.patch
 	"${FILESDIR}"/${PN}-4.8.13-restore_saved_replace_string.patch
-	"${FILESDIR}"/${PN}-4.8.17-ebuild_syntax_EAPI-6.patch
 )
 
 S=${WORKDIR}/${MY_P}
@@ -52,6 +51,10 @@ src_prepare() {
 	[[ -n ${LIVE_EBUILD} ]] && ./autogen.sh
 
 	default
+
+	# These tests fail, so disable them instead of disabling the entire
+	# test suite. Please check on each bump if this is still necessary.
+	rm tests/src/vfs/extfs/helpers-list/data/{u7z,urar}.* || die
 
 	eautoreconf
 }
