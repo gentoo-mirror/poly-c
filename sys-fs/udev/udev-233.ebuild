@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit autotools bash-completion-r1 linux-info multilib-minimal toolchain-funcs udev user versionator poly-c_ebuilds
+inherit autotools bash-completion-r1 linux-info multilib-minimal toolchain-funcs udev user versionator
 
 if [[ ${MY_PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://anongit.freedesktop.org/systemd/systemd"
@@ -12,12 +12,12 @@ if [[ ${MY_PV} = 9999* ]]; then
 else
 	patchset=
 	FIXUP_PATCH="${PN}-233-revert-systemd-messup.patch.xz"
-	SRC_URI="https://github.com/systemd/systemd/archive/v${MY_PV}.tar.gz -> systemd-${MY_PV}.tar.gz
+	SRC_URI="https://github.com/systemd/systemd/archive/v${PV}.tar.gz -> systemd-${PV}.tar.gz
 		https://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}"
 	if [[ -n "${patchset}" ]]; then
 		SRC_URI+="
-			https://dev.gentoo.org/~williamh/dist/${MY_P}-patches-${patchset}.tar.xz
-			https://dev.gentoo.org/~ssuominen/${MY_P}-patches-${patchset}.tar.xz"
+			https://dev.gentoo.org/~williamh/dist/${P}-patches-${patchset}.tar.xz
+			https://dev.gentoo.org/~ssuominen/${P}-patches-${patchset}.tar.xz"
 	fi
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 fi
@@ -65,7 +65,7 @@ RDEPEND="${COMMON_DEPEND}
 PDEPEND=">=sys-apps/hwids-20140304[udev]
 	>=sys-fs/udev-init-scripts-26"
 
-S=${WORKDIR}/systemd-${MY_PV}
+S="${WORKDIR}/systemd-${PV}"
 
 check_default_rules() {
 	# Make sure there are no sudden changes to upstream rules file
@@ -102,7 +102,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	if ! [[ ${MY_PV} = 9999* ]]; then
+	if ! [[ ${PV} = 9999* ]]; then
 		# secure_getenv() disable for non-glibc systems wrt bug #443030
 		if ! [[ $(grep -r secure_getenv * | wc -l) -eq 30 ]]; then
 			eerror "The line count for secure_getenv() failed, see bug #443030"
@@ -134,7 +134,7 @@ src_prepare() {
 
 	eautoreconf
 
-	if ! [[ ${MY_PV} = 9999* ]]; then
+	if ! [[ ${PV} = 9999* ]]; then
 		check_default_rules
 	fi
 

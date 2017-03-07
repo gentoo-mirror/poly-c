@@ -33,6 +33,7 @@ dev-games/openscenegraph 3.5.4_pre 3.5.5_pre: Open source high performance 3D gr
 dev-java/ant-core 1.9.8_pre 1.10.0_pre 1.10.1_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
+dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/fpc 3.0.2_pre: Free Pascal Compiler
 dev-lang/nasm 2.12.02_pre: groovy little assembler
@@ -131,7 +132,7 @@ media-sound/pulseaudio 9.99.1: A networked sound server with an advanced plugin 
 media-sound/qamix 0.0.7e_pre: QAMix is a configurable mixer for ALSA. Interfaces for AC 97 cards and Soundblaster Live are provided.
 media-sound/scdl 1.3.3_beta1: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
-media-tv/mediathekview-bin 11 12: Download files from the public broadcasting services
+media-tv/mediathekview-bin 11 12 13.0.2: Download files from the public broadcasting services
 media-video/simplescreenrecorder 0.3.8 9999: A Simple Screen Recorder
 media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.1.0_pre 17.2.0_pre: Great Qt GUI front-end for mplayer/mpv
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
@@ -182,7 +183,7 @@ sys-boot/grub 2.02_beta2-r9 2.02_beta3-r1 2.02_rc1: GNU GRUB boot loader
 sys-fs/btrfs-progs 4.9.1_pre: Btrfs filesystem utilities
 sys-fs/fuse 3.0.0_rc99: An interface for filesystems implemented in userspace
 sys-fs/lvm2 2.02.167_pre 2.02.168_pre: User-land utilities for LVM2 (device-mapper) software
-sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2 233_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
+sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2 233: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-kernel/linux-firmware 20170225: Linux firmware files
 sys-libs/db 5.3.28-r2 6.1.29 6.2.23: Oracle Berkeley DB
@@ -196,7 +197,6 @@ sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-libs/cairo 1.15.2_pre 1.15.4_pre: A vector graphics library with cross-device output support
-x11-libs/pango 1.40.4_pre: Internationalized text layout and rendering library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-plugins/gkrellm-cpupower 0.1.5: GKrellm plugin for changing CPU frequencies via cpupower
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager
