@@ -1,12 +1,12 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f2855ffa7865b1b0d382869c9fedc2fabfb16539 $
+# $Id: 8662d86b43c09c9ffc541778c21a2ea6d33f5e1f $
 
 EAPI=6
 
 inherit autotools bash-completion-r1 linux-info multilib-minimal toolchain-funcs udev user versionator
 
-if [[ ${MY_PV} = 9999* ]]; then
+if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://anongit.freedesktop.org/systemd/systemd"
 	inherit git-r3
 else
@@ -89,13 +89,13 @@ pkg_setup() {
 		local MINKV=2.6.39
 
 		if kernel_is -lt ${MINKV//./ }; then
-			eerror "Your running kernel is too old to run this version of ${MY_P}"
+			eerror "Your running kernel is too old to run this version of ${P}"
 			eerror "You need to upgrade kernel at least to ${MINKV}"
 		fi
 
 		if kernel_is -lt 3 7; then
 			ewarn "Your running kernel is too old to have firmware loader and"
-			ewarn "this version of ${MY_P} doesn't have userspace firmware loader"
+			ewarn "this version of ${P} doesn't have userspace firmware loader"
 			ewarn "If you need firmware support, you need to upgrade kernel at least to 3.7"
 		fi
 	fi
