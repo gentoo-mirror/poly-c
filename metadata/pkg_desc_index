@@ -7,7 +7,6 @@ app-arch/snappy 1.1.4_pre: A high-speed compression/decompression library by Goo
 app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
-app-crypt/mit-krb5 1.15.1_pre: MIT Kerberos V
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
 app-editors/bluefish 2.2.10_pre: A GTK HTML editor for the experienced web designer or programmer
 app-editors/notepadqq 1.0.1: Notepad++-like editor for Linux
@@ -20,7 +19,6 @@ app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LD
 app-misc/mc 4.8.15 4.8.18-r1 4.8.19: GNU Midnight Commander is a text based file manager
 app-misc/razertool 0.0.7-r3: Unofficial tool for controlling the Razer Copperhead mouse
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
-app-office/libreoffice 5.3.1.1_pre: A full office productivity suite
 app-office/libreoffice-l10n 5.3.1.1_pre: Translations for the Libreoffice suite
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
@@ -147,6 +145,7 @@ net-analyzer/ntopng 1.1.6932: Next generation network traffic analyzer
 net-dialup/mingetty 1.08 1.08-r1: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
+net-ftp/lftp 4.7.7_pre: A sophisticated ftp/sftp/http/https/torrent client and file transfer program
 net-im/gajim 0.16.7_pre: Jabber client written in PyGTK
 net-im/pidgin 2.11.0-r1: GTK Instant Messenger client
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
@@ -181,7 +180,7 @@ sys-block/gparted 0.28.0_pre 0.28.1_pre: Gnome Partition Editor
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/gnu-efi 3.0.5_pre: Library for build EFI Applications
 sys-boot/grub 2.02_beta2-r9 2.02_beta3-r1 2.02_rc1: GNU GRUB boot loader
-sys-fs/btrfs-progs 4.9.1_pre: Btrfs filesystem utilities
+sys-fs/btrfs-progs 4.9.1_pre 4.10_pre: Btrfs filesystem utilities
 sys-fs/fuse 3.0.0_rc99: An interface for filesystems implemented in userspace
 sys-fs/lvm2 2.02.167_pre 2.02.168_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2 233: Linux dynamic and persistent device naming support (aka userspace devfs)
