@@ -179,6 +179,7 @@ sys-block/gparted 0.28.0_pre 0.28.1_pre: Gnome Partition Editor
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/gnu-efi 3.0.5_pre: Library for build EFI Applications
 sys-boot/grub 2.02_beta2-r9 2.02_beta3-r1 2.02_rc1: GNU GRUB boot loader
+sys-devel/autogen 5.18.12: Program and text file generation
 sys-fs/btrfs-progs 4.9.1_pre 4.10_pre: Btrfs filesystem utilities
 sys-fs/fuse 3.0.0_rc99: An interface for filesystems implemented in userspace
 sys-fs/lvm2 2.02.167_pre 2.02.168_pre: User-land utilities for LVM2 (device-mapper) software

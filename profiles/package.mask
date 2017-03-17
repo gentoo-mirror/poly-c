@@ -1,7 +1,7 @@
 # masked for testing
-=www-client/seamonkey-2.47_alpha*
-=www-client/seamonkey-2.47_beta*
-=www-client/seamonkey-2.47_pre*
+=www-client/seamonkey-2.48_alpha*
+=www-client/seamonkey-2.48_beta*
+=www-client/seamonkey-2.48_pre*
 
 # segfaults
 app-misc/kenny
@@ -13,9 +13,6 @@ net-irc/pchat-irc
 net-analyzer/ntopng
 dev-libs/credis
 dev-libs/ewahboolarray
-
-# doesn't build abi_x86_32
-=app-crypt/heimdal-1.6_rc2
 
 # Missing dependencies
 media-radio/liquidsoap
@@ -46,3 +43,6 @@ dev-java/openjfx
 
 # Needs gtkdoc
 =sys-fs/udisks-2.6.4_pre
+
+# Breaks autogen
+>=dev-scheme/guile-2.2.0_pre
