@@ -43,3 +43,6 @@ media-radio/liquidsoap
 
 # fails to build yet
 dev-java/openjfx
+
+# Needs gtkdoc
+=sys-fs/udisks-2.6.4_pre
