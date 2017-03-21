@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 36c47b693e2cedfd5aa644584a06489e64552cd3 $
+# $Id: 13fea20c9a65103cbe2fcb3a8b61ba95ea9caa68 $
 
 EAPI=6
 
@@ -10,7 +10,7 @@ VIRTUALX_REQUIRED="test"
 inherit kde5 multilib qmake-utils
 
 DESCRIPTION="KDE Plasma workspace"
-KEYWORDS="~amd64 ~arm ~x86"
+KEYWORDS="amd64 ~arm ~x86"
 IUSE="+calendar geolocation gps prison qalculate +semantic-desktop wayland"
 
 COMMON_DEPEND="
@@ -82,7 +82,7 @@ COMMON_DEPEND="
 	geolocation? ( $(add_frameworks_dep networkmanager-qt) )
 	gps? ( sci-geosciences/gpsd )
 	prison? ( $(add_frameworks_dep prison) )
-	qalculate? ( sci-libs/libqalculate )
+	qalculate? ( sci-libs/libqalculate:= )
 	semantic-desktop? ( $(add_frameworks_dep baloo) )
 	wayland? ( $(add_frameworks_dep kwayland) )
 "
@@ -123,7 +123,6 @@ PATCHES=(
 	"${FILESDIR}/${PN}-5.4-startkde-script.patch"
 	# master
 	"${FILESDIR}/${PN}-5.7.90-baloo-optional.patch"
-	"${FILESDIR}/${PN}-5.8.3-systray-cpuload.patch"
 )
 
 RESTRICT+=" test"

@@ -36,6 +36,7 @@ dev-lang/fpc 3.0.2_pre: Free Pascal Compiler
 dev-lang/nasm 2.12.02_pre: groovy little assembler
 dev-lang/python 3.6.0: An interpreted, interactive, object-oriented programming language
 dev-lang/ruby 2.1.7: An object-oriented scripting language
+dev-libs/atk 2.24.0_pre: GTK+ & GNOME Accessibility Toolkit
 dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
