@@ -46,3 +46,6 @@ dev-java/openjfx
 
 # Breaks autogen
 >=dev-scheme/guile-2.2.0_pre
+
+# Fails to build
+=app-text/poppler-0.53.0_pre

@@ -24,7 +24,7 @@ app-text/calibre 2.81.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre: ISO language, territory, currency, script codes and their translations
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
-app-text/poppler 0.52.0_pre: PDF rendering library based on the xpdf-3.0 code base
+app-text/poppler 0.53.0_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-games/openscenegraph 3.5.4_pre 3.5.5_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.8_pre 1.10.0_pre 1.10.1_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
@@ -41,7 +41,7 @@ dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 55.1 57.1 58.1-r1 58.2: International Components for Unicode
-dev-libs/json-glib 1.2.6_pre: Library providing GLib serialization and deserialization for the JSON format
+dev-libs/json-glib 1.2.6_pre 1.2.8_pre: Library providing GLib serialization and deserialization for the JSON format
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/lzo 2.10_pre: An extremely fast compression and decompression library
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
