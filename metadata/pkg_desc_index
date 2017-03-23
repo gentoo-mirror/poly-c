@@ -41,7 +41,6 @@ dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 55.1 57.1 58.1-r1 58.2: International Components for Unicode
-dev-libs/json-glib 1.2.6_pre 1.2.8_pre: Library providing GLib serialization and deserialization for the JSON format
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/lzo 2.10_pre: An extremely fast compression and decompression library
 dev-libs/newt 0.52.19_pre: Redhat's Newt windowing toolkit development files
@@ -193,7 +192,7 @@ sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about rea
 sys-libs/libsmbios 2.3.2: Provide access to (SM)BIOS information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/timezone-data 2017b_pre: Timezone data (/usr/share/zoneinfo) and utilities (tzselect/zic/zdump)
-sys-power/cpupower 4.1.37 4.1.38 4.1.39 4.4.53 4.4.54 4.4.55 4.9.14 4.9.15 4.9.16: Shows and sets processor power related values
+sys-power/cpupower 4.1.37 4.1.38 4.1.39 4.4.54 4.4.55 4.4.56 4.9.15 4.9.16 4.9.17: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer

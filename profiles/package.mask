@@ -49,6 +49,3 @@ dev-java/openjfx
 
 # Fails to build
 =app-text/poppler-0.53.0_pre
-
-# failing ln command
-=dev-libs/json-glib-1.2.8_pre
