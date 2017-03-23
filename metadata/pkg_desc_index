@@ -34,7 +34,7 @@ dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-java/openjfx 8.9999: Open source JavaFX
 dev-lang/fpc 3.0.2_pre: Free Pascal Compiler
 dev-lang/nasm 2.12.02_pre: groovy little assembler
-dev-lang/python 3.6.0: An interpreted, interactive, object-oriented programming language
+dev-lang/python 3.6.0 3.6.1_pre: An interpreted, interactive, object-oriented programming language
 dev-lang/ruby 2.1.7: An object-oriented scripting language
 dev-libs/atk 2.24.0_pre: GTK+ & GNOME Accessibility Toolkit
 dev-libs/botan 1.11.21_pre: A C++ crypto library
