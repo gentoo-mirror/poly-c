@@ -107,7 +107,6 @@ if ${IS_POLYC_EBUILD} ; then
 fi
 
 if grep -Fq FILESDIR ${SOURCE_EBUILD} && [[ "${TARGET_DIR}" != "${SOURCE_EBUILD%/*}" ]] ; then
-	retval=0
 	AUX_FILES=( $(\
 		grep -F FILESDIR "${SOURCE_EBUILD}" \
 			| grep -Ev '^[[:space:]]*#|\$\(' \
@@ -120,6 +119,7 @@ if grep -Fq FILESDIR ${SOURCE_EBUILD} && [[ "${TARGET_DIR}" != "${SOURCE_EBUILD%
 	if [[ -n "${AUX_FILES[@]}" ]] ; then
 		target_aux_dir="${TARGET_EBUILD%/*}/files"
 		mkdir -p "${target_aux_dir}" || exit 15
+		retval=0
 		for file in $(eval echo ${AUX_FILES[@]}) ; do
 			if grep -q "/" <<< ${file} ; then
 				if [[ -d "${file}" ]] ; then
