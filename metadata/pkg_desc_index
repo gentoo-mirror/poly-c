@@ -37,6 +37,7 @@ dev-lang/fpc 3.0.2_pre: Free Pascal Compiler
 dev-lang/nasm 2.12.02_pre: groovy little assembler
 dev-lang/python 3.6.0 3.6.1: An interpreted, interactive, object-oriented programming language
 dev-lang/ruby 2.1.7: An object-oriented scripting language
+dev-libs/appstream-glib 0.6.11_pre: Provides GObjects and helper methods to read and write AppStream metadata
 dev-libs/atk 2.24.0_pre: GTK+ & GNOME Accessibility Toolkit
 dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
@@ -198,6 +199,7 @@ sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-libs/cairo 1.15.2_pre 1.15.4_pre: A vector graphics library with cross-device output support
+x11-libs/gdk-pixbuf 2.36.6_pre: Image loading library for GTK+
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-plugins/gkrellm-cpupower 0.1.5: GKrellm plugin for changing CPU frequencies via cpupower
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager
