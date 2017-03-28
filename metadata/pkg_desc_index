@@ -1,4 +1,5 @@
 app-accessibility/speech-dispatcher 0.8.5_pre 0.8.6_pre: Speech synthesis interface
+app-admin/cpulimit 2.5_pre: Limits the CPU usage of a process
 app-admin/littleutils 1.0.36 1.0.37: The littleutils are a collection of small and simple utilities
 app-admin/remotebox 2.0 2.2: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
@@ -34,7 +35,7 @@ dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-java/openjfx 8.9999: Open source JavaFX
 dev-lang/fpc 3.0.2_pre: Free Pascal Compiler
 dev-lang/nasm 2.12.02_pre: groovy little assembler
-dev-lang/python 3.6.0 3.6.1_pre: An interpreted, interactive, object-oriented programming language
+dev-lang/python 3.6.0 3.6.1: An interpreted, interactive, object-oriented programming language
 dev-lang/ruby 2.1.7: An object-oriented scripting language
 dev-libs/atk 2.24.0_pre: GTK+ & GNOME Accessibility Toolkit
 dev-libs/botan 1.11.21_pre: A C++ crypto library
@@ -133,6 +134,7 @@ media-sound/qamix 0.0.7e_pre: QAMix is a configurable mixer for ALSA. Interfaces
 media-sound/scdl 1.3.3_beta1: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2: Download files from the public broadcasting services
+media-video/mkvtoolnix 10.0.0_pre: Tools to create, alter, and inspect Matroska files
 media-video/simplescreenrecorder 0.3.8 9999: A Simple Screen Recorder
 media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.2.0_pre 17.3.0_pre: Great Qt GUI front-end for mplayer/mpv
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
