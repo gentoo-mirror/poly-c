@@ -77,7 +77,8 @@ SRC_URI+="
 	https://dev.gentoo.org/~polynomial-c/mozilla/patchsets/${PATCHFF}.tar.xz
 	https://dev.gentoo.org/~axs/mozilla/patchsets/${PATCH}.tar.xz
 	https://dev.gentoo.org/~polynomial-c/mozilla/patchsets/${PATCH}.tar.xz
-	crypt? ( https://www.enigmail.net/download/source/enigmail-${EMVER}.tar.gz )"
+	crypt? ( https://www.enigmail.net/download/source/enigmail-${EMVER}.tar.gz )
+"
 
 ASM_DEPEND=">=dev-lang/yasm-1.1"
 
@@ -96,13 +97,15 @@ RDEPEND="
 	jack? ( virtual/jack )	
 "
 
-DEPEND="${RDEPEND}
+DEPEND="
+	${RDEPEND}
 	!elibc_glibc? ( !elibc_uclibc? ( !elibc_musl? ( dev-libs/libexecinfo ) ) )
 	crypt? ( dev-lang/perl )
 	amd64? ( ${ASM_DEPEND}
 		virtual/opengl )
 	x86? ( ${ASM_DEPEND}
-		virtual/opengl )"
+		virtual/opengl )
+"
 
 BUILD_OBJ_DIR="${S}/seamonk"
 
@@ -385,8 +388,6 @@ src_install() {
 	# Handle plugins dir through nsplugins.eclass
 	share_plugins_dir
 
-	#doman "${BUILD_OBJ_DIR}/suite/app/${PN}.1"
-
 	# revdep-rebuild entry
 	insinto /etc/revdep-rebuild
 	echo "SEARCH_DIRS_MASK=${MOZILLA_FIVE_HOME}*" >> ${T}/11${PN}
@@ -406,7 +407,7 @@ pkg_postinst() {
 
 	# Update mimedb for the new .desktop file
 	fdo-mime_desktop_database_update
-	gnome2_icon_cache_update
+	#gnome2_icon_cache_update
 
 	if ! use gmp-autoupdate ; then
 		elog "USE='-gmp-autoupdate' has disabled the following plugins from updating or"
