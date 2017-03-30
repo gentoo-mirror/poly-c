@@ -8,6 +8,7 @@ app-arch/snappy 1.1.4_pre: A high-speed compression/decompression library by Goo
 app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
+app-crypt/gpgme 1.9.0_pre: GnuPG Made Easy is a library for making GnuPG easier to use
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
 app-editors/bluefish 2.2.10_pre: A GTK HTML editor for the experienced web designer or programmer
 app-editors/notepadqq 1.0.1: Notepad++-like editor for Linux
@@ -21,7 +22,7 @@ app-misc/razertool 0.0.7-r3: Unofficial tool for controlling the Razer Copperhea
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/calibre 2.81.0_pre: Ebook management application
+app-text/calibre 2.81.0_pre 2.82.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre: ISO language, territory, currency, script codes and their translations
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre: Tools for helping translation of documentation
