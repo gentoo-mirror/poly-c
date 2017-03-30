@@ -6,7 +6,7 @@ WANT_AUTOCONF="2.1"
 
 # This list can be updated with scripts/get_langs.sh from the mozilla overlay
 # note - could not roll langpacks for: ca fi
-MOZ_LANGS=(ca cs de en-GB es-AR es-ES fi fr gl hu it ja lt nb-NO nl pl pt-PT
+MOZ_LANGS=(ca cs de en-GB es-ES fi gl hu it ja lt nb-NO nl pl pt-PT
 	    ru sk sv-SE tr uk zh-CN zh-TW)
 
 MOZ_PV="${PV/_pre*}"
@@ -157,11 +157,15 @@ src_prepare() {
 	if ! grep -Fq "harfbuzz/hb-glib.h" mozilla/config/system-headers ; then
 		sed '/MOZ_SYSTEM_HARFBUZZ/aharfbuzz/hb-glib.h' \
 			-i mozilla/config/system-headers || die
+	else
+		einfo "harfbuzz hackery no longer needed."
 	fi
 
 	if grep -q '^sdkdir.*$(MOZ_APP_NAME)-devel' mozilla/config/baseconfig.mk ; then
 		sed '/^sdkdir/s@-devel@@' \
 			-i mozilla/config/baseconfig.mk || die
+	else
+		einfo "baseconfig.mk hackery no longer needed."
 	fi
 
 	# Shell scripts sometimes contain DOS line endings; bug 391889

@@ -94,7 +94,6 @@ media-libs/gst-plugins-base 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre: Basepac
 media-libs/gst-plugins-good 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre: Basepack of plugins for GStreamer
 media-libs/gst-plugins-ugly 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre: Basepack of plugins for gstreamer
 media-libs/gstreamer 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre: Open source multimedia framework
-media-libs/jasper 2.0.11_pre: Implementation of the codec specified in the JPEG-2000 Part-1 standard
 media-libs/libbpg 0.9.6_pre 0.9.7_pre: BPG (Better Portable Graphics) is a new image format
 media-libs/libdvbpsi 1.3.1_pre: library for MPEG TS/DVB PSI tables decoding and generation
 media-libs/libdvdcss 1.3.99 1.4.0: A portable abstraction library for DVD decryption
@@ -135,7 +134,6 @@ media-sound/qamix 0.0.7e_pre: QAMix is a configurable mixer for ALSA. Interfaces
 media-sound/scdl 1.3.3_beta1: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2: Download files from the public broadcasting services
-media-video/mkvtoolnix 10.0.0_pre: Tools to create, alter, and inspect Matroska files
 media-video/simplescreenrecorder 0.3.8 9999: A Simple Screen Recorder
 media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.2.0_pre 17.3.0_pre: Great Qt GUI front-end for mplayer/mpv
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
@@ -197,7 +195,7 @@ sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-power/cpupower 4.1.37 4.1.38 4.1.39 4.4.55 4.4.56 4.4.57 4.9.16 4.9.17 4.9.18: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
-www-client/seamonkey 2.48_beta1_pre6: Seamonkey Web Browser
+www-client/seamonkey 2.48_beta1_pre6 2.48_beta1_pre7: Seamonkey Web Browser
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-libs/cairo 1.15.2_pre 1.15.4_pre: A vector graphics library with cross-device output support
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
