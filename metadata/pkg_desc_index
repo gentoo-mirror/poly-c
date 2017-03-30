@@ -185,6 +185,7 @@ sys-boot/grub 2.02_beta2-r9 2.02_beta3-r1 2.02_rc1 2.02_rc2: GNU GRUB boot loade
 sys-fs/btrfs-progs 4.10.1_pre: Btrfs filesystem utilities
 sys-fs/fuse 3.0.0_rc99: An interface for filesystems implemented in userspace
 sys-fs/lvm2 2.02.168_pre 2.02.169_pre: User-land utilities for LVM2 (device-mapper) software
+sys-fs/ntfs3g 2017.3.23_pre: Open source read-write NTFS driver that runs under FUSE
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2 233: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-fs/udisks 2.6.4_pre: Daemon providing interfaces to work with storage devices
@@ -194,7 +195,7 @@ sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C 
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libsmbios 2.3.2: Provide access to (SM)BIOS information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.1.37 4.1.38 4.1.39 4.4.55 4.4.56 4.4.57 4.9.16 4.9.17 4.9.18: Shows and sets processor power related values
+sys-power/cpupower 4.1.37 4.1.38 4.1.39 4.4.56 4.4.57 4.4.58 4.9.17 4.9.18 4.9.19: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 www-client/seamonkey 2.48_beta1_pre6 2.48_beta1_pre7: Seamonkey Web Browser
