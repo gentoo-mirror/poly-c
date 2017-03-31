@@ -27,6 +27,7 @@ app-text/iso-codes 3.72_pre: ISO language, territory, currency, script codes and
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
 app-text/poppler 0.53.0_pre: PDF rendering library based on the xpdf-3.0 code base
+dev-db/sqlite 3.18.0_pre: A SQL Database Engine in a C Library
 dev-games/openscenegraph 3.5.4_pre 3.5.5_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.8_pre 1.10.0_pre 1.10.1_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
@@ -154,7 +155,6 @@ net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/bctoolbox 0.4.0_pre: Utilities library used by Belledonne Communications softwares like belle-sip, mediastreamer2 and linphone.
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
-net-misc/icaclient 13.5.0.10185126: ICA Client for Citrix Presentation servers
 net-misc/networkmanager 1.4.0-r1 1.4.4 1.4.4-r1 1.6.2_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.25 3.26: A discrete-event network simulator for Internet systems.
 net-misc/putty 0.68: A Free Telnet/SSH Client
@@ -195,7 +195,7 @@ sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C 
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libsmbios 2.3.2: Provide access to (SM)BIOS information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.1.37 4.1.38 4.1.39 4.4.56 4.4.57 4.4.58 4.9.17 4.9.18 4.9.19: Shows and sets processor power related values
+sys-power/cpupower 4.1.37 4.1.38 4.1.39 4.4.57 4.4.58 4.4.59 4.9.18 4.9.19 4.9.20: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 www-client/seamonkey 2.48_beta1_pre6 2.48_beta1_pre7: Seamonkey Web Browser
