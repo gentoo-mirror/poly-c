@@ -1,10 +1,9 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
-PYTHON_COMPAT=( python3_{4,5} )
+PYTHON_COMPAT=( python3_{4,5,6} )
 
 inherit cmake-utils python-single-r1 toolchain-funcs versionator poly-c_ebuilds
 
@@ -16,7 +15,7 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="+imagemagick libav +python test"
-# https://github.com/OpenShot/libopenshot/issues/36
+# https://github.com/OpenShot/libopenshot/issues/43
 RESTRICT="test"
 
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
@@ -37,6 +36,9 @@ DEPEND="
 	python? ( dev-lang/swig )
 	test? ( dev-libs/unittest++ )
 "
+
+# https://github.com/OpenShot/libopenshot/pull/45
+PATCHES=( ${FILESDIR}/${PN}-0.1.3-fix-tests.patch )
 
 pkg_pretend() {
 	if [[ ${MERGE_TYPE} != binary ]] && ! tc-has-openmp; then
@@ -72,9 +74,8 @@ src_configure() {
 }
 
 src_test() {
-	pushd "${BUILD_DIR}/tests" > /dev/null || die
-	./openshot-test || die "Tests failed"
-	popd > /dev/null || die
+	cd "${BUILD_DIR}" || die
+	emake test
 }
 
 src_install() {
