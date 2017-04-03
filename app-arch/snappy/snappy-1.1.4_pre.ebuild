@@ -11,7 +11,8 @@ SRC_URI="https://github.com/google/${PN}/releases/download/${MY_PV}/${MY_P}.tar.
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 ~x86 ~amd64-fbsd ~amd64-linux ~x86-linux"
+# Fails to build on x86
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 -x86 ~amd64-fbsd ~amd64-linux ~x86-linux"
 IUSE="static-libs"
 
 src_prepare() {
