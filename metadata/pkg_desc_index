@@ -138,7 +138,7 @@ media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2: Download files from the public broadcasting services
 media-video/openshot 2.3.0_pre 2.3.1_pre: Free, open-source, non-linear video editor to create and edit videos and movies
 media-video/simplescreenrecorder 0.3.8 9999: A Simple Screen Recorder
-media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.2.0_pre 17.3.0_pre: Great Qt GUI front-end for mplayer/mpv
+media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.3.0_pre 17.4.0_pre: Great Qt GUI front-end for mplayer/mpv
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
 net-analyzer/arpalert 1.0.3_pre 1.1.3_pre 2.0.11_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/fping 3.15_pre: A utility to ping multiple hosts at once
