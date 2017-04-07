@@ -25,7 +25,6 @@ app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gent
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/calibre 2.81.0_pre 2.82.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre: ISO language, territory, currency, script codes and their translations
-app-text/libmwaw 0.3.11_pre: Library parsing many pre-OSX MAC text formats
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
 app-text/poppler 0.53.0_pre: PDF rendering library based on the xpdf-3.0 code base
