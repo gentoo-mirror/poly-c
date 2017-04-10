@@ -30,6 +30,7 @@ app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
 app-text/poppler 0.53.0_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-db/sqlite 3.18.0_pre: A SQL Database Engine in a C Library
 dev-games/openscenegraph 3.5.4_pre 3.5.5_pre: Open source high performance 3D graphics toolkit
+dev-games/simgear 2017.1.3_pre: Development library for simulation games
 dev-java/ant-core 1.9.8_pre 1.10.0_pre 1.10.1_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
@@ -61,6 +62,7 @@ dev-qt/qtcore 4.8.6-r2 4.8.7-r2: Cross-platform application development framewor
 dev-qt/qtdbus 5.6.2 5.7.1: Qt5 module for inter-process communication over the D-Bus protocol
 dev-qt/qtwebengine 5.6.1: Library for rendering dynamic web content in Qt5 C++ and QML applications
 dev-scheme/guile 2.2.0_pre: GNU Ubiquitous Intelligent Language for Extensions
+dev-util/cmocka 1.1.1_pre: A unit testing framework for C
 dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
 dev-util/meld 3.17.0_pre 3.17.1_pre: A graphical diff and merge tool
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
@@ -69,6 +71,8 @@ games-arcade/emilia-pinball 0.3.3: SDL OpenGL pinball game
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.74 2.75 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.42b 1.42d 9999: Return to Castle Wolfenstein - IORTCW Project
+games-simulation/flightgear 2017.1.3_pre: Open Source Flight Simulator
+games-simulation/flightgear-data 2017.1.3_pre: FlightGear data files
 games-strategy/boswars 9999: Futuristic real-time strategy game
 games-strategy/opendungeons 0.7.1: An open source, real time strategy game based on the Dungeon Keeper series
 games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
