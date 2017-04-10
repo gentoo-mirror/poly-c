@@ -43,6 +43,7 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.12
+	!<media-libs/gst-plugins-bad-1.11.90_pre
 	X? (
 		>=x11-proto/videoproto-2.3.1-r1[${MULTILIB_USEDEP}]
 		>=x11-proto/xextproto-7.2.1-r1[${MULTILIB_USEDEP}]
