@@ -157,11 +157,15 @@ src_prepare() {
 	if ! grep -Fq "harfbuzz/hb-glib.h" mozilla/config/system-headers ; then
 		sed '/MOZ_SYSTEM_HARFBUZZ/aharfbuzz/hb-glib.h' \
 			-i mozilla/config/system-headers || die
+	else
+		einfo "harfbuzz hackery no longer needed."
 	fi
 
 	if grep -q '^sdkdir.*$(MOZ_APP_NAME)-devel' mozilla/config/baseconfig.mk ; then
 		sed '/^sdkdir/s@-devel@@' \
 			-i mozilla/config/baseconfig.mk || die
+	else
+		einfo "baseconfig.mk hackery no longer needed."
 	fi
 
 	# Shell scripts sometimes contain DOS line endings; bug 391889
