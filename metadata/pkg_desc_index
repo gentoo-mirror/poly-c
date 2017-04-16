@@ -45,9 +45,10 @@ dev-libs/atk 2.24.0_pre: GTK+ & GNOME Accessibility Toolkit
 dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
-dev-libs/icu 55.1 57.1 58.1-r1 58.2: International Components for Unicode
+dev-libs/icu 55.1 57.1 58.1-r1 58.2 59.1_pre: International Components for Unicode
+dev-libs/icu-layoutex 59.1_pre: External layout part of International Components for Unicode
+dev-libs/libgusb 0.2.10_pre: GObject wrapper for libusb
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
-dev-libs/lzo 2.10_pre: An extremely fast compression and decompression library
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.1.0e: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf 3.2.0_pre: Google's Protocol Buffers -- an efficient method of encoding structured data
