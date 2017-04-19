@@ -195,7 +195,7 @@ sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2 233: Linux dynamic and p
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-fs/udisks 2.6.4_pre: Daemon providing interfaces to work with storage devices
 sys-kernel/linux-firmware 20170225: Linux firmware files
-sys-libs/db 5.3.28-r2 6.1.29 6.2.23: Oracle Berkeley DB
+sys-libs/db 5.3.28-r2 6.1.29 6.2.23 6.2.32: Oracle Berkeley DB
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libsmbios 2.3.2: Provide access to (SM)BIOS information
