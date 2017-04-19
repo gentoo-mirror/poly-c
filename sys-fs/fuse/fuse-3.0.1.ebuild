@@ -24,7 +24,7 @@ DEPEND="
 	#test? ( dev-python/pytest )
 
 RDEPEND="
-	~sys-fs/fusecommon-files-${PV}
+	~sys-fs/fuse-common-files-${PV}
 	!<sys-fs/fuse-2.9.7-r1
 "
 
