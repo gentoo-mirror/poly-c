@@ -1,7 +1,6 @@
 app-accessibility/speech-dispatcher 0.8.5_pre 0.8.6_pre: Speech synthesis interface
 app-admin/cpulimit 2.5_pre: Limits the CPU usage of a process
 app-admin/littleutils 1.0.36 1.0.37: The littleutils are a collection of small and simple utilities
-app-admin/logrotate 3.12.1_pre: Rotates, compresses, and mails system logs
 app-admin/remotebox 2.0 2.2: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-arch/plzip 1.6_pre1 1.6_rc1: Parallel lzip compressor
@@ -146,7 +145,7 @@ media-video/simplescreenrecorder 0.3.8 9999: A Simple Screen Recorder
 media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.3.0_pre 17.4.0_pre: Great Qt GUI front-end for mplayer/mpv
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
 net-analyzer/arpalert 1.0.3_pre 1.1.3_pre 2.0.11_pre: arpalert is used for monitoring ethernet networks
-net-analyzer/fping 3.15_pre: A utility to ping multiple hosts at once
+net-analyzer/fping 3.15_pre 4.0_pre: A utility to ping multiple hosts at once
 net-analyzer/medusa 2.1.1 2.2: A Modular,Parallel,Multiprotocol, Network Login Auditor
 net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
 net-analyzer/nagios-plugins 1.4.16-r2 1.4.16-r3: Nagios 1.4.16 plugins - Pack of plugins to make Nagios work properly
