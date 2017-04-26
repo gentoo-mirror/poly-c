@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: d4a2a2a0c56b6cb3722bb8861d61970c047469ef $
+# $Id: 979354ebcf72155b793df7b831f3273cd5278a6d $
 
 EAPI="5"
 WANT_LIBTOOL="none"
@@ -65,7 +65,8 @@ src_prepare() {
 
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
 
-	epatch "${FILESDIR}/${P}-blake2_remove_nested_comments.patch"
+	epatch "${FILESDIR}/${PN}-3.5-distutils-OO-build.patch"
+	epatch "${FILESDIR}/${PN}-3.6.0-blake2_remove_nested_comments.patch"
 
 	epatch_user
 

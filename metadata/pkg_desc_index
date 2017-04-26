@@ -3,6 +3,7 @@ app-admin/cpulimit 2.5_pre: Limits the CPU usage of a process
 app-admin/littleutils 1.0.36 1.0.37: The littleutils are a collection of small and simple utilities
 app-admin/remotebox 2.0 2.2: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
+app-arch/lzlib 1.9_pre: Library for lzip compression
 app-arch/plzip 1.6_pre1 1.6_rc1: Parallel lzip compressor
 app-arch/snappy 1.1.4_pre: A high-speed compression/decompression library by Google
 app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
@@ -36,7 +37,7 @@ dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-java/openjfx 8.9999: Open source JavaFX
 dev-lang/nasm 2.12.02_pre: groovy little assembler
-dev-lang/python 3.6.0 3.6.1: An interpreted, interactive, object-oriented programming language
+dev-lang/python 3.6.1-r1: An interpreted, interactive, object-oriented programming language
 dev-lang/ruby 2.1.7: An object-oriented scripting language
 dev-libs/appstream-glib 0.6.11_pre: Provides GObjects and helper methods to read and write AppStream metadata
 dev-libs/atk 2.24.0_pre: GTK+ & GNOME Accessibility Toolkit
@@ -88,7 +89,7 @@ kde-apps/print-manager 16.08.1: Manage print jobs and printers in Plasma
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
 kde-plasma/plasma-desktop 5.8.4 5.8.5 5.8.5-r1: KDE Plasma desktop
-kde-plasma/plasma-workspace 5.8.5 5.8.6 5.9.4: KDE Plasma workspace
+kde-plasma/plasma-workspace 5.8.5 5.8.6 5.9.5: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-gfx/icoutils 0.31.2_pre 0.31.3_pre: A set of programs for extracting and converting images in icon and cursor files (.ico, .cur)

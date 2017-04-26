@@ -1,13 +1,13 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c2921bdfc7fe3e4631b83c7217a84c51380c5e0e $
+# $Id: e83a125b5417222210973d59f995dff29319d0d2 $
 
 EAPI=5
 
 inherit cmake-utils multibuild qmake-utils
 
 DESCRIPTION="Qt Cryptographic Architecture (QCA)"
-HOMEPAGE="http://delta.affinix.com/qca/"
+HOMEPAGE="https://userbase.kde.org/QCA"
 SRC_URI="mirror://kde/stable/${PN}/${PV}/src/${P}.tar.xz"
 
 LICENSE="LGPL-2.1"
