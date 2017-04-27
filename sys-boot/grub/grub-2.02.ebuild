@@ -4,7 +4,7 @@
 
 EAPI=6
 
-if [[ ${MY_PV} == 9999  ]]; then
+if [[ ${PV} == 9999  ]]; then
 	GRUB_AUTOGEN=1
 fi
 
@@ -14,16 +14,16 @@ if [[ -n ${GRUB_AUTOGEN} ]]; then
 	inherit autotools python-any-r1
 fi
 
-inherit autotools bash-completion-r1 flag-o-matic multibuild pax-utils toolchain-funcs versionator poly-c_ebuilds
+inherit autotools bash-completion-r1 flag-o-matic multibuild pax-utils toolchain-funcs versionator
 
-if [[ ${MY_PV} != 9999 ]]; then
-	if [[ ${MY_PV} == *_alpha* || ${MY_PV} == *_beta* || ${MY_PV} == *_rc* ]]; then
+if [[ ${PV} != 9999 ]]; then
+	if [[ ${PV} == *_alpha* || ${PV} == *_beta* || ${PV} == *_rc* ]]; then
 		# The quote style is to work with <=bash-4.2 and >=bash-4.3 #503860
-		REAL_P=${MY_P/_/'~'}
-		SRC_URI="mirror://gnu-alpha/${PN}/${REAL_P}.tar.xz"
-		S=${WORKDIR}/${REAL_P}
+		MY_P=${P/_/'~'}
+		SRC_URI="mirror://gnu-alpha/${PN}/${MY_P}.tar.xz"
+		S=${WORKDIR}/${MY_P}
 	else
-		SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.xz"
+		SRC_URI="mirror://gnu/${PN}/${P}.tar.xz"
 		S=${WORKDIR}/${P%_*}
 	fi
 	KEYWORDS="~amd64 ~arm64 ~x86"
@@ -127,7 +127,7 @@ QA_WX_LOAD="lib/grub/*"
 QA_MULTILIB_PATHS="lib/grub/.*"
 
 src_unpack() {
-	if [[ ${MY_PV} == 9999 ]]; then
+	if [[ ${PV} == 9999 ]]; then
 		git-r3_src_unpack
 	fi
 	default
