@@ -1,5 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id: cc6db989c6e8b3c45b93b4508d084533aaa9c27d $
 
 EAPI=6
 
@@ -121,9 +122,9 @@ DEPEND+=" !!=media-libs/freetype-2.5.4"
 
 RESTRICT="strip !test? ( test )"
 
-QA_EXECSTACK="usr/bin/grub*-emu* usr/lib/grub/*"
-QA_WX_LOAD="usr/lib/grub/*"
-QA_MULTILIB_PATHS="usr/lib/grub/.*"
+QA_EXECSTACK="bin/grub*-emu* lib/grub/*"
+QA_WX_LOAD="lib/grub/*"
+QA_MULTILIB_PATHS="lib/grub/.*"
 
 src_unpack() {
 	if [[ ${MY_PV} == 9999 ]]; then
@@ -192,7 +193,9 @@ grub_configure() {
 	local myeconfargs=(
 		--disable-werror
 		--program-prefix=
-		--libdir="${EPREFIX}"/usr/lib
+		--sbindir="${EPREFIX}"/sbin
+		--bindir="${EPREFIX}"/bin
+		--libdir="${EPREFIX}"/lib
 		--htmldir="${EPREFIX}"/usr/share/doc/${PF}/html
 		$(use_enable debug mm-debug)
 		$(use_enable device-mapper)
