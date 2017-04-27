@@ -69,8 +69,8 @@ src_prepare() {
 
 	# Changes not yet in portage
 	epatch "${FILESDIR}"/${P}-gcc48.patch \
-		"${FILESDIR}"/${P}-lua-5.2.patch
-		#"${FILESDIR}"/${P}-disable_lua_if_requested.patch
+		"${FILESDIR}"/${P}-lua-5.2.patch \
+		"${FILESDIR}"/${PN}-lua-52-fix.patch
 
 	# remove flags to let the user decide
 	local
@@ -104,7 +104,6 @@ src_configure() {
 		--with-${CELESTIA_GUI} \
 		$(use_enable cairo) \
 		$(use_with lua) \
-		$(use_enable lua) \
 		$(use_enable threads threading) \
 		$(use_enable nls) \
 		$(use_enable pch) \

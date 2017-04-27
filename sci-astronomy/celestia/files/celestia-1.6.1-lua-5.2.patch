@@ -1,3 +1,3380 @@
+diff -Naur celestia-1.6.1.orig/configure celestia-1.6.1/configure
+--- celestia-1.6.1.orig/configure	2011-06-05 20:33:27.000000000 +0200
++++ celestia-1.6.1/configure	2013-08-22 06:31:25.124482730 +0200
+@@ -28444,6 +28444,3350 @@
+     pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
+  elif test -n "$PKG_CONFIG"; then
+     if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua5.2 >= 5.2.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua5.2 >= 5.2.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua5.2 >= 5.2.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua5.2 >= 5.2.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua5.2 >= 5.2.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua5.2 >= 5.2.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua5.2 >= 5.2.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua5.2 >= 5.2.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.2.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.2.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.2.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.2.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.2.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.2.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.2.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.2.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua5.1 >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua5.1 >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua5.1 >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua5.1 >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua5.1 >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua5.1 >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua5.1 >= 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua5.1 >= 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050100
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050100
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050100
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua5.1 >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua5.1 >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua5.1 >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua5.1 >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua5.1 >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua5.1 >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua5.1 >= 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua5.1 >= 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050100
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050100
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050100
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050200
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.2.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.2.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.2.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.2.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.2.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.2.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.2.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.2.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua5.1 >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua5.1 >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua5.1 >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua5.1 >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua5.1 >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua5.1 >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua5.1 >= 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua5.1 >= 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050100
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua50 >= 5.0.0 lua50 < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua50 >= 5.0.0 lua50 < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua50 >= 5.0.0 lua50 < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_CFLAGS=`$PKG_CONFIG --cflags "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$LUA_LIBS"; then
++    pkg_cv_LUA_LIBS="$LUA_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua >= 5.0.0 lua < 5.1.0\""; } >&5
++  ($PKG_CONFIG --exists --print-errors "lua >= 5.0.0 lua < 5.1.0") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
++  test $ac_status = 0; }; then
++  pkg_cv_LUA_LIBS=`$PKG_CONFIG --libs "lua >= 5.0.0 lua < 5.1.0" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        else
++	        LUA_PKG_ERRORS=`$PKG_CONFIG --print-errors "lua >= 5.0.0 lua < 5.1.0" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$LUA_PKG_ERRORS" >&5
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050000
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050100
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050100
++fi
++
++elif test $pkg_failed = untried; then
++     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++
++pkg_failed=no
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LUA" >&5
++$as_echo_n "checking for LUA... " >&6; }
++
++if test -n "$LUA_CFLAGS"; then
++    pkg_cv_LUA_CFLAGS="$LUA_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
+     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"lua5.1 >= 5.1.0\""; } >&5
+   ($PKG_CONFIG --exists --print-errors "lua5.1 >= 5.1.0") 2>&5
+   ac_status=$?
+@@ -29486,6 +32830,22 @@
+ $as_echo "yes" >&6; }
+ 	LUA_VER=0x050100
+ fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050200
++fi
++
++else
++	LUA_CFLAGS=$pkg_cv_LUA_CFLAGS
++	LUA_LIBS=$pkg_cv_LUA_LIBS
++        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++	LUA_VER=0x050200
++fi
+ 	if (test "$LUA_VER" = "0x050000"); then
+ 
+ pkg_failed=no
 diff -Naur celestia-1.6.1.orig/configure.in celestia-1.6.1/configure.in
 --- celestia-1.6.1.orig/configure.in	2011-06-05 18:11:45.000000000 +0200
 +++ celestia-1.6.1/configure.in	2013-08-22 06:31:25.111482511 +0200

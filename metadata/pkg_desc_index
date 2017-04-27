@@ -52,7 +52,6 @@ dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.1.0e: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf 3.2.0_pre: Google's Protocol Buffers -- an efficient method of encoding structured data
-dev-libs/xapian 1.4.4_pre: Xapian Probabilistic Information Retrieval library
 dev-perl/Net-DNS 1.40.0_pre: Perl Net::DNS - Perl DNS Resolver Module
 dev-perl/Net-SSLeay 1.780.0_pre: Perl extension for using OpenSSL
 dev-perl/Text-Unidecode 1.270.0_pre: Plain ASCII transliterations of Unicode text
