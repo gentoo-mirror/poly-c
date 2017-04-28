@@ -11,7 +11,7 @@ SRC_URI="https://github.com/storaged-project/${PN}/archive/${MY_P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="2"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86"
-IUSE="acl cryptsetup debug doc +gptfdisk +introspection selinux systemd"
+IUSE="acl cryptsetup debug +gptfdisk +introspection selinux systemd"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.36:2
@@ -20,7 +20,6 @@ COMMON_DEPEND="
 	>=virtual/libgudev-165:=
 	virtual/udev
 	acl? ( virtual/acl )
-	doc? ( dev-util/gtk-doc )
 	introspection? ( >=dev-libs/gobject-introspection-1.30:= )
 	systemd? ( >=sys-apps/systemd-209 )
 "
@@ -33,7 +32,7 @@ RDEPEND="${COMMON_DEPEND}
 	cryptsetup? (
 		sys-fs/cryptsetup[udev(+)]
 		sys-fs/lvm2[udev(+)]
-		)
+	)
 	gptfdisk? ( >=sys-apps/gptfdisk-0.8 )
 	selinux? ( sec-policy/selinux-devicekit )
 "
@@ -41,7 +40,7 @@ DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xsl-stylesheets
 	dev-libs/libxslt
 	>=dev-util/gdbus-codegen-2.32
-	>=dev-util/gtk-doc-am-1.3
+	>=dev-util/gtk-doc-1.3
 	dev-util/intltool
 	>=sys-kernel/linux-headers-3.1
 	virtual/pkgconfig
@@ -51,7 +50,11 @@ S="${WORKDIR}/${PN}-${MY_P}"
 
 QA_MULTILIB_PATHS="usr/lib/udisks2/udisksd"
 
-DOCS="AUTHORS HACKING NEWS README"
+DOCS=( AUTHORS HACKING NEWS README.md )
+
+PATCHES=(
+	"${FILESDIR}/${MY_P}-udisksdprivdir.patch"
+)
 
 pkg_setup() {
 	# Listing only major arch's here to avoid tracking kernel's defconfig
@@ -70,29 +73,26 @@ src_prepare() {
 
 	default
 
-	if ! use doc ; then
-		# Don't look for gtk-doc if doc USE is unset (breaks automake)
-		sed 's@^GTK_DOC_CHECK@#\0@' -i configure.ac || die
-		sed '/gtk-doc\.make/d' \
-			-i doc/Makefile.am || die
-	fi
-
 	eautoreconf
 
-	use systemd || { sed -i -e 's:libsystemd-login:&disable:' configure || die; }
+	if ! use systemd ; then
+		sed -i -e 's:libsystemd-login:&disable:' configure || die
+	fi
 }
 
 src_configure() {
-	econf \
-		--localstatedir="${EPREFIX}"/var \
-		--disable-static \
-		$(use_enable acl) \
-		$(use_enable debug) \
-		--disable-gtk-doc \
-		$(use_enable introspection) \
-		--with-html-dir="${EPREFIX}"/usr/share/gtk-doc/html \
-		--with-udevdir="$(get_udevdir)" \
+	local myeconfargs=(
+		--localstatedir="${EPREFIX}"/var
+		--disable-static
+		$(use_enable acl)
+		$(use_enable debug)
+		--disable-gtk-doc
+		$(use_enable introspection)
+		--with-html-dir="${EPREFIX}"/usr/share/gtk-doc/html
+		--with-udevdir="$(get_udevdir)"
 		--with-systemdsystemunitdir="$(systemd_get_systemunitdir)"
+	)
+	econf "${myeconfargs[@]}"
 }
 
 src_install() {
