@@ -11,7 +11,7 @@ SRC_URI="https://github.com/storaged-project/${PN}/archive/${MY_P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="2"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86"
-IUSE="acl cryptsetup debug +gptfdisk +introspection selinux systemd"
+IUSE="acl cryptsetup debug +gptfdisk +introspection lvm nls selinux systemd"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.36:2
@@ -21,6 +21,7 @@ COMMON_DEPEND="
 	virtual/udev
 	acl? ( virtual/acl )
 	introspection? ( >=dev-libs/gobject-introspection-1.30:= )
+	lvm? ( sys-fs/lvm2 )
 	systemd? ( >=sys-apps/systemd-209 )
 "
 # gptfdisk -> src/udiskslinuxpartition.c -> sgdisk (see also #412801#c1)
@@ -41,9 +42,9 @@ DEPEND="${COMMON_DEPEND}
 	dev-libs/libxslt
 	>=dev-util/gdbus-codegen-2.32
 	>=dev-util/gtk-doc-1.3
-	dev-util/intltool
 	>=sys-kernel/linux-headers-3.1
 	virtual/pkgconfig
+	nls? ( dev-util/intltool )
 "
 
 S="${WORKDIR}/${PN}-${MY_P}"
@@ -82,15 +83,18 @@ src_prepare() {
 
 src_configure() {
 	local myeconfargs=(
-		--localstatedir="${EPREFIX}"/var
+		--disable-gtk-doc
 		--disable-static
+		--localstatedir="${EPREFIX}"/var
+		--with-html-dir="${EPREFIX}"/usr/share/gtk-doc/html
+		--with-systemdsystemunitdir="$(systemd_get_systemunitdir)"
+		--with-udevdir="$(get_udevdir)"
 		$(use_enable acl)
 		$(use_enable debug)
-		--disable-gtk-doc
 		$(use_enable introspection)
-		--with-html-dir="${EPREFIX}"/usr/share/gtk-doc/html
-		--with-udevdir="$(get_udevdir)"
-		--with-systemdsystemunitdir="$(systemd_get_systemunitdir)"
+		$(use_enable lvm lvm2)
+		$(use_enable lvm lvmcache)
+		$(use_enable nls)
 	)
 	econf "${myeconfargs[@]}"
 }
