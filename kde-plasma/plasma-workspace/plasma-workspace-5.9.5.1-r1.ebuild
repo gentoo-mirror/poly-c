@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: b833f2ff87fb7ed340887157914a4dccc2cd1038 $
+# $Id: 0ceac64cde588a5e1f7a39680c9f77e96e1927fc $
 
 EAPI=6
 
@@ -10,7 +10,7 @@ VIRTUALX_REQUIRED="test"
 inherit kde5 multilib qmake-utils
 
 DESCRIPTION="KDE Plasma workspace"
-KEYWORDS="amd64 ~arm x86"
+KEYWORDS="~amd64 ~arm ~x86"
 IUSE="+calendar geolocation gps prison qalculate +semantic-desktop wayland"
 
 COMMON_DEPEND="
@@ -66,7 +66,6 @@ COMMON_DEPEND="
 	$(add_qt_dep qtwidgets)
 	$(add_qt_dep qtx11extras)
 	$(add_qt_dep qtxml)
-	dev-libs/libdbusmenu-qt[qt5]
 	media-libs/phonon[qt5]
 	sys-libs/zlib
 	x11-libs/libICE
@@ -82,7 +81,7 @@ COMMON_DEPEND="
 	geolocation? ( $(add_frameworks_dep networkmanager-qt) )
 	gps? ( sci-geosciences/gpsd )
 	prison? ( $(add_frameworks_dep prison) )
-	qalculate? ( sci-libs/libqalculate )
+	qalculate? ( sci-libs/libqalculate:= )
 	semantic-desktop? ( $(add_frameworks_dep baloo) )
 	wayland? ( $(add_frameworks_dep kwayland) )
 "
@@ -119,12 +118,7 @@ DEPEND="${COMMON_DEPEND}
 	x11-proto/xproto
 "
 
-PATCHES=(
-	"${FILESDIR}/${PN}-5.4-startkde-script.patch"
-	# master
-	"${FILESDIR}/${PN}-5.7.90-baloo-optional.patch"
-	"${FILESDIR}/${PN}-5.8.3-systray-cpuload.patch"
-)
+PATCHES=( "${FILESDIR}/${PN}-5.4-startkde-script.patch" )
 
 RESTRICT+=" test"
 
@@ -133,6 +127,11 @@ src_prepare() {
 
 	sed -e "s|\`qtpaths|\`$(qt5_get_bindir)/qtpaths|" \
 		-i startkde/startkde.cmake startkde/startplasmacompositor.cmake || die
+
+	# https://phabricator.kde.org/D4690
+	sed -e "/add_subdirectory(remote)/ s/^/#DONT/" -i kioslave/CMakeLists.txt || die
+	rm -r kioslave/remote || die
+	find po -name "kio_remote.po" -delete || die
 }
 
 src_configure() {
