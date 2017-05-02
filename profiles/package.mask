@@ -49,6 +49,7 @@ dev-java/openjfx
 
 # Fails to build
 =app-text/poppler-0.53.0_pre
+=app-text/poppler-0.54.0_pre
 
 # masked for testing
 =net-misc/icecast-2.5_beta*

@@ -27,7 +27,7 @@ app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/iso-codes 3.72_pre: ISO language, territory, currency, script codes and their translations
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
-app-text/poppler 0.53.0_pre: PDF rendering library based on the xpdf-3.0 code base
+app-text/poppler 0.53.0_pre 0.54.0_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-db/sqlite 3.18.0_pre: A SQL Database Engine in a C Library
 dev-games/openscenegraph 3.5.4_pre 3.5.5_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.8_pre 1.10.0_pre 1.10.1_pre: Java-based build tool similar to 'make' that uses XML configuration files
@@ -36,7 +36,7 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-java/openjfx 8.9999: Open source JavaFX
-dev-lang/nasm 2.12.02_pre: groovy little assembler
+dev-lang/nasm 2.12.02_pre 2.13.01_pre: groovy little assembler
 dev-lang/python 3.6.1-r1: An interpreted, interactive, object-oriented programming language
 dev-lang/ruby 2.1.7: An object-oriented scripting language
 dev-libs/appstream-glib 0.6.11_pre: Provides GObjects and helper methods to read and write AppStream metadata
