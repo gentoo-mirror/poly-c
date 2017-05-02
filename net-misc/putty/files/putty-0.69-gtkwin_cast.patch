@@ -1,0 +1,15 @@
+X-Git-Url: https://git.tartarus.org/?p=simon%2Fputty.git;a=blobdiff_plain;f=unix%2Fgtkwin.c;h=67cfcac38baeda6e639b56925f7adb91cf0b9b66;hp=bca6daa43c2911e7912be8a57131684b7050d541;hb=b566c5f125efb9933303a61303ab17e2af0a859b;hpb=230f7d56284a703c65c4fecf7e6f23b791043f81
+
+diff --git a/unix/gtkwin.c b/unix/gtkwin.c
+index bca6daa..67cfcac 100644
+--- a/unix/gtkwin.c
++++ b/unix/gtkwin.c
+@@ -1935,7 +1935,7 @@ gboolean scroll_event(GtkWidget *widget, GdkEventScroll *event, gpointer data)
+     event_button->x_root = event->x_root;
+     event_button->y_root = event->y_root;
+     ret = button_internal(inst, event_button);
+-    gdk_event_free(event_button);
++    gdk_event_free((GdkEvent *)event_button);
+     return ret;
+ #endif
+ }

@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 979354ebcf72155b793df7b831f3273cd5278a6d $
+# $Id: eef0e26c7dc17cd88173f5a76a58d53462e268ff $
 
 EAPI="5"
 WANT_LIBTOOL="none"
@@ -66,6 +66,7 @@ src_prepare() {
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
 
 	epatch "${FILESDIR}/${PN}-3.5-distutils-OO-build.patch"
+	epatch "${FILESDIR}/3.6.1-test_socket-AEAD.patch"
 	epatch "${FILESDIR}/${PN}-3.6.0-blake2_remove_nested_comments.patch"
 
 	epatch_user

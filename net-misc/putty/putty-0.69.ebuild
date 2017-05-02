@@ -35,6 +35,11 @@ DEPEND="
 	virtual/pkgconfig
 "
 
+PATCHES=(
+	"${FILESDIR}/${P}-gtk2_compilefix.patch"
+	"${FILESDIR}/${P}-gtkwin_cast.patch"
+)
+
 src_prepare() {
 	default
 
