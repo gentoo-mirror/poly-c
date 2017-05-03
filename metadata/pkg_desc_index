@@ -22,6 +22,7 @@ app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
 app-misc/mc 4.8.15 4.8.18-r1 4.8.19: GNU Midnight Commander is a text based file manager
 app-misc/razertool 0.0.7-r3: Unofficial tool for controlling the Razer Copperhead mouse
+app-misc/tmux 2.4: Terminal multiplexer
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
