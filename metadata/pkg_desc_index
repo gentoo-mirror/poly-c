@@ -24,9 +24,10 @@ app-misc/mc 4.8.15 4.8.18-r1 4.8.19: GNU Midnight Commander is a text based file
 app-misc/razertool 0.0.7-r3: Unofficial tool for controlling the Razer Copperhead mouse
 app-misc/tmux 2.4: Terminal multiplexer
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
+app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/iso-codes 3.72_pre: ISO language, territory, currency, script codes and their translations
+app-text/iso-codes 3.72_pre 3.75_pre: ISO language, territory, currency, script codes and their translations
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
 app-text/poppler 0.53.0_pre 0.54.0_pre: PDF rendering library based on the xpdf-3.0 code base
@@ -96,39 +97,39 @@ lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-gfx/icoutils 0.31.2_pre 0.31.3_pre: A set of programs for extracting and converting images in icon and cursor files (.ico, .cur)
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
-media-libs/gst-plugins-bad 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: Less plugins for GStreamer
-media-libs/gst-plugins-base 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: Basepack of plugins for gstreamer
-media-libs/gst-plugins-good 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: Basepack of plugins for GStreamer
-media-libs/gst-plugins-ugly 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: Basepack of plugins for gstreamer
-media-libs/gstreamer 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: Open source multimedia framework
+media-libs/gst-plugins-bad 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: Less plugins for GStreamer
+media-libs/gst-plugins-base 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: Basepack of plugins for gstreamer
+media-libs/gst-plugins-good 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: Basepack of plugins for GStreamer
+media-libs/gst-plugins-ugly 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: Basepack of plugins for gstreamer
+media-libs/gstreamer 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: Open source multimedia framework
 media-libs/libbpg 0.9.6_pre 0.9.7_pre: BPG (Better Portable Graphics) is a new image format
 media-libs/libdvbpsi 1.3.1_pre: library for MPEG TS/DVB PSI tables decoding and generation
 media-libs/libdvdcss 1.3.99 1.4.0: A portable abstraction library for DVD decryption
+media-libs/libepoxy 1.4.2_pre: Epoxy is a library for handling OpenGL function pointer management for you
 media-libs/libmodplug 0.8.9.0_pre: Library for playing MOD-like music files
 media-libs/libmygpo-qt 1.0.9_pre: Qt/C++ library wrapping the gpodder.net webservice
 media-libs/libopenshot 0.1.4_pre: Video editing library used by OpenShot
 media-libs/libshout-idjc 2.4.1: Libshout-idjc is libshout plus some extensions for IDJC
-media-plugins/gst-plugins-a52dec 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: plugin for gstreamer
-media-plugins/gst-plugins-cdparanoia 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: plugin for gstreamer
-media-plugins/gst-plugins-dts 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: GStreamer plugin for MPEG-1/2 video encoding
-media-plugins/gst-plugins-dvdread 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: plugin for gstreamer
-media-plugins/gst-plugins-faad 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: plugin for gstreamer
-media-plugins/gst-plugins-flac 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: GStreamer encoder/decoder/tagger for FLAC
-media-plugins/gst-plugins-lame 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: plugin for gstreamer
-media-plugins/gst-plugins-libav 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: FFmpeg based gstreamer plugin
-media-plugins/gst-plugins-mad 1.10.2_pre 1.10.3_pre: plugin for gstreamer
-media-plugins/gst-plugins-meta 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: Meta ebuild to pull in gst plugins for apps
-media-plugins/gst-plugins-mpeg2dec 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: Libmpeg2 based decoder plug-in for gstreamer
-media-plugins/gst-plugins-mpg123 1.11.1_pre 1.11.2_pre 1.11.90_pre: MP3 decoder plugin for GStreamer
-media-plugins/gst-plugins-mplex 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: GStreamer plugin for MPEG/DVD/SVCD/VCD video/audio multiplexing
-media-plugins/gst-plugins-opus 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: GStreamer plugin for Opus audio codec support
-media-plugins/gst-plugins-pulse 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: GStreamer plugin for the PulseAudio sound server
-media-plugins/gst-plugins-resindvd 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: plugin for gstreamer
-media-plugins/gst-plugins-soup 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: GStreamer plugin for HTTP client source/sink
-media-plugins/gst-plugins-taglib 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: GStreamer taglib based tag handler
-media-plugins/gst-plugins-vaapi 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: Hardware accelerated video decoding through VA-API plugin
-media-plugins/gst-plugins-vpx 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: GStreamer decoder for vpx video format
-media-plugins/gst-plugins-x264 1.10.2_pre 1.10.3_pre 1.11.1_pre 1.11.2_pre 1.11.90_pre: plugin for gstreamer
+media-plugins/gst-plugins-a52dec 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: plugin for gstreamer
+media-plugins/gst-plugins-cdparanoia 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: plugin for gstreamer
+media-plugins/gst-plugins-dts 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: GStreamer plugin for MPEG-1/2 video encoding
+media-plugins/gst-plugins-dvdread 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: plugin for gstreamer
+media-plugins/gst-plugins-faad 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: plugin for gstreamer
+media-plugins/gst-plugins-flac 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: GStreamer encoder/decoder/tagger for FLAC
+media-plugins/gst-plugins-lame 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: plugin for gstreamer
+media-plugins/gst-plugins-libav 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: FFmpeg based gstreamer plugin
+media-plugins/gst-plugins-meta 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: Meta ebuild to pull in gst plugins for apps
+media-plugins/gst-plugins-mpeg2dec 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: Libmpeg2 based decoder plug-in for gstreamer
+media-plugins/gst-plugins-mpg123 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: MP3 decoder plugin for GStreamer
+media-plugins/gst-plugins-mplex 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: GStreamer plugin for MPEG/DVD/SVCD/VCD video/audio multiplexing
+media-plugins/gst-plugins-opus 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: GStreamer plugin for Opus audio codec support
+media-plugins/gst-plugins-pulse 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: GStreamer plugin for the PulseAudio sound server
+media-plugins/gst-plugins-resindvd 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: plugin for gstreamer
+media-plugins/gst-plugins-soup 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: GStreamer plugin for HTTP client source/sink
+media-plugins/gst-plugins-taglib 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: GStreamer taglib based tag handler
+media-plugins/gst-plugins-vaapi 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: Hardware accelerated video decoding through VA-API plugin
+media-plugins/gst-plugins-vpx 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: GStreamer decoder for vpx video format
+media-plugins/gst-plugins-x264 1.11.1_pre 1.11.2_pre 1.11.90_pre 1.11.91_pre: plugin for gstreamer
 media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
 media-sound/alsa-utils 1.0.27.2 1.0.28 1.0.28-r1 1.0.29 1.1.0 1.1.1 1.1.2 1.1.3: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
@@ -194,7 +195,7 @@ sys-boot/gnu-efi 3.0.5_pre: Library for build EFI Applications
 sys-boot/grub 2.02_beta2-r9 2.02_beta3-r1 2.02_rc1 2.02_rc2 2.02: GNU GRUB boot loader
 sys-fs/fuse 3.0.1: An interface for filesystems implemented in userspace
 sys-fs/fuse-common-files 3.0.1: Config files, init scripts and other common files for fuse package
-sys-fs/lvm2 2.02.169_pre 2.02.170_pre: User-land utilities for LVM2 (device-mapper) software
+sys-fs/lvm2 2.02.170_pre 2.02.171_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2 233: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-fs/udisks 2.6.4_pre: Daemon providing interfaces to work with storage devices
@@ -208,6 +209,7 @@ sys-power/cpupower 4.1.37 4.1.38 4.1.39 4.4.64 4.4.65 4.4.66 4.9.24 4.9.25 4.9.2
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
+x11-apps/xkbcomp 1.4.0_pre: compile XKB keyboard description
 x11-libs/cairo 1.15.2_pre 1.15.4_pre: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
