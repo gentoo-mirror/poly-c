@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e09e97c727ab97c7b249f8e9c0b2f03b960be9e2 $
+# $Id: 448708462c8971a1ceb60c6f368c6155a0c5a741 $
 
 EAPI=6
 inherit autotools eutils gnome2-utils toolchain-funcs
@@ -10,7 +10,7 @@ HOMEPAGE="http://www.chiark.greenend.org.uk/~sgtatham/putty/"
 LICENSE="MIT"
 
 SLOT="0"
-KEYWORDS="alpha amd64 hppa ppc ppc64 sparc x86"
+KEYWORDS="~alpha ~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
 IUSE="doc +gtk gtk3 ipv6 kerberos"
 SRC_URI="
 	https://dev.gentoo.org/~jer/${PN}-icons.tar.bz2
