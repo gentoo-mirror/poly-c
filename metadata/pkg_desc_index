@@ -77,6 +77,7 @@ games-fps/etlegacy 2.74 2.75 9999: Wolfenstein: Enemy Territory 2.60b compatible
 games-fps/rtcw 1.42b 1.42d 9999: Return to Castle Wolfenstein - IORTCW Project
 games-strategy/boswars 9999: Futuristic real-time strategy game
 games-strategy/opendungeons 0.7.1: An open source, real time strategy game based on the Dungeon Keeper series
+games-util/grfcodec 6.0.6_pre: A suite of programs to modify openttd/Transport Tycoon Deluxe's GRF files
 games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 games-util/x52pro-linux 9999: Saitek X52pro drivers & controller mapping software for Linux
