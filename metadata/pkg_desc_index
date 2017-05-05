@@ -194,7 +194,6 @@ sys-boot/gnu-efi 3.0.5_pre: Library for build EFI Applications
 sys-boot/grub 2.02_beta2-r9 2.02_beta3-r1 2.02_rc1 2.02_rc2 2.02: GNU GRUB boot loader
 sys-fs/fuse 3.0.1: An interface for filesystems implemented in userspace
 sys-fs/fuse-common-files 3.0.1: Config files, init scripts and other common files for fuse package
-sys-fs/lvm2 2.02.170_pre 2.02.171_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2 233: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-fs/udisks 2.6.4_pre: Daemon providing interfaces to work with storage devices
