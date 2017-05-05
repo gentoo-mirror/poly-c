@@ -105,6 +105,7 @@ media-libs/libbpg 0.9.6_pre 0.9.7_pre: BPG (Better Portable Graphics) is a new i
 media-libs/libdvbpsi 1.3.1_pre: library for MPEG TS/DVB PSI tables decoding and generation
 media-libs/libdvdcss 1.3.99 1.4.0: A portable abstraction library for DVD decryption
 media-libs/libepoxy 1.4.2_pre: Epoxy is a library for handling OpenGL function pointer management for you
+media-libs/libid3tag 0.15.1b-r4: The MAD id3tag library
 media-libs/libmodplug 0.8.9.0_pre: Library for playing MOD-like music files
 media-libs/libmygpo-qt 1.0.9_pre: Qt/C++ library wrapping the gpodder.net webservice
 media-libs/libopenshot 0.1.4_pre: Video editing library used by OpenShot
@@ -208,6 +209,7 @@ sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-apps/xkbcomp 1.4.0_pre: compile XKB keyboard description
+x11-drivers/xf86-input-libinput 0.25.1_pre: X.org input driver based on libinput
 x11-libs/cairo 1.15.2_pre 1.15.4_pre: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
