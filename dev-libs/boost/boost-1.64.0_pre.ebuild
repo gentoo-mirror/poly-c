@@ -11,7 +11,8 @@ MAJOR_V="$(get_version_component_range 1-2)"
 
 DESCRIPTION="Boost Libraries for C++"
 HOMEPAGE="http://www.boost.org/"
-SRC_URI="https://downloads.sourceforge.net/project/boost/${PN}/${MY_PV}/${REAL_P}.tar.bz2"
+SRC_URI="https://downloads.sourceforge.net/project/boost/${PN}/${MY_PV}/${REAL_P}.tar.bz2
+	https://dl.bintray.com/boostorg/release/${MY_PV}/source/${REAL_P}.tar.bz2"
 
 LICENSE="Boost-1.0"
 SLOT="0/${MY_PV}" # ${MY_PV} instead ${MAJOR_V} due to bug 486122

@@ -77,7 +77,6 @@ games-fps/etlegacy 2.74 2.75 9999: Wolfenstein: Enemy Territory 2.60b compatible
 games-fps/rtcw 1.42b 1.42d 9999: Return to Castle Wolfenstein - IORTCW Project
 games-strategy/boswars 9999: Futuristic real-time strategy game
 games-strategy/opendungeons 0.7.1: An open source, real time strategy game based on the Dungeon Keeper series
-games-util/grfcodec 6.0.6_pre: A suite of programs to modify openttd/Transport Tycoon Deluxe's GRF files
 games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 games-util/x52pro-linux 9999: Saitek X52pro drivers & controller mapping software for Linux
@@ -210,9 +209,9 @@ sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-apps/xkbcomp 1.4.0_pre: compile XKB keyboard description
-x11-drivers/xf86-input-libinput 0.25.1_pre: X.org input driver based on libinput
 x11-libs/cairo 1.15.2_pre 1.15.4_pre: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-plugins/gkrellm-cpupower 0.1.5: GKrellm plugin for changing CPU frequencies via cpupower
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager
+x11-wm/lumina 1.2.0: Lumina desktop environment
