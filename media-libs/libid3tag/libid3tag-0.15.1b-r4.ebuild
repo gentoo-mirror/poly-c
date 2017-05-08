@@ -1,5 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id: 5e64243d56ff3c30b6e03212ac765f6bb94a5a22 $
 
 EAPI=5
 # eutils for einstalldocs
