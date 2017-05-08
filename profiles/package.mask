@@ -27,7 +27,8 @@ media-radio/liquidsoap
 =x11-libs/cairo-1.15*
 
 # breaks dev-games/simgear
->=dev-games/openscenegraph-3.5.4_pre
+=dev-games/openscenegraph-3.5.4_pre
+=dev-games/openscenegraph-3.5.5_pre
 
 # Requires java8 and FXCollections
 >=media-tv/mediathekview-bin-12
