@@ -109,6 +109,7 @@ media-libs/libmodplug 0.8.9.0_pre: Library for playing MOD-like music files
 media-libs/libmygpo-qt 1.0.9_pre: Qt/C++ library wrapping the gpodder.net webservice
 media-libs/libopenshot 0.1.4_pre: Video editing library used by OpenShot
 media-libs/libshout-idjc 2.4.1: Libshout-idjc is libshout plus some extensions for IDJC
+media-libs/mesa 17.1.0_rc99: OpenGL-like graphic library for Linux
 media-plugins/gst-plugins-a52dec 1.11.90_pre 1.11.91_pre 1.12.0_pre: plugin for gstreamer
 media-plugins/gst-plugins-cdparanoia 1.11.90_pre 1.11.91_pre 1.12.0_pre: plugin for gstreamer
 media-plugins/gst-plugins-dts 1.11.90_pre 1.11.91_pre 1.12.0_pre: GStreamer plugin for MPEG-1/2 video encoding
@@ -145,7 +146,7 @@ media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2: Download files from the public broadcasting services
 media-video/openshot 2.3.0_pre 2.3.1_pre: Free, open-source, non-linear video editor to create and edit videos and movies
 media-video/simplescreenrecorder 0.3.8 9999: A Simple Screen Recorder
-media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.3.0_pre 17.4.0_pre 17.4.2_pre: Great Qt GUI front-end for mplayer/mpv
+media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.4.0_pre 17.4.2_pre 17.5.0_pre: Great Qt GUI front-end for mplayer/mpv
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
 net-analyzer/arpalert 1.0.3_pre 1.1.3_pre 2.0.11_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/fping 3.15_pre 4.0_pre: A utility to ping multiple hosts at once
@@ -170,6 +171,7 @@ net-misc/ns 3.25 3.26: A discrete-event network simulator for Internet systems.
 net-misc/putty 0.68 0.69: A Free Telnet/SSH Client
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
+net-wireless/bluez 5.45_pre: Bluetooth Tools and System Daemons for Linux
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sys-apps/dtc 1.4.2_pre: Open Firmware device tree compiler
