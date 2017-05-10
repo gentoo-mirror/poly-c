@@ -75,6 +75,9 @@ src_prepare() {
 	if [[ ${CC} == clang ]] ; then
 		sed -i -e 's/-fno-check-new//' cmake/modules/PopplerMacros.cmake || die
 	fi
+
+	sed '/^cmake_minimum_required/acmake_policy(SET CMP0002 OLD)' \
+		-i CMakeLists.txt || die
 }
 
 src_configure() {

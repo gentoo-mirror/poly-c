@@ -25,10 +25,11 @@ app-office/ledger 3.1: A double-entry accounting system with a command-line repo
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
+app-text/calibre 2.84.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre 3.75_pre: ISO language, territory, currency, script codes and their translations
 app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
-app-text/poppler 0.53.0_pre 0.54.0_pre: PDF rendering library based on the xpdf-3.0 code base
+app-text/poppler 0.54.0_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-db/sqlite 3.18.0_pre: A SQL Database Engine in a C Library
 dev-games/openscenegraph 3.5.4_pre 3.5.5_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.8_pre 1.10.0_pre 1.10.1_pre: Java-based build tool similar to 'make' that uses XML configuration files
@@ -52,7 +53,6 @@ dev-libs/libgusb 0.2.10_pre: GObject wrapper for libusb
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.1.0e: full-strength general purpose cryptography library (including SSL and TLS)
-dev-libs/protobuf 3.2.0_pre: Google's Protocol Buffers -- an efficient method of encoding structured data
 dev-perl/Net-DNS 1.40.0_pre: Perl Net::DNS - Perl DNS Resolver Module
 dev-perl/Net-SSLeay 1.780.0_pre: Perl extension for using OpenSSL
 dev-perl/Text-Unidecode 1.270.0_pre: Plain ASCII transliterations of Unicode text
