@@ -20,7 +20,7 @@ app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
 app-misc/mc 4.8.15 4.8.18-r1 4.8.19: GNU Midnight Commander is a text based file manager
 app-misc/razertool 0.0.7-r3: Unofficial tool for controlling the Razer Copperhead mouse
-app-misc/tmux 2.4: Terminal multiplexer
+app-misc/tmux 2.5_rc: Terminal multiplexer
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
@@ -45,6 +45,7 @@ dev-libs/atk 2.24.0_pre: GTK+ & GNOME Accessibility Toolkit
 dev-libs/boost 1.64.0_pre: Boost Libraries for C++
 dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
+dev-libs/elfutils 0.169_pre: Libraries/utilities to handle ELF objects (drop in replacement for libelf)
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/icu 55.1 57.1 58.1-r1 58.2 59.1_pre: International Components for Unicode
 dev-libs/icu-layoutex 59.1_pre: External layout part of International Components for Unicode
@@ -88,6 +89,7 @@ kde-apps/ksnapshot 15.08.3-r1: KDE Screenshot Utility
 kde-apps/print-manager 16.08.1: Manage print jobs and printers in Plasma
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
+kde-plasma/kwin 5.9.5: KDE window manager
 kde-plasma/plasma-desktop 5.8.4 5.8.5 5.8.5-r1: KDE Plasma desktop
 kde-plasma/plasma-workspace 5.8.6 5.9.5.1 5.9.5.1-r1: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
