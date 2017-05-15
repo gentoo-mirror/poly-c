@@ -20,7 +20,7 @@ app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
 app-misc/mc 4.8.15 4.8.18-r1 4.8.19: GNU Midnight Commander is a text based file manager
 app-misc/razertool 0.0.7-r3: Unofficial tool for controlling the Razer Copperhead mouse
-app-misc/tmux 2.5_rc: Terminal multiplexer
+app-misc/tmux 2.5_rc 2.5_rc2: Terminal multiplexer
 app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
@@ -64,9 +64,11 @@ dev-qt/qtdbus 5.6.2 5.7.1: Qt5 module for inter-process communication over the D
 dev-qt/qtwebengine 5.6.1: Library for rendering dynamic web content in Qt5 C++ and QML applications
 dev-scheme/guile 2.2.0_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.64.0_pre: A system for large project software construction, simple to use and powerful
+dev-util/colm 0.13.0.5_pre: COmputer Language Manipulation
 dev-util/cppunit 1.14.0_pre: C++ port of the famous JUnit framework for unit testing
 dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
 dev-util/meld 3.17.0_pre 3.17.1_pre: A graphical diff and merge tool
+dev-util/ragel 7.0.0.10_pre: Compiles finite state machines from regular languages into executable code
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 dev-vcs/git-cola 2.10_pre: The highly caffeinated git GUI
 games-arcade/emilia-pinball 0.3.3: SDL OpenGL pinball game
@@ -189,6 +191,7 @@ sys-apps/man 1.6g: Standard commands to read man pages
 sys-apps/openrc 0.21.4: OpenRC manages the services, startup and shutdown of a host
 sys-apps/portage 2.3.1: Portage is the package management and distribution system for Gentoo
 sys-apps/usb_modeswitch 2.5.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
+sys-apps/util-linux 2.30_rc1: Various useful Linux utilities
 sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/gparted 0.28.0_pre 0.28.1_pre: Gnome Partition Editor
