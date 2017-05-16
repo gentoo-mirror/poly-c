@@ -4,11 +4,12 @@
 
 EAPI=6
 
-inherit toolchain-funcs
+inherit toolchain-funcs poly-c_ebuilds
 
 DESCRIPTION="Parallel lzip compressor"
 HOMEPAGE="http://www.nongnu.org/lzip/plzip.html"
-SRC_URI="http://download.savannah.gnu.org/releases-noredirect/lzip/${PN}/${P/_/-}.tar.gz"
+SRC_URI="http://download.savannah.gnu.org/releases-noredirect/lzip/${PN}/${MY_P/_/-}.tar.gz
+	http://download.savannah.gnu.org/releases/lzip/${PN}/${MY_P/_/-}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -18,7 +19,7 @@ IUSE=""
 RDEPEND="app-arch/lzlib:0="
 DEPEND=${RDEPEND}
 
-S="${WORKDIR}/${P/_/-}"
+S="${WORKDIR}/${MY_P/_/-}"
 
 src_configure() {
 	# not autotools-based

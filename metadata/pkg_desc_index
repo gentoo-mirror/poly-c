@@ -3,8 +3,10 @@ app-admin/cpulimit 2.5_pre: Limits the CPU usage of a process
 app-admin/littleutils 1.0.36 1.0.37: The littleutils are a collection of small and simple utilities
 app-admin/remotebox 2.0 2.2: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
+app-arch/lzip 1.19_rc99: lossless data compressor based on the LZMA algorithm
 app-arch/lzlib 1.9_pre: Library for lzip compression
-app-arch/plzip 1.6_pre1 1.6_rc1: Parallel lzip compressor
+app-arch/pdlzip 1.8_rc99: Public-domain version of lzip compressor
+app-arch/plzip 1.6_rc1 1.6_rc99: Parallel lzip compressor
 app-arch/snappy 1.1.4_pre: A high-speed compression/decompression library by Google
 app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
@@ -60,7 +62,6 @@ dev-python/google-apputils 0.4.0: Collection of utilities for building Python ap
 dev-python/m2crypto 0.23.0: M2Crypto: A Python crypto and SSL toolkit
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
-dev-qt/qtcore 4.8.6-r2 4.8.7-r2: Cross-platform application development framework
 dev-qt/qtdbus 5.6.2 5.7.1: Qt5 module for inter-process communication over the D-Bus protocol
 dev-qt/qtwebengine 5.6.1: Library for rendering dynamic web content in Qt5 C++ and QML applications
 dev-scheme/guile 2.2.0_pre: GNU Ubiquitous Intelligent Language for Extensions
@@ -113,7 +114,6 @@ media-libs/libmodplug 0.8.9.0_pre: Library for playing MOD-like music files
 media-libs/libmygpo-qt 1.0.9_pre: Qt/C++ library wrapping the gpodder.net webservice
 media-libs/libopenshot 0.1.4_pre: Video editing library used by OpenShot
 media-libs/libshout-idjc 2.4.1: Libshout-idjc is libshout plus some extensions for IDJC
-media-libs/mesa 17.1.0_rc99: OpenGL-like graphic library for Linux
 media-plugins/gst-plugins-a52dec 1.11.90_pre 1.11.91_pre 1.12.0_pre: plugin for gstreamer
 media-plugins/gst-plugins-cdparanoia 1.11.90_pre 1.11.91_pre 1.12.0_pre: plugin for gstreamer
 media-plugins/gst-plugins-dts 1.11.90_pre 1.11.91_pre 1.12.0_pre: GStreamer plugin for MPEG-1/2 video encoding
