@@ -49,8 +49,6 @@ dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/elfutils 0.169_pre: Libraries/utilities to handle ELF objects (drop in replacement for libelf)
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
-dev-libs/icu 55.1 57.1 58.1-r1 58.2 59.1_pre: International Components for Unicode
-dev-libs/icu-layoutex 59.1_pre: External layout part of International Components for Unicode
 dev-libs/libgusb 0.2.10_pre: GObject wrapper for libusb
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
@@ -63,7 +61,7 @@ dev-python/m2crypto 0.23.0: M2Crypto: A Python crypto and SSL toolkit
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtdbus 5.6.2 5.7.1: Qt5 module for inter-process communication over the D-Bus protocol
-dev-qt/qtwebengine 5.6.1: Library for rendering dynamic web content in Qt5 C++ and QML applications
+dev-qt/qtwebengine 5.6.1 5.7.1-r1: Library for rendering dynamic web content in Qt5 C++ and QML applications
 dev-scheme/guile 2.2.0_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.64.0_pre: A system for large project software construction, simple to use and powerful
 dev-util/colm 0.13.0.5_pre: COmputer Language Manipulation

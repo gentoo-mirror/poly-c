@@ -48,6 +48,3 @@ dev-java/openjfx
 # masked for testing
 =net-misc/icecast-2.5_beta*
 
-# breaks at least qtcore:5
-=dev-libs/icu-59.1_pre
-=dev-libs/icu-layoutex-59.1_pre
