@@ -98,7 +98,6 @@ kde-plasma/plasma-workspace 5.8.6 5.9.5.1 5.9.5.1-r1: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-gfx/icoutils 0.31.2_pre 0.31.3_pre: A set of programs for extracting and converting images in icon and cursor files (.ico, .cur)
-media-libs/babl 0.1.26_pre: A dynamic, any to any, pixel format conversion library
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
 media-libs/gst-plugins-bad 1.11.90_pre 1.11.91_pre 1.12.0_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.11.90_pre 1.11.91_pre 1.12.0_pre: Basepack of plugins for gstreamer
