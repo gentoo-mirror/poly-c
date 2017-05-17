@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 6dfba6c726c4c10761111dd44d4bb57f0299d4ff $
+# $Id: 583af09c1e79f581add75f17550f7dd18fcbba7d $
 
 EAPI=6
 
@@ -97,6 +97,7 @@ PATCHES=(
 	"${FILESDIR}"/${P}-fix-desktop-file.patch
 	"${FILESDIR}"/${P}-chromaprint14.patch #603662
 	"${FILESDIR}"/${P}-libechonest_removal.patch
+	"${FILESDIR}"/${P}-add-missing-functional-includes.patch #618214
 )
 
 src_prepare() {
@@ -166,6 +167,10 @@ pkg_preinst() {
 pkg_postinst() {
 	fdo-mime_desktop_database_update
 	gnome2_icon_cache_update
+
+	elog "Note that list of supported formats is controlled by media-plugins/gst-plugins-meta "
+	elog "USE flags. You may be intrested in setting aac, flac, mp3, ogg or wavpack USE flags "
+	elog "depending on your preferences"
 }
 
 pkg_postrm() {
