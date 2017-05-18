@@ -99,6 +99,7 @@ lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-gfx/icoutils 0.31.2_pre 0.31.3_pre: A set of programs for extracting and converting images in icon and cursor files (.ico, .cur)
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
+media-libs/gegl 0.3.16_pre: A graph based image processing framework
 media-libs/gst-plugins-bad 1.11.90_pre 1.11.91_pre 1.12.0_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.11.90_pre 1.11.91_pre 1.12.0_pre: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.11.90_pre 1.11.91_pre 1.12.0_pre: Basepack of plugins for GStreamer
@@ -111,8 +112,10 @@ media-libs/libepoxy 1.4.2_pre: Epoxy is a library for handling OpenGL function p
 media-libs/libid3tag 0.15.1b-r4: The MAD id3tag library
 media-libs/libmodplug 0.8.9.0_pre: Library for playing MOD-like music files
 media-libs/libmygpo-qt 1.0.9_pre: Qt/C++ library wrapping the gpodder.net webservice
-media-libs/libopenshot 0.1.4_pre: Video editing library used by OpenShot
+media-libs/libopenshot 0.1.4_pre 0.1.5_pre: Video editing library used by OpenShot
+media-libs/libopenshot-audio 0.1.4_pre: Audio library used by OpenShot
 media-libs/libshout-idjc 2.4.1: Libshout-idjc is libshout plus some extensions for IDJC
+media-libs/opus 1.2_alpha2: Open codec designed for internet transmission of interactive speech and audio
 media-plugins/gst-plugins-a52dec 1.11.90_pre 1.11.91_pre 1.12.0_pre: plugin for gstreamer
 media-plugins/gst-plugins-cdparanoia 1.11.90_pre 1.11.91_pre 1.12.0_pre: plugin for gstreamer
 media-plugins/gst-plugins-dts 1.11.90_pre 1.11.91_pre 1.12.0_pre: GStreamer plugin for MPEG-1/2 video encoding
@@ -135,7 +138,7 @@ media-plugins/gst-plugins-vpx 1.11.90_pre 1.11.91_pre 1.12.0_pre: GStreamer deco
 media-plugins/gst-plugins-x264 1.11.90_pre 1.11.91_pre 1.12.0_pre: plugin for gstreamer
 media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
-media-sound/alsa-utils 1.0.27.2 1.0.28 1.0.28-r1 1.0.29 1.1.0 1.1.1 1.1.2 1.1.3: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
+media-sound/alsa-utils 1.0.27.2 1.0.28 1.0.28-r1 1.0.29 1.1.0 1.1.1 1.1.2 1.1.3 1.1.4: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
 media-sound/ameter 0.44_pre: Ameter is an Alsa meter plugin
 media-sound/clementine 1.2.3 1.3.1-r5 1.3.1-r6: A modern music player and library organizer based on Amarok 1.4 and Qt4
 media-sound/cutmp3 2.1.2_pre 3.0_pre 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
