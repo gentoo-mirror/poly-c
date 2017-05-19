@@ -3,7 +3,6 @@ app-admin/cpulimit 2.5_pre: Limits the CPU usage of a process
 app-admin/littleutils 1.0.36 1.0.37: The littleutils are a collection of small and simple utilities
 app-admin/remotebox 2.0 2.2: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
-app-arch/lzip 1.19_rc99: lossless data compressor based on the LZMA algorithm
 app-arch/lzlib 1.9_pre: Library for lzip compression
 app-arch/pdlzip 1.8_rc99: Public-domain version of lzip compressor
 app-arch/plzip 1.6_rc1 1.6_rc99: Parallel lzip compressor
@@ -23,15 +22,12 @@ app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LD
 app-misc/mc 4.8.15 4.8.18-r1 4.8.19: GNU Midnight Commander is a text based file manager
 app-misc/razertool 0.0.7-r3: Unofficial tool for controlling the Razer Copperhead mouse
 app-misc/tmux 2.5_rc 2.5_rc2: Terminal multiplexer
-app-office/ledger 3.1: A double-entry accounting system with a command-line reporting interface
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/calibre 2.85.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre 3.75_pre: ISO language, territory, currency, script codes and their translations
-app-text/mupdf 1.10a_pre: a lightweight PDF viewer and toolkit written in portable C
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
-dev-db/sqlite 3.18.0_pre: A SQL Database Engine in a C Library
 dev-games/ogre 1.10.4_pre: Object-oriented Graphics Rendering Engine
 dev-games/openscenegraph 3.5.4_pre 3.5.5_pre: Open source high performance 3D graphics toolkit
 dev-java/ant-core 1.9.8_pre 1.10.0_pre 1.10.1_pre: Java-based build tool similar to 'make' that uses XML configuration files
@@ -44,9 +40,7 @@ dev-lang/nasm 2.12.02_pre 2.13.01_pre: groovy little assembler
 dev-lang/python 3.6.1-r1: An interpreted, interactive, object-oriented programming language
 dev-lang/ruby 2.1.7: An object-oriented scripting language
 dev-libs/appstream-glib 0.6.11_pre: Provides GObjects and helper methods to read and write AppStream metadata
-dev-libs/atk 2.24.0_pre: GTK+ & GNOME Accessibility Toolkit
 dev-libs/boost 1.64.0_pre: Boost Libraries for C++
-dev-libs/botan 1.11.21_pre: A C++ crypto library
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/elfutils 0.169_pre: Libraries/utilities to handle ELF objects (drop in replacement for libelf)
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
@@ -55,11 +49,6 @@ dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/npth 1.4_pre: New GNU Portable Threads Library
 dev-libs/openssl 1.0.2k 1.1.0e: full-strength general purpose cryptography library (including SSL and TLS)
-dev-perl/Net-DNS 1.40.0_pre: Perl Net::DNS - Perl DNS Resolver Module
-dev-perl/Net-SSLeay 1.780.0_pre: Perl extension for using OpenSSL
-dev-perl/Text-Unidecode 1.270.0_pre: Plain ASCII transliterations of Unicode text
-dev-python/google-apputils 0.4.0: Collection of utilities for building Python applications
-dev-python/m2crypto 0.23.0: M2Crypto: A Python crypto and SSL toolkit
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtdbus 5.6.2 5.7.1: Qt5 module for inter-process communication over the D-Bus protocol
@@ -68,7 +57,7 @@ dev-scheme/guile 2.2.0_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.64.0_pre: A system for large project software construction, simple to use and powerful
 dev-util/colm 0.13.0.5_pre: COmputer Language Manipulation
 dev-util/cppunit 1.14.0_pre: C++ port of the famous JUnit framework for unit testing
-dev-util/eclipse-sdk-bin 4.2.1 4.2.2 4.3 4.3.1 4.3.2: Eclipse SDK
+dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/meld 3.17.0_pre 3.17.1_pre: A graphical diff and merge tool
 dev-util/ragel 7.0.0.10_pre: Compiles finite state machines from regular languages into executable code
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
@@ -115,7 +104,6 @@ media-libs/libmygpo-qt 1.0.9_pre: Qt/C++ library wrapping the gpodder.net webser
 media-libs/libopenshot 0.1.4_pre 0.1.5_pre: Video editing library used by OpenShot
 media-libs/libopenshot-audio 0.1.4_pre: Audio library used by OpenShot
 media-libs/libshout-idjc 2.4.1: Libshout-idjc is libshout plus some extensions for IDJC
-media-libs/opus 1.2_alpha2: Open codec designed for internet transmission of interactive speech and audio
 media-plugins/gst-plugins-a52dec 1.11.90_pre 1.11.91_pre 1.12.0_pre: plugin for gstreamer
 media-plugins/gst-plugins-cdparanoia 1.11.90_pre 1.11.91_pre 1.12.0_pre: plugin for gstreamer
 media-plugins/gst-plugins-dts 1.11.90_pre 1.11.91_pre 1.12.0_pre: GStreamer plugin for MPEG-1/2 video encoding
@@ -162,6 +150,7 @@ net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugi
 net-analyzer/nagios-plugins 1.4.16-r2 1.4.16-r3: Nagios 1.4.16 plugins - Pack of plugins to make Nagios work properly
 net-analyzer/nikto 2.1.2_pre 2.1.5_pre: Web Server vulnerability scanner.
 net-analyzer/ntopng 1.1.6932: Next generation network traffic analyzer
+net-analyzer/rrdtool 1.7.0_pre: A system to store and display time-series data
 net-dialup/mingetty 1.08 1.08-r1: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
@@ -171,7 +160,10 @@ net-im/pidgin 2.11.0-r1: GTK Instant Messenger client
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/bctoolbox 0.4.0_pre: Utilities library used by Belledonne Communications softwares like belle-sip, mediastreamer2 and linphone.
+net-libs/http-parser 2.7.1_pre: Http request/response parser for C
+net-libs/miniupnpc 2.0.20170509_pre: UPnP client library and a simple UPnP client
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
+net-misc/aria2 1.32.0_pre: A download utility with segmented downloading with BitTorrent support
 net-misc/icecast 2.5_beta1: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/networkmanager 1.4.0-r1 1.4.4 1.4.4-r1 1.6.2_pre 1.8.0_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.25 3.26: A discrete-event network simulator for Internet systems.

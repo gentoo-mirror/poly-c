@@ -3,13 +3,14 @@
 # $Id$
 
 EAPI=5
+
 inherit eutils scons-utils games subversion
 
 ESVN_REPO_URI="svn://bos.seul.org/svn/bos/bos/trunk"
 
 DESCRIPTION="Futuristic real-time strategy game"
 HOMEPAGE="http://www.boswars.org/"
-#RC_URI="http://www.boswars.org/dist/releases/${P}-src.tar.gz
+#SRC_URI="http://www.boswars.org/dist/releases/${P}-src.tar.gz
 #mirror://gentoo/bos.png"
 
 LICENSE="GPL-2"
@@ -26,13 +27,16 @@ DEPEND="dev-lang/lua
 	virtual/opengl
 	x11-libs/libX11"
 
-S=${WORKDIR}/${P}-src
+S="${WORKDIR}/${P}-src"
+
+PATCHES=(
+	"${FILESDIR}"/${PN}-2.6.1-gentoo.patch
+	"${FILESDIR}"/${PN}-2.6.1-scons-blows.patch
+)
 
 src_prepare() {
 	rm -f doc/{README-SDL.txt,guichan-copyright.txt}
-	epatch \
-		"${FILESDIR}"/${PN}-2.6.1-gentoo.patch \
-		"${FILESDIR}"/${PN}-2.6.1-scons-blows.patch
+	epatch "${PATCHES[@]}"
 	sed -i \
 		-e "s:@GENTOO_DATADIR@:${GAMES_DATADIR}/${PN}:" \
 		engine/include/stratagus.h \

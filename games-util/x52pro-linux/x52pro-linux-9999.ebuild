@@ -7,13 +7,13 @@ EAPI=6
 SCM=
 [[ "${PV}" = 9999 ]] && SCM="git-r3"
 
-inherit autotools ${SCM}
+inherit autotools udev ${SCM}
 
 DESCRIPTION="Saitek X52pro drivers & controller mapping software for Linux"
 HOMEPAGE="https://github.com/nirenjan/x52pro-linux"
 
 if [[ "${PV}" != 9999 ]] ; then
-	SRC_URI="ftp://foo.example.org/${P}.tar.gz"
+	SRC_URI="https://github.com/nirenjan/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 else
 	EGIT_REPO_URI="https://github.com/nirenjan/x52pro-linux.git"
@@ -39,6 +39,6 @@ src_install() {
 	default
 	find "${ED}" \( -name "*.a" -o -name "*.la" \) -delete || die
 
-	insinto /lib/udev/rules.d
+	insinto $(get_udevdir)/rules.d
 	doins udev/99-saitek-x52pro.rules
 }
