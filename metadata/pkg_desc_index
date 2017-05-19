@@ -164,6 +164,7 @@ net-libs/http-parser 2.7.1_pre: Http request/response parser for C
 net-libs/miniupnpc 2.0.20170509_pre: UPnP client library and a simple UPnP client
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-misc/aria2 1.32.0_pre: A download utility with segmented downloading with BitTorrent support
+net-misc/dropbear 2017.75_pre: small SSH 2 client/server designed for small memory environments
 net-misc/icecast 2.5_beta1: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/networkmanager 1.4.0-r1 1.4.4 1.4.4-r1 1.6.2_pre 1.8.0_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.25 3.26: A discrete-event network simulator for Internet systems.
@@ -193,6 +194,7 @@ sys-block/gparted 0.28.0_pre 0.28.1_pre: Gnome Partition Editor
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/gnu-efi 3.0.5_pre: Library for build EFI Applications
 sys-boot/grub 2.02_beta2-r9 2.02_beta3-r1 2.02_rc1 2.02_rc2 2.02: GNU GRUB boot loader
+sys-fs/btrfs-progs 4.11_pre: Btrfs filesystem utilities
 sys-fs/fuse 3.0.1: An interface for filesystems implemented in userspace
 sys-fs/fuse-common-files 3.0.1: Config files, init scripts and other common files for fuse package
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2 233: Linux dynamic and persistent device naming support (aka userspace devfs)
