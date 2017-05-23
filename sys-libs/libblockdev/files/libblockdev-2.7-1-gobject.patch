@@ -1,0 +1,49 @@
+From 44e576bf7b515ec86ce4f36a7a2fdc5b5f5a9205 Mon Sep 17 00:00:00 2001
+From: Andreas Henriksson <andreas@fatal.se>
+Date: Fri, 31 Mar 2017 13:56:49 +0200
+Subject: [PATCH] Link to gobject when lvm or btrfs is enabled
+
+The plugins uses g_boxed_type_register_static which is part of gobject
+(not glib), so need to be linked to it.
+---
+ configure.ac        |  1 +
+ src/lib/Makefile.am | 14 ++++++++++++--
+ 2 files changed, 13 insertions(+), 2 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index b772518..91c6831 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -139,6 +139,7 @@ AM_CONDITIONAL(WITH_PART_O_WITH_FS, test "x$with_part" != "xno" -o "x$with_fs" !
+ 
+ dnl these two modules are always needed
+ LIBBLOCKDEV_PKG_CHECK_MODULES([GLIB], [glib-2.0 >= 2.42.2])
++LIBBLOCKDEV_PKG_CHECK_MODULES([GOBJECT], [gobject-2.0 >= 2.42.2])
+ LIBBLOCKDEV_PKG_CHECK_MODULES([GIO], [gio-2.0 >= 2.42.2])
+ 
+ AS_IF([test "x$with_crypto" != "xno"],
+diff --git a/src/lib/Makefile.am b/src/lib/Makefile.am
+index da16010..d76369b 100644
+--- a/src/lib/Makefile.am
++++ b/src/lib/Makefile.am
+@@ -3,8 +3,18 @@
+ SUBDIRS = plugin_apis
+ 
+ lib_LTLIBRARIES = libblockdev.la
+-libblockdev_la_CFLAGS = $(GLIB_CFLAGS)
+-libblockdev_la_LIBADD = $(GLIB_LIBS) ${builddir}/../utils/libbd_utils.la -ldl
++libblockdev_la_CFLAGS =
++libblockdev_la_LIBADD =
++if WITH_BTRFS
++libblockdev_la_CFLAGS += $(GOBJECT_CFLAGS)
++libblockdev_la_LIBADD += $(GOBJECT_LIBS)
++endif
++if WITH_LVM
++libblockdev_la_CFLAGS += $(GOBJECT_CFLAGS)
++libblockdev_la_LIBADD += $(GOBJECT_LIBS)
++endif
++libblockdev_la_CFLAGS += $(GLIB_CFLAGS)
++libblockdev_la_LIBADD += $(GLIB_LIBS) ${builddir}/../utils/libbd_utils.la -ldl
+ libblockdev_la_LDFLAGS = -L${srcdir}/../utils/ -version-info 2:0:0 -Wl,--no-undefined
+ libblockdev_la_CPPFLAGS = -I${builddir}/../../include/
+ libblockdev_la_SOURCES = blockdev.c blockdev.h plugins.c plugins.h
