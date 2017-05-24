@@ -25,11 +25,22 @@ DEPEND="
 	sys-boot/gnu-efi
 "
 
+PATCHES=(
+	"${FILESDIR}/${P}-objcopy_detection.patch"
+)
+
 do_make() {
 	emake \
 		EFIDIR="gentoo" \
 		GNUEFIDIR="/usr/$(get_libdir)" \
 		"${@}"
+}
+
+src_prepare() {
+	default
+
+	# Remove -Werror
+	sed 's@ -Werror\([[:space:]]\|\n\)@\1@' -i linux/Makefile || die
 }
 
 src_compile() {

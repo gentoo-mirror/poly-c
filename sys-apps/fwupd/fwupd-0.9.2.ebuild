@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit autotools udev systemd
+inherit meson udev systemd
 
 DESCRIPTION="Aims to make updating firmware on Linux automatic, safe and reliable"
 HOMEPAGE="http://www.fwupd.org"
@@ -45,21 +45,8 @@ DEPEND="
 
 REQUIRED_USE="dell? ( uefi )"
 
-src_prepare() {
-	default
-
-	# Don't look for gtk-doc if doc USE is unset (breaks automake)
-	if ! use doc ; then
-		sed 's@^GTK_DOC_CHECK@#\0@' -i configure.ac || die
-		sed '/gtk-doc\.make/d' \
-			-i {.,docs/{libdfu,libfwupd}}/Makefile.am || die
-	fi
-
-	eautoreconf
-}
-
 src_configure() {
-	local myeconfargs=(
+	local emesonargs=(
 		# requires libtbtfwu which is not packaged yet
 		--disable-thunderbolt
 		--with-systemdunitdir="$(systemd_get_systemunitdir)"
@@ -71,5 +58,5 @@ src_configure() {
 		$(use_enable nls)
 		$(use_enable uefi)
 	)
-	econf "${myeconfargs[@]}"
+	meson_src_configure
 }
