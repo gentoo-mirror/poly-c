@@ -48,7 +48,6 @@ dev-libs/libbytesize 0.10: Tiny library providing a C "class" for working with a
 dev-libs/libgusb 0.2.10_pre: GObject wrapper for libusb
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
-dev-libs/npth 1.4_pre: New GNU Portable Threads Library
 dev-libs/openssl 1.0.2k 1.1.0e: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/volume_key 0.3.9: Library for manipulating and storing storage volume encryption keys
 dev-python/pocketlint 0.13: Shared code for running pylint against rhinstaller projects
