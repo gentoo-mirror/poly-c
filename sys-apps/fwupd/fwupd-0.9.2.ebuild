@@ -14,7 +14,7 @@ LICENSE="GPL-2+"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="colorhug dell doc elf nls uefi"
+IUSE="colorhug dell doc elf nls systemd uefi"
 
 RDEPEND="
 	app-crypt/gpgme
@@ -33,6 +33,7 @@ RDEPEND="
 	)
 	doc? ( dev-util/gtk-doc )
 	elf? ( dev-libs/libelf )
+	systemd? ( sys-apps/systemd )
 	uefi? ( >=sys-apps/fwupdate-5 )
 "
 DEPEND="
@@ -45,18 +46,21 @@ DEPEND="
 
 REQUIRED_USE="dell? ( uefi )"
 
+PATCHES=(
+	"${FILESDIR}/${PN}-0.9-polkit_its_files.patch"
+	"${FILESDIR}/${PN}-0.9.2-no_systemd.patch"
+)
+
 src_configure() {
 	local emesonargs=(
 		# requires libtbtfwu which is not packaged yet
-		--disable-thunderbolt
-		--with-systemdunitdir="$(systemd_get_systemunitdir)"
-		--with-udevrulesdir="$(get_udevdir)"/rules.d
-		$(use_enable colorhug)
-		$(use_enable dell)
-		$(use_enable dell synaptics)
-		$(use_enable elf libelf)
-		$(use_enable nls)
-		$(use_enable uefi)
+		-Denable-thunderbolt=false
+		-Dwith-systemd="$(usex systemd true false)"
+		-Dwith-udevrulesdir="$(get_udevdir)"/rules.d
+		-Denable-colorhug="$(usex colorhug true false)"
+		-Denable-dell="$(usex dell true false)"
+		-Denable-libelf="$(usex elf true false)"
+		-Denable-uefi="$(usex uefi true false)"
 	)
 	meson_src_configure
 }

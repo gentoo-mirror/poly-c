@@ -60,6 +60,7 @@ dev-util/boost-build 1.64.0_pre: A system for large project software constructio
 dev-util/colm 0.13.0.5_pre: COmputer Language Manipulation
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/meld 3.17.0_pre 3.17.1_pre: A graphical diff and merge tool
+dev-util/meson 0.40.1: Open source build system
 dev-util/ragel 7.0.0.10_pre: Compiles finite state machines from regular languages into executable code
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 dev-vcs/git-cola 2.10_pre: The highly caffeinated git GUI
