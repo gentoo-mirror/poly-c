@@ -28,7 +28,7 @@ app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/calibre 2.85.0_pre 2.85.1_pre: Ebook management application
 app-text/iso-codes 3.72_pre 3.75_pre: ISO language, territory, currency, script codes and their translations
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
-dev-db/sqlite 3.19.0_pre: A SQL Database Engine in a C Library
+dev-db/sqlite 3.19.0_pre 3.19.2_pre: A SQL Database Engine in a C Library
 dev-games/ogre 1.10.4_pre: Object-oriented Graphics Rendering Engine
 dev-games/openscenegraph 3.5.6_pre: Open source high performance 3D graphics toolkit
 dev-games/simgear 2017.2.1_pre: Development library for simulation games
@@ -49,7 +49,7 @@ dev-libs/libbytesize 0.10: Tiny library providing a C "class" for working with a
 dev-libs/libgusb 0.2.10_pre: GObject wrapper for libusb
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
-dev-libs/openssl 1.0.2k 1.1.0e: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/openssl 1.0.2k 1.0.2l 1.1.0f: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/volume_key 0.3.9: Library for manipulating and storing storage volume encryption keys
 dev-python/pocketlint 0.13: Shared code for running pylint against rhinstaller projects
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
@@ -187,7 +187,6 @@ sys-apps/man 1.6g: Standard commands to read man pages
 sys-apps/openrc 0.21.4: OpenRC manages the services, startup and shutdown of a host
 sys-apps/portage 2.3.1: Portage is the package management and distribution system for Gentoo
 sys-apps/usb_modeswitch 2.5.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
-sys-apps/util-linux 2.30_rc1: Various useful Linux utilities
 sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/gparted 0.28.0_pre 0.28.1_pre: Gnome Partition Editor
