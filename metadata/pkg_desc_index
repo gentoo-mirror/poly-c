@@ -169,7 +169,7 @@ net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC
 net-misc/aria2 1.32.0_pre: A download utility with segmented downloading with BitTorrent support
 net-misc/dropbear 2017.75_pre: small SSH 2 client/server designed for small memory environments
 net-misc/icecast 2.5_beta1: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
-net-misc/networkmanager 1.4.0-r1 1.4.4 1.4.4-r1 1.6.2_pre 1.8.0_pre: A set of co-operative tools that make networking simple and straightforward
+net-misc/networkmanager 1.4.0-r1 1.4.4 1.4.4-r1 1.6.2_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.25 3.26: A discrete-event network simulator for Internet systems.
 net-misc/putty 0.68 0.69: A Free Telnet/SSH Client
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
@@ -193,7 +193,6 @@ sys-block/gparted 0.28.0_pre 0.28.1_pre: Gnome Partition Editor
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/gnu-efi 3.0.5_pre: Library for build EFI Applications
 sys-boot/grub 2.02_beta2-r9 2.02_beta3-r1 2.02_rc1 2.02_rc2 2.02: GNU GRUB boot loader
-sys-fs/btrfs-progs 4.11_pre: Btrfs filesystem utilities
 sys-fs/fuse 3.0.2: An interface for filesystems implemented in userspace
 sys-fs/fuse-common-files 3.0.2: Config files, init scripts and other common files for fuse package
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2 233: Linux dynamic and persistent device naming support (aka userspace devfs)
@@ -211,6 +210,8 @@ sys-process/procps 3.3.11-r3 3.3.12: standard informational utilities and proces
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-libs/cairo 1.15.2_pre 1.15.4_pre: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
+x11-libs/libdrm 2.4.81_pre: X.Org libdrm library
+x11-libs/pango 1.40.6_pre: Internationalized text layout and rendering library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-plugins/gkrellm-cpupower 0.1.5: GKrellm plugin for changing CPU frequencies via cpupower
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager
