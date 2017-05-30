@@ -37,6 +37,11 @@ PATCHES=(
 	"${FILESDIR}/${P}-gcc6.patch" #594260
 )
 
+pkg_setup() {
+	# crutch
+	append-flags -pthread
+}
+
 src_prepare() {
 	default
 
@@ -60,11 +65,6 @@ src_prepare() {
 	x="${plugins[@]}"
 	sed -e "s|file(GLOB cmake_plugins.*$|set(cmake_plugins ${x})|" \
 		-i plugins/CMakeLists.txt || die
-}
-
-pkg_setup() {
-	# crutch
-	append-flags -pthread
 }
 
 src_configure() {
@@ -94,4 +94,7 @@ src_install() {
 
 	exeinto /usr/share/${PN}/upgrade
 	doexe upgrade/*.pl
+
+	insinto /usr/share/pixmaps
+	doins plugins/qt4-gui/src/xpm/licq.xpm
 }

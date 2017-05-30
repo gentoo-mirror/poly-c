@@ -40,7 +40,6 @@ dev-java/openjfx 8.9999: Open source JavaFX
 dev-lang/nasm 2.12.02_pre 2.13.01_pre: groovy little assembler
 dev-lang/python 3.6.1-r1: An interpreted, interactive, object-oriented programming language
 dev-lang/ruby 2.1.7: An object-oriented scripting language
-dev-libs/appstream-glib 0.6.11_pre: Provides GObjects and helper methods to read and write AppStream metadata
 dev-libs/boost 1.64.0_pre: Boost Libraries for C++
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
@@ -172,6 +171,7 @@ net-misc/ns 3.25 3.26: A discrete-event network simulator for Internet systems.
 net-misc/putty 0.68 0.69: A Free Telnet/SSH Client
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
+net-misc/x2goclient 4.1.0.0: The X2Go Qt client
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sys-apps/dtc 1.4.2_pre: Open Firmware device tree compiler
