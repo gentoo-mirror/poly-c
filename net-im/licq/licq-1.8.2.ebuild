@@ -96,5 +96,6 @@ src_install() {
 	doexe upgrade/*.pl
 
 	insinto /usr/share/pixmaps
-	doins plugins/qt4-gui/src/xpm/licq.xpm
+	doins plugins/qt4-gui/src/xpm/${PN}.xpm
+	doicon -s 24 ${FILESDIR}/${PN}.png
 }
