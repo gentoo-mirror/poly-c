@@ -47,3 +47,5 @@ dev-java/openjfx
 # masked for testing
 =net-misc/icecast-2.5_beta*
 
+# Doesn't build yet
+app-crypt/yubikey-manager-qt
