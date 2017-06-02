@@ -27,7 +27,6 @@ app-misc/razertool 0.0.7-r3: Unofficial tool for controlling the Razer Copperhea
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/calibre 2.85.0_pre 2.85.1_pre: Ebook management application
 app-text/iso-codes 3.72_pre 3.75_pre: ISO language, territory, currency, script codes and their translations
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
 dev-db/sqlite 3.19.0_pre 3.19.2_pre: A SQL Database Engine in a C Library
@@ -93,6 +92,7 @@ kde-plasma/plasma-workspace 5.8.6 5.9.5.1 5.9.5.1-r1: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-gfx/icoutils 0.31.2_pre 0.31.3_pre: A set of programs for extracting and converting images in icon and cursor files (.ico, .cur)
+media-libs/babl 0.1.28_pre: A dynamic, any to any, pixel format conversion library
 media-libs/celt 0.11.3_pre: CELT is a very low delay audio codec designed for high-quality communications
 media-libs/gegl 0.3.16_pre 0.3.18_pre: A graph based image processing framework
 media-libs/gst-plugins-bad 1.11.90_pre 1.11.91_pre 1.12.0_pre: Less plugins for GStreamer
@@ -173,6 +173,7 @@ net-misc/ns 3.25 3.26: A discrete-event network simulator for Internet systems.
 net-misc/putty 0.68 0.69: A Free Telnet/SSH Client
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
+net-nds/openldap 2.4.45_pre: LDAP suite of application and development tools
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sys-apps/dtc 1.4.2_pre: Open Firmware device tree compiler
