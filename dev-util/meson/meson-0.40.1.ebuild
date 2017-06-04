@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4d9862c55ad38a3b36280754078f619d7975922b $
+# $Id: 3ef0857c69f2707d72ed73f956d87bf3c9912301 $
 
 EAPI=6
 PYTHON_COMPAT=( python3_{4,5,6} )
@@ -10,7 +10,7 @@ if [[ ${PV} = *9999* ]]; then
 	inherit git-r3
 else
 	SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="amd64 x86"
 fi
 
 inherit distutils-r1

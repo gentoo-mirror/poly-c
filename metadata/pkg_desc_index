@@ -28,7 +28,6 @@ app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gent
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/iso-codes 3.72_pre 3.75_pre: ISO language, territory, currency, script codes and their translations
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
-dev-db/sqlite 3.19.0_pre 3.19.2_pre: A SQL Database Engine in a C Library
 dev-games/ogre 1.10.4_pre: Object-oriented Graphics Rendering Engine
 dev-games/openscenegraph 3.5.6_pre: Open source high performance 3D graphics toolkit
 dev-games/simgear 2017.2.1_pre: Development library for simulation games
@@ -54,7 +53,7 @@ dev-python/pocketlint 0.13: Shared code for running pylint against rhinstaller p
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtdbus 5.6.2 5.7.1: Qt5 module for inter-process communication over the D-Bus protocol
-dev-qt/qtwebengine 5.6.1 5.7.1-r1: Library for rendering dynamic web content in Qt5 C++ and QML applications
+dev-qt/qtwebengine 5.6.1: Library for rendering dynamic web content in Qt5 C++ and QML applications
 dev-scheme/guile 2.2.0_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.64.0_pre: A system for large project software construction, simple to use and powerful
 dev-util/colm 0.13.0.5_pre: COmputer Language Manipulation
