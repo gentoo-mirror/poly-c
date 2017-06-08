@@ -1,9 +1,10 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0ceac64cde588a5e1f7a39680c9f77e96e1927fc $
+# $Id: 8b5e8bee765a1f0f9582b189301d280d187b8102 $
 
 EAPI=6
 
+FRAMEWORKS_MINIMAL="5.33.0"
 KDE_HANDBOOK="forceoptional"
 KDE_TEST="forceoptional"
 VIRTUALX_REQUIRED="test"
@@ -113,6 +114,7 @@ RDEPEND="${COMMON_DEPEND}
 	!kde-plasma/ksmserver:4
 	!kde-plasma/ksplash:4
 	!kde-plasma/plasma-workspace:4
+	!x11-misc/notification-daemon
 "
 DEPEND="${COMMON_DEPEND}
 	x11-proto/xproto

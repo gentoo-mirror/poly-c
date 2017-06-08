@@ -28,6 +28,7 @@ app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gent
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/iso-codes 3.72_pre 3.75_pre: ISO language, territory, currency, script codes and their translations
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
+dev-db/sqlite 3.19.3_pre: A SQL Database Engine in a C Library
 dev-games/ogre 1.10.4_pre: Object-oriented Graphics Rendering Engine
 dev-games/openscenegraph 3.5.6_pre: Open source high performance 3D graphics toolkit
 dev-games/simgear 2017.2.1_pre: Development library for simulation games
@@ -86,7 +87,7 @@ kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as power
 kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
 kde-plasma/kwin 5.9.5: KDE window manager
 kde-plasma/plasma-desktop 5.8.4 5.8.5 5.8.5-r1: KDE Plasma desktop
-kde-plasma/plasma-workspace 5.8.6 5.9.5.1 5.9.5.1-r1: KDE Plasma workspace
+kde-plasma/plasma-workspace 5.9.5.1-r1 5.10.1: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-gfx/icoutils 0.31.2_pre 0.31.3_pre: A set of programs for extracting and converting images in icon and cursor files (.ico, .cur)
@@ -107,6 +108,7 @@ media-libs/libmygpo-qt 1.0.9_pre: Qt/C++ library wrapping the gpodder.net webser
 media-libs/libopenshot 0.1.4_pre 0.1.5_pre 0.1.6_pre: Video editing library used by OpenShot
 media-libs/libopenshot-audio 0.1.4_pre: Audio library used by OpenShot
 media-libs/libshout-idjc 2.4.1: Libshout-idjc is libshout plus some extensions for IDJC
+media-libs/mesa 17.1.2_pre: OpenGL-like graphic library for Linux
 media-plugins/gst-plugins-a52dec 1.11.90_pre 1.11.91_pre 1.12.0_pre: plugin for gstreamer
 media-plugins/gst-plugins-cdparanoia 1.11.90_pre 1.11.91_pre 1.12.0_pre: plugin for gstreamer
 media-plugins/gst-plugins-dts 1.11.90_pre 1.11.91_pre 1.12.0_pre: GStreamer plugin for MPEG-1/2 video encoding
@@ -171,6 +173,7 @@ net-misc/putty 0.68 0.69: A Free Telnet/SSH Client
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-nds/openldap 2.4.45_pre: LDAP suite of application and development tools
+net-print/hplip 3.17.6_pre: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sys-apps/dtc 1.4.2_pre: Open Firmware device tree compiler
