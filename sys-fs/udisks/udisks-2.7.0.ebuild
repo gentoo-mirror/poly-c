@@ -2,24 +2,28 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-inherit autotools bash-completion-r1 eutils linux-info systemd udev xdg-utils poly-c_ebuilds
+inherit autotools bash-completion-r1 eutils linux-info systemd udev xdg-utils
 
 DESCRIPTION="Daemon providing interfaces to work with storage devices"
 HOMEPAGE="https://www.freedesktop.org/wiki/Software/udisks"
-SRC_URI="https://github.com/storaged-project/${PN}/archive/${MY_P}.tar.gz"
+SRC_URI="https://github.com/storaged-project/${PN}/archive/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="2"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86"
-IUSE="acl cryptsetup debug +gptfdisk +introspection lvm nls selinux systemd"
+IUSE="acl cryptsetup debug elogind +gptfdisk +introspection lvm nls selinux systemd"
+
+REQUIRED_USE="?? ( elogind systemd )"
 
 COMMON_DEPEND="
 	>=dev-libs/glib-2.36:2
 	>=dev-libs/libatasmart-0.19
 	>=sys-auth/polkit-0.110
+	sys-libs/libblockdev
 	>=virtual/libgudev-165:=
 	virtual/udev
 	acl? ( virtual/acl )
+	elogind? ( sys-auth/elogind )
 	introspection? ( >=dev-libs/gobject-introspection-1.30:= )
 	lvm? ( sys-fs/lvm2 )
 	systemd? ( >=sys-apps/systemd-209 )
@@ -42,20 +46,18 @@ DEPEND="${COMMON_DEPEND}
 	dev-libs/libxslt
 	>=dev-util/gdbus-codegen-2.32
 	>=dev-util/gtk-doc-1.3
+	gnome-base/gnome-common:3
+	sys-devel/autoconf-archive
 	>=sys-kernel/linux-headers-3.1
 	virtual/pkgconfig
 	nls? ( dev-util/intltool )
 "
 
-S="${WORKDIR}/${PN}-${MY_P}"
+S="${WORKDIR}/${PN}-${P}"
 
 QA_MULTILIB_PATHS="usr/lib/udisks2/udisksd"
 
 DOCS=( AUTHORS HACKING NEWS README.md )
-
-PATCHES=(
-	"${FILESDIR}/${MY_P}-udisksdprivdir.patch"
-)
 
 pkg_setup() {
 	# Listing only major arch's here to avoid tracking kernel's defconfig
