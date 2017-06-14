@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 1834e0de75b3bcf6712b72de8f507a9223b42e55 $
+# $Id: c9c47add3360e3e7ef866f44a9aa4ae5236d4ce4 $
 
 EAPI=5
 inherit eutils db flag-o-matic java-pkg-opt-2 autotools multilib multilib-minimal toolchain-funcs
@@ -28,7 +28,7 @@ done
 
 LICENSE="Sleepycat"
 SLOT="5.3"
-KEYWORDS="alpha amd64 arm ~arm64 hppa ~ia64 ~m68k ~ppc ~ppc64 ~s390 ~sh sparc x86 ~sparc-fbsd ~x86-fbsd"
+KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~m68k ~ppc ~ppc64 ~s390 ~sh sparc x86 ~sparc-fbsd ~x86-fbsd"
 IUSE="doc java cxx tcl test"
 
 REQUIRED_USE="test? ( tcl )"

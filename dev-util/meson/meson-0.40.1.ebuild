@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 3ef0857c69f2707d72ed73f956d87bf3c9912301 $
+# $Id: 2867a15d403a9c365ba79d16118c460fc48c8e4e $
 
 EAPI=6
 PYTHON_COMPAT=( python3_{4,5,6} )
@@ -23,10 +23,8 @@ SLOT="0"
 IUSE=""
 RESTRICT="test"
 
-DEPEND="${PYTHON_DEPS}
-	>=dev-util/ninja-1.6.0
-"
-RDEPEND="${DEPEND}"
+DEPEND="dev-python/setuptools[${PYTHON_USEDEP}]"
+RDEPEND=""
 
 DOCS=( authors.txt contributing.txt )
 
