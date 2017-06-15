@@ -31,7 +31,6 @@ app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
 dev-db/lmdb 0.9.21_pre: An ultra-fast, ultra-compact key-value embedded data store
 dev-games/ogre 1.10.4_pre: Object-oriented Graphics Rendering Engine
 dev-games/openscenegraph 3.5.6_pre: Open source high performance 3D graphics toolkit
-dev-games/simgear 2017.2.1_pre: Development library for simulation games
 dev-java/ant-core 1.9.8_pre 1.10.0_pre 1.10.1_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
@@ -69,8 +68,6 @@ games-arcade/emilia-pinball 0.3.3: SDL OpenGL pinball game
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.74 2.75 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.42b 1.42d 9999: Return to Castle Wolfenstein - IORTCW Project
-games-simulation/flightgear 2017.2.1_pre: Open Source Flight Simulator
-games-simulation/flightgear-data 2017.2.1_pre: FlightGear data files
 games-strategy/boswars 9999: Futuristic real-time strategy game
 games-strategy/opendungeons 0.7.1: An open source, real time strategy game based on the Dungeon Keeper series
 games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
@@ -165,6 +162,7 @@ net-libs/gnutls 3.5.13_pre: A TLS 1.2 and SSL 3.0 implementation for the GNU pro
 net-libs/http-parser 2.7.1_pre: Http request/response parser for C
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-misc/aria2 1.32.0_pre: A download utility with segmented downloading with BitTorrent support
+net-misc/curl 7.54.1_pre: A Client that groks URLs
 net-misc/dropbear 2017.75_pre: small SSH 2 client/server designed for small memory environments
 net-misc/icecast 2.5_beta1: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/networkmanager 1.4.0-r1 1.4.4 1.4.4-r1 1.6.2_pre: A set of co-operative tools that make networking simple and straightforward

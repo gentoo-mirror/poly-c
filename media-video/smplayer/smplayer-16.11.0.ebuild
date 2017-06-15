@@ -1,10 +1,10 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 3b3386e2117fe7fb242d05f08fdd8c6e9d231cc9 $
+# $Id: 62806f4d7de71495745f69e7c82884555c275b70 $
 
 EAPI=6
 
-PLOCALES="am ar_SY bg ca cs da de el_GR en_GB en en_US es et eu fa fi fr gl
+PLOCALES="am ar_SY ar bg ca cs da de el en_GB en en_US es et eu fa fi fr gl
 he_IL hr hu id it ja ka ko ku lt mk ms_MY nl nn_NO pl pt pt_BR ro_RO ru_RU
 sk sl_SI sq_AL sr sv th tr uk_UA uz vi_VN zh_CN zh_TW"
 PLOCALE_BACKUP="en_US"
