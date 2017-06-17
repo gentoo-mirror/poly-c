@@ -11,6 +11,7 @@ app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-crypt/gpgme 1.9.0_pre: GnuPG Made Easy is a library for making GnuPG easier to use
+app-crypt/pgpdump 0.32_pre: A PGP packet visualizer
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
 app-crypt/yubikey-manager 0.3.3_pre: Python library and command line tool for configuring a YubiKey
 app-crypt/yubikey-manager-qt 0.3.0: Configuring any YubiKey over all USB transports.
@@ -162,7 +163,6 @@ net-libs/gnutls 3.5.13_pre: A TLS 1.2 and SSL 3.0 implementation for the GNU pro
 net-libs/http-parser 2.7.1_pre: Http request/response parser for C
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-misc/aria2 1.32.0_pre: A download utility with segmented downloading with BitTorrent support
-net-misc/curl 7.54.1_pre: A Client that groks URLs
 net-misc/dropbear 2017.75_pre: small SSH 2 client/server designed for small memory environments
 net-misc/icecast 2.5_beta1: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/networkmanager 1.4.0-r1 1.4.4 1.4.4-r1 1.6.2_pre: A set of co-operative tools that make networking simple and straightforward
@@ -171,7 +171,6 @@ net-misc/putty 0.68 0.69: A Free Telnet/SSH Client
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-nds/openldap 2.4.45_pre: LDAP suite of application and development tools
-net-print/hplip 3.17.6_pre: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sys-apps/dtc 1.4.2_pre: Open Firmware device tree compiler
@@ -202,11 +201,11 @@ sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C 
 sys-libs/libblockdev 2.7 2.8: A library for manipulating block devices
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.1.38 4.1.39 4.1.40 4.4.70 4.4.71 4.4.72 4.9.30 4.9.31 4.9.32: Shows and sets processor power related values
+sys-power/cpupower 4.1.39 4.1.40 4.1.41 4.4.71 4.4.72 4.4.73 4.9.31 4.9.32 4.9.33: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
-x11-libs/cairo 1.15.2_pre 1.15.4_pre: A vector graphics library with cross-device output support
+x11-libs/cairo 1.15.2_pre 1.15.4_pre 1.15.6_pre: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-plugins/gkrellm-cpupower 0.1.5: GKrellm plugin for changing CPU frequencies via cpupower
