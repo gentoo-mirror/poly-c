@@ -1,10 +1,9 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="6"
 PYTHON_REQ_USE="xml"
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python3_{5,6} )
 DISTUTILS_SINGLE_IMPL=1
 
 inherit gnome2 distutils-r1 poly-c_gtk

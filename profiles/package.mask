@@ -52,3 +52,6 @@ app-crypt/yubikey-manager-qt
 
 # Depends on libblockdev which breaks.
 >=sys-fs/udisks-2.7.0
+
+# Fails to install
+=app-text/calibre-3.0.0_pre
