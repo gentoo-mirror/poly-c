@@ -65,7 +65,6 @@ dev-util/meld 3.17.1_pre 3.17.2_pre: A graphical diff and merge tool
 dev-util/meson 0.40.1: Open source build system
 dev-util/ragel 7.0.0.10_pre: Compiles finite state machines from regular languages into executable code
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
-dev-vcs/git-cola 2.10_pre: The highly caffeinated git GUI
 games-arcade/emilia-pinball 0.3.3: SDL OpenGL pinball game
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.74 2.75 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
@@ -101,12 +100,12 @@ media-libs/gstreamer 1.11.90_pre 1.11.91_pre 1.12.0_pre: Open source multimedia 
 media-libs/libbpg 0.9.6_pre 0.9.7_pre: BPG (Better Portable Graphics) is a new image format
 media-libs/libdvbpsi 1.3.1_pre: library for MPEG TS/DVB PSI tables decoding and generation
 media-libs/libdvdcss 1.3.99 1.4.0: A portable abstraction library for DVD decryption
-media-libs/libid3tag 0.15.1b-r4: The MAD id3tag library
 media-libs/libmodplug 0.8.9.0_pre: Library for playing MOD-like music files
 media-libs/libmygpo-qt 1.0.9_pre: Qt/C++ library wrapping the gpodder.net webservice
 media-libs/libopenshot 0.1.4_pre 0.1.5_pre 0.1.6_pre: Video editing library used by OpenShot
 media-libs/libopenshot-audio 0.1.4_pre: Audio library used by OpenShot
 media-libs/libshout-idjc 2.4.1: Libshout-idjc is libshout plus some extensions for IDJC
+media-libs/mesa 17.1.3_pre: OpenGL-like graphic library for Linux
 media-plugins/gst-plugins-a52dec 1.11.90_pre 1.11.91_pre 1.12.0_pre: plugin for gstreamer
 media-plugins/gst-plugins-cdparanoia 1.11.90_pre 1.11.91_pre 1.12.0_pre: plugin for gstreamer
 media-plugins/gst-plugins-dts 1.11.90_pre 1.11.91_pre 1.12.0_pre: GStreamer plugin for MPEG-1/2 video encoding

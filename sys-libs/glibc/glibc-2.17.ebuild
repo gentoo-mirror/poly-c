@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 11f180adc572579aabb69d4a49e20061d7d516ab $
+# $Id: a0d0cd113b83bf0d5eeaa4d8b84884a9dc1b2bb5 $
 
 inherit toolchain-glibc
 
@@ -113,7 +113,7 @@ src_unpack() {
 	if use hardened ; then
 		cd "${S}"
 		einfo "Patching to get working PIE binaries on PIE (hardened) platforms"
-		gcc-specs-pie && epatch "${FILESDIR}"/2.17/glibc-2.17-hardened-pie.patch
+		tc-enables-pie && epatch "${FILESDIR}"/2.17/glibc-2.17-hardened-pie.patch
 		epatch "${FILESDIR}"/2.10/glibc-2.10-hardened-configure-picdefault.patch
 		epatch "${FILESDIR}"/2.10/glibc-2.10-hardened-inittls-nosysenter.patch
 
