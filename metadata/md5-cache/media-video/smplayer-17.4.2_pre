@@ -11,5 +11,5 @@ RESTRICT=mirror
 SLOT=0
 SRC_URI=mirror://sourceforge/smplayer/smplayer-17.4.2.tar.bz2
 _eclass_exported_funcs=src_prepare:- src_configure:- src_compile:- src_install:-
-_eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	l10n	8f52d9ce1814aca2ed1a46920084ea66	multilib	97f470f374f2e94ccab04a2fb21d811e	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	qmake-utils	990448b067cb3cfe1443bc25fb57239c	toolchain-funcs	772b26a6baefb4c8c5e0c1fc724508b7
+_eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	l10n	ab1961e9741a8463a7dd6b224d760f0a	multilib	97f470f374f2e94ccab04a2fb21d811e	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	qmake-utils	990448b067cb3cfe1443bc25fb57239c	toolchain-funcs	772b26a6baefb4c8c5e0c1fc724508b7
 _md5_=a52f5d550f7f805c78916ad7ab36531e
