@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 81958ff0e7fbbd48f353ed542bbfe5e7c7a1fc4b $
+# $Id: a3191a7950477c2b63a6b75315642e2a82e541b2 $
 
 EAPI=6
 
@@ -120,7 +120,6 @@ DEPEND="${COMMON_DEPEND}
 
 PATCHES=(
 	"${FILESDIR}/${PN}-5.4-startkde-script.patch"
-	"${FILESDIR}/${P}-xembedsniproxy.patch"
 )
 
 RESTRICT+=" test"

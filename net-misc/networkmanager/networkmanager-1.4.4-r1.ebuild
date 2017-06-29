@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 7950a852982fa297f466b485320301faa97831da $
+# $Id: 6ac1b757a68db7bbc11fbd82b2f326fbd95361d5 $
 
 EAPI=6
 GNOME_ORG_MODULE="NetworkManager"
@@ -69,6 +69,10 @@ COMMON_DEPEND="
 	teamd? ( >=net-misc/libteam-1.9 )
 "
 RDEPEND="${COMMON_DEPEND}
+	|| (
+		net-misc/iputils[arping(+)]
+		net-analyzer/arping
+	)
 	wifi? ( >=net-wireless/wpa_supplicant-0.7.3-r3[dbus] )
 "
 DEPEND="${COMMON_DEPEND}
@@ -126,9 +130,7 @@ pkg_setup() {
 		CONFIG_CHECK="~NF_NAT_IPV4 ~NF_NAT_MASQUERADE_IPV4"
 		linux-info_pkg_setup
 	fi
-
 	enewgroup plugdev
-
 	use test && python-any-r1_pkg_setup
 }
 

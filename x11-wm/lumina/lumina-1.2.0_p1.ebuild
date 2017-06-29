@@ -8,10 +8,10 @@ inherit qmake-utils
 DESCRIPTION="Lumina desktop environment"
 HOMEPAGE="http://lumina-desktop.org/"
 I18N="161211"
-SRC_URI="https://github.com/trueos/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/trueos/${PN}/archive/v${PV/_/-}.tar.gz -> ${P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="amd64 ~x86"
+KEYWORDS="~amd64 ~x86"
 
 IUSE=""
 
@@ -42,6 +42,8 @@ RDEPEND="$COMMON_DEPEND
 	media-sound/alsa-utils
 	sys-power/acpi
 	app-admin/sysstat"
+
+S="${WORKDIR}/${P/_/-}"
 
 src_prepare(){
 	default
