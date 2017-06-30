@@ -1,11 +1,9 @@
 app-accessibility/speech-dispatcher 0.8.6_pre 0.8.7_pre: Speech synthesis interface
 app-admin/cpulimit 2.5_pre: Limits the CPU usage of a process
 app-admin/littleutils 1.0.36 1.0.37: The littleutils are a collection of small and simple utilities
+app-admin/logrotate 3.12.3_pre: Rotates, compresses, and mails system logs
 app-admin/remotebox 2.0 2.2: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
-app-arch/lzlib 1.9_pre: Library for lzip compression
-app-arch/pdlzip 1.8_rc99: Public-domain version of lzip compressor
-app-arch/plzip 1.6_rc1 1.6_rc99: Parallel lzip compressor
 app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
