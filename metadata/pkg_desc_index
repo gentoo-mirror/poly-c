@@ -6,7 +6,6 @@ app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a log
 app-arch/lzlib 1.9_pre: Library for lzip compression
 app-arch/pdlzip 1.8_rc99: Public-domain version of lzip compressor
 app-arch/plzip 1.6_rc1 1.6_rc99: Parallel lzip compressor
-app-arch/snappy 1.1.4_pre: A high-speed compression/decompression library by Google
 app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
@@ -160,7 +159,6 @@ net-libs/bctoolbox 0.4.0_pre: Utilities library used by Belledonne Communication
 net-libs/gnutls 3.5.13_pre: A TLS 1.2 and SSL 3.0 implementation for the GNU project
 net-libs/http-parser 2.7.1_pre: Http request/response parser for C
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
-net-misc/aria2 1.32.0_pre: A download utility with segmented downloading with BitTorrent support
 net-misc/dropbear 2017.75_pre: small SSH 2 client/server designed for small memory environments
 net-misc/icecast 2.5_beta1: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/networkmanager 1.4.0-r1 1.4.4 1.4.4-r1 1.6.2_pre: A set of co-operative tools that make networking simple and straightforward
@@ -200,7 +198,7 @@ sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C 
 sys-libs/libblockdev 2.7 2.8: A library for manipulating block devices
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.1.39 4.1.40 4.1.41 4.4.73 4.4.74 4.4.75 4.9.33 4.9.34 4.9.35: Shows and sets processor power related values
+sys-power/cpupower 4.1.40 4.1.41 4.1.42 4.4.73 4.4.74 4.4.75 4.9.33 4.9.34 4.9.35: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
