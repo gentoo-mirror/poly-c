@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8662d86b43c09c9ffc541778c21a2ea6d33f5e1f $
+# $Id: 7cdbc7e3da185e24a191d12d45fc83b9122f5b18 $
 
 EAPI=6
 
@@ -10,15 +10,9 @@ if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://anongit.freedesktop.org/systemd/systemd"
 	inherit git-r3
 else
-	patchset=
 	FIXUP_PATCH="${PN}-233-revert-systemd-messup.patch.xz"
 	SRC_URI="https://github.com/systemd/systemd/archive/v${PV}.tar.gz -> systemd-${PV}.tar.gz
 		https://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}"
-	if [[ -n "${patchset}" ]]; then
-		SRC_URI+="
-			https://dev.gentoo.org/~williamh/dist/${P}-patches-${patchset}.tar.xz
-			https://dev.gentoo.org/~ssuominen/${P}-patches-${patchset}.tar.xz"
-	fi
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 fi
 
@@ -67,6 +61,10 @@ PDEPEND=">=sys-apps/hwids-20140304[udev]
 
 S="${WORKDIR}/systemd-${PV}"
 
+PATCHES=(
+	"${FILESDIR}"/233-format-warnings.patch
+)
+
 check_default_rules() {
 	# Make sure there are no sudden changes to upstream rules file
 	# (more for my own needs than anything else ...)
@@ -110,11 +108,6 @@ src_prepare() {
 		fi
 	fi
 
-	# backport some patches
-	if [[ -n "${patchset}" ]]; then
-		eapply "${WORKDIR}"/patch
-	fi
-
 	eapply "${WORKDIR}"/${FIXUP_PATCH/.xz}
 
 	cat <<-EOF > "${T}"/40-gentoo.rules
@@ -129,8 +122,7 @@ src_prepare() {
 	# stub out the am_path_libcrypt function
 	echo 'AC_DEFUN([AM_PATH_LIBGCRYPT],[:])' > m4/gcrypt.m4
 
-	# apply user patches
-	eapply_user
+	default
 
 	eautoreconf
 
