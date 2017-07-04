@@ -9,7 +9,7 @@ app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, inclu
 app-crypt/gpgme 1.9.0_pre: GnuPG Made Easy is a library for making GnuPG easier to use
 app-crypt/pgpdump 0.32_pre: A PGP packet visualizer
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
-app-crypt/yubikey-manager 0.3.3_pre: Python library and command line tool for configuring a YubiKey
+app-crypt/yubikey-manager 0.3.3_pre 0.4.0_pre: Python library and command line tool for configuring a YubiKey
 app-crypt/yubikey-manager-qt 0.3.0: Configuring any YubiKey over all USB transports.
 app-editors/bluefish 2.2.10_pre: A GTK HTML editor for the experienced web designer or programmer
 app-editors/notepadqq 1.0.1: Notepad++-like editor for Linux
@@ -37,6 +37,7 @@ dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-java/openjfx 8.9999: Open source JavaFX
 dev-lang/python 3.6.1-r1: An interpreted, interactive, object-oriented programming language
 dev-lang/ruby 2.1.7: An object-oriented scripting language
+dev-libs/appstream-glib 0.7.0_pre: Provides GObjects and helper methods to read and write AppStream metadata
 dev-libs/boost 1.64.0_pre: Boost Libraries for C++
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
@@ -175,6 +176,7 @@ sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g: Standard commands to read man pages
 sys-apps/openrc 0.21.4: OpenRC manages the services, startup and shutdown of a host
 sys-apps/portage 2.3.1: Portage is the package management and distribution system for Gentoo
+sys-apps/pv 1.6.6_pre: Pipe Viewer: a tool for monitoring the progress of data through a pipe
 sys-apps/usb_modeswitch 2.5.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
@@ -203,6 +205,5 @@ x11-libs/cairo 1.15.4_pre 1.15.6_pre: A vector graphics library with cross-devic
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-plugins/gkrellm-cpupower 0.1.5: GKrellm plugin for changing CPU frequencies via cpupower
-x11-terms/xterm 330_pre: Terminal Emulator for X Windows
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager
 x11-wm/lumina 1.2.0 1.2.0_p1: Lumina desktop environment
