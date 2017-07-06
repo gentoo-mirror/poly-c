@@ -40,13 +40,10 @@ dev-lang/ruby 2.1.7: An object-oriented scripting language
 dev-libs/boost 1.64.0_pre: Boost Libraries for C++
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
-dev-libs/libbytesize 0.10: Tiny library providing a C "class" for working with arbitrary big sizes in bytes
 dev-libs/libgusb 0.2.10_pre: GObject wrapper for libusb
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.0.2l 1.1.0f: full-strength general purpose cryptography library (including SSL and TLS)
-dev-libs/volume_key 0.3.9: Library for manipulating and storing storage volume encryption keys
-dev-python/pocketlint 0.13: Shared code for running pylint against rhinstaller projects
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtdbus 5.6.2 5.7.1: Qt5 module for inter-process communication over the D-Bus protocol
@@ -193,7 +190,6 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-kernel/linux-firmware 20170225: Linux firmware files
 sys-libs/db 5.3.28-r2 6.1.29 6.2.23 6.2.32: Oracle Berkeley DB
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
-sys-libs/libblockdev 2.10: A library for manipulating block devices
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-power/cpupower 4.1.40 4.1.41 4.1.42 4.4.74 4.4.75 4.4.76 4.9.34 4.9.35 4.9.36: Shows and sets processor power related values
