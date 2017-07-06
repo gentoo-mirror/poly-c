@@ -190,11 +190,10 @@ sys-fs/fuse-common-files 3.0.2: Config files, init scripts and other common file
 sys-fs/lvm2 2.02.172_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2 233: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
-sys-fs/udisks 2.7.0: Daemon providing interfaces to work with storage devices
 sys-kernel/linux-firmware 20170225: Linux firmware files
 sys-libs/db 5.3.28-r2 6.1.29 6.2.23 6.2.32: Oracle Berkeley DB
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
-sys-libs/libblockdev 2.7 2.8: A library for manipulating block devices
+sys-libs/libblockdev 2.10: A library for manipulating block devices
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-power/cpupower 4.1.40 4.1.41 4.1.42 4.4.74 4.4.75 4.4.76 4.9.34 4.9.35 4.9.36: Shows and sets processor power related values

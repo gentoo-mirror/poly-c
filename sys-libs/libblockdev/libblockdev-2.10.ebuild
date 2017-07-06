@@ -15,24 +15,27 @@ SRC_URI="https://github.com/rhinstaller/${PN}/archive/${MY_PV}.tar.gz -> ${MY_P}
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="bcache crypt dmraid doc lvm kbd parted python test"
+IUSE="bcache crypt dmraid doc lvm kbd python test"
 
 CDEPEND="
 	>=dev-libs/glib-2.42.2
 	dev-libs/libbytesize
 	>=sys-apps/util-linux-2.27
+	>=sys-block/parted-3.1
 	crypt? (
 		>=dev-libs/nss-3.18.0
 		dev-libs/volume_key
 		>=sys-fs/cryptsetup-1.6.7
 	)
-	dmraid? ( sys-fs/dmraid )
+	dmraid? (
+		sys-fs/dmraid
+		sys-fs/lvm2
+	)
 	lvm? (
 		sys-fs/lvm2
 		virtual/udev
 	)
 	kbd? ( >=sys-apps/kmod-19 )
-	parted? ( >=sys-block/parted-3.1 )
 	python? ( ${PYTHON_DEPS} )
 "
 
@@ -56,23 +59,22 @@ pkg_setup() {
 
 src_prepare() {
 	default
-
-	#if ! use dmraid ; then
-	#	sed 's@ -ldmraid@@' -i src/lib/Makefile.am || die
-	#fi
-
 	eautoreconf
 }
 
 src_configure() {
 	local myeconfargs=(
+		--with-btrfs
 		--with-fs
+		--with-part
+		--without-mpath
 		$(use_enable test tests)
 		$(use_with bcache)
 		$(use_with crypt crypto)
 		$(use_with dmraid dm)
 		$(use_with doc gtk-doc)
 		$(use_with lvm lvm)
+		$(use_with lvm lvm-dbus)
 		$(use_with kbd)
 		$(use_with python python3)
 	)
