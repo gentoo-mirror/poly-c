@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 853dfd70ce07f18145dabe83156bfdb1312bde65 $
+# $Id: a639ed81e0ab548b05d82436687b08fee63ff827 $
 
 EAPI=6
 QT5_MODULE="qtbase"
@@ -9,7 +9,7 @@ inherit qt5-build
 DESCRIPTION="Qt5 module for inter-process communication over the D-Bus protocol"
 
 if [[ ${QT5_BUILD_TYPE} == release ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 ~x86"
+	KEYWORDS="amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 x86"
 fi
 
 IUSE=""
