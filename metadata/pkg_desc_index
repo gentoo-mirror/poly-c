@@ -22,7 +22,7 @@ app-misc/razertool 0.0.7-r3: Unofficial tool for controlling the Razer Copperhea
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/calibre 3.0.0_pre: Ebook management application
+app-text/calibre 3.0.0_pre 3.3.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre 3.75_pre: ISO language, territory, currency, script codes and their translations
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
 dev-db/lmdb 0.9.21_pre: An ultra-fast, ultra-compact key-value embedded data store
