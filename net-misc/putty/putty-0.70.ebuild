@@ -3,7 +3,7 @@
 # $Id: 448708462c8971a1ceb60c6f368c6155a0c5a741 $
 
 EAPI=6
-inherit autotools eutils gnome2-utils toolchain-funcs poly-c_ebuilds
+inherit autotools eutils gnome2-utils toolchain-funcs
 
 DESCRIPTION="A Free Telnet/SSH Client"
 HOMEPAGE="http://www.chiark.greenend.org.uk/~sgtatham/putty/"
@@ -14,7 +14,7 @@ KEYWORDS="~alpha ~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
 IUSE="doc +gtk gtk3 ipv6 kerberos"
 SRC_URI="
 	https://dev.gentoo.org/~jer/${PN}-icons.tar.bz2
-	http://the.earth.li/~sgtatham/${PN}/latest/${MY_P}.tar.gz
+	http://the.earth.li/~sgtatham/${PN}/latest/${P}.tar.gz
 "
 
 RDEPEND="

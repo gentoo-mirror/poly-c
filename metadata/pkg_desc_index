@@ -65,13 +65,10 @@ games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky
 games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 games-util/x52pro-linux 9999: Saitek X52pro drivers & controller mapping software for Linux
 kde-apps/kde-wallpapers 15.08.3 15.08.3-r2: KDE wallpapers
-kde-apps/kde4-l10n 16.04.2: KDE internationalization package
 kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
-kde-apps/kdepim-icons 4.14.10: KDE PIM icons
 kde-apps/kgpg 9999: Frontend for GnuPG, a powerful encryption utility by KDE
-kde-apps/ksnapshot 15.08.3-r1: KDE Screenshot Utility
-kde-apps/print-manager 16.08.1: Manage print jobs and printers in Plasma
+kde-apps/konqueror 17.04.2: Web browser and file manager based on KDE Frameworks
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
 kde-plasma/plasma-desktop 5.8.4 5.8.5 5.8.5-r1: KDE Plasma desktop
@@ -155,7 +152,7 @@ net-misc/dropbear 2017.75_pre: small SSH 2 client/server designed for small memo
 net-misc/icecast 2.5_beta1: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/networkmanager 1.4.0-r1 1.4.4 1.4.4-r1 1.6.2_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.25 3.26: A discrete-event network simulator for Internet systems.
-net-misc/putty 0.68 0.69 0.70_pre: A Free Telnet/SSH Client
+net-misc/putty 0.68 0.69 0.70: A Free Telnet/SSH Client
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
@@ -183,7 +180,6 @@ sys-devel/gcc 6.4.0_pre: The GNU Compiler Collection
 sys-fs/btrfs-progs 4.11.1_pre: Btrfs filesystem utilities
 sys-fs/fuse 3.0.2: An interface for filesystems implemented in userspace
 sys-fs/fuse-common-files 3.0.2: Config files, init scripts and other common files for fuse package
-sys-fs/lvm2 2.02.172_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2 233: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-kernel/linux-firmware 20170225: Linux firmware files
