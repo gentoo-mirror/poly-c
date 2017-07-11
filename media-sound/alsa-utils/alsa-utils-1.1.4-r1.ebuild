@@ -1,8 +1,8 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4f24db5df726918ce0f3fa3dc92958a326a7995a $
+# $Id: 9c10bb2c4ec3af3af87c0adcf7ba298b52bfe5ce $
 
-EAPI=5
+EAPI=6
 inherit eutils systemd udev
 
 ADRIVER_PV="1.0.25"
@@ -14,24 +14,18 @@ SRC_URI="mirror://alsaproject/utils/${P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0.9"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86"
-IUSE="doc +libsamplerate +ncurses nls selinux"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86"
+IUSE="bat doc +libsamplerate +ncurses nls selinux"
 
 CDEPEND=">=media-libs/alsa-lib-${PV}
 	libsamplerate? ( media-libs/libsamplerate )
-	ncurses? ( >=sys-libs/ncurses-5.7-r7:0= )"
+	ncurses? ( >=sys-libs/ncurses-5.7-r7:0= )
+	bat? ( sci-libs/fftw:= )"
 DEPEND="${CDEPEND}
 	virtual/pkgconfig
 	doc? ( app-text/xmlto )"
 RDEPEND="${CDEPEND}
 	selinux? ( sec-policy/selinux-alsa )"
-
-src_prepare() {
-	epatch "${FILESDIR}"/${P}-aplay-return.patch
-	epatch "${FILESDIR}"/${P}-va-end.patch
-	epatch "${FILESDIR}"/${P}-{mixer,monitor}-proto.patch
-	epatch_user
-}
 
 src_configure() {
 	local myconf
@@ -40,12 +34,14 @@ src_configure() {
 	# --disable-alsaconf because it doesn't work with sys-apps/kmod wrt #456214
 	econf \
 		--disable-maintainer-mode \
+		$(use_enable bat) \
 		$(use_enable libsamplerate alsaloop) \
 		$(use_enable nls) \
 		$(use_enable ncurses alsamixer) \
 		--disable-alsaconf \
-		"$(systemd_with_unitdir)" \
-		--with-udev-rules-dir="$(get_udevdir)"/rules.d \
+		--with-systemdsystemunitdir="$(systemd_get_systemunitdir)" \
+		--with-udev-rules-dir="${EPREFIX}$(get_udevdir)"/rules.d \
+		--with-asound-state-dir="${EPREFIX}"/var/lib/alsa \
 		${myconf}
 }
 
@@ -55,7 +51,7 @@ src_install() {
 
 	newbin "${WORKDIR}/alsa-driver-${ADRIVER_PV}/utils/alsa-info.sh" alsa-info
 
-	newinitd "${FILESDIR}"/alsasound.initd-r6 alsasound
+	newinitd "${FILESDIR}"/alsasound.initd-r7 alsasound
 	newconfd "${FILESDIR}"/alsasound.confd-r4 alsasound
 
 	insinto /etc/modprobe.d
