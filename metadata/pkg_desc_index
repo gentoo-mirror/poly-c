@@ -186,7 +186,7 @@ sys-kernel/linux-firmware 20170225: Linux firmware files
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.1.40 4.1.41 4.1.42 4.4.74 4.4.75 4.4.76 4.9.34 4.9.35 4.9.36: Shows and sets processor power related values
+sys-power/cpupower 4.1.40 4.1.41 4.1.42 4.4.74 4.4.75 4.4.76 4.9.35 4.9.36 4.9.37: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
 www-client/seamonkey 2.48_pre1: Seamonkey Web Browser
