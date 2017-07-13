@@ -38,6 +38,7 @@ dev-lang/ruby 2.1.7: An object-oriented scripting language
 dev-libs/boost 1.64.0_pre: Boost Libraries for C++
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
+dev-libs/libgaminggear 0.15.1_pre: Provides functionality for gaming input devices
 dev-libs/libgusb 0.2.10_pre: GObject wrapper for libusb
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
@@ -169,6 +170,7 @@ sys-apps/man 1.6g: Standard commands to read man pages
 sys-apps/openrc 0.21.4: OpenRC manages the services, startup and shutdown of a host
 sys-apps/portage 2.3.1: Portage is the package management and distribution system for Gentoo
 sys-apps/pv 1.6.6_pre: Pipe Viewer: a tool for monitoring the progress of data through a pipe
+sys-apps/roccat-tools 5.7.0_pre: Utility for advanced configuration of Roccat devices
 sys-apps/usb_modeswitch 2.5.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
