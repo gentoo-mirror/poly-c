@@ -90,7 +90,7 @@ media-libs/libdvbpsi 1.3.1_pre: library for MPEG TS/DVB PSI tables decoding and 
 media-libs/libdvdcss 1.3.99 1.4.0: A portable abstraction library for DVD decryption
 media-libs/libmodplug 0.8.9.0_pre: Library for playing MOD-like music files
 media-libs/libmygpo-qt 1.0.9_pre: Qt/C++ library wrapping the gpodder.net webservice
-media-libs/libopenshot 0.1.4_pre 0.1.5_pre 0.1.6_pre: Video editing library used by OpenShot
+media-libs/libopenshot 0.1.6_pre 0.1.7_pre: Video editing library used by OpenShot
 media-libs/libopenshot-audio 0.1.4_pre: Audio library used by OpenShot
 media-libs/libshout-idjc 2.4.1: Libshout-idjc is libshout plus some extensions for IDJC
 media-plugins/gst-plugins-a52dec 1.11.90_pre 1.11.91_pre 1.12.0_pre 1.12.1_pre 1.12.2_pre: plugin for gstreamer
@@ -127,7 +127,7 @@ media-sound/qamix 0.0.7e_pre: QAMix is a configurable mixer for ALSA. Interfaces
 media-sound/scdl 1.3.3_beta1: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2: Download files from the public broadcasting services
-media-video/openshot 2.3.1_pre 2.3.2_pre 2.3.3_pre: Free, open-source, non-linear video editor to create and edit videos and movies
+media-video/openshot 2.3.3_pre 2.3.4_pre: Free, open-source, non-linear video editor to create and edit videos and movies
 media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.4.2_pre 17.5.0_pre 17.6.0_pre: Great Qt GUI front-end for mplayer/mpv
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
 net-analyzer/arpalert 1.0.3_pre 1.1.3_pre 2.0.11_pre: arpalert is used for monitoring ethernet networks
@@ -140,7 +140,6 @@ net-analyzer/rrdtool 1.7.0_pre: A system to store and display time-series data
 net-dialup/mingetty 1.08 1.08-r1: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
-net-ftp/lftp 4.8.0_pre: A sophisticated ftp/sftp/http/https/torrent client and file transfer program
 net-im/gajim 0.16.7_pre: Jabber client written in PyGTK
 net-im/licq 1.8.2: ICQ Client with v8 support
 net-im/pidgin 2.11.0-r1: GTK Instant Messenger client
@@ -183,7 +182,7 @@ sys-devel/gcc 6.4.0_pre: The GNU Compiler Collection
 sys-fs/btrfs-progs 4.11.1_pre: Btrfs filesystem utilities
 sys-fs/fuse 3.0.2: An interface for filesystems implemented in userspace
 sys-fs/fuse-common-files 3.0.2: Config files, init scripts and other common files for fuse package
-sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2 233 234_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
+sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2 233 234: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-kernel/linux-firmware 20170225: Linux firmware files
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library

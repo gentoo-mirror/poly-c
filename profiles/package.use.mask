@@ -1,2 +1,2 @@
-# static fails
-=sys-apps/keyutils-1.5.10_pre static
+# fails with imagemagick-7
+media-libs/libopenshot imagemagick
