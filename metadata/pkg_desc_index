@@ -172,7 +172,6 @@ sys-apps/openrc 0.21.4: OpenRC manages the services, startup and shutdown of a h
 sys-apps/portage 2.3.1: Portage is the package management and distribution system for Gentoo
 sys-apps/pv 1.6.6_pre: Pipe Viewer: a tool for monitoring the progress of data through a pipe
 sys-apps/usb_modeswitch 2.5.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
-sys-auth/consolekit 1.2.0_pre: Framework for defining and tracking users, login sessions and seats
 sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/gparted 0.28.0_pre 0.28.1_pre: Gnome Partition Editor
