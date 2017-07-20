@@ -1,0 +1,15 @@
+DEFINED_PHASES=configure install prepare
+DEPEND=dev-libs/librevenge zlib? ( sys-libs/zlib ) doc? ( app-doc/doxygen )
+DESCRIPTION=Import filter for old StarOffice documents
+EAPI=6
+HOMEPAGE=https://github.com/fosnola/libstaroffice
+IUSE=debug doc tools +zlib
+KEYWORDS=~amd64 ~arm ~x86
+LICENSE=|| ( LGPL-2.1+ MPL-2.0 )
+RDEPEND=dev-libs/librevenge zlib? ( sys-libs/zlib )
+RESTRICT=mirror
+SLOT=0
+SRC_URI=http://dev-www.libreoffice.org/src/libstaroffice-0.0.4.tar.xz
+_eclass_exported_funcs=src_prepare:- src_configure:- src_install:-
+_eclasses_=poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435
+_md5_=3d0d272b5a08f173609bf961e7ee952f

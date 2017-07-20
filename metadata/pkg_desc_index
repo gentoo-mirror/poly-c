@@ -26,6 +26,9 @@ app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gent
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/calibre 3.4.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre 3.75_pre: ISO language, territory, currency, script codes and their translations
+app-text/libmwaw 0.3.12_pre: Library parsing many pre-OSX MAC text formats
+app-text/libstaroffice 0.0.4_pre: Import filter for old StarOffice documents
+app-text/libwps 0.4.7_pre: Microsoft Works file word processor format import filter library
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
 dev-db/lmdb 0.9.21_pre: An ultra-fast, ultra-compact key-value embedded data store
 dev-games/ogre 1.10.4_pre: Object-oriented Graphics Rendering Engine
