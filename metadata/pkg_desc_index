@@ -133,7 +133,7 @@ media-sound/scdl 1.3.3_beta1: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2: Download files from the public broadcasting services
 media-video/openshot 2.3.3_pre 2.3.4_pre: Free, open-source, non-linear video editor to create and edit videos and movies
-media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.4.2_pre 17.5.0_pre 17.6.0_pre: Great Qt GUI front-end for mplayer/mpv
+media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.6.0_pre 17.7.0_pre: Great Qt GUI front-end for mplayer/mpv
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
 net-analyzer/arpalert 1.0.3_pre 1.1.3_pre 2.0.11_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/medusa 2.1.1 2.2: A Modular,Parallel,Multiprotocol, Network Login Auditor
@@ -164,6 +164,7 @@ net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
+sys-apps/busybox 1.27.0_pre: Utilities for rescue and embedded systems
 sys-apps/cpuid 20170122: Utility to get detailed information about the CPU(s) using the CPUID instruction
 sys-apps/dtc 1.4.2_pre: Open Firmware device tree compiler
 sys-apps/fwup 0.13.0 0.14.3: Configurable embedded Linux firmware update creator and runner

@@ -110,7 +110,7 @@ src_prepare() {
 	EOF
 
 	# change rules back to group uucp instead of dialout for now wrt #454556
-	sed -i -e 's/GROUP="dialout"/GROUP="uucp"/' rules/*.rules || die
+	sed -i -e 's/GROUP="dialout"/GROUP="uucp"/' rules/*.rules{,.in} || die
 
 	# apply user patches
 	eapply_user
