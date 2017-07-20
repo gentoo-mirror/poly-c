@@ -167,12 +167,11 @@ multilib_src_compile() {
 			src/udev/v4l_id
 			man/udev.conf.5
 			man/udev.link.5
-			man/hwdb.7
 			man/udev.7
 			man/udevd.8
 			man/udevadm.8
 		)
-		use hwdb && targets+=( udev-hwdb )
+		use hwdb && targets+=( udev-hwdb man/hwdb.7 )
 	fi
 	eninja "${targets[@]}"
 }
