@@ -1,0 +1,535 @@
+--- /src/3rdparty/chromium/base/i18n/message_formatter.cc
++++ /src/3rdparty/chromium/base/i18n/message_formatter.cc
+@@ -4,6 +4,9 @@
+ 
+ #include "base/i18n/message_formatter.h"
+ 
++#include <codecvt>
++#include <locale>
++
+ #include "base/logging.h"
+ #include "base/numerics/safe_conversions.h"
+ #include "base/time/time.h"
+@@ -87,7 +90,9 @@
+   icu::FieldPosition ignore(icu::FieldPosition::DONT_CARE);
+   format.format(args, args_count, formatted, ignore, error);
+   if (U_FAILURE(error)) {
+-    LOG(ERROR) << "MessageFormat(" << msg.as_string() << ") failed with "
++    LOG(ERROR) << "MessageFormat("
++               << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(msg.as_string())
++               << ") failed with "
+                << u_errorName(error);
+     return string16();
+   }
+@@ -130,7 +135,9 @@
+   icu::UnicodeString formatted;
+   format.format(names, args, args_count, formatted, error);
+   if (U_FAILURE(error)) {
+-    LOG(ERROR) << "MessageFormat(" << msg.as_string() << ") failed with "
++    LOG(ERROR) << "MessageFormat("
++               << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(msg.as_string())
++               << ") failed with "
+                << u_errorName(error);
+     return string16();
+   }
+--- /src/3rdparty/chromium/base/strings/string16.h
++++ /src/3rdparty/chromium/base/strings/string16.h
+@@ -34,7 +34,17 @@
+ #include "base/base_export.h"
+ #include "build/build_config.h"
+ 
+-#if defined(WCHAR_T_IS_UTF16)
++#if 1
++
++namespace base {
++
++typedef char16_t char16;
++typedef std::u16string string16;
++typedef std::char_traits<char16_t> string16_char_traits;
++
++}  // namespace base
++
++#elif defined(WCHAR_T_IS_UTF16)
+ 
+ namespace base {
+ 
+--- /src/3rdparty/chromium/content/browser/bluetooth/bluetooth_dispatcher_host.cc
++++ /src/3rdparty/chromium/content/browser/bluetooth/bluetooth_dispatcher_host.cc
+@@ -13,6 +13,8 @@
+ 
+ #include <stddef.h>
+ 
++#include <codecvt>
++#include <locale>
+ #include <utility>
+ 
+ #include "base/bind.h"
+@@ -1152,7 +1154,8 @@
+     return;
+   }
+ 
+-  VLOG(1) << "Device: " << device->GetName();
++  VLOG(1) << "Device: "
++          << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(device->GetName());
+   VLOG(1) << "UUIDs: ";
+   for (BluetoothUUID uuid : device->GetUUIDs())
+     VLOG(1) << "\t" << uuid.canonical_value();
+--- /src/3rdparty/chromium/content/browser/frame_host/navigator_impl.cc
++++ /src/3rdparty/chromium/content/browser/frame_host/navigator_impl.cc
+@@ -4,6 +4,8 @@
+ 
+ #include "content/browser/frame_host/navigator_impl.h"
+ 
++#include <codecvt>
++#include <locale>
+ #include <utility>
+ 
+ #include "base/metrics/histogram.h"
+@@ -158,12 +160,16 @@
+ void NavigatorImpl::DidFailProvisionalLoadWithError(
+     RenderFrameHostImpl* render_frame_host,
+     const FrameHostMsg_DidFailProvisionalLoadWithError_Params& params) {
+-  VLOG(1) << "Failed Provisional Load: " << params.url.possibly_invalid_spec()
+-          << ", error_code: " << params.error_code
+-          << ", error_description: " << params.error_description
+-          << ", showing_repost_interstitial: " <<
+-            params.showing_repost_interstitial
+-          << ", frame_id: " << render_frame_host->GetRoutingID();
++  VLOG(1) << "Failed Provisional Load: "
++          << params.url.possibly_invalid_spec()
++          << ", error_code: "
++          << params.error_code
++          << ", error_description: "
++          << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(params.error_description)
++          << ", showing_repost_interstitial: "
++          << params.showing_repost_interstitial
++          << ", frame_id: "
++          << render_frame_host->GetRoutingID();
+   GURL validated_url(params.url);
+   RenderProcessHost* render_process_host = render_frame_host->GetProcess();
+   render_process_host->FilterURL(false, &validated_url);
+--- /src/3rdparty/chromium/content/browser/frame_host/render_frame_host_impl.cc
++++ /src/3rdparty/chromium/content/browser/frame_host/render_frame_host_impl.cc
+@@ -4,6 +4,8 @@
+ 
+ #include "content/browser/frame_host/render_frame_host_impl.h"
+ 
++#include <codecvt>
++#include <locale>
+ #include <utility>
+ 
+ #include "base/bind.h"
+@@ -795,7 +797,12 @@
+       (is_web_ui ||
+        !GetSiteInstance()->GetBrowserContext()->IsOffTheRecord())) {
+     logging::LogMessage("CONSOLE", line_no, resolved_level).stream()
+-        << "\"" << message << "\", source: " << source_id << " (" << line_no
++        << "\""
++        << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(message)
++        << "\", source: "
++        << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(source_id)
++        << " ("
++        << line_no
+         << ")";
+   }
+ }
+--- /src/3rdparty/chromium/content/browser/geolocation/wifi_data_provider_linux.cc
++++ /src/3rdparty/chromium/content/browser/geolocation/wifi_data_provider_linux.cc
+@@ -11,6 +11,9 @@
+ #include <stddef.h>
+ #include <stdint.h>
+ 
++#include <codecvt>
++#include <locale>
++
+ #include "base/macros.h"
+ #include "base/memory/scoped_ptr.h"
+ #include "base/strings/string_number_conversions.h"
+@@ -319,11 +322,20 @@
+       access_point_data.channel =
+           frquency_in_khz_to_channel(frequency * 1000);
+     }
+-    VLOG(1) << "Access point data of " << access_point_path.value() << ": "
+-            << "SSID: " << access_point_data.ssid << ", "
+-            << "MAC: " << access_point_data.mac_address << ", "
+-            << "Strength: " << access_point_data.radio_signal_strength << ", "
+-            << "Channel: " << access_point_data.channel;
++    VLOG(1) << "Access point data of "
++            << access_point_path.value()
++            << ": "
++            << "SSID: "
++            << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(access_point_data.ssid)
++            << ", "
++            << "MAC: "
++            << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(access_point_data.mac_address)
++            << ", "
++            << "Strength: "
++            << access_point_data.radio_signal_strength
++            << ", "
++            << "Channel: "
++            << access_point_data.channel;
+ 
+     data->insert(access_point_data);
+   }
+--- /src/3rdparty/chromium/content/browser/renderer_host/sandbox_ipc_linux.cc
++++ /src/3rdparty/chromium/content/browser/renderer_host/sandbox_ipc_linux.cc
+@@ -251,7 +251,8 @@
+ 
+   EnsureWebKitInitialized();
+   WebUChar32 c;
+-  if (!iter.ReadInt(&c))
++  static_assert(sizeof(WebUChar32) == sizeof(int));
++  if (!iter.ReadInt(reinterpret_cast<int*>(&c)))
+     return;
+ 
+   std::string preferred_locale;
+--- /src/3rdparty/chromium/content/common/plugin_list_posix.cc
++++ /src/3rdparty/chromium/content/common/plugin_list_posix.cc
+@@ -4,6 +4,9 @@
+ 
+ #include "content/common/plugin_list.h"
+ 
++#include <codecvt>
++#include <locale>
++
+ namespace content {
+ 
+ bool PluginList::ReadWebPluginInfo(const base::FilePath& filename,
+@@ -23,7 +26,11 @@
+     const WebPluginInfo& info,
+     std::vector<WebPluginInfo>* plugins) {
+   LOG_IF(ERROR, PluginList::DebugPluginLoading())
+-      << "Considering " << info.path.value() << " (" << info.name << ")";
++      << "Considering "
++      << info.path.value()
++      << " ("
++      << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(info.name)
++      << ")";
+ 
+   if (info.type == WebPluginInfo::PLUGIN_TYPE_NPAPI) {
+     NOTREACHED() << "NPAPI plugins are not supported";
+--- /src/3rdparty/chromium/device/usb/usb_service_impl.cc
++++ /src/3rdparty/chromium/device/usb/usb_service_impl.cc
+@@ -5,7 +5,9 @@
+ #include "device/usb/usb_service_impl.h"
+ 
+ #include <stdint.h>
++#include <codecvt>
+ #include <list>
++#include <locale>
+ #include <set>
+ #include <utility>
+ 
+@@ -720,11 +722,18 @@
+   DCHECK(!ContainsKey(devices_, device->guid()));
+   devices_[device->guid()] = device;
+ 
+-  USB_LOG(USER) << "USB device added: vendor=" << device->vendor_id() << " \""
+-                << device->manufacturer_string()
+-                << "\", product=" << device->product_id() << " \""
+-                << device->product_string() << "\", serial=\""
+-                << device->serial_number() << "\", guid=" << device->guid();
++  USB_LOG(USER) << "USB device added: vendor="
++                << device->vendor_id()
++                << " \""
++                << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(device->manufacturer_string())
++                << "\", product="
++                << device->product_id()
++                << " \""
++                << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(device->product_string())
++                << "\", serial=\""
++                << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(device->serial_number())
++                << "\", guid="
++                << device->guid();
+ 
+   if (enumeration_ready_) {
+     NotifyDeviceAdded(device);
+--- /src/3rdparty/chromium/media/blink/encrypted_media_player_support.cc
++++ /src/3rdparty/chromium/media/blink/encrypted_media_player_support.cc
+@@ -5,6 +5,8 @@
+ #include "media/blink/encrypted_media_player_support.h"
+ 
+ #include <stddef.h>
++#include <codecvt>
++#include <locale>
+ 
+ #include "base/bind.h"
+ #include "base/callback_helpers.h"
+@@ -136,7 +138,9 @@
+     const WebString& key_system,
+     const unsigned char* init_data,
+     unsigned init_data_length) {
+-  DVLOG(1) << "generateKeyRequest: " << base::string16(key_system) << ": "
++  DVLOG(1) << "generateKeyRequest: "
++           << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(base::string16(key_system))
++           << ": "
+            << std::string(reinterpret_cast<const char*>(init_data),
+                           static_cast<size_t>(init_data_length));
+ 
+@@ -199,12 +203,17 @@
+     const unsigned char* init_data,
+     unsigned init_data_length,
+     const WebString& session_id) {
+-  DVLOG(1) << "addKey: " << base::string16(key_system) << ": "
++  DVLOG(1) << "addKey: "
++           << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(base::string16(key_system))
++           << ": "
+            << std::string(reinterpret_cast<const char*>(key),
+-                          static_cast<size_t>(key_length)) << ", "
++                          static_cast<size_t>(key_length))
++           << ", "
+            << std::string(reinterpret_cast<const char*>(init_data),
+-                          static_cast<size_t>(init_data_length)) << " ["
+-           << base::string16(session_id) << "]";
++                          static_cast<size_t>(init_data_length))
++           << " ["
++           << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(base::string16(session_id))
++           << "]";
+ 
+   std::string ascii_key_system =
+       GetUnprefixedKeySystemName(ToASCIIOrEmpty(key_system));
+@@ -246,8 +255,12 @@
+ EncryptedMediaPlayerSupport::CancelKeyRequest(
+     const WebString& key_system,
+     const WebString& session_id) {
+-  DVLOG(1) << "cancelKeyRequest: " << base::string16(key_system) << ": "
+-           << " [" << base::string16(session_id) << "]";
++  DVLOG(1) << "cancelKeyRequest: "
++           << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(base::string16(key_system))
++           << ": "
++           << " ["
++           << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(base::string16(session_id))
++           << "]";
+ 
+   std::string ascii_key_system =
+       GetUnprefixedKeySystemName(ToASCIIOrEmpty(key_system));
+--- /src/3rdparty/chromium/net/disk_cache/simple/simple_backend_impl.cc
++++ /src/3rdparty/chromium/net/disk_cache/simple/simple_backend_impl.cc
+@@ -5,8 +5,10 @@
+ #include "net/disk_cache/simple/simple_backend_impl.h"
+ 
+ #include <algorithm>
++#include <codecvt>
+ #include <cstdlib>
+ #include <functional>
++#include <locale>
+ 
+ #if defined(OS_POSIX)
+ #include <sys/resource.h>
+@@ -127,7 +129,8 @@
+ // with the fresh structure.
+ bool FileStructureConsistent(const base::FilePath& path) {
+   if (!base::PathExists(path) && !base::CreateDirectory(path)) {
+-    LOG(ERROR) << "Failed to create directory: " << path.LossyDisplayName();
++    LOG(ERROR) << "Failed to create directory: "
++               << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(path.LossyDisplayName());
+     return false;
+   }
+   return disk_cache::UpgradeSimpleCacheOnDisk(path);
+@@ -587,7 +590,7 @@
+   result.net_error = net::OK;
+   if (!FileStructureConsistent(path)) {
+     LOG(ERROR) << "Simple Cache Backend: wrong file structure on disk: "
+-               << path.LossyDisplayName();
++               << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(path.LossyDisplayName());
+     result.net_error = net::ERR_FAILED;
+   } else {
+     bool mtime_result =
+--- /src/3rdparty/chromium/net/disk_cache/simple/simple_version_upgrade.cc
++++ /src/3rdparty/chromium/net/disk_cache/simple/simple_version_upgrade.cc
+@@ -4,7 +4,9 @@
+ 
+ #include "net/disk_cache/simple/simple_version_upgrade.h"
+ 
++#include <codecvt>
+ #include <cstring>
++#include <locale>
+ 
+ #include "base/files/file.h"
+ #include "base/files/file_path.h"
+@@ -42,7 +44,7 @@
+                                  sizeof(file_contents));
+   if (bytes_written != sizeof(file_contents)) {
+     LOG(ERROR) << "Failed to write fake index file: "
+-               << file_name.LossyDisplayName();
++               << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(file_name.LossyDisplayName());
+     return false;
+   }
+   return true;
+--- /src/3rdparty/chromium/net/proxy/proxy_resolver_v8_tracing.cc
++++ /src/3rdparty/chromium/net/proxy/proxy_resolver_v8_tracing.cc
+@@ -4,6 +4,8 @@
+ 
+ #include "net/proxy/proxy_resolver_v8_tracing.h"
+ 
++#include <codecvt>
++#include <locale>
+ #include <map>
+ #include <string>
+ #include <utility>
+@@ -898,7 +900,8 @@
+     // -------------------
+     // alert
+     // -------------------
+-    VLOG(1) << "PAC-alert: " << message;
++    VLOG(1) << "PAC-alert: "
++            << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(message);
+ 
+     bindings_->Alert(message);
+   } else {
+@@ -906,9 +909,14 @@
+     // error
+     // -------------------
+     if (line_number == -1)
+-      VLOG(1) << "PAC-error: " << message;
++      VLOG(1) << "PAC-error: "
++              << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(message);
+     else
+-      VLOG(1) << "PAC-error: " << "line: " << line_number << ": " << message;
++      VLOG(1) << "PAC-error: "
++              << "line: "
++              << line_number
++              << ": "
++              << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(message);
+ 
+     bindings_->OnError(line_number, message);
+   }
+--- /src/3rdparty/chromium/net/third_party/mozilla_security_manager/nsPKCS12Blob.cpp
++++ /src/3rdparty/chromium/net/third_party/mozilla_security_manager/nsPKCS12Blob.cpp
+@@ -168,7 +168,8 @@
+   unicodePw.len = 0;
+   unicodePw.data = NULL;
+   if (!try_zero_length_secitem) {
+-    unicodeToItem(password.c_str(), &unicodePw);
++    static_assert(sizeof(const char16_t) == sizeof(const PRUnichar));
++    unicodeToItem(reinterpret_cast<const PRUnichar*>(password.c_str()), &unicodePw);
+   }
+ 
+   // Initialize the decoder
+@@ -404,7 +405,8 @@
+   int numCertsExported = 0;
+ 
+   // get file password (unicode)
+-  unicodeToItem(password.c_str(), &unicodePw);
++  static_assert(sizeof(const char16_t) == sizeof(const PRUnichar));
++  unicodeToItem(reinterpret_cast<const PRUnichar*>(password.c_str()), &unicodePw);
+ 
+   // what about slotToUse in psm 1.x ???
+   // create export context
+--- /src/3rdparty/chromium/third_party/WebKit/public/platform/WebCommon.h
++++ /src/3rdparty/chromium/third_party/WebKit/public/platform/WebCommon.h
+@@ -89,14 +89,10 @@
+ namespace blink {
+ 
+ // UTF-32 character type
+-typedef int32_t WebUChar32;
++typedef char32_t WebUChar32;
+ 
+ // UTF-16 character type
+-#if defined(WIN32)
+-typedef wchar_t WebUChar;
+-#else
+-typedef unsigned short WebUChar;
+-#endif
++typedef char16_t WebUChar;
+ 
+ // Latin-1 character type
+ typedef unsigned char WebLChar;
+--- /src/3rdparty/chromium/third_party/sfntly/src/cpp/src/sample/chromium/subsetter_impl.cc
++++ /src/3rdparty/chromium/third_party/sfntly/src/cpp/src/sample/chromium/subsetter_impl.cc
+@@ -23,6 +23,8 @@
+ #include <map>
+ #include <set>
+ 
++#include <unicode/unistr.h>
++
+ #include "sfntly/table/bitmap/eblc_table.h"
+ #include "sfntly/table/bitmap/ebdt_table.h"
+ #include "sfntly/table/bitmap/index_sub_table.h"
+--- /src/3rdparty/chromium/ui/base/accelerators/accelerator.cc
++++ /src/3rdparty/chromium/ui/base/accelerators/accelerator.cc
+@@ -222,9 +222,10 @@
+ #elif defined(USE_AURA) || defined(OS_MACOSX)
+     const uint16_t c = DomCodeToUsLayoutCharacter(
+         UsLayoutKeyboardCodeToDomCode(key_code_), false);
++    static_assert(sizeof(const char16_t) == sizeof(const uint16_t));
+     if (c != 0)
+       shortcut +=
+-          static_cast<base::string16::value_type>(base::ToUpperASCII(c));
++          static_cast<base::string16::value_type>(base::ToUpperASCII(static_cast<const char16_t>(c)));
+ #endif
+   } else {
+     shortcut = l10n_util::GetStringUTF16(string_id);
+--- /src/3rdparty/chromium/ui/base/x/selection_utils.cc
++++ /src/3rdparty/chromium/ui/base/x/selection_utils.cc
+@@ -228,7 +228,7 @@
+     // UTF-16, otherwise assume UTF-8.
+     if (size >= 2 &&
+         reinterpret_cast<const uint16_t*>(data)[0] == 0xFEFF) {
+-      markup.assign(reinterpret_cast<const uint16_t*>(data) + 1,
++      markup.assign(reinterpret_cast<const char16_t*>(data) + 1,
+                     (size / 2) - 1);
+     } else {
+       base::UTF8ToUTF16(reinterpret_cast<const char*>(data), size, &markup);
+--- /src/3rdparty/chromium/ui/gfx/render_text_harfbuzz.cc
++++ /src/3rdparty/chromium/ui/gfx/render_text_harfbuzz.cc
+@@ -4,7 +4,9 @@
+ 
+ #include "ui/gfx/render_text_harfbuzz.h"
+ 
++#include <codecvt>
+ #include <limits>
++#include <locale>
+ #include <set>
+ 
+ #include "base/i18n/bidi_line_iterator.h"
+@@ -1282,7 +1284,10 @@
+         static_cast<size_t>(script_item_break),
+         TextIndexToGivenTextIndex(text, style.GetRange().end()));
+     CHECK_GT(new_run_break, run_break)
+-        << "It must proceed! " << text << " " << run_break;
++        << "It must proceed! "
++        << std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t>{}.to_bytes(text)
++        << " "
++        << run_break;
+     run_break = new_run_break;
+ 
+     // Break runs at certain characters that need to be rendered separately to
+--- /src/3rdparty/chromium/v8/src/runtime/runtime-i18n.cc
++++ /src/3rdparty/chromium/v8/src/runtime/runtime-i18n.cc
+@@ -24,6 +24,7 @@
+ #include "unicode/dtfmtsym.h"
+ #include "unicode/dtptngen.h"
+ #include "unicode/locid.h"
++#include "unicode/normlzr.h"
+ #include "unicode/numfmt.h"
+ #include "unicode/numsys.h"
+ #include "unicode/rbbi.h"
+--- /src/core/type_conversion.h
++++ /src/core/type_conversion.h
+@@ -73,11 +73,7 @@
+ 
+ inline QString toQt(const base::string16 &string)
+ {
+-#if defined(OS_WIN)
+-    return QString::fromStdWString(string.data());
+-#else
+-    return QString::fromUtf16(string.data());
+-#endif
++    return QString::fromStdU16String(string);
+ }
+ 
+ inline QString toQt(const std::string &string)
+@@ -92,11 +88,7 @@
+ 
+ inline base::string16 toString16(const QString &qString)
+ {
+-#if defined(OS_WIN)
+-    return base::string16(qString.toStdWString());
+-#else
+-    return base::string16(qString.utf16());
+-#endif
++    return qString.toStdU16String();
+ }
+ 
+ inline base::NullableString16 toNullableString16(const QString &qString)

@@ -51,7 +51,7 @@ dev-libs/openssl 1.0.2k 1.0.2l 1.1.0f: full-strength general purpose cryptograph
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtdbus 5.6.2 5.7.1: Qt5 module for inter-process communication over the D-Bus protocol
-dev-qt/qtwebengine 5.6.1: Library for rendering dynamic web content in Qt5 C++ and QML applications
+dev-qt/qtwebengine 5.6.1 5.7.1-r1: Library for rendering dynamic web content in Qt5 C++ and QML applications
 dev-scheme/guile 2.2.0_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.64.0_pre: A system for large project software construction, simple to use and powerful
 dev-util/colm 0.13.0.5_pre: COmputer Language Manipulation
@@ -154,6 +154,7 @@ net-libs/bctoolbox 0.4.0_pre: Utilities library used by Belledonne Communication
 net-libs/gnutls 3.5.13_pre: A TLS 1.2 and SSL 3.0 implementation for the GNU project
 net-libs/http-parser 2.7.1_pre: Http request/response parser for C
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
+net-libs/webkit-gtk 2.4.11-r200: Open source web browser engine
 net-misc/dropbear 2017.75_pre: small SSH 2 client/server designed for small memory environments
 net-misc/icecast 2.5_beta1: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/networkmanager 1.4.0-r1 1.4.4 1.4.4-r1 1.6.2_pre: A set of co-operative tools that make networking simple and straightforward
@@ -194,6 +195,7 @@ sys-kernel/linux-firmware 20170225: Linux firmware files
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
+sys-libs/libunwind 1.2.1_pre: Portable and efficient API to determine the call-chain of a program
 sys-power/cpupower 4.1.40 4.1.41 4.1.42 4.4.75 4.4.76 4.4.77 4.9.36 4.9.37 4.9.38: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
