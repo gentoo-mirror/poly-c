@@ -45,6 +45,7 @@ dev-libs/boost 1.64.0_pre: Boost Libraries for C++
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/libgusb 0.2.10_pre: GObject wrapper for libusb
+dev-libs/libinput 1.8.1_pre: Library to handle input devices in Wayland
 dev-libs/libnatspec 0.3.0_pre: library to smooth charset/localization issues
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.0.2l 1.1.0f: full-strength general purpose cryptography library (including SSL and TLS)
@@ -189,6 +190,7 @@ sys-devel/gcc 6.4.0_pre: The GNU Compiler Collection
 sys-fs/btrfs-progs 4.11.1_pre: Btrfs filesystem utilities
 sys-fs/fuse 3.0.2: An interface for filesystems implemented in userspace
 sys-fs/fuse-common-files 3.0.2: Config files, init scripts and other common files for fuse package
+sys-fs/lvm2 2.02.173_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2 233 234: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-kernel/linux-firmware 20170225: Linux firmware files
@@ -196,7 +198,7 @@ sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C 
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/libunwind 1.2.1_pre: Portable and efficient API to determine the call-chain of a program
-sys-power/cpupower 4.1.40 4.1.41 4.1.42 4.4.75 4.4.76 4.4.77 4.9.37 4.9.38 4.9.39: Shows and sets processor power related values
+sys-power/cpupower 4.1.40 4.1.41 4.1.42 4.4.76 4.4.77 4.4.78 4.9.37 4.9.38 4.9.39: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
 www-client/seamonkey 2.48_pre1: Seamonkey Web Browser
