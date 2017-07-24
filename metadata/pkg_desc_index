@@ -39,6 +39,7 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-java/openjfx 8.9999: Open source JavaFX
+dev-lang/orc 0.4.27_pre: The Oil Runtime Compiler, a just-in-time compiler for array operations
 dev-lang/python 3.6.1-r1 3.6.2_pre: An interpreted, interactive, object-oriented programming language
 dev-lang/ruby 2.1.7: An object-oriented scripting language
 dev-libs/boost 1.64.0_pre: Boost Libraries for C++
@@ -132,6 +133,7 @@ media-sound/qamix 0.0.7e_pre: QAMix is a configurable mixer for ALSA. Interfaces
 media-sound/scdl 1.3.3_beta1: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2: Download files from the public broadcasting services
+media-video/mkvtoolnix 14.0.0_pre: Tools to create, alter, and inspect Matroska files
 media-video/openshot 2.3.3_pre 2.3.4_pre: Free, open-source, non-linear video editor to create and edit videos and movies
 media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.6.0_pre 17.7.0_pre: Great Qt GUI front-end for mplayer/mpv
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
@@ -164,7 +166,7 @@ net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
-sys-apps/busybox 1.27.0_pre: Utilities for rescue and embedded systems
+sys-apps/busybox 1.27.0_pre 1.27.1_pre: Utilities for rescue and embedded systems
 sys-apps/cpuid 20170122: Utility to get detailed information about the CPU(s) using the CPUID instruction
 sys-apps/dtc 1.4.2_pre: Open Firmware device tree compiler
 sys-apps/fwup 0.13.0 0.14.3: Configurable embedded Linux firmware update creator and runner
@@ -204,5 +206,6 @@ x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-libs/cairo 1.15.4_pre 1.15.6_pre: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
+x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-plugins/gkrellm-cpupower 0.1.5: GKrellm plugin for changing CPU frequencies via cpupower
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager

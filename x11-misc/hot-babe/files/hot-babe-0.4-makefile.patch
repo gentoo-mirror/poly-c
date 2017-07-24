@@ -1,0 +1,31 @@
+--- hot-babe-0.4/Makefile
++++ hot-babe-0.4/Makefile
+@@ -1,14 +1,14 @@
+ PREFIX := /usr/local
+ 
+ # optimization cflags
+-CFLAGS += -O2 -Wall -Wextra -DPREFIX=\"$(PREFIX)\" -g
+-CFLAGS += `pkg-config gdk-3.0 --cflags` -std=gnu99
++CFLAGS += -DPREFIX=\"$(PREFIX)\"
++CFLAGS += $(shell pkg-config gdk-3.0 --cflags) -std=gnu99
+ CFLAGS += -Wno-unused-parameter -Wno-missing-field-initializers 
+ CFLAGS += -Wno-sign-compare
+ 
+ OBJS = hot-babe.o loader.o
+ CC = gcc
+-LIBS = `pkg-config gdk-3.0 --libs`
++LIBS = $(shell pkg-config gdk-3.0 --libs) -lm
+ 
+ DOC = ChangeLog NEWS LICENSE CONTRIBUTORS copyright config.example
+ 
+@@ -25,8 +25,8 @@
+ 	install -m 0755 hot-babe $(DESTDIR)$(PREFIX)/bin
+ 	install -d $(DESTDIR)$(PREFIX)/share/hot-babe/hb01
+ 	install -m 0644 hb01/* $(DESTDIR)$(PREFIX)/share/hot-babe/hb01
+-	install -d $(DESTDIR)$(PREFIX)/share/doc/hot-babe
+-	install -m 0644 $(DOC) $(DESTDIR)$(PREFIX)/share/doc/hot-babe
++	install -d $(DESTDIR)$(PREFIX)/share/doc/$(PF)
++	install -m 0644 $(DOC) $(DESTDIR)$(PREFIX)/share/doc/$(PF)
+ 	install -d $(DESTDIR)$(PREFIX)/share/man/man1
+ 	install -m 0644 hot-babe.1 $(DESTDIR)$(PREFIX)/share/man/man1
+ 	install -d $(DESTDIR)$(PREFIX)/share/pixmaps
