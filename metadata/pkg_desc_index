@@ -61,7 +61,7 @@ dev-util/meld 3.17.1_pre 3.17.2_pre: A graphical diff and merge tool
 dev-util/meson 0.40.1: Open source build system
 dev-util/ragel 7.0.0.10_pre: Compiles finite state machines from regular languages into executable code
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
-dev-vcs/git 2.14.0_rc0: stupid content tracker: distributed VCS designed for speed and efficiency
+dev-vcs/git 2.14.0_rc0 2.14.0_rc1: stupid content tracker: distributed VCS designed for speed and efficiency
 games-arcade/emilia-pinball 0.3.3: SDL OpenGL pinball game
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.74 2.75 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
@@ -186,6 +186,7 @@ sys-block/gparted 0.28.0_pre 0.28.1_pre: Gnome Partition Editor
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/gnu-efi 3.0.5_pre: Library for build EFI Applications
 sys-boot/grub 2.02: GNU GRUB boot loader
+sys-devel/binutils 2.29_pre: Tools necessary to build programs
 sys-devel/gcc 6.4.0_pre: The GNU Compiler Collection
 sys-fs/btrfs-progs 4.11.1_pre: Btrfs filesystem utilities
 sys-fs/fuse 3.0.2: An interface for filesystems implemented in userspace
@@ -194,6 +195,7 @@ sys-fs/lvm2 2.02.173_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 228 229-r2 230-r1 231_pre 232-r2 233 234: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-kernel/linux-firmware 20170225: Linux firmware files
+sys-libs/binutils-libs 2.29_pre: Core binutils libraries (libbfd, libopcodes, libiberty) for external packages
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
