@@ -1,0 +1,81 @@
+From 8428ce3230130551bd856a8c7e6edab756c47db9 Mon Sep 17 00:00:00 2001
+From: Mike Frysinger <vapier@gentoo.org>
+Date: Tue, 25 Jul 2017 09:59:35 +0200
+Subject: [PATCH] gold/ld: enable gnu hash by default
+
+Glibc first added .gnu.hash support to glibc-2.5 (released 29 Sep 2006),
+and gold was first released after that.  Let's default the gnu hash style
+to the new "gnu" rather than the classic sysv.
+
+gold/:
+2012-02-03  Mike Frysinger  <vapier@gentoo.org>
+
+	* options.h (General_options): Change default to gnu for hash_style.
+---
+ gold/options.h              |  2 +-
+ ld/emultempl/elf32.em       | 13 +++++++++++++
+ ld/testsuite/lib/ld-lib.exp |  4 ++--
+ 3 files changed, 16 insertions(+), 3 deletions(-)
+
+diff --git a/gold/options.h b/gold/options.h
+index c7c032bbd7..96e9c54e6b 100644
+--- a/gold/options.h
++++ b/gold/options.h
+@@ -925,7 +925,7 @@ class General_options
+ 		N_("Min fraction of empty buckets in dynamic hash"),
+ 		N_("FRACTION"));
+ 
+-  DEFINE_enum(hash_style, options::TWO_DASHES, '\0', "sysv",
++  DEFINE_enum(hash_style, options::TWO_DASHES, '\0', "gnu",
+ 	      N_("Dynamic hash style"), N_("[sysv,gnu,both]"),
+ 	      {"sysv", "gnu", "both"});
+ 
+diff --git a/ld/emultempl/elf32.em b/ld/emultempl/elf32.em
+index d2551b6f2c..86fd016693 100644
+--- a/ld/emultempl/elf32.em
++++ b/ld/emultempl/elf32.em
+@@ -100,6 +100,19 @@ static void
+ gld${EMULATION_NAME}_before_parse (void)
+ {
+   ldfile_set_output_arch ("${OUTPUT_ARCH}", bfd_arch_`echo ${ARCH} | sed -e 's/:.*//'`);
++EOF
++# Enable gnu hash by default for Linux (non-mips) targets.
++# This has been supported since glibc-2.5.
++case ${target} in
++  mips*) ;;
++  *-*-linux-* | *-*-gnu*)
++    fragment <<EOF
++  link_info.emit_hash = FALSE;
++  link_info.emit_gnu_hash = TRUE;
++EOF
++    ;;
++esac
++fragment <<EOF
+   input_flags.dynamic = ${DYNAMIC_LINK-TRUE};
+   config.has_shared = `if test -n "$GENERATE_SHLIB_SCRIPT" ; then echo TRUE ; else echo FALSE ; fi`;
+   config.separate_code = `if test "x${SEPARATE_CODE}" = xyes ; then echo TRUE ; else echo FALSE ; fi`;
+diff --git a/ld/testsuite/lib/ld-lib.exp b/ld/testsuite/lib/ld-lib.exp
+index cddcaf834b..be30898337 100644
+--- a/ld/testsuite/lib/ld-lib.exp
++++ b/ld/testsuite/lib/ld-lib.exp
+@@ -147,7 +147,7 @@ proc default_ld_relocate { ld target objects } {
+     global HOSTING_EMU
+ 
+     remote_file host delete $target
+-    return [run_host_cmd_yesno "$ld" "$HOSTING_EMU -o $target -r $objects"]
++    return [run_host_cmd_yesno "$ld" "$HOSTING_EMU --hash-style=sysv -o $target -r $objects"]
+ }
+ 
+ # Check to see if ld is being invoked with a non-endian output format
+@@ -211,7 +211,7 @@ proc default_ld_link { ld target objects } {
+     }
+ 
+     remote_file host delete $target
+-    set exec_output [run_host_cmd "$ld" "$flags -o $target $objects"]
++    set exec_output [run_host_cmd "$ld" "--hash-style=sysv $flags -o $target $objects"]
+     set exec_output [prune_warnings $exec_output]
+ 
+     # We don't care if we get a warning about a non-existent start
+-- 
+2.14.0.rc1
+

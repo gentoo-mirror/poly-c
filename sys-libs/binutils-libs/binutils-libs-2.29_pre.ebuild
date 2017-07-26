@@ -37,6 +37,23 @@ MULTILIB_WRAPPED_HEADERS=(
 )
 
 src_prepare() {
+	epatch "${FILESDIR}/0001-gold-ld-enable-gnu-hash-by-default.patch"
+	EPATCH_EXCLUDE+="
+		00_all_0004-gold-ld-enable-gnu-hash-by-default.patch
+		00_all_0009-CVE-2017-8394.patch
+		00_all_0008-CVE-2017-8393.patch
+		00_all_0007-CVE-2017-8398.patch
+		00_all_0010-CVE-2017-8395.patch
+		00_all_0011-CVE-2017-8396-CVE-2017-8397.patch
+		00_all_0013-CVE-2017-9038.patch
+		00_all_0014-CVE-2017-9039.patch
+		00_all_0015-CVE-2017-9040-CVE-2017-9042.patch
+		00_all_0016-CVE-2017-9041.patch
+		00_all_0017-CVE-2017-7614.patch
+		00_all_0018-CVE-2017-6965.patch
+		00_all_0019-CVE-2017-6966.patch
+		00_all_0020-CVE-2017-6969.patch
+	" \
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/patch
 }
 

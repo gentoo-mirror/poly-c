@@ -34,3 +34,9 @@ EPATCH_EXCLUDE+="
 		00_all_0019-CVE-2017-6966.patch
 		00_all_0020-CVE-2017-6969.patch
 "
+
+src_prepare() {
+	epatch "${FILESDIR}/0001-gold-ld-enable-gnu-hash-by-default.patch"
+
+	toolchain-binutils_src_prepare
+}
