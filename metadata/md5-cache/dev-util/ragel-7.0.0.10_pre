@@ -12,4 +12,4 @@ SLOT=0
 SRC_URI=https://www.colm.net/files/ragel/ragel-7.0.0.10.tar.gz
 _eclass_exported_funcs=src_test:- src_install:-
 _eclasses_=poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435
-_md5_=9a5d7acc9d670a1b79186fb74f03b4ad
+_md5_=3604a0aa7142ca0903a252011cb92920

@@ -28,4 +28,7 @@ src_install() {
 		doins ragel.vim
 	fi
 	default
+
+	# https://bugs.gentoo.org/626156
+	rm "${ED%/}"/usr/include/config.h || die
 }
