@@ -133,7 +133,6 @@ media-sound/qamix 0.0.7e_pre: QAMix is a configurable mixer for ALSA. Interfaces
 media-sound/scdl 1.3.3_beta1: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2: Download files from the public broadcasting services
-media-video/mkvtoolnix 14.0.0_pre: Tools to create, alter, and inspect Matroska files
 media-video/openshot 2.3.3_pre 2.3.4_pre: Free, open-source, non-linear video editor to create and edit videos and movies
 media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.6.0_pre 17.7.0_pre: Great Qt GUI front-end for mplayer/mpv
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
@@ -203,11 +202,11 @@ sys-libs/libunwind 1.2.1_pre: Portable and efficient API to determine the call-c
 sys-power/cpupower 4.1.40 4.1.41 4.1.42 4.4.76 4.4.77 4.4.78 4.9.37 4.9.38 4.9.39: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
-www-client/seamonkey 2.48_pre1: Seamonkey Web Browser
+www-client/seamonkey 2.49.2.0_p0: Seamonkey Web Browser
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-libs/cairo 1.15.4_pre 1.15.6_pre: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
-x11-plugins/gkrellm-cpupower 0.1.5: GKrellm plugin for changing CPU frequencies via cpupower
+x11-plugins/enigmail 1.9.8.1: Mozilla extension to provide GPG support in mail clients
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager

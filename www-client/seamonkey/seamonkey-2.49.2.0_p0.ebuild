@@ -35,17 +35,19 @@ if [[ ${PV} == *_pre* ]] ; then
 	#"
 elif [[ ${PV} == *_p[0-9] ]]; then
 	# gentoo-unofficial release using thunderbird distfiles to build seamonkey instead
-	TB_MAJOR=45
+	TB_MAJOR=52
 	SMPV="${PV%.[0-9].*}"
-	MOZ_P="${PN}-${SMPV}"
+	MOZ_P="${PN}-${MOZ_PV}"
 	MOZ_HTTP_URI="https://archive.mozilla.org/pub/thunderbird/releases/${MOZ_PV/${SMPV}/${TB_MAJOR}}"
 	MOZ_GENERATE_LANGPACKS=1
 	S="${WORKDIR}/thunderbird-${MOZ_PV/${SMPV}/${TB_MAJOR}}"
+	CHATZILLA_VER="SEA2_48_RELBRANCH"
+	INSPECTOR_VER="DOMI_2_0_17"
 	SRC_URI="${SRC_URI}
-	${MOZ_HTTP_URI}/source/${MY_MOZ_P/${MOZ_P}/thunderbird-${TB_MAJOR}}.source.tar.xz
-	https://dev.gentoo.org/~axs/distfiles/${PN}-2.42.3.0-l10n-sources.tar.xz
-	https://dev.gentoo.org/~axs/distfiles/chatzilla-2.42.tar.xz
-	https://dev.gentoo.org/~axs/distfiles/dom-inspector-2.0.16.tar.xz
+	${MOZ_HTTP_URI}/source/thunderbird-${MOZ_PV/${SMPV}/${TB_MAJOR}}.source.tar.xz
+	https://dev.gentoo.org/~axs/distfiles/${PN}-${SMPV}-l10n-sources-20170724.tar.xz
+	https://hg.mozilla.org/chatzilla/archive/${CHATZILLA_VER}.tar.bz2 -> chatzilla-${CHATZILLA_VER}.tar.bz2
+	https://hg.mozilla.org/dom-inspector/archive/${INSPECTOR_VER}.tar.bz2 -> dom-inspector-${INSPECTOR_VER}.tar.bz2
 	"
 else
 	MOZ_HTTP_URI="https://archive.mozilla.org/pub/${PN}/releases/${MOZ_PV}"
@@ -59,11 +61,10 @@ fi
 
 MOZCONFIG_OPTIONAL_GTK3=1
 MOZCONFIG_OPTIONAL_WIFI=1
-inherit check-reqs flag-o-matic toolchain-funcs eutils mozconfig-v6.51 multilib pax-utils fdo-mime autotools mozextension nsplugins mozlinguas-v2
+inherit check-reqs flag-o-matic toolchain-funcs eutils mozconfig-v6.52 pax-utils xdg-utils autotools mozextension nsplugins mozlinguas-v2
 
-PATCHFF="firefox-51.0-patches-06"
+PATCHFF="firefox-52.2-patches-02"
 PATCH="${PN}-2.46-patches-01"
-EMVER="1.9.6.1"
 
 DESCRIPTION="Seamonkey Web Browser"
 HOMEPAGE="http://www.seamonkey-project.org"
@@ -79,7 +80,6 @@ SRC_URI+="
 	https://dev.gentoo.org/~polynomial-c/mozilla/patchsets/${PATCHFF}.tar.xz
 	https://dev.gentoo.org/~axs/mozilla/patchsets/${PATCH}.tar.xz
 	https://dev.gentoo.org/~polynomial-c/mozilla/patchsets/${PATCH}.tar.xz
-	crypt? ( https://www.enigmail.net/download/source/enigmail-${EMVER}.tar.gz )
 "
 
 ASM_DEPEND=">=dev-lang/yasm-1.1"
@@ -95,7 +95,9 @@ RDEPEND="
 				app-crypt/pinentry[qt4]
 			)
 		)
-		=app-crypt/gnupg-1.4* ) )
+		=app-crypt/gnupg-1.4* )
+		x11-plugins/enigmail
+	)
 	jack? ( virtual/jack )
 "
 
@@ -142,6 +144,15 @@ src_unpack() {
 
 	# Unpack language packs
 	mozlinguas_src_unpack
+
+	if [[ -n $TB_MAJOR ]]; then
+		# move the irc and inspector code into the correct locations
+		# when we are building from a thunderbird tarball
+		mv "${WORKDIR}"/chatzilla-${CHATZILLA_VER} \
+			"${S}"/mozilla/extensions/irc || die
+		mv "${WORKDIR}"/dom-inspector-${INSPECTOR_VER} \
+			"${S}"/mozilla/extensions/inspector || die
+	fi
 }
 
 src_prepare() {
@@ -151,18 +162,8 @@ src_prepare() {
 	# browser patches go here
 	pushd "${S}"/mozilla &>/dev/null || die
 	rm -f "${WORKDIR}"/firefox/1000_gentoo_install_dir.patch
-	rm -f "${WORKDIR}"/firefox/2000-firefox_gentoo_install_dirs.patch
 	eapply "${WORKDIR}"/firefox
-	eapply "${FILESDIR}/firefox-Include-sys-sysmacros.h-for-major-minor-when-availab.patch"
 	popd &>/dev/null || die
-
-	# ugly hackaround for system-harfbuzz
-	if ! grep -Fq "harfbuzz/hb-glib.h" mozilla/config/system-headers ; then
-		sed '/MOZ_SYSTEM_HARFBUZZ/aharfbuzz/hb-glib.h' \
-			-i mozilla/config/system-headers || die
-	else
-		einfo "harfbuzz hackery no longer needed."
-	fi
 
 	if grep -q '^sdkdir.*$(MOZ_APP_NAME)-devel' mozilla/config/baseconfig.mk ; then
 		sed '/^sdkdir/s@-devel@@' \
@@ -177,6 +178,11 @@ src_prepare() {
 		einfo edos2unix "${file}"
 		edos2unix "${file}"
 	done
+
+	# force a version update that matches the minor and patch version of thunderbird
+	if [[ -n ${TB_MAJOR} ]]; then
+		echo ${MOZ_PV} >"${S}"/suite/config/version.txt
+	fi
 
 	# Allow user to apply any additional patches without modifing ebuild
 	eapply_user
@@ -202,6 +208,11 @@ src_prepare() {
 	# Don't error out when there's no files to be removed:
 	sed 's@\(xargs rm\)$@\1 -f@' \
 		-i "${ms}"/toolkit/mozapps/installer/packager.mk || die
+
+	# Don't build libs-% locale files for chatzilla if we are not building chatzilla
+	# (this is hard-coded in the build system at present rather than being based on configuration)
+	use chatzilla || sed '/extensions\/irc\/locales libs-/s@^@#@' \
+		-i "${S}"/suite/locales/Makefile.in || die
 
 	eautoreconf old-configure.in
 	cd "${S}"/mozilla || die
@@ -262,12 +273,6 @@ src_configure() {
 	# Finalize and report settings
 	mozconfig_final
 
-	if use crypt ; then
-		pushd "${WORKDIR}"/enigmail &>/dev/null || die
-		econf
-		popd &>/dev/null || die
-	fi
-
 	# Work around breakage in makeopts with --no-print-directory
 	MAKEOPTS="${MAKEOPTS/--no-print-directory/}"
 
@@ -289,15 +294,6 @@ src_compile() {
 	emake V=1 -f client.mk
 
 	mozlinguas_src_compile
-
-	# Only build enigmail extension if conditions are met.
-	if use crypt ; then
-		einfo "Building enigmail"
-		pushd "${WORKDIR}"/enigmail &>/dev/null || die
-		emake -j1
-		emake xpi
-		popd &>/dev/null || die
-	fi
 }
 
 src_install() {
@@ -337,19 +333,6 @@ src_install() {
 	emake DESTDIR="${D}" install
 	cp "${FILESDIR}"/${PN}.desktop "${T}" || die
 
-	if use crypt ; then
-		local em_dir="${WORKDIR}/enigmail/build"
-		pushd "${T}" &>/dev/null || die
-		unzip "${em_dir}"/enigmail*.xpi install.rdf || die
-		emid=$(sed -n '/<em:id>/!d; s/.*\({.*}\).*/\1/; p; q' install.rdf)
-		#'
-		dodir ${MOZILLA_FIVE_HOME}/extensions/${emid}
-		cd "${D}"${MOZILLA_FIVE_HOME}/extensions/${emid} || die
-		unzip "${em_dir}"/enigmail*.xpi || die
-
-		popd &>/dev/null || die
-	fi
-
 	sed 's|^\(MimeType=.*\)$|\1text/x-vcard;text/directory;application/mbox;message/rfc822;x-scheme-handler/mailto;|' \
 		-i "${T}"/${PN}.desktop || die
 	sed 's|^\(Categories=.*\)$|\1Email;|' -i "${T}"/${PN}.desktop \
@@ -372,6 +355,16 @@ src_install() {
 
 	if use minimal ; then
 		rm -rf "${ED}"/usr/include "${ED}${MOZILLA_FIVE_HOME}"/{idl,include,lib,sdk}
+	fi
+
+	if use crypt ; then
+		emid=$(sed -n '/<em:id>/!d; s/.*\({.*}\).*/\1/; p; q' "${EROOT%/}"/usr/share/enigmail/install.rdf)
+		if [[ -n ${emid} ]]; then
+			dosym "${EPREFIX%/}"/usr/share/enigmail ${MOZILLA_FIVE_HOME}/extensions/${emid}
+		else
+			eerror "${EPREFIX%/}/usr/share/enigmail/install.rdf: No such file or directory"
+			die "<EM:ID> tag for x11-plugins/enigmail could not be found!"
+		fi
 	fi
 
 	if use chatzilla ; then
@@ -407,13 +400,33 @@ pkg_preinst() {
 	if [ -d ${MOZILLA_FIVE_HOME}/plugins ] ; then
 		rm ${MOZILLA_FIVE_HOME}/plugins -rf
 	fi
+
+	# Because PM's dont seem to properly merge a symlink replacing a directory
+	if use crypt ; then
+		local emid=$(sed -n '/<em:id>/!d; s/.*\({.*}\).*/\1/; p; q' "${EROOT%/}"/usr/share/enigmail/install.rdf)
+		local emidpath="${EROOT%/}"${MOZILLA_FIVE_HOME}/extensions/${emid}
+		if [[ -z ${emid} ]]; then
+			eerror "${EROOT%/}/usr/share/enigmail/install.rdf: No such file or directory"
+			die "Could not find enigmail on disk during pkg_preinst()"
+		fi
+		if [[ ! -h "${emidpath}" ]] && [[ -d "${emidpath}" ]]; then
+			if ! rm -R --interactive=never "${emidpath}" ; then
+				eerror "Could not remove enigmail directory from previous installation,"
+				eerror "You must remove this by hand and rename the symbolic link yourself:"
+				eerror
+				eerror "\t cd ${EPREFIX%/}${MOZILLA_FIVE_HOME}/extensions"
+				eerror "\t rm -Rf ${emid}"
+				eerror "\t mv ${emid}.backup* ${emid}"
+			fi
+		fi
+	fi
 }
 
 pkg_postinst() {
 	MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}"
 
 	# Update mimedb for the new .desktop file
-	fdo-mime_desktop_database_update
+	xdg_desktop_database_update
 	#gnome2_icon_cache_update
 
 	if ! use gmp-autoupdate ; then
