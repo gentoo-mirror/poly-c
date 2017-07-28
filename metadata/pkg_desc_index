@@ -24,12 +24,8 @@ app-office/libreoffice-l10n 5.4.0.2_pre: Translations for the Libreoffice suite
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/ansifilter 2.6_pre: Handles text files containing ANSI terminal escape codes
 app-text/calibre 3.4.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre 3.75_pre: ISO language, territory, currency, script codes and their translations
-app-text/libmwaw 0.3.12_pre: Library parsing many pre-OSX MAC text formats
-app-text/libstaroffice 0.0.4_pre: Import filter for old StarOffice documents
-app-text/libwps 0.4.7_pre: Microsoft Works file word processor format import filter library
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
 dev-db/lmdb 0.9.21_pre: An ultra-fast, ultra-compact key-value embedded data store
 dev-games/ogre 1.10.4_pre: Object-oriented Graphics Rendering Engine
@@ -79,7 +75,7 @@ kde-apps/konqueror 17.04.2: Web browser and file manager based on KDE Frameworks
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
 kde-plasma/plasma-desktop 5.8.4 5.8.5 5.8.5-r1: KDE Plasma desktop
-kde-plasma/plasma-workspace 5.9.5.1-r1 5.10.3 5.10.4: KDE Plasma workspace
+kde-plasma/plasma-workspace 5.9.5.1-r1 5.10.4-r1: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-libs/babl 0.1.28_pre: A dynamic, any to any, pixel format conversion library

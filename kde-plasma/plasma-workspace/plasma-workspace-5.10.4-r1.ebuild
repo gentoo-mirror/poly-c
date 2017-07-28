@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: a3191a7950477c2b63a6b75315642e2a82e541b2 $
+# $Id: b254351373752c6a61ef988a29643ef549f18f1d $
 
 EAPI=6
 
@@ -10,14 +10,15 @@ VIRTUALX_REQUIRED="test"
 inherit kde5 qmake-utils
 
 DESCRIPTION="KDE Plasma workspace"
-KEYWORDS="~amd64 ~arm ~x86"
+KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 IUSE="+calendar geolocation gps prison qalculate +semantic-desktop wayland"
+
+REQUIRED_USE="gps? ( geolocation )"
 
 COMMON_DEPEND="
 	$(add_frameworks_dep kactivities)
 	$(add_frameworks_dep kauth)
 	$(add_frameworks_dep kbookmarks)
-	$(add_frameworks_dep kcmutils)
 	$(add_frameworks_dep kcompletion)
 	$(add_frameworks_dep kconfig)
 	$(add_frameworks_dep kconfigwidgets)
@@ -26,7 +27,6 @@ COMMON_DEPEND="
 	$(add_frameworks_dep kdbusaddons)
 	$(add_frameworks_dep kdeclarative)
 	$(add_frameworks_dep kdelibs4support)
-	$(add_frameworks_dep kdesu)
 	$(add_frameworks_dep kglobalaccel)
 	$(add_frameworks_dep kguiaddons)
 	$(add_frameworks_dep ki18n)
@@ -56,7 +56,6 @@ COMMON_DEPEND="
 	$(add_plasma_dep kscreenlocker)
 	$(add_plasma_dep kwin)
 	$(add_plasma_dep libksysguard)
-	$(add_qt_dep qtconcurrent)
 	$(add_qt_dep qtdbus)
 	$(add_qt_dep qtdeclarative 'widgets')
 	$(add_qt_dep qtgui 'jpeg')
@@ -75,6 +74,7 @@ COMMON_DEPEND="
 	x11-libs/libxcb
 	x11-libs/libXfixes
 	x11-libs/libXrender
+	x11-libs/libXtst
 	x11-libs/xcb-util
 	x11-libs/xcb-util-image
 	calendar? ( $(add_kdeapps_dep kholidays) )
@@ -87,6 +87,7 @@ COMMON_DEPEND="
 "
 RDEPEND="${COMMON_DEPEND}
 	$(add_frameworks_dep kded)
+	$(add_frameworks_dep kdesu)
 	$(add_kdeapps_dep kio-extras)
 	$(add_plasma_dep kde-cli-tools)
 	$(add_plasma_dep ksysguard)
@@ -115,11 +116,13 @@ RDEPEND="${COMMON_DEPEND}
 	!kde-plasma/plasma-workspace:4
 "
 DEPEND="${COMMON_DEPEND}
+	$(add_qt_dep qtconcurrent)
 	x11-proto/xproto
 "
 
 PATCHES=(
 	"${FILESDIR}/${PN}-5.4-startkde-script.patch"
+	"${FILESDIR}/${P}-unused-dep.patch"
 )
 
 RESTRICT+=" test"
@@ -135,11 +138,12 @@ src_configure() {
 	local mycmakeargs=(
 		$(cmake-utils_use_find_package calendar KF5Holidays)
 		$(cmake-utils_use_find_package geolocation KF5NetworkManagerQt)
-		$(cmake-utils_use_find_package gps libgps)
 		$(cmake-utils_use_find_package prison KF5Prison)
 		$(cmake-utils_use_find_package qalculate Qalculate)
 		$(cmake-utils_use_find_package semantic-desktop KF5Baloo)
 	)
+
+	use gps && mycmakeargs+=( $(cmake-utils_use_find_package gps libgps) )
 
 	kde5_src_configure
 }
