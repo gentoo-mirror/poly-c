@@ -24,9 +24,11 @@ app-office/libreoffice-l10n 5.4.0.2_pre: Translations for the Libreoffice suite
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
+app-shells/zsh 5.3.1_p20170728: UNIX Shell similar to the Korn shell
 app-text/calibre 3.4.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre 3.75_pre: ISO language, territory, currency, script codes and their translations
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
+app-text/yodl 4.01.00_pre: Your Own Document Language: a pre-document language and tools to process it
 dev-db/lmdb 0.9.21_pre: An ultra-fast, ultra-compact key-value embedded data store
 dev-games/ogre 1.10.4_pre: Object-oriented Graphics Rendering Engine
 dev-games/openscenegraph 3.5.6_pre: Open source high performance 3D graphics toolkit
