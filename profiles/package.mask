@@ -50,3 +50,5 @@ dev-java/openjfx
 # Doesn't build yet
 app-crypt/yubikey-manager-qt
 
+# requires html5_parser python module
+>=app-text/calibre-3.5.0_pre

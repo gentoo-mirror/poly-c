@@ -19,13 +19,13 @@ app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
 app-misc/mc 4.8.15 4.8.18-r1 4.8.19: GNU Midnight Commander is a text based file manager
 app-misc/razertool 0.0.7-r3: Unofficial tool for controlling the Razer Copperhead mouse
-app-office/libreoffice 5.4.0.2_pre: A full office productivity suite
-app-office/libreoffice-l10n 5.4.0.2_pre: Translations for the Libreoffice suite
+app-office/libreoffice 5.4.0.3_pre: A full office productivity suite
+app-office/libreoffice-l10n 5.4.0.3_pre: Translations for the Libreoffice suite
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-shells/zsh 5.3.1_p20170728: UNIX Shell similar to the Korn shell
-app-text/calibre 3.4.0_pre: Ebook management application
+app-text/calibre 3.4.0_pre 3.5.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre 3.75_pre: ISO language, territory, currency, script codes and their translations
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
 app-text/yodl 4.01.00_pre: Your Own Document Language: a pre-document language and tools to process it
@@ -184,7 +184,7 @@ sys-boot/gnu-efi 3.0.5_pre: Library for build EFI Applications
 sys-boot/grub 2.02: GNU GRUB boot loader
 sys-devel/binutils 2.29_pre: Tools necessary to build programs
 sys-devel/gcc 6.4.0_pre: The GNU Compiler Collection
-sys-fs/btrfs-progs 4.11.1_pre: Btrfs filesystem utilities
+sys-fs/btrfs-progs 4.11.1_pre 4.12_pre: Btrfs filesystem utilities
 sys-fs/fuse 3.0.2: An interface for filesystems implemented in userspace
 sys-fs/fuse-common-files 3.0.2: Config files, init scripts and other common files for fuse package
 sys-fs/lvm2 2.02.173_pre: User-land utilities for LVM2 (device-mapper) software
