@@ -51,7 +51,7 @@ dev-libs/openssl 1.0.2k 1.0.2l 1.1.0f: full-strength general purpose cryptograph
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtdbus 5.6.2 5.7.1: Qt5 module for inter-process communication over the D-Bus protocol
-dev-qt/qtwebengine 5.6.1 5.7.1-r1: Library for rendering dynamic web content in Qt5 C++ and QML applications
+dev-qt/qtwebengine 5.6.1 5.7.1-r2: Library for rendering dynamic web content in Qt5 C++ and QML applications
 dev-scheme/guile 2.2.0_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.64.0_pre: A system for large project software construction, simple to use and powerful
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
@@ -77,7 +77,7 @@ kde-apps/konqueror 17.04.2: Web browser and file manager based on KDE Frameworks
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
 kde-plasma/plasma-desktop 5.8.4 5.8.5 5.8.5-r1: KDE Plasma desktop
-kde-plasma/plasma-workspace 5.9.5.1-r1 5.10.4-r1: KDE Plasma workspace
+kde-plasma/plasma-workspace 5.9.5.1-r1 5.10.4-r1 5.10.4-r2: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r2 3.4.1-r3 3.4.1-r4: An extensible mail filter which can identify and tag spam
 media-libs/babl 0.1.28_pre: A dynamic, any to any, pixel format conversion library
@@ -204,5 +204,4 @@ x11-libs/cairo 1.15.4_pre 1.15.6_pre: A vector graphics library with cross-devic
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
-x11-plugins/enigmail 1.9.8.1: Mozilla extension to provide GPG support in mail clients
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager

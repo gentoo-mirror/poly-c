@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: aff99b2e38bc6560c10576be6acc3138b27710c7 $
+# $Id: b254351373752c6a61ef988a29643ef549f18f1d $
 
 EAPI=6
 
@@ -122,6 +122,9 @@ DEPEND="${COMMON_DEPEND}
 
 PATCHES=(
 	"${FILESDIR}/${PN}-5.4-startkde-script.patch"
+	"${FILESDIR}/${PN}-5.10-startplasmacompositor-script.patch"
+	"${FILESDIR}/${P}-ghns-https.patch"
+	"${FILESDIR}/${P}-notifications.patch"
 	"${FILESDIR}/${P}-unused-dep.patch"
 )
 
