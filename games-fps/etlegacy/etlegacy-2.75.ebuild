@@ -151,8 +151,8 @@ src_install() {
 
 	local so
 	for so in "${D}/$(games_get_libdir)/${PN}"/*.so ; do
-	dosym "$(games_get_libdir)/${PN}/${so##*}" \
-                        "${GAMES_DATADIR}/${PN}/legacy/${so##*}"
+	dosym "$(games_get_libdir)/${PN}/${so##*/}" \
+                        "${GAMES_DATADIR}/${PN}/legacy/${so##*/}"
 	done
 
 	prepgamesdirs
