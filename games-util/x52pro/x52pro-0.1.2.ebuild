@@ -6,7 +6,8 @@ EAPI=6
 
 DESCRIPTION="MFD+LED library for the SAITEK X52 Pro Flight Sytem"
 HOMEPAGE="http://plasma.hasenleithner.at/x52pro/"
-SRC_URI="http://plasma.hasenleithner.at/${PN}/${P}.tar.gz"
+SRC_URI="http://plasma.hasenleithner.at/${PN}/${P}.tar.gz
+	https://www.gentoofan.org/gentoo/misc/${P}.tar.gz"
 LICENSE="LGPL2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"

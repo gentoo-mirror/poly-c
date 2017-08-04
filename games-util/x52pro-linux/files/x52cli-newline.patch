@@ -1,17 +1,17 @@
-From ecd446e465b352f18741558f34628edf0e3b6354 Mon Sep 17 00:00:00 2001
+From 44d46b70e02ab82df685537d324fc7be21ac7db1 Mon Sep 17 00:00:00 2001
 From: Lars Wendler <polynomial-c@gentoo.org>
-Date: Sat, 7 Jan 2017 20:40:46 +0100
+Date: Fri, 4 Aug 2017 11:12:24 +0200
 Subject: [PATCH] x52_cli: Print error messages with trailing newline.
 
 Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
 ---
- cli/x52_cli.c | 2 +-
+ utils/cli/x52_cli.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/cli/x52_cli.c b/cli/x52_cli.c
+diff --git a/utils/cli/x52_cli.c b/utils/cli/x52_cli.c
 index e2714e1..f9954be 100644
---- a/cli/x52_cli.c
-+++ b/cli/x52_cli.c
+--- a/utils/cli/x52_cli.c
++++ b/utils/cli/x52_cli.c
 @@ -374,7 +374,7 @@ int main(int argc, char **argv)
      for (i = 0; i < cmd->num_args; i++) {
          if (cmd->maps[i]) {
@@ -22,5 +22,5 @@ index e2714e1..f9954be 100644
              }
              args[i] = (void *)result.value.ptr_val;
 -- 
-2.11.0
+2.14.0.rc1
 

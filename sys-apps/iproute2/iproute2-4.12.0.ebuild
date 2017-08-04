@@ -1,6 +1,6 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 734e2b1f2f38513c23039eb3daa80745c47f8b42 $
+# $Id: 74f13e141827cc0a3e1fab178cd141d1e2a4488e $
 
 EAPI="5"
 
@@ -15,14 +15,15 @@ else
 fi
 
 DESCRIPTION="kernel routing and traffic control utilities"
-HOMEPAGE="http://www.linuxfoundation.org/collaborate/workgroups/networking/iproute2"
+HOMEPAGE="https://wiki.linuxfoundation.org/networking/iproute2"
 
 LICENSE="GPL-2"
 SLOT="0"
 IUSE="atm berkdb +iptables ipv6 minimal selinux"
 
+# We could make libmnl optional, but it's tiny, so eh
 RDEPEND="!net-misc/arpd
-	net-libs/libmnl
+	!minimal? ( net-libs/libmnl )
 	iptables? ( >=net-firewall/iptables-1.4.20:= )
 	berkdb? ( sys-libs/db:= )
 	atm? ( net-dialup/linux-atm )
@@ -36,12 +37,21 @@ DEPEND="${RDEPEND}
 	>=sys-kernel/linux-headers-3.16
 	elibc_glibc? ( >=sys-libs/glibc-2.7 )"
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-3.1.0-mtu.patch #291907
+)
+
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-3.1.0-mtu.patch #291907
-	use ipv6 || epatch "${FILESDIR}"/${PN}-3.10.0-no-ipv6.patch #326849
+	if ! use ipv6 ; then
+		PATCHES+=(
+			"${FILESDIR}"/${PN}-4.11.0-no-ipv6.patch #326849
+		)
+	fi
+
+	epatch "${PATCHES[@]}"
 
 	sed -i \
-		-e '/^CC =/d' \
+		-e '/^CC :=/d' \
 		-e "/^LIBDIR/s:=.*:=/$(get_libdir):" \
 		-e "s:-O2:${CFLAGS} ${CPPFLAGS}:" \
 		-e "/^HOSTCC/s:=.*:= $(tc-getBUILD_CC):" \
@@ -59,9 +69,6 @@ src_prepare() {
 	rm -r include/netinet #include/linux include/ip{,6}tables{,_common}.h include/libiptc
 	sed -i 's:TCPI_OPT_ECN_SEEN:16:' misc/ss.c || die
 
-	# don't build arpd if USE=-berkdb #81660
-	use berkdb || sed -i '/^TARGETS=/s: arpd : :' misc/Makefile
-
 	use minimal && sed -i -e '/^SUBDIRS=/s:=.*:=lib tc ip:' Makefile
 }
 
@@ -71,17 +78,20 @@ src_configure() {
 	# This sure is ugly.  Should probably move into toolchain-funcs at some point.
 	local setns
 	pushd "${T}" >/dev/null
-	echo 'main(){return setns();};' > test.c
-	${CC} ${CFLAGS} ${LDFLAGS} test.c >&/dev/null && setns=y || setns=n
-	echo 'main(){};' > test.c
-	${CC} ${CFLAGS} ${LDFLAGS} test.c -lresolv >&/dev/null || sed -i '/^LDLIBS/s:-lresolv::' "${S}"/Makefile
+	printf '#include <sched.h>\nint main(){return setns(0, 0);}\n' > test.c
+	${CC} ${CFLAGS} ${CPPFLAGS} -D_GNU_SOURCE ${LDFLAGS} test.c >&/dev/null && setns=y || setns=n
+	echo 'int main(){return 0;}' > test.c
+	${CC} ${CFLAGS} ${CPPFLAGS} ${LDFLAGS} test.c -lresolv >&/dev/null || sed -i '/^LDLIBS/s:-lresolv::' "${S}"/Makefile
 	popd >/dev/null
 
 	cat <<-EOF > Config
 	TC_CONFIG_ATM := $(usex atm y n)
 	TC_CONFIG_XT  := $(usex iptables y n)
+	TC_CONFIG_NO_XT := $(usex iptables n y)
 	# We've locked in recent enough kernel headers #549948
 	TC_CONFIG_IPSET := y
+	HAVE_BERKELEY_DB := $(usex berkdb y n)
+	HAVE_MNL      := $(usex minimal n y)
 	HAVE_SELINUX  := $(usex selinux y n)
 	IP_CONFIG_SETNS := ${setns}
 	# Use correct iptables dir, #144265 #293709

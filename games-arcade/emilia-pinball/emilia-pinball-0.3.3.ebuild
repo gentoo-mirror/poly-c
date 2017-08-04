@@ -5,11 +5,11 @@
 EAPI=6
 inherit autotools eutils user
 
-MY_PN=${PN/emilia-/}
-MY_P=${MY_PN}-${PV}
+MY_PN="${PN/emilia-/}"
+MY_P="${MY_PN}-${PV}"
 DESCRIPTION="SDL OpenGL pinball game"
-HOMEPAGE="http://pinball.sourceforge.net/ https://github.com/sergiomb2/pinball"
-SRC_URI="https://github.com/sergiomb2/pinball/archive/${PV}.tar.gz -> ${P}.tar.gz"
+HOMEPAGE="http://pinball.sourceforge.net/ https://github.com/sergiomb2/pinball.old"
+SRC_URI="https://github.com/sergiomb2/pinball.old/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -45,10 +45,12 @@ src_prepare() {
 }
 
 src_configure() {
-	econf \
-		--with-cflags="${CFLAGS}" \
-		--with-cxxflags="${CXXFLAGS}" \
+	local myeconfargs=(
+		--with-cflags="${CFLAGS}"
+		--with-cxxflags="${CXXFLAGS}"
 		--with-x
+	)
+	econf "${myeconfargs[@]}"
 }
 
 src_install() {
@@ -56,7 +58,7 @@ src_install() {
 	dosym /usr/bin/pinball /usr/bin/${PN}
 	sed -i \
 		-e 's:-I${prefix}/include/pinball:-I/usr/include/pinball:' \
-		"${D}"/usr/bin/pinball-config || die
+		"${ED%/}"/usr/bin/pinball-config || die
 	newicon data/pinball.xpm ${PN}.xpm
 	make_desktop_entry emilia-pinball "Emilia pinball"
 
@@ -77,13 +79,13 @@ pkg_preinst() {
 	pushd "${ED}" &>/dev/null || die
 	local scorefile
 	for scorefile in $(find var/games/${MY_PN} -name "highscores") ; do
-		if [[ -f "${EROOT}/${scorefile}" ]] ; then
-			chown root:gamestat "${EROOT}/${scorefile}" || die
-			chmod 2660 "${EROOT}/${scorefile}" || die
+		if [[ -f "${EROOT%/}/${scorefile}" ]] ; then
+			chown root:gamestat "${EROOT%/}/${scorefile}" || die
+			chmod 2660 "${EROOT%/}/${scorefile}" || die
 			continue
 		fi
-		mkdir -p "${EROOT}/${scorefile%/*}" || die
-		mv "${scorefile}" "${EROOT}/${scorefile%/*}" || die
+		mkdir -p "${EROOT%/}/${scorefile%/*}" || die
+		mv "${scorefile}" "${EROOT%/}/${scorefile%/*}" || die
 	done
 	rm -r var/games/${MY_PN} || die
 	popd &>/dev/null || die
