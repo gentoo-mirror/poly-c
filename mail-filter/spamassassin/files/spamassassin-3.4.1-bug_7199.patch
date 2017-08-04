@@ -1,7 +1,11 @@
-Index: spamassassin-3.4.1/spamc/libspamc.c
+The "sslv3" option doesn't do what it says (upstream bug 7093) and
+only makes things worse. The SSLv3 support also prevents SpamAssassin
+from working with LibreSSL, which no longer does SSLv3.
+
+Index: trunk/spamc/libspamc.c
 ===================================================================
---- spamassassin-3.4.1.orig/spamc/libspamc.c
-+++ spamassassin-3.4.1/spamc/libspamc.c
+--- trunk.orig/spamc/libspamc.c
++++ trunk/spamc/libspamc.c
 @@ -1187,7 +1187,7 @@ int message_filter(struct transport *tp,
      unsigned int throwaway;
      SSL_CTX *ctx = NULL;
@@ -42,10 +46,10 @@ Index: spamassassin-3.4.1/spamc/libspamc.c
  	SSL_load_error_strings();
  	ctx = SSL_CTX_new(meth);
  #else
-Index: spamassassin-3.4.1/spamc/spamc.c
+Index: trunk/spamc/spamc.c
 ===================================================================
---- spamassassin-3.4.1.orig/spamc/spamc.c
-+++ spamassassin-3.4.1/spamc/spamc.c
+--- trunk.orig/spamc/spamc.c
++++ trunk/spamc/spamc.c
 @@ -368,16 +368,11 @@ read_args(int argc, char **argv,
              case 'S':
              {
@@ -68,10 +72,10 @@ Index: spamassassin-3.4.1/spamc/spamc.c
                  break;
              }
  #endif
-Index: spamassassin-3.4.1/spamd/spamd.raw
+Index: trunk/spamd/spamd.raw
 ===================================================================
---- spamassassin-3.4.1.orig/spamd/spamd.raw
-+++ spamassassin-3.4.1/spamd/spamd.raw
+--- trunk.orig/spamd/spamd.raw
++++ trunk/spamd/spamd.raw
 @@ -409,7 +409,6 @@ GetOptions(
    'sql-config!'              => \$opt{'sql-config'},
    'ssl'                      => \$opt{'ssl'},
@@ -80,7 +84,7 @@ Index: spamassassin-3.4.1/spamd/spamd.raw
    'syslog-socket=s'          => \$opt{'syslog-socket'},
    'syslog|s=s'               => \$opt{'syslog'},
    'log-timestamp-fmt:s'      => \$opt{'log-timestamp-fmt'},
-@@ -743,11 +742,6 @@ if ( defined $ENV{'HOME'} ) {
+@@ -744,11 +743,6 @@ if ( defined $ENV{'HOME'} ) {
  
  # Do whitelist later in tmp dir. Side effect: this will be done as -u user.
  
@@ -92,7 +96,7 @@ Index: spamassassin-3.4.1/spamd/spamd.raw
  $opt{'server-key'}  ||= "$LOCAL_RULES_DIR/certs/server-key.pem";
  $opt{'server-cert'} ||= "$LOCAL_RULES_DIR/certs/server-cert.pem";
  
-@@ -898,9 +892,8 @@ sub compose_listen_info_string {
+@@ -899,9 +893,8 @@ sub compose_listen_info_string {
                        $socket_info->{ip_addr}, $socket_info->{port}));
  
      } elsif ($socket->isa('IO::Socket::SSL')) {
@@ -104,7 +108,7 @@ Index: spamassassin-3.4.1/spamd/spamd.raw
      }
    }
  
-@@ -1071,7 +1064,6 @@ sub server_sock_setup_inet {
+@@ -1072,7 +1065,6 @@ sub server_sock_setup_inet {
      $sockopt{V6Only} = 1  if $io_socket_module_name eq 'IO::Socket::IP'
                               && IO::Socket::IP->VERSION >= 0.09;
      %sockopt = (%sockopt, (
@@ -112,7 +116,7 @@ Index: spamassassin-3.4.1/spamd/spamd.raw
        SSL_verify_mode => 0x00,
        SSL_key_file    => $opt{'server-key'},
        SSL_cert_file   => $opt{'server-cert'},
-@@ -1092,7 +1084,8 @@ sub server_sock_setup_inet {
+@@ -1093,7 +1085,8 @@ sub server_sock_setup_inet {
      if (!$server_inet) {
        $diag = sprintf("could not create %s socket on [%s]:%s: %s",
                        $ssl ? 'IO::Socket::SSL' : $io_socket_module_name,
@@ -122,7 +126,7 @@ Index: spamassassin-3.4.1/spamd/spamd.raw
        push(@diag_fail, $diag);
      } else {
        $diag = sprintf("created %s socket on [%s]:%s",
-@@ -3232,7 +3225,6 @@ Options:
+@@ -3238,7 +3231,6 @@ Options:
   -H [dir], --helper-home-dir[=dir] Specify a different HOME directory
   --ssl                             Enable SSL on TCP connections
   --ssl-port port                   Override --port setting for SSL connections
@@ -130,7 +134,7 @@ Index: spamassassin-3.4.1/spamd/spamd.raw
   --server-key keyfile              Specify an SSL keyfile
   --server-cert certfile            Specify an SSL certificate
   --socketpath=path                 Listen on a given UNIX domain socket
-@@ -3720,14 +3712,6 @@ Optionally specifies the port number for
+@@ -3727,14 +3719,6 @@ Optionally specifies the port number for
  SSL connections (default: whatever --port uses).  See B<--ssl> for
  more details.
  
@@ -145,10 +149,10 @@ Index: spamassassin-3.4.1/spamd/spamd.raw
  =item B<--server-key> I<keyfile>
  
  Specify the SSL key file to use for SSL connections.
-Index: spamassassin-3.4.1/spamc/spamc.pod
+Index: trunk/spamc/spamc.pod
 ===================================================================
---- spamassassin-3.4.1.orig/spamc/spamc.pod
-+++ spamassassin-3.4.1/spamc/spamc.pod
+--- trunk.orig/spamc/spamc.pod
++++ trunk/spamc/spamc.pod
 @@ -177,12 +177,10 @@ The default is 1 time (ie. one attempt a
  Sleep for I<sleep> seconds between failed spamd filtering attempts.
  The default is 1 second.
@@ -163,9 +167,9 @@ Index: spamassassin-3.4.1/spamc/spamc.pod
  
  =item B<-t> I<timeout>, B<--timeout>=I<timeout>
  
-Index: spamassassin-3.4.1/t/spamd_ssl_tls.t
+Index: trunk/t/spamd_ssl_tls.t
 ===================================================================
---- spamassassin-3.4.1.orig/t/spamd_ssl_tls.t
+--- trunk.orig/t/spamd_ssl_tls.t
 +++ /dev/null
 @@ -1,28 +0,0 @@
 -#!/usr/bin/perl
@@ -196,9 +200,9 @@ Index: spamassassin-3.4.1/t/spamd_ssl_tls.t
 -           "--ssl=tlsv1 < data/spam/001",
 -           \&patterns_run_cb));
 -ok_all_patterns();
-Index: spamassassin-3.4.1/t/spamd_ssl_v3.t
+Index: trunk/t/spamd_ssl_v3.t
 ===================================================================
---- spamassassin-3.4.1.orig/t/spamd_ssl_v3.t
+--- trunk.orig/t/spamd_ssl_v3.t
 +++ /dev/null
 @@ -1,28 +0,0 @@
 -#!/usr/bin/perl
@@ -229,10 +233,10 @@ Index: spamassassin-3.4.1/t/spamd_ssl_v3.t
 -           "--ssl=sslv3 < data/spam/001",
 -           \&patterns_run_cb));
 -ok_all_patterns();
-Index: spamassassin-3.4.1/t/spamd_ssl_accept_fail.t
+Index: trunk/t/spamd_ssl_accept_fail.t
 ===================================================================
---- spamassassin-3.4.1.orig/t/spamd_ssl_accept_fail.t
-+++ spamassassin-3.4.1/t/spamd_ssl_accept_fail.t
+--- trunk.orig/t/spamd_ssl_accept_fail.t
++++ trunk/t/spamd_ssl_accept_fail.t
 @@ -23,9 +23,9 @@ q{ This must be the very last line}, 'la
  
  );
@@ -245,10 +249,10 @@ Index: spamassassin-3.4.1/t/spamd_ssl_accept_fail.t
  ok (stop_spamd ());
  
  ok_all_patterns();
-Index: spamassassin-3.4.1/t/spamd_ssl.t
+Index: trunk/t/spamd_ssl.t
 ===================================================================
---- spamassassin-3.4.1.orig/t/spamd_ssl.t
-+++ spamassassin-3.4.1/t/spamd_ssl.t
+--- trunk.orig/t/spamd_ssl.t
++++ trunk/t/spamd_ssl.t
 @@ -2,10 +2,7 @@
  
  use lib '.'; use lib 't';
@@ -261,11 +265,11 @@ Index: spamassassin-3.4.1/t/spamd_ssl.t
  
  exit if ($SKIP_SPAMD_TESTS || !$SSL_AVAILABLE);
  
-Index: spamassassin-3.4.1/MANIFEST
+Index: trunk/MANIFEST
 ===================================================================
---- spamassassin-3.4.1.orig/MANIFEST
-+++ spamassassin-3.4.1/MANIFEST
-@@ -511,8 +511,6 @@ t/spamd_report_ifspam.t
+--- trunk.orig/MANIFEST
++++ trunk/MANIFEST
+@@ -513,8 +513,6 @@ t/spamd_report_ifspam.t
  t/spamd_sql_prefs.t
  t/spamd_ssl.t
  t/spamd_ssl_accept_fail.t

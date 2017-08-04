@@ -26,10 +26,6 @@ IUSE=""
 DEPEND="virtual/libusb"
 RDEPEND="${DEPEND}"
 
-PATCHES=(
-	"${FILESDIR}/x52cli-newline.patch"
-)
-
 src_prepare() {
 	default
 	eautoreconf
