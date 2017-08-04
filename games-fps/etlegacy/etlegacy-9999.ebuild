@@ -24,7 +24,6 @@ REQUIRED_USE="omnibot? ( x86 )"
 
 RESTRICT="mirror"
 
-# TODO for 2.71 Release: switch to libsdl2
 # TODO 2.60 servers and omnibot require 32bit client : converto to multilib, and add dep on games-fps/enemy-territory-omnibot and (abi_x86_32 or x86)
 # TODO find out which libsdl useflags we realy need to depend on
 # TODO add debug use for CMAKE_BUILD_TYPE=debug
@@ -149,11 +148,12 @@ src_install() {
 	mkdir -p "${D}/$(games_get_libdir)/${PN}"
 	mv "${D}/${GAMES_DATADIR}/${PN}/legacy/"*.so "${D}/$(games_get_libdir)/${PN}"
 
-	local so
-	for so in "${D}/$(games_get_libdir)/${PN}"/*.so ; do
-	dosym "$(games_get_libdir)/${PN}/${so##*}" \
-                        "${GAMES_DATADIR}/${PN}/legacy/${so##*}"
-	done
+	#local so
+	#for so in "${D}/$(games_get_libdir)/${PN}"/*.so ; do
+	#dosym "$(games_get_libdir)/${PN}/${so##*}" \
+        #                "${GAMES_DATADIR}/${PN}/legacy/${so##*}"
+	#done
+	ln -s "$(games_get_libdir)/${PN}" "${ED%/}${GAMES_DATADIR}/${PN}/legacy" || die
 
 	prepgamesdirs
 }
