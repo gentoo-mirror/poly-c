@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: d1cbdd0b38bb12543213f6ec145a9b0b12f8a1bd $
+# $Id: a494288fc52e6c787f6148f0fc926bb97ba3f3dc $
 
 EAPI=6
 
@@ -9,7 +9,7 @@ inherit autotools eutils flag-o-matic
 MY_P=${P/_/-}
 
 DESCRIPTION="GNU Midnight Commander is a text based file manager"
-HOMEPAGE="http://www.midnight-commander.org"
+HOMEPAGE="https://www.midnight-commander.org"
 SRC_URI="http://ftp.midnight-commander.org/${MY_P}.tar.xz"
 
 LICENSE="GPL-3"

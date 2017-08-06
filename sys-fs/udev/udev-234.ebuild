@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9e974e1bdc45bf63def5babe55d1afff9b1a7db3 $
+# $Id: e8469928824480e6d54668f6010a2e3ddd2b38cb $
 
 EAPI=6
 
@@ -17,7 +17,7 @@ else
 			https://dev.gentoo.org/~williamh/dist/${P}-patches-${patchset}.tar.xz
 			https://dev.gentoo.org/~ssuominen/${P}-patches-${patchset}.tar.xz"
 	fi
-	KEYWORDS="~amd64 ~arm ~ia64 ~ppc ~x86"
+	KEYWORDS="~amd64 ~arm ~ia64 ~ppc ~ppc64 ~x86"
 
 	FIXUP_PATCH="${PN}-234-revert-systemd-messup.patch.xz"
 	SRC_URI+=" https://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}"

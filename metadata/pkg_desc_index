@@ -35,7 +35,7 @@ dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-java/openjfx 8.9999: Open source JavaFX
 dev-lang/orc 0.4.27_pre: The Oil Runtime Compiler, a just-in-time compiler for array operations
-dev-lang/python 3.6.1-r1 3.6.2_pre: An interpreted, interactive, object-oriented programming language
+dev-lang/python 3.6.2_pre: An interpreted, interactive, object-oriented programming language
 dev-libs/boost 1.64.0_pre: Boost Libraries for C++
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
@@ -53,7 +53,6 @@ dev-util/meld 3.17.1_pre 3.17.2_pre: A graphical diff and merge tool
 dev-util/meson 0.40.1: Open source build system
 dev-util/ragel 7.0.0.10_pre: Compiles finite state machines from regular languages into executable code
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
-dev-vcs/git 2.14.0_rc0 2.14.0_rc1: stupid content tracker: distributed VCS designed for speed and efficiency
 games-arcade/emilia-pinball 0.3.3: SDL OpenGL pinball game
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.75 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
