@@ -8,7 +8,6 @@ app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapsh
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-crypt/gpgme 1.9.0_pre: GnuPG Made Easy is a library for making GnuPG easier to use
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
-app-crypt/yubikey-manager-qt 0.3.0: Configuring any YubiKey over all USB transports.
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
 app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
 app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
@@ -20,14 +19,14 @@ app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gent
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-shells/zsh 5.3.1_p20170728: UNIX Shell similar to the Korn shell
 app-text/ansifilter 2.8_pre: Handles text files containing ANSI terminal escape codes
-app-text/calibre 3.4.0_pre 3.5.0_pre: Ebook management application
+app-text/calibre 3.4.0_pre 3.6.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre 3.75_pre: ISO language, territory, currency, script codes and their translations
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
 dev-db/lmdb 0.9.21_pre: An ultra-fast, ultra-compact key-value embedded data store
 dev-games/cegui 0.8.7: Crazy Eddie's GUI System
 dev-games/ogre 1.10.4_pre: Object-oriented Graphics Rendering Engine
 dev-games/openscenegraph 3.5.6_pre: Open source high performance 3D graphics toolkit
-dev-java/ant-core 1.9.8_pre 1.10.0_pre 1.10.1_pre: Java-based build tool similar to 'make' that uses XML configuration files
+dev-java/ant-core 1.9.8_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
 dev-java/gradle-bin 1.8: Build Tool
@@ -42,6 +41,7 @@ dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/libgusb 0.2.10_pre 0.2.11_pre: GObject wrapper for libusb
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.0.2l 1.1.0f: full-strength general purpose cryptography library (including SSL and TLS)
+dev-python/html5-parser 0.4.4: HTTP request/response parser for python in C
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtdbus 5.6.2 5.7.1: Qt5 module for inter-process communication over the D-Bus protocol

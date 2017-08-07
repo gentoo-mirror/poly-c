@@ -32,7 +32,7 @@ LICENSE="
 	PSF-2
 	unRAR
 "
-KEYWORDS="~amd64 ~arm ~x86"
+KEYWORDS="~amd64 ~x86"
 SLOT="0"
 IUSE="ios +udisks"
 
@@ -52,6 +52,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	>=dev-python/dbus-python-1.2.4[${PYTHON_USEDEP}]
 	>=dev-libs/dbus-glib-0.106
 	>=sys-apps/dbus-1.10.8
+	dev-python/html5-parser
 	>=dev-python/lxml-3.2.1[${PYTHON_USEDEP}]
 	>=dev-python/mechanize-0.2.5[${PYTHON_USEDEP}]
 	dev-python/msgpack[${PYTHON_USEDEP}]
