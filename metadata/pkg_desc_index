@@ -40,6 +40,7 @@ dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/libgusb 0.2.10_pre 0.2.11_pre: GObject wrapper for libusb
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.0.2l 1.1.0f: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/qtkeychain 0.8.0_pre: Qt API for storing passwords securely
 dev-python/html5-parser 0.4.4: HTTP request/response parser for python in C
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
@@ -141,6 +142,7 @@ net-misc/dropbear 2017.75_pre: small SSH 2 client/server designed for small memo
 net-misc/icecast 2.5_beta1: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/networkmanager 1.4.0-r1 1.4.4 1.4.4-r1 1.6.2_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.26: A discrete-event network simulator for Internet systems.
+net-misc/owncloud-client 2.3.2-r1: Synchronize files from ownCloud Server with your computer
 net-misc/putty 0.69 0.70: A Free Telnet/SSH Client
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
