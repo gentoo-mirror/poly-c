@@ -18,7 +18,7 @@ app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iP
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-shells/zsh 5.3.1_p20170728: UNIX Shell similar to the Korn shell
-app-text/ansifilter 2.8_pre: Handles text files containing ANSI terminal escape codes
+app-text/ansifilter 2.8_pre 2.8.1_pre: Handles text files containing ANSI terminal escape codes
 app-text/calibre 3.4.0_pre 3.6.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre 3.75_pre: ISO language, territory, currency, script codes and their translations
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
@@ -36,7 +36,6 @@ dev-lang/orc 0.4.27_pre: The Oil Runtime Compiler, a just-in-time compiler for a
 dev-lang/python 3.6.2_pre: An interpreted, interactive, object-oriented programming language
 dev-libs/boost 1.64.0_pre: Boost Libraries for C++
 dev-libs/credis 0.2.3: C client library for Redis
-dev-libs/elfutils 0.170_pre: Libraries/utilities to handle ELF objects (drop in replacement for libelf)
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/libgusb 0.2.10_pre 0.2.11_pre: GObject wrapper for libusb
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
@@ -160,12 +159,12 @@ sys-apps/openrc 0.21.4: OpenRC manages the services, startup and shutdown of a h
 sys-apps/usb_modeswitch 2.5.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
+sys-block/gparted 0.29.0_pre: Gnome Partition Editor
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.02: GNU GRUB boot loader
 sys-fs/btrfs-progs 4.11.1_pre 4.12_pre: Btrfs filesystem utilities
 sys-fs/fuse 3.0.2: An interface for filesystems implemented in userspace
 sys-fs/fuse-common-files 3.0.2: Config files, init scripts and other common files for fuse package
-sys-fs/lvm2 2.02.173_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 233 234: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
