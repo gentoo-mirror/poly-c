@@ -6,6 +6,7 @@ app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a log
 app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
+app-crypt/gnupg 2.1.23_pre: The GNU Privacy Guard, a GPL OpenPGP implementation
 app-crypt/gpgme 1.9.0_pre: GnuPG Made Easy is a library for making GnuPG easier to use
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
@@ -17,8 +18,6 @@ app-misc/mc 4.8.15 4.8.18-r1 4.8.19: GNU Midnight Commander is a text based file
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-shells/zsh 5.3.1_p20170728: UNIX Shell similar to the Korn shell
-app-text/ansifilter 2.8_pre 2.8.1_pre: Handles text files containing ANSI terminal escape codes
 app-text/calibre 3.4.0_pre 3.6.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre 3.75_pre: ISO language, territory, currency, script codes and their translations
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
@@ -179,7 +178,7 @@ sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities 
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-libs/cairo 1.15.4_pre 1.15.6_pre: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
-x11-libs/pango 1.40.8_pre: Internationalized text layout and rendering library
+x11-libs/pango 1.40.8_pre 1.40.9_pre: Internationalized text layout and rendering library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager

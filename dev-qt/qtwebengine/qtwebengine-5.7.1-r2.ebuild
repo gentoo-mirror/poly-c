@@ -78,7 +78,6 @@ PATCHES=(
 	"${FILESDIR}/${PN}-5.7.0-icu58.patch"
 	"${FILESDIR}/${PN}-5.7.0-undef-madv_free.patch"
 	"${FILESDIR}/${PN}-5.7.1-gcc-7.patch"
-	"${FILESDIR}/${PN}-5.7.1-icu-59.patch"
 )
 
 src_prepare() {
@@ -87,6 +86,12 @@ src_prepare() {
 	if use system-icu; then
 		# ensure build against system headers - bug #601264
 		rm -r src/3rdparty/chromium/third_party/icu/source || die
+
+		if has_version \>=dev-libs/icu-59.0 ; then
+			PATCHES+=(
+				"${FILESDIR}/${PN}-5.7.1-icu-59.patch"
+			)
+		fi
 	fi
 
 	qt_use_disable_mod geolocation positioning \
