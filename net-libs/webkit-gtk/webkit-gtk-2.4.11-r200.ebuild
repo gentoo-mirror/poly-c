@@ -161,8 +161,10 @@ src_prepare() {
 	# https://bugs.webkit.org/show_bug.cgi?id=159124#c1
 	eapply "${FILESDIR}"/${PN}-2.4.9-gcc-6.patch
 
-	# https://bugs.gentoo.org/621532
-	eapply "${FILESDIR}"/${PN}-2.4.11-icu59.patch
+	if has_version \>=dev-libs/icu-59.1 ; then
+		# https://bugs.gentoo.org/621532
+		eapply "${FILESDIR}"/${PN}-2.4.11-icu59.patch
+	fi
 
 	AT_M4DIR=Source/autotools eautoreconf
 

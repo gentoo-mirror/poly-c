@@ -1,6 +1,5 @@
-diff -ruN webkitgtk-2.4.11.orig/Source/JavaScriptCore/API/JSStringRef.cpp webkitgtk-2.4.11/Source/JavaScriptCore/API/JSStringRef.cpp
---- webkitgtk-2.4.11.orig/Source/JavaScriptCore/API/JSStringRef.cpp	2016-04-10 08:48:36.000000000 +0200
-+++ webkitgtk-2.4.11/Source/JavaScriptCore/API/JSStringRef.cpp	2017-06-11 19:26:55.263795188 +0200
+--- webkitgtk-2.4.11/Source/JavaScriptCore/API/JSStringRef.cpp
++++ webkitgtk-2.4.11/Source/JavaScriptCore/API/JSStringRef.cpp
 @@ -37,7 +37,7 @@
  JSStringRef JSStringCreateWithCharacters(const JSChar* chars, size_t numChars)
  {
@@ -28,9 +27,8 @@ diff -ruN webkitgtk-2.4.11.orig/Source/JavaScriptCore/API/JSStringRef.cpp webkit
  }
  
  size_t JSStringGetMaximumUTF8CStringSize(JSStringRef string)
-diff -ruN webkitgtk-2.4.11.orig/Source/JavaScriptCore/runtime/DateConversion.cpp webkitgtk-2.4.11/Source/JavaScriptCore/runtime/DateConversion.cpp
---- webkitgtk-2.4.11.orig/Source/JavaScriptCore/runtime/DateConversion.cpp	2013-08-03 18:10:38.000000000 +0200
-+++ webkitgtk-2.4.11/Source/JavaScriptCore/runtime/DateConversion.cpp	2017-06-11 19:24:18.494788666 +0200
+--- webkitgtk-2.4.11/Source/JavaScriptCore/runtime/DateConversion.cpp
++++ webkitgtk-2.4.11/Source/JavaScriptCore/runtime/DateConversion.cpp
 @@ -107,7 +107,8 @@
  #if OS(WINDOWS)
              TIME_ZONE_INFORMATION timeZoneInformation;
@@ -41,9 +39,8 @@ diff -ruN webkitgtk-2.4.11.orig/Source/JavaScriptCore/runtime/DateConversion.cpp
  #else
              struct tm gtm = t;
              char timeZoneName[70];
-diff -ruN webkitgtk-2.4.11.orig/Source/WebKit2/Shared/API/c/WKString.cpp webkitgtk-2.4.11/Source/WebKit2/Shared/API/c/WKString.cpp
---- webkitgtk-2.4.11.orig/Source/WebKit2/Shared/API/c/WKString.cpp	2016-04-10 08:48:37.000000000 +0200
-+++ webkitgtk-2.4.11/Source/WebKit2/Shared/API/c/WKString.cpp	2017-06-11 19:31:59.544807847 +0200
+--- webkitgtk-2.4.11/Source/WebKit2/Shared/API/c/WKString.cpp
++++ webkitgtk-2.4.11/Source/WebKit2/Shared/API/c/WKString.cpp
 @@ -55,7 +55,7 @@
  size_t WKStringGetCharacters(WKStringRef stringRef, WKChar* buffer, size_t bufferLength)
  {
