@@ -61,6 +61,7 @@ games-strategy/opendungeons 0.7.1: An open source, real time strategy game based
 games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 games-util/x52pro-linux 9999: Saitek X52pro drivers & controller mapping software for Linux
+kde-apps/akonadi 17.04.3-r1: Storage service for PIM data and libraries for PIM apps
 kde-apps/kde-wallpapers 15.08.3 15.08.3-r2: KDE wallpapers
 kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
@@ -173,13 +174,12 @@ sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C 
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/libunwind 1.2.1_pre: Portable and efficient API to determine the call-chain of a program
-sys-power/cpupower 4.1.41 4.1.42 4.1.43 4.4.78 4.4.79 4.4.80 4.9.39 4.9.40 4.9.41: Shows and sets processor power related values
+sys-power/cpupower 4.1.41 4.1.42 4.1.43 4.4.80 4.4.81 4.4.82 4.9.41 4.9.42 4.9.43: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-libs/cairo 1.15.4_pre 1.15.6_pre: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
-x11-libs/pango 1.40.8_pre 1.40.9_pre: Internationalized text layout and rendering library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager
