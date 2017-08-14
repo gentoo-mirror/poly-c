@@ -9,6 +9,7 @@ app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, inclu
 app-crypt/gnupg 2.1.23_pre: The GNU Privacy Guard, a GPL OpenPGP implementation
 app-crypt/gpgme 1.9.0_pre: GnuPG Made Easy is a library for making GnuPG easier to use
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
+app-crypt/yubikey-manager 0.4.1_pre: Python library and command line tool for configuring a YubiKey
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
 app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
 app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
@@ -168,7 +169,7 @@ sys-boot/grub 2.02: GNU GRUB boot loader
 sys-fs/btrfs-progs 4.11.1_pre 4.12_pre: Btrfs filesystem utilities
 sys-fs/fuse 3.0.2: An interface for filesystems implemented in userspace
 sys-fs/fuse-common-files 3.0.2: Config files, init scripts and other common files for fuse package
-sys-fs/udev 216 225-r1 233 234: Linux dynamic and persistent device naming support (aka userspace devfs)
+sys-fs/udev 216 225-r1 233 234-r1: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
