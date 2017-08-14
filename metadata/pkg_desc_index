@@ -183,4 +183,5 @@ x11-libs/cairo 1.15.4_pre 1.15.6_pre: A vector graphics library with cross-devic
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
+x11-misc/sddm 0.14.0-r3: Simple Desktop Display Manager
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager
