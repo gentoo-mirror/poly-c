@@ -2,10 +2,10 @@ DEFINED_PHASES=install unpack
 DEPEND=>=dev-vcs/git-1.8.2.1
 DESCRIPTION=Simple SDDM theme inspired on FBSD SLiM theme
 EAPI=6
-HOMEPAGE=https://github.com/lebarondemerde/gentoo-black-theme
+HOMEPAGE=https://github.com/lebarondemerde/sddm-gentoo-black-theme
 LICENSE=CC-BY-SA-3.0
 RDEPEND=x11-misc/sddm
 SLOT=0
 _eclass_exported_funcs=src_unpack:git-r3 src_install:-
 _eclasses_=git-r3	cbafa3261c37c7e3af44bb16a34ea390
-_md5_=66b0a5fc5e69bc29ccfd96c2e6007eff
+_md5_=8024b85bb9714aac5bb41f1e3f734250
