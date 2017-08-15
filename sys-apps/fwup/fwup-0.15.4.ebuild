@@ -26,10 +26,6 @@ DEPEND="
 	virtual/pkgconfig
 "
 
-PATCHES=(
-	"${FILESDIR}/${PN}-0.13.0-help_option.patch"
-)
-
 src_prepare() {
 	default
 	eautoreconf
