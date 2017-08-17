@@ -36,7 +36,7 @@ REQUIRED_USE="
 RDEPEND="
 	>=dev-libs/glib-2.36:2
 	dev-libs/json-glib
-	>=media-libs/babl-0.1.24
+	>=media-libs/babl-0.1.30_pre
 	sys-libs/zlib
 	>=x11-libs/gdk-pixbuf-2.32:2
 	x11-libs/pango

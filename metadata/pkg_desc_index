@@ -50,7 +50,7 @@ dev-qt/qtwebengine 5.6.1 5.7.1-r2: Library for rendering dynamic web content in 
 dev-scheme/guile 2.2.0_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.64.0_pre: A system for large project software construction, simple to use and powerful
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
-dev-util/meld 3.17.1_pre 3.17.2_pre 3.17.3_pre: A graphical diff and merge tool
+dev-util/meld 3.17.1_pre 3.17.3_pre 3.17.4_pre: A graphical diff and merge tool
 dev-util/meson 0.40.1: Open source build system
 dev-util/ragel 7.0.0.10_pre: Compiles finite state machines from regular languages into executable code
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
@@ -75,8 +75,8 @@ kde-plasma/plasma-desktop 5.8.4 5.8.5 5.8.5-r1: KDE Plasma desktop
 kde-plasma/plasma-workspace 5.9.5.1-r1 5.10.4-r1 5.10.4-r2: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r8 3.4.1-r11: An extensible mail filter which can identify and tag spam
-media-libs/babl 0.1.28_pre: A dynamic, any to any, pixel format conversion library
-media-libs/gegl 0.3.16_pre 0.3.18_pre: A graph based image processing framework
+media-libs/babl 0.1.28_pre 0.1.30_pre: A dynamic, any to any, pixel format conversion library
+media-libs/gegl 0.3.18_pre 0.3.20_pre: A graph based image processing framework
 media-libs/gst-plugins-bad 1.11.90_pre 1.11.91_pre 1.12.0_pre 1.12.1_pre 1.12.2_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.11.90_pre 1.11.91_pre 1.12.0_pre 1.12.1_pre 1.12.2_pre: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.11.90_pre 1.11.91_pre 1.12.0_pre 1.12.1_pre 1.12.2_pre: Basepack of plugins for GStreamer
@@ -141,7 +141,6 @@ net-libs/http-parser 2.7.1_pre: Http request/response parser for C
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-libs/webkit-gtk 2.4.11-r200: Open source web browser engine
 net-misc/axel 2.13_pre: Light Unix download accelerator
-net-misc/curl 7.55.1_pre: A Client that groks URLs
 net-misc/dropbear 2017.75_pre: small SSH 2 client/server designed for small memory environments
 net-misc/icecast 2.5_beta1: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/networkmanager 1.4.0-r1 1.4.4 1.4.4-r1 1.6.2_pre: A set of co-operative tools that make networking simple and straightforward
@@ -177,12 +176,13 @@ sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C 
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/libunwind 1.2.1_pre: Portable and efficient API to determine the call-chain of a program
-sys-power/cpupower 4.1.41 4.1.42 4.1.43 4.4.80 4.4.81 4.4.82 4.9.41 4.9.42 4.9.43: Shows and sets processor power related values
+sys-power/cpupower 4.1.41 4.1.42 4.1.43 4.4.81 4.4.82 4.4.83 4.9.42 4.9.43 4.9.44: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-libs/cairo 1.15.4_pre 1.15.6_pre: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
+x11-libs/pango 1.40.10_pre: Internationalized text layout and rendering library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-themes/sddm-gentoo-black-theme 1.0 9999: Simple SDDM theme inspired on FBSD SLiM theme
