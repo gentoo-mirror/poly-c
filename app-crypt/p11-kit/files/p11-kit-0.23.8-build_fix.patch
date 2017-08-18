@@ -1,0 +1,24 @@
+--- p11-kit-0.23.8/common/debug.h
++++ p11-kit-0.23.8/common/debug.h
+@@ -144,6 +144,10 @@
+ 
+ #else /* !defined (WITH_DEBUG) */
+ 
++#undef p11_debug
++#define p11_debug(format, ...) \
++	do {} while (false)
++
+ #undef p11_debug_err
+ #define p11_debug_err(errnum, format, ...) \
+ 	do {} while (false)
+--- p11-kit-0.23.8/p11-kit/Makefile.am
++++ p11-kit-0.23.8/p11-kit/Makefile.am
+@@ -56,7 +56,7 @@
+ 	-export-symbols-regex '^C_GetFunctionList|^p11_kit_'
+ 
+ libp11_kit_la_SOURCES = \
+-	p11-kit/proxy.c p11-kit/proxy.h p11-kit/proxy-init.c
++	p11-kit/proxy.c p11-kit/proxy.h p11-kit/proxy-init.c \
+ 	$(NULL)
+ 
+ libp11_kit_la_LIBADD = \

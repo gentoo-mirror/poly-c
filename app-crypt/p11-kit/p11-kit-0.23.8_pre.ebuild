@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit ltprune multilib-minimal poly-c_ebuilds
+inherit autotools ltprune multilib-minimal poly-c_ebuilds
 
 DESCRIPTION="Provides a standard configuration setup for installing PKCS#11"
 HOMEPAGE="https://p11-glue.freedesktop.org/p11-kit.html https://github.com/p11-glue/p11-kit"
@@ -21,9 +21,18 @@ RDEPEND="asn1? ( >=dev-libs/libtasn1-3.4[${MULTILIB_USEDEP}] )
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
+PATCHES=(
+	"${FILESDIR}/${MY_P}-build_fix.patch"
+)
+
 pkg_setup() {
 	# disable unsafe tests, bug#502088
 	export FAKED_MODE=1
+}
+
+src_prepare() {
+	default
+	eautoreconf
 }
 
 multilib_src_configure() {
