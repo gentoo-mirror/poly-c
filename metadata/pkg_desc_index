@@ -163,7 +163,6 @@ sys-apps/openrc 0.21.4: OpenRC manages the services, startup and shutdown of a h
 sys-apps/usb_modeswitch 2.5.0_pre 2.5.1_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
-sys-block/gparted 0.29.0_pre: Gnome Partition Editor
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.02: GNU GRUB boot loader
 sys-fs/btrfs-progs 4.11.1_pre 4.12_pre: Btrfs filesystem utilities
@@ -174,7 +173,6 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-libs/libunwind 1.2.1_pre: Portable and efficient API to determine the call-chain of a program
 sys-power/cpupower 4.1.41 4.1.42 4.1.43 4.4.81 4.4.82 4.4.83 4.9.42 4.9.43 4.9.44: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
