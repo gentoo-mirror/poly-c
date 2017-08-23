@@ -71,7 +71,7 @@ kde-apps/konqueror 17.04.2: Web browser and file manager based on KDE Frameworks
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
 kde-plasma/plasma-desktop 5.8.4 5.8.5 5.8.5-r1: KDE Plasma desktop
-kde-plasma/plasma-workspace 5.9.5.1-r1 5.10.4-r1 5.10.4-r2: KDE Plasma workspace
+kde-plasma/plasma-workspace 5.10.4-r1 5.10.4-r2 5.10.5: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r8 3.4.1-r11: An extensible mail filter which can identify and tag spam
 media-libs/babl 0.1.28_pre 0.1.30_pre: A dynamic, any to any, pixel format conversion library
@@ -137,7 +137,6 @@ net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/bctoolbox 0.4.0_pre: Utilities library used by Belledonne Communications softwares like belle-sip, mediastreamer2 and linphone.
 net-libs/gnutls 3.6.0_pre: A TLS 1.2 and SSL 3.0 implementation for the GNU project
-net-libs/http-parser 2.7.1_pre: Http request/response parser for C
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-libs/webkit-gtk 2.4.11-r200: Open source web browser engine
 net-misc/axel 2.13_pre 2.13.1_pre: Light Unix download accelerator
