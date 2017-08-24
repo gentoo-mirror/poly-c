@@ -10,7 +10,6 @@ app-crypt/gnupg 2.1.23_pre: The GNU Privacy Guard, a GPL OpenPGP implementation
 app-crypt/gpgme 1.9.0_pre: GnuPG Made Easy is a library for making GnuPG easier to use
 app-crypt/p11-kit 0.23.8_pre: Provides a standard configuration setup for installing PKCS#11
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
-app-crypt/yubikey-manager 0.4.1_pre: Python library and command line tool for configuring a YubiKey
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
 app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
 app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
@@ -74,8 +73,6 @@ kde-plasma/plasma-desktop 5.8.4 5.8.5 5.8.5-r1: KDE Plasma desktop
 kde-plasma/plasma-workspace 5.10.4-r1 5.10.4-r2 5.10.5: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r8 3.4.1-r11: An extensible mail filter which can identify and tag spam
-media-libs/babl 0.1.28_pre 0.1.30_pre: A dynamic, any to any, pixel format conversion library
-media-libs/gegl 0.3.18_pre 0.3.20_pre: A graph based image processing framework
 media-libs/gst-plugins-bad 1.11.90_pre 1.11.91_pre 1.12.0_pre 1.12.1_pre 1.12.2_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.11.90_pre 1.11.91_pre 1.12.0_pre 1.12.1_pre 1.12.2_pre: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.11.90_pre 1.11.91_pre 1.12.0_pre 1.12.1_pre 1.12.2_pre: Basepack of plugins for GStreamer
