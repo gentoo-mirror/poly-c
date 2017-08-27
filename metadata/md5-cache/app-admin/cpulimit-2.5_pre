@@ -1,0 +1,12 @@
+DEFINED_PHASES=install prepare
+DESCRIPTION=Limits the CPU usage of a process
+EAPI=6
+HOMEPAGE=http://cpulimit.sourceforge.net
+KEYWORDS=~amd64 ~ppc ~x86
+LICENSE=GPL-2
+RESTRICT=mirror
+SLOT=0
+SRC_URI=mirror://sourceforge/limitcpu/cpulimit-2.5.tar.gz
+_eclass_exported_funcs=src_prepare:- src_install:-
+_eclasses_=multilib	97f470f374f2e94ccab04a2fb21d811e	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	185a06792159ca143528e7010368e8af
+_md5_=a618c3a17359c9f6ed73a997b3bfd05b

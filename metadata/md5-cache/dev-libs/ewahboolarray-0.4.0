@@ -1,0 +1,9 @@
+DEFINED_PHASES=-
+DESCRIPTION=A compressed bitmap class in C++
+EAPI=5
+HOMEPAGE=https://github.com/lemire/EWAHBoolArray
+KEYWORDS=~amd64 ~x86
+SLOT=0
+SRC_URI=https://github.com/lemire/EWAHBoolArray/archive/0.4.0.tar.gz -> ewahboolarray-0.4.0.tar.gz
+_eclass_exported_funcs=-
+_md5_=1cbc918099bb6dd8b666c421c4f32eb5
