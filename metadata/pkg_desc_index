@@ -19,6 +19,7 @@ app-misc/mc 4.8.15 4.8.18-r1 4.8.19: GNU Midnight Commander is a text based file
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
+app-shells/zsh 5.4.2_pre: UNIX Shell similar to the Korn shell
 app-text/calibre 3.4.0_pre 3.6.0_pre 3.7.0_pre: Ebook management application
 app-text/iso-codes 3.72_pre 3.75_pre: ISO language, territory, currency, script codes and their translations
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
@@ -38,6 +39,7 @@ dev-lang/python 3.6.2_pre: An interpreted, interactive, object-oriented programm
 dev-libs/boost 1.64.0_pre: Boost Libraries for C++
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
+dev-libs/libgcrypt 1.8.1_pre: General purpose crypto library based on the code used in GnuPG
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.0.2l 1.1.0f: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/qtkeychain 0.8.0_pre: Qt API for storing passwords securely
