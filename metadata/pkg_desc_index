@@ -22,7 +22,6 @@ app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gent
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-shells/zsh 5.4.2_pre: UNIX Shell similar to the Korn shell
 app-text/calibre 3.4.0_pre 3.6.0_pre 3.7.0_pre: Ebook management application
-app-text/iso-codes 3.72_pre 3.75_pre: ISO language, territory, currency, script codes and their translations
 app-text/po4a 0.47_pre 0.51_pre: Tools for helping translation of documentation
 dev-db/lmdb 0.9.21_pre: An ultra-fast, ultra-compact key-value embedded data store
 dev-db/sqlite 3.20.1_pre: A SQL Database Engine in a C Library
