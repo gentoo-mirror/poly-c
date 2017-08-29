@@ -148,6 +148,17 @@ net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
+sci-libs/dcmtk 3.6.2: The DICOM Toolkit
+sci-libs/gdcm 2.8.2: GDCM is an implementation of the DICOM standard.
+sci-libs/maxflow 3.0.4: Library that implements the maxflow-mincut algorithm
+sci-libs/nifticlib 2.0.0: The NIFTI IO Library
+sci-libs/vistaio 1.2.18: Vista file IO library
+sci-libs/vtk-dicom 0.7.11: DICOM for VTK tools
+sci-misc/dicom3tools 1.00.20160402132920: Command line utilities for manipulating and convertin DICOM files
+sci-misc/mia 2.4.4: Library and tools for medical image processing
+sci-misc/xmedcon 0.14.1: Medical Image Conversion Utility
+sci-visualization/amide 1.0.5: AMIDE's a Medical Imaging Data Examiner
+sci-visualization/ginkgocadx 3.8.6: An advanced DICOM viewer and dicomizer
 sys-apps/cpuid 20170122: Utility to get detailed information about the CPU(s) using the CPUID instruction
 sys-apps/dbus-broker 3: Linux D-Bus Message Broker
 sys-apps/fwup 0.14.3 0.15.4: Configurable embedded Linux firmware update creator and runner
@@ -176,7 +187,7 @@ sys-power/cpupower 4.1.41 4.1.42 4.1.43 4.4.82 4.4.83 4.4.84 4.9.43 4.9.44 4.9.4
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
-x11-libs/cairo 1.15.4_pre 1.15.6_pre: A vector graphics library with cross-device output support
+x11-libs/cairo 1.15.6_pre 1.15.8_pre: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-libs/pango 1.40.10_pre 1.40.11_pre: Internationalized text layout and rendering library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
