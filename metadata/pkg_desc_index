@@ -39,7 +39,6 @@ dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.0.2l 1.1.0f: full-strength general purpose cryptography library (including SSL and TLS)
-dev-libs/qtkeychain 0.8.0_pre: Qt API for storing passwords securely
 dev-python/html5-parser 0.4.4: HTTP request/response parser for python in C
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
@@ -179,7 +178,7 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.1.41 4.1.42 4.1.43 4.4.83 4.4.84 4.4.85 4.9.44 4.9.45 4.9.46: Shows and sets processor power related values
+sys-power/cpupower 4.1.41 4.1.42 4.1.43 4.4.84 4.4.85 4.4.86 4.9.45 4.9.46 4.9.47: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
@@ -188,6 +187,5 @@ x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-libs/pango 1.40.10_pre 1.40.11_pre: Internationalized text layout and rendering library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
-x11-misc/sddm 0.15.0_pre: Simple Desktop Display Manager
 x11-themes/sddm-gentoo-black-theme 1.0 9999: Simple SDDM theme inspired on FBSD SLiM theme
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager
