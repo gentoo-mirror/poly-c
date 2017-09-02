@@ -69,6 +69,7 @@ kde-plasma/plasma-desktop 5.8.4 5.8.5 5.8.5-r1: KDE Plasma desktop
 kde-plasma/plasma-workspace 5.10.4-r1 5.10.4-r2 5.10.5 5.10.5-r1: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r8 3.4.1-r11: An extensible mail filter which can identify and tag spam
+media-gfx/icoutils 0.32.0_pre: A set of programs for extracting and converting images in icon and cursor files (.ico, .cur)
 media-libs/gst-plugins-bad 1.11.90_pre 1.11.91_pre 1.12.0_pre 1.12.1_pre 1.12.2_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.11.90_pre 1.11.91_pre 1.12.0_pre 1.12.1_pre 1.12.2_pre: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.11.90_pre 1.11.91_pre 1.12.0_pre 1.12.1_pre 1.12.2_pre: Basepack of plugins for GStreamer
@@ -129,7 +130,6 @@ net-im/pidgin 2.11.0-r1: GTK Instant Messenger client
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/bctoolbox 0.4.0_pre: Utilities library used by Belledonne Communications softwares like belle-sip, mediastreamer2 and linphone.
-net-libs/gnutls 3.6.0_pre: A TLS 1.2 and SSL 3.0 implementation for the GNU project
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-libs/webkit-gtk 2.4.11-r200: Open source web browser engine
 net-misc/axel 2.13_pre 2.13.1_pre: Light Unix download accelerator
