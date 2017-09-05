@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 6ac1b757a68db7bbc11fbd82b2f326fbd95361d5 $
+# $Id: c1d6830c9208e359b009188adef05495211e21c5 $
 
 EAPI=6
 GNOME_ORG_MODULE="NetworkManager"
@@ -298,6 +298,7 @@ multilib_src_install_all() {
 
 pkg_postinst() {
 	gnome2_pkg_postinst
+	systemd_reenable NetworkManager.service
 	! use systemd && readme.gentoo_print_elog
 
 	if [[ -e "${EROOT}etc/NetworkManager/nm-system-settings.conf" ]]; then

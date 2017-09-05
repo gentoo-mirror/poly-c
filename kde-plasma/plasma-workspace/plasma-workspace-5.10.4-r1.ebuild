@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: aff99b2e38bc6560c10576be6acc3138b27710c7 $
+# $Id: 618a9519db50f5ce2d7504042b26de9a78c85c55 $
 
 EAPI=6
 
@@ -65,7 +65,7 @@ COMMON_DEPEND="
 	$(add_qt_dep qtwidgets)
 	$(add_qt_dep qtx11extras)
 	$(add_qt_dep qtxml)
-	media-libs/phonon[qt5]
+	media-libs/phonon[qt5(+)]
 	sys-libs/zlib
 	x11-libs/libICE
 	x11-libs/libSM

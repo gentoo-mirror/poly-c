@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 18f8b32465c524041808a273a93776ca2fb697fa $
+# $Id: 78b06c03f6ec7a5d5fdcad572bbe1b8d55ca623f $
 
 EAPI=6
 PYTHON_COMPAT=( python2_7 )
@@ -9,7 +9,7 @@ inherit multiprocessing pax-utils python-any-r1 qt5-build
 DESCRIPTION="Library for rendering dynamic web content in Qt5 C++ and QML applications"
 
 if [[ ${QT5_BUILD_TYPE} == release ]]; then
-	KEYWORDS="amd64 ~arm64 x86"
+	KEYWORDS="amd64 ~arm ~arm64 x86"
 fi
 
 IUSE="alsa bindist geolocation pax_kernel pulseaudio +system-ffmpeg +system-icu widgets"
