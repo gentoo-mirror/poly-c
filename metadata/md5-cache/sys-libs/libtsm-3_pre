@@ -9,6 +9,5 @@ RDEPEND=!!<sys-apps/kmscon-8_pre
 RESTRICT=mirror
 SLOT=0
 SRC_URI=http://www.freedesktop.org/software/kmscon/releases/libtsm-3.tar.xz
-_eclass_exported_funcs=-
 _eclasses_=poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435
 _md5_=78c06d41de2b853e639564bc859c9981
