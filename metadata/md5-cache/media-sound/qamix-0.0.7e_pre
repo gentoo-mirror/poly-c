@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install
+DEPEND==x11-libs/qt-3*
+DESCRIPTION=QAMix is a configurable mixer for ALSA. Interfaces for AC 97 cards and Soundblaster Live are provided.
+EAPI=0
+HOMEPAGE=http://alsamodular.sourceforge.net/
+KEYWORDS=~x86
+LICENSE=GPL
+RDEPEND==x11-libs/qt-3*
+RESTRICT=mirror
+SLOT=0
+SRC_URI=http://mesh.dl.sourceforge.net/sourceforge/alsamodular/qamix-0.0.7e.tar.bz2
+_eclasses_=poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435
+_md5_=735b3e7442b2629467bf58ce8c85e411

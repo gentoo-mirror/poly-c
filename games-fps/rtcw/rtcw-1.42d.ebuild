@@ -58,8 +58,7 @@ RDEPEND="${CDEPEND}
 			media-libs/libvorbis ) )"
 	#voip? ( media-libs/speex )"
 
-dir=${GAMES_PREFIX_OPT}/${PN}
-ARCHITECTURE=$(uname -m)
+dir="${GAMES_PREFIX_OPT}/${PN}"
 
 use_switch() {
 	local flag="${1}" cfg_option="${2}" cfg_val=0
@@ -141,17 +140,17 @@ src_prepare(){
 
 src_compile() {
 	cd "${S}/SP/"
-	ARCH="${ARCHITECTURE}" emake
+	ARCH="$(uname -m)" emake
 }
 
 src_install() {
 	cd "${S}/SP/"
-	ARCH="${ARCHITECTURE}" \
+	ARCH="$(uname -m)" \
 	COPYDIR=${D}/${GAMES_PREFIX_OPT}/${PN} \
 	emake copyfiles
 
 	#games_make_wrapper rtcwmp ./wolf.x86 "${dir}" "${dir}"
-	games_make_wrapper rtcwsp ./iowolfsp."${ARCHITECTURE}" "${dir}" "${dir}"
+	games_make_wrapper rtcwsp ./iowolfsp."$(uname -m)" "${dir}" "${dir}"
 
 	#if use server; then
 	#	games_make_wrapper wolf-ded ./wolfded.x86 "${dir}" "${dir}"
