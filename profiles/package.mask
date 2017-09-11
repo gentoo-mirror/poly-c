@@ -43,6 +43,3 @@ dev-java/openjfx
 
 # masked for testing
 =net-misc/icecast-2.5_beta*
-
-# has missing dependencies
-sys-apps/dbus-broker
