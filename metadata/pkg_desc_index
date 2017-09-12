@@ -109,7 +109,6 @@ media-sound/cutmp3 2.1.2_pre 3.0_pre 3.0.1_pre: cutmp3 is a small and fast comma
 media-sound/idjc 0.8.16: Internet DJ Console has two media players, jingles player, crossfader, VoIP and streaming
 media-sound/ossp 1.3.1 1.3.2: OSS Proxy Daemon is Linux userland OSS sound device implementation using CUSE.
 media-sound/pavucontrol 3.0: Pulseaudio Volume Control, GTK based mixer for Pulseaudio
-media-sound/pulseaudio 11.0_pre: A networked sound server with an advanced plugin system
 media-sound/qamix 0.0.7e_pre: QAMix is a configurable mixer for ALSA. Interfaces for AC 97 cards and Soundblaster Live are provided.
 media-sound/scdl 1.3.3_beta1 9999: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
@@ -184,7 +183,6 @@ sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities 
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
 x11-libs/cairo 1.15.6_pre 1.15.8_pre: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
-x11-libs/pango 1.40.12_pre: Internationalized text layout and rendering library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-themes/sddm-gentoo-black-theme 1.0 9999: Simple SDDM theme inspired on FBSD SLiM theme
