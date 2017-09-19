@@ -33,7 +33,6 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-java/openjfx 8.9999: Open source JavaFX
-dev-lang/orc 0.4.27_pre: The Oil Runtime Compiler, a just-in-time compiler for array operations
 dev-lang/python 3.6.2_pre: An interpreted, interactive, object-oriented programming language
 dev-libs/boost 1.65.1_pre: Boost Libraries for C++
 dev-libs/credis 0.2.3: C client library for Redis
@@ -127,7 +126,6 @@ net-analyzer/rrdtool 1.7.0_pre: A system to store and display time-series data
 net-dialup/mingetty 1.08 1.08-r1: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
-net-ftp/lftp 4.8.1_pre: A sophisticated ftp/sftp/http/https/torrent client and file transfer program
 net-im/licq 1.8.2: ICQ Client with v8 support
 net-im/pidgin 2.11.0-r1: GTK Instant Messenger client
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
