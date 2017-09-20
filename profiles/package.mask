@@ -43,3 +43,6 @@ dev-java/openjfx
 
 # masked for testing
 =net-misc/icecast-2.5_beta*
+
+# breaks scons users
+>=dev-util/scons-3.0.0_pre

@@ -63,7 +63,8 @@ src_prepare() {
 	rm -fr Modules/_ctypes/libffi*
 	rm -fr Modules/zlib
 
-	cp "${FILESDIR}/22_all_tests_environment.patch" "${WORKDIR}/patches" || die
+	cp "${FILESDIR}/22_all_tests_environment.patch" "${WORKDIR}/patches" \
+		|| die
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
 
 	epatch "${FILESDIR}/${PN}-3.5-distutils-OO-build.patch"
