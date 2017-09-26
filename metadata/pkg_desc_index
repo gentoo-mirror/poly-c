@@ -172,15 +172,11 @@ sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.02: GNU GRUB boot loader
-sys-devel/binutils 2.29.1_pre: Tools necessary to build programs
-sys-devel/gcc 7.2.0_pre: The GNU Compiler Collection
-sys-fs/btrfs-progs 4.11.1_pre 4.12_pre 4.12.1_pre 4.13_pre 4.13.1_pre: Btrfs filesystem utilities
 sys-fs/fuse 3.0.2: An interface for filesystems implemented in userspace
 sys-fs/fuse-common-files 3.0.2: Config files, init scripts and other common files for fuse package
 sys-fs/lvm2 2.02.174_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 233 234-r1: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
-sys-libs/binutils-libs 2.29.1_pre: Core binutils libraries (libbfd, libopcodes, libiberty) for external packages
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
