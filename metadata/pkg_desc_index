@@ -21,7 +21,7 @@ app-office/libreoffice-l10n 5.4.1.2_pre: Translations for the Libreoffice suite
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/calibre 3.4.0_pre 3.6.0_pre 3.7.0_pre: Ebook management application
+app-text/calibre 3.4.0_pre 3.6.0_pre 3.7.0_pre 3.8.0_pre: Ebook management application
 app-text/po4a 0.47_pre 0.51_pre 0.52_pre: Tools for helping translation of documentation
 dev-db/lmdb 0.9.21_pre: An ultra-fast, ultra-compact key-value embedded data store
 dev-games/cegui 0.8.7: Crazy Eddie's GUI System
@@ -39,6 +39,7 @@ dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.0.2l 1.1.0f: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/xmlsec 1.2.25_pre: Command line tool for signing, verifying, encrypting and decrypting XML
 dev-python/html5-parser 0.4.4: HTTP request/response parser for python in C
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
@@ -128,6 +129,7 @@ net-analyzer/rrdtool 1.7.0_pre: A system to store and display time-series data
 net-dialup/mingetty 1.08 1.08-r1: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
+net-ftp/lftp 4.8.2_pre: A sophisticated ftp/sftp/http/https/torrent client and file transfer program
 net-im/licq 1.8.2: ICQ Client with v8 support
 net-im/pidgin 2.11.0-r1: GTK Instant Messenger client
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
@@ -144,7 +146,6 @@ net-misc/openntpd 6.2_p2_pre: Lightweight NTP server ported from OpenBSD
 net-misc/putty 0.69 0.70: A Free Telnet/SSH Client
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
-net-print/hplip 3.17.9_pre: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sci-libs/dcmtk 3.6.2: The DICOM Toolkit
@@ -171,13 +172,15 @@ sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.02: GNU GRUB boot loader
+sys-devel/binutils 2.29.1_pre: Tools necessary to build programs
 sys-devel/gcc 7.2.0_pre: The GNU Compiler Collection
-sys-fs/btrfs-progs 4.11.1_pre 4.12_pre 4.12.1_pre 4.13_pre: Btrfs filesystem utilities
+sys-fs/btrfs-progs 4.11.1_pre 4.12_pre 4.12.1_pre 4.13_pre 4.13.1_pre: Btrfs filesystem utilities
 sys-fs/fuse 3.0.2: An interface for filesystems implemented in userspace
 sys-fs/fuse-common-files 3.0.2: Config files, init scripts and other common files for fuse package
 sys-fs/lvm2 2.02.174_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 233 234-r1: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
+sys-libs/binutils-libs 2.29.1_pre: Core binutils libraries (libbfd, libopcodes, libiberty) for external packages
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
