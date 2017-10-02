@@ -16,5 +16,5 @@ SLOT="0"
 #KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-MODULE_NAMES="8812au(net/wireless:)"
+MODULE_NAMES="rtl8812au(net/wireless:)"
 BUILD_TARGETS="clean modules"
