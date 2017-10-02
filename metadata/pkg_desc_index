@@ -21,7 +21,6 @@ app-office/libreoffice-l10n 5.4.1.2_pre: Translations for the Libreoffice suite
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/calibre 3.4.0_pre 3.6.0_pre 3.7.0_pre 3.8.0_pre: Ebook management application
 app-text/po4a 0.47_pre 0.51_pre 0.52_pre: Tools for helping translation of documentation
 dev-db/lmdb 0.9.21_pre: An ultra-fast, ultra-compact key-value embedded data store
 dev-games/cegui 0.8.7: Crazy Eddie's GUI System
@@ -40,7 +39,6 @@ dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.0.2l 1.1.0f: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/xmlsec 1.2.25_pre: Command line tool for signing, verifying, encrypting and decrypting XML
-dev-python/html5-parser 0.4.4: HTTP request/response parser for python in C
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtdbus 5.6.2 5.7.1: Qt5 module for inter-process communication over the D-Bus protocol
