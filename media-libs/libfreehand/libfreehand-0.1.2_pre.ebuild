@@ -1,0 +1,50 @@
+# Copyright 1999-2017 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=6
+
+inherit poly-c_ebuilds
+
+EGIT_REPO_URI="https://anongit.freedesktop.org/git/libreoffice/libfreehand.git"
+[[ ${MY_PV} == 9999 ]] && inherit autotools git-r3
+
+DESCRIPTION="Library for import of FreeHand drawings"
+HOMEPAGE="https://wiki.documentfoundation.org/DLP/Libraries/libfreehand"
+[[ ${MY_PV} == 9999 ]] || SRC_URI="https://dev-www.libreoffice.org/src/libfreehand/${MY_P}.tar.xz"
+
+LICENSE="MPL-2.0"
+SLOT="0"
+[[ ${MY_PV} == 9999 ]] || \
+KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+IUSE="doc static-libs"
+
+RDEPEND="
+	dev-libs/librevenge
+	sys-libs/zlib
+"
+DEPEND="${RDEPEND}
+	dev-libs/icu:=
+	dev-util/gperf
+	media-libs/lcms
+	sys-devel/libtool
+	virtual/pkgconfig
+	doc? ( app-doc/doxygen )
+"
+
+src_prepare() {
+	default
+	[[ -d m4 ]] || mkdir "m4"
+	[[ ${MY_PV} == 9999 ]] && eautoreconf
+}
+
+src_configure() {
+	econf \
+		--disable-werror \
+		$(use_with doc docs) \
+		$(use_enable static-libs static)
+}
+
+src_install() {
+	default
+	find "${D}" -name '*.la' -delete || die
+}

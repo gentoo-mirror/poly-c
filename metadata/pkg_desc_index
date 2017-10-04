@@ -16,11 +16,15 @@ app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
 app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
 app-misc/mc 4.8.15 4.8.18-r1 4.8.19: GNU Midnight Commander is a text based file manager
-app-office/libreoffice 5.4.1.2_pre: A full office productivity suite
-app-office/libreoffice-l10n 5.4.1.2_pre: Translations for the Libreoffice suite
+app-office/libreoffice 5.4.1.2_pre 5.4.2.2_pre: A full office productivity suite
+app-office/libreoffice-l10n 5.4.1.2_pre 5.4.2.2_pre: Translations for the Libreoffice suite
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
+app-text/iso-codes 3.76_pre: ISO language, territory, currency, script codes and their translations
+app-text/libexttextcat 3.4.5_pre: Library implementing N-gram-based text categorization
+app-text/libwpd 0.10.2_pre: WordPerfect Document import/export library
+app-text/libwpg 0.3.2_pre: C++ library to read and parse graphics in WPG
 app-text/po4a 0.47_pre 0.51_pre 0.52_pre: Tools for helping translation of documentation
 dev-db/lmdb 0.9.21_pre: An ultra-fast, ultra-compact key-value embedded data store
 dev-games/cegui 0.8.7: Crazy Eddie's GUI System
@@ -36,6 +40,7 @@ dev-lang/python 3.6.2_pre: An interpreted, interactive, object-oriented programm
 dev-libs/boost 1.65.1_pre: Boost Libraries for C++
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
+dev-libs/liborcus 0.13.0_pre: Standalone file import filter library for spreadsheet documents
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.0.2l 1.1.0f: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/xmlsec 1.2.25_pre: Command line tool for signing, verifying, encrypting and decrypting XML
@@ -79,8 +84,9 @@ media-libs/gstreamer 1.11.90_pre 1.11.91_pre 1.12.0_pre 1.12.1_pre 1.12.2_pre 1.
 media-libs/libbpg 0.9.6_pre 0.9.7_pre: BPG (Better Portable Graphics) is a new image format
 media-libs/libdvbpsi 1.3.1_pre: library for MPEG TS/DVB PSI tables decoding and generation
 media-libs/libdvdcss 1.3.99 1.4.0: A portable abstraction library for DVD decryption
-media-libs/libopenshot 0.1.8_pre: Video editing library used by OpenShot
+media-libs/libfreehand 0.1.2_pre: Library for import of FreeHand drawings
 media-libs/libshout-idjc 2.4.1: Libshout-idjc is libshout plus some extensions for IDJC
+media-libs/libzmf 0.0.2_pre: Library for parsing Zoner Callisto/Draw documents
 media-plugins/gst-plugins-a52dec 1.11.90_pre 1.11.91_pre 1.12.0_pre 1.12.1_pre 1.12.2_pre 1.12.3_pre: plugin for gstreamer
 media-plugins/gst-plugins-cdparanoia 1.11.90_pre 1.11.91_pre 1.12.0_pre 1.12.1_pre 1.12.2_pre 1.12.3_pre: plugin for gstreamer
 media-plugins/gst-plugins-dts 1.11.90_pre 1.11.91_pre 1.12.0_pre 1.12.1_pre 1.12.2_pre 1.12.3_pre: GStreamer plugin for MPEG-1/2 video encoding
@@ -116,7 +122,6 @@ media-sound/scdl 1.3.3_beta1 9999: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2: Download files from the public broadcasting services
 media-video/mkvtoolnix 16.0.0_pre: Tools to create, alter, and inspect Matroska files
-media-video/openshot 2.4.0_pre: Free, open-source, non-linear video editor to create and edit videos and movies
 media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.9.0_pre 17.10.0_pre: Great Qt GUI front-end for mplayer/mpv
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
 net-analyzer/arpalert 1.0.3_pre 1.1.3_pre 2.0.11_pre: arpalert is used for monitoring ethernet networks
@@ -136,7 +141,6 @@ net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/bctoolbox 0.4.0_pre: Utilities library used by Belledonne Communications softwares like belle-sip, mediastreamer2 and linphone.
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-libs/webkit-gtk 2.4.11-r200: Open source web browser engine
-net-misc/axel 2.13_pre 2.13.1_pre: Light Unix download accelerator
 net-misc/dropbear 2017.75_pre: small SSH 2 client/server designed for small memory environments
 net-misc/icecast 2.5_beta1: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/networkmanager 1.4.0-r1 1.4.4 1.4.4-r1 1.6.2_pre 1.8.4_pre: A set of co-operative tools that make networking simple and straightforward
