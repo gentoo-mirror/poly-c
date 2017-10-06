@@ -1,0 +1,81 @@
+From bb7f35c7938e8e18ac83dcc98b43b69ac2772f6c Mon Sep 17 00:00:00 2001
+From: Erik van 't Wout <erik@hofhom.nl>
+Date: Fri, 29 Sep 2017 16:57:38 +0100
+Subject: [PATCH] Do not remove read messages from the unread filter
+ immediately
+
+Otherwise, when using the filter, the next message will also be selected
+and immediately marked as read, until the feed is empty.
+
+BUG:350731
+
+Differential Revision: https://phabricator.kde.org/D7928
+---
+ src/article.cpp   | 2 +-
+ src/feed/feed.cpp | 8 +++++---
+ src/feed/feed.h   | 9 ++++++---
+ 3 files changed, 12 insertions(+), 7 deletions(-)
+
+diff --git a/src/article.cpp b/src/article.cpp
+index 5919fb63..7eef0d07 100644
+--- a/src/article.cpp
++++ b/src/article.cpp
+@@ -386,7 +386,7 @@ void Article::setStatus(int stat)
+             d->archive->setStatus(d->guid, d->status);
+         }
+         if (d->feed) {
+-            d->feed->setArticleChanged(*this, oldStatus);
++            d->feed->setArticleChanged(*this, oldStatus, stat != Read);
+         }
+     }
+ }
+diff --git a/src/feed/feed.cpp b/src/feed/feed.cpp
+index 90557b63..310a66dd 100644
+--- a/src/feed/feed.cpp
++++ b/src/feed/feed.cpp
+@@ -828,10 +828,10 @@ void Akregator::Feed::setArticleDeleted(Article &a)
+     articlesModified();
+ }
+ 
+-void Akregator::Feed::setArticleChanged(Article &a, int oldStatus)
++void Akregator::Feed::setArticleChanged(Article &a, int oldStatus, bool process)
+ {
++    int newStatus = a.status();
+     if (oldStatus != -1) {
+-        int newStatus = a.status();
+         if (oldStatus == Read && newStatus != Read) {
+             setUnread(unread() + 1);
+         } else if (oldStatus != Read && newStatus == Read) {
+@@ -839,7 +839,9 @@ void Akregator::Feed::setArticleChanged(Article &a, int oldStatus)
+         }
+     }
+     d->updatedArticlesNotify.append(a);
+-    articlesModified();
++    if (process) {
++        articlesModified();
++    }
+ }
+ 
+ int Akregator::Feed::totalCount() const
+diff --git a/src/feed/feed.h b/src/feed/feed.h
+index 540b3aae..9c957298 100644
+--- a/src/feed/feed.h
++++ b/src/feed/feed.h
+@@ -264,11 +264,14 @@ public Q_SLOTS:
+         */
+     void setArticleDeleted(Article &a);
+ 
+-    /** notifies that article @c mya was changed
+-        @param oldStatus if the status was changed, it contains the old status, -1 otherwise
++    /** Notifies that article @p a was changed.
++        @param oldStatus The old status if the status was changed,
++        or -1 if the status was not changed
++        @param process Set to @c false to disable processing the change
++        (updating article list and updating on-screen unread count)
+         To be called by @ref Article
+         */
+-    void setArticleChanged(Article &a, int oldStatus = -1);
++    void setArticleChanged(Article &a, int oldStatus = -1, bool process = true);
+ 
+     void appendArticles(const Syndication::FeedPtr &feed);
+ 

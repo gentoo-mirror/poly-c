@@ -1,0 +1,14 @@
+DEFINED_PHASES=configure install prepare
+DEPEND=dev-libs/icu:= dev-libs/librevenge media-libs/lcms:2 sys-libs/zlib dev-libs/boost sys-devel/libtool virtual/pkgconfig doc? ( app-doc/doxygen ) test? ( dev-util/cppunit )
+DESCRIPTION=Library parsing the Corel cdr documents
+EAPI=6
+HOMEPAGE=https://wiki.documentfoundation.org/DLP/Libraries/libcdr
+IUSE=doc static-libs test
+KEYWORDS=~amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 ~x86
+LICENSE=MPL-2.0
+RDEPEND=dev-libs/icu:= dev-libs/librevenge media-libs/lcms:2 sys-libs/zlib
+RESTRICT=mirror
+SLOT=0
+SRC_URI=https://dev-www.libreoffice.org/src/libcdr/libcdr-0.1.4.tar.xz
+_eclasses_=poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435
+_md5_=4573f46da54a3008f240db039faebd40
