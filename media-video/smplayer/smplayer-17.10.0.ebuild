@@ -1,55 +1,45 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: fc1bab70e89aee9fc34d0c13804aa4ffbc26eff7 $
+# $Id: 13741f5b2b1294a4caf7d1e426ba62bd5652118a $
 
 EAPI=6
 
-PLOCALES="am ar ar_SY bg ca cs da de el_GR en_GB en_US es et eu fa fi fr gl
-he_IL hr hu id it ja ka ko ku lt mk ms_MY nl nn_NO pl pt pt_BR ro_RO ru_RU
+PLOCALES="am ar_SY ar bg ca cs da de el en_GB en en_US es et eu fa fi fr gl
+he_IL hr hu id it ja ka ko ku lt mk ms_MY nl nn_NO pl pt_BR pt ro_RO ru_RU
 sk sl_SI sq_AL sr sv th tr uk_UA uz vi_VN zh_CN zh_TW"
 PLOCALE_BACKUP="en_US"
 
-inherit l10n qmake-utils poly-c_ebuilds
+inherit l10n qmake-utils
 
 DESCRIPTION="Great Qt GUI front-end for mplayer/mpv"
 HOMEPAGE="http://www.smplayer.eu/"
-SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2+ BSD-2"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~hppa ~ppc ~ppc64 ~x86 ~x86-fbsd ~amd64-linux"
-IUSE="autoshutdown bidi debug mpris qt5"
+IUSE="autoshutdown bidi debug mpris"
 
 COMMON_DEPEND="
+	dev-qt/qtcore:5
+	dev-qt/qtgui:5
+	dev-qt/qtnetwork:5[ssl]
+	dev-qt/qtscript:5
+	dev-qt/qtsingleapplication[X,qt5]
+	dev-qt/qtwidgets:5
+	dev-qt/qtxml:5
 	sys-libs/zlib
-	!qt5? (
-		dev-qt/qtcore:4[ssl]
-		dev-qt/qtgui:4
-		dev-qt/qtscript:4
-		dev-qt/qtsingleapplication[X,qt4]
-		autoshutdown? ( dev-qt/qtdbus:4 )
-		mpris? ( dev-qt/qtdbus:4 )
-	)
-	qt5? (
-		dev-qt/qtcore:5
-		dev-qt/qtgui:5
-		dev-qt/qtnetwork:5[ssl]
-		dev-qt/qtscript:5
-		dev-qt/qtsingleapplication[X,qt5]
-		dev-qt/qtwidgets:5
-		dev-qt/qtxml:5
-		autoshutdown? ( dev-qt/qtdbus:5 )
-		mpris? ( dev-qt/qtdbus:5 )
-	)
+	autoshutdown? ( dev-qt/qtdbus:5 )
+	mpris? ( dev-qt/qtdbus:5 )
 "
 DEPEND="${COMMON_DEPEND}
-	qt5? ( dev-qt/linguist-tools:5 )
+	dev-qt/linguist-tools:5
 "
 RDEPEND="${COMMON_DEPEND}
 	|| (
 		media-video/mplayer[bidi?,libass,png,X]
 		(
-			>=media-video/mpv-0.10.0[libass,X]
+			>=media-video/mpv-0.15.0[libass,X]
 			>=net-misc/youtube-dl-2014.11.26
 		)
 	)
@@ -100,30 +90,17 @@ src_prepare() {
 			-i src/smplayer.pro || die
 	fi
 
-	# Turn off youtube support (which pulls in extra dependencies) if unwanted
-	#if ! use streaming ; then
-	#	sed -e 's:DEFINES += CHROMECAST_SUPPORT:#&:' \
-	#		-i src/smplayer.pro || die
-	#	sed -e 's:DEFINES += YOUTUBE_SUPPORT:#&:' \
-	#		-i src/smplayer.pro || die
-	#	sed -e 's:^#define PLAYLIST_DOWNLOAD://&:' \
-	#		-i src/playlist.h || die
-	#fi
-
 	# Commented out because it gives false positives
 	#l10n_find_plocales_changes "${S}"/src/translations ${PN}_ .ts
 }
 
 src_configure() {
 	cd src || die
-	use qt5 && eqmake5 || eqmake4
+	eqmake5
 }
 
 gen_translation() {
-	local mydir="$(qt4_get_bindir)"
-	if use qt5; then
-		mydir="$(qt5_get_bindir)"
-	fi
+	local mydir="$(qt5_get_bindir)"
 
 	ebegin "Generating $1 translation"
 	"${mydir}"/lrelease ${PN}_${1}.ts
