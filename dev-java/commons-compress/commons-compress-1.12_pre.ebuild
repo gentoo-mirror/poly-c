@@ -15,6 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
+SRC_URI="https://archive.apache.org/dist/commons/compress/source/${MY_P}-src.tar.gz"
+
 CDEPEND="dev-java/xz-java:0"
 
 RDEPEND="

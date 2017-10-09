@@ -187,5 +187,6 @@ x11-libs/cairo 1.15.6_pre 1.15.8_pre: A vector graphics library with cross-devic
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
+x11-misc/sddm 0.16.0_pre: Simple Desktop Display Manager
 x11-themes/sddm-gentoo-black-theme 1.0 9999: Simple SDDM theme inspired on FBSD SLiM theme
 x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager
