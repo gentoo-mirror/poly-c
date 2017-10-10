@@ -130,6 +130,7 @@ net-analyzer/rrdtool 1.7.0_pre: A system to store and display time-series data
 net-dialup/mingetty 1.08 1.08-r1: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
+net-ftp/lftp 4.8.3_pre: A sophisticated ftp/sftp/http/https/torrent client and file transfer program
 net-im/licq 1.8.2: ICQ Client with v8 support
 net-im/pidgin 2.11.0-r1: GTK Instant Messenger client
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
