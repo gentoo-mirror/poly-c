@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 1d98a8ca399004d510c7a4ab9f01b32a8f6b97f7 $
+# $Id: 1853b357d182471c0e6ed371720faa2058fd7c94 $
 
 EAPI=6
 
@@ -26,7 +26,7 @@ IUSE="acl hwdb +kmod selinux"
 
 RESTRICT="test"
 
-COMMON_DEPEND=">=sys-apps/util-linux-2.27.1[${MULTILIB_USEDEP}]
+COMMON_DEPEND=">=sys-apps/util-linux-2.30[${MULTILIB_USEDEP}]
 	sys-libs/libcap[${MULTILIB_USEDEP}]
 	acl? ( sys-apps/acl )
 	kmod? ( >=sys-apps/kmod-16 )
