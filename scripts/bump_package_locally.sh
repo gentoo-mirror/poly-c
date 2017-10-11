@@ -83,6 +83,7 @@ if ${IS_POLYC_EBUILD} ; then
 		-e 's@MY_PV@REAL_PV@;s@MY_P@REAL_P@g' \
 		-e 's@${PV}@${MY_PV}@g;s@${P}@${MY_P}@g' \
 		-e 's@${PV/@${MY_PV/@g;s@${P/@${MY_P/@g' \
+		-e 's@${PV%@${MY_PV%@g;s@${P%@${MY_P%@g' \
 		-i "${TARGET_EBUILD}" || exit 11
 
 	if ! grep -q "^inherit" "${TARGET_EBUILD}" ; then

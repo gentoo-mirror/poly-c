@@ -19,6 +19,8 @@ app-misc/mc 4.8.15 4.8.18-r1 4.8.19: GNU Midnight Commander is a text based file
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
+app-text/calibre 3.9.0_pre: Ebook management application
+app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
 app-text/iso-codes 3.76_pre: ISO language, territory, currency, script codes and their translations
 app-text/po4a 0.47_pre 0.51_pre 0.52_pre: Tools for helping translation of documentation
 dev-db/lmdb 0.9.21_pre: An ultra-fast, ultra-compact key-value embedded data store
@@ -47,6 +49,7 @@ dev-scheme/guile 2.2.0_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.65.1_pre: A system for large project software construction, simple to use and powerful
 dev-util/cloc 1.74_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
+dev-util/itstool 2.0.3_pre: Translation tool for XML documents that uses gettext files and ITS rules
 dev-util/meld 3.18.0_pre: A graphical diff and merge tool
 dev-util/scons 3.0.0_pre: Extensible Python-based build utility
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
@@ -170,6 +173,7 @@ sys-apps/openrc 0.21.4: OpenRC manages the services, startup and shutdown of a h
 sys-apps/usb_modeswitch 2.5.0_pre 2.5.1_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/areca_cli 1.14.7.150519: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
+sys-block/gparted 0.30.0_pre: Gnome Partition Editor
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.02: GNU GRUB boot loader
 sys-fs/fuse 3.0.2: An interface for filesystems implemented in userspace
