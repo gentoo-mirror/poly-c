@@ -46,3 +46,6 @@ dev-java/openjfx
 
 # breaks scons users
 >=dev-util/scons-3.0.0_pre
+
+# Requires cppcodec which has not been packaed yet.
+=app-crypt/nitrokey-app-1.1_pre

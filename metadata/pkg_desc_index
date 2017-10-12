@@ -8,6 +8,7 @@ app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapsh
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-crypt/gpgme 1.9.0_pre: GnuPG Made Easy is a library for making GnuPG easier to use
 app-crypt/libu2f-host 1.1.4_pre: Yubico Universal 2nd Factor (U2F) Host C Library
+app-crypt/nitrokey-app 1.1_pre: Cross platform personalization tool for the Nitrokey
 app-crypt/p11-kit 0.23.8_pre: Provides a standard configuration setup for installing PKCS#11
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
@@ -37,7 +38,9 @@ dev-libs/boost 1.65.1_pre: Boost Libraries for C++
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/libixion 0.13.0_pre: General purpose formula parser & interpreter
+dev-libs/libnitrokey 3.0_pre: Communicate with Nitrokey stick devices in a clean and easy manner
 dev-libs/liborcus 0.13.0_pre: Standalone file import filter library for spreadsheet documents
+dev-libs/libuv 1.15.0_pre: Cross-platform asychronous I/O
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.0.2l 1.1.0f: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/xmlsec 1.2.25_pre: Command line tool for signing, verifying, encrypting and decrypting XML
@@ -86,7 +89,6 @@ media-libs/libbpg 0.9.6_pre 0.9.7_pre: BPG (Better Portable Graphics) is a new i
 media-libs/libdvbpsi 1.3.1_pre: library for MPEG TS/DVB PSI tables decoding and generation
 media-libs/libdvdcss 1.3.99 1.4.0: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1: Libshout-idjc is libshout plus some extensions for IDJC
-media-libs/suil 0.10.0_pre: Lightweight C library for loading and wrapping LV2 plugin UIs
 media-plugins/gst-plugins-a52dec 1.11.90_pre 1.11.91_pre 1.12.0_pre 1.12.1_pre 1.12.2_pre 1.12.3_pre: plugin for gstreamer
 media-plugins/gst-plugins-cdparanoia 1.11.90_pre 1.11.91_pre 1.12.0_pre 1.12.1_pre 1.12.2_pre 1.12.3_pre: plugin for gstreamer
 media-plugins/gst-plugins-dts 1.11.90_pre 1.11.91_pre 1.12.0_pre 1.12.1_pre 1.12.2_pre 1.12.3_pre: GStreamer plugin for MPEG-1/2 video encoding
@@ -133,7 +135,6 @@ net-analyzer/rrdtool 1.7.0_pre: A system to store and display time-series data
 net-dialup/mingetty 1.08 1.08-r1: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/atftp 0.7.1_pre: Advanced TFTP implementation client/server
-net-ftp/lftp 4.8.3_pre: A sophisticated ftp/sftp/http/https/torrent client and file transfer program
 net-im/licq 1.8.2: ICQ Client with v8 support
 net-im/pidgin 2.11.0-r1: GTK Instant Messenger client
 net-irc/pchat-irc 1.4.2 1.5.3: Graphical IRC client
@@ -184,7 +185,7 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.1.41 4.1.42 4.1.43 4.4.89 4.4.90 4.4.91 4.9.52 4.9.53 4.9.54: Shows and sets processor power related values
+sys-power/cpupower 4.1.41 4.1.42 4.1.43 4.4.90 4.4.91 4.4.92 4.9.53 4.9.54 4.9.55: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
