@@ -1,5 +1,5 @@
---- nitrokey-app-1.1/src/core/ThreadWorker.cpp
-+++ nitrokey-app-1.1/src/core/ThreadWorker.cpp
+--- nitrokey-app-1.2-beta.2/src/core/ThreadWorker.cpp
++++ nitrokey-app-1.2-beta.2/src/core/ThreadWorker.cpp
 @@ -2,7 +2,7 @@
  
  #include <QMutexLocker>
@@ -9,8 +9,8 @@
  
  
  ThreadWorkerNS::Worker::Worker(QObject *parent, const std::function<Data()> &datafunc) :
---- nitrokey-app-1.1/src/GUI/Authentication.cpp
-+++ nitrokey-app-1.1/src/GUI/Authentication.cpp
+--- nitrokey-app-1.2-beta.2/src/GUI/Authentication.cpp
++++ nitrokey-app-1.2-beta.2/src/GUI/Authentication.cpp
 @@ -4,7 +4,7 @@
  #include "pindialog.h"
  //#include "SecureString.h"
@@ -20,8 +20,8 @@
  using nm = nitrokey::NitrokeyManager;
  #include <string>
  #include "nitrokey-applet.h"
---- nitrokey-app-1.1/src/GUI/StorageActions.cpp
-+++ nitrokey-app-1.1/src/GUI/StorageActions.cpp
+--- nitrokey-app-1.2-beta.2/src/GUI/StorageActions.cpp
++++ nitrokey-app-1.2-beta.2/src/GUI/StorageActions.cpp
 @@ -2,7 +2,7 @@
  #include "StorageActions.h"
  #include "src/ui/pindialog.h"
@@ -31,8 +31,17 @@
  
  #ifdef Q_OS_LINUX
  #include "systemutils.h"
---- nitrokey-app-1.1/src/GUI/Tray.cpp
-+++ nitrokey-app-1.1/src/GUI/Tray.cpp
+@@ -19,7 +19,7 @@
+ #define LOCAL_PASSWORD_SIZE 40
+ #include <memory>
+ #include <src/core/ThreadWorker.h>
+-#include <libnitrokey/include/stick20_commands.h>
++#include <libnitrokey/stick20_commands.h>
+ 
+ 
+ void unmountEncryptedVolumes() {
+--- nitrokey-app-1.2-beta.2/src/GUI/Tray.cpp
++++ nitrokey-app-1.2-beta.2/src/GUI/Tray.cpp
 @@ -9,7 +9,7 @@
  #include "libada.h"
  #include "bool_values.h"
@@ -42,8 +51,8 @@
  #include <QMenu>
  
  Tray::Tray(QObject *_parent, bool _debug_mode, bool _extended_config,
---- nitrokey-app-1.1/src/libada.cpp
-+++ nitrokey-app-1.1/src/libada.cpp
+--- nitrokey-app-1.2-beta.2/src/libada.cpp
++++ nitrokey-app-1.2-beta.2/src/libada.cpp
 @@ -1,4 +1,4 @@
 -#include <libnitrokey/include/NitrokeyManager.h>
 +#include <libnitrokey/NitrokeyManager.h>
@@ -68,8 +77,8 @@
  bool libada::isPasswordSafeUnlocked() {
    try{
      nm::instance()->get_password_safe_slot_status();
---- nitrokey-app-1.1/src/libada.h
-+++ nitrokey-app-1.1/src/libada.h
+--- nitrokey-app-1.2-beta.2/src/libada.h
++++ nitrokey-app-1.2-beta.2/src/libada.h
 @@ -36,7 +36,7 @@
  #include <QObject>
  #include <QCache>
@@ -79,8 +88,8 @@
  
  #include <functional>
  #include <QMutex>
---- nitrokey-app-1.1/src/main.cpp
-+++ nitrokey-app-1.1/src/main.cpp
+--- nitrokey-app-1.2-beta.2/src/main.cpp
++++ nitrokey-app-1.2-beta.2/src/main.cpp
 @@ -26,7 +26,7 @@
  #include <QSettings>
  #include <QFileInfo>
@@ -90,8 +99,8 @@
  //#include <QSharedMemory>
  #include "src/version.h"
  #include "src/utils/bool_values.h"
---- nitrokey-app-1.1/src/ui/aboutdialog.cpp
-+++ nitrokey-app-1.1/src/ui/aboutdialog.cpp
+--- nitrokey-app-1.2-beta.2/src/ui/aboutdialog.cpp
++++ nitrokey-app-1.2-beta.2/src/ui/aboutdialog.cpp
 @@ -22,8 +22,8 @@
  #include "ui_aboutdialog.h"
  
@@ -103,8 +112,17 @@
  using nm = nitrokey::NitrokeyManager;
  
  using namespace AboutDialogUI;
---- nitrokey-app-1.1/src/ui/mainwindow.cpp
-+++ nitrokey-app-1.1/src/ui/mainwindow.cpp
+@@ -93,7 +93,7 @@
+ #include <QTextStream>
+ #include <QWindow>
+ #include <QTextEdit>
+-#include <libnitrokey/include/stick20_commands.h>
++#include <libnitrokey/stick20_commands.h>
+ #include "licensedialog.h"
+ 
+ void AboutDialog::on_btn_3rdparty_clicked(){
+--- nitrokey-app-1.2-beta.2/src/ui/mainwindow.cpp
++++ nitrokey-app-1.2-beta.2/src/ui/mainwindow.cpp
 @@ -17,7 +17,7 @@
   * You should have received a copy of the GNU General Public License
   * along with Nitrokey. If not, see <http://www.gnu.org/licenses/>.
@@ -114,8 +132,8 @@
  
  #include "mainwindow.h"
  #include "aboutdialog.h"
---- nitrokey-app-1.1/src/ui/stick20changepassworddialog.cpp
-+++ nitrokey-app-1.1/src/ui/stick20changepassworddialog.cpp
+--- nitrokey-app-1.2-beta.2/src/ui/stick20changepassworddialog.cpp
++++ nitrokey-app-1.2-beta.2/src/ui/stick20changepassworddialog.cpp
 @@ -22,7 +22,7 @@
  #include "stick20responsedialog.h"
  #include "ui_stick20changepassworddialog.h"
@@ -125,8 +143,8 @@
  #include "src/core/ThreadWorker.h"
  using nm = nitrokey::NitrokeyManager;
  
---- nitrokey-app-1.1/src/ui/stick20hiddenvolumedialog.cpp
-+++ nitrokey-app-1.1/src/ui/stick20hiddenvolumedialog.cpp
+--- nitrokey-app-1.2-beta.2/src/ui/stick20hiddenvolumedialog.cpp
++++ nitrokey-app-1.2-beta.2/src/ui/stick20hiddenvolumedialog.cpp
 @@ -18,7 +18,7 @@
   */
  
@@ -136,8 +154,8 @@
  #include "stick20hiddenvolumedialog.h"
  #include "math.h"
  #include "mcvs-wrapper.h"
---- nitrokey-app-1.1/src/ui/stick20responsedialog.cpp
-+++ nitrokey-app-1.1/src/ui/stick20responsedialog.cpp
+--- nitrokey-app-1.2-beta.2/src/ui/stick20responsedialog.cpp
++++ nitrokey-app-1.2-beta.2/src/ui/stick20responsedialog.cpp
 @@ -106,7 +106,7 @@
  //  delete pollStick20Timer;
  }

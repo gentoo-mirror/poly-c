@@ -28,7 +28,7 @@ DEPEND="
 	virtual/pkgconfig"
 
 PATCHES=(
-	"${FILESDIR}/${PN}-1.1-lib_include_fixes.patch"
+	"${FILESDIR}/${PN}-1.2_beta2-lib_include_fixes.patch"
 )
 
 S="${WORKDIR}/${PN}-${REAL_PV}"
