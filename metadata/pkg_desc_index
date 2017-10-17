@@ -1,6 +1,5 @@
 app-admin/cpulimit 2.5_pre: Limits the CPU usage of a process
 app-admin/littleutils 1.0.36 1.0.37: The littleutils are a collection of small and simple utilities
-app-admin/logrotate 3.13.0_pre: Rotates, compresses, and mails system logs
 app-admin/remotebox 2.0 2.2: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
@@ -151,6 +150,7 @@ net-misc/openntpd 6.2_p2_pre: Lightweight NTP server ported from OpenBSD
 net-misc/putty 0.69 0.70: A Free Telnet/SSH Client
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
+net-print/hplip 3.17.10_pre: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
 sci-libs/dcmtk 3.6.2: The DICOM Toolkit
@@ -190,7 +190,6 @@ sys-power/cpupower 4.1.41 4.1.42 4.1.43 4.4.90 4.4.91 4.4.92 4.9.53 4.9.54 4.9.5
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
-x11-base/xorg-server 1.19.5_pre: X.Org X servers
 x11-libs/cairo 1.15.6_pre 1.15.8_pre: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
