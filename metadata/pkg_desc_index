@@ -8,7 +8,7 @@ app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, inclu
 app-crypt/gpgme 1.9.0_pre: GnuPG Made Easy is a library for making GnuPG easier to use
 app-crypt/libu2f-host 1.1.4_pre: Yubico Universal 2nd Factor (U2F) Host C Library
 app-crypt/nitrokey-app 1.1_pre 1.2_beta2_pre: Cross platform personalization tool for the Nitrokey
-app-crypt/p11-kit 0.23.8_pre: Provides a standard configuration setup for installing PKCS#11
+app-crypt/p11-kit 0.23.8_pre 0.23.9_pre: Provides a standard configuration setup for installing PKCS#11
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
 app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
@@ -43,6 +43,7 @@ dev-libs/liborcus 0.13.0_pre: Standalone file import filter library for spreadsh
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.0.2l 1.1.0f: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/wayland-protocols 1.11_pre: Wayland protocol files
+dev-libs/xapian 1.4.5_pre: Xapian Probabilistic Information Retrieval library
 dev-libs/xmlsec 1.2.25_pre: Command line tool for signing, verifying, encrypting and decrypting XML
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
@@ -52,7 +53,7 @@ dev-scheme/guile 2.2.0_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.65.1_pre: A system for large project software construction, simple to use and powerful
 dev-util/cloc 1.74_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
-dev-util/itstool 2.0.3_pre: Translation tool for XML documents that uses gettext files and ITS rules
+dev-util/itstool 2.0.3_pre 2.0.4_pre: Translation tool for XML documents that uses gettext files and ITS rules
 dev-util/meld 3.18.0_pre: A graphical diff and merge tool
 dev-util/scons 3.0.0_pre: Extensible Python-based build utility
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
@@ -123,7 +124,7 @@ media-sound/qamix 0.0.7e_pre: QAMix is a configurable mixer for ALSA. Interfaces
 media-sound/scdl 1.3.3_beta1 9999: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2: Download files from the public broadcasting services
-media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.10.0: Great Qt GUI front-end for mplayer/mpv
+media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.10.0 17.10.2: Great Qt GUI front-end for mplayer/mpv
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
 net-analyzer/arpalert 1.0.3_pre 1.1.3_pre 2.0.11_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/medusa 2.1.1 2.2: A Modular,Parallel,Multiprotocol, Network Login Auditor
