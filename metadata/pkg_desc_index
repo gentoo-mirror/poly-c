@@ -43,7 +43,6 @@ dev-libs/libnitrokey 3.0_pre: Communicate with Nitrokey stick devices in a clean
 dev-libs/liborcus 0.13.0_pre: Standalone file import filter library for spreadsheet documents
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.0.2l 1.1.0f: full-strength general purpose cryptography library (including SSL and TLS)
-dev-libs/xapian 1.4.5_pre: Xapian Probabilistic Information Retrieval library
 dev-libs/xmlsec 1.2.25_pre: Command line tool for signing, verifying, encrypting and decrypting XML
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
@@ -190,7 +189,7 @@ sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-power/cpupower 4.1.41 4.1.42 4.1.43 4.4.91 4.4.92 4.4.93 4.9.54 4.9.56 4.9.57: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
-x11-apps/xinit 1.3.3-r1 1.3.4 1.3.4-r1: X Window System initializer
+x11-apps/xinit 1.3.4-r2: X Window System initializer
 x11-libs/cairo 1.15.6_pre 1.15.8_pre: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices

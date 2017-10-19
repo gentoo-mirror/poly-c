@@ -1,6 +1,5 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ee3430fb0419163e7b09cf800649ed47dd5cf6bb $
 
 EAPI=5
 
@@ -9,14 +8,14 @@ inherit xorg-2
 DESCRIPTION="X Window System initializer"
 
 LICENSE="${LICENSE} GPL-2"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
-IUSE="+minimal"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
+IUSE="+minimal systemd"
 
 RDEPEND="
+	!systemd? ( sys-apps/openrc )
 	!<x11-base/xorg-server-1.8.0
 	x11-apps/xauth
 	x11-libs/libX11
-	sys-apps/openrc
 "
 DEPEND="${RDEPEND}"
 PDEPEND="x11-apps/xrdb
@@ -31,6 +30,14 @@ PDEPEND="x11-apps/xrdb
 PATCHES=(
 	"${FILESDIR}/${PN}-1.3.3-gentoo-customizations.patch"
 )
+
+src_prepare() {
+	# this patch breaks startx on non-systemd systems, bug #526802
+	if use !systemd; then
+		PATCHES+=( "${FILESDIR}"/${PN}-1.3.4-startx-current-vt.patch )
+	fi
+	xorg-2_src_prepare
+}
 
 src_configure() {
 	XORG_CONFIGURE_OPTIONS=(
