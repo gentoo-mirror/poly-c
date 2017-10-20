@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 303da0e8c8234199584ae8e83efd2b7708e4390b $
+# $Id: da57da47573136954dc9130bf777c2aef8841585 $
 
 EAPI=6
 
@@ -15,8 +15,11 @@ SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~x64-cygwin ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="mpfr nls readline"
 
-RDEPEND="mpfr? ( dev-libs/mpfr:0= )
-	readline? ( sys-libs/readline:0= )"
+RDEPEND="
+	dev-libs/gmp:0=
+	mpfr? ( dev-libs/mpfr:0= )
+	readline? ( sys-libs/readline:0= )
+"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
