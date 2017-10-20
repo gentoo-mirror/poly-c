@@ -108,9 +108,14 @@ if ${IS_POLYC_EBUILD} ; then
 fi
 
 if grep -Fq FILESDIR ${SOURCE_EBUILD} && [[ "${TARGET_DIR}" != "${SOURCE_EBUILD%/*}" ]] ; then
+	# Make sure to catch as many files from FILESDIR as possible even if
+	# there are given multiple files per line (that's what the "tr" call is for).
+	# The script cannot reliably process $() shell constructs so they get excluded.
 	AUX_FILES=( $(\
 		grep -F FILESDIR "${SOURCE_EBUILD}" \
 			| grep -Ev '^[[:space:]]*#|\$\(' \
+			| tr '[:space:]' '\n' \
+			| grep -F FILESDIR \
 			| sed \
 				-e 's@.*FILESDIR["}/]*\([[:alnum:]\${}/\.,_-]\+\).*@\1@' \
 				-e "s@\${PN}@$(qatom -F '%{PN}' ${PACKAGE})@g" \
