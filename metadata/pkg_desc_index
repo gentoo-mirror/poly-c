@@ -170,6 +170,7 @@ sys-apps/iproute2 4.4.0 4.5.0 4.6.0 4.7.0 4.8.0 4.9.0 4.10.0 4.11.0 4.12.0 4.13.
 sys-apps/kbd 1.15.5-r1 2.0.3: Keyboard and console utilities
 sys-apps/kmod 23 24: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
+sys-apps/less 521_pre: Excellent text file viewer
 sys-apps/man 1.6g: Standard commands to read man pages
 sys-apps/openrc 0.21.4: OpenRC manages the services, startup and shutdown of a host
 sys-apps/usb_modeswitch 2.5.0_pre 2.5.1_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
@@ -192,6 +193,7 @@ sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities 
 x11-apps/xinit 1.3.4-r3: X Window System initializer
 x11-libs/cairo 1.15.6_pre 1.15.8_pre: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
+x11-libs/libva 2.0.0_pre: Video Acceleration (VA) API for Linux
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-themes/sddm-gentoo-black-theme 1.0 9999: Simple SDDM theme inspired on FBSD SLiM theme
