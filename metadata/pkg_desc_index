@@ -37,7 +37,6 @@ dev-java/openjfx 8.9999: Open source JavaFX
 dev-libs/boost 1.65.1_pre: Boost Libraries for C++
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
-dev-libs/libinput 1.9.0_pre: Library to handle input devices in Wayland
 dev-libs/libixion 0.13.0_pre: General purpose formula parser & interpreter
 dev-libs/libnitrokey 3.0_pre: Communicate with Nitrokey stick devices in a clean and easy manner
 dev-libs/liborcus 0.13.0_pre: Standalone file import filter library for spreadsheet documents
@@ -187,6 +186,7 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
+sys-libs/timezone-data 2017c_pre: Timezone data (/usr/share/zoneinfo) and utilities (tzselect/zic/zdump)
 sys-power/cpupower 4.1.41 4.1.42 4.1.43 4.4.92 4.4.93 4.4.94 4.9.56 4.9.57 4.9.58: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
