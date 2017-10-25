@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: da57da47573136954dc9130bf777c2aef8841585 $
+# $Id: 231bcb851dcf000681ed252153445a6f5888841d $
 
 EAPI=6
 
@@ -39,7 +39,8 @@ src_prepare() {
 	# fix standards conflict on Solaris
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		sed -i \
-			-e '/\<_XOPEN_SOURCE\>/s/$/600/' \
+			-e '/\<_XOPEN_SOURCE\>/s/1$/600/' \
+			-e '/\<_XOPEN_SOURCE_EXTENDED\>/s/1//' \
 			extension/inplace.c || die
 	fi
 }
