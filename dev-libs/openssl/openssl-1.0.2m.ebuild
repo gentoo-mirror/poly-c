@@ -57,6 +57,7 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-1.0.1p-default-source.patch #554338
 		epatch "${FILESDIR}"/${PN}-1.0.2g-disable_ssl3_tests.patch
 		epatch "${FILESDIR}"/${PN}-1.0.2g-soversion.patch
+		epatch "${FILESDIR}"/${PN}-1.0.2m-no_ssl3.patch
 
 		epatch_user #332661
 	fi
