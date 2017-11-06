@@ -80,7 +80,6 @@ if ${IS_POLYC_EBUILD} ; then
 	sed \
 		-e "/FILESDIR/s@\${PV}@$(qatom -F '%{PV}' ${PACKAGE})@" \
 		-e "/FILESDIR/s@\${P}@\${PN}-$(qatom -F '%{PV}' ${PACKAGE})@" \
-		-e 's@MY_PV@REAL_PV@;s@MY_P@REAL_P@g' \
 		-e 's@${PV}@${MY_PV}@g;s@${P}@${MY_P}@g' \
 		-e 's@${PV/@${MY_PV/@g;s@${P/@${MY_P/@g' \
 		-e 's@${PV%@${MY_PV%@g;s@${P%@${MY_P%@g' \
@@ -108,6 +107,10 @@ if ${IS_POLYC_EBUILD} ; then
 fi
 
 if grep -Fq FILESDIR ${SOURCE_EBUILD} && [[ "${TARGET_DIR}" != "${SOURCE_EBUILD%/*}" ]] ; then
+	sed \
+		-e 's@MY_PV@REAL_PV@;s@MY_P@REAL_P@g' \
+		-i "${TARGET_EBUILD}" || exit 18
+
 	# Make sure to catch as many files from FILESDIR as possible even if
 	# there are given multiple files per line (that's what the "tr" call is for).
 	# The script cannot reliably process $() shell constructs so they get excluded.

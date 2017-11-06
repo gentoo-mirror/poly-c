@@ -22,7 +22,7 @@ app-office/libreoffice-l10n 5.4.3.1_pre: Translations for the Libreoffice suite
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/calibre 3.9.0_pre: Ebook management application
+app-text/calibre 3.9.0_pre 3.11.1_pre: Ebook management application
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
 app-text/po4a 0.47_pre 0.51_pre 0.52_pre: Tools for helping translation of documentation
 dev-cpp/cppcodec 0_p20171013: Header-only C++11 library to encode/decode base64, base64url, base32, base32hex and hex
@@ -184,7 +184,7 @@ sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management 
 sys-boot/grub 2.02: GNU GRUB boot loader
 sys-fs/fuse 3.0.2: An interface for filesystems implemented in userspace
 sys-fs/fuse-common-files 3.0.2: Config files, init scripts and other common files for fuse package
-sys-fs/lvm2 2.02.174_pre: User-land utilities for LVM2 (device-mapper) software
+sys-fs/lvm2 2.02.174_pre 2.02.176_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 233 234-r1 235: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
