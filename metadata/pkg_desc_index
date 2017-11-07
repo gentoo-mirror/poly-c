@@ -41,7 +41,6 @@ dev-java/openjfx 8.9999: Open source JavaFX
 dev-libs/boost 1.65.1_pre: Boost Libraries for C++
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
-dev-libs/libinput 1.9.1_pre: Library to handle input devices in Wayland
 dev-libs/libixion 0.13.0_pre: General purpose formula parser & interpreter
 dev-libs/libnitrokey 3.0_pre: Communicate with Nitrokey stick devices in a clean and easy manner
 dev-libs/liborcus 0.13.0_pre: Standalone file import filter library for spreadsheet documents
