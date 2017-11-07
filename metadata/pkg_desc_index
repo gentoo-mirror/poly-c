@@ -5,6 +5,7 @@ app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a log
 app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
+app-crypt/gnupg 2.2.2_pre: The GNU Privacy Guard, a GPL OpenPGP implementation
 app-crypt/gpgme 1.9.0_pre: GnuPG Made Easy is a library for making GnuPG easier to use
 app-crypt/libu2f-host 1.1.4_pre: Yubico Universal 2nd Factor (U2F) Host C Library
 app-crypt/nitrokey-app 1.1_pre 1.2_beta2_pre 1.2_beta3_pre: Cross platform personalization tool for the Nitrokey
@@ -93,6 +94,7 @@ media-libs/libbpg 0.9.6_pre 0.9.7_pre: BPG (Better Portable Graphics) is a new i
 media-libs/libdvbpsi 1.3.1_pre: library for MPEG TS/DVB PSI tables decoding and generation
 media-libs/libdvdcss 1.3.99 1.4.0: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1: Libshout-idjc is libshout plus some extensions for IDJC
+media-libs/libvisio 0.1.6_pre: Library parsing the visio documents
 media-plugins/gst-plugins-a52dec 1.12.3_pre: plugin for gstreamer
 media-plugins/gst-plugins-cdparanoia 1.12.3_pre: plugin for gstreamer
 media-plugins/gst-plugins-dts 1.12.3_pre: GStreamer plugin for MPEG-1/2 video encoding
@@ -188,6 +190,7 @@ sys-fs/fuse-common-files 3.0.2: Config files, init scripts and other common file
 sys-fs/lvm2 2.02.174_pre 2.02.176_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 233 234-r1 235: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
+sys-kernel/dracut 046_pre: Generic initramfs generation tool
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
@@ -198,6 +201,7 @@ x11-apps/xinit 1.3.4-r3: X Window System initializer
 x11-libs/cairo 1.15.6_pre 1.15.8_pre: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-libs/libva 2.0.0_pre: Video Acceleration (VA) API for Linux
+x11-libs/pango 1.40.13_pre: Internationalized text layout and rendering library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-themes/sddm-gentoo-black-theme 1.0 9999: Simple SDDM theme inspired on FBSD SLiM theme
