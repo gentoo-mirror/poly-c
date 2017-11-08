@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 6e98919fcb8889d85173a920b32f12e5c0e3121a $
+# $Id: f5183edd194127c9c5d69ca0441006f72a0c917c $
 
 EAPI=6
 
@@ -10,8 +10,8 @@ VIRTUALX_REQUIRED="test"
 inherit kde5 qmake-utils
 
 DESCRIPTION="KDE Plasma workspace"
-KEYWORDS="amd64 ~arm ~arm64 x86"
-IUSE="+calendar geolocation gps prison qalculate +semantic-desktop wayland"
+KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+IUSE="appstream +calendar geolocation gps prison qalculate +semantic-desktop systemd wayland"
 
 REQUIRED_USE="gps? ( geolocation )"
 
@@ -50,7 +50,6 @@ COMMON_DEPEND="
 	$(add_frameworks_dep kwidgetsaddons)
 	$(add_frameworks_dep kwindowsystem)
 	$(add_frameworks_dep kxmlgui)
-	$(add_frameworks_dep kxmlrpcclient)
 	$(add_frameworks_dep plasma)
 	$(add_frameworks_dep solid)
 	$(add_plasma_dep kscreenlocker)
@@ -77,6 +76,7 @@ COMMON_DEPEND="
 	x11-libs/libXtst
 	x11-libs/xcb-util
 	x11-libs/xcb-util-image
+	appstream? ( dev-libs/appstream[qt5] )
 	calendar? ( $(add_kdeapps_dep kholidays) )
 	geolocation? ( $(add_frameworks_dep networkmanager-qt) )
 	gps? ( sci-geosciences/gpsd )
@@ -84,6 +84,7 @@ COMMON_DEPEND="
 	qalculate? ( sci-libs/libqalculate:= )
 	semantic-desktop? ( $(add_frameworks_dep baloo) )
 	wayland? ( $(add_frameworks_dep kwayland) )
+
 "
 RDEPEND="${COMMON_DEPEND}
 	$(add_frameworks_dep kded)
@@ -104,6 +105,8 @@ RDEPEND="${COMMON_DEPEND}
 	x11-apps/xrdb
 	x11-apps/xset
 	x11-apps/xsetroot
+	systemd? ( sys-apps/dbus[user-session] )
+	!systemd? ( sys-apps/dbus )
 	!dev-libs/xembed-sni-proxy
 	!kde-plasma/freespacenotifier:4
 	!kde-plasma/libtaskmanager:4
@@ -123,9 +126,7 @@ DEPEND="${COMMON_DEPEND}
 PATCHES=(
 	"${FILESDIR}/${PN}-5.4-startkde-script.patch"
 	"${FILESDIR}/${PN}-5.10-startplasmacompositor-script.patch"
-	"${FILESDIR}/${P}-ghns-https.patch"
-	"${FILESDIR}/${P}-notifications.patch"
-	"${FILESDIR}/${P}-unused-dep.patch"
+	"${FILESDIR}/${PN}-5.10.4-unused-dep.patch"
 )
 
 RESTRICT+=" test"
@@ -139,6 +140,7 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
+		$(cmake-utils_use_find_package appstream AppStreamQt)
 		$(cmake-utils_use_find_package calendar KF5Holidays)
 		$(cmake-utils_use_find_package geolocation KF5NetworkManagerQt)
 		$(cmake-utils_use_find_package prison KF5Prison)
