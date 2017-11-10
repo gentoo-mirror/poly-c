@@ -72,6 +72,7 @@ kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
 kde-apps/kgpg 9999: Frontend for GnuPG, a powerful encryption utility by KDE
 kde-apps/konqueror 17.04.2: Web browser and file manager based on KDE Frameworks
+kde-apps/okular 17.08.3: Universal document viewer based on KDE Frameworks
 kde-misc/kaption 0.1.1: A KDE utility similar to Jing or Skitch not yet as powerful as them
 kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
 kde-plasma/plasma-desktop 5.8.4 5.8.5 5.8.5-r1: KDE Plasma desktop
