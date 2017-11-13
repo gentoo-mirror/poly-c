@@ -2,10 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 #
-# poly-c_gtk.eclass: eclass for some special gnome ebuilds.
-# eclass testes with dev-libs/vala-common dev-libs/gobject-introspection-common
+# polyc_gtk.eclass: eclass for all gtk ebuilds and their dependencies created by me, Polynomial-C
+# eclass testes with dev-libs/atk x11-libs/pango =x11-libs/gtk+-2.8*
 
 inherit poly-c_ebuilds
 
-SRC_URI="mirror://gnome/sources/${GNOME_ORG_MODULE}/${GNOME_ORG_PVP}/${GNOME_ORG_MODULE}-${MY_PV}.tar.${GNOME_TARBALL_SUFFIX}"
+MY_PVP=(${MY_PV//[-\._]/ })
+SRC_URI="mirror://gnome/sources/${GNOME_ORG_MODULE}/${MY_PVP[0]}.${MY_PVP[1]}/${GNOME_ORG_MODULE}-${MY_PV}.tar.${GNOME_TARBALL_SUFFIX}"
 S="${WORKDIR}/${GNOME_ORG_MODULE}-${MY_PV}"
