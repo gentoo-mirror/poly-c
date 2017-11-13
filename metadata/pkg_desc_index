@@ -39,6 +39,7 @@ dev-java/openjfx 8.9999: Open source JavaFX
 dev-libs/boost 1.65.1_pre: Boost Libraries for C++
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
+dev-libs/glib 2.54.2_pre: The GLib library of C routines
 dev-libs/libnitrokey 3.0_pre: Communicate with Nitrokey stick devices in a clean and easy manner
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.0.2l 1.0.2m 1.1.0f 1.1.0g: full-strength general purpose cryptography library (including SSL and TLS)
@@ -51,6 +52,7 @@ dev-scheme/guile 2.2.0_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.65.1_pre: A system for large project software construction, simple to use and powerful
 dev-util/cloc 1.74_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
+dev-util/gdbus-codegen 2.54.2_pre: GDBus code and documentation generator
 dev-util/itstool 2.0.3_pre 2.0.4_pre: Translation tool for XML documents that uses gettext files and ITS rules
 dev-util/mdds 1.3.0_pre: A collection of multi-dimensional data structure and indexing algorithm
 dev-util/meld 3.18.0_pre: A graphical diff and merge tool
@@ -78,7 +80,7 @@ lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r8 3.4.1-r11: An extensible mail filter which can identify and tag spam
 media-gfx/icoutils 0.32.0_pre: A set of programs for extracting and converting images in icon and cursor files (.ico, .cur)
 media-gfx/krita 3.3.0_pre: Free digital painting application. Digital Painting, Creative Freedom!
-media-libs/babl 0.1.32_pre: A dynamic, any to any, pixel format conversion library
+media-libs/babl 0.1.32_pre 0.1.36_pre: A dynamic, any to any, pixel format conversion library
 media-libs/gegl 0.3.22_pre: A graph based image processing framework
 media-libs/gst-plugins-bad 1.12.3_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.12.3_pre: Basepack of plugins for gstreamer
@@ -194,6 +196,7 @@ sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities 
 x11-apps/xinit 1.3.4-r3: X Window System initializer
 x11-libs/cairo 1.15.6_pre 1.15.8_pre: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
+x11-libs/gtk+ 3.22.26_pre: Gimp ToolKit +
 x11-libs/libva 2.0.0_pre: Video Acceleration (VA) API for Linux
 x11-libs/pango 1.40.13_pre: Internationalized text layout and rendering library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
