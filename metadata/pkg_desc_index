@@ -10,7 +10,6 @@ app-crypt/gnupg 2.2.2_pre: The GNU Privacy Guard, a GPL OpenPGP implementation
 app-crypt/gpgme 1.9.0_pre: GnuPG Made Easy is a library for making GnuPG easier to use
 app-crypt/libu2f-host 1.1.4_pre: Yubico Universal 2nd Factor (U2F) Host C Library
 app-crypt/nitrokey-app 1.1_pre 1.2_beta2_pre 1.2_beta3_pre: Cross platform personalization tool for the Nitrokey
-app-crypt/p11-kit 0.23.8_pre 0.23.9_pre: Provides a standard configuration setup for installing PKCS#11
 app-crypt/qca 2.1.0.3 2.1.1: Qt Cryptographic Architecture (QCA)
 app-emulation/fs-uae 2.3.17: a multi-platform Amiga emulator
 app-emulation/fs-uae-launcher 2.3.17: WxPython launcher for FS-UAE
@@ -113,7 +112,7 @@ media-plugins/gst-plugins-vpx 1.12.3_pre: GStreamer decoder for vpx video format
 media-plugins/gst-plugins-x264 1.12.3_pre: plugin for gstreamer
 media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
-media-sound/alsa-utils 1.1.2 1.1.3 1.1.4-r1: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
+media-sound/alsa-utils 1.1.2 1.1.3 1.1.4-r1 1.1.5: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
 media-sound/ameter 0.44_pre: Ameter is an Alsa meter plugin
 media-sound/clementine 1.3.1-r5 1.3.1-r6: A modern music player and library organizer based on Amarok 1.4 and Qt4
 media-sound/cutmp3 2.1.2_pre 3.0_pre 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
@@ -191,7 +190,7 @@ sys-kernel/dracut 046_pre: Generic initramfs generation tool
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.1.41 4.1.42 4.1.43 4.4.95 4.4.96 4.4.97 4.9.59 4.9.60 4.9.61 4.14: Shows and sets processor power related values
+sys-power/cpupower 4.1.41 4.1.42 4.1.43 4.4.96 4.4.97 4.4.98 4.9.60 4.9.61 4.9.62 4.14: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.4-r3: X Window System initializer
