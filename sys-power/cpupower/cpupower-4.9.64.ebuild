@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 inherit eutils multilib toolchain-funcs
 
 DESCRIPTION="Shows and sets processor power related values"
@@ -51,6 +51,7 @@ src_unpack() {
 }
 
 src_prepare() {
+	default
 	# -Wl,--as-needed compat
 	local libs="-lcpupower -lrt $($(tc-getPKG_CONFIG) --libs-only-l libpci)"
 	sed -i \
