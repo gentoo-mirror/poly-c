@@ -6,7 +6,7 @@ app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a log
 app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
-app-crypt/gnupg 2.2.2_pre: The GNU Privacy Guard, a GPL OpenPGP implementation
+app-crypt/gnupg 2.2.2_pre 2.2.3_pre: The GNU Privacy Guard, a GPL OpenPGP implementation
 app-crypt/gpgme 1.9.0_pre: GnuPG Made Easy is a library for making GnuPG easier to use
 app-crypt/libu2f-host 1.1.4_pre: Yubico Universal 2nd Factor (U2F) Host C Library
 app-crypt/nitrokey-app 1.1_pre 1.2_beta2_pre 1.2_beta3_pre: Cross platform personalization tool for the Nitrokey
@@ -40,6 +40,7 @@ dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/glib 2.54.2_pre: The GLib library of C routines
 dev-libs/libnitrokey 3.0_pre: Communicate with Nitrokey stick devices in a clean and easy manner
+dev-libs/nettle 3.4_pre: Low-level cryptographic library
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.0.2l 1.0.2m 1.1.0f 1.1.0g: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/xmlsec 1.2.25_pre: Command line tool for signing, verifying, encrypting and decrypting XML
@@ -186,7 +187,6 @@ sys-fs/fuse-common-files 3.0.2: Config files, init scripts and other common file
 sys-fs/lvm2 2.02.174_pre 2.02.176_pre: User-land utilities for LVM2 (device-mapper) software
 sys-fs/udev 216 225-r1 233 234-r1 235: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
-sys-kernel/dracut 046_pre: Generic initramfs generation tool
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
