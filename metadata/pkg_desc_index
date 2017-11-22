@@ -198,7 +198,7 @@ x11-libs/cairo 1.15.6_pre 1.15.8_pre: A vector graphics library with cross-devic
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-libs/gtk+ 3.22.26_pre: Gimp ToolKit +
 x11-libs/libva 2.0.0_pre: Video Acceleration (VA) API for Linux
-x11-libs/pango 1.40.13_pre: Internationalized text layout and rendering library
+x11-libs/pango 1.40.13_pre 1.40.14_pre: Internationalized text layout and rendering library
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-themes/sddm-gentoo-black-theme 1.0 9999: Simple SDDM theme inspired on FBSD SLiM theme

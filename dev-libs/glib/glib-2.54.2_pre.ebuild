@@ -126,6 +126,8 @@ src_prepare() {
 	sed -e '/${PYTHON}/d' \
 		-i glib/Makefile.{am,in} || die
 
+	sed 's:@PYTHON@:python:' -i gobject/glib-{genmarshal,mkenums}.in || die
+
 	# Also needed to prevent cross-compile failures, see bug #267603
 	eautoreconf
 
