@@ -125,7 +125,7 @@ media-sound/qamix 0.0.7e_pre: QAMix is a configurable mixer for ALSA. Interfaces
 media-sound/scdl 1.3.3_beta1 9999: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2: Download files from the public broadcasting services
-media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.10.2 17.11.0 17.11.2: Great Qt GUI front-end for mplayer/mpv
+media-video/smplayer 16.4.0-r2 16.9.0 16.11.0 17.11.0 17.11.2: Great Qt GUI front-end for mplayer/mpv
 media-video/transcoder 0.0.6: Transcoder is a video converter for Linux using GTK+ as GUI toolkit and ffmpeg as backend.
 net-analyzer/arpalert 1.0.3_pre 1.1.3_pre 2.0.11_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/medusa 2.1.1 2.2: A Modular,Parallel,Multiprotocol, Network Login Auditor
