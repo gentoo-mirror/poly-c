@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2ffe2cd61eb422e717f7b2bee8ce533d9d6ab0b7 $
+# $Id: d86355ef13538053b77ff1f33ddcf524b3b65c94 $
 
 EAPI=5
 
@@ -16,7 +16,7 @@ SRC_URI="http://bani.anime.net/etpro/etpro-${PV//./_}.zip
 	http://www.enemyterritory.sk/files/etpro-${PV//./_}.zip"
 
 LICENSE="all-rights-reserved"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="dedicated opengl"
 
 QA_PREBUILT="${INS_DIR:1}/${MOD_DIR}/*so"

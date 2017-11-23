@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 3443e720d9298e4f15370ab0a330e22bb3d28559 $
+# $Id: dd3511a17bc08f1a90bfaf244a18069963c750f7 $
 
 EAPI=5
 
@@ -24,7 +24,7 @@ IUSE="atm berkdb +iptables ipv6 minimal selinux"
 # We could make libmnl optional, but it's tiny, so eh
 RDEPEND="
 	!net-misc/arpd
-	!minimal? ( net-libs/libmnl )
+	!minimal? ( net-libs/libmnl virtual/libelf )
 	iptables? ( >=net-firewall/iptables-1.4.20:= )
 	berkdb? ( sys-libs/db:= )
 	atm? ( net-dialup/linux-atm )
@@ -104,6 +104,7 @@ src_configure() {
 	TC_CONFIG_IPSET := y
 	HAVE_BERKELEY_DB := $(usex berkdb y n)
 	HAVE_MNL      := $(usex minimal n y)
+	HAVE_ELF      := $(usex minimal n y)
 	HAVE_SELINUX  := $(usex selinux y n)
 	IP_CONFIG_SETNS := ${setns}
 	# Use correct iptables dir, #144265 #293709

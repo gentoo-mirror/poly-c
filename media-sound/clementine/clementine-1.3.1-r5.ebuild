@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0edd5356ffe9bb8a611f0e62d299857a6375c2d2 $
+# $Id: 88c6a2096dc26a403fbd4a141b8da0f7f6cb2f84 $
 
 EAPI=6
 
@@ -11,8 +11,8 @@ LANGS=" af ar be bg bn br bs ca cs cy da de el en_CA en_GB eo es et eu fa fi fr 
 inherit cmake-utils flag-o-matic xdg-utils gnome2-utils virtualx
 [[ ${PV} == *9999* ]] && inherit git-r3
 
-DESCRIPTION="A modern music player and library organizer based on Amarok 1.4 and Qt4"
-HOMEPAGE="http://www.clementine-player.org https://github.com/clementine-player/Clementine"
+DESCRIPTION="Modern music player and library organizer based on Amarok 1.4 and Qt"
+HOMEPAGE="https://www.clementine-player.org https://github.com/clementine-player/Clementine"
 [[ ${PV} == *9999* ]] || \
 SRC_URI="https://github.com/clementine-player/Clementine/archive/${PV/_}.tar.gz -> ${P}.tar.gz"
 
