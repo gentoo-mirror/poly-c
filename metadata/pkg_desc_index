@@ -16,7 +16,7 @@ app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
 app-laptop/i8kutils 1.43_pre: Dell Inspiron and Latitude utilities
 app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
-app-misc/mc 4.8.15 4.8.18-r1 4.8.19: GNU Midnight Commander is a text based file manager
+app-misc/mc 4.8.15 4.8.18-r1 4.8.19 4.8.20: GNU Midnight Commander is a text based file manager
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
@@ -80,7 +80,7 @@ mail-filter/spamassassin 3.4.1-r8 3.4.1-r11: An extensible mail filter which can
 media-gfx/icoutils 0.32.0_pre: A set of programs for extracting and converting images in icon and cursor files (.ico, .cur)
 media-gfx/krita 3.3.0_pre: Free digital painting application. Digital Painting, Creative Freedom!
 media-libs/babl 0.1.32_pre 0.1.36_pre: A dynamic, any to any, pixel format conversion library
-media-libs/gegl 0.3.22_pre: A graph based image processing framework
+media-libs/gegl 0.3.22_pre 0.3.24_pre: A graph based image processing framework
 media-libs/gst-plugins-bad 1.12.3_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.12.3_pre: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.12.3_pre: Basepack of plugins for GStreamer
