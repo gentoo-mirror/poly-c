@@ -147,7 +147,6 @@ net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC
 net-libs/webkit-gtk 2.4.11-r200: Open source web browser engine
 net-misc/dropbear 2017.75_pre: small SSH 2 client/server designed for small memory environments
 net-misc/icecast 2.5_beta1: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
-net-misc/networkmanager 1.4.4-r1 1.10.0_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.26: A discrete-event network simulator for Internet systems.
 net-misc/openntpd 6.2_p2_pre: Lightweight NTP server ported from OpenBSD
 net-misc/putty 0.69 0.70: A Free Telnet/SSH Client
@@ -203,4 +202,3 @@ x11-libs/pango 1.40.13_pre 1.40.14_pre: Internationalized text layout and render
 x11-misc/colord 1.3.5_pre: System service to accurately color manage input and output devices
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-themes/sddm-gentoo-black-theme 1.0 9999: Simple SDDM theme inspired on FBSD SLiM theme
-x11-wm/afterstep 2.2.12: A feature rich NeXTish window manager

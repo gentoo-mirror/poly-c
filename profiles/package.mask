@@ -47,5 +47,6 @@ dev-java/openjfx
 # Broken revdeps
 =x11-libs/libva-2.0.0_pre
 
-# Something broken with python
-=net-misc/networkmanager-1.10.0_pre
+# Breaks various packages
+=dev-libs/glib-2.54.2_pre
+=dev-util/gdbus-codegen-2.54.2_pre

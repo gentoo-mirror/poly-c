@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 42721a9c071e49ea2faf3201e11891eb56da93ff $
+# $Id: 037b20ed17d3842bbaa4aefc3f768a789b291e6d $
 
 EAPI="5"
 
@@ -32,7 +32,7 @@ RDEPEND="!net-misc/arpd
 DEPEND="${RDEPEND}
 	app-arch/xz-utils
 	iptables? ( virtual/pkgconfig )
-	sys-devel/bison
+	>=sys-devel/bison-2.4
 	sys-devel/flex
 	>=sys-kernel/linux-headers-3.16
 	elibc_glibc? ( >=sys-libs/glibc-2.7 )"
@@ -51,7 +51,7 @@ src_prepare() {
 	epatch "${PATCHES[@]}"
 
 	sed -i \
-		-e '/^CC :=/d' \
+		-e '/^CC :\?=/d' \
 		-e "/^LIBDIR/s:=.*:=/$(get_libdir):" \
 		-e "s:-O2:${CFLAGS} ${CPPFLAGS}:" \
 		-e "/^HOSTCC/s:=.*:= $(tc-getBUILD_CC):" \

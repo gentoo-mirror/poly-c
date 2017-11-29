@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 898a3f4b5aa3159fe6d562ac1d5e201b7f230c3d $
+# $Id: 53f669c34617e5b6cdf941c271976f6f951ec42f $
 
 EAPI=6
 
@@ -35,7 +35,7 @@ DEPEND="
 	${RDEPEND}
 	app-arch/xz-utils
 	iptables? ( virtual/pkgconfig )
-	sys-devel/bison
+	>=sys-devel/bison-2.4
 	sys-devel/flex
 	>=sys-kernel/linux-headers-3.16
 	elibc_glibc? ( >=sys-libs/glibc-2.7 )
@@ -63,7 +63,7 @@ src_prepare() {
 	default
 
 	sed -i \
-		-e '/^CC :=/d' \
+		-e '/^CC :\?=/d' \
 		-e "/^LIBDIR/s:=.*:=/$(get_libdir):" \
 		-e "s:-O2:${CFLAGS} ${CPPFLAGS}:" \
 		-e "/^HOSTCC/s:=.*:= $(tc-getBUILD_CC):" \
