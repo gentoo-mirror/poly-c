@@ -17,9 +17,6 @@ dev-libs/ewahboolarray
 # Missing dependencies
 media-radio/liquidsoap
 
-# Not all dependencies available yet.
->=media-plugins/gst-plugins-meta-1.9.0
-
 # Breaks nearly every reverse dependency
 =dev-libs/openssl-1.1*
 
