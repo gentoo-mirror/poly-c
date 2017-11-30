@@ -1,21 +1,20 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2aebc31b509c2b2159b5cd4045901d9197ce4497 $
 
 EAPI=6
 PYTHON_COMPAT=( python2_7 )
-inherit python-any-r1 qt5-build
+inherit multiprocessing pax-utils python-any-r1 qt5-build
 
 DESCRIPTION="Library for rendering dynamic web content in Qt5 C++ and QML applications"
 
 if [[ ${QT5_BUILD_TYPE} == release ]]; then
-	KEYWORDS="amd64 x86"
+	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 fi
 
-IUSE="bindist geolocation +system-ffmpeg +system-icu widgets"
+IUSE="alsa bindist geolocation pax_kernel pulseaudio +system-ffmpeg +system-icu widgets"
 
 RDEPEND="
-	app-arch/snappy
+	app-arch/snappy:=
 	dev-libs/glib:2
 	dev-libs/nspr
 	dev-libs/nss
@@ -23,28 +22,28 @@ RDEPEND="
 	~dev-qt/qtdeclarative-${PV}
 	~dev-qt/qtgui-${PV}
 	~dev-qt/qtnetwork-${PV}
+	~dev-qt/qtprintsupport-${PV}
 	~dev-qt/qtwebchannel-${PV}[qml]
 	dev-libs/expat
-	dev-libs/jsoncpp:=
 	dev-libs/libevent:=
 	dev-libs/libxml2
 	dev-libs/libxslt
-	media-libs/alsa-lib
-	media-libs/flac
+	dev-libs/protobuf:=
 	media-libs/fontconfig
 	media-libs/freetype
 	media-libs/harfbuzz:=
 	media-libs/libpng:0=
-	>=media-libs/libvpx-1.4:=
+	>=media-libs/libvpx-1.5:=[svc]
 	media-libs/libwebp:=
 	media-libs/mesa
 	media-libs/opus
-	media-libs/speex
-	net-libs/libsrtp:=
+	net-libs/libsrtp:0=
 	sys-apps/dbus
 	sys-apps/pciutils
 	sys-libs/libcap
 	sys-libs/zlib[minizip]
+	virtual/jpeg:0
+	virtual/libudev
 	x11-libs/libdrm
 	x11-libs/libX11
 	x11-libs/libXcomposite
@@ -57,27 +56,41 @@ RDEPEND="
 	x11-libs/libXrender
 	x11-libs/libXScrnSaver
 	x11-libs/libXtst
+	alsa? ( media-libs/alsa-lib )
 	geolocation? ( ~dev-qt/qtpositioning-${PV} )
-	system-ffmpeg? ( >=media-video/ffmpeg-2.8.7:0= )
+	pulseaudio? ( media-sound/pulseaudio:= )
+	system-ffmpeg? ( media-video/ffmpeg:0= )
 	system-icu? ( dev-libs/icu:= )
 	widgets? ( ~dev-qt/qtwidgets-${PV} )
 "
 DEPEND="${RDEPEND}
 	${PYTHON_DEPS}
+	>=app-arch/gzip-1.7
 	dev-util/gperf
 	dev-util/ninja
 	dev-util/re2c
 	sys-devel/bison
+	pax_kernel? ( sys-apps/elfix )
 "
 
 src_prepare() {
-	pushd src/3rdparty &>/dev/null || die
-	eapply "${FILESDIR}/${P}-ffmpeg3.patch"
-	popd &>/dev/null || die
+	use pax_kernel && PATCHES+=( "${FILESDIR}/${PN}-5.9.0-paxmark-mksnapshot.patch" )
+
+	# bug 620444 - ensure local headers are used
+	find "${S}" -type f -name "*.pr[fio]" | xargs sed -i -e 's|INCLUDEPATH += |&$$QTWEBENGINE_ROOT/include |' || die
+
+	# build against icu-60 (#639220)
+	sed '/#if U_ICU_VERSION_MAJOR_NUM/s@60@61@' \
+		-i src/3rdparty/chromium/components/url_formatter/url_formatter.cc \
+		|| die
+
+	qt_use_disable_config alsa alsa src/core/config/linux.pri
+	qt_use_disable_config pulseaudio pulseaudio src/core/config/linux.pri
 
 	qt_use_disable_mod geolocation positioning \
-		src/core/core_common.pri \
-		src/core/core_gyp_generator.pro
+		mkspecs/features/configure.prf \
+		src/core/core_chromium.pri \
+		src/core/core_common.pri
 
 	qt_use_disable_mod widgets widgets src/src.pro
 
@@ -86,6 +99,7 @@ src_prepare() {
 
 src_configure() {
 	export NINJA_PATH=/usr/bin/ninja
+	export NINJAFLAGS="${NINJAFLAGS:--j$(makeopts_jobs) -l$(makeopts_loadavg "${MAKEOPTS}" 0) -v}"
 
 	local myqmakeargs=(
 		$(usex bindist '' 'WEBENGINE_CONFIG+=use_proprietary_codecs')
@@ -93,4 +107,15 @@ src_configure() {
 		$(usex system-icu 'WEBENGINE_CONFIG+=use_system_icu' '')
 	)
 	qt5-build_src_configure
+}
+
+src_install() {
+	qt5-build_src_install
+
+	# bug 601472
+	if [[ ! -f ${D%/}${QT5_LIBDIR}/libQt5WebEngine.so ]]; then
+		die "${CATEGORY}/${PF} failed to build anything. Please report to https://bugs.gentoo.org/"
+	fi
+
+	pax-mark m "${D%/}${QT5_LIBEXECDIR}"/QtWebEngineProcess
 }

@@ -47,7 +47,7 @@ dev-libs/xmlsec 1.2.25_pre: Command line tool for signing, verifying, encrypting
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtdbus 5.6.2 5.7.1: Qt5 module for inter-process communication over the D-Bus protocol
-dev-qt/qtwebengine 5.6.1 5.7.1-r2: Library for rendering dynamic web content in Qt5 C++ and QML applications
+dev-qt/qtwebengine 5.7.1-r2 5.9.3: Library for rendering dynamic web content in Qt5 C++ and QML applications
 dev-scheme/guile 2.2.0_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/boost-build 1.65.1_pre: A system for large project software construction, simple to use and powerful
 dev-util/cloc 1.74_pre: Count Lines of Code
@@ -189,7 +189,7 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.4.99 4.4.100 4.4.101 4.9.63 4.9.64 4.9.65 4.14.2: Shows and sets processor power related values
+sys-power/cpupower 4.4.100 4.4.101 4.4.103 4.9.64 4.9.65 4.9.66 4.14.2 4.14.3: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
 www-client/seamonkey 2.49.5.0_p0: Seamonkey Web Browser
