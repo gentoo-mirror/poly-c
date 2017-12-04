@@ -16,11 +16,10 @@ app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
 app-laptop/i8kutils 1.43_pre: Dell Inspiron and Latitude utilities
 app-misc/kenny 0.1: kenny -- a command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
-app-misc/mc 4.8.15 4.8.18-r1 4.8.19 4.8.20: GNU Midnight Commander is a text based file manager
+app-misc/mc 4.8.15 4.8.18-r1 4.8.19 4.8.20-r1: GNU Midnight Commander is a text based file manager
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-portage/gentoolkit 0.3.0.9-r2: Collection of administration scripts for Gentoo
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/ansifilter 2.9_pre: Handles text files containing ANSI terminal escape codes
 app-text/calibre 3.9.0_pre 3.11.1_pre 3.12.0_pre 3.13.0_pre: Ebook management application
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
 app-text/po4a 0.47_pre 0.51_pre 0.52_pre: Tools for helping translation of documentation
@@ -35,12 +34,15 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-java/openjfx 8.9999: Open source JavaFX
+dev-lang/nasm 2.13.02_pre: groovy little assembler
 dev-lang/orc 0.4.28_pre: The Oil Runtime Compiler, a just-in-time compiler for array operations
 dev-libs/boost 1.65.1_pre: Boost Libraries for C++
 dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/glib 2.54.2_pre: The GLib library of C routines
+dev-libs/libassuan 2.4.4_pre: IPC library used by GnuPG and GPGME
 dev-libs/libnitrokey 3.0_pre: Communicate with Nitrokey stick devices in a clean and easy manner
+dev-libs/libunistring 0.9.8_pre: Library for manipulating Unicode and C strings according to Unicode standard
 dev-libs/nettle 3.4_pre: Low-level cryptographic library
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.0.2l 1.0.2m 1.1.0f 1.1.0g: full-strength general purpose cryptography library (including SSL and TLS)

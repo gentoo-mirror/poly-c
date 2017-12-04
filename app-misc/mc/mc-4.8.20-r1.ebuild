@@ -41,6 +41,7 @@ DEPEND="${RDEPEND}
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.8.13-tinfo.patch
+	"${FILESDIR}"/${PN}-4.8.19-selected-size.patch
 	"${FILESDIR}"/${PN}-4.8.9-fix-too-long-german-strings.patch
 	"${FILESDIR}"/${PN}-4.8.13-restore_saved_replace_string.patch
 )
