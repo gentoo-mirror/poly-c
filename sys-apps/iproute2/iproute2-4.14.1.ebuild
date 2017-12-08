@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 53f669c34617e5b6cdf941c271976f6f951ec42f $
+# $Id: b5e65df66954b9f466a6988ef5297c27f24dee7c $
 
 EAPI=6
 
@@ -49,14 +49,6 @@ src_prepare() {
 	if ! use ipv6 ; then
 		PATCHES+=(
 			"${FILESDIR}"/${PN}-4.11.0-no-ipv6.patch #326849
-		)
-	fi
-
-	# Local uclibc-ng compat fix until uclibc-ng upstream can sync
-	# netinet/in.h with glibc.  Resolves #626546.
-	if use elibc_uclibc ; then
-		PATCHES+=(
-			"${FILESDIR}"/${PN}-4.12.0-uclibc-ng-add-ipproto_mh.patch
 		)
 	fi
 
