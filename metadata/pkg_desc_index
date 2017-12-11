@@ -83,7 +83,6 @@ kde-plasma/plasma-workspace 5.10.5-r1 5.11.3 5.11.4: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r8 3.4.1-r11: An extensible mail filter which can identify and tag spam
 media-gfx/icoutils 0.32.0_pre: A set of programs for extracting and converting images in icon and cursor files (.ico, .cur)
-media-gfx/krita 3.3.0_pre: Free digital painting application. Digital Painting, Creative Freedom!
 media-libs/babl 0.1.32_pre 0.1.36_pre: A dynamic, any to any, pixel format conversion library
 media-libs/gegl 0.3.22_pre 0.3.24_pre: A graph based image processing framework
 media-libs/gst-plugins-bad 1.12.3_pre: Less plugins for GStreamer
