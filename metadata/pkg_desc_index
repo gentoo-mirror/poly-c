@@ -42,10 +42,13 @@ dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/glib 2.54.2_pre: The GLib library of C routines
 dev-libs/libassuan 2.4.4_pre: IPC library used by GnuPG and GPGME
+dev-libs/libgcrypt 1.8.2_pre: General purpose crypto library based on the code used in GnuPG
 dev-libs/libnitrokey 3.0_pre: Communicate with Nitrokey stick devices in a clean and easy manner
+dev-libs/libsodium 1.0.16_pre: A portable fork of NaCl, a higher-level cryptographic library
 dev-libs/libunistring 0.9.8_pre: Library for manipulating Unicode and C strings according to Unicode standard
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.0.2l 1.0.2m 1.0.2n 1.1.0f 1.1.0g: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/wayland-protocols 1.12_pre: Wayland protocol files
 dev-libs/xmlsec 1.2.25_pre: Command line tool for signing, verifying, encrypting and decrypting XML
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
