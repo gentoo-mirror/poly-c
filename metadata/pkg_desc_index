@@ -177,7 +177,7 @@ sys-apps/iproute2 4.4.0 4.5.0 4.6.0 4.7.0 4.8.0 4.9.0 4.10.0 4.11.0 4.12.0 4.13.
 sys-apps/kbd 1.15.5-r1 2.0.3: Keyboard and console utilities
 sys-apps/kmod 23 24: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
-sys-apps/less 521_pre: Excellent text file viewer
+sys-apps/less 521_pre 530_pre: Excellent text file viewer
 sys-apps/man 1.6g: Standard commands to read man pages
 sys-apps/openrc 0.21.4: OpenRC manages the services, startup and shutdown of a host
 sys-apps/usb_modeswitch 2.5.0_pre 2.5.1_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
@@ -194,7 +194,7 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.4.103 4.4.104 4.4.105 4.9.66 4.9.67 4.9.68 4.14.3 4.14.4 4.14.5: Shows and sets processor power related values
+sys-power/cpupower 4.4.103 4.4.104 4.4.105 4.9.67 4.9.68 4.9.69 4.14.4 4.14.5 4.14.6: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.4-r3: X Window System initializer
