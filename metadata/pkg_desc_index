@@ -87,7 +87,7 @@ mail-filter/spamassassin 3.4.1-r8 3.4.1-r11: An extensible mail filter which can
 media-gfx/gimp 2.9.8_pre: GNU Image Manipulation Program
 media-gfx/icoutils 0.32.0_pre: A set of programs for extracting and converting images in icon and cursor files (.ico, .cur)
 media-libs/babl 0.1.32_pre 0.1.36_pre: A dynamic, any to any, pixel format conversion library
-media-libs/gegl 0.3.22_pre 0.3.24_pre: A graph based image processing framework
+media-libs/gegl 0.3.24_pre 0.3.26_pre: A graph based image processing framework
 media-libs/gst-plugins-bad 1.12.3_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.12.3_pre: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.12.3_pre: Basepack of plugins for GStreamer
@@ -189,7 +189,7 @@ sys-boot/grub 2.02: GNU GRUB boot loader
 sys-fs/fuse 3.0.2: An interface for filesystems implemented in userspace
 sys-fs/fuse-common-files 3.0.2: Config files, init scripts and other common files for fuse package
 sys-fs/lvm2 2.02.174_pre 2.02.176_pre: User-land utilities for LVM2 (device-mapper) software
-sys-fs/udev 216 225-r1 233 234-r1 235: Linux dynamic and persistent device naming support (aka userspace devfs)
+sys-fs/udev 216 225-r1 233 234-r1 235 236_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
