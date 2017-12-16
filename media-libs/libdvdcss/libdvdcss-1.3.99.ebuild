@@ -1,14 +1,14 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5684f255df8986b933e168f9e9bd0fac5056c9ea $
+# $Id: 048034b19a11602e6aa6f36f82308a1c440f305a $
 
 EAPI=5
 
 inherit autotools-multilib
 
 DESCRIPTION="A portable abstraction library for DVD decryption"
-HOMEPAGE="http://www.videolan.org/developers/libdvdcss.html"
-SRC_URI="http://download.videolan.org/pub/${PN}/${PV}/${P}.tar.bz2"
+HOMEPAGE="https://www.videolan.org/developers/libdvdcss.html"
+SRC_URI="https://download.videolan.org/pub/${PN}/${PV}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="1.2"
