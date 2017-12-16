@@ -42,9 +42,7 @@ dev-libs/credis 0.2.3: C client library for Redis
 dev-libs/ewahboolarray 0.4.0: A compressed bitmap class in C++
 dev-libs/glib 2.54.2_pre: The GLib library of C routines
 dev-libs/libassuan 2.4.4_pre: IPC library used by GnuPG and GPGME
-dev-libs/libgcrypt 1.8.2_pre: General purpose crypto library based on the code used in GnuPG
 dev-libs/libnitrokey 3.0_pre: Communicate with Nitrokey stick devices in a clean and easy manner
-dev-libs/libsodium 1.0.16_pre: A portable fork of NaCl, a higher-level cryptographic library
 dev-libs/libunistring 0.9.8_pre: Library for manipulating Unicode and C strings according to Unicode standard
 dev-libs/newt 0.52.19_pre 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/openssl 1.0.2k 1.0.2l 1.0.2m 1.0.2n 1.1.0f 1.1.0g: full-strength general purpose cryptography library (including SSL and TLS)
@@ -173,7 +171,7 @@ sci-visualization/amide 1.0.5: AMIDE's a Medical Imaging Data Examiner
 sci-visualization/ginkgocadx 3.8.6: An advanced DICOM viewer and dicomizer
 sys-apps/fwup 0.14.3 0.15.4: Configurable embedded Linux firmware update creator and runner
 sys-apps/gawk 4.0.2 4.1.2 4.1.3 4.1.4 4.2.0: GNU awk pattern-matching language
-sys-apps/iproute2 4.4.0 4.5.0 4.6.0 4.7.0 4.8.0 4.9.0 4.10.0 4.11.0 4.12.0 4.13.0 4.14.0 4.14.1 4.14.1-r1: kernel routing and traffic control utilities
+sys-apps/iproute2 4.4.0 4.5.0 4.6.0 4.7.0 4.8.0 4.9.0 4.10.0 4.11.0 4.12.0 4.13.0 4.14.0 4.14.1 4.14.1-r1 4.14.1-r2: kernel routing and traffic control utilities
 sys-apps/kbd 1.15.5-r1 2.0.3: Keyboard and console utilities
 sys-apps/kmod 23 24: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
@@ -194,7 +192,7 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/glibc 2.17 2.18-r1 2.19 2.19-r1 2.20: GNU libc6 (also called glibc2) C library
 sys-libs/libosinfo 1.0.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-power/cpupower 4.4.103 4.4.104 4.4.105 4.9.67 4.9.68 4.9.69 4.14.4 4.14.5 4.14.6: Shows and sets processor power related values
+sys-power/cpupower 4.4.104 4.4.105 4.4.106 4.9.68 4.9.69 4.9.70 4.14.4 4.14.5 4.14.6: Shows and sets processor power related values
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.11-r3 3.3.12 3.3.12-r1: standard informational utilities and process-handling tools
 x11-apps/xinit 1.3.4-r3: X Window System initializer
