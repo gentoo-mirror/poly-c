@@ -153,4 +153,4 @@ if grep -Fq FILESDIR ${SOURCE_EBUILD} && [[ "${TARGET_DIR}" != "${SOURCE_EBUILD%
 	fi
 fi
 
-nice ebuild "${TARGET_EBUILD}" manifest clean prepare clean
+GENTOO_MIRRORS="" nice ebuild "${TARGET_EBUILD}" manifest clean prepare clean
