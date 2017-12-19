@@ -103,6 +103,10 @@ pkg_setup() {
 }
 
 src_prepare() {
+	rm "${WORKDIR}/patches/hplip-3.12.6-fast-pp_1.patch" || die
+	cp "${FILESDIR}/hplip-3.17.11-fast-pp_1.patch" "${WORKDIR}/patches" \
+		|| die
+
 	default
 
 	if use !minimal ; then
@@ -134,7 +138,7 @@ src_prepare() {
 	# Use system foomatic-rip for hpijs driver instead of foomatic-rip-hplip
 	# The hpcups driver does not use foomatic-rip
 	local i
-	for i in ppd/hpijs/*.ppd.gz ; do
+	for i in $(find ppd -name "*.ppd.gz") ; do
 		rm -f ${i}.temp || die
 		gunzip -c ${i} | sed 's/foomatic-rip-hplip/foomatic-rip/g' | \
 			gzip > ${i}.temp || die
@@ -211,6 +215,7 @@ src_configure() {
 		${myconf} \
 		${drv_build} \
 		${minimal_build} \
+		--enable-hpps-install \
 		$(use_enable doc doc-build) \
 		$(use_enable fax fax-build) \
 		$(use_enable !minimal gui-build) \
@@ -223,7 +228,7 @@ src_configure() {
 }
 
 src_install() {
-	# disable parallel install
+	# Disable parallel install
 	# Gentoo Bug: https://bugs.gentoo.org/show_bug.cgi?id=578018
 	emake -j1 DESTDIR="${D}" install
 	einstalldocs
@@ -232,6 +237,12 @@ src_install() {
 	# Installed by sane-backends
 	# Gentoo Bug: https://bugs.gentoo.org/show_bug.cgi?id=201023
 	rm -f "${ED%/}"/etc/sane.d/dll.conf || die
+
+	# Remove desktop and autostart files
+	# Gentoo Bug: https://bugs.gentoo.org/show_bug.cgi?id=638770
+	use qt5 || {
+		rm -Rf "${ED}"/usr/share/applications "${ED}"/etc/xdg
+	}
 
 	rm -f "${ED%/}"/usr/share/doc/${PF}/{copyright,README_LIBJPG,COPYING} || die
 	rmdir --ignore-fail-on-non-empty "${ED%/}"/usr/share/doc/${PF}/ || die
