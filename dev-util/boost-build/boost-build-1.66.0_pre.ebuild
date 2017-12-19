@@ -72,11 +72,11 @@ src_prepare() {
 	# and stripping flags when bjam is used as build-system
 	# We simply extend the optimization and debug-symbols feature
 	# with empty dummies called 'none'
-	cd "${S}" || die
-	sed -i \
-		-e 's/\(off speed space\)/\1 none/' \
-		-e 's/\(debug-symbols      : on off\)/\1 none/' \
-		tools/builtin.jam || die "sed failed"
+#	cd "${S}" || die
+#	sed -i \
+#		-e 's/\(off speed space\)/\1 none/' \
+#		-e 's/\(debug-symbols      : on off\)/\1 none/' \
+#		tools/builtin.jam || die "sed failed"
 }
 
 src_configure() {
@@ -107,8 +107,9 @@ src_compile() {
 src_install() {
 	dobin engine/bin.*/{bjam,b2}
 
+	cp "${FILESDIR}/site-config.jam-1.66.0" "${T}/site-config.jam" || die
 	insinto /usr/share/boost-build
-	doins -r "${FILESDIR}/site-config.jam" \
+	doins -r "${T}/site-config.jam" \
 		../boost-build.jam bootstrap.jam build-system.jam ../example/user-config.jam *.py \
 		build kernel options tools util
 
