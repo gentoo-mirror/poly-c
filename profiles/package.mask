@@ -48,5 +48,3 @@ dev-java/openjfx
 =dev-libs/glib-2.54.2_pre
 =dev-util/gdbus-codegen-2.54.2_pre
 
-# Sefaults
-=dev-util/itstool-2.0.4_pre

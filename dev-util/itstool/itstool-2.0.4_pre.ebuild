@@ -30,5 +30,6 @@ pkg_setup() {
 }
 
 src_prepare() {
+	epatch "${FILESDIR}/${MY_P}-segfault.patch"
 	python_fix_shebang .
 }
