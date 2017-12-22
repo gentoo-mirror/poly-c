@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2611d969dfa9a9f5ffe1ad788093b3dd3694106b $
+# $Id: 583903b5976e1dbc7133d51dab140565643e6aac $
 
 EAPI=6
 
@@ -17,12 +17,12 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2+ BSD-2"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~hppa ~ppc ~ppc64 ~x86 ~x86-fbsd ~amd64-linux"
+KEYWORDS="amd64 ~arm ~hppa ~ppc ~ppc64 x86 ~x86-fbsd ~amd64-linux"
 IUSE="autoshutdown bidi debug mpris"
 
 COMMON_DEPEND="
 	dev-qt/qtcore:5
-	dev-qt/qtgui:5
+	dev-qt/qtgui:5=
 	dev-qt/qtnetwork:5[ssl]
 	dev-qt/qtscript:5
 	dev-qt/qtsingleapplication[X,qt5]
