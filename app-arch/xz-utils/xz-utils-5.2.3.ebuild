@@ -1,6 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 219b2145b252dfe1b5acb390180c84e04b458bb3 $
+# $Id: 85c206c9bd1306f02ec184126157a292769be540 $
 
 # Remember: we cannot leverage autotools in this ebuild in order
 #           to avoid circular deps with autotools
@@ -11,7 +11,7 @@ inherit eutils multilib toolchain-funcs libtool multilib-minimal
 
 if [[ ${PV} == "9999" ]] ; then
 	EGIT_REPO_URI="https://git.tukaani.org/xz.git"
-	inherit git-2 autotools
+	inherit git-r3 autotools
 	SRC_URI=""
 	EXTRA_DEPEND="sys-devel/gettext dev-vcs/cvs >=sys-devel/libtool-2" #272880 286068
 else
