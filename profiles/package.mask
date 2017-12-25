@@ -51,3 +51,6 @@ dev-java/openjfx
 # Breaks some revdeps
 =dev-libs/boost-1.66.0_pre
 =dev-util/boost-build-1.66.0_pre
+
+# Breaks some revdeps
+=dev-libs/mpfr-4.0.0_pre
