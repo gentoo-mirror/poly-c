@@ -10,5 +10,5 @@ RDEPEND=dev-libs/boost:=
 RESTRICT=mirror
 SLOT=1/1.3
 SRC_URI=http://kohei.us/files/mdds/src/mdds-1.3.0.tar.bz2
-_eclasses_=autotools	dc412f38566b91012efd58b9c203e6c3	libtool	0081a71a261724730ec4c248494f044d	multilib	97f470f374f2e94ccab04a2fb21d811e	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	185a06792159ca143528e7010368e8af
+_eclasses_=autotools	dc412f38566b91012efd58b9c203e6c3	libtool	0081a71a261724730ec4c248494f044d	multilib	97f470f374f2e94ccab04a2fb21d811e	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	885c7d8dd70a58825f3d17e35a3cd1e9
 _md5_=4afc0afc8254606bb85f526adaf0dab6
