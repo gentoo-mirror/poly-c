@@ -1,0 +1,50 @@
+From 2e31dffdb75c14b50bb586da438e2e1c743985b8 Mon Sep 17 00:00:00 2001
+From: Jakub Jelen <jjelen@redhat.com>
+Date: Thu, 23 Nov 2017 14:33:28 +0100
+Subject: [PATCH] config: Remove MAC option (SSHv1)
+
+Signed-off-by: Jakub Jelen <jjelen@redhat.com>
+Reviewed-by: Andreas Schneider <asn@cryptomilk.org>
+Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
+---
+ src/config.c | 10 +---------
+ 1 file changed, 1 insertion(+), 9 deletions(-)
+
+diff --git a/src/config.c b/src/config.c
+index bf20f6d3..7fe23ec9 100644
+--- a/src/config.c
++++ b/src/config.c
+@@ -64,7 +64,6 @@ enum ssh_config_opcode_e {
+   SOC_LOGLEVEL,
+   SOC_HOSTKEYALGORITHMS,
+   SOC_KEXALGORITHMS,
+-  SOC_MAC,
+   SOC_GSSAPIAUTHENTICATION,
+   SOC_KBDINTERACTIVEAUTHENTICATION,
+   SOC_PASSWORDAUTHENTICATION,
+@@ -101,7 +100,7 @@ static struct ssh_config_keyword_table_s ssh_config_keyword_table[] = {
+   { "loglevel", SOC_LOGLEVEL},
+   { "hostkeyalgorithms", SOC_HOSTKEYALGORITHMS},
+   { "kexalgorithms", SOC_KEXALGORITHMS},
+-  { "mac", SOC_MAC},
++  { "mac", SOC_UNSUPPORTED}, /* SSHv1 */
+   { "gssapiauthentication", SOC_GSSAPIAUTHENTICATION},
+   { "kbdinteractiveauthentication", SOC_KBDINTERACTIVEAUTHENTICATION},
+   { "passwordauthentication", SOC_PASSWORDAUTHENTICATION},
+@@ -548,13 +547,6 @@ static int ssh_config_parse_line(ssh_session session, const char *line,
+             ssh_options_set(session, SSH_OPTIONS_KEY_EXCHANGE, p);
+         }
+         break;
+-    case SOC_MAC:
+-        p = ssh_config_get_str_tok(&s, NULL);
+-        if (p && *parsing) {
+-            ssh_options_set(session, SSH_OPTIONS_HMAC_C_S, p);
+-            ssh_options_set(session, SSH_OPTIONS_HMAC_S_C, p);
+-        }
+-        break;
+     case SOC_GSSAPIAUTHENTICATION:
+     case SOC_KBDINTERACTIVEAUTHENTICATION:
+     case SOC_PASSWORDAUTHENTICATION:
+-- 
+2.15.1
+
