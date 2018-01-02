@@ -8,7 +8,7 @@ inherit eutils linux-info toolchain-funcs udev systemd poly-c_ebuilds
 REAL_PN=${PN/_/-}
 REAL_P=${REAL_PN}-${MY_PV/_p*}
 #DATA_VER=${MY_PV/*_p}
-DATA_VER="20160803"
+DATA_VER="20170806"
 
 DESCRIPTION="A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks"
 HOMEPAGE="http://www.draisberghof.de/usb_modeswitch/ http://www.draisberghof.de/usb_modeswitch/device_reference.txt"
