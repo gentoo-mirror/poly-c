@@ -199,14 +199,14 @@ src_configure() {
 
 	local ruby_interpreter=""
 
-	if has_version "virtual/rubygems[ruby_targets_ruby23]"; then
+	if has_version "virtual/rubygems[ruby_targets_ruby25]"; then
+		ruby_interpreter="RUBY=$(type -P ruby25)"
+	elif has_version "virtual/rubygems[ruby_targets_ruby24]"; then
 		ruby_interpreter="RUBY=$(type -P ruby23)"
-	elif has_version "virtual/rubygems[ruby_targets_ruby22]"; then
-		ruby_interpreter="RUBY=$(type -P ruby22)"
-	elif has_version "virtual/rubygems[ruby_targets_ruby21]"; then
-		ruby_interpreter="RUBY=$(type -P ruby21)"
+	elif has_version "virtual/rubygems[ruby_targets_ruby23]"; then
+		ruby_interpreter="RUBY=$(type -P ruby23)"
 	else
-		ruby_interpreter="RUBY=$(type -P ruby20)"
+		ruby_interpreter="RUBY=$(type -P ruby22)"
 	fi
 
 	# TODO: Check Web Audio support
