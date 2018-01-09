@@ -1,6 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8860850c02240f0780ef3ee63043352575884984 $
+# $Id: a2b10e2a5c15580ab9c3d500aa7d73fb7f86b27c $
 
 inherit toolchain-glibc
 
@@ -28,7 +28,7 @@ GCC_BOOTSTRAP_VER="4.7.3-r1"
 PATCH_VER="3"                                  # Gentoo patchset
 NPTL_KERN_VER=${NPTL_KERN_VER:-"2.6.16"}       # min kernel version nptl requires
 
-IUSE="debug gd hardened multilib nscd selinux systemtap profile suid vanilla crosscompile_opts_headers-only"
+IUSE="debug gd hardened multilib nscd selinux systemtap profile suid vanilla headers-only"
 
 # Here's how the cross-compile logic breaks down ...
 #  CTARGET - machine that will target the binaries
@@ -74,7 +74,7 @@ RDEPEND=">=sys-apps/gentoo-functions-0.5
 	!sys-libs/nss-db"
 
 if [[ ${CATEGORY} == cross-* ]] ; then
-	DEPEND+=" !crosscompile_opts_headers-only? (
+	DEPEND+=" !headers-only? (
 		>=${CATEGORY}/binutils-2.20
 		>=${CATEGORY}/gcc-4.3
 	)"
