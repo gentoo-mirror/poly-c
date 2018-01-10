@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c31766adf84724771b9531ae93f5efb8f8be9163 $
+# $Id: c9c21b326b4e58c903ad4431a1ae3914b208bf10 $
 
 EAPI=6
 
@@ -11,7 +11,7 @@ if [[ ${PV} == "9999" ]] ; then
 	inherit git-r3
 else
 	SRC_URI="mirror://kernel/linux/utils/net/${PN}/${P}.tar.xz"
-	KEYWORDS="~alpha amd64 arm ~arm64 ~hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc x86"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 fi
 
 DESCRIPTION="kernel routing and traffic control utilities"
@@ -44,6 +44,8 @@ DEPEND="
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.1.0-mtu.patch #291907
 	"${FILESDIR}"/${P}-fix-tc-actions.patch
+	"${FILESDIR}"/${P}-configure-nomagic.patch # bug 643722
+	"${FILESDIR}"/${P}-posix-shell.patch
 )
 
 src_prepare() {
@@ -90,9 +92,10 @@ src_configure() {
 	popd >/dev/null
 
 	# run "configure" script first which will create "config.mk"...
-	default
+	econf
 
 	# ...now switch on/off requested features via USE flags
+	# this is only useful if the test did not set other things, per bug #643722
 	cat <<-EOF >> config.mk
 	TC_CONFIG_ATM := $(usex atm y n)
 	TC_CONFIG_XT  := $(usex iptables y n)
@@ -107,6 +110,10 @@ src_configure() {
 	# Use correct iptables dir, #144265 #293709
 	IPT_LIB_DIR := $(use iptables && ${PKG_CONFIG} xtables --variable=xtlibdir)
 	EOF
+}
+
+src_compile() {
+	emake V=1
 }
 
 src_install() {
