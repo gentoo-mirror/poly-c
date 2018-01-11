@@ -27,7 +27,7 @@ DEPEND="
 "
 
 PATCHES=(
-	"${FILESDIR}/${PN}-0.13.0-help_option.patch"
+	"${FILESDIR}/${P}-sysmacros.patch"
 )
 
 src_prepare() {
