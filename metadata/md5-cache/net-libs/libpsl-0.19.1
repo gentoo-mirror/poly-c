@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure install
+DEPEND=icu? ( dev-libs/icu:= ) idn? ( dev-libs/libunistring net-dns/libidn2 ) dev-util/gtk-doc sys-devel/gettext virtual/pkgconfig man? ( dev-libs/libxslt )
+DESCRIPTION=C library for the Public Suffix List
+EAPI=6
+HOMEPAGE=https://github.com/rockdaboot/libpsl
+IUSE=icu +idn +man
+KEYWORDS=~amd64 ~x86
+LICENSE=MIT
+RDEPEND=icu? ( dev-libs/icu:= ) idn? ( dev-libs/libunistring net-dns/libidn2 )
+REQUIRED_USE=^^ ( icu idn )
+SLOT=0
+SRC_URI=https://github.com/rockdaboot/libpsl/releases/download/libpsl-0.19.1/libpsl-0.19.1.tar.gz
+_md5_=ded5aa90b35f7c018f35a8735b97cacd
