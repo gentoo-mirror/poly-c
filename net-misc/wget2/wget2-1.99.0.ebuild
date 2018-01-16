@@ -3,12 +3,12 @@
 
 EAPI=6
 
-DESCRIPTION=""
+DESCRIPTION="GNU Wget2 is a file and recursive website downloader"
 HOMEPAGE="https://gitlab.com/gnuwget/wget2"
 SRC_URI="mirror://gnu-alpha/wget/${P}.tar.gz"
 
 LICENSE="GPL-3"
-SLOT="0"
+SLOT="0/0" # subslot = libwget.so version
 KEYWORDS="~amd64 ~x86"
 
 IUSE="brotli bzip2 doc +gnutls gpgme +http2 idn lzma pcre psl test valgrind xattr zlib"
@@ -18,7 +18,7 @@ REQUIRED_USE="valgrind? ( test )"
 RDEPEND="
 	brotli? ( app-arch/brotli )
 	bzip2? ( app-arch/bzip2 )
-	!gnutls? ( dev-libs/libgcrypt )
+	!gnutls? ( dev-libs/libgcrypt:= )
 	gnutls? ( net-libs/gnutls )
 	gpgme? (
 		app-crypt/gpgme
