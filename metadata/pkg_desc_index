@@ -12,7 +12,7 @@ dev-qt/qtwebengine 5.7.1-r2: Library for rendering dynamic web content in Qt5 C+
 kde-apps/kde-wallpapers 15.08.3 15.08.3-r2: KDE wallpapers
 kde-plasma/kactivitymanagerd 4.13.3-r1: KDE Activity Manager Daemon
 kde-plasma/plasma-desktop 5.8.5-r1: KDE Plasma desktop
-kde-plasma/plasma-workspace 5.10.5-r1: KDE Plasma workspace
+kde-plasma/plasma-workspace 5.10.5-r1 5.11.5: KDE Plasma workspace
 lxde-base/lxsession 0.4.9.2-r3 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r8: An extensible mail filter which can identify and tag spam
 media-libs/libdvdcss 1.4.0: A portable abstraction library for DVD decryption
