@@ -112,7 +112,7 @@ if ${IS_POLYC_EBUILD} ; then
 	fi
 fi
 
-if grep -Fq FILESDIR ${SOURCE_EBUILD} && [[ "${TARGET_DIR}" != "${SOURCE_EBUILD%/*}" ]] ; then
+if grep -Fq FILESDIR "${SOURCE_EBUILD}" && [[ "${TARGET_DIR}" != "${SOURCE_EBUILD%/*}" ]] ; then
 	# Make sure to catch as many files from FILESDIR as possible even if
 	# there are given multiple files per line (that's what the "tr" call is for).
 	# The script cannot reliably process $() shell constructs so they get excluded.
@@ -136,20 +136,23 @@ if grep -Fq FILESDIR ${SOURCE_EBUILD} && [[ "${TARGET_DIR}" != "${SOURCE_EBUILD%
 			if grep -q "/" <<< ${file} ; then
 				if [[ -d "${SOURCE_EBUILD%/*}/files/${file}" ]] ; then
 					cp -a "${SOURCE_EBUILD%/*}/files/${file}" "${target_aux_dir}" \
-						|| { retval=1 ; continue ; }
+						|| { ((retval++)) ; continue ; }
 				else 
 					if [[ ! -d "${target_aux_dir}/${file%/*}" ]] ; then
 						mkdir -p "${target_aux_dir}/${file%/*}" || exit 16
 					fi
 					cp -a "${SOURCE_EBUILD%/*}/files/${file}" "${target_aux_dir}/${file%/*}" \
-						|| { retval=1 ; continue ; }
+						|| { ((retval++)) ; continue ; }
 				fi
 			else
 				cp -a "${SOURCE_EBUILD%/*}/files/${file}" "${target_aux_dir}" \
-					|| { retval=1 ; continue ; }
+					|| { ((retval++)) ; continue ; }
 			fi
 		done
-		[[ ${retval} -ne 0 ]] && exit 17
+		if [[ ${retval} -ne 0 ]] ; then
+			printf '%s\n' "Return value is ${retval}"
+			exit 17
+		fi
 	fi
 fi
 

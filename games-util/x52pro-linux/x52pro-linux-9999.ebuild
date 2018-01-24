@@ -4,10 +4,7 @@
 
 EAPI=6
 
-SCM=
-[[ "${PV}" = 9999 ]] && SCM="git-r3"
-
-inherit autotools udev ${SCM}
+inherit autotools udev
 
 DESCRIPTION="Saitek X52pro drivers & controller mapping software for Linux"
 HOMEPAGE="https://github.com/nirenjan/x52pro-linux"
@@ -16,6 +13,7 @@ if [[ "${PV}" != 9999 ]] ; then
 	SRC_URI="https://github.com/nirenjan/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 else
+	inherit git-r3
 	EGIT_REPO_URI="https://github.com/nirenjan/x52pro-linux.git"
 fi
 
