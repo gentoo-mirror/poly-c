@@ -1,6 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 7c4451fcab11cc1e0bcc28c88dd5b5cbd98fde8e $
+# $Id: aeb194b6ee44ce37c13cbf155dd410a127bd1e99 $
 
 EAPI="4"
 
@@ -8,7 +8,7 @@ inherit eutils
 
 DESCRIPTION="Keyboard and console utilities"
 HOMEPAGE="http://freshmeat.net/projects/kbd/"
-SRC_URI="ftp://ftp.altlinux.org/pub/people/legion/kbd/${P}.tar.gz"
+SRC_URI="https://www.kernel.org/pub/linux/utils/kbd/${P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"

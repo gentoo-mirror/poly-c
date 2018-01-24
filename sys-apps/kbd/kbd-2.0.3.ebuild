@@ -1,6 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 084b72febeda46749b4725fa954b169561f3e4f1 $
+# $Id: 3d02370de950ef7edad5a430ed745f26c6328990 $
 
 EAPI="5"
 
@@ -10,7 +10,7 @@ if [[ ${PV} == "9999" ]] ; then
 	EGIT_REPO_URI="https://git.kernel.org/cgit/linux/kernel/git/legion/${PN}.git"
 	EGIT_BRANCH="master"
 else
-	SRC_URI="ftp://ftp.kernel.org/pub/linux/utils/kbd/${P}.tar.xz"
+	SRC_URI="https://www.kernel.org/pub/linux/utils/kbd/${P}.tar.xz"
 	KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh sparc x86"
 fi
 
