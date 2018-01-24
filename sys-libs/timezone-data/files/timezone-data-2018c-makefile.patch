@@ -1,0 +1,21 @@
+--- timezone-data-2018c/Makefile
++++ timezone-data-2018c/Makefile
+@@ -425,8 +425,7 @@
+ 
+ #MAKE=		make
+ 
+-cc=		cc
+-CC=		$(cc) -DTZDIR='"$(TZDIR)"'
++CPPFLAGS+=	-DTZDIR=\"$(TZDIR)\"
+ 
+ AR=		ar
+ 
+@@ -659,7 +658,7 @@
+ 
+ check:		check_character_set check_white_space check_links \
+ 		  check_name_lengths check_sorted \
+-		  check_tables check_web check_zishrink check_tzs
++		  check_tables check_zishrink
+ 
+ check_character_set: $(ENCHILADA)
+ 	test ! '$(UTF8_LOCALE)' || \
