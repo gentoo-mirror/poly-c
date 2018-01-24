@@ -10,7 +10,26 @@
  
  AR=		ar
  
-@@ -659,7 +658,7 @@
+@@ -507,8 +506,7 @@
+ 		mkdir -p '$(DESTDIR)$(BINDIR)' \
+ 			'$(DESTDIR)$(ZDUMPDIR)' '$(DESTDIR)$(ZICDIR)' \
+ 			'$(DESTDIR)$(LIBDIR)' \
+-			'$(DESTDIR)$(MANDIR)/man3' '$(DESTDIR)$(MANDIR)/man5' \
+-			'$(DESTDIR)$(MANDIR)/man8'
++			'$(DESTDIR)$(MANDIR)/man3'
+ 		$(ZIC_INSTALL) -l $(LOCALTIME) -p $(POSIXRULES) \
+ 			-t '$(DESTDIR)$(TZDEFAULT)'
+ 		cp -f $(TABDATA) '$(DESTDIR)$(TZDIR)/.'
+@@ -518,8 +516,6 @@
+ 		cp libtz.a '$(DESTDIR)$(LIBDIR)/.'
+ 		$(RANLIB) '$(DESTDIR)$(LIBDIR)/libtz.a'
+ 		cp -f newctime.3 newtzset.3 '$(DESTDIR)$(MANDIR)/man3/.'
+-		cp -f tzfile.5 '$(DESTDIR)$(MANDIR)/man5/.'
+-		cp -f tzselect.8 zdump.8 zic.8 '$(DESTDIR)$(MANDIR)/man8/.'
+ 
+ INSTALL:	ALL install date.1
+ 		mkdir -p '$(DESTDIR)$(BINDIR)' '$(DESTDIR)$(MANDIR)/man1'
+@@ -659,7 +655,7 @@
  
  check:		check_character_set check_white_space check_links \
  		  check_name_lengths check_sorted \
