@@ -18,7 +18,7 @@ KEYWORDS="~amd64"
 IUSE=""
 
 RDEPEND="
-	dev-libs/libnitrokey
+	>=dev-libs/libnitrokey-3.2_pre
 	dev-qt/qtcore:5
 	dev-qt/qtgui:5
 	dev-qt/qtwidgets:5"
@@ -28,7 +28,7 @@ DEPEND="
 	virtual/pkgconfig"
 
 PATCHES=(
-	"${FILESDIR}/${PN}-1.2_beta2-lib_include_fixes.patch"
+	"${FILESDIR}/${PN}-1.2.1-lib_include_fixes.patch"
 )
 
 S="${WORKDIR}/${PN}-${REAL_PV}"
@@ -36,11 +36,11 @@ S="${WORKDIR}/${PN}-${REAL_PV}"
 src_prepare() {
 	cmake-utils_src_prepare
 	sed \
-		-e '/^add_subdirectory (libnitrokey)$/d' \
 		-e "s@[[:space:]]${PN}.debug@@" \
 		-e '/REGEX REPLACE/d' \
 		-e 's@"\(lib/udev/rules.d\)"@"/\1"@' \
 		-e 's@"\(etc/bash_completion.d\)"@"/\1"@' \
+		-e "/PROJECT_VERSION/s@\"[[:alnum:]\.-]\+\"@\"${REAL_PV}\"@" \
 		-i CMakeLists.txt || die
 
 	sed \
@@ -51,6 +51,7 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
+		-DADD_GIT_INFO=FALSE
 		-DERROR_ON_WARNING=NO
 	)
 	cmake-utils_src_configure

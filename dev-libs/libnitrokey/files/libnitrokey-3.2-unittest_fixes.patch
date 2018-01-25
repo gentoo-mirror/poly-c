@@ -1,0 +1,86 @@
+--- libnitrokey-3.2/unittest/catch_main.cpp
++++ libnitrokey-3.2/unittest/catch_main.cpp
+@@ -20,4 +20,4 @@
+  */
+ 
+ #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main()
+-#include "catch.hpp"
+\ No newline at end of file
++#include <catch/catch.hpp>
+--- libnitrokey-3.2/unittest/test.cc
++++ libnitrokey-3.2/unittest/test.cc
+@@ -19,7 +19,7 @@
+  * SPDX-License-Identifier: LGPL-3.0
+  */
+ 
+-#include "catch.hpp"
++#include <catch/catch.hpp>
+ 
+ #include <iostream>
+ #include <string.h>
+--- libnitrokey-3.2/unittest/test2.cc
++++ libnitrokey-3.2/unittest/test2.cc
+@@ -23,7 +23,7 @@
+ static const char *const default_admin_pin = "12345678";
+ static const char *const default_user_pin = "123456";
+ 
+-#include "catch.hpp"
++#include <catch/catch.hpp>
+ 
+ #include <iostream>
+ #include <string.h>
+--- libnitrokey-3.2/unittest/test3.cc
++++ libnitrokey-3.2/unittest/test3.cc
+@@ -25,7 +25,7 @@
+ const char * temporary_password = "123456789012345678901234";
+ const char * RFC_SECRET = "12345678901234567890";
+ 
+-#include "catch.hpp"
++#include <catch/catch.hpp>
+ 
+ #include <iostream>
+ #include <string.h>
+--- libnitrokey-3.2/unittest/test_C_API.cpp
++++ libnitrokey-3.2/unittest/test_C_API.cpp
+@@ -21,7 +21,7 @@
+ 
+ static const int TOO_LONG_STRING = 200;
+ 
+-#include "catch.hpp"
++#include <catch/catch.hpp>
+ 
+ #include <iostream>
+ #include <string>
+--- libnitrokey-3.2/unittest/test_HOTP.cc
++++ libnitrokey-3.2/unittest/test_HOTP.cc
+@@ -20,7 +20,7 @@
+  */
+ 
+ 
+-#include "catch.hpp"
++#include <catch/catch.hpp>
+ #include <iostream>
+ #include "device_proto.h"
+ #include "log.h"
+--- libnitrokey-3.2/unittest/test_issues.cc
++++ libnitrokey-3.2/unittest/test_issues.cc
+@@ -26,7 +26,7 @@
+ const char * const RFC_SECRET = "12345678901234567890";
+ const char * const hidden_volume_pass = "123456789012345";
+ 
+-#include "catch.hpp"
++#include <catch/catch.hpp>
+ 
+ #include <NitrokeyManager.h>
+ 
+--- libnitrokey-3.2/unittest/test_offline.cc
++++ libnitrokey-3.2/unittest/test_offline.cc
+@@ -19,7 +19,7 @@
+  * SPDX-License-Identifier: LGPL-3.0
+  */
+ 
+-#include "catch.hpp"
++#include <catch/catch.hpp>
+ #include <NitrokeyManager.h>
+ #include <memory>
+ #include "../NK_C_API.h"
