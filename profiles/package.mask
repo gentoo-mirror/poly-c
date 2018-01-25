@@ -9,11 +9,6 @@ app-misc/kenny
 # WIP
 net-irc/pchat-irc
 
-# WIP
-net-analyzer/ntopng
-dev-libs/credis
-dev-libs/ewahboolarray
-
 # Missing dependencies
 media-radio/liquidsoap
 

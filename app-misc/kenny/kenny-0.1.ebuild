@@ -2,11 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
+EAPI=6
+
 inherit toolchain-funcs
 
-DESCRIPTION="kenny -- a command-line kennyfier"
+DESCRIPTION="command-line kennyfier"
 HOMEPAGE="http://www.colino.net/geek/"
-SRC_URI="http://www.colino.net/geek//bin/${PN}.c"
+SRC_URI="http://www.colino.net/geek/bin/${PN}.c"
 LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 x86"
