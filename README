@@ -4,8 +4,6 @@ This is the place where I store all ebuilds which are
   - new and not in portage yet
   - already removed from portage but I still need them
 
-Some packages have ChangeLog files, others don't; depends on my laziness :)
-
 Why so many _pre packages? Well most packages aren't really pre-versions. It's 
 just much easier to recognize that gentoo finally has newer versions of those 
 packages in portage when I use the _pre-tag in the versionnumber.
@@ -20,15 +18,16 @@ into the eclass-folder of your portage-overlay.
 
 You can access the portage-overlay directory via:
 
-  HTTP:
-    http://www.gentoofan.org/gentoo/poly-c_overlay/
+  HTTPS:
+    https://www.gentoofan.org/gentoo/poly-c_overlay/
 
   RSYNC:
     rsync://rsync.gentoofan.org/poly-c
       (this is no official rsync-mirror. Do NOT "emerge --sync" to this server!!)
 
-  LAYMAN (You have to install app-portage/layman to use this method):
+  LAYMAN:
     layman -a poly-c
+      (You have to install app-portage/layman to use this method)
 
 
 All ebuilds are tested on ~amd64 and ~x86 installations. As I have no other 
