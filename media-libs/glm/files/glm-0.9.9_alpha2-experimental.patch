@@ -1,0 +1,767 @@
+--- glm-0.9.9-a2/glm/gtx/associated_min_max.hpp
++++ glm-0.9.9-a2/glm/gtx/associated_min_max.hpp
+@@ -16,10 +16,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GTX_associated_min_max is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_associated_min_max extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/bit.hpp
++++ glm-0.9.9-a2/glm/gtx/bit.hpp
+@@ -15,10 +15,6 @@
+ // Dependencies
+ #include "../gtc/bitfield.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_bit is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_bit extension is deprecated, include GLM_GTC_bitfield and GLM_GTC_integer instead")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/closest_point.hpp
++++ glm-0.9.9-a2/glm/gtx/closest_point.hpp
+@@ -15,10 +15,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_closest_point is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_closest_point extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/color_space.hpp
++++ glm-0.9.9-a2/glm/gtx/color_space.hpp
+@@ -15,10 +15,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_color_space is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_color_space extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/color_space_YCoCg.hpp
++++ glm-0.9.9-a2/glm/gtx/color_space_YCoCg.hpp
+@@ -15,10 +15,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_color_space_YCoCg is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_color_space_YCoCg extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/common.hpp
++++ glm-0.9.9-a2/glm/gtx/common.hpp
+@@ -18,10 +18,6 @@
+ #include "../vec4.hpp"
+ #include "../gtc/vec1.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_common is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_common extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/compatibility.hpp
++++ glm-0.9.9-a2/glm/gtx/compatibility.hpp
+@@ -16,10 +16,6 @@
+ #include "../glm.hpp"
+ #include "../gtc/quaternion.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_compatibility is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_compatibility extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/component_wise.hpp
++++ glm-0.9.9-a2/glm/gtx/component_wise.hpp
+@@ -18,10 +18,6 @@
+ #include "../detail/setup.hpp"
+ #include "../detail/qualifier.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_component_wise is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_component_wise extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/dual_quaternion.hpp
++++ glm-0.9.9-a2/glm/gtx/dual_quaternion.hpp
+@@ -20,10 +20,6 @@
+ #include "../gtc/constants.hpp"
+ #include "../gtc/quaternion.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_dual_quaternion is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_dual_quaternion extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/euler_angles.hpp
++++ glm-0.9.9-a2/glm/gtx/euler_angles.hpp
+@@ -15,10 +15,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_euler_angles is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_euler_angles extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/extended_min_max.hpp
++++ glm-0.9.9-a2/glm/gtx/extended_min_max.hpp
+@@ -15,10 +15,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_extented_min_max is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_extented_min_max extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/extend.hpp
++++ glm-0.9.9-a2/glm/gtx/extend.hpp
+@@ -15,10 +15,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_extend is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_extend extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/fast_exponential.hpp
++++ glm-0.9.9-a2/glm/gtx/fast_exponential.hpp
+@@ -16,10 +16,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_fast_exponential is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_fast_exponential extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/fast_square_root.hpp
++++ glm-0.9.9-a2/glm/gtx/fast_square_root.hpp
+@@ -19,10 +19,6 @@
+ #include "../exponential.hpp"
+ #include "../geometric.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_fast_square_root is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_fast_square_root extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/fast_trigonometry.hpp
++++ glm-0.9.9-a2/glm/gtx/fast_trigonometry.hpp
+@@ -15,10 +15,6 @@
+ // Dependency:
+ #include "../gtc/constants.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_fast_trigonometry is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_fast_trigonometry extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/gradient_paint.hpp
++++ glm-0.9.9-a2/glm/gtx/gradient_paint.hpp
+@@ -17,10 +17,6 @@
+ #include "../glm.hpp"
+ #include "../gtx/optimum_pow.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_gradient_paint is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_gradient_paint extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/handed_coordinate_space.hpp
++++ glm-0.9.9-a2/glm/gtx/handed_coordinate_space.hpp
+@@ -15,10 +15,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_handed_coordinate_space is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_handed_coordinate_space extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/hash.hpp
++++ glm-0.9.9-a2/glm/gtx/hash.hpp
+@@ -12,10 +12,6 @@
+ 
+ #pragma once
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_hash is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #include <functional>
+ 
+ #include "../vec2.hpp"
+--- glm-0.9.9-a2/glm/gtx/integer.hpp
++++ glm-0.9.9-a2/glm/gtx/integer.hpp
+@@ -16,10 +16,6 @@
+ #include "../glm.hpp"
+ #include "../gtc/integer.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_integer is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_integer extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/intersect.hpp
++++ glm-0.9.9-a2/glm/gtx/intersect.hpp
+@@ -21,10 +21,6 @@
+ #include "../gtx/closest_point.hpp"
+ #include "../gtx/vector_query.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_closest_point is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_closest_point extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/io.hpp
++++ glm-0.9.9-a2/glm/gtx/io.hpp
+@@ -23,10 +23,6 @@
+ #include "../glm.hpp"
+ #include "../gtx/quaternion.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_io is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ # pragma message("GLM: GLM_GTX_io extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/log_base.hpp
++++ glm-0.9.9-a2/glm/gtx/log_base.hpp
+@@ -15,10 +15,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_log_base is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_log_base extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/matrix_cross_product.hpp
++++ glm-0.9.9-a2/glm/gtx/matrix_cross_product.hpp
+@@ -16,10 +16,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_matrix_cross_product is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_matrix_cross_product extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/matrix_decompose.hpp
++++ glm-0.9.9-a2/glm/gtx/matrix_decompose.hpp
+@@ -20,10 +20,6 @@
+ #include "../gtc/quaternion.hpp"
+ #include "../gtc/matrix_transform.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_matrix_decompose is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_matrix_decompose extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/matrix_factorisation.hpp
++++ glm-0.9.9-a2/glm/gtx/matrix_factorisation.hpp
+@@ -15,10 +15,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_matrix_factorisation is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_matrix_factorisation extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/matrix_interpolation.hpp
++++ glm-0.9.9-a2/glm/gtx/matrix_interpolation.hpp
+@@ -16,10 +16,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_matrix_interpolation is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_matrix_interpolation extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/matrix_major_storage.hpp
++++ glm-0.9.9-a2/glm/gtx/matrix_major_storage.hpp
+@@ -16,10 +16,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_matrix_major_storage is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_matrix_major_storage extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/matrix_operation.hpp
++++ glm-0.9.9-a2/glm/gtx/matrix_operation.hpp
+@@ -15,10 +15,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_matrix_operation is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_matrix_operation extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/matrix_query.hpp
++++ glm-0.9.9-a2/glm/gtx/matrix_query.hpp
+@@ -18,10 +18,6 @@
+ #include "../gtx/vector_query.hpp"
+ #include <limits>
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_matrix_query is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_matrix_query extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/matrix_transform_2d.hpp
++++ glm-0.9.9-a2/glm/gtx/matrix_transform_2d.hpp
+@@ -17,10 +17,6 @@
+ #include "../mat3x3.hpp"
+ #include "../vec2.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_matrix_transform_2d is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_matrix_transform_2d extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/mixed_product.hpp
++++ glm-0.9.9-a2/glm/gtx/mixed_product.hpp
+@@ -15,10 +15,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_mixed_product is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_mixed_product extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/normal.hpp
++++ glm-0.9.9-a2/glm/gtx/normal.hpp
+@@ -16,10 +16,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_normal is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_normal extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/normalize_dot.hpp
++++ glm-0.9.9-a2/glm/gtx/normalize_dot.hpp
+@@ -16,10 +16,6 @@
+ // Dependency:
+ #include "../gtx/fast_square_root.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_normalize_dot is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_normalize_dot extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/norm.hpp
++++ glm-0.9.9-a2/glm/gtx/norm.hpp
+@@ -17,10 +17,6 @@
+ #include "../geometric.hpp"
+ #include "../gtx/quaternion.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_norm is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_norm extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/number_precision.hpp
++++ glm-0.9.9-a2/glm/gtx/number_precision.hpp
+@@ -18,10 +18,6 @@
+ #include "../glm.hpp"
+ #include "../gtc/type_precision.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_number_precision is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_number_precision extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/optimum_pow.hpp
++++ glm-0.9.9-a2/glm/gtx/optimum_pow.hpp
+@@ -15,10 +15,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_optimum_pow is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_optimum_pow extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/orthonormalize.hpp
++++ glm-0.9.9-a2/glm/gtx/orthonormalize.hpp
+@@ -18,10 +18,6 @@
+ #include "../mat3x3.hpp"
+ #include "../geometric.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_orthonormalize is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_orthonormalize extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/perpendicular.hpp
++++ glm-0.9.9-a2/glm/gtx/perpendicular.hpp
+@@ -17,10 +17,6 @@
+ #include "../glm.hpp"
+ #include "../gtx/projection.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_perpendicular is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_perpendicular extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/polar_coordinates.hpp
++++ glm-0.9.9-a2/glm/gtx/polar_coordinates.hpp
+@@ -15,10 +15,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_polar_coordinates is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_polar_coordinates extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/projection.hpp
++++ glm-0.9.9-a2/glm/gtx/projection.hpp
+@@ -15,10 +15,6 @@
+ // Dependency:
+ #include "../geometric.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_projection is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_projection extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/quaternion.hpp
++++ glm-0.9.9-a2/glm/gtx/quaternion.hpp
+@@ -19,10 +19,6 @@
+ #include "../gtc/quaternion.hpp"
+ #include "../gtx/norm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_quaternion is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_quaternion extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/range.hpp
++++ glm-0.9.9-a2/glm/gtx/range.hpp
+@@ -15,10 +15,6 @@
+ // Dependencies
+ #include "../detail/setup.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_range is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if !GLM_HAS_RANGE_FOR
+ #	error "GLM_GTX_range requires C++11 suppport or 'range for'"
+ #endif
+--- glm-0.9.9-a2/glm/gtx/raw_data.hpp
++++ glm-0.9.9-a2/glm/gtx/raw_data.hpp
+@@ -16,10 +16,6 @@
+ #include "../detail/setup.hpp"
+ #include "../detail/type_int.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_raw_data is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_raw_data extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/rotate_normalized_axis.hpp
++++ glm-0.9.9-a2/glm/gtx/rotate_normalized_axis.hpp
+@@ -19,10 +19,6 @@
+ #include "../gtc/epsilon.hpp"
+ #include "../gtc/quaternion.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_rotate_normalized_axis is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_rotate_normalized_axis extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/rotate_vector.hpp
++++ glm-0.9.9-a2/glm/gtx/rotate_vector.hpp
+@@ -17,10 +17,6 @@
+ #include "../glm.hpp"
+ #include "../gtx/transform.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_rotate_vector is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_rotate_vector extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/scalar_multiplication.hpp
++++ glm-0.9.9-a2/glm/gtx/scalar_multiplication.hpp
+@@ -16,10 +16,6 @@
+ 
+ #include "../detail/setup.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_scalar_multiplication is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if !GLM_HAS_TEMPLATE_ALIASES && !(GLM_COMPILER & GLM_COMPILER_GCC)
+ #	error "GLM_GTX_scalar_multiplication requires C++11 support or alias templates and if not support for GCC"
+ #endif
+--- glm-0.9.9-a2/glm/gtx/scalar_relational.hpp
++++ glm-0.9.9-a2/glm/gtx/scalar_relational.hpp
+@@ -15,10 +15,6 @@
+ // Dependency:
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_extend is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_extend extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/spline.hpp
++++ glm-0.9.9-a2/glm/gtx/spline.hpp
+@@ -16,10 +16,6 @@
+ #include "../glm.hpp"
+ #include "../gtx/optimum_pow.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_spline is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_spline extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/std_based_type.hpp
++++ glm-0.9.9-a2/glm/gtx/std_based_type.hpp
+@@ -17,10 +17,6 @@
+ #include "../glm.hpp"
+ #include <cstdlib>
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_std_based_type is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_std_based_type extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/string_cast.hpp
++++ glm-0.9.9-a2/glm/gtx/string_cast.hpp
+@@ -24,10 +24,6 @@
+ #include <string>
+ #include <cmath>
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_string_cast is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if(GLM_COMPILER & GLM_COMPILER_CUDA)
+ #	error "GLM_GTX_string_cast is not supported on CUDA compiler"
+ #endif
+--- glm-0.9.9-a2/glm/gtx/texture.hpp
++++ glm-0.9.9-a2/glm/gtx/texture.hpp
+@@ -17,10 +17,6 @@
+ #include "../gtc/integer.hpp"
+ #include "../gtx/component_wise.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_texture is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_texture extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/transform2.hpp
++++ glm-0.9.9-a2/glm/gtx/transform2.hpp
+@@ -17,10 +17,6 @@
+ #include "../glm.hpp"
+ #include "../gtx/transform.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_transform2 is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_transform2 extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/transform.hpp
++++ glm-0.9.9-a2/glm/gtx/transform.hpp
+@@ -19,10 +19,6 @@
+ #include "../glm.hpp"
+ #include "../gtc/matrix_transform.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_transform is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_transform extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/type_aligned.hpp
++++ glm-0.9.9-a2/glm/gtx/type_aligned.hpp
+@@ -18,10 +18,6 @@
+ // Dependency:
+ #include "../gtc/type_precision.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_type_aligned is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_type_aligned extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/type_trait.hpp
++++ glm-0.9.9-a2/glm/gtx/type_trait.hpp
+@@ -12,10 +12,6 @@
+ 
+ #pragma once
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_type_trait is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ // Dependency:
+ #include "../detail/type_vec2.hpp"
+ #include "../detail/type_vec3.hpp"
+--- glm-0.9.9-a2/glm/gtx/vec_swizzle.hpp
++++ glm-0.9.9-a2/glm/gtx/vec_swizzle.hpp
+@@ -14,10 +14,6 @@
+ 
+ #include "../glm.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_vec_swizzle is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ namespace glm {
+ 	// xx
+ 	template<typename T, qualifier Q>
+--- glm-0.9.9-a2/glm/gtx/vector_angle.hpp
++++ glm-0.9.9-a2/glm/gtx/vector_angle.hpp
+@@ -20,10 +20,6 @@
+ #include "../gtx/quaternion.hpp"
+ #include "../gtx/rotate_vector.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_vector_angle is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_vector_angle extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/vector_query.hpp
++++ glm-0.9.9-a2/glm/gtx/vector_query.hpp
+@@ -17,10 +17,6 @@
+ #include <cfloat>
+ #include <limits>
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_vector_query is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_vector_query extension included")
+ #endif
+--- glm-0.9.9-a2/glm/gtx/wrap.hpp
++++ glm-0.9.9-a2/glm/gtx/wrap.hpp
+@@ -16,10 +16,6 @@
+ #include "../glm.hpp"
+ #include "../gtc/vec1.hpp"
+ 
+-#ifndef GLM_ENABLE_EXPERIMENTAL
+-#	error "GLM: GLM_GTX_wrap is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it."
+-#endif
+-
+ #if GLM_MESSAGES == GLM_MESSAGES_ENABLED && !defined(GLM_EXT_INCLUDED)
+ #	pragma message("GLM: GLM_GTX_wrap extension included")
+ #endif
