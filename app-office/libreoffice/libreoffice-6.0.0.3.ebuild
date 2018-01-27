@@ -204,7 +204,7 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/gperf-3
 	dev-util/intltool
 	>=dev-util/mdds-1.2.3:1=
-	>=media-libs/glm-0.9.9_alpha2
+	media-libs/glm
 	sys-devel/bison
 	sys-devel/flex
 	sys-devel/gettext
