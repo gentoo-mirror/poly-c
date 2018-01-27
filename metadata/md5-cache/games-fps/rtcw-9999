@@ -1,13 +1,13 @@
-DEFINED_PHASES=compile configure install postinst preinst prepare setup unpack
-DEPEND=sys-libs/zlib[minizip] client? ( media-libs/libsdl2 x11-libs/libX11 x11-libs/libXau x11-libs/libXdmcp x11-libs/libXext virtual/opengl ) >=dev-vcs/git-1.8.2.1
+DEFINED_PHASES=compile install postinst prepare unpack
+DEPEND=>=sys-libs/zlib-1.2.11[minizip] client? ( media-libs/libsdl2 x11-libs/libX11 x11-libs/libXau x11-libs/libXdmcp x11-libs/libXext virtual/opengl ) >=dev-vcs/git-1.8.2.1
 DESCRIPTION=Return to Castle Wolfenstein - IORTCW Project
-EAPI=5
+EAPI=6
 HOMEPAGE=http://games.activision.com/games/wolfenstein/
 IUSE=+client curl mumble openal opus server truetype voip vorbis
 LICENSE=GPL-2 RTCW
-RDEPEND=sys-libs/zlib[minizip] client? ( media-libs/libsdl2 virtual/opengl virtual/jpeg:0 curl? ( net-misc/curl ) mumble? ( media-sound/mumble ) openal? ( media-libs/openal ) opus? ( media-libs/libogg media-libs/opus media-libs/opusfile ) truetype? ( media-libs/freetype ) vorbis? ( media-libs/libogg media-libs/libvorbis ) ) games-misc/games-envd
+RDEPEND=>=sys-libs/zlib-1.2.11[minizip] client? ( media-libs/libsdl2 virtual/opengl virtual/jpeg:0 curl? ( net-misc/curl ) mumble? ( media-sound/mumble ) openal? ( media-libs/openal ) opus? ( media-libs/libogg media-libs/opus media-libs/opusfile ) truetype? ( media-libs/freetype ) vorbis? ( media-libs/libogg media-libs/libvorbis ) )
 REQUIRED_USE=|| ( client server ) voip? ( opus )
 SLOT=0
-SRC_URI=mirror://idsoftware/wolf/linux/wolf-linux-1.41b.x86.run https://github.com/iortcw/iortcw/releases/download/1.42d/patch-data-141.zip
-_eclasses_=base	983774947da124fb7d542ce25a218bb1	desktop	2ccd1dd1dd7bfb8795eea024a4f91bb6	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e7258392d5eda499c1cfa94db650b61	games	2bb3ede665927a68ffdb7c41eec7efde	git-r3	fec09a83ae965b041b47f5ff7c8ba29a	ltprune	2770eed66a9b8ef944714cd0e968182e	multilib	97f470f374f2e94ccab04a2fb21d811e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	885c7d8dd70a58825f3d17e35a3cd1e9	unpacker	f40f7b4bd5aa88c2a4ba7b0d1e0ded70	user	8bc2845510e2109af75e3eeac607ec81
-_md5_=ad67130bc4953c68333b340cb80ba9e5
+SRC_URI=mirror://idsoftware/wolf/linux/wolf-linux-1.41b.x86.run https://github.com/iortcw/iortcw/releases/download/1.51b/patch-data-141.zip -> rtcw-1.51b-patch-data-141.zip
+_eclasses_=desktop	2ccd1dd1dd7bfb8795eea024a4f91bb6	epatch	8233751dc5105a6ae8fcd86ce2bb0247	estack	43ddf5aaffa7a8d0482df54d25a66a1f	eutils	6e7258392d5eda499c1cfa94db650b61	git-r3	fec09a83ae965b041b47f5ff7c8ba29a	ltprune	2770eed66a9b8ef944714cd0e968182e	multilib	97f470f374f2e94ccab04a2fb21d811e	preserve-libs	ef207dc62baddfddfd39a164d9797648	toolchain-funcs	885c7d8dd70a58825f3d17e35a3cd1e9	unpacker	f40f7b4bd5aa88c2a4ba7b0d1e0ded70
+_md5_=af41edc700bc269a3ba4ee5cb608bbd4
