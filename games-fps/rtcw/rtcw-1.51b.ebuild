@@ -85,6 +85,8 @@ PATCHES=(
 )
 
 src_unpack() {
+	unpack "${RELEASE}-${PATCH_DATA}"
+
 	if [[ "${PV}" = 9999 ]] ; then
 		git-r3_src_unpack
 	else
@@ -167,6 +169,7 @@ src_install() {
 	# install pk3 files from the point release
 	insinto ${dir}/main
 	doins ${WORKDIR}/main/*.pk3
+	doins -r ${WORKDIR}/main/scripts
 
 	doicon -s scalable misc/iortcw.svg
 	make_desktop_entry rtcwsp "Return to Castle Wolfenstein (SP)" iortcw
