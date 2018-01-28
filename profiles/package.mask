@@ -40,3 +40,6 @@ dev-java/openjfx
 =app-office/libreoffice-l10n-6.0.0.2
 =app-office/libreoffice-6.0.0.3
 =app-office/libreoffice-l10n-6.0.0.3
+
+# Fails to build
+=sys-fs/udev-237_pre
