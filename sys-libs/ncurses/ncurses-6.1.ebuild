@@ -41,8 +41,8 @@ PATCHES=(
 
 src_prepare() {
 	[[ -n ${PV_SNAP} ]] && eapply "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
-	cp "${FILESDIR}/terminfo.src" "${S}"/misc/ || die
 	default
+	eapply -R "${FILESDIR}/${P}-terminfo60.patch"
 }
 
 src_configure() {
