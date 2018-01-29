@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 56a375592e4af6a35c937399126814f2b894e67d $
+# $Id: 727c5970e60f8d7284a0f2d85e77dbfb33b997f2 $
 
 # Remember: we cannot leverage autotools in this ebuild in order
 #           to avoid circular deps with autotools
@@ -23,7 +23,7 @@ else
 fi
 
 DESCRIPTION="utils for managing LZMA compressed files"
-HOMEPAGE="http://tukaani.org/xz/"
+HOMEPAGE="https://tukaani.org/xz/"
 
 # See top-level COPYING file as it outlines the various pieces and their licenses.
 LICENSE="public-domain LGPL-2.1+ GPL-2+"

@@ -35,9 +35,3 @@ dev-java/openjfx
 =dev-libs/boost-1.66.0_pre
 =dev-util/boost-build-1.66.0_pre
 
-# Requires masked packages from ::gentoo
-=app-office/libreoffice-6.0.0.2
-=app-office/libreoffice-l10n-6.0.0.2
-=app-office/libreoffice-6.0.0.3
-=app-office/libreoffice-l10n-6.0.0.3
-
