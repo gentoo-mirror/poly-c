@@ -139,10 +139,10 @@ src_configure() {
 
 multilib_src_compile() {
 	# meson creates this link
-	local libudev=$(readlink src/libudev/libudev.so.1)
+	local libudev=$(readlink src/udev/libudev.so.1)
 
 	local targets=(
-		src/libudev/${libudev}
+		src/udev/${libudev}
 	)
 	if multilib_is_native_abi; then
 		targets+=(
@@ -166,10 +166,10 @@ multilib_src_compile() {
 }
 
 multilib_src_install() {
-	local libudev=$(readlink src/libudev/libudev.so.1)
+	local libudev=$(readlink src/udev/libudev.so.1)
 
 	into /
-	dolib.so src/libudev/{${libudev},libudev.so.1,libudev.so}
+	dolib.so src/udev/{${libudev},libudev.so.1,libudev.so}
 
 	insinto "/usr/$(get_libdir)/pkgconfig"
 	doins src/libudev/libudev.pc
