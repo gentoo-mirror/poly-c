@@ -1,12 +1,12 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0bc6698ce506b81ce0fd89dc3fb53e31e3027769 $
+# $Id: 614a5e9f08aeaf239995cda4501ca5c848de3889 $
 
 EAPI=6
 
 inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal toolchain-funcs udev user versionator poly-c_ebuilds
 
-if [[ ${MY_PV} = 9999* ]]; then
+if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="https://github.com/systemd/systemd.git"
 	inherit git-r3
 else
@@ -26,8 +26,7 @@ IUSE="acl hwdb +kmod selinux"
 
 RESTRICT="test"
 
-COMMON_DEPEND="net-dns/libidn
-	>=sys-apps/util-linux-2.30[${MULTILIB_USEDEP}]
+COMMON_DEPEND=">=sys-apps/util-linux-2.30[${MULTILIB_USEDEP}]
 	sys-libs/libcap[${MULTILIB_USEDEP}]
 	acl? ( sys-apps/acl )
 	kmod? ( >=sys-apps/kmod-16 )
@@ -70,20 +69,20 @@ pkg_setup() {
 		local MINKV=2.6.39
 
 		if kernel_is -lt ${MINKV//./ }; then
-			eerror "Your running kernel is too old to run this version of ${MY_P}"
+			eerror "Your running kernel is too old to run this version of ${P}"
 			eerror "You need to upgrade kernel at least to ${MINKV}"
 		fi
 
 		if kernel_is -lt 3 7; then
 			ewarn "Your running kernel is too old to have firmware loader and"
-			ewarn "this version of ${MY_P} doesn't have userspace firmware loader"
+			ewarn "this version of ${P} doesn't have userspace firmware loader"
 			ewarn "If you need firmware support, you need to upgrade kernel at least to 3.7"
 		fi
 	fi
 }
 
 src_prepare() {
-	if ! [[ ${MY_PV} = 9999* ]]; then
+	if ! [[ ${PV} = 9999* ]]; then
 		# secure_getenv() disable for non-glibc systems wrt bug #443030
 		if ! [[ $(grep -r secure_getenv * | wc -l) -eq 28 ]]; then
 			eerror "The line count for secure_getenv() failed, see bug #443030"
@@ -128,6 +127,16 @@ multilib_src_configure() {
 		-Dselinux=$(meson_multilib_native_use selinux)
 		-Dlink-udev-shared=false
 		-Dsplit-usr=true
+
+		# Prevent automagic deps
+		-Dgcrypt=false
+		-Dlibcryptsetup=false
+		-Dlibidn=false
+		-Dlibidn2=false
+		-Dlibiptc=false
+		-Dseccomp=false
+		-Dlz4=false
+		-Dxz=false
 	)
 	meson_src_configure
 }
