@@ -1,0 +1,11 @@
+--- libbpg-0.9.7/Makefile	2016-05-15 11:06:19.000000000 +0200
++++ libbpg-0.9.7-new/Makefile	2018-01-30 12:09:21.569697042 +0100
+@@ -61,7 +61,7 @@
+ LDFLAGS+=-Wl,--gc-sections
+ endif
+ CFLAGS+=-g
+-CXXFLAGS=$(CFLAGS)
++CXXFLAGS=$(CFLAGS) -std=gnu++98
+ 
+ PROGS=bpgdec$(EXE) bpgenc$(EXE)
+ ifdef USE_BPGVIEW

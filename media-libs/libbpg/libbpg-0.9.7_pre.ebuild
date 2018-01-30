@@ -23,6 +23,7 @@ RDEPEND="media-libs/libjpeg-turbo
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-0.9.6-numa_linking.patch
+	"${FILESDIR}"/${PN}-cxx98.patch
 )
 
 src_prepare() {
