@@ -155,7 +155,9 @@ src_install() {
 	COPYDIR=${D}/${dir} \
 	emake copyfiles
 
-	dosym /opt/${PN}/iowolfsp."$(uname -m)" /usr/bin/${PN}sp
+	sed "s@%dir%@${dir}@g;s@%exe%@iowolfsp.$(uname -m)@" \
+		"${FILESDIR}"/rtcw-wrapper > "${T}"/rtcwsp
+	dobin "${T}"/rtcwsp
 
 	#if use server; then
 	#	games_make_wrapper wolf-ded ./wolfded.x86 "${dir}" "${dir}"
