@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: d515a2cfe56023ce054f29aa5bb72872f915b232 $
+# $Id: c9c21b326b4e58c903ad4431a1ae3914b208bf10 $
 
 EAPI=6
 
@@ -43,8 +43,7 @@ DEPEND="
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.1.0-mtu.patch #291907
-	"${FILESDIR}"/${P}-fix-tc-actions.patch
-	"${FILESDIR}"/${P}-configure-nomagic.patch # bug 643722
+	"${FILESDIR}"/${PN}-4.14.1-configure-nomagic.patch # bug 643722
 )
 
 src_prepare() {
