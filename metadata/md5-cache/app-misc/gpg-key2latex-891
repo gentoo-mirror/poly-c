@@ -1,0 +1,10 @@
+DEFINED_PHASES=install
+DESCRIPTION=Generate a LaTeX file for fingerprint slips
+EAPI=6
+HOMEPAGE=https://anonscm.debian.org/viewvc/pgp-tools/trunk/gpg-key2latex/gpg-key2latex
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-3+
+RDEPEND=dev-perl/GnuPG-Interface
+SLOT=0
+SRC_URI=https://anonscm.debian.org/viewvc/pgp-tools/trunk/gpg-key2latex/gpg-key2latex?revision=891&view=co -> gpg-key2latex-891
+_md5_=b0631bd426c1fcd0352f985fb2a158c8
