@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f38e3db1ff8f367f11590163344f761fbade6250 $
+# $Id: 15efa9acf6c9e71da1906052d3213de3a8a788bf $
 
 EAPI=6
 
@@ -19,12 +19,13 @@ HOMEPAGE="https://wiki.linuxfoundation.org/networking/iproute2"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="atm berkdb +iptables ipv6 minimal selinux"
+IUSE="atm berkdb elf +iptables ipv6 minimal selinux"
 
 # We could make libmnl optional, but it's tiny, so eh
 RDEPEND="
 	!net-misc/arpd
 	!minimal? ( net-libs/libmnl virtual/libelf )
+	elf? ( virtual/libelf )
 	iptables? ( >=net-firewall/iptables-1.4.20:= )
 	berkdb? ( sys-libs/db:= )
 	atm? ( net-dialup/linux-atm )
@@ -102,7 +103,7 @@ src_configure() {
 	TC_CONFIG_IPSET := y
 	HAVE_BERKELEY_DB := $(usex berkdb y n)
 	HAVE_MNL      := $(usex minimal n y)
-	HAVE_ELF      := $(usex minimal n y)
+	HAVE_ELF      := $(usex elf y n)
 	HAVE_SELINUX  := $(usex selinux y n)
 	IP_CONFIG_SETNS := ${setns}
 	# Use correct iptables dir, #144265 #293709

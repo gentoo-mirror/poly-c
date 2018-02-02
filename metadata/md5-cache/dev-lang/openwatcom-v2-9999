@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile configure unpack
+DEPEND=clang? ( sys-devel/clang ) >=dev-vcs/git-1.8.2.1
+DESCRIPTION=Open Watcom compiler
+EAPI=6
+HOMEPAGE=https://github.com/open-watcom/open-watcom-v2
+IUSE=clang doc
+KEYWORDS=~amd64 ~x86
+LICENSE=OWPL-1
+SLOT=0
+_eclasses_=git-r3	fec09a83ae965b041b47f5ff7c8ba29a
+_md5_=6b469b84ac24076aad36a0af562c58c0
