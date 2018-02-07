@@ -1,6 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f5183edd194127c9c5d69ca0441006f72a0c917c $
+# $Id: dcc548329a326d30219cf83df0793fd4ec020c1d $
 
 EAPI=6
 
@@ -77,7 +77,7 @@ COMMON_DEPEND="
 	x11-libs/xcb-util
 	x11-libs/xcb-util-image
 	appstream? ( dev-libs/appstream[qt5] )
-	calendar? ( $(add_kdeapps_dep kholidays) )
+	calendar? ( || ( $(add_frameworks_dep kholidays) $(add_kdeapps_dep kholidays) ) )
 	geolocation? ( $(add_frameworks_dep networkmanager-qt) )
 	gps? ( sci-geosciences/gpsd )
 	prison? ( $(add_frameworks_dep prison) )
