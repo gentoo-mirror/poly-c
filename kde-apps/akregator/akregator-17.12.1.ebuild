@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id: 861bc0c9dc32b23150958239ffe3b64eeaacb623 $
 
 EAPI=6
 
@@ -14,7 +15,6 @@ KEYWORDS="~amd64 ~x86"
 
 IUSE=""
 
-# drop qtwebengine subslot operator when QT_MINIMAL >= 5.8.0
 COMMON_DEPEND="
 	$(add_frameworks_dep kcmutils)
 	$(add_frameworks_dep kcodecs)
@@ -44,7 +44,7 @@ COMMON_DEPEND="
 	$(add_qt_dep qtdbus)
 	$(add_qt_dep qtgui)
 	$(add_qt_dep qtnetwork)
-	$(add_qt_dep qtwebengine '' '' '5=')
+	$(add_qt_dep qtwebengine)
 	$(add_qt_dep qtwidgets)
 	$(add_qt_dep qtxml)
 "
@@ -56,6 +56,5 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 PATCHES=(
-	"${FILESDIR}/${P}-corruption.patch"
-	"${FILESDIR}/${PN}-dont_remove_read_messages_from_filter.patch"
+	"${FILESDIR}/${PN}-feed_corruption.patch"
 )
