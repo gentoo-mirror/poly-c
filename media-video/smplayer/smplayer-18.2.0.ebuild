@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 70deb3e4a369385e558b50e0a7a63b46b2257460 $
+# $Id: 7c9ad23ef750892c4c0ef5e1985fc4f8c89400b3 $
 
 EAPI=6
 
@@ -9,7 +9,7 @@ he_IL hr hu id it ja ka ko ku lt mk ms_MY nl nn_NO pl pt_BR pt ro_RO ru_RU
 sk sl_SI sq_AL sr sv th tr uk_UA uz vi_VN zh_CN zh_TW"
 PLOCALE_BACKUP="en_US"
 
-inherit gnome2-utils l10n qmake-utils xdg-utils
+inherit gnome2-utils l10n qmake-utils toolchain-funcs xdg-utils
 
 DESCRIPTION="Great Qt GUI front-end for mplayer/mpv"
 HOMEPAGE="http://www.smplayer.eu/"
@@ -48,6 +48,7 @@ RDEPEND="${COMMON_DEPEND}
 PATCHES=(
 	"${FILESDIR}/${PN}-14.9.0.6966-unbundle-qtsingleapplication.patch" # bug 487544
 	"${FILESDIR}/${PN}-17.1.0-advertisement_crap.patch"
+	"${FILESDIR}/${PN}-18.2.0-jobserver.patch"
 )
 
 src_prepare() {
@@ -108,7 +109,7 @@ gen_translation() {
 }
 
 src_compile() {
-	default
+	emake CC="$(tc-getCC)"
 
 	cd src/translations || die
 	l10n_for_each_locale_do gen_translation
