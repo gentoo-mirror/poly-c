@@ -4,13 +4,13 @@
 
 EAPI=6
 
-inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal toolchain-funcs udev user versionator poly-c_ebuilds
+inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal toolchain-funcs udev user versionator
 
 if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="https://github.com/systemd/systemd.git"
 	inherit git-r3
 else
-	SRC_URI="https://github.com/systemd/systemd/archive/v${MY_PV}.tar.gz -> systemd-${MY_PV}.tar.gz"
+	SRC_URI="https://github.com/systemd/systemd/archive/v${PV}.tar.gz -> systemd-${PV}.tar.gz"
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 
 	FIXUP_PATCH="${PN}-237-revert-systemd-messup.patch"
@@ -57,7 +57,7 @@ RDEPEND="${COMMON_DEPEND}
 PDEPEND=">=sys-apps/hwids-20140304[udev]
 	>=sys-fs/udev-init-scripts-26"
 
-S="${WORKDIR}/systemd-${MY_PV}"
+S="${WORKDIR}/systemd-${PV}"
 EGIT_CHECKOUT_DIR="${S}"
 
 pkg_setup() {
@@ -82,14 +82,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	if ! [[ ${PV} = 9999* ]]; then
-		# secure_getenv() disable for non-glibc systems wrt bug #443030
-		if ! [[ $(grep -r secure_getenv * | wc -l) -eq 28 ]]; then
-			eerror "The line count for secure_getenv() failed, see bug #443030"
-			die
-		fi
-	fi
-
 	cat <<-EOF > "${T}"/40-gentoo.rules
 	# Gentoo specific floppy and usb groups
 	ACTION=="add", SUBSYSTEM=="block", KERNEL=="fd[0-9]", GROUP="floppy"
@@ -103,11 +95,6 @@ src_prepare() {
 	default
 
 	eapply "${WORKDIR}"/${FIXUP_PATCH}
-
-	if ! use elibc_glibc; then #443030
-		echo '#define secure_getenv(x) NULL' >> config.h.in
-		sed -i -e '/error.*secure_getenv/s:.*:#define secure_getenv(x) NULL:' src/shared/missing.h || die
-	fi
 }
 
 meson_multilib_native_use() {
