@@ -1,0 +1,11 @@
+--- cooledit-3.17.19/configure.in
++++ cooledit-3.17.19/configure.in
+@@ -5,7 +5,7 @@
+ AC_CANONICAL_SYSTEM
+ AC_DEFINE_UNQUOTED(TARGET_MACHINE, "${target_cpu}-${target_vendor}-${target_os}", "unknown")
+ 
+-AM_INIT_AUTOMAKE(cooledit, 3.17.17)
++AM_INIT_AUTOMAKE(cooledit, 3.17.19)
+ AM_CONFIG_HEADER(config.h)
+ 
+ dnl Define package and version.

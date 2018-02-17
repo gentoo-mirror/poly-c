@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure prepare
+DEPEND=x11-libs/libX11 x11-libs/libXdmcp x11-libs/libXau x11-libs/libXpm >=app-portage/elt-patches-20170422 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DESCRIPTION=Cooledit is a full featured multiple window text editor
+EAPI=6
+HOMEPAGE=http://freshmeat.net/projects/cooledit/
+IUSE=nls
+KEYWORDS=~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos
+LICENSE=GPL-2
+RDEPEND=x11-libs/libX11 x11-libs/libXdmcp x11-libs/libXau
+SLOT=0
+SRC_URI=ftp://ftp.ibiblio.org/pub/Linux/apps/editors/X/cooledit/cooledit-3.17.19.tar.gz https://dev.gentoo.org/~hwoarang/distfiles/cooledit-3.17.17-nopython.tar.gz
+_eclasses_=autotools	dc412f38566b91012efd58b9c203e6c3	libtool	0081a71a261724730ec4c248494f044d	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	885c7d8dd70a58825f3d17e35a3cd1e9
+_md5_=275fdf182b2df8ad324a7eca4bc50a5c
