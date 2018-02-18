@@ -1,0 +1,10 @@
+DEFINED_PHASES=compile configure install
+DESCRIPTION=CLI utility to manage Areca RAID controllers
+EAPI=6
+HOMEPAGE=http://www.areca.com.tw/support/s_linux/linux.htm
+KEYWORDS=~amd64 ~x86
+RESTRICT=fetch
+SLOT=0
+SRC_URI=linuxcli_V1.50.0_170105.zip
+_eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	versionator	ce21313503c41896ebcd7d58b0607e37
+_md5_=c84d704637a7241b3f4a29ab03b8b0cd
