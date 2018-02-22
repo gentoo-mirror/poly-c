@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 7c9ad23ef750892c4c0ef5e1985fc4f8c89400b3 $
+# $Id: 27c383e46b9ff98b03313128a35be2e479ff828d $
 
 EAPI=6
 
@@ -25,7 +25,7 @@ COMMON_DEPEND="
 	dev-qt/qtgui:5=
 	dev-qt/qtnetwork:5[ssl]
 	dev-qt/qtscript:5
-	dev-qt/qtsingleapplication[X,qt5]
+	dev-qt/qtsingleapplication[X,qt5(+)]
 	dev-qt/qtwidgets:5
 	dev-qt/qtxml:5
 	sys-libs/zlib
