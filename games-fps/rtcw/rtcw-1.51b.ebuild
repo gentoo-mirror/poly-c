@@ -4,16 +4,13 @@
 
 EAPI=6
 
-SCM=""
-[[ "${PV}" = 9999 ]] && SCM="git-r3"
-inherit eutils unpacker ${SCM}
-unset SCM
+inherit eutils unpacker
 
 DESCRIPTION="Return to Castle Wolfenstein - IORTCW Project"
 HOMEPAGE="http://games.activision.com/games/wolfenstein/"
 if [[ "${PV}" = 9999 ]] ; then
+	inherit git-r3
 	EGIT_REPO_URI="https://github.com/iortcw/iortcw.git"
-	KEYWORDS=""
 	RELEASE="${PN}-1.51b"
 else
 	SRC_URI="https://github.com/iortcw/iortcw/archive/${PV}.tar.gz -> ${P}.tar.gz"
