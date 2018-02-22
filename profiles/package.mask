@@ -26,9 +26,6 @@ media-radio/liquidsoap
 # fails to build yet
 dev-java/openjfx
 
-# Breaks autogen
->=dev-scheme/guile-2.2.0_pre
-
 # masked for testing
 =net-misc/icecast-2.5_beta*
 
