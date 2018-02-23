@@ -22,7 +22,6 @@ net-dialup/mingetty 1.08 1.08-r1: A compact getty program for virtual consoles o
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-im/licq 1.8.2: ICQ Client with v8 support
 net-im/pidgin 2.11.0-r1: GTK Instant Messenger client
-net-libs/webkit-gtk 2.4.11-r200: Open source web browser engine
 net-misc/socat 1.7.3.1: Multipurpose relay (SOcket CAT)
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 sci-astronomy/celestia 1.6.1-r1: OpenGL 3D space simulator
