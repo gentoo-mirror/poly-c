@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f2529a996aea54f26a812e44fe4f6040c768bd36 $
+# $Id: 920298905c479f0be5d4fd8985990a1135bbf68d $
 
 EAPI=6
 
@@ -32,10 +32,6 @@ src_prepare() {
 		-e '/install-exec-hook:/s|$|\nfoo:|' \
 		Makefile.in doc/Makefile.in || die
 	sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in #413327
-	# disable pointless build time hack that breaks cross-compiling #493362
-	sed -i \
-		-e '/check-recursive all-recursive: check-for-shared-lib-support/d' \
-		extension/Makefile.in || die
 	# fix standards conflict on Solaris
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		sed -i \

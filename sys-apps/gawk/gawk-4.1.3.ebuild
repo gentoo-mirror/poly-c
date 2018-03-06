@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 6c403d62d9268534f5ab29f292ee2fa85b4d5b13 $
+# $Id: 26bb3ec3627ef70162b625a20a98d3f618ee1b55 $
 
 EAPI="5"
 
@@ -27,10 +27,6 @@ src_prepare() {
 		-e '/install-exec-hook:/s|$|\nfoo:|' \
 		Makefile.in doc/Makefile.in || die
 	sed -i '/^pty1:$/s|$|\n_pty1:|' test/Makefile.in #413327
-	# disable pointless build time hack that breaks cross-compiling #493362
-	sed -i \
-		-e '/check-recursive all-recursive: check-for-shared-lib-support/d' \
-		extension/Makefile.in || die
 
 	EPATCH_OPTS="-Z" \
 	epatch "${FILESDIR}/${P}-bsd_configure_readline.patch" #507468

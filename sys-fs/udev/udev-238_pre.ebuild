@@ -1,19 +1,19 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 66809cbf43757869012d884ef05ab4badd0390ec $
+# $Id: 3b794e7c3ded36690a653945b7ef69305d07ed17 $
 
 EAPI=6
 
-inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal toolchain-funcs udev user versionator
+inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal toolchain-funcs udev user versionator poly-c_ebuilds
 
-if [[ ${PV} = 9999* ]]; then
+if [[ ${MY_PV} = 9999* ]]; then
 	EGIT_REPO_URI="https://github.com/systemd/systemd.git"
 	inherit git-r3
 else
-	SRC_URI="https://github.com/systemd/systemd/archive/v${PV}.tar.gz -> systemd-${PV}.tar.gz"
-	KEYWORDS="alpha amd64 ~arm ~arm64 hppa ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh sparc x86"
+	SRC_URI="https://github.com/systemd/systemd/archive/v${MY_PV}.tar.gz -> systemd-${MY_PV}.tar.gz"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 
-	FIXUP_PATCH="${PN}-236-revert-systemd-messup.patch"
+	FIXUP_PATCH="${PN}-238-revert-systemd-messup.patch"
 	SRC_URI+=" https://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}.xz"
 fi
 
@@ -57,7 +57,7 @@ RDEPEND="${COMMON_DEPEND}
 PDEPEND=">=sys-apps/hwids-20140304[udev]
 	>=sys-fs/udev-init-scripts-26"
 
-S="${WORKDIR}/systemd-${PV}"
+S="${WORKDIR}/systemd-${MY_PV}"
 EGIT_CHECKOUT_DIR="${S}"
 
 pkg_setup() {
@@ -69,27 +69,19 @@ pkg_setup() {
 		local MINKV=2.6.39
 
 		if kernel_is -lt ${MINKV//./ }; then
-			eerror "Your running kernel is too old to run this version of ${P}"
+			eerror "Your running kernel is too old to run this version of ${MY_P}"
 			eerror "You need to upgrade kernel at least to ${MINKV}"
 		fi
 
 		if kernel_is -lt 3 7; then
 			ewarn "Your running kernel is too old to have firmware loader and"
-			ewarn "this version of ${P} doesn't have userspace firmware loader"
+			ewarn "this version of ${MY_P} doesn't have userspace firmware loader"
 			ewarn "If you need firmware support, you need to upgrade kernel at least to 3.7"
 		fi
 	fi
 }
 
 src_prepare() {
-	if ! [[ ${PV} = 9999* ]]; then
-		# secure_getenv() disable for non-glibc systems wrt bug #443030
-		if ! [[ $(grep -r secure_getenv * | wc -l) -eq 27 ]]; then
-			eerror "The line count for secure_getenv() failed, see bug #443030"
-			die
-		fi
-	fi
-
 	cat <<-EOF > "${T}"/40-gentoo.rules
 	# Gentoo specific floppy and usb groups
 	ACTION=="add", SUBSYSTEM=="block", KERNEL=="fd[0-9]", GROUP="floppy"
@@ -103,11 +95,6 @@ src_prepare() {
 	default
 
 	eapply "${WORKDIR}"/${FIXUP_PATCH}
-
-	if ! use elibc_glibc; then #443030
-		echo '#define secure_getenv(x) NULL' >> config.h.in
-		sed -i -e '/error.*secure_getenv/s:.*:#define secure_getenv(x) NULL:' src/shared/missing.h || die
-	fi
 }
 
 meson_multilib_native_use() {
@@ -127,6 +114,7 @@ multilib_src_configure() {
 		-Dselinux=$(meson_multilib_native_use selinux)
 		-Dlink-udev-shared=false
 		-Dsplit-usr=true
+		-Dsplit-bin-sbin=true
 
 		# Prevent automagic deps
 		-Dgcrypt=false
@@ -149,10 +137,10 @@ src_configure() {
 
 multilib_src_compile() {
 	# meson creates this link
-	local libudev=$(readlink src/libudev/libudev.so.1)
+	local libudev=$(readlink src/udev/libudev.so.1)
 
 	local targets=(
-		src/libudev/${libudev}
+		src/udev/${libudev}
 	)
 	if multilib_is_native_abi; then
 		targets+=(
@@ -176,10 +164,10 @@ multilib_src_compile() {
 }
 
 multilib_src_install() {
-	local libudev=$(readlink src/libudev/libudev.so.1)
+	local libudev=$(readlink src/udev/libudev.so.1)
 
 	into /
-	dolib.so src/libudev/{${libudev},libudev.so.1,libudev.so}
+	dolib.so src/udev/{${libudev},libudev.so.1,libudev.so}
 
 	insinto "/usr/$(get_libdir)/pkgconfig"
 	doins src/libudev/libudev.pc

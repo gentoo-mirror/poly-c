@@ -1,6 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f8e171a61f91faaf4d95b269546e779f5308e7a5 $
+# $Id: 17f2f59fdab6a34e02b1d89ff9b0761819635657 $
 
 EAPI=6
 inherit eutils systemd udev
@@ -8,7 +8,7 @@ inherit eutils systemd udev
 ADRIVER_PV="1.0.25"
 
 DESCRIPTION="Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)"
-HOMEPAGE="http://www.alsa-project.org/"
+HOMEPAGE="https://alsa-project.org/"
 SRC_URI="mirror://alsaproject/utils/${P}.tar.bz2
 	mirror://alsaproject/driver/alsa-driver-${ADRIVER_PV}.tar.bz2"
 
