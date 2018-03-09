@@ -19,14 +19,11 @@ fi
 
 LICENSE="GPL-3 RTCW-ETEULA"
 SLOT="0"
-IUSE="+opengl dedicated omnibot +curl +vorbis +openal +freetype lua curses autoupdate renderer2 renderer-gles ipv6 irc renderer-dynamic crouch +gettext jansson"
+IUSE="+opengl dedicated omnibot +curl +vorbis +openal +freetype lua curses autoupdate renderer2 renderer-gles ipv6 irc +gettext jansson"
 REQUIRED_USE="omnibot? ( x86 )"
 
 RESTRICT="mirror"
 
-# TODO 2.60 servers and omnibot require 32bit client : converto to multilib, 
-# and add dep on games-fps/enemy-territory-omnibot and (abi_x86_32 or x86)
-# TODO find out which libsdl useflags we really need to depend on
 # TODO add debug use for CMAKE_BUILD_TYPE=debug
 
 if [[ ${PV} == "9999" ]]; then
@@ -68,34 +65,23 @@ src_prepare() {
 }
 
 src_configure() {
-	# path and build type
-	# see TODO
-	mycmakeargs+=(
-		-DCMAKE_BUILD_TYPE="Release"
+	mycmakeargs=(
+		# path and build type
+		#-DCMAKE_BUILD_TYPE="Release"
 		-DCMAKE_INSTALL_PREFIX="/usr"
 		-DINSTALL_DEFAULT_BASEDIR="/usr/share/${PN}"
 		-DINSTALL_DEFAULT_BINDIR="/usr/bin"
 		-DINSTALL_DEFAULT_MODDIR="/usr/share/${PN}"
-	)
-
-	# see TODO
-	mycmakeargs+=(
 		-DCMAKE_LIBRARY_PATH="/usr/$(get_libdir)"
 		-DCMAKE_INCLUDE_PATH="/usr/include"
 		-DCROSS_COMPILE32="0"
-	)
-
-	# what to build
-	mycmakeargs+=(
+		# what to build
 		-DBUILD_CLIENT="$(usex opengl)"
 		-DBUILD_MOD="1"
 		-DBUILD_MOD_PK3="1"
 		-DBUILD_PAK3_PK3="1"
 		-DBUILD_SERVER="$(usex dedicated)"
-	)
-
-	# no bundled libs
-	mycmakeargs+=(
+		# no bundled libs
 		-DBUNDLED_LIBS="0"
 		-DBUNDLED_SDL="0"
 		-DBUNDLED_CURL="0"
@@ -105,10 +91,7 @@ src_configure() {
 		-DBUNDLED_GLEW="0"
 		-DBUNDLED_FREETYPE="0"
 		-DBUNDLED_JANSSON="0"
-	)
-
-	# features
-	mycmakeargs+=(
+		# features
 		-DFEATURE_CURL="$(usex curl)"
 		-DFEATURE_OGG_VORBIS="$(usex vorbis)"
 		-DFEATURE_OPENAL="$(usex openal)"
@@ -121,33 +104,23 @@ src_configure() {
 		-DFEATURE_JANSSON="$(usex jansson)"
 		-DFEATURE_ANTICHEAT="1"
 		-DFEATURE_AUTOUPDATE="1"
-		-DFEATURE_CROUCH="0"
-	)
-
-	# renderers
-	mycmakeargs+=(
+		# renderers
 		-DFEATURE_RENDERER2="$(usex renderer2)"
 		-DFEATURE_RENDERER_GLES="$(usex renderer-gles)"
-		-DFEATURE_DYNAMIC="$(usex renderer-dynamic)"
-	)
 
-	# see TODO
-	mycmakeargs+=(
 		-DFEATURE_OMNIBOT="$(usex omnibot)"
 		-DINSTALL_OMNIBOT="$(usex omnibot)"
+		-DINSTALL_GEOIP="0"
+		-DINSTALL_WOLFADMIN="0"
 	)
 
 	cmake-utils_src_configure
 }
 
-src_compile() {
-	cmake-utils_src_compile
-}
-
 src_install() {
 	cmake-utils_src_install
 
-	mkdir -p "${ED%/}/usr/$(get_libdir)/${PN}"
+	dodir "/usr/$(get_libdir)/${PN}"
 	mv "${ED%/}/usr/share/${PN}/legacy/"*.so "${ED%/}/usr/$(get_libdir)/${PN}"
 
 	#local so
@@ -155,7 +128,7 @@ src_install() {
 	#dosym "$(games_get_libdir)/${PN}/${so##*}" \
         #                "${GAMES_DATADIR}/${PN}/legacy/${so##*}"
 	#done
-	ln -s "../../../$(get_libdir)/${PN}" "${ED%/}/usr/share/${PN}/legacy" || die
+	dosym "../../../$(get_libdir)/${PN}" "/usr/share/${PN}/legacy/${PN}"
 }
 
 pkg_postinst() {
