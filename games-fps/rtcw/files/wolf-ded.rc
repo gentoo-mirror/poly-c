@@ -1,7 +1,6 @@
-#!/sbin/runscript
+#!/sbin/openrc-run
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-fps/rtcw/files/wolf-ded.rc,v 1.4 2004/07/14 22:16:39 agriffis Exp $
 
 depend() {
 	need net
