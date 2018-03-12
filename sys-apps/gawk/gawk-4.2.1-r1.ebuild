@@ -39,6 +39,7 @@ src_prepare() {
 			-e '/\<_XOPEN_SOURCE_EXTENDED\>/s/1//' \
 			extension/inplace.c || die
 	fi
+
 	if use forced-sandbox ; then
 		# Upstream doesn't want to add a configure flag for this.
 		# https://lists.gnu.org/archive/html/bug-sed/2018-03/msg00001.html
