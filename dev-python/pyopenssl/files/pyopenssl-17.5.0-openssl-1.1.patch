@@ -1,0 +1,45 @@
+From 993c4e4afc4274019bdb835b64191afeed6c13b7 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ond=C5=99ej=20Nov=C3=BD?= <novy@ondrej.org>
+Date: Thu, 1 Mar 2018 14:09:37 +0100
+Subject: [PATCH] Don't add not supported SSL_ST_* into _all_, fixies #738
+ (#739)
+
+Without this patch this fails:
+>>> from OpenSSL.SSL import *
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python2.7/dist-packages/cryptography/utils.py", line 124, in __getattr__
+    obj = getattr(self._module, attr)
+AttributeError: 'module' object has no attribute 'SSL_ST_INIT'
+---
+ src/OpenSSL/SSL.py | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/src/OpenSSL/SSL.py b/src/OpenSSL/SSL.py
+index 5def0aae..b5dd442d 100644
+--- a/src/OpenSSL/SSL.py
++++ b/src/OpenSSL/SSL.py
+@@ -87,10 +87,6 @@
+     'SSL_ST_CONNECT',
+     'SSL_ST_ACCEPT',
+     'SSL_ST_MASK',
+-    'SSL_ST_INIT',
+-    'SSL_ST_BEFORE',
+-    'SSL_ST_OK',
+-    'SSL_ST_RENEGOTIATE',
+     'SSL_CB_LOOP',
+     'SSL_CB_EXIT',
+     'SSL_CB_READ',
+@@ -206,6 +202,12 @@ class _buffer(object):
+     SSL_ST_BEFORE = _lib.SSL_ST_BEFORE
+     SSL_ST_OK = _lib.SSL_ST_OK
+     SSL_ST_RENEGOTIATE = _lib.SSL_ST_RENEGOTIATE
++    __all__.extend([
++        'SSL_ST_INIT',
++        'SSL_ST_BEFORE',
++        'SSL_ST_OK',
++        'SSL_ST_RENEGOTIATE',
++    ])
+ 
+ SSL_CB_LOOP = _lib.SSL_CB_LOOP
+ SSL_CB_EXIT = _lib.SSL_CB_EXIT

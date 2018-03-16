@@ -3,6 +3,7 @@ app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, inclu
 app-misc/mc 4.8.15 4.8.18-r1 4.8.20-r1: GNU Midnight Commander is a text based file manager
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
+dev-libs/botan 1.10.17: A C++ crypto library
 dev-libs/openssl 1.0.2n: full-strength general purpose cryptography library (including SSL and TLS)
 dev-qt/qtdbus 5.7.1: Qt5 module for inter-process communication over the D-Bus protocol
 dev-qt/qtwebengine 5.7.1-r2: Library for rendering dynamic web content in Qt5 C++ and QML applications
