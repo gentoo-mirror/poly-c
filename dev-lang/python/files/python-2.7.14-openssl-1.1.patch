@@ -1,0 +1,113 @@
+--- Python-2.7.14-orig/Modules/_ssl.c	2017-10-13 23:12:39.499717655 +1100
++++ Python-2.7.14/Modules/_ssl.c	2017-10-13 23:28:47.914239705 +1100
+@@ -69,6 +69,7 @@
+ #include "openssl/ssl.h"
+ #include "openssl/err.h"
+ #include "openssl/rand.h"
++#include "openssl/dh.h"
+ 
+ /* SSL error object */
+ static PyObject *PySSLErrorObject;
+@@ -137,6 +138,14 @@
+ #endif
+ 
+ #define TLS_method SSLv23_method
++#define TLS_client_method SSLv23_client_method
++#define TLS_server_method SSLv23_server_method
++#define X509_get0_notBefore X509_get_notBefore
++#define X509_get0_notAfter X509_get_notAfter
++#define ASN1_STRING_get0_data ASN1_STRING_data
++#define OpenSSL_version_num SSLeay
++#define OpenSSL_version SSLeay_version
++#define OPENSSL_VERSION SSLEAY_VERSION
+ 
+ static int X509_NAME_ENTRY_set(const X509_NAME_ENTRY *ne)
+ {
+@@ -944,7 +953,7 @@
+                     goto fail;
+                 }
+                 PyTuple_SET_ITEM(t, 0, v);
+-                v = PyString_FromStringAndSize((char *)ASN1_STRING_data(as),
++                v = PyString_FromStringAndSize((char *)ASN1_STRING_get0_data(as),
+                                                ASN1_STRING_length(as));
+                 if (v == NULL) {
+                     Py_DECREF(t);
+@@ -1245,7 +1254,7 @@
+     Py_DECREF(sn_obj);
+ 
+     (void) BIO_reset(biobuf);
+-    notBefore = X509_get_notBefore(certificate);
++    notBefore = X509_get0_notBefore(certificate);
+     ASN1_TIME_print(biobuf, notBefore);
+     len = BIO_gets(biobuf, buf, sizeof(buf)-1);
+     if (len < 0) {
+@@ -1262,7 +1271,7 @@
+     Py_DECREF(pnotBefore);
+ 
+     (void) BIO_reset(biobuf);
+-    notAfter = X509_get_notAfter(certificate);
++    notAfter = X509_get0_notAfter(certificate);
+     ASN1_TIME_print(biobuf, notAfter);
+     len = BIO_gets(biobuf, buf, sizeof(buf)-1);
+     if (len < 0) {
+@@ -4154,9 +4163,14 @@
+     if (PySocketModule_ImportModuleAndAPI())
+         return;
+ 
++#ifdef OPENSSL_VERSION_1_1
++    OPENSSL_init_ssl(0, NULL);
++#else
+     /* Init OpenSSL */
+     SSL_load_error_strings();
+     SSL_library_init();
++#endif
++
+ #ifdef WITH_THREAD
+ #ifdef HAVE_OPENSSL_CRYPTO_LOCK
+     /* note that this will start threading if not already started */
+@@ -4168,7 +4182,10 @@
+     _ssl_locks_count++;
+ #endif
+ #endif  /* WITH_THREAD */
++    
++#ifndef OPENSSL_VERSION_1_1
+     OpenSSL_add_all_algorithms();
++#endif
+ 
+     /* Add symbols to module dict */
+     PySSLErrorObject = PyErr_NewExceptionWithDoc(
+@@ -4438,10 +4455,10 @@
+         return;
+ 
+     /* OpenSSL version */
+-    /* SSLeay() gives us the version of the library linked against,
++    /* OpenSSL_version_num() gives us the version of the library linked against,
+        which could be different from the headers version.
+     */
+-    libver = SSLeay();
++    libver = OpenSSL_version_num();
+     r = PyLong_FromUnsignedLong(libver);
+     if (r == NULL)
+         return;
+@@ -4451,7 +4468,7 @@
+     r = Py_BuildValue("IIIII", major, minor, fix, patch, status);
+     if (r == NULL || PyModule_AddObject(m, "OPENSSL_VERSION_INFO", r))
+         return;
+-    r = PyString_FromString(SSLeay_version(SSLEAY_VERSION));
++    r = PyString_FromString(OpenSSL_version(OPENSSL_VERSION));
+     if (r == NULL || PyModule_AddObject(m, "OPENSSL_VERSION", r))
+         return;
+ 
+--- Python-2.7.14-orig/Modules/_hashopenssl.c	2017-09-17 03:38:35.000000000 +1000
++++ Python-2.7.14/Modules/_hashopenssl.c	2017-10-13 23:30:55.167442471 +1100
+@@ -899,8 +899,10 @@
+ {
+     PyObject *m, *openssl_md_meth_names;
+ 
++#if (OPENSSL_VERSION_NUMBER < 0x10100000L) || defined(LIBRESSL_VERSION_NUMBER)
+     OpenSSL_add_all_digests();
+     ERR_load_crypto_strings();
++#endif
+ 
+     /* TODO build EVP_functions openssl_* entries dynamically based
+      * on what hashes are supported rather than listing many
