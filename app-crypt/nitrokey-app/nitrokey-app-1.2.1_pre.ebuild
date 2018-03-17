@@ -24,7 +24,7 @@ RDEPEND="
 	dev-qt/qtwidgets:5"
 DEPEND="
 	${RDEPEND}
-	dev-cpp/cppcodec
+	dev-libs/cppcodec
 	virtual/pkgconfig"
 
 PATCHES=(
