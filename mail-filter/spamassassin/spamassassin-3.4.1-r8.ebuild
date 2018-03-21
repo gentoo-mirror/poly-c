@@ -1,6 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 85518af1a405256f0877514d72cc7a13695cc2f6 $
+# $Id: 1d8c64bca2c8783b839df726f0fd2b716c6556df $
 
 EAPI=6
 
@@ -32,7 +32,7 @@ REQDEPEND="dev-lang/perl
 	virtual/perl-IO-Zlib
 	virtual/perl-Time-HiRes
 	ssl? (
-		!libressl? ( dev-libs/openssl:0 )
+		!libressl? ( dev-libs/openssl:0= )
 		libressl? ( dev-libs/libressl )
 	)"
 

@@ -1,5 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id: 7a006eb67d78c47345bbacca372ef13562072654 $
 
 EAPI="5"
 WANT_LIBTOOL="none"
