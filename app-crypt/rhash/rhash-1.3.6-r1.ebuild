@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: affa824114797fd5d0650bf8fde88ce11dab554b $
+# $Id: 69f97e6e47abb45e4638a5d78cc1d2962ce1003d $
 
 EAPI=6
 
@@ -35,6 +35,7 @@ src_prepare() {
 multilib_src_configure() {
 	set -- \
 		./configure \
+		--target="${CHOST}" \
 		--cc="$(tc-getCC)" \
 		--ar="$(tc-getAR)" \
 		--extra-cflags="${CFLAGS}" \
@@ -60,8 +61,9 @@ multilib_src_configure() {
 multilib_src_install() {
 	# -j1 needed due to race condition.
 	emake DESTDIR="${D}" -j1 \
-		  install{,-lib-so-link,-pkg-config} \
-		  $(use nls && echo install-gmo)
+		  install{,-pkg-config} \
+		  $(use nls && echo install-gmo) \
+		  $(use kernel_Winnt || echo install-lib-so-link)
 
 	emake DESTDIR="${D}" -j1 \
 		  -C lib${PN} install-headers
