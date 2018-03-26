@@ -4,16 +4,23 @@
 
 EAPI=6
 
-inherit cmake-utils gnome2-utils versionator xdg-utils
+inherit cmake-utils gnome2-utils unpacker versionator xdg-utils
 
 DESCRIPTION="Wolfenstein: Enemy Territory 2.60b compatible client/server"
 HOMEPAGE="http://www.etlegacy.com/"
+
+# We need the game files from the original enemy-territory release
+ET_RELEASE="2.60b"
+SRC_URI="mirror://3dgamers/wolfensteinet/et-linux-${ET_RELEASE/b}.x86.run
+	mirror://idsoftware/et/linux/et-linux-${ET_RELEASE/b}.x86.run
+	ftp://ftp.red.telefonica-wholesale.net/GAMES/ET/linux/et-linux-${ET_RELEASE/b}.x86.run
+	mirror://idsoftware/et/ET-${ET_RELEASE}.zip"
 
 if [[ ${PV} = "9999" ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="git://github.com/${PN}/${PN}.git"
 else
-	SRC_URI="https://github.com/${PN}/${PN}/archive/v${PV/_rc/rc}.tar.gz -> ${P}.tar.gz"
+	SRC_URI+=" https://github.com/${PN}/${PN}/archive/v${PV/_rc/rc}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 fi
 
@@ -55,13 +62,23 @@ QA_TEXTRELS="usr/share/games/etlegacy/legacy/omni-bot/omnibot_et.so"
 
 S="${WORKDIR}/${P/_rc/rc}"
 
+src_unpack() {
+	if [[ "${PV}" = 9999 ]] ; then
+		git-r3_src_unpack
+	else
+		default
+	fi
+	mkdir et && cd et || die
+	unpack_makeself et-linux-${ET_RELEASE/b}.x86.run
+}
+
 src_prepare() {
 	default
 	if [[ "${PV}" != 9999 ]] ; then
 		sed -e "/^set(ETLEGACY_VERSION_MINOR/s@[[:digit:]]\+@$(get_version_component_range 2)@" \
-			-e 's@-dirty@@' \
 			-i cmake/ETLVersion.cmake || die
 	fi
+	sed -e 's@[-_]dirty@@' -i cmake/ETLVersion.cmake || die
 }
 
 src_configure() {
@@ -128,6 +145,10 @@ src_install() {
         #                "${GAMES_DATADIR}/${PN}/legacy/${so##*}"
 	#done
 	dosym "../../../$(get_libdir)/${PN}" "/usr/share/${PN}/legacy/${PN}"
+
+	# Install the game files
+	insinto /usr/share/etlegacy/etmain
+	doins "${WORKDIR}"/et/etmain/pak[012].pk3
 }
 
 pkg_postinst() {
