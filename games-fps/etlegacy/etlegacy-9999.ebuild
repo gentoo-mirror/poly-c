@@ -13,8 +13,7 @@ HOMEPAGE="http://www.etlegacy.com/"
 ET_RELEASE="2.60b"
 SRC_URI="mirror://3dgamers/wolfensteinet/et-linux-${ET_RELEASE/b}.x86.run
 	mirror://idsoftware/et/linux/et-linux-${ET_RELEASE/b}.x86.run
-	ftp://ftp.red.telefonica-wholesale.net/GAMES/ET/linux/et-linux-${ET_RELEASE/b}.x86.run
-	mirror://idsoftware/et/ET-${ET_RELEASE}.zip"
+	ftp://ftp.red.telefonica-wholesale.net/GAMES/ET/linux/et-linux-${ET_RELEASE/b}.x86.run"
 
 if [[ ${PV} = "9999" ]]; then
 	inherit git-r3
