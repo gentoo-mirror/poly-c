@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2d421a1c4ede335d003de31d99349a290b3db02a $
+# $Id: 3a3a82834ea54152bf873aef6c5c0c4259277a07 $
 
 EAPI=6
 QT5_MODULE="qtbase"
@@ -9,7 +9,7 @@ inherit qt5-build
 DESCRIPTION="Network abstraction library for the Qt5 framework"
 
 if [[ ${QT5_BUILD_TYPE} == release ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~hppa ppc ~ppc64 ~x86 ~amd64-fbsd"
+	KEYWORDS="amd64 ~arm ~arm64 ~hppa ppc ppc64 x86 ~amd64-fbsd"
 fi
 
 IUSE="bindist connman libproxy libressl networkmanager +ssl"
