@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -11,14 +11,10 @@ HOMEPAGE="https://www.gimp.org/"
 SRC_URI="mirror://gimp/v$(get_version_component_range 1-2)/${MY_P}.tar.bz2"
 LICENSE="GPL-3 LGPL-3"
 SLOT="2"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc64 ~x86"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~x86"
 
 LANGS="am ar ast az be bg br ca ca@valencia cs csb da de dz el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr hu id is it ja ka kk km kn ko lt lv mk ml ms my nb nds ne nl nn oc pa pl pt pt_BR ro ru rw si sk sl sr sr@latin sv ta te th tr tt uk vi xh yi zh_CN zh_HK zh_TW"
 IUSE="alsa aalib altivec aqua debug doc openexr gnome postscript jpeg2k cpu_flags_x86_mmx mng pdf python smp cpu_flags_x86_sse udev vector-icons webp wmf xpm"
-
-for lang in ${LANGS}; do
-	IUSE+=" linguas_${lang}"
-done
 
 RDEPEND=">=dev-libs/glib-2.40.0:2
 	>=dev-libs/atk-2.2.0
@@ -37,8 +33,8 @@ RDEPEND=">=dev-libs/glib-2.40.0:2
 	dev-libs/libxml2
 	dev-libs/libxslt
 	x11-themes/hicolor-icon-theme
-	>=media-libs/babl-0.1.38_pre
-	>=media-libs/gegl-0.3.24_pre:0.3[cairo]
+	>=media-libs/babl-0.1.38
+	>=media-libs/gegl-0.3.24:0.3[cairo]
 	>=dev-libs/glib-2.43
 	aalib? ( media-libs/aalib )
 	alsa? ( media-libs/alsa-lib )
@@ -46,7 +42,7 @@ RDEPEND=">=dev-libs/glib-2.40.0:2
 	gnome? ( gnome-base/gvfs )
 	virtual/jpeg:0
 	jpeg2k? ( media-libs/jasper:= )
-	>=media-libs/lcms-2.7:2
+	>=media-libs/lcms-2.8:2
 	mng? ( media-libs/libmng )
 	openexr? ( >=media-libs/openexr-1.6.1 )
 	pdf? ( >=app-text/poppler-0.44[cairo] >=app-text/poppler-data-0.4.7 )
@@ -68,6 +64,7 @@ RDEPEND=">=dev-libs/glib-2.40.0:2
 	postscript? ( app-text/ghostscript-gpl )
 	udev? ( virtual/libgudev:= )"
 DEPEND="${RDEPEND}
+	>=dev-lang/perl-5.10.0
 	dev-libs/appstream-glib
 	sys-apps/findutils
 	virtual/pkgconfig
@@ -89,6 +86,14 @@ pkg_setup() {
 }
 
 src_prepare() {
+	epatch "${FILESDIR}"/${PN}-2.9.8-cve-2017-17784.patch  # bug 641954
+	epatch "${FILESDIR}"/${PN}-2.8.22-cve-2017-17785.patch  # bug 641954
+	epatch "${FILESDIR}"/${PN}-2.8.22-cve-2017-17786-1.patch  # bug 641954
+	epatch "${FILESDIR}"/${PN}-2.8.22-cve-2017-17786-2.patch  # bug 641954
+	epatch "${FILESDIR}"/${PN}-2.8.22-cve-2017-17787.patch  # bug 641954
+	# NOTE:                           CVE-2017-17788 already fixed upstream
+	epatch "${FILESDIR}"/${PN}-2.8.22-cve-2017-17789.patch  # bug 641954
+
 	eapply_user
 
 	sed -i -e 's/== "xquartz"/= "xquartz"/' configure.ac || die #494864
@@ -153,9 +158,10 @@ src_compile() {
 }
 
 _clean_up_locales() {
+	[[ -z ${LINGUAS+set} ]] && return
 	einfo "Cleaning up locales..."
 	for lang in ${LANGS}; do
-		use "linguas_${lang}" && {
+		has ${lang} ${LINGUAS} && {
 			einfo "- keeping ${lang}"
 			continue
 		}
