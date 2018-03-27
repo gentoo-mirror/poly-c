@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5b6a3787b528b7a46a0842e15a62613943266aa7 $
+# $Id: 9b920e68246d924444810b31dd244ba082f26888 $
 
 EAPI=6
 
@@ -71,7 +71,7 @@ src_configure() {
 		--enable-charset
 		--enable-vfs
 		--with-homedir=$(usex xdg 'XDG' '.mc')
-		--with-screen=$(usex slang 'slang' "ncurses$(usex unicode 'w')")
+		--with-screen=$(usex slang 'slang' "ncurses$(usex unicode 'w' '')")
 		$(use_enable kernel_linux vfs-undelfs)
 		$(use_enable mclib)
 		$(use_enable nls)
