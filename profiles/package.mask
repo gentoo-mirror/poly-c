@@ -34,4 +34,4 @@ dev-java/openjfx
 =dev-util/boost-build-1.66.0_pre
 
 #WIP
-=media-gfx/gimp-2.10.0_rc1
+=media-gfx/gimp-2.10.0_rc1_pre
