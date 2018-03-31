@@ -33,5 +33,5 @@ dev-java/openjfx
 =dev-libs/boost-1.66.0_pre
 =dev-util/boost-build-1.66.0_pre
 
-#WIP
+# needs >=dev-libs/glib-2.54.2 which is not in Gentoo yet.
 =media-gfx/gimp-2.10.0_rc1_pre
