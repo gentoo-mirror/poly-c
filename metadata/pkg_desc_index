@@ -5,6 +5,7 @@ app-shells/rssh 2.3.4: Restricted shell for SSHd
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/python 2.7.14-r1: An interpreted, interactive, object-oriented programming language
 dev-libs/openssl 1.0.2n: full-strength general purpose cryptography library (including SSL and TLS)
+dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-qt/qtdbus 5.7.1: Qt5 module for inter-process communication over the D-Bus protocol
 dev-qt/qtnetwork 5.9.4: Network abstraction library for the Qt5 framework
 dev-qt/qtwebengine 5.7.1-r2: Library for rendering dynamic web content in Qt5 C++ and QML applications
