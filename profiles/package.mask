@@ -35,3 +35,6 @@ dev-java/openjfx
 
 # needs >=dev-libs/glib-2.54.2 which is not in Gentoo yet.
 =media-gfx/gimp-2.10.0_rc1_pre
+
+# fails to link
+sci-astronomy/pulsatingscience

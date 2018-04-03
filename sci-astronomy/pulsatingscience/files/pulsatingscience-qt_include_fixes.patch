@@ -1,0 +1,43 @@
+From cae06d080a52f9bfd51fa1e60c86cc07ca32b2e7 Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Tue, 3 Apr 2018 17:30:17 +0200
+Subject: [PATCH] Fix includes for recent qt releases.
+
+---
+ src/pulsatingscience.h     | 6 +++---
+ src/pulsatingsciencehelp.h | 2 +-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/pulsatingscience.h b/src/pulsatingscience.h
+index c7a8fbf..4bf97c1 100644
+--- a/src/pulsatingscience.h
++++ b/src/pulsatingscience.h
+@@ -21,9 +21,9 @@
+ #ifndef PULSATINGSCIENCE_H
+ #define PULSATINGSCIENCE_H
+ 
+-#include <QtGui/QMainWindow>
+-#include <QtGui/QMessageBox>
+-#include <QtGui/QShortcut>
++#include <QtWidgets/QMainWindow>
++#include <QtWidgets/QMessageBox>
++#include <QtWidgets/QShortcut>
+ #include <QDesktopServices>
+ #include <QUrl>
+ 
+diff --git a/src/pulsatingsciencehelp.h b/src/pulsatingsciencehelp.h
+index eab6199..cf0340a 100644
+--- a/src/pulsatingsciencehelp.h
++++ b/src/pulsatingsciencehelp.h
+@@ -21,7 +21,7 @@
+ #ifndef PULSATINGSCIENCEHELP_H
+ #define PULSATINGSCIENCEHELP_H
+ 
+-#include <QtGui/QDialog>
++#include <QtWidgets/QDialog>
+ #include <QtCore/QLocale>
+ #include <QDebug>
+ 
+-- 
+2.17.0
+
