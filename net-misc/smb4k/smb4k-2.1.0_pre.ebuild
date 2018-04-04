@@ -4,11 +4,11 @@
 EAPI=6
 
 KDE_HANDBOOK="forceoptional"
-inherit kde5
+inherit kde5 poly-c_ebuilds
 
 DESCRIPTION="Advanced network neighborhood browser"
 HOMEPAGE="https://sourceforge.net/p/smb4k/home/Home/"
-[[ ${PV} != 9999 ]] && SRC_URI="mirror://sourceforge/${PN}/${P}.tar.xz"
+[[ ${PV} != 9999 ]] && SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.xz"
 
 [[ ${PV} != 9999 ]] && KEYWORDS="~amd64 ~x86"
 LICENSE="GPL-2"
