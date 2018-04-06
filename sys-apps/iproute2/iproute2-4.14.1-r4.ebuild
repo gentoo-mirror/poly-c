@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c9c21b326b4e58c903ad4431a1ae3914b208bf10 $
+# $Id: 834e23c0628708c7a9d8d08952318386d6921d02 $
 
 EAPI=6
 
@@ -62,7 +62,6 @@ src_prepare() {
 		-e "/^LIBDIR/s:=.*:=/$(get_libdir):" \
 		-e "s:-O2:${CFLAGS} ${CPPFLAGS}:" \
 		-e "/^HOSTCC/s:=.*:= $(tc-getBUILD_CC):" \
-		-e "/^WFLAGS/s:-Werror::" \
 		-e "/^DBM_INCLUDE/s:=.*:=${T}:" \
 		Makefile || die
 
