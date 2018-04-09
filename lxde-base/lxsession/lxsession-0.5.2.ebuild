@@ -1,12 +1,12 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: cbfa54102c4b576461cde98372e5fd5158cf6ad8 $
+# $Id: acb3e77566ee24acb5c55935a0b4a16ea12b9732 $
 
 EAPI=6
 inherit vala autotools
 
 DESCRIPTION="LXDE session manager"
-HOMEPAGE="http://lxde.org/"
+HOMEPAGE="https://wiki.lxde.org/en/LXSession"
 SRC_URI="mirror://sourceforge/lxde/${P}.tar.xz"
 
 LICENSE="GPL-2"
