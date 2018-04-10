@@ -14,14 +14,15 @@ HOMEPAGE="https://www.gimp.org/"
 SRC_URI="mirror://gimp/v$(get_version_component_range 1-2)/${REAL_P}.tar.bz2"
 LICENSE="GPL-3 LGPL-3"
 SLOT="2"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~x86"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~x86"
 
 LANGS="am ar ast az be bg br ca ca@valencia cs csb da de dz el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr hu id is it ja ka kk km kn ko lt lv mk ml ms my nb nds ne nl nn oc pa pl pt pt_BR ro ru rw si sk sl sr sr@latin sv ta te th tr tt uk vi xh yi zh_CN zh_HK zh_TW"
-IUSE="alsa aalib altivec aqua debug doc openexr gnome postscript jpeg2k cpu_flags_x86_mmx mng pdf python smp cpu_flags_x86_sse udev vector-icons webp wmf xpm"
+IUSE="alsa aalib altivec aqua debug doc openexr gnome postscript jpeg2k cpu_flags_x86_mmx mng python smp cpu_flags_x86_sse udev vector-icons webp wmf xpm"
 
 RDEPEND="
 	app-arch/bzip2
 	>=app-arch/xz-utils-5.0.0
+	>=app-text/poppler-0.44.0[cairo]
 	>=dev-libs/atk-2.2.0
 	>=dev-libs/glib-2.54.2:2
 	dev-libs/libxml2
@@ -52,13 +53,9 @@ RDEPEND="
 	alsa? ( media-libs/alsa-lib )
 	aqua? ( x11-libs/gtk-mac-integration )
 	gnome? ( gnome-base/gvfs )
-	jpeg2k? ( media-libs/jasper:= )
+	jpeg2k? ( >=media-libs/openjpeg-2.1.0 )
 	mng? ( media-libs/libmng )
 	openexr? ( >=media-libs/openexr-1.6.1 )
-	pdf? (
-		>=app-text/poppler-0.44.0[cairo]
-		>=app-text/poppler-data-0.4.7
-	)
 	postscript? ( app-text/ghostscript-gpl )
 	python?	(
 		${PYTHON_DEPS}
@@ -72,6 +69,7 @@ RDEPEND="
 "
 # dev-util/gtk-doc-am due to our call to eautoreconf below (bug #386453)
 DEPEND="${RDEPEND}
+	>=app-text/poppler-data-0.4.7
 	>=dev-lang/perl-5.10.0
 	dev-libs/appstream-glib
 	dev-util/gtk-doc-am
@@ -89,13 +87,6 @@ DOCS="AUTHORS ChangeLog* HACKING NEWS README*"
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 S="${WORKDIR}/${REAL_P}"
-
-PATCHES=(
-	"${FILESDIR}"/${PN}-2.9.8-cve-2017-17784.patch  # bug 641954
-	"${FILESDIR}"/${PN}-2.8.22-cve-2017-17787.patch  # bug 641954
-	# NOTE: CVE-2017-17788 already fixed upstream
-	"${FILESDIR}"/${PN}-2.8.22-cve-2017-17789.patch  # bug 641954
-)
 
 pkg_setup() {
 	if use python; then
@@ -130,13 +121,12 @@ src_configure() {
 		$(use_enable altivec)
 		--with-appdata-test
 		--without-webkit
-		$(use_with jpeg2k libjasper)
+		$(use_with jpeg2k jpeg2000)
 		$(use_with postscript gs)
 		$(use_enable cpu_flags_x86_mmx mmx)
 		$(use_with mng libmng)
 		$(use_with openexr)
 		$(use_with webp)
-		$(use_with pdf poppler)
 		$(use_enable python)
 		$(use_enable smp mp)
 		$(use_enable cpu_flags_x86_sse sse)
@@ -167,18 +157,6 @@ src_compile() {
 	gnome2_src_compile
 }
 
-_clean_up_locales() {
-	[[ -z ${LINGUAS+set} ]] && return
-	einfo "Cleaning up locales..."
-	for lang in ${LANGS}; do
-		has ${lang} ${LINGUAS} && {
-			einfo "- keeping ${lang}"
-			continue
-		}
-		rm -R "${ED%/}"/usr/share/locale/"${lang}" || die
-	done
-}
-
 src_test() {
 	virtx emake check
 }
@@ -199,8 +177,6 @@ src_install() {
 	# Prevent dead symlink gimp-console.1 from downstream man page compression (bug #433527)
 	local gimp_app_version=$(get_version_component_range 1-2)
 	mv "${ED%/}"/usr/share/man/man1/gimp-console{-${gimp_app_version},}.1 || die
-
-	_clean_up_locales
 }
 
 pkg_postinst() {
