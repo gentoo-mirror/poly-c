@@ -28,6 +28,7 @@ RDEPEND="
 	dev-libs/libxslt
 	dev-util/gtk-update-icon-cache
 	>=gnome-base/librsvg-2.40.6:2
+	>=media-gfx/mypaint-brushes-1.3.0
 	>=media-libs/babl-0.1.44
 	>=media-libs/fontconfig-2.12.4
 	>=media-libs/freetype-2.1.7
