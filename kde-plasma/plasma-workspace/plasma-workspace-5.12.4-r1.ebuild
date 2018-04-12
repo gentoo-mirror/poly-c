@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0fbd6e358b416e7d2dc8bdb2b00a88c5538ac487 $
+# $Id: 6ed2c658078a834e3f8c70b49e8d31499d0d49b2 $
 
 EAPI=6
 
@@ -127,6 +127,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-5.4-startkde-script.patch"
 	"${FILESDIR}/${PN}-5.10-startplasmacompositor-script.patch"
 	"${FILESDIR}/${PN}-5.10.4-unused-dep.patch"
+	"${FILESDIR}/${P}-bbc-weather.patch"
 )
 
 RESTRICT+=" test"
