@@ -138,12 +138,6 @@ src_install() {
 
 	dodir "/usr/$(get_libdir)/${PN}"
 	mv "${ED%/}/usr/share/${PN}/legacy/"*.so "${ED%/}/usr/$(get_libdir)/${PN}"
-
-	#local so
-	#for so in "${D}/$(games_get_libdir)/${PN}"/*.so ; do
-	#dosym "$(games_get_libdir)/${PN}/${so##*}" \
-        #                "${GAMES_DATADIR}/${PN}/legacy/${so##*}"
-	#done
 	dosym "../../../$(get_libdir)/${PN}" "/usr/share/${PN}/legacy/${PN}"
 
 	# Install the game files
