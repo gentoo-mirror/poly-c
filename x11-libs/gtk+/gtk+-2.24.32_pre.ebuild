@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -175,15 +175,6 @@ src_prepare() {
 
 	# And fixing the crap upstream seems to be too stupid to fix.
 	eapply "${FILESDIR}"/${MY_P}-glib-2.54.3-symbols_workaround.patch
-
-	#if has_version \>=dev-libs/glib-2.54.0 ; then
-	#	local marshal_file
-	#	for marshal_file in $(grep -Flr gtk_marshal . | grep -Ev "/docs/|ChangeLog") ; do
-	#		einfo ${marshal_file}
-	#		sed -e 's@gtk_marshal@gtk_MARSHAL@g' \
-	#		-i ${marshal_file}  || die
-	#	done
-	#fi
 
 	eautoreconf
 	gnome2_src_prepare
