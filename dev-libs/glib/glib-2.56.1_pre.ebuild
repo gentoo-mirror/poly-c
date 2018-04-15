@@ -34,7 +34,7 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~s
 # this ebuild does not do that anyway) (bug #599586)
 
 RDEPEND="
-	!<dev-util/gdbus-codegen-${PV}
+	!<dev-util/gdbus-codegen-${MY_PV}
 	>=dev-libs/libpcre-8.13:3[${MULTILIB_USEDEP},static-libs?]
 	>=virtual/libiconv-0-r1[${MULTILIB_USEDEP}]
 	>=virtual/libffi-3.0.13-r1[${MULTILIB_USEDEP}]
@@ -118,7 +118,7 @@ src_prepare() {
 	fi
 
 	# gdbus-codegen is a separate package
-	eapply "${FILESDIR}"/${PN}-2.54.3-external-gdbus-codegen-for-autotools.patch
+	eapply "${FILESDIR}"/${PN}-2.56.1-external-gdbus-codegen-for-autotools.patch
 
 	# Leave python shebang alone - handled by python_replicate_script
 	# We could call python_setup and give configure a valid --with-python
@@ -126,8 +126,7 @@ src_prepare() {
 	sed -e '/${PYTHON}/d' \
 		-i glib/Makefile.{am,in} || die
 	sed -e 's:@PYTHON@:python:' \
-		-i gobject/glib-{genmarshal.in,mkenums.in} \
-		-i gio/gdbus-2.0/codegen/gdbus-codegen.in || die
+		-i gobject/glib-{genmarshal.in,mkenums.in} || die
 	# Also needed to prevent cross-compile failures, see bug #267603
 	eautoreconf
 
