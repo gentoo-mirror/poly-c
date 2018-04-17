@@ -1,0 +1,370 @@
+From bfe7892202b85c46ff127048ca1cc752c54b186c Mon Sep 17 00:00:00 2001
+From: Zac Medico <zmedico@gentoo.org>
+Date: Fri, 6 Apr 2018 13:05:25 -0700
+Subject: [PATCH] _pkg_str: add _db attribute (bug 640318)
+
+In order to propagate information from dbapi to Package instance,
+it's useful for each _pkg_str instance to have a _db attribute
+which references the dbapi instance that instantiated it. Use a new
+dbapi._iuse_implicit_cnstr method to delegate implicit IUSE logic to
+the dbapi instance, in order to make the behavior customizable at the
+dbapi level for the purposes of bug 640318. This patch consists only
+of refactoring, with no behavioral changes.
+
+Bug: https://bugs.gentoo.org/640318
+---
+ pym/_emerge/Package.py                     | 53 ++++++----------------
+ pym/_emerge/depgraph.py                    | 11 ++++-
+ pym/_emerge/resolver/DbapiProvidesIndex.py |  3 +-
+ pym/portage/dbapi/__init__.py              | 44 +++++++++++++++---
+ pym/portage/dbapi/bintree.py               | 15 +++---
+ pym/portage/dbapi/porttree.py              |  4 +-
+ pym/portage/dbapi/vartree.py               |  5 +-
+ pym/portage/dbapi/virtual.py               |  4 +-
+ pym/portage/versions.py                    |  6 ++-
+ 9 files changed, 84 insertions(+), 61 deletions(-)
+
+diff --git a/pym/_emerge/Package.py b/pym/_emerge/Package.py
+index 791a35612..a7ce00bc9 100644
+--- a/pym/_emerge/Package.py
++++ b/pym/_emerge/Package.py
+@@ -67,8 +67,19 @@ class Package(Task):
+ 		if not self.built:
+ 			self._metadata['CHOST'] = self.root_config.settings.get('CHOST', '')
+ 		eapi_attrs = _get_eapi_attrs(self.eapi)
++
++		try:
++			db = self.cpv._db
++		except AttributeError:
++			if self.built:
++				# For independence from the source ebuild repository and
++				# profile implicit IUSE state, require the _db attribute
++				# for built packages.
++				raise
++			db = self.root_config.trees['porttree'].dbapi
++
+ 		self.cpv = _pkg_str(self.cpv, metadata=self._metadata,
+-			settings=self.root_config.settings)
++			settings=self.root_config.settings, db=db)
+ 		if hasattr(self.cpv, 'slot_invalid'):
+ 			self._invalid_metadata('SLOT.invalid',
+ 				"SLOT: invalid value: '%s'" % self._metadata["SLOT"])
+@@ -82,17 +93,10 @@ class Package(Task):
+ 		# sync metadata with validated repo (may be UNKNOWN_REPO)
+ 		self._metadata['repository'] = self.cpv.repo
+ 
+-		if eapi_attrs.iuse_effective:
+-			implicit_match = self.root_config.settings._iuse_effective_match
+-			if self.built:
+-				implicit_match = functools.partial(
+-					self._built_iuse_effective_match,
+-					implicit_match, frozenset(self._metadata['USE'].split()))
+-		else:
+-			implicit_match = self.root_config.settings._iuse_implicit_match
++		implicit_match = db._iuse_implicit_cnstr(self.cpv, self._metadata)
+ 		usealiases = self.root_config.settings._use_manager.getUseAliases(self)
+-		self.iuse = self._iuse(self, self._metadata["IUSE"].split(), implicit_match,
+-			usealiases, self.eapi)
++		self.iuse = self._iuse(self, self._metadata["IUSE"].split(),
++			implicit_match, usealiases, self.eapi)
+ 
+ 		if (self.iuse.enabled or self.iuse.disabled) and \
+ 			not eapi_attrs.iuse_defaults:
+@@ -115,33 +119,6 @@ class Package(Task):
+ 			type_name=self.type_name)
+ 		self._hash_value = hash(self._hash_key)
+ 
+-	@staticmethod
+-	def _built_iuse_effective_match(prof_effective_match, built_use, flag):
+-		"""
+-		For built packages, it is desirable for the built USE setting to be
+-		independent of the profile's current IUSE_IMPLICIT state, since the
+-		profile's IUSE_IMPLICT setting may have diverged. Therefore, any
+-		member of the built USE setting is considered to be a valid member of
+-		IUSE_EFFECTIVE. Note that the binary package may be remote, so it's
+-		only possible to rely on metadata that is available in the remote
+-		Packages file, and the IUSE_IMPLICIT header in the Packages file is
+-		vulnerable to mutation (see bug 640318).
+-
+-		This function is only used for EAPIs that support IUSE_EFFECTIVE,
+-		since built USE settings for earlier EAPIs may contain a large
+-		number of irrelevant flags.
+-
+-		@param prof_effective_match: function to match IUSE_EFFECTIVE
+-			values for the current profile
+-		@type prof_effective_match: callable
+-		@param built_use: built USE setting
+-		@type built_use: frozenset
+-		@return: True if flag is a valid USE value which may
+-			be specified in USE dependencies, False otherwise.
+-		@rtype: bool
+-		"""
+-		return flag in built_use or prof_effective_match(flag)
+-
+ 	@property
+ 	def eapi(self):
+ 		return self._metadata["EAPI"]
+diff --git a/pym/_emerge/depgraph.py b/pym/_emerge/depgraph.py
+index 963bf25f4..160ea5e94 100644
+--- a/pym/_emerge/depgraph.py
++++ b/pym/_emerge/depgraph.py
+@@ -50,7 +50,7 @@ from portage.util.digraph import digraph
+ from portage.util._async.TaskScheduler import TaskScheduler
+ from portage.util._eventloop.EventLoop import EventLoop
+ from portage.util._eventloop.global_event_loop import global_event_loop
+-from portage.versions import catpkgsplit
++from portage.versions import _pkg_str, catpkgsplit
+ 
+ from _emerge.AtomArg import AtomArg
+ from _emerge.Blocker import Blocker
+@@ -6975,6 +6975,15 @@ class depgraph(object):
+ 			except KeyError:
+ 				raise portage.exception.PackageNotFound(cpv)
+ 
++			# Ensure that this cpv is linked to the correct db, since the
++			# caller might have passed in a cpv from a different db, in
++			# order get an instance from this db with the same cpv.
++			# If db has a _db attribute, use that instead, in order to
++			# to use the underlying db of DbapiProvidesIndex or similar.
++			db = getattr(db, '_db', db)
++			if getattr(cpv, '_db', None) is not db:
++				cpv = _pkg_str(cpv, db=db)
++
+ 			pkg = Package(built=(type_name != "ebuild"), cpv=cpv,
+ 				installed=installed, metadata=metadata, onlydeps=onlydeps,
+ 				root_config=root_config, type_name=type_name)
+diff --git a/pym/_emerge/resolver/DbapiProvidesIndex.py b/pym/_emerge/resolver/DbapiProvidesIndex.py
+index 59ae71941..1650edd4e 100644
+--- a/pym/_emerge/resolver/DbapiProvidesIndex.py
++++ b/pym/_emerge/resolver/DbapiProvidesIndex.py
+@@ -24,7 +24,8 @@ class DbapiProvidesIndex(object):
+ 	_copy_attrs = ('aux_get', 'aux_update', 'categories', 'cpv_all',
+ 		'cpv_exists', 'cp_all', 'cp_list', 'getfetchsizes',
+ 		'settings', '_aux_cache_keys', '_clear_cache',
+-		'_cpv_sort_ascending', '_pkg_str', '_pkg_str_aux_keys')
++		'_cpv_sort_ascending', '_iuse_implicit_cnstr', '_pkg_str',
++		'_pkg_str_aux_keys')
+ 
+ 	def __init__(self, db):
+ 		self._db = db
+diff --git a/pym/portage/dbapi/__init__.py b/pym/portage/dbapi/__init__.py
+index c1b5d967d..d320cc75f 100644
+--- a/pym/portage/dbapi/__init__.py
++++ b/pym/portage/dbapi/__init__.py
+@@ -166,7 +166,7 @@ class dbapi(object):
+ 		metadata = dict(zip(self._pkg_str_aux_keys,
+ 			self.aux_get(cpv, self._pkg_str_aux_keys, myrepo=repo)))
+ 
+-		return _pkg_str(cpv, metadata=metadata, settings=self.settings)
++		return _pkg_str(cpv, metadata=metadata, settings=self.settings, db=self)
+ 
+ 	def _iter_match_repo(self, atom, cpv_iter):
+ 		for cpv in cpv_iter:
+@@ -216,16 +216,48 @@ class dbapi(object):
+ 
+ 			yield cpv
+ 
+-	def _match_use(self, atom, pkg, metadata, ignore_profile=False):
++	def _iuse_implicit_cnstr(self, pkg, metadata):
++		"""
++		Construct a callable that checks if a given USE flag should
++		be considered to be a member of the implicit IUSE for the
++		given package.
++
++		@param pkg: package
++		@type pkg: _pkg_str
++		@param metadata: package metadata
++		@type metadata: Mapping
++		@return: a callable that accepts a single USE flag argument,
++			and returns True only if the USE flag should be considered
++			to be a member of the implicit IUSE for the given package.
++		@rtype: callable
++		"""
+ 		eapi_attrs = _get_eapi_attrs(metadata["EAPI"])
+ 		if eapi_attrs.iuse_effective:
+ 			iuse_implicit_match = self.settings._iuse_effective_match
+-			if not self._use_mutable:
+-				iuse_implicit_match = functools.partial(
+-					Package._built_iuse_effective_match,
+-					iuse_implicit_match, frozenset(metadata["USE"].split()))
+ 		else:
+ 			iuse_implicit_match = self.settings._iuse_implicit_match
++
++		if not self._use_mutable and eapi_attrs.iuse_effective:
++			# For built packages, it is desirable for the built USE setting to
++			# be independent of the profile's current IUSE_IMPLICIT state, since
++			# the profile's IUSE_IMPLICT setting may have diverged. Therefore,
++			# any member of the built USE setting is considered to be a valid
++			# member of IUSE_EFFECTIVE. Note that the binary package may be
++			# remote, so it's only possible to rely on metadata that is available
++			# in the remote Packages file, and the IUSE_IMPLICIT header in the
++			# Packages file is vulnerable to mutation (see bug 640318).
++			#
++			# This behavior is only used for EAPIs that support IUSE_EFFECTIVE,
++			# since built USE settings for earlier EAPIs may contain a large
++			# number of irrelevant flags.
++			prof_iuse = iuse_implicit_match
++			enabled = frozenset(metadata["USE"].split()).__contains__
++			iuse_implicit_match = lambda flag: prof_iuse(flag) or enabled(flag)
++
++		return iuse_implicit_match
++
++	def _match_use(self, atom, pkg, metadata, ignore_profile=False):
++		iuse_implicit_match = self._iuse_implicit_cnstr(pkg, metadata)
+ 		usealiases = self.settings._use_manager.getUseAliases(pkg)
+ 		iuse = Package._iuse(None, metadata["IUSE"].split(), iuse_implicit_match, usealiases, metadata["EAPI"])
+ 
+diff --git a/pym/portage/dbapi/bintree.py b/pym/portage/dbapi/bintree.py
+index fc48a6902..42d334d24 100644
+--- a/pym/portage/dbapi/bintree.py
++++ b/pym/portage/dbapi/bintree.py
+@@ -458,7 +458,7 @@ class binarytree(object):
+ 				if v is not None:
+ 					v = _unicode_decode(v)
+ 					metadata[k] = " ".join(v.split())
+-			mynewcpv = _pkg_str(mynewcpv, metadata=metadata)
++			mynewcpv = _pkg_str(mynewcpv, metadata=metadata, db=self.dbapi)
+ 			new_path = self.getname(mynewcpv)
+ 			self._pkg_paths[
+ 				self.dbapi._instance_key(mynewcpv)] = new_path[len(self.pkgdir)+1:]
+@@ -589,7 +589,7 @@ class binarytree(object):
+ 			basename_index = {}
+ 			for d in pkgindex.packages:
+ 				cpv = _pkg_str(d["CPV"], metadata=d,
+-					settings=self.settings)
++					settings=self.settings, db=self.dbapi)
+ 				d["CPV"] = cpv
+ 				metadata[_instance_key(cpv)] = d
+ 				path = d.get("PATH")
+@@ -755,8 +755,8 @@ class binarytree(object):
+ 					pkg_metadata.pop("CATEGORY")
+ 					pkg_metadata.pop("PF")
+ 					mycpv = _pkg_str(mycpv,
+-						metadata=self.dbapi._aux_cache_slot_dict(
+-						pkg_metadata))
++						metadata=self.dbapi._aux_cache_slot_dict(pkg_metadata),
++						db=self.dbapi)
+ 					pkg_paths[_instance_key(mycpv)] = mypath
+ 					self.dbapi.cpv_inject(mycpv)
+ 					update_pkgindex = True
+@@ -1028,7 +1028,7 @@ class binarytree(object):
+ 				remote_base_uri = pkgindex.header.get("URI", base_url)
+ 				for d in pkgindex.packages:
+ 					cpv = _pkg_str(d["CPV"], metadata=d,
+-						settings=self.settings)
++						settings=self.settings, db=self.dbapi)
+ 					# Local package instances override remote instances
+ 					# with the same instance_key.
+ 					if self.dbapi.cpv_exists(cpv):
+@@ -1097,7 +1097,8 @@ class binarytree(object):
+ 				if self._remotepkgs is not None:
+ 					fetched = self._remotepkgs.pop(instance_key, None)
+ 
+-		cpv = _pkg_str(cpv, metadata=metadata, settings=self.settings)
++		cpv = _pkg_str(cpv, metadata=metadata, settings=self.settings,
++			db=self.dbapi)
+ 
+ 		# Reread the Packages index (in case it's been changed by another
+ 		# process) and then updated it, all while holding a lock.
+@@ -1128,7 +1129,7 @@ class binarytree(object):
+ 				build_id = self._parse_build_id(basename)
+ 				metadata["BUILD_ID"] = _unicode(build_id)
+ 				cpv = _pkg_str(cpv, metadata=metadata,
+-					settings=self.settings)
++					settings=self.settings, db=self.dbapi)
+ 				binpkg = portage.xpak.tbz2(full_path)
+ 				binary_data = binpkg.get_data()
+ 				binary_data[b"BUILD_ID"] = _unicode_encode(
+diff --git a/pym/portage/dbapi/porttree.py b/pym/portage/dbapi/porttree.py
+index 69e14dbcd..910e90e6f 100644
+--- a/pym/portage/dbapi/porttree.py
++++ b/pym/portage/dbapi/porttree.py
+@@ -945,7 +945,7 @@ class portdbapi(dbapi):
+ 						writemsg(_("\nInvalid ebuild version: %s\n") % \
+ 							os.path.join(oroot, mycp, x), noiselevel=-1)
+ 						continue
+-					d[_pkg_str(mysplit[0]+"/"+pf)] = None
++					d[_pkg_str(mysplit[0]+"/"+pf, db=self)] = None
+ 		if invalid_category and d:
+ 			writemsg(_("\n!!! '%s' has a category that is not listed in " \
+ 				"%setc/portage/categories\n") % \
+@@ -1070,7 +1070,7 @@ class portdbapi(dbapi):
+ 
+ 					try:
+ 						pkg_str = _pkg_str(cpv, metadata=metadata,
+-							settings=self.settings)
++							settings=self.settings, db=self)
+ 					except InvalidData:
+ 						continue
+ 
+diff --git a/pym/portage/dbapi/vartree.py b/pym/portage/dbapi/vartree.py
+index a136c38f1..c274248e3 100644
+--- a/pym/portage/dbapi/vartree.py
++++ b/pym/portage/dbapi/vartree.py
+@@ -466,7 +466,8 @@ class vardbapi(dbapi):
+ 					cpv = "%s/%s" % (mysplit[0], x)
+ 					metadata = dict(zip(self._aux_cache_keys,
+ 						self.aux_get(cpv, self._aux_cache_keys)))
+-					returnme.append(_pkg_str(cpv, metadata=metadata))
++					returnme.append(_pkg_str(cpv, metadata=metadata,
++						settings=self.settings, db=self))
+ 		self._cpv_sort_ascending(returnme)
+ 		if use_cache:
+ 			self.cpcache[mycp] = [mystat, returnme[:]]
+@@ -520,7 +521,7 @@ class vardbapi(dbapi):
+ 				subpath = x + "/" + y
+ 				# -MERGING- should never be a cpv, nor should files.
+ 				try:
+-					subpath = _pkg_str(subpath)
++					subpath = _pkg_str(subpath, db=self)
+ 				except InvalidData:
+ 					self.invalidentry(self.getpath(subpath))
+ 					continue
+diff --git a/pym/portage/dbapi/virtual.py b/pym/portage/dbapi/virtual.py
+index f2e841fcd..3f7e6c221 100644
+--- a/pym/portage/dbapi/virtual.py
++++ b/pym/portage/dbapi/virtual.py
+@@ -151,10 +151,10 @@ class fakedbapi(dbapi):
+ 		if mycp is None or \
+ 			(myslot is None and metadata is not None and metadata.get('SLOT')):
+ 			if metadata is None:
+-				mycpv = _pkg_str(mycpv)
++				mycpv = _pkg_str(mycpv, db=self)
+ 			else:
+ 				mycpv = _pkg_str(mycpv, metadata=metadata,
+-					settings=self.settings)
++					settings=self.settings, db=self)
+ 
+ 			mycp = mycpv.cp
+ 			try:
+diff --git a/pym/portage/versions.py b/pym/portage/versions.py
+index 7b6a57673..0c21373cc 100644
+--- a/pym/portage/versions.py
++++ b/pym/portage/versions.py
+@@ -363,12 +363,12 @@ class _pkg_str(_unicode):
+ 
+ 	def __new__(cls, cpv, metadata=None, settings=None, eapi=None,
+ 		repo=None, slot=None, build_time=None, build_id=None,
+-		file_size=None, mtime=None):
++		file_size=None, mtime=None, db=None):
+ 		return _unicode.__new__(cls, cpv)
+ 
+ 	def __init__(self, cpv, metadata=None, settings=None, eapi=None,
+ 		repo=None, slot=None, build_time=None, build_id=None,
+-		file_size=None, mtime=None):
++		file_size=None, mtime=None, db=None):
+ 		if not isinstance(cpv, _unicode):
+ 			# Avoid TypeError from _unicode.__init__ with PyPy.
+ 			cpv = _unicode_decode(cpv)
+@@ -384,6 +384,8 @@ class _pkg_str(_unicode):
+ 			mtime = metadata.get('_mtime_', mtime)
+ 		if settings is not None:
+ 			self.__dict__['_settings'] = settings
++		if db is not None:
++			self.__dict__['_db'] = db
+ 		if eapi is not None:
+ 			self.__dict__['eapi'] = eapi
+ 
+-- 
+2.17.0
+
