@@ -1,20 +1,21 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id: 4ea9a4d91e3e2578f9d61da3c3934b9d696d96b7 $
 
 EAPI=6
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit autotools eutils gnome2-utils python-any-r1 xdg-utils poly-c_ebuilds
+inherit autotools eutils gnome2-utils python-any-r1 xdg-utils
 
-if [[ ${MY_PV} = *9999* ]]; then
+if [[ ${PV} = *9999* ]]; then
 	EGIT_REPO_URI="https://github.com/HandBrake/HandBrake.git"
 	inherit git-r3
 	KEYWORDS=""
 else
-	REAL_P="HandBrake-${MY_PV}"
-	SRC_URI="https://download2.handbrake.fr/${MY_PV}/${REAL_P}-source.tar.bz2 -> ${MY_P}.tar.bz2"
-	S="${WORKDIR}/${REAL_P}"
+	MY_P="HandBrake-${PV}"
+	SRC_URI="https://download2.handbrake.fr/${PV}/${MY_P}-source.tar.bz2 -> ${P}.tar.bz2"
+	S="${WORKDIR}/${MY_P}"
 	KEYWORDS="~amd64 ~x86"
 fi
 

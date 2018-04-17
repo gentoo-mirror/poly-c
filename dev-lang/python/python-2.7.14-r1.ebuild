@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 7a006eb67d78c47345bbacca372ef13562072654 $
+# $Id: f5e6506189eecb96a00d62645a7f32c67bfe50b5 $
 
 EAPI="5"
 WANT_LIBTOOL="none"
@@ -50,7 +50,7 @@ RDEPEND="app-arch/bzip2:0=
 	sqlite? ( >=dev-db/sqlite-3.3.8:3= )
 	ssl? (
 		!libressl? ( dev-libs/openssl:0= )
-		libressl? ( dev-libs/libressl:= )
+		libressl? ( dev-libs/libressl:0= )
 	)
 	tk? (
 		>=dev-lang/tcl-8.0:0=
@@ -103,6 +103,7 @@ src_prepare() {
 	epatch "${FILESDIR}/python-2.7.10-cross-compile-warn-test.patch"
 	epatch "${FILESDIR}/python-2.7.10-system-libffi.patch"
 	epatch "${FILESDIR}/2.7-disable-nis.patch"
+	epatch "${FILESDIR}/python-2.7-libressl-compatibility.patch"
 	epatch "${FILESDIR}/${P}-openssl-1.1.patch"
 
 	epatch_user

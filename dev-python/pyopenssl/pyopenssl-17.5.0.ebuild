@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: af0cd0c73bd8968bae4c571d9205d77d8265280a $
+# $Id: 076b670faa3681f82951fefaa7e94b5f92711448 $
 
 EAPI=6
 
@@ -22,7 +22,7 @@ SRC_URI="mirror://pypi/${MY_PN:0:1}/${MY_PN}/${MY_P}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc x86 ~amd64-fbsd"
+KEYWORDS="alpha amd64 arm arm64 ~hppa ia64 ~m68k ~mips ppc ppc64 ~sparc x86 ~amd64-fbsd"
 IUSE="doc examples test"
 
 RDEPEND="
