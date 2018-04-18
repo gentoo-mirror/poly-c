@@ -12,7 +12,7 @@ REAL_PV="$(replace_all_version_separators _ ${MY_PV})"
 
 DESCRIPTION="A system for large project software construction, simple to use and powerful"
 HOMEPAGE="http://www.boost.org/doc/tools/build/index.html"
-SRC_URI="https://downloads.sourceforge.net/project/boost/boost/${MY_PV}/boost_${REAL_PV}.tar.bz2"
+SRC_URI="https://dl.bintray.com/boostorg/release/${MY_PV}/source/boost_${REAL_PV}.tar.bz2"
 
 LICENSE="Boost-1.0"
 SLOT="0"
@@ -20,7 +20,7 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~spa
 IUSE="examples python test"
 
 RDEPEND="python? ( ${PYTHON_DEPS} )
-	!<dev-libs/boost-1.34.0
+	!<dev-libs/boost-1.35.0
 	!<=dev-util/boost-build-1.35.0-r1"
 DEPEND="${RDEPEND}
 	test? ( sys-apps/diffutils
@@ -38,6 +38,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-1.52.0-darwin-no-python-framework.patch"
 	"${FILESDIR}/${PN}-1.54.0-support_dots_in_python-buildid.patch"
 	"${FILESDIR}/${PN}-1.55.0-ppc-aix.patch"
+	"${FILESDIR}/${PN}-1.66.0-add-none-feature-options.patch"
 )
 
 pkg_setup() {

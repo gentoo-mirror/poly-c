@@ -1,0 +1,214 @@
+--- boost_1_67_0/boostcpp.jam
++++ boost_1_67_0/boostcpp.jam
+@@ -105,7 +105,7 @@
+ python-id = [ option.get "python-buildid" ] ;
+ if $(python-id)
+ {
+-    PYTHON_ID = [ regex.replace $(python-id) "[*\\/:.\"\']" _ ] ;
++    PYTHON_ID = [ regex.replace $(python-id) "[*\\/:\"\']" _ ] ;
+ }
+ 
+ 
+--- boost_1_67_0/libs/mpi/build/Jamfile.v2
++++ boost_1_67_0/libs/mpi/build/Jamfile.v2
+@@ -60,81 +60,51 @@
+ 
+   if [ python.configured ]
+   {
+-    py2-version = [ py-version 2 ] ;
+-    py3-version = [ py-version 3 ] ;
+-
+-    # These library names are synchronized with those defined by Boost.Python, see libs/python/build/Jamfile.
+-    lib_boost_python(2) = boost_python ;
+-    lib_boost_python(3) = boost_python3 ;
+-
+-    lib_boost_python($(py2-version)) = $(lib_boost_python(2)) ;
+-    lib_boost_python($(py3-version)) = $(lib_boost_python(3)) ;
+-
+-    lib_boost_mpi_python(2) = boost_mpi_python ;
+-    lib_boost_mpi_python(3) = boost_mpi_python3 ;
+-
+-    lib_boost_mpi_python($(py2-version)) = $(lib_boost_mpi_python(2)) ;
+-    lib_boost_mpi_python($(py3-version)) = $(lib_boost_mpi_python(3)) ;
+-
+-    for local N in 2 3
+-    {
+-        if $(py$(N)-version)
+-        {
+-            lib $(lib_boost_mpi_python($(py$(N)-version)))
+-              : # Sources
+-                python/serialize.cpp
+-              : # Requirements
+-                <library>boost_mpi
+-                <library>/mpi//mpi [ mpi.extra-requirements ]
+-                <library>/boost/python//$(lib_boost_python($(py$(N)-version)))
+-                <link>shared:<define>BOOST_MPI_DYN_LINK=1
+-                <link>shared:<define>BOOST_MPI_PYTHON_DYN_LINK=1
+-                <link>shared:<define>BOOST_PYTHON_DYN_LINK=1
+-                <define>BOOST_MPI_PYTHON_SOURCE=1
+-                -<tag>@$(BOOST_JAMROOT_MODULE)%$(BOOST_JAMROOT_MODULE).tag
+-                <tag>@$(BOOST_JAMROOT_MODULE)%$(BOOST_JAMROOT_MODULE).python-tag
+-                <python-debugging>on:<define>BOOST_DEBUG_PYTHON
+-                <python>$(py$(N)-version)
+-              : # Default build
+-                <link>shared
+-              : # Usage requirements
+-                <library>/mpi//mpi [ mpi.extra-requirements ]
+-              ;
+-
+-            python-extension mpi
+-              : # Sources
+-                python/collectives.cpp
+-                python/py_communicator.cpp
+-                python/datatypes.cpp
+-                python/documentation.cpp
+-                python/py_environment.cpp
+-                python/py_nonblocking.cpp
+-                python/py_exception.cpp
+-                python/module.cpp
+-                python/py_request.cpp
+-                python/skeleton_and_content.cpp
+-                python/status.cpp
+-                python/py_timer.cpp
+-              : # Requirements
+-                <library>/boost/python//$(lib_boost_python($(py$(N)-version)))
+-                <library>$(lib_boost_mpi_python($(py$(N)-version)))
+-                <library>boost_mpi
+-                <library>/mpi//mpi [ mpi.extra-requirements ]
+-                <link>shared:<define>BOOST_MPI_DYN_LINK=1
+-                <link>shared:<define>BOOST_MPI_PYTHON_DYN_LINK=1
+-                <link>shared:<define>BOOST_PYTHON_DYN_LINK=1
+-                <link>shared <runtime-link>shared
+-                <python-debugging>on:<define>BOOST_DEBUG_PYTHON
+-                <python>$(py$(N)-version)
+-              ;
+-
+-            libraries += $(lib_boost_mpi_python($(py$(N)-version))) ;
+-        }
+-        else
+-        {
+-            alias $(lib_boost_mpi_python($(N))) ;
+-        }
+-    }
++        lib $(lib_boost_mpi_python($(py$(N)-version)))
++          : # Sources
++            python/serialize.cpp
++          : # Requirements
++            <library>boost_mpi
++            <library>/mpi//mpi [ mpi.extra-requirements ]
++            <library>/boost/python//$(lib_boost_python($(py$(N)-version)))
++            <link>shared:<define>BOOST_MPI_DYN_LINK=1
++            <link>shared:<define>BOOST_MPI_PYTHON_DYN_LINK=1
++            <link>shared:<define>BOOST_PYTHON_DYN_LINK=1
++            <define>BOOST_MPI_PYTHON_SOURCE=1
++            -<tag>@$(BOOST_JAMROOT_MODULE)%$(BOOST_JAMROOT_MODULE).tag
++            <tag>@$(BOOST_JAMROOT_MODULE)%$(BOOST_JAMROOT_MODULE).python-tag
++            <python-debugging>on:<define>BOOST_DEBUG_PYTHON
++            <python>$(py$(N)-version)
++          : # Default build
++            <link>shared
++          : # Usage requirements
++            <library>/mpi//mpi [ mpi.extra-requirements ]
++          ;
++
++        python-extension mpi
++          : # Sources
++            python/collectives.cpp
++            python/py_communicator.cpp
++            python/datatypes.cpp
++            python/documentation.cpp
++            python/py_environment.cpp
++            python/py_nonblocking.cpp
++            python/py_exception.cpp
++            python/module.cpp
++            python/py_request.cpp
++            python/skeleton_and_content.cpp
++            python/status.cpp
++            python/py_timer.cpp
++          : # Requirements
++            <library>/boost/python//$(lib_boost_python($(py$(N)-version)))
++            <library>$(lib_boost_mpi_python($(py$(N)-version)))
++            <library>boost_mpi
++            <library>/mpi//mpi [ mpi.extra-requirements ]
++            <link>shared:<define>BOOST_MPI_DYN_LINK=1
++            <link>shared:<define>BOOST_MPI_PYTHON_DYN_LINK=1
++            <link>shared:<define>BOOST_PYTHON_DYN_LINK=1
++            <link>shared <runtime-link>shared
++          ;
+   }
+ }
+ else if ! ( --without-mpi in  [ modules.peek : ARGV ] )
+--- boost_1_67_0/libs/python/build/Jamfile
++++ boost_1_67_0/libs/python/build/Jamfile
+@@ -36,9 +36,16 @@
+ 
+ rule cond ( test ? : yes * : no * ) { if $(test) { return $(yes) ; } else { return $(no) ; } }
+ rule unless ( test ? : yes * : no * ) { if ! $(test) { return $(yes) ; } else { return $(no) ; } }
+-local rule eq ( a : b ) { if $(a) = $(b) { return 1 ; } }
++rule lib_boost_python
++{
++  local python_major_version = [ MATCH "^([^.]+)" : [ feature.values python ] ] ;
++  local python2 ;
++  if $(python_major_version) = 2
++  {
++    python2 = true ;
++  {
+ 
+-lib boost_python
++  lib boost_python
+     : # sources
+     list.cpp
+     long.cpp
+@@ -84,7 +91,8 @@
+         # python_for_extensions is a target defined by Boost.Build to
+         # provide the Python include paths, and on Windows, the Python
+         # import library, as usage requirements.
+-        [ cond [ python.configured ] : <library>/python//python_for_extensions ]
++        [ cond $(python2) : <cxxflags>-fno-strict-aliasing ]
++        [ cond [ python.configured ] : <library>/python//python ]
+ 
+         # we prevent building when there is no python available
+         # as it's not possible anyway, and to cause dependents to
+@@ -94,7 +102,6 @@
+         <python-debugging>on:<define>BOOST_DEBUG_PYTHON
+         -<tag>@$(BOOST_JAMROOT_MODULE)%$(BOOST_JAMROOT_MODULE).tag
+         <tag>@$(__name__).python-tag
+-        <conditional>@python.require-py
+ 
+     :   # default build
+         <link>shared
+@@ -102,31 +109,7 @@
+         <link>static:<define>BOOST_PYTHON_STATIC_LIB
+         <python-debugging>on:<define>BOOST_DEBUG_PYTHON
+     ;
++}
+ 
+-numpy-include = [ python.numpy-include ] ;
+-lib boost_numpy
+-    : # sources
+-    numpy/dtype.cpp
+-    numpy/matrix.cpp
+-    numpy/ndarray.cpp
+-    numpy/numpy.cpp
+-    numpy/scalars.cpp
+-    numpy/ufunc.cpp
+-    :   # requirements
+-        <link>static:<define>BOOST_NUMPY_STATIC_LIB
+-        <define>BOOST_NUMPY_SOURCE
+-        [ cond [ python.numpy ] : <library>/python//python_for_extensions ]
+-        [ unless [ python.numpy ] : <build>no ]
+-        <include>$(numpy-include)
+-        <library>boost_python
+-        <python-debugging>on:<define>BOOST_DEBUG_PYTHON
+-        -<tag>@$(BOOST_JAMROOT_MODULE)%$(BOOST_JAMROOT_MODULE).tag
+-	<tag>@$(__name__).python-tag
+-        <conditional>@python.require-py
+-
+-    :   # default build
+-        <link>shared
+-    :   # usage requirements
+-        <link>static:<define>BOOST_NUMPY_STATIC_LIB
+-        <python-debugging>on:<define>BOOST_DEBUG_PYTHON
+-    ;
++libraries = boost_python ;
++lib_boost_python ;

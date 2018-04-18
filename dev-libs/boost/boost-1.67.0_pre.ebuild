@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -10,12 +10,13 @@ REAL_P="${PN}_$(replace_all_version_separators _ ${MY_PV})"
 MAJOR_V="$(get_version_component_range 1-2)"
 
 DESCRIPTION="Boost Libraries for C++"
-HOMEPAGE="http://www.boost.org/"
+HOMEPAGE="https://www.boost.org/"
 SRC_URI="https://downloads.sourceforge.net/project/boost/${PN}/${MY_PV}/${REAL_P}.tar.bz2"
+SRC_URI="https://dl.bintray.com/boostorg/release/${MY_PV}/source/${REAL_P}.tar.bz2"
 
 LICENSE="Boost-1.0"
 SLOT="0/${MY_PV}" # ${MY_PV} instead ${MAJOR_V} due to bug 486122
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
+#KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
 
 IUSE="context debug doc icu +nls mpi python static-libs +threads tools"
 
@@ -45,7 +46,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-1.48.0-disable_icu_rpath.patch"
 	"${FILESDIR}/${PN}-1.55.0-context-x32.patch"
 	"${FILESDIR}/${PN}-1.56.0-build-auto_index-tool.patch"
-	"${FILESDIR}/${PN}-1.65.0-fix-python.patch"
+	"${FILESDIR}/${PN}-1.67.0-fix-python.patch"
 )
 
 python_bindings_needed() {
@@ -300,7 +301,7 @@ multilib_src_install_all() {
 		# To avoid broken links
 		dodoc LICENSE_1_0.txt
 
-		dosym /usr/include/boost /usr/share/doc/${PF}/html/boost
+		dosym ../../../../include/boost /usr/share/doc/${PF}/html/boost
 	fi
 }
 

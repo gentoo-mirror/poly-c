@@ -12,6 +12,7 @@ DESCRIPTION="Mesa's OpenGL utility and demo programs (glxgears and glxinfo)"
 HOMEPAGE="https://www.mesa3d.org/ https://mesa.freedesktop.org/"
 SRC_URI="https://mesa.freedesktop.org/archive/demos/${REAL_P}.tar.bz2
 	https://mesa.freedesktop.org/archive/demos/${MY_PV}/${REAL_P}.tar.bz2"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux"
 
 LICENSE="LGPL-2"
 SLOT="0"
