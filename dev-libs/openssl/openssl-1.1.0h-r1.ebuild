@@ -112,7 +112,7 @@ src_prepare() {
 		|| die
 
 	# show the actual commands in the log
-	sed -i '/^SET_X/s@=.*@=set -x@' Makefile.shared
+	sed -i '/^SET_X/s@=.*@=set -x@' Makefile.shared || die
 
 	# quiet out unknown driver argument warnings since openssl
 	# doesn't have well-split CFLAGS and we're making it even worse
@@ -121,7 +121,7 @@ src_prepare() {
 
 	# allow openssl to be cross-compiled
 	cp "${FILESDIR}"/gentoo.config-1.0.2 gentoo.config || die
-	chmod a+rx gentoo.config
+	chmod a+rx gentoo.config || die
 
 	append-flags -fno-strict-aliasing
 	append-flags $(test-flags-CC -Wa,--noexecstack)
@@ -251,7 +251,7 @@ multilib_src_install() {
 multilib_src_install_all() {
 	# openssl installs perl version of c_rehash by default, but
 	# we provide a shell version via app-misc/c_rehash
-	rm "${ED}"/usr/bin/c_rehash || die
+	rm "${ED%/}"/usr/bin/c_rehash || die
 
 	dodoc CHANGES* FAQ NEWS README doc/*.txt doc/${PN}-c-indent.el
 
@@ -260,13 +260,13 @@ multilib_src_install_all() {
 	# build system: the static archives are built as PIC all the time.
 	# Only way around this would be to manually configure+compile openssl
 	# twice; once with shared lib support enabled and once without.
-	use static-libs || rm -f "${ED}"/usr/lib*/lib*.a
+	use static-libs || rm -f "${ED%/}"/usr/lib*/lib*.a
 
 	# create the certs directory
 	keepdir ${SSL_CNF_DIR}/certs
 
 	# Namespace openssl programs to prevent conflicts with other man pages
-	cd "${ED}"/usr/share/man
+	cd "${ED%/}"/usr/share/man || die
 	local m d s
 	for m in $(find . -type f | xargs grep -L '#include') ; do
 		d=${m%/*} ; d=${d#./} ; m=${m##*/}
@@ -281,6 +281,7 @@ multilib_src_install_all() {
 		for s in $(find -L ${d} -type l) ; do
 			s=${s##*/}
 			rm -f ${d}/${s}
+			# We don't want to "|| die" here
 			ln -s ssl-${m} ${d}/ssl-${s}
 			ln -s ssl-${s} ${d}/openssl-${s}
 		done
@@ -288,7 +289,7 @@ multilib_src_install_all() {
 	[[ -n $(find -L ${d} -type l) ]] && die "broken manpage links found :("
 
 	dodir /etc/sandbox.d #254521
-	echo 'SANDBOX_PREDICT="/dev/crypto"' > "${ED}"/etc/sandbox.d/10openssl
+	echo 'SANDBOX_PREDICT="/dev/crypto"' > "${ED%/}"/etc/sandbox.d/10openssl
 
 	diropts -m0700
 	keepdir ${SSL_CNF_DIR}/private
