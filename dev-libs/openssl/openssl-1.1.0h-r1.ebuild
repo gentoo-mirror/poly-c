@@ -4,7 +4,7 @@
 
 EAPI="6"
 
-inherit eutils flag-o-matic toolchain-funcs multilib multilib-minimal
+inherit flag-o-matic toolchain-funcs multilib multilib-minimal
 
 MY_P=${P/_/-}
 DESCRIPTION="full-strength general purpose cryptography library (including SSL and TLS)"
@@ -64,6 +64,7 @@ MULTILIB_WRAPPED_HEADERS=(
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.0.2a-x32-asm.patch #542618
+	"${FILESDIR}"/${P}-CVE-2018-0737.patch
 )
 
 src_prepare() {
@@ -77,7 +78,7 @@ src_prepare() {
 		cp -f "${WORKDIR}"/"${SOURCE12}" "${S}"/crypto/ec/ || die
 		cp -f "${WORKDIR}"/"${SOURCE13}" "${S}"/test/ || die
 		for i in "${FEDORA_PATCH[@]}" ; do
-			epatch "${DISTDIR}"/"${i}"
+			eapply "${DISTDIR}"/"${i}"
 		done
 		# Also see the configure parts below:
 		# enable-ec \
@@ -92,7 +93,7 @@ src_prepare() {
 	rm -f Makefile
 
 	if ! use vanilla ; then
-		epatch "${PATCHES[@]}"
+		eapply "${PATCHES[@]}"
 	fi
 
 	eapply_user #332661
