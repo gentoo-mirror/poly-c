@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 3b794e7c3ded36690a653945b7ef69305d07ed17 $
+# $Id: 5825a197ca7d84a89826ed5fe921d3c8bff95ee1 $
 
 EAPI=6
 
@@ -33,11 +33,7 @@ COMMON_DEPEND=">=sys-apps/util-linux-2.30[${MULTILIB_USEDEP}]
 	selinux? ( >=sys-libs/libselinux-2.1.9 )
 	!<sys-libs/glibc-2.11
 	!sys-apps/gentoo-systemd-integration
-	!sys-apps/systemd
-	abi_x86_32? (
-		!<=app-emulation/emul-linux-x86-baselibs-20130224-r7
-		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
-	)"
+	!sys-apps/systemd"
 DEPEND="${COMMON_DEPEND}
 	dev-util/gperf
 	>=dev-util/intltool-0.50
@@ -200,6 +196,7 @@ multilib_src_install_all() {
 
 	insinto /etc/udev
 	doins src/udev/udev.conf
+	keepdir /etc/udev/{hwdb.d,rules.d}
 
 	insinto /lib/udev/network
 	doins network/99-default.link

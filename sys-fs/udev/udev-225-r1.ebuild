@@ -1,6 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8108a9b3c74b7301e174efb1c14281dc51e698fa $
+# $Id: ee167a2d7ecaa8e10e2c7385ad2b38a857388d92 $
 
 EAPI=5
 
@@ -38,11 +38,7 @@ COMMON_DEPEND=">=sys-apps/util-linux-2.24
 	selinux? ( >=sys-libs/libselinux-2.1.9 )
 	!<sys-libs/glibc-2.11
 	!sys-apps/gentoo-systemd-integration
-	!sys-apps/systemd
-	abi_x86_32? (
-		!<=app-emulation/emul-linux-x86-baselibs-20130224-r7
-		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
-	)"
+	!sys-apps/systemd"
 
 # Try with `emerge -C docbook-xml-dtd` to see the build failure without DTDs
 # Force new make >= -r4 to skip some parallel build issues
@@ -238,7 +234,7 @@ multilib_src_compile() {
 			scsi_id
 			v4l_id
 			mtd_probe
-			)
+		)
 		emake "${helper_targets[@]}"
 
 		local man_targets=(
@@ -259,8 +255,8 @@ multilib_src_compile() {
 
 multilib_src_install() {
 	if multilib_is_native_abi; then
-		local lib_LTLIBRARIES="libudev.la" \
-			pkgconfiglib_DATA="src/libudev/libudev.pc"
+		local lib_LTLIBRARIES="libudev.la"
+		local pkgconfiglib_DATA="src/libudev/libudev.pc"
 
 		local targets=(
 			install-libLTLIBRARIES
@@ -303,9 +299,9 @@ multilib_src_install() {
 		# install udevadm compatibility symlink
 		dosym {../sbin,bin}/udevadm
 	else
-		local lib_LTLIBRARIES="libudev.la" \
-			pkgconfiglib_DATA="src/libudev/libudev.pc" \
-			include_HEADERS="src/libudev/libudev.h"
+		local lib_LTLIBRARIES="libudev.la"
+		local pkgconfiglib_DATA="src/libudev/libudev.pc"
+		local include_HEADERS="src/libudev/libudev.h"
 
 		local targets=(
 			install-libLTLIBRARIES
@@ -326,9 +322,8 @@ multilib_src_install_all() {
 	dodoc TODO
 
 	prune_libtool_files --all
-	rm -f \
-		"${D}"/lib/udev/rules.d/99-systemd.rules \
-		"${D}"/usr/share/doc/${PF}/{LICENSE.*,GVARIANT-SERIALIZATION,DIFFERENCES,PORTING-DBUS1,sd-shutdown.h}
+	rm -f "${D}"/lib/udev/rules.d/99-systemd.rules
+	rm -f "${D}"/usr/share/doc/${PF}/{LICENSE.*,GVARIANT-SERIALIZATION,DIFFERENCES,PORTING-DBUS1,sd-shutdown.h}
 
 	# see src_prepare() for content of 40-gentoo.rules
 	insinto /lib/udev/rules.d

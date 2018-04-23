@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0b8e3832c2d7665bfbe6de154d24750567f8f1e7 $
+# $Id: 9ca311c705fcf457920a80be10d619baa4001f03 $
 
 EAPI=6
 
@@ -32,11 +32,7 @@ COMMON_DEPEND=">=sys-apps/util-linux-2.27.1[${MULTILIB_USEDEP}]
 	selinux? ( >=sys-libs/libselinux-2.1.9 )
 	!<sys-libs/glibc-2.11
 	!sys-apps/gentoo-systemd-integration
-	!sys-apps/systemd
-	abi_x86_32? (
-		!<=app-emulation/emul-linux-x86-baselibs-20130224-r7
-		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
-	)"
+	!sys-apps/systemd"
 
 # Try with `emerge -C docbook-xml-dtd` to see the build failure without DTDs
 # Force new make >= -r4 to skip some parallel build issues
@@ -63,6 +59,7 @@ S="${WORKDIR}/systemd-${PV}"
 
 PATCHES=(
 	"${FILESDIR}"/233-format-warnings.patch
+	"${FILESDIR}"/233-fix-includes.patch
 )
 
 check_default_rules() {
@@ -129,9 +126,6 @@ src_prepare() {
 	if ! [[ ${PV} = 9999* ]]; then
 		check_default_rules
 	fi
-
-	# Gentoo has no dialout group
-	sed 's@dialout@uucp@' -i rules/50-udev-default.rules || die
 
 	if ! use elibc_glibc; then #443030
 		echo '#define secure_getenv(x) NULL' >> config.h.in

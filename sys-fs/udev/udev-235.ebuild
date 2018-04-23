@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 6c88b45642fefb6d50300658f0f027a866df64b5 $
+# $Id: b92b31ab23cab10b84964a30172a8d7769ea639a $
 
 EAPI=6
 
@@ -33,11 +33,7 @@ COMMON_DEPEND=">=sys-apps/util-linux-2.30[${MULTILIB_USEDEP}]
 	selinux? ( >=sys-libs/libselinux-2.1.9 )
 	!<sys-libs/glibc-2.11
 	!sys-apps/gentoo-systemd-integration
-	!sys-apps/systemd
-	abi_x86_32? (
-		!<=app-emulation/emul-linux-x86-baselibs-20130224-r7
-		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
-	)"
+	!sys-apps/systemd"
 DEPEND="${COMMON_DEPEND}
 	dev-util/gperf
 	>=dev-util/intltool-0.50

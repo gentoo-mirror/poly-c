@@ -1,6 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 39ea2e597567600ec6857fdc104db03baa36fc8e $
+# $Id: 3d009073e05b30ab345194246e884490ccbd5530 $
 
 EAPI=5
 
@@ -40,11 +40,7 @@ COMMON_DEPEND=">=sys-apps/util-linux-2.20
 	selinux? ( >=sys-libs/libselinux-2.1.9 )
 	!<sys-libs/glibc-2.11
 	!sys-apps/gentoo-systemd-integration
-	!sys-apps/systemd
-	abi_x86_32? (
-		!<=app-emulation/emul-linux-x86-baselibs-20130224-r7
-		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
-	)"
+	!sys-apps/systemd"
 
 # Try with `emerge -C docbook-xml-dtd` to see the build failure without DTDs
 # Force new make >= -r4 to skip some parallel build issues
@@ -235,7 +231,7 @@ multilib_src_compile() {
 			v4l_id
 			accelerometer
 			mtd_probe
-			)
+		)
 		emake "${helper_targets[@]}"
 
 		local man_targets=(

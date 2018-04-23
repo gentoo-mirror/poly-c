@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 076b670faa3681f82951fefaa7e94b5f92711448 $
+# $Id: 1fea5a5faf267254c66ca01885426b6e8443f2c8 $
 
 EAPI=6
 
@@ -16,13 +16,13 @@ DESCRIPTION="Python interface to the OpenSSL library"
 HOMEPAGE="
 	http://pyopenssl.sourceforge.net/
 	https://launchpad.net/pyopenssl
-	https://pypi.python.org/pypi/pyOpenSSL
+	https://pypi.org/project/pyOpenSSL
 "
 SRC_URI="mirror://pypi/${MY_PN:0:1}/${MY_PN}/${MY_P}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="alpha amd64 arm arm64 ~hppa ia64 ~m68k ~mips ppc ppc64 ~sparc x86 ~amd64-fbsd"
+KEYWORDS="alpha amd64 arm arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~sparc x86 ~amd64-fbsd"
 IUSE="doc examples test"
 
 RDEPEND="
