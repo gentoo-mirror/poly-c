@@ -1,0 +1,1018 @@
+From 57878ff44f9bb41155dea425949d344b87652aeb Mon Sep 17 00:00:00 2001
+From: Ivan Romanov <drizt@land.ru>
+Date: Wed, 10 Aug 2016 12:16:46 +0500
+Subject: [PATCH] Add support for AES GCM and AES CCM modes
+
+Only qca-openssl now can use GCM and CCM. CCM is not tested and
+planed for future.
+---
+ include/QtCrypto/qca_basic.h               |  50 ++++-
+ include/QtCrypto/qca_core.h                |  38 ++++
+ include/QtCrypto/qcaprovider.h             |   8 +-
+ plugins/qca-botan/qca-botan.cpp            |  10 +-
+ plugins/qca-gcrypt/qca-gcrypt.cpp          |  10 +-
+ plugins/qca-nss/qca-nss.cpp                |  14 +-
+ plugins/qca-ossl/CMakeLists.txt            |  14 ++
+ plugins/qca-ossl/qca-ossl.cpp              |  73 ++++++-
+ src/qca_basic.cpp                          |  33 +++-
+ src/qca_core.cpp                           |  23 +++
+ unittest/cipherunittest/CMakeLists.txt     |   2 +-
+ unittest/cipherunittest/cipherunittest.cpp | 293 +++++++++++++++++++++++++++++
+ unittest/cipherunittest/cipherunittest.h   |  38 ++++
+ 13 files changed, 595 insertions(+), 11 deletions(-)
+
+diff --git a/include/QtCrypto/qca_basic.h b/include/QtCrypto/qca_basic.h
+index c36a2bd0..3806c297 100644
+--- a/include/QtCrypto/qca_basic.h
++++ b/include/QtCrypto/qca_basic.h
+@@ -2,6 +2,7 @@
+  * qca_basic.h - Qt Cryptographic Architecture
+  * Copyright (C) 2003-2007  Justin Karneges <justin@affinix.com>
+  * Copyright (C) 2004-2007  Brad Hards <bradh@frogmouth.net>
++ * Copyright (C) 2013-2016  Ivan Romanov <drizt@land.ru>
+  *
+  * This library is free software; you can redistribute it and/or
+  * modify it under the terms of the GNU Lesser General Public
+@@ -583,6 +584,7 @@ SecureArray outputArray = QCA::Hash("md2")::hash(sampleArray);
+ 
+    \ingroup UserAPI
+ */
++
+ class QCA_EXPORT Cipher : public Algorithm, public Filter
+ {
+ public:
+@@ -599,7 +601,9 @@ class QCA_EXPORT Cipher : public Algorithm, public Filter
+ 		CFB, ///< operate in %Cipher FeedBack mode
+ 		ECB, ///< operate in Electronic Code Book mode
+ 		OFB, ///< operate in Output FeedBack Mode
+-		CTR  ///< operate in CounTer Mode
++		CTR, ///< operate in CounTer Mode
++		GCM, ///< operate in Galois Counter Mode
++		CCM  ///< operate in Counter with CBC-MAC
+ 	};
+ 
+ 	/**
+@@ -636,6 +640,28 @@ class QCA_EXPORT Cipher : public Algorithm, public Filter
+ 		const InitializationVector &iv = InitializationVector(),
+ 		const QString &provider = QString());
+ 
++	/**
++	   Standard constructor
++
++	   \param type the name of the cipher specialisation to use (e.g.
++	   "aes128")
++	   \param mode the operating Mode to use (e.g. QCA::Cipher::CBC)
++	   \param pad the type of Padding to use
++	   \param dir the Direction that this Cipher should use (Encode for
++	   encryption, Decode for decryption)
++	   \param key the SymmetricKey array that is the key
++	   \param iv the InitializationVector to use (not used for ECB mode)
++	   \param tag the AuthTag to use (only for GCM and CCM modes)
++	   \param provider the name of the Provider to use
++
++	   \note Padding only applies to CBC and ECB modes.  CFB and OFB
++	   ciphertext is always the length of the plaintext.
++	*/
++	Cipher(const QString &type, Mode mode, Padding pad,
++		Direction dir, const SymmetricKey &key,
++		const InitializationVector &iv, const AuthTag &tag,
++		const QString &provider = QString());
++
+ 	/**
+ 	   Standard copy constructor
+ 
+@@ -699,6 +725,11 @@ class QCA_EXPORT Cipher : public Algorithm, public Filter
+ 	*/
+ 	int blockSize() const;
+ 
++	/**
++	   return the authentication tag for the cipher object
++	*/
++	AuthTag tag() const;
++
+ 	/**
+ 	   reset the cipher object, to allow re-use
+ 	*/
+@@ -741,6 +772,22 @@ class QCA_EXPORT Cipher : public Algorithm, public Filter
+ 	*/
+ 	void setup(Direction dir, const SymmetricKey &key, const InitializationVector &iv = InitializationVector());
+ 
++	/**
++	   Reset / reconfigure the Cipher
++
++	   You can use this to re-use an existing Cipher, rather than creating
++	   a new object with a slightly different configuration.
++
++	   \param dir the Direction that this Cipher should use (Encode for
++	   encryption, Decode for decryption)
++	   \param key the SymmetricKey array that is the key
++	   \param iv the InitializationVector to use (not used for ECB Mode)
++	   \param tag the AuthTag to use (only for GCM and CCM modes)
++
++	   \note You should not leave iv empty for any Mode except ECB.
++	*/
++	void setup(Direction dir, const SymmetricKey &key, const InitializationVector &iv, const AuthTag &tag);
++
+ 	/**
+ 	   Construct a Cipher type string
+ 
+@@ -751,7 +798,6 @@ class QCA_EXPORT Cipher : public Algorithm, public Filter
+ 	   QCA::PCKS7)
+ 	*/
+ 	static QString withAlgorithms(const QString &cipherType, Mode modeType, Padding paddingType);
+-
+ private:
+ 	class Private;
+ 	Private *d;
+diff --git a/include/QtCrypto/qca_core.h b/include/QtCrypto/qca_core.h
+index beda5b18..f5c46015 100644
+--- a/include/QtCrypto/qca_core.h
++++ b/include/QtCrypto/qca_core.h
+@@ -2,6 +2,7 @@
+  * qca_core.h - Qt Cryptographic Architecture
+  * Copyright (C) 2003-2007  Justin Karneges <justin@affinix.com>
+  * Copyright (C) 2004,2005  Brad Hards <bradh@frogmouth.net>
++ * Copyright (C) 2014-2016  Ivan Romanov <drizt@land.ru>
+  *
+  * This library is free software; you can redistribute it and/or
+  * modify it under the terms of the GNU Lesser General Public
+@@ -1294,6 +1295,43 @@ class QCA_EXPORT InitializationVector : public SecureArray
+ 	InitializationVector(const QByteArray &a);
+ };
+ 
++/**
++   \class AuthTag qca_core.h QtCrypto
++
++   Container for authentication tag
++
++   \ingroup UserAPI
++*/
++class QCA_EXPORT AuthTag : public SecureArray
++{
++public:
++	/**
++	   Construct an empty authentication tag
++	*/
++	AuthTag();
++
++	/**
++	   Construct an empty authentication tag of the specified size
++
++	   \param size the length of the authentication tag, in bytes
++	*/
++	AuthTag(int size);
++
++	/**
++	   Construct an authentication tag from a provided byte array
++
++	   \param a the byte array to copy
++	*/
++	AuthTag(const SecureArray &a);
++
++	/**
++	   Construct an authentication tag from a provided byte array
++
++	   \param a the byte array to copy
++	*/
++	AuthTag(const QByteArray &a);
++};
++
+ /**
+    \class Event qca_core.h QtCrypto
+ 
+diff --git a/include/QtCrypto/qcaprovider.h b/include/QtCrypto/qcaprovider.h
+index c8ddff4e..d4b54f98 100644
+--- a/include/QtCrypto/qcaprovider.h
++++ b/include/QtCrypto/qcaprovider.h
+@@ -234,8 +234,9 @@ class QCA_EXPORT CipherContext : public BasicContext
+ 	   \param dir the direction for the cipher (encryption/decryption)
+ 	   \param key the symmetric key to use for the cipher
+ 	   \param iv the initialization vector to use for the cipher (not used in ECB mode)
++	   \param tag the AuthTag to use (only for GCM and CCM modes)
+ 	*/
+-	virtual void setup(Direction dir, const SymmetricKey &key, const InitializationVector &iv) = 0;
++	virtual void setup(Direction dir, const SymmetricKey &key, const InitializationVector &iv, const AuthTag &tag) = 0;
+ 
+ 	/**
+ 	   Returns the KeyLength for this cipher
+@@ -247,6 +248,11 @@ class QCA_EXPORT CipherContext : public BasicContext
+ 	*/
+ 	virtual int blockSize() const = 0;
+ 
++	/**
++	   Returns the authentication tag for this cipher
++	*/
++	virtual AuthTag tag() const = 0;
++
+ 	/**
+ 	   Process a chunk of data.  Returns true if successful.
+ 
+diff --git a/plugins/qca-botan/qca-botan.cpp b/plugins/qca-botan/qca-botan.cpp
+index 1cc984a7..f3875758 100644
+--- a/plugins/qca-botan/qca-botan.cpp
++++ b/plugins/qca-botan/qca-botan.cpp
+@@ -263,8 +263,10 @@ class BotanCipherContext : public QCA::CipherContext
+ 
+     void setup(QCA::Direction dir,
+                const QCA::SymmetricKey &key,
+-               const QCA::InitializationVector &iv)
++               const QCA::InitializationVector &iv,
++               const QCA::AuthTag &tag)
+     {
++	Q_UNUSED(tag);
+ 	try {
+ 	m_dir = dir;
+ 	Botan::SymmetricKey keyCopy((Botan::byte*)key.data(), key.size());
+@@ -305,6 +307,12 @@ class BotanCipherContext : public QCA::CipherContext
+ 	return Botan::block_size_of(m_algoName);
+     }
+ 
++    QCA::AuthTag tag() const
++    {
++    // For future implementation
++	return QCA::AuthTag();
++    }
++
+     bool update(const QCA::SecureArray &in, QCA::SecureArray *out)
+     {
+ 	m_crypter->write((Botan::byte*)in.data(), in.size());
+diff --git a/plugins/qca-gcrypt/qca-gcrypt.cpp b/plugins/qca-gcrypt/qca-gcrypt.cpp
+index 72f05a16..780fcdde 100644
+--- a/plugins/qca-gcrypt/qca-gcrypt.cpp
++++ b/plugins/qca-gcrypt/qca-gcrypt.cpp
+@@ -163,8 +163,10 @@ class gcryCipherContext : public QCA::CipherContext
+ 
+     void setup(QCA::Direction dir,
+ 	       const QCA::SymmetricKey &key,
+-	       const QCA::InitializationVector &iv)
++	       const QCA::InitializationVector &iv,
++	       const QCA::AuthTag &tag)
+     {
++	Q_UNUSED(tag);
+ 	m_direction = dir;
+ 	err =  gcry_cipher_open( &context, m_cryptoAlgorithm, m_mode, 0 );
+ 	check_error( "gcry_cipher_open", err );
+@@ -195,6 +197,12 @@ class gcryCipherContext : public QCA::CipherContext
+ 	return blockSize;
+     }
+ 
++    QCA::AuthTag tag() const
++    {
++    // For future implementation
++	return QCA::AuthTag();
++    }
++
+     bool update(const QCA::SecureArray &in, QCA::SecureArray *out)
+     {
+         QCA::SecureArray result( in.size() );
+diff --git a/plugins/qca-nss/qca-nss.cpp b/plugins/qca-nss/qca-nss.cpp
+index f4fdef32..db01eb02 100644
+--- a/plugins/qca-nss/qca-nss.cpp
++++ b/plugins/qca-nss/qca-nss.cpp
+@@ -304,10 +304,12 @@ class nssCipherContext : public QCA::CipherContext
+ 	{
+ 	}
+ 
+-    void setup( QCA::Direction dir,
+-		const QCA::SymmetricKey &key,
+-		const QCA::InitializationVector &iv )
++    void setup(QCA::Direction dir,
++               const QCA::SymmetricKey &key,
++               const QCA::InitializationVector &iv,
++               const QCA::AuthTag &tag)
+     {
++	Q_UNUSED(tag);
+ 	/* Get a slot to use for the crypto operations */
+ 	m_slot = PK11_GetBestSlot( m_cipherMechanism, NULL );
+ 	if (!m_slot)
+@@ -365,6 +367,12 @@ class nssCipherContext : public QCA::CipherContext
+ 	    return PK11_GetBlockSize( m_cipherMechanism, m_params);
+ 	}
+ 
++    QCA::AuthTag tag() const
++    {
++    // For future implementation
++	return QCA::AuthTag();
++    }
++
+     bool update( const QCA::SecureArray &in, QCA::SecureArray *out )
+ 	{
+ 	    out->resize(in.size()+blockSize());
+diff --git a/plugins/qca-ossl/CMakeLists.txt b/plugins/qca-ossl/CMakeLists.txt
+index cdeaecaf..d87bc5ad 100644
+--- a/plugins/qca-ossl/CMakeLists.txt
++++ b/plugins/qca-ossl/CMakeLists.txt
+@@ -25,6 +25,20 @@ if(OPENSSL_FOUND)
+     message(WARNING "qca-ossl will be compiled without AES CTR mode encryption support")
+   endif(HAVE_OPENSSL_AES_CTR)
+ 
++  check_function_exists(EVP_aes_128_gcm HAVE_OPENSSL_AES_GCM)
++  if(HAVE_OPENSSL_AES_GCM)
++    add_definitions(-DHAVE_OPENSSL_AES_GCM)
++  else()
++    message(WARNING "qca-ossl will be compiled without AES GCM mode encryption support")
++  endif()
++
++  check_function_exists(EVP_aes_128_ccm HAVE_OPENSSL_AES_CCM)
++  if(HAVE_OPENSSL_AES_CCM)
++    add_definitions(-DHAVE_OPENSSL_AES_CCM)
++  else()
++    message(WARNING "qca-ossl will be compiled without AES CCM mode encryption support")
++  endif()
++
+   check_function_exists(EVP_sha HAVE_OPENSSL_SHA0)
+   if(HAVE_OPENSSL_SHA0)
+     add_definitions(-DHAVE_OPENSSL_SHA0)
+diff --git a/plugins/qca-ossl/qca-ossl.cpp b/plugins/qca-ossl/qca-ossl.cpp
+index f0b94312..a507604a 100644
+--- a/plugins/qca-ossl/qca-ossl.cpp
++++ b/plugins/qca-ossl/qca-ossl.cpp
+@@ -1,6 +1,7 @@
+ /*
+  * Copyright (C) 2004-2007  Justin Karneges <justin@affinix.com>
+  * Copyright (C) 2004-2006  Brad Hards <bradh@frogmouth.net>
++ * Copyright (C) 2013-2016  Ivan Romanov <drizt@land.ru>
+  *
+  * This library is free software; you can redistribute it and/or
+  * modify it under the terms of the GNU Lesser General Public
+@@ -6761,8 +6762,10 @@ class opensslCipherContext : public CipherContext
+ 
+ 	void setup(Direction dir,
+ 			   const SymmetricKey &key,
+-			   const InitializationVector &iv)
++			   const InitializationVector &iv,
++			   const AuthTag &tag)
+ 	{
++		m_tag = tag;
+ 		m_direction = dir;
+ 		if ( ( m_cryptoAlgorithm == EVP_des_ede3() ) && (key.size() == 16) ) {
+ 			// this is really a two key version of triple DES.
+@@ -6771,12 +6774,20 @@ class opensslCipherContext : public CipherContext
+ 		if (Encode == m_direction) {
+ 			EVP_EncryptInit_ex(&m_context, m_cryptoAlgorithm, 0, 0, 0);
+ 			EVP_CIPHER_CTX_set_key_length(&m_context, key.size());
++			if (m_type.endsWith("gcm") || m_type.endsWith("ccm")) {
++				int parameter = m_type.endsWith("gcm") ? EVP_CTRL_GCM_SET_IVLEN : EVP_CTRL_CCM_SET_IVLEN;
++				EVP_CIPHER_CTX_ctrl(&m_context, parameter, iv.size(), NULL);
++			}
+ 			EVP_EncryptInit_ex(&m_context, 0, 0,
+ 							   (const unsigned char*)(key.data()),
+ 							   (const unsigned char*)(iv.data()));
+ 		} else {
+ 			EVP_DecryptInit_ex(&m_context, m_cryptoAlgorithm, 0, 0, 0);
+ 			EVP_CIPHER_CTX_set_key_length(&m_context, key.size());
++			if (m_type.endsWith("gcm") || m_type.endsWith("ccm")) {
++				int parameter = m_type.endsWith("gcm") ? EVP_CTRL_GCM_SET_IVLEN : EVP_CTRL_CCM_SET_IVLEN;
++				EVP_CIPHER_CTX_ctrl(&m_context, parameter, iv.size(), NULL);
++			}
+ 			EVP_DecryptInit_ex(&m_context, 0, 0,
+ 							   (const unsigned char*)(key.data()),
+ 							   (const unsigned char*)(iv.data()));
+@@ -6795,6 +6806,11 @@ class opensslCipherContext : public CipherContext
+ 		return EVP_CIPHER_CTX_block_size(&m_context);
+ 	}
+ 
++    AuthTag tag() const
++    {
++		return m_tag;
++    }
++
+ 	bool update(const SecureArray &in, SecureArray *out)
+ 	{
+ 		// This works around a problem in OpenSSL, where it asserts if
+@@ -6835,7 +6851,19 @@ class opensslCipherContext : public CipherContext
+ 										 &resultLength)) {
+ 				return false;
+ 			}
++			if (m_tag.size() && (m_type.endsWith("gcm") || m_type.endsWith("ccm"))) {
++				int parameter = m_type.endsWith("gcm") ? EVP_CTRL_GCM_GET_TAG : EVP_CTRL_CCM_GET_TAG;
++				if (0 == EVP_CIPHER_CTX_ctrl(&m_context, parameter, m_tag.size(), (unsigned char*)m_tag.data())) {
++					return false;
++				}
++			}
+ 		} else {
++			if (m_tag.size() && (m_type.endsWith("gcm") || m_type.endsWith("ccm"))) {
++				int parameter = m_type.endsWith("gcm") ? EVP_CTRL_GCM_SET_TAG : EVP_CTRL_CCM_SET_TAG;
++				if (0 == EVP_CIPHER_CTX_ctrl(&m_context, parameter, m_tag.size(), m_tag.data())) {
++					return false;
++				}
++			}
+ 			if (0 == EVP_DecryptFinal_ex(&m_context,
+ 										 (unsigned char*)out->data(),
+ 										 &resultLength)) {
+@@ -6876,6 +6904,7 @@ class opensslCipherContext : public CipherContext
+ 	Direction m_direction;
+ 	int m_pad;
+ 	QString m_type;
++	AuthTag m_tag;
+ };
+ 
+ static QStringList all_hash_types()
+@@ -6921,6 +6950,12 @@ static QStringList all_cipher_types()
+ 	list += "aes128-ofb";
+ #ifdef HAVE_OPENSSL_AES_CTR
+ 	list += "aes128-ctr";
++#endif
++#ifdef HAVE_OPENSSL_AES_GCM
++	list += "aes128-gcm";
++#endif
++#ifdef HAVE_OPENSSL_AES_CCM
++	list += "aes128-ccm";
+ #endif
+ 	list += "aes192-ecb";
+ 	list += "aes192-cfb";
+@@ -6929,6 +6964,12 @@ static QStringList all_cipher_types()
+ 	list += "aes192-ofb";
+ #ifdef HAVE_OPENSSL_AES_CTR
+ 	list += "aes192-ctr";
++#endif
++#ifdef HAVE_OPENSSL_AES_GCM
++	list += "aes192-gcm";
++#endif
++#ifdef HAVE_OPENSSL_AES_CCM
++	list += "aes192-ccm";
+ #endif
+ 	list += "aes256-ecb";
+ 	list += "aes256-cbc";
+@@ -6937,6 +6978,12 @@ static QStringList all_cipher_types()
+ 	list += "aes256-ofb";
+ #ifdef HAVE_OPENSSL_AES_CTR
+ 	list += "aes256-ctr";
++#endif
++#ifdef HAVE_OPENSSL_AES_GCM
++	list += "aes256-gcm";
++#endif
++#ifdef HAVE_OPENSSL_AES_CCM
++	list += "aes256-ccm";
+ #endif
+ 	list += "blowfish-ecb";
+ 	list += "blowfish-cbc-pkcs7";
+@@ -7216,6 +7263,14 @@ class opensslProvider : public Provider
+ #ifdef HAVE_OPENSSL_AES_CTR
+ 		else if ( type == "aes128-ctr" )
+ 			return new opensslCipherContext( EVP_aes_128_ctr(), 0, this, type);
++#endif
++#ifdef HAVE_OPENSSL_AES_GCM
++		else if ( type == "aes128-gcm" )
++			return new opensslCipherContext( EVP_aes_128_gcm(), 0, this, type);
++#endif
++#ifdef HAVE_OPENSSL_AES_CCM
++		else if ( type == "aes128-ccm" )
++			return new opensslCipherContext( EVP_aes_128_ccm(), 0, this, type);
+ #endif
+ 		else if ( type == "aes192-ecb" )
+ 			return new opensslCipherContext( EVP_aes_192_ecb(), 0, this, type);
+@@ -7230,6 +7285,14 @@ class opensslProvider : public Provider
+ #ifdef HAVE_OPENSSL_AES_CTR
+ 		else if ( type == "aes192-ctr" )
+ 			return new opensslCipherContext( EVP_aes_192_ctr(), 0, this, type);
++#endif
++#ifdef HAVE_OPENSSL_AES_GCM
++		else if ( type == "aes192-gcm" )
++			return new opensslCipherContext( EVP_aes_192_gcm(), 0, this, type);
++#endif
++#ifdef HAVE_OPENSSL_AES_CCM
++		else if ( type == "aes192-ccm" )
++			return new opensslCipherContext( EVP_aes_192_ccm(), 0, this, type);
+ #endif
+ 		else if ( type == "aes256-ecb" )
+ 			return new opensslCipherContext( EVP_aes_256_ecb(), 0, this, type);
+@@ -7244,6 +7307,14 @@ class opensslProvider : public Provider
+ #ifdef HAVE_OPENSSL_AES_CTR
+ 		else if ( type == "aes256-ctr" )
+ 			return new opensslCipherContext( EVP_aes_256_ctr(), 0, this, type);
++#endif
++#ifdef HAVE_OPENSSL_AES_GCM
++		else if ( type == "aes256-gcm" )
++			return new opensslCipherContext( EVP_aes_256_gcm(), 0, this, type);
++#endif
++#ifdef HAVE_OPENSSL_AES_CCM
++		else if ( type == "aes256-ccm" )
++			return new opensslCipherContext( EVP_aes_256_ccm(), 0, this, type);
+ #endif
+ 		else if ( type == "blowfish-ecb" )
+ 			return new opensslCipherContext( EVP_bf_ecb(), 0, this, type);
+diff --git a/src/qca_basic.cpp b/src/qca_basic.cpp
+index 89bf966f..c2e10e1c 100644
+--- a/src/qca_basic.cpp
++++ b/src/qca_basic.cpp
+@@ -262,6 +262,7 @@ class Cipher::Private
+ 	Direction dir;
+ 	SymmetricKey key;
+ 	InitializationVector iv;
++	AuthTag tag;
+ 
+ 	bool ok, done;
+ };
+@@ -280,6 +281,19 @@ Cipher::Cipher(const QString &type, Mode mode, Padding pad,
+ 		setup(dir, key, iv);
+ }
+ 
++Cipher::Cipher(const QString &type, Cipher::Mode mode, Cipher::Padding pad, Direction dir, const SymmetricKey &key, const InitializationVector &iv, const AuthTag &tag, const QString &provider)
++	: Algorithm(withAlgorithms(type, mode, pad), provider)
++{
++	d = new Private;
++	d->type = type;
++	d->mode = mode;
++	d->pad = pad;
++	d->tag = tag;
++	if(!key.isEmpty())
++		setup(dir, key, iv, tag);
++}
++
++
+ Cipher::Cipher(const Cipher &from)
+ :Algorithm(from), Filter(from)
+ {
+@@ -339,10 +353,15 @@ int Cipher::blockSize() const
+ 	return static_cast<const CipherContext *>(context())->blockSize();
+ }
+ 
++AuthTag Cipher::tag() const
++{
++	return static_cast<const CipherContext *>(context())->tag();
++}
++
+ void Cipher::clear()
+ {
+ 	d->done = false;
+-	static_cast<CipherContext *>(context())->setup(d->dir, d->key, d->iv);
++	static_cast<CipherContext *>(context())->setup(d->dir, d->key, d->iv, d->tag);
+ }
+ 
+ MemoryRegion Cipher::update(const MemoryRegion &a)
+@@ -370,10 +389,16 @@ bool Cipher::ok() const
+ }
+ 
+ void Cipher::setup(Direction dir, const SymmetricKey &key, const InitializationVector &iv)
++{
++	setup(dir, key, iv, AuthTag());
++}
++
++void Cipher::setup(Direction dir, const SymmetricKey &key, const InitializationVector &iv, const AuthTag &tag)
+ {
+ 	d->dir = dir;
+ 	d->key = key;
+ 	d->iv = iv;
++	d->tag = tag;
+ 	clear();
+ }
+ 
+@@ -396,6 +421,12 @@ QString Cipher::withAlgorithms(const QString &cipherType, Mode modeType, Padding
+ 	case CTR:
+ 		mode = "ctr";
+ 		break;
++	case GCM:
++		mode = "gcm";
++		break;
++	case CCM:
++		mode = "ccm";
++		break;
+ 	default:
+ 		Q_ASSERT(0);
+ 	}
+diff --git a/src/qca_core.cpp b/src/qca_core.cpp
+index 15ee385c..48460ce7 100644
+--- a/src/qca_core.cpp
++++ b/src/qca_core.cpp
+@@ -1,6 +1,7 @@
+ /*
+  * Copyright (C) 2003-2008  Justin Karneges <justin@affinix.com>
+  * Copyright (C) 2004,2005  Brad Hards <bradh@frogmouth.net>
++ * Copyright (C) 2014-2016  Ivan Romanov <drizt@land.ru>
+  *
+  * This library is free software; you can redistribute it and/or
+  * modify it under the terms of the GNU Lesser General Public
+@@ -1510,6 +1511,28 @@ InitializationVector::InitializationVector(const QByteArray &a)
+ 	set(SecureArray(a));
+ }
+ 
++//----------------------------------------------------------------------------
++// AuthTag
++//----------------------------------------------------------------------------
++AuthTag::AuthTag()
++{
++}
++
++AuthTag::AuthTag(int size)
++{
++	resize(size);
++}
++
++AuthTag::AuthTag(const SecureArray &a)
++{
++	set(a);
++}
++
++AuthTag::AuthTag(const QByteArray &a)
++{
++	set(SecureArray(a));
++}
++
+ //----------------------------------------------------------------------------
+ // Event
+ //----------------------------------------------------------------------------
+diff --git a/unittest/cipherunittest/CMakeLists.txt b/unittest/cipherunittest/CMakeLists.txt
+index 858f56a3..a6c775dd 100644
+--- a/unittest/cipherunittest/CMakeLists.txt
++++ b/unittest/cipherunittest/CMakeLists.txt
+@@ -5,7 +5,7 @@ set(cipherunittest_bin_SRCS cipherunittest.cpp)
+ 
+ qt4_wrap_cpp(EXTRA_SRCS cipherunittest.h)
+ 
+-add_executable(cipherunittest ${cipherunittest_bin_SRCS} ${EXTRA_SRCS})
++add_executable(cipherunittest ${cipherunittest_bin_SRCS} ${EXTRA_SRCS} ${cipherunittest_bin_HDRS})
+ 
+ target_link_qca_test_libraries(cipherunittest)
+ 
+diff --git a/unittest/cipherunittest/cipherunittest.cpp b/unittest/cipherunittest/cipherunittest.cpp
+index 3492cafb..2f321faa 100644
+--- a/unittest/cipherunittest/cipherunittest.cpp
++++ b/unittest/cipherunittest/cipherunittest.cpp
+@@ -1,5 +1,6 @@
+ /**
+  * Copyright (C)  2004-2007  Brad Hards <bradh@frogmouth.net>
++ * Copyright (C)  2013-2016  Ivan Romanov <drizt@land.ru>
+  *
+  * Redistribution and use in source and binary forms, with or without
+  * modification, are permitted provided that the following conditions
+@@ -496,6 +497,103 @@ void CipherUnitTest::aes128_ctr()
+ 	}
+ }
+ 
++void CipherUnitTest::aes128_gcm_data()
++{
++	QTest::addColumn<QString>("plainText");
++	QTest::addColumn<QString>("payload");
++	QTest::addColumn<QString>("tag");
++	QTest::addColumn<QString>("keyText");
++	QTest::addColumn<QString>("ivText");
++
++	QTest::newRow("short") << QString("6f6820526f6d656d6f21")
++						   << QString("a9f2558b9a74e6fc551f")
++						   << QString("f8ebf75f108c6f74e6fe49035d268d43")
++						   << QString("1f491f8ddf4856ae4bff9039d418175a")
++						   << QString("f85f8aad39164daf64a12ad9b3fc8a3a");
++
++	QTest::newRow("long") << QString("54484520515549434b2042524f574e20464f58204a554d504544204f56455220544845204c415a5920444f472753204241434b2031323334353637383930")
++						  << QString("04e321a8870b6b9cd6846239c27a63fb41d0a7b8994f1514c066f0427fa9ed6707ea6e3b4f161fdff0eb5fc087ed3827b569cd72456c697b5a3a62c9e767")
++						  << QString("b0ad4aa545ea25fc3117cbed955ff155")
++						  << QString("56341f2b431d3b0dbad787db003f2215")
++						  << QString("bfcd3a7252f7f199bf788df8cf61032a");
++
++
++	QTest::newRow("wrongtag") << QString("6f6820526f6d656d6f21")
++							  << QString("a9f2558b9a74e6fc551f")
++							  << QString("f8ebf75f108c6f74e6fe49035d268d44")
++							  << QString("1f491f8ddf4856ae4bff9039d418175a")
++							  << QString("f85f8aad39164daf64a12ad9b3fc8a3a");
++}
++
++void CipherUnitTest::aes128_gcm()
++{
++	QStringList providersToTest;
++	providersToTest.append("qca-ossl");
++	providersToTest.append("qca-gcrypt");
++	providersToTest.append("qca-botan");
++	providersToTest.append("qca-nss");
++
++	foreach (const QString &provider, providersToTest) {
++		if (!QCA::isSupported( "aes128-gcm", provider))
++			QWARN(QString("AES128 GCM not supported for " + provider).toLocal8Bit());
++		else {
++			QFETCH(QString, plainText);
++			QFETCH(QString, payload);
++			QFETCH(QString, tag);
++			QFETCH(QString, keyText);
++			QFETCH(QString, ivText);
++
++			QCA::SymmetricKey key(QCA::hexToArray(keyText));
++			QCA::InitializationVector iv(QCA::hexToArray(ivText));
++			QCA::AuthTag authTag(16);
++			QCA::Cipher forwardCipher(QString("aes128"),
++									  QCA::Cipher::GCM,
++									  QCA::Cipher::NoPadding,
++									  QCA::Encode,
++									  key,
++									  iv,
++									  authTag,
++									  provider);
++			QString update = QCA::arrayToHex(forwardCipher.update(QCA::hexToArray(plainText)).toByteArray());
++			QVERIFY(forwardCipher.ok());
++			update += QCA::arrayToHex(forwardCipher.final().toByteArray());
++			authTag = forwardCipher.tag();
++			QEXPECT_FAIL("wrongtag", "It's OK", Continue);
++			QCOMPARE(QCA::arrayToHex(authTag.toByteArray()), tag);
++			QCOMPARE(update, payload);
++			QVERIFY(forwardCipher.ok());
++
++			QCA::Cipher reverseCipher(QString( "aes128"),
++									  QCA::Cipher::GCM,
++									  QCA::Cipher::NoPadding,
++									  QCA::Decode,
++									  key,
++									  iv,
++									  QCA::AuthTag(QCA::hexToArray(tag)),
++									  provider);
++
++			update = QCA::arrayToHex(reverseCipher.update(QCA::hexToArray(payload)).toByteArray());
++			QVERIFY(reverseCipher.ok());
++			QCOMPARE(update, plainText.left(update.size()));
++			update += QCA::arrayToHex(reverseCipher.final().toByteArray());
++			QEXPECT_FAIL("wrongtag", "It's OK", Continue);
++			QCOMPARE(update, plainText);
++			QEXPECT_FAIL("wrongtag", "It's OK", Continue);
++			QVERIFY(reverseCipher.ok());
++		}
++	}
++}
++
++void CipherUnitTest::aes128_ccm_data()
++{
++
++}
++
++void CipherUnitTest::aes128_ccm()
++{
++	// For future implementation
++}
++
+ void CipherUnitTest::aes192_data()
+ {
+ 	QTest::addColumn<QString>("plainText");
+@@ -950,6 +1048,104 @@ void CipherUnitTest::aes192_ctr()
+ 	}
+ }
+ 
++void CipherUnitTest::aes192_gcm_data()
++{
++	QTest::addColumn<QString>("plainText");
++	QTest::addColumn<QString>("payload");
++	QTest::addColumn<QString>("tag");
++	QTest::addColumn<QString>("keyText");
++	QTest::addColumn<QString>("ivText");
++
++	QTest::newRow("short") << QString("6f6820526f6d656d6f21")
++						   << QString("01ca25ff74121917f397")
++						   << QString("b90e97706d8eacbabc0be5e0a671b4e4")
++						   << QString("7ecb21a647fae54a0996ad281ab0c1a00cb905d9e2eb3b82")
++						   << QString("f85f8aad39164daf64a12ad9b3fc8a3a");
++
++	QTest::newRow("long") << QString("54484520515549434b2042524f574e20464f58204a554d504544204f56455220544845204c415a5920444f472753204241434b2031323334353637383930")
++						  << QString("4c1c5874877f0bee6efd450ec341b1c591e1e100da40bd4744e1035ed0ed0fb458f8efdb7c4b0b2101e29c950c56dc2489c2febec2d7062da28b9a033173")
++						  << QString("af3ea1b7f275ea1e4d4e1fdce63f83fe")
++						  << QString("7ecb21a647fae54a0996ad281ab0c1a00cb905d9e2eb3b82")
++						  << QString("bfcd3a7252f7f199bf788df8cf61032a");
++
++
++	QTest::newRow("wrongtag") << QString("6f6820526f6d656d6f21")
++							  << QString("773c3d06b94727c04afc")
++							  << QString("c558aca7f19050db49d94d99119277af")
++							  << QString("7ecb21a647fae54a0996ad281ab0c1a00cb905d9e2eb3b82")
++							  << QString("bfcd3a7252f7f199bf788df8cf61032a");
++}
++
++void CipherUnitTest::aes192_gcm()
++{
++	QStringList providersToTest;
++	providersToTest.append("qca-ossl");
++	providersToTest.append("qca-gcrypt");
++	providersToTest.append("qca-botan");
++	providersToTest.append("qca-nss");
++
++	foreach (const QString &provider, providersToTest) {
++		if (!QCA::isSupported( "aes192-gcm", provider))
++			QWARN(QString("AES128 GCM not supported for " + provider).toLocal8Bit());
++		else {
++			QFETCH(QString, plainText);
++			QFETCH(QString, payload);
++			QFETCH(QString, tag);
++			QFETCH(QString, keyText);
++			QFETCH(QString, ivText);
++
++			QCA::SymmetricKey key(QCA::hexToArray(keyText));
++			QCA::InitializationVector iv(QCA::hexToArray(ivText));
++			QCA::AuthTag authTag(16);
++			QCA::Cipher forwardCipher(QString("aes192"),
++									  QCA::Cipher::GCM,
++									  QCA::Cipher::NoPadding,
++									  QCA::Encode,
++									  key,
++									  iv,
++									  authTag,
++									  provider);
++			QString update = QCA::arrayToHex(forwardCipher.update(QCA::hexToArray(plainText)).toByteArray());
++			QVERIFY(forwardCipher.ok());
++			update += QCA::arrayToHex(forwardCipher.final().toByteArray());
++			authTag = forwardCipher.tag();
++			QEXPECT_FAIL("wrongtag", "It's OK", Continue);
++			QCOMPARE(QCA::arrayToHex(authTag.toByteArray()), tag);
++			QCOMPARE(update, payload);
++			QVERIFY(forwardCipher.ok());
++
++			QCA::Cipher reverseCipher(QString( "aes192"),
++									  QCA::Cipher::GCM,
++									  QCA::Cipher::NoPadding,
++									  QCA::Decode,
++									  key,
++									  iv,
++									  QCA::AuthTag(QCA::hexToArray(tag)),
++									  provider);
++
++			update = QCA::arrayToHex(reverseCipher.update(QCA::hexToArray(payload)).toByteArray());
++			QVERIFY(reverseCipher.ok());
++			QCOMPARE(update, plainText.left(update.size()));
++			update += QCA::arrayToHex(reverseCipher.final().toByteArray());
++			QEXPECT_FAIL("wrongtag", "It's OK", Continue);
++			QCOMPARE(update, plainText);
++			QEXPECT_FAIL("wrongtag", "It's OK", Continue);
++			QVERIFY(reverseCipher.ok());
++		}
++	}
++}
++
++
++void CipherUnitTest::aes192_ccm_data()
++{
++
++}
++
++void CipherUnitTest::aes192_ccm()
++{
++	// For future implementation
++}
++
+ void CipherUnitTest::aes256_data()
+ {
+ 	QTest::addColumn<QString>("plainText");
+@@ -1442,6 +1638,103 @@ void CipherUnitTest::aes256_ctr()
+ 	}
+ }
+ 
++void CipherUnitTest::aes256_gcm_data()
++{
++	QTest::addColumn<QString>("plainText");
++	QTest::addColumn<QString>("payload");
++	QTest::addColumn<QString>("tag");
++	QTest::addColumn<QString>("keyText");
++	QTest::addColumn<QString>("ivText");
++
++	QTest::newRow("short") << QString("6f6820526f6d656d6f21")
++						   << QString("4ce2f4df041252820847")
++						   << QString("1c570805832dfe7babc1b386c26bcd04")
++						   << QString("3fa609690bf07a81a75839b0a4c0add774f54eb804d4f02df488691910298b04")
++						   << QString("f85f8aad39164daf64a12ad9b3fc8a3a");
++
++	QTest::newRow("long") << QString("54484520515549434b2042524f574e20464f58204a554d504544204f56455220544845204c415a5920444f472753204241434b2031323334353637383930")
++						  << QString("e516c267146d6cfd3af3300e24aba7ac23ab3c5cb4765937a6c0156e454cae357e14f4c0dfb0def9624f4f70de90ad2bc9cd555171c4551c26b6346922ed")
++						  << QString("f59aac31ab9dace3fcc693e114dd6610")
++						  << QString("3fa609690bf07a81a75839b0a4c0add774f54eb804d4f02df488691910298b04")
++						  << QString("bfcd3a7252f7f199bf788df8cf61032a");
++
++
++	QTest::newRow("wrongtag") << QString("6f6820526f6d656d6f21")
++							  << QString("4ce2f4df041252820847")
++							  << QString("1c570805833dfe7babc1b386c26bcd04")
++							  << QString("3fa609690bf07a81a75839b0a4c0add774f54eb804d4f02df488691910298b04")
++							  << QString("f85f8aad39164daf64a12ad9b3fc8a3a");
++}
++
++void CipherUnitTest::aes256_gcm()
++{
++	QStringList providersToTest;
++	providersToTest.append("qca-ossl");
++	providersToTest.append("qca-gcrypt");
++	providersToTest.append("qca-botan");
++	providersToTest.append("qca-nss");
++
++	foreach (const QString &provider, providersToTest) {
++		if (!QCA::isSupported( "aes256-gcm", provider))
++			QWARN(QString("AES256 GCM not supported for " + provider).toLocal8Bit());
++		else {
++			QFETCH(QString, plainText);
++			QFETCH(QString, payload);
++			QFETCH(QString, tag);
++			QFETCH(QString, keyText);
++			QFETCH(QString, ivText);
++
++			QCA::SymmetricKey key(QCA::hexToArray(keyText));
++			QCA::InitializationVector iv(QCA::hexToArray(ivText));
++			QCA::AuthTag authTag(16);
++			QCA::Cipher forwardCipher(QString("aes256"),
++									  QCA::Cipher::GCM,
++									  QCA::Cipher::NoPadding,
++									  QCA::Encode,
++									  key,
++									  iv,
++									  authTag,
++									  provider);
++			QString update = QCA::arrayToHex(forwardCipher.update(QCA::hexToArray(plainText)).toByteArray());
++			QVERIFY(forwardCipher.ok());
++			update += QCA::arrayToHex(forwardCipher.final().toByteArray());
++			authTag = forwardCipher.tag();
++			QEXPECT_FAIL("wrongtag", "It's OK", Continue);
++			QCOMPARE(QCA::arrayToHex(authTag.toByteArray()), tag);
++			QCOMPARE(update, payload);
++			QVERIFY(forwardCipher.ok());
++
++			QCA::Cipher reverseCipher(QString( "aes256"),
++									  QCA::Cipher::GCM,
++									  QCA::Cipher::NoPadding,
++									  QCA::Decode,
++									  key,
++									  iv,
++									  QCA::AuthTag(QCA::hexToArray(tag)),
++									  provider);
++
++			update = QCA::arrayToHex(reverseCipher.update(QCA::hexToArray(payload)).toByteArray());
++			QVERIFY(reverseCipher.ok());
++			QCOMPARE(update, plainText.left(update.size()));
++			update += QCA::arrayToHex(reverseCipher.final().toByteArray());
++			QEXPECT_FAIL("wrongtag", "It's OK", Continue);
++			QCOMPARE(update, plainText);
++			QEXPECT_FAIL("wrongtag", "It's OK", Continue);
++			QVERIFY(reverseCipher.ok());
++		}
++	}
++}
++
++void CipherUnitTest::aes256_ccm_data()
++{
++
++}
++
++void CipherUnitTest::aes256_ccm()
++{
++	// For future implementation
++}
++
+ void CipherUnitTest::tripleDES_data()
+ {
+ 	QTest::addColumn<QString>("plainText");
+diff --git a/unittest/cipherunittest/cipherunittest.h b/unittest/cipherunittest/cipherunittest.h
+index 97f56274..bb3ece4d 100644
+--- a/unittest/cipherunittest/cipherunittest.h
++++ b/unittest/cipherunittest/cipherunittest.h
+@@ -1,3 +1,29 @@
++/**
++ * Copyright (C)  2004-2007  Brad Hards <bradh@frogmouth.net>
++ * Copyright (C)  2013-2016  Ivan Romanov <drizt@land.ru>
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *
++ * 1. Redistributions of source code must retain the above copyright
++ *   notice, this list of conditions and the following disclaimer.
++ * 2. Redistributions in binary form must reproduce the above copyright
++ *   notice, this list of conditions and the following disclaimer in the
++ *   documentation and/or other materials provided with the distribution.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
++ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
++ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++ * IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
++ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
++ * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
++ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
++ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
++ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
++ * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ */
++
+ #ifndef CIPHERUNITTEST_H
+ #define CIPHERUNITTEST_H
+ 
+@@ -23,6 +49,10 @@ private slots:
+ 	void aes128_ofb();
+ 	void aes128_ctr_data();
+ 	void aes128_ctr();
++	void aes128_gcm_data();
++	void aes128_gcm();
++	void aes128_ccm_data();
++	void aes128_ccm();
+ 
+ 	void aes192_data();
+ 	void aes192();
+@@ -36,6 +66,10 @@ private slots:
+ 	void aes192_ofb();
+ 	void aes192_ctr_data();
+ 	void aes192_ctr();
++	void aes192_gcm_data();
++	void aes192_gcm();
++	void aes192_ccm_data();
++	void aes192_ccm();
+ 
+ 	void aes256_data();
+ 	void aes256();
+@@ -49,6 +83,10 @@ private slots:
+ 	void aes256_ofb();
+ 	void aes256_ctr_data();
+ 	void aes256_ctr();
++	void aes256_gcm_data();
++	void aes256_gcm();
++	void aes256_ccm_data();
++	void aes256_ccm();
+ 
+ 	void tripleDES_data();
+ 	void tripleDES();

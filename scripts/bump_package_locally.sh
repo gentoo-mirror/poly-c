@@ -122,7 +122,7 @@ if grep -Fq FILESDIR "${SOURCE_EBUILD}" && [[ "${TARGET_DIR}" != "${SOURCE_EBUIL
 			| tr '[:space:]' '\n' \
 			| grep -F FILESDIR \
 			| sed \
-				-e 's@.*FILESDIR["}/]*\([[:alnum:]\${}/\.,_-]\+\).*@\1@' \
+				-e 's@.*FILESDIR["}/]*\([[:alnum:]\${}/\.,+_-]\+\).*@\1@' \
 				-e "s@\${PN}@$(qatom -F '%{PN}' ${PACKAGE})@g" \
 				-e "s@\${PV}@$(qatom -F '%{PV}' ${PACKAGE})@g" \
 				-e "s@\${P}@$(qatom -F '%{P}' ${PACKAGE})@g" \
