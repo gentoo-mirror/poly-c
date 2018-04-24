@@ -46,16 +46,19 @@ RDEPEND="${COMMON_DEPEND}
 	!app-crypt/qca-pkcs11
 "
 
+PATCHES=(
+	"${FILESDIR}/${PN}-disable-pgp-test.patch"
+	"${FILESDIR}/${P}-c++11.patch"
+
+	# All required for the openssl-1.1 patch to apply cleanly.
+	"${FILESDIR}/${P}-aes_gcm_aes_ccm.patch"
+	"${FILESDIR}/${P}-disable_some_ciphers_v1.patch"
+	"${FILESDIR}/${P}-openssl-1.1.0.patch"
+)
+
 src_prepare() {
-	default
-	
-	# We need special handling thus we cannot use PATCHES=()
-	eapply "${FILESDIR}/${PN}-disable-pgp-test.patch"
-	eapply "${FILESDIR}/${P}-c++11.patch"
-	eapply "${FILESDIR}/${P}-aes_gcm_aes_ccm.patch"
 	eapply -R "${FILESDIR}/${P}-disable_some_ciphers_revert.patch"
-	eapply "${FILESDIR}/${P}-disable_some_ciphers_v1.patch"
-	eapply "${FILESDIR}/${P}-openssl-1.1.0.patch"
+	default
 }
 
 qca_plugin_use() {
