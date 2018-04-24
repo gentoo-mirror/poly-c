@@ -1,0 +1,2291 @@
+--- openssh-7.7p1/auth-pam.c
++++ openssh-7.7p1/auth-pam.c
+@@ -140,7 +140,16 @@
+ static void sshpam_free_ctx(void *);
+ static struct pam_ctxt *cleanup_ctxt;
+ 
+-#ifndef UNSUPPORTED_POSIX_THREADS_HACK
++#ifdef UNSUPPORTED_POSIX_THREADS_HACK
++/*
++ * Avoid namespace clash when *not* using pthreads for systems *with*
++ * pthreads, where OpenSSL includes <pthread.h> in openssl/crypto.h
++ */
++# define _pthread_exit pthead_exit
++# define _pthread_create pthread_create
++# define _pthread_cancel pthread_cancel
++# define _pthread_join pthread_join
++#else
+ /*
+  * Simulate threads with processes.
+  */
+@@ -167,7 +176,7 @@
+ 	}
+ 	if (WIFSIGNALED(sshpam_thread_status) &&
+ 	    WTERMSIG(sshpam_thread_status) == SIGTERM)
+-		return;	/* terminated by pthread_cancel */
++		return;	/* terminated by _pthread_cancel */
+ 	if (!WIFEXITED(sshpam_thread_status))
+ 		sigdie("PAM: authentication thread exited unexpectedly");
+ 	if (WEXITSTATUS(sshpam_thread_status) != 0)
+@@ -176,14 +185,14 @@
+ 
+ /* ARGSUSED */
+ static void
+-pthread_exit(void *value)
++_pthread_exit(void *value)
+ {
+ 	_exit(0);
+ }
+ 
+ /* ARGSUSED */
+ static int
+-pthread_create(sp_pthread_t *thread, const void *attr,
++_pthread_create(sp_pthread_t *thread, const void *attr,
+     void *(*thread_start)(void *), void *arg)
+ {
+ 	pid_t pid;
+@@ -209,7 +218,7 @@
+ }
+ 
+ static int
+-pthread_cancel(sp_pthread_t thread)
++_pthread_cancel(sp_pthread_t thread)
+ {
+ 	signal(SIGCHLD, sshpam_oldsig);
+ 	return (kill(thread, SIGTERM));
+@@ -217,7 +226,7 @@
+ 
+ /* ARGSUSED */
+ static int
+-pthread_join(sp_pthread_t thread, void **value)
++_pthread_join(sp_pthread_t thread, void **value)
+ {
+ 	int status;
+ 
+@@ -514,7 +523,7 @@
+ 	/* XXX - can't do much about an error here */
+ 	ssh_msg_send(ctxt->pam_csock, sshpam_err, &buffer);
+ 	buffer_free(&buffer);
+-	pthread_exit(NULL);
++	_pthread_exit(NULL);
+ 
+  auth_fail:
+ 	buffer_put_cstring(&buffer,
+@@ -527,7 +536,7 @@
+ 	else
+ 		ssh_msg_send(ctxt->pam_csock, PAM_AUTH_ERR, &buffer);
+ 	buffer_free(&buffer);
+-	pthread_exit(NULL);
++	_pthread_exit(NULL);
+ 
+ 	return (NULL); /* Avoid warning for non-pthread case */
+ }
+@@ -539,8 +548,8 @@
+ 
+ 	debug3("PAM: %s entering", __func__);
+ 	if (ctxt != NULL && ctxt->pam_thread != 0) {
+-		pthread_cancel(ctxt->pam_thread);
+-		pthread_join(ctxt->pam_thread, NULL);
++		_pthread_cancel(ctxt->pam_thread);
++		_pthread_join(ctxt->pam_thread, NULL);
+ 		close(ctxt->pam_psock);
+ 		close(ctxt->pam_csock);
+ 		memset(ctxt, 0, sizeof(*ctxt));
+@@ -704,7 +713,7 @@
+ 	}
+ 	ctxt->pam_psock = socks[0];
+ 	ctxt->pam_csock = socks[1];
+-	if (pthread_create(&ctxt->pam_thread, NULL, sshpam_thread, ctxt) == -1) {
++	if (_pthread_create(&ctxt->pam_thread, NULL, sshpam_thread, ctxt) == -1) {
+ 		error("PAM: failed to start authentication thread: %s",
+ 		    strerror(errno));
+ 		close(socks[0]);
+--- openssh-7.7p1/cipher.c
++++ openssh-7.7p1/cipher.c
+@@ -279,7 +279,7 @@
+ 		ret = SSH_ERR_ALLOC_FAIL;
+ 		goto out;
+ 	}
+-	if (EVP_CipherInit(cc->evp, type, NULL, (u_char *)iv,
++	if (EVP_CipherInit_ex(cc->evp, type, NULL, NULL, (u_char *)iv,
+ 	    (do_encrypt == CIPHER_ENCRYPT)) == 0) {
+ 		ret = SSH_ERR_LIBCRYPTO_ERROR;
+ 		goto out;
+@@ -297,7 +297,7 @@
+ 			goto out;
+ 		}
+ 	}
+-	if (EVP_CipherInit(cc->evp, NULL, (u_char *)key, NULL, -1) == 0) {
++	if (EVP_CipherInit_ex(cc->evp, NULL, NULL, (u_char *)key, NULL, -1) == 0) {
+ 		ret = SSH_ERR_LIBCRYPTO_ERROR;
+ 		goto out;
+ 	}
+@@ -483,7 +483,7 @@
+ 		   len, iv))
+ 		       return SSH_ERR_LIBCRYPTO_ERROR;
+ 	} else
+-		memcpy(iv, cc->evp->iv, len);
++		memcpy(iv, EVP_CIPHER_CTX_iv(cc->evp), len);
+ #endif
+ 	return 0;
+ }
+@@ -517,14 +517,14 @@
+ 		    EVP_CTRL_GCM_SET_IV_FIXED, -1, (void *)iv))
+ 			return SSH_ERR_LIBCRYPTO_ERROR;
+ 	} else
+-		memcpy(cc->evp->iv, iv, evplen);
++		memcpy(EVP_CIPHER_CTX_iv_noconst(cc->evp), iv, evplen);
+ #endif
+ 	return 0;
+ }
+ 
+ #ifdef WITH_OPENSSL
+-#define EVP_X_STATE(evp)	(evp)->cipher_data
+-#define EVP_X_STATE_LEN(evp)	(evp)->cipher->ctx_size
++#define EVP_X_STATE(evp)	EVP_CIPHER_CTX_get_cipher_data(evp)
++#define EVP_X_STATE_LEN(evp)	EVP_CIPHER_impl_ctx_size(EVP_CIPHER_CTX_cipher(evp))
+ #endif
+ 
+ int
+--- openssh-7.7p1/configure.ac
++++ openssh-7.7p1/configure.ac
+@@ -2571,6 +2571,7 @@
+ 			)
+ 		]
+ 	)
++	AC_CHECK_FUNCS([SSLeay OpenSSL_version_num SSLeay_add_all_algorithms OPENSSL_init_crypto])
+ 
+ 	# Determine OpenSSL header version
+ 	AC_MSG_CHECKING([OpenSSL header version])
+@@ -2626,8 +2627,15 @@
+ 		if(fd == NULL)
+ 			exit(1);
+ 
++		#if defined(HAVE_SSLEAY)
+ 		if ((rc = fprintf(fd, "%08lx (%s)\n", (unsigned long)SSLeay(),
+ 		    SSLeay_version(SSLEAY_VERSION))) < 0)
++		#elif defined(HAVE_OPENSSL_VERSION_NUM)
++		if ((rc = fprintf(fd, "%08lx (%s)\n", (unsigned long)OpenSSL_version_num(),
++		    OpenSSL_version(OPENSSL_VERSION))) < 0)
++		#else
++		#error
++		#endif
+ 			exit(1);
+ 
+ 		exit(0);
+@@ -2640,9 +2648,10 @@
+ 					AC_MSG_ERROR([OpenSSL >= 1.0.1 required (have "$ssl_library_ver")])
+ 			                ;;
+ 				100*)   ;; # 1.0.x
++				101*)   ;; # 1.1.x
+ 				200*)   ;; # LibreSSL
+ 			        *)
+-					AC_MSG_ERROR([OpenSSL >= 1.1.0 is not yet supported (have "$ssl_library_ver")])
++					AC_MSG_ERROR([OpenSSL >= 1.2.0 is not yet supported (have "$ssl_library_ver")])
+ 			                ;;
+ 			esac
+ 			AC_MSG_RESULT([$ssl_library_ver])
+@@ -2664,7 +2673,13 @@
+ 	#include <openssl/opensslv.h>
+ 	#include <openssl/crypto.h>
+ 		]], [[
++		#if defined(HAVE_SSLEAY)
+ 		exit(SSLeay() == OPENSSL_VERSION_NUMBER ? 0 : 1);
++		#elif defined(HAVE_OPENSSL_VERSION_NUM)
++		exit(OpenSSL_version_num() == OPENSSL_VERSION_NUMBER ? 0 : 1);
++		#else
++		#error
++		#endif
+ 		]])],
+ 		[
+ 			AC_MSG_RESULT([yes])
+@@ -2692,7 +2707,15 @@
+ 	AC_MSG_CHECKING([if programs using OpenSSL functions will link])
+ 	AC_LINK_IFELSE(
+ 		[AC_LANG_PROGRAM([[ #include <openssl/evp.h> ]],
+-		[[ SSLeay_add_all_algorithms(); ]])],
++		[[
++		#if defined(HAVE_SSLEAY_ADD_ALL_ALGORITHMS)
++		SSLeay_add_all_algorithms();
++		#elif defined(HAVE_OPENSSL_INIT_CRYPTO)
++		OPENSSL_init_crypto(0, NULL);
++		#else
++		#error
++		#endif
++		]])],
+ 		[
+ 			AC_MSG_RESULT([yes])
+ 		],
+@@ -2703,7 +2726,15 @@
+ 			AC_MSG_CHECKING([if programs using OpenSSL need -ldl])
+ 			AC_LINK_IFELSE(
+ 				[AC_LANG_PROGRAM([[ #include <openssl/evp.h> ]],
+-				[[ SSLeay_add_all_algorithms(); ]])],
++				[[
++				#if defined(HAVE_SSLEAY_ADD_ALL_ALGORITHMS)
++				SSLeay_add_all_algorithms();
++				#elif defined(HAVE_OPENSSL_INIT_CRYPTO)
++				OPENSSL_init_crypto(0, NULL);
++				#else
++				#error
++				#endif
++				]])],
+ 				[
+ 					AC_MSG_RESULT([yes])
+ 				],
+@@ -2716,6 +2747,8 @@
+ 	)
+ 
+ 	AC_CHECK_FUNCS([ \
++		SSLeay_version \
++		OpenSSL_version \
+ 		BN_is_prime_ex \
+ 		DSA_generate_parameters_ex \
+ 		EVP_DigestInit_ex \
+--- openssh-7.7p1/dh.c
++++ openssh-7.7p1/dh.c
+@@ -211,14 +211,15 @@
+ /* diffie-hellman-groupN-sha1 */
+ 
+ int
+-dh_pub_is_valid(DH *dh, BIGNUM *dh_pub)
++dh_pub_is_valid(const DH *dh, const BIGNUM *dh_pub)
+ {
+ 	int i;
+ 	int n = BN_num_bits(dh_pub);
+ 	int bits_set = 0;
+ 	BIGNUM *tmp;
++	const BIGNUM *p;
+ 
+-	if (dh_pub->neg) {
++	if (BN_is_negative(dh_pub)) {
+ 		logit("invalid public DH value: negative");
+ 		return 0;
+ 	}
+@@ -231,7 +232,8 @@
+ 		error("%s: BN_new failed", __func__);
+ 		return 0;
+ 	}
+-	if (!BN_sub(tmp, dh->p, BN_value_one()) ||
++	DH_get0_pqg(dh, &p, NULL, NULL);
++	if (!BN_sub(tmp, p, BN_value_one()) ||
+ 	    BN_cmp(dh_pub, tmp) != -1) {		/* pub_exp > p-2 */
+ 		BN_clear_free(tmp);
+ 		logit("invalid public DH value: >= p-1");
+@@ -242,14 +244,14 @@
+ 	for (i = 0; i <= n; i++)
+ 		if (BN_is_bit_set(dh_pub, i))
+ 			bits_set++;
+-	debug2("bits set: %d/%d", bits_set, BN_num_bits(dh->p));
++	debug2("bits set: %d/%d", bits_set, BN_num_bits(p));
+ 
+ 	/*
+ 	 * if g==2 and bits_set==1 then computing log_g(dh_pub) is trivial
+ 	 */
+ 	if (bits_set < 4) {
+ 		logit("invalid public DH value (%d/%d)",
+-		   bits_set, BN_num_bits(dh->p));
++		   bits_set, BN_num_bits(p));
+ 		return 0;
+ 	}
+ 	return 1;
+@@ -259,9 +261,11 @@
+ dh_gen_key(DH *dh, int need)
+ {
+ 	int pbits;
++	const BIGNUM *p, *pub_key;
+ 
+-	if (need < 0 || dh->p == NULL ||
+-	    (pbits = BN_num_bits(dh->p)) <= 0 ||
++	DH_get0_pqg(dh, &p, NULL, NULL);
++	if (need < 0 || p == NULL ||
++	    (pbits = BN_num_bits(p)) <= 0 ||
+ 	    need > INT_MAX / 2 || 2 * need > pbits)
+ 		return SSH_ERR_INVALID_ARGUMENT;
+ 	if (need < 256)
+@@ -270,10 +274,11 @@
+ 	 * Pollard Rho, Big step/Little Step attacks are O(sqrt(n)),
+ 	 * so double requested need here.
+ 	 */
+-	dh->length = MINIMUM(need * 2, pbits - 1);
+-	if (DH_generate_key(dh) == 0 ||
+-	    !dh_pub_is_valid(dh, dh->pub_key)) {
+-		BN_clear_free(dh->priv_key);
++	DH_set_length(dh, MINIMUM(need * 2, pbits - 1));
++	if (DH_generate_key(dh) == 0)
++		return SSH_ERR_LIBCRYPTO_ERROR;
++	DH_get0_key(dh, &pub_key, NULL);
++	if (!dh_pub_is_valid(dh, pub_key)) {
+ 		return SSH_ERR_LIBCRYPTO_ERROR;
+ 	}
+ 	return 0;
+@@ -283,12 +288,16 @@
+ dh_new_group_asc(const char *gen, const char *modulus)
+ {
+ 	DH *dh;
++	BIGNUM *p = NULL, *g = NULL;
+ 
+ 	if ((dh = DH_new()) == NULL)
+ 		return NULL;
+-	if (BN_hex2bn(&dh->p, modulus) == 0 ||
+-	    BN_hex2bn(&dh->g, gen) == 0) {
++	if (BN_hex2bn(&p, modulus) == 0 ||
++	    BN_hex2bn(&g, gen) == 0 ||
++	    DH_set0_pqg(dh, p, NULL, g) == 0) {
+ 		DH_free(dh);
++		BN_free(p);
++		BN_free(g);
+ 		return NULL;
+ 	}
+ 	return (dh);
+@@ -306,8 +315,7 @@
+ 
+ 	if ((dh = DH_new()) == NULL)
+ 		return NULL;
+-	dh->p = modulus;
+-	dh->g = gen;
++	DH_set0_pqg(dh, modulus, NULL, gen);
+ 
+ 	return (dh);
+ }
+--- openssh-7.7p1/dh.h
++++ openssh-7.7p1/dh.h
+@@ -42,7 +42,7 @@
+ DH	*dh_new_group_fallback(int);
+ 
+ int	 dh_gen_key(DH *, int);
+-int	 dh_pub_is_valid(DH *, BIGNUM *);
++int	 dh_pub_is_valid(const DH *, const BIGNUM *);
+ 
+ u_int	 dh_estimate(int);
+ 
+--- openssh-7.7p1/digest-openssl.c
++++ openssh-7.7p1/digest-openssl.c
+@@ -43,7 +43,7 @@
+ 
+ struct ssh_digest_ctx {
+ 	int alg;
+-	EVP_MD_CTX mdctx;
++	EVP_MD_CTX *mdctx;
+ };
+ 
+ struct ssh_digest {
+@@ -106,7 +106,7 @@
+ size_t
+ ssh_digest_blocksize(struct ssh_digest_ctx *ctx)
+ {
+-	return EVP_MD_CTX_block_size(&ctx->mdctx);
++	return EVP_MD_CTX_block_size(ctx->mdctx);
+ }
+ 
+ struct ssh_digest_ctx *
+@@ -118,9 +118,10 @@
+ 	if (digest == NULL || ((ret = calloc(1, sizeof(*ret))) == NULL))
+ 		return NULL;
+ 	ret->alg = alg;
+-	EVP_MD_CTX_init(&ret->mdctx);
+-	if (EVP_DigestInit_ex(&ret->mdctx, digest->mdfunc(), NULL) != 1) {
+-		free(ret);
++	ret->mdctx = EVP_MD_CTX_new();
++	if (ret->mdctx == NULL ||
++	    EVP_DigestInit_ex(ret->mdctx, digest->mdfunc(), NULL) != 1) {
++		ssh_digest_free(ret);
+ 		return NULL;
+ 	}
+ 	return ret;
+@@ -132,7 +133,7 @@
+ 	if (from->alg != to->alg)
+ 		return SSH_ERR_INVALID_ARGUMENT;
+ 	/* we have bcopy-style order while openssl has memcpy-style */
+-	if (!EVP_MD_CTX_copy_ex(&to->mdctx, &from->mdctx))
++	if (!EVP_MD_CTX_copy_ex(to->mdctx, from->mdctx))
+ 		return SSH_ERR_LIBCRYPTO_ERROR;
+ 	return 0;
+ }
+@@ -140,7 +141,7 @@
+ int
+ ssh_digest_update(struct ssh_digest_ctx *ctx, const void *m, size_t mlen)
+ {
+-	if (EVP_DigestUpdate(&ctx->mdctx, m, mlen) != 1)
++	if (EVP_DigestUpdate(ctx->mdctx, m, mlen) != 1)
+ 		return SSH_ERR_LIBCRYPTO_ERROR;
+ 	return 0;
+ }
+@@ -161,7 +162,7 @@
+ 		return SSH_ERR_INVALID_ARGUMENT;
+ 	if (dlen < digest->digest_len) /* No truncation allowed */
+ 		return SSH_ERR_INVALID_ARGUMENT;
+-	if (EVP_DigestFinal_ex(&ctx->mdctx, d, &l) != 1)
++	if (EVP_DigestFinal_ex(ctx->mdctx, d, &l) != 1)
+ 		return SSH_ERR_LIBCRYPTO_ERROR;
+ 	if (l != digest->digest_len) /* sanity */
+ 		return SSH_ERR_INTERNAL_ERROR;
+@@ -172,7 +173,7 @@
+ ssh_digest_free(struct ssh_digest_ctx *ctx)
+ {
+ 	if (ctx != NULL) {
+-		EVP_MD_CTX_cleanup(&ctx->mdctx);
++		EVP_MD_CTX_free(ctx->mdctx);
+ 		explicit_bzero(ctx, sizeof(*ctx));
+ 		free(ctx);
+ 	}
+--- openssh-7.7p1/entropy.c
++++ openssh-7.7p1/entropy.c
+@@ -213,9 +213,17 @@
+ #ifndef OPENSSL_PRNG_ONLY
+ 	unsigned char buf[RANDOM_SEED_SIZE];
+ #endif
++#if defined(HAVE_SSLEAY)
+ 	if (!ssh_compatible_openssl(OPENSSL_VERSION_NUMBER, SSLeay()))
+ 		fatal("OpenSSL version mismatch. Built against %lx, you "
+ 		    "have %lx", (u_long)OPENSSL_VERSION_NUMBER, SSLeay());
++#elif defined(HAVE_OPENSSL_VERSION_NUM)
++	if (!ssh_compatible_openssl(OPENSSL_VERSION_NUMBER, OpenSSL_version_num()))
++		fatal("OpenSSL version mismatch. Built against %lx, you "
++		    "have %lx", (u_long)OPENSSL_VERSION_NUMBER, OpenSSL_version_num());
++#else
++#error
++#endif
+ 
+ #ifndef OPENSSL_PRNG_ONLY
+ 	if (RAND_status() == 1) {
+--- openssh-7.7p1/includes.h
++++ openssh-7.7p1/includes.h
+@@ -166,6 +166,7 @@
+ 
+ #ifdef WITH_OPENSSL
+ #include <openssl/opensslv.h> /* For OPENSSL_VERSION_NUMBER */
++#include "libcrypto-compat.h"
+ #endif
+ 
+ #include "defines.h"
+--- openssh-7.7p1/kexdhc.c
++++ openssh-7.7p1/kexdhc.c
+@@ -56,6 +56,7 @@
+ {
+ 	struct kex *kex = ssh->kex;
+ 	int r;
++	const BIGNUM *pub_key;
+ 
+ 	/* generate and send 'e', client DH public key */
+ 	switch (kex->kex_type) {
+@@ -81,21 +82,27 @@
+ 		goto out;
+ 	}
+ 	debug("sending SSH2_MSG_KEXDH_INIT");
+-	if ((r = dh_gen_key(kex->dh, kex->we_need * 8)) != 0 ||
+-	    (r = sshpkt_start(ssh, SSH2_MSG_KEXDH_INIT)) != 0 ||
+-	    (r = sshpkt_put_bignum2(ssh, kex->dh->pub_key)) != 0 ||
++	if ((r = dh_gen_key(kex->dh, kex->we_need * 8)) != 0)
++		goto out;
++	DH_get0_key(kex->dh, &pub_key, NULL);
++	if ((r = sshpkt_start(ssh, SSH2_MSG_KEXDH_INIT)) != 0 ||
++	    (r = sshpkt_put_bignum2(ssh, pub_key)) != 0 ||
+ 	    (r = sshpkt_send(ssh)) != 0)
+ 		goto out;
+ #ifdef DEBUG_KEXDH
+ 	DHparams_print_fp(stderr, kex->dh);
+ 	fprintf(stderr, "pub= ");
+-	BN_print_fp(stderr, kex->dh->pub_key);
++	BN_print_fp(stderr, pub_key);
+ 	fprintf(stderr, "\n");
+ #endif
+ 	debug("expecting SSH2_MSG_KEXDH_REPLY");
+ 	ssh_dispatch_set(ssh, SSH2_MSG_KEXDH_REPLY, &input_kex_dh);
+ 	r = 0;
+  out:
++	if (r != 0) {
++		DH_free(kex->dh);
++		kex->dh = NULL;
++	}
+ 	return r;
+ }
+ 
+@@ -109,6 +116,7 @@
+ 	u_char hash[SSH_DIGEST_MAX_LENGTH];
+ 	size_t klen = 0, slen, sbloblen, hashlen;
+ 	int kout, r;
++	const BIGNUM *pub_key;
+ 
+ 	if (kex->verify_host_key == NULL) {
+ 		r = SSH_ERR_INVALID_ARGUMENT;
+@@ -168,6 +176,7 @@
+ #endif
+ 
+ 	/* calc and verify H */
++	DH_get0_key(kex->dh, &pub_key, NULL);
+ 	hashlen = sizeof(hash);
+ 	if ((r = kex_dh_hash(
+ 	    kex->hash_alg,
+@@ -176,7 +185,7 @@
+ 	    sshbuf_ptr(kex->my), sshbuf_len(kex->my),
+ 	    sshbuf_ptr(kex->peer), sshbuf_len(kex->peer),
+ 	    server_host_key_blob, sbloblen,
+-	    kex->dh->pub_key,
++	    pub_key,
+ 	    dh_server_pub,
+ 	    shared_secret,
+ 	    hash, &hashlen)) != 0)
+--- openssh-7.7p1/kexdhs.c
++++ openssh-7.7p1/kexdhs.c
+@@ -87,6 +87,10 @@
+ 	ssh_dispatch_set(ssh, SSH2_MSG_KEXDH_INIT, &input_kex_dh_init);
+ 	r = 0;
+  out:
++	if (r != 0) {
++		DH_free(kex->dh);
++		kex->dh = NULL;
++	}
+ 	return r;
+ }
+ 
+@@ -101,6 +105,7 @@
+ 	size_t sbloblen, slen;
+ 	size_t klen = 0, hashlen;
+ 	int kout, r;
++	const BIGNUM *pub_key;
+ 
+ 	if (kex->load_host_public_key == NULL ||
+ 	    kex->load_host_private_key == NULL) {
+@@ -163,6 +168,7 @@
+ 		goto out;
+ 	/* calc H */
+ 	hashlen = sizeof(hash);
++	DH_get0_key(kex->dh, &pub_key, NULL);
+ 	if ((r = kex_dh_hash(
+ 	    kex->hash_alg,
+ 	    kex->client_version_string,
+@@ -171,7 +177,7 @@
+ 	    sshbuf_ptr(kex->my), sshbuf_len(kex->my),
+ 	    server_host_key_blob, sbloblen,
+ 	    dh_client_pub,
+-	    kex->dh->pub_key,
++	    pub_key,
+ 	    shared_secret,
+ 	    hash, &hashlen)) != 0)
+ 		goto out;
+@@ -197,7 +203,7 @@
+ 	/* send server hostkey, DH pubkey 'f' and singed H */
+ 	if ((r = sshpkt_start(ssh, SSH2_MSG_KEXDH_REPLY)) != 0 ||
+ 	    (r = sshpkt_put_string(ssh, server_host_key_blob, sbloblen)) != 0 ||
+-	    (r = sshpkt_put_bignum2(ssh, kex->dh->pub_key)) != 0 ||	/* f */
++	    (r = sshpkt_put_bignum2(ssh, pub_key)) != 0 ||	/* f */
+ 	    (r = sshpkt_put_string(ssh, signature, slen)) != 0 ||
+ 	    (r = sshpkt_send(ssh)) != 0)
+ 		goto out;
+--- openssh-7.7p1/kexgexc.c
++++ openssh-7.7p1/kexgexc.c
+@@ -94,6 +94,7 @@
+ 	struct kex *kex = ssh->kex;
+ 	BIGNUM *p = NULL, *g = NULL;
+ 	int r, bits;
++	const BIGNUM *pub_key;
+ 
+ 	debug("got SSH2_MSG_KEX_DH_GEX_GROUP");
+ 
+@@ -118,16 +119,18 @@
+ 	p = g = NULL; /* belong to kex->dh now */
+ 
+ 	/* generate and send 'e', client DH public key */
+-	if ((r = dh_gen_key(kex->dh, kex->we_need * 8)) != 0 ||
+-	    (r = sshpkt_start(ssh, SSH2_MSG_KEX_DH_GEX_INIT)) != 0 ||
+-	    (r = sshpkt_put_bignum2(ssh, kex->dh->pub_key)) != 0 ||
++	if ((r = dh_gen_key(kex->dh, kex->we_need * 8)) != 0)
++	 goto out;
++	DH_get0_key(kex->dh, &pub_key, NULL);
++	if ((r = sshpkt_start(ssh, SSH2_MSG_KEX_DH_GEX_INIT)) != 0 ||
++		(r = sshpkt_put_bignum2(ssh, pub_key)) != 0 ||
+ 	    (r = sshpkt_send(ssh)) != 0)
+ 		goto out;
+ 	debug("SSH2_MSG_KEX_DH_GEX_INIT sent");
+ #ifdef DEBUG_KEXDH
+ 	DHparams_print_fp(stderr, kex->dh);
+ 	fprintf(stderr, "pub= ");
+-	BN_print_fp(stderr, kex->dh->pub_key);
++	BN_print_fp(stderr, pub_key);
+ 	fprintf(stderr, "\n");
+ #endif
+ 	ssh_dispatch_set(ssh, SSH2_MSG_KEX_DH_GEX_GROUP, NULL);
+@@ -136,6 +139,10 @@
+ out:
+ 	BN_clear_free(p);
+ 	BN_clear_free(g);
++	if (r != 0) {
++	 DH_free(kex->dh);
++	 kex->dh = NULL;
++	}
+ 	return r;
+ }
+ 
+@@ -149,6 +156,7 @@
+ 	u_char hash[SSH_DIGEST_MAX_LENGTH];
+ 	size_t klen = 0, slen, sbloblen, hashlen;
+ 	int kout, r;
++	const BIGNUM *p, *g, *pub_key;
+ 
+ 	debug("got SSH2_MSG_KEX_DH_GEX_REPLY");
+ 	if (kex->verify_host_key == NULL) {
+@@ -211,6 +219,8 @@
+ 		kex->min = kex->max = -1;
+ 
+ 	/* calc and verify H */
++	DH_get0_pqg(kex->dh, &p, NULL, &g);
++	DH_get0_key(kex->dh, &pub_key, NULL);
+ 	hashlen = sizeof(hash);
+ 	if ((r = kexgex_hash(
+ 	    kex->hash_alg,
+@@ -220,8 +230,8 @@
+ 	    sshbuf_ptr(kex->peer), sshbuf_len(kex->peer),
+ 	    server_host_key_blob, sbloblen,
+ 	    kex->min, kex->nbits, kex->max,
+-	    kex->dh->p, kex->dh->g,
+-	    kex->dh->pub_key,
++	    p, g,
++	    pub_key,
+ 	    dh_server_pub,
+ 	    shared_secret,
+ 	    hash, &hashlen)) != 0)
+--- openssh-7.7p1/kexgexs.c
++++ openssh-7.7p1/kexgexs.c
+@@ -72,6 +72,7 @@
+ 	struct kex *kex = ssh->kex;
+ 	int r;
+ 	u_int min = 0, max = 0, nbits = 0;
++	const BIGNUM *p, *g;
+ 
+ 	debug("SSH2_MSG_KEX_DH_GEX_REQUEST received");
+ 	if ((r = sshpkt_get_u32(ssh, &min)) != 0 ||
+@@ -101,9 +102,10 @@
+ 		goto out;
+ 	}
+ 	debug("SSH2_MSG_KEX_DH_GEX_GROUP sent");
++	DH_get0_pqg(kex->dh, &p, NULL, &g);
+ 	if ((r = sshpkt_start(ssh, SSH2_MSG_KEX_DH_GEX_GROUP)) != 0 ||
+-	    (r = sshpkt_put_bignum2(ssh, kex->dh->p)) != 0 ||
+-	    (r = sshpkt_put_bignum2(ssh, kex->dh->g)) != 0 ||
++	    (r = sshpkt_put_bignum2(ssh, p)) != 0 ||
++	    (r = sshpkt_put_bignum2(ssh, g)) != 0 ||
+ 	    (r = sshpkt_send(ssh)) != 0)
+ 		goto out;
+ 
+@@ -115,6 +117,10 @@
+ 	ssh_dispatch_set(ssh, SSH2_MSG_KEX_DH_GEX_INIT, &input_kex_dh_gex_init);
+ 	r = 0;
+  out:
++	if (r != 0) {
++		DH_free(kex->dh);
++		kex->dh = NULL;
++	}
+ 	return r;
+ }
+ 
+@@ -129,6 +135,7 @@
+ 	size_t sbloblen, slen;
+ 	size_t klen = 0, hashlen;
+ 	int kout, r;
++	const BIGNUM *p, *g, *pub_key;
+ 
+ 	if (kex->load_host_public_key == NULL ||
+ 	    kex->load_host_private_key == NULL) {
+@@ -191,6 +198,8 @@
+ 		goto out;
+ 	/* calc H */
+ 	hashlen = sizeof(hash);
++	DH_get0_pqg(kex->dh, &p, NULL, &g);
++	DH_get0_key(kex->dh, &pub_key, NULL);
+ 	if ((r = kexgex_hash(
+ 	    kex->hash_alg,
+ 	    kex->client_version_string,
+@@ -199,9 +208,9 @@
+ 	    sshbuf_ptr(kex->my), sshbuf_len(kex->my),
+ 	    server_host_key_blob, sbloblen,
+ 	    kex->min, kex->nbits, kex->max,
+-	    kex->dh->p, kex->dh->g,
++	    p, g,
+ 	    dh_client_pub,
+-	    kex->dh->pub_key,
++	    pub_key,
+ 	    shared_secret,
+ 	    hash, &hashlen)) != 0)
+ 		goto out;
+@@ -227,7 +236,7 @@
+ 	/* send server hostkey, DH pubkey 'f' and singed H */
+ 	if ((r = sshpkt_start(ssh, SSH2_MSG_KEX_DH_GEX_REPLY)) != 0 ||
+ 	    (r = sshpkt_put_string(ssh, server_host_key_blob, sbloblen)) != 0 ||
+-	    (r = sshpkt_put_bignum2(ssh, kex->dh->pub_key)) != 0 ||     /* f */
++	    (r = sshpkt_put_bignum2(ssh, pub_key)) != 0 ||     /* f */
+ 	    (r = sshpkt_put_string(ssh, signature, slen)) != 0 ||
+ 	    (r = sshpkt_send(ssh)) != 0)
+ 		goto out;
+--- openssh-7.7p1/libcrypto-compat.h
++++ openssh-7.7p1/libcrypto-compat.h
+@@ -0,0 +1,98 @@
++#ifndef LIBCRYPTO_COMPAT_H
++#define LIBCRYPTO_COMPAT_H
++
++#if OPENSSL_VERSION_NUMBER < 0x10100000L
++
++#include <openssl/rsa.h>
++#include <openssl/dsa.h>
++#include <openssl/ecdsa.h>
++#include <openssl/dh.h>
++#include <openssl/evp.h>
++
++int RSA_set0_key(RSA *r, BIGNUM *n, BIGNUM *e, BIGNUM *d);
++int RSA_set0_factors(RSA *r, BIGNUM *p, BIGNUM *q);
++int RSA_set0_crt_params(RSA *r, BIGNUM *dmp1, BIGNUM *dmq1, BIGNUM *iqmp);
++void RSA_get0_key(const RSA *r, const BIGNUM **n, const BIGNUM **e, const BIGNUM **d);
++void RSA_get0_factors(const RSA *r, const BIGNUM **p, const BIGNUM **q);
++void RSA_get0_crt_params(const RSA *r, const BIGNUM **dmp1, const BIGNUM **dmq1, const BIGNUM **iqmp);
++
++void DSA_get0_pqg(const DSA *d, const BIGNUM **p, const BIGNUM **q, const BIGNUM **g);
++int DSA_set0_pqg(DSA *d, BIGNUM *p, BIGNUM *q, BIGNUM *g);
++void DSA_get0_key(const DSA *d, const BIGNUM **pub_key, const BIGNUM **priv_key);
++int DSA_set0_key(DSA *d, BIGNUM *pub_key, BIGNUM *priv_key);
++
++void DSA_SIG_get0(const DSA_SIG *sig, const BIGNUM **pr, const BIGNUM **ps);
++int DSA_SIG_set0(DSA_SIG *sig, BIGNUM *r, BIGNUM *s);
++
++void ECDSA_SIG_get0(const ECDSA_SIG *sig, const BIGNUM **pr, const BIGNUM **ps);
++int ECDSA_SIG_set0(ECDSA_SIG *sig, BIGNUM *r, BIGNUM *s);
++
++void DH_get0_pqg(const DH *dh, const BIGNUM **p, const BIGNUM **q, const BIGNUM **g);
++int DH_set0_pqg(DH *dh, BIGNUM *p, BIGNUM *q, BIGNUM *g);
++void DH_get0_key(const DH *dh, const BIGNUM **pub_key, const BIGNUM **priv_key);
++int DH_set0_key(DH *dh, BIGNUM *pub_key, BIGNUM *priv_key);
++int DH_set_length(DH *dh, long length);
++
++const unsigned char *EVP_CIPHER_CTX_iv(const EVP_CIPHER_CTX *ctx);
++unsigned char *EVP_CIPHER_CTX_iv_noconst(EVP_CIPHER_CTX *ctx);
++int EVP_MD_CTX_reset(EVP_MD_CTX *ctx);
++EVP_MD_CTX *EVP_MD_CTX_new(void);
++void EVP_MD_CTX_free(EVP_MD_CTX *ctx);
++#define EVP_CIPHER_impl_ctx_size(e) e->ctx_size
++#define EVP_CIPHER_CTX_get_cipher_data(ctx) ctx->cipher_data
++
++RSA_METHOD *RSA_meth_dup(const RSA_METHOD *meth);
++int RSA_meth_set1_name(RSA_METHOD *meth, const char *name);
++#define RSA_meth_get_finish(meth) meth->finish
++int RSA_meth_set_priv_enc(RSA_METHOD *meth, int (*priv_enc) (int flen, const unsigned char *from, unsigned char *to, RSA *rsa, int padding));
++int RSA_meth_set_priv_dec(RSA_METHOD *meth, int (*priv_dec) (int flen, const unsigned char *from, unsigned char *to, RSA *rsa, int padding));
++int RSA_meth_set_finish(RSA_METHOD *meth, int (*finish) (RSA *rsa));
++void RSA_meth_free(RSA_METHOD *meth);
++
++int RSA_bits(const RSA *r);
++int DSA_bits(const DSA *d);
++
++RSA *EVP_PKEY_get0_RSA(EVP_PKEY *pkey);
++
++EVP_CIPHER *EVP_CIPHER_meth_new(int cipher_type, int block_size, int key_len);
++void EVP_CIPHER_meth_free(EVP_CIPHER *cipher);
++
++int EVP_CIPHER_meth_set_iv_length(EVP_CIPHER *cipher, int iv_len);
++int EVP_CIPHER_meth_set_flags(EVP_CIPHER *cipher, unsigned long flags);
++int EVP_CIPHER_meth_set_init(EVP_CIPHER *cipher,
++                             int (*init) (EVP_CIPHER_CTX *ctx,
++                                          const unsigned char *key,
++                                          const unsigned char *iv,
++                                          int enc));
++int EVP_CIPHER_meth_set_do_cipher(EVP_CIPHER *cipher,
++                                  int (*do_cipher) (EVP_CIPHER_CTX *ctx,
++                                                    unsigned char *out,
++                                                    const unsigned char *in,
++                                                    size_t inl));
++int EVP_CIPHER_meth_set_cleanup(EVP_CIPHER *cipher,
++                                int (*cleanup) (EVP_CIPHER_CTX *));
++int EVP_CIPHER_meth_set_ctrl(EVP_CIPHER *cipher,
++                             int (*ctrl) (EVP_CIPHER_CTX *, int type,
++                                          int arg, void *ptr));
++
++int (*EVP_CIPHER_meth_get_init(const EVP_CIPHER *cipher))(EVP_CIPHER_CTX *ctx,
++                                                          const unsigned char *key,
++                                                          const unsigned char *iv,
++                                                          int enc);
++int (*EVP_CIPHER_meth_get_do_cipher(const EVP_CIPHER *cipher))(EVP_CIPHER_CTX *ctx,
++                                                               unsigned char *out,
++                                                               const unsigned char *in,
++                                                               size_t inl);
++int (*EVP_CIPHER_meth_get_cleanup(const EVP_CIPHER *cipher))(EVP_CIPHER_CTX *);
++int (*EVP_CIPHER_meth_get_ctrl(const EVP_CIPHER *cipher))(EVP_CIPHER_CTX *,
++                                                          int type, int arg,
++                                                          void *ptr);
++
++#define EVP_CIPHER_CTX_reset(c)      EVP_CIPHER_CTX_init(c)
++
++int EVP_CIPHER_CTX_encrypting(const EVP_CIPHER_CTX *ctx);
++
++#endif /* OPENSSL_VERSION_NUMBER */
++
++#endif /* LIBCRYPTO_COMPAT_H */
++
+--- openssh-7.7p1/Makefile.in
++++ openssh-7.7p1/Makefile.in
+@@ -100,7 +100,7 @@
+ 	kex.o kexdh.o kexgex.o kexecdh.o kexc25519.o \
+ 	kexdhc.o kexgexc.o kexecdhc.o kexc25519c.o \
+ 	kexdhs.o kexgexs.o kexecdhs.o kexc25519s.o \
+-	platform-pledge.o platform-tracing.o platform-misc.o
++	platform-pledge.o platform-tracing.o platform-misc.o libcrypto-compat.o
+ 
+ SSHOBJS= ssh.o readconf.o clientloop.o sshtty.o \
+ 	sshconnect.o sshconnect2.o mux.o
+--- openssh-7.7p1/monitor.c
++++ openssh-7.7p1/monitor.c
+@@ -596,9 +596,12 @@
+ 		return (0);
+ 	} else {
+ 		/* Send first bignum */
++		const BIGNUM *p, *g;
++
++		DH_get0_pqg(dh, &p, NULL, &g);
+ 		buffer_put_char(m, 1);
+-		buffer_put_bignum2(m, dh->p);
+-		buffer_put_bignum2(m, dh->g);
++		buffer_put_bignum2(m, p);
++		buffer_put_bignum2(m, g);
+ 
+ 		DH_free(dh);
+ 	}
+--- openssh-7.7p1/openbsd-compat/openssl-compat.c
++++ openssh-7.7p1/openbsd-compat/openssl-compat.c
+@@ -70,12 +70,19 @@
+ void
+ ssh_OpenSSL_add_all_algorithms(void)
+ {
++#if OPENSSL_VERSION_NUMBER < 0x10100000L
+ 	OpenSSL_add_all_algorithms();
+ 
+ 	/* Enable use of crypto hardware */
+ 	ENGINE_load_builtin_engines();
++#if OPENSSL_VERSION_NUMBER < 0x10001000L
+ 	ENGINE_register_all_complete();
++#endif
+ 	OPENSSL_config(NULL);
++#else
++	OPENSSL_init_crypto(OPENSSL_INIT_ADD_ALL_DIGESTS |
++	    OPENSSL_INIT_ADD_ALL_DIGESTS | OPENSSL_INIT_LOAD_CONFIG, NULL);
++#endif
+ }
+ #endif
+ 
+--- openssh-7.7p1/regress/unittests/sshkey/test_file.c
++++ openssh-7.7p1/regress/unittests/sshkey/test_file.c
+@@ -46,6 +46,7 @@
+ 	struct sshbuf *buf, *pw;
+ 	BIGNUM *a, *b, *c;
+ 	char *cp;
++	const BIGNUM *n, *p, *q, *g, *pub_key, *priv_key;
+ 
+ 	TEST_START("load passphrase");
+ 	pw = load_text_file("pw");
+@@ -60,9 +61,11 @@
+ 	a = load_bignum("rsa_1.param.n");
+ 	b = load_bignum("rsa_1.param.p");
+ 	c = load_bignum("rsa_1.param.q");
+-	ASSERT_BIGNUM_EQ(k1->rsa->n, a);
+-	ASSERT_BIGNUM_EQ(k1->rsa->p, b);
+-	ASSERT_BIGNUM_EQ(k1->rsa->q, c);
++	RSA_get0_key(k1->rsa, &n, NULL, NULL);
++	RSA_get0_factors(k1->rsa, &p, &q);
++	ASSERT_BIGNUM_EQ(n, a);
++	ASSERT_BIGNUM_EQ(p, b);
++	ASSERT_BIGNUM_EQ(q, c);
+ 	BN_free(a);
+ 	BN_free(b);
+ 	BN_free(c);
+@@ -151,9 +154,11 @@
+ 	a = load_bignum("dsa_1.param.g");
+ 	b = load_bignum("dsa_1.param.priv");
+ 	c = load_bignum("dsa_1.param.pub");
+-	ASSERT_BIGNUM_EQ(k1->dsa->g, a);
+-	ASSERT_BIGNUM_EQ(k1->dsa->priv_key, b);
+-	ASSERT_BIGNUM_EQ(k1->dsa->pub_key, c);
++	DSA_get0_pqg(k1->dsa, NULL, NULL, &g);
++	DSA_get0_key(k1->dsa, &pub_key, &priv_key);
++	ASSERT_BIGNUM_EQ(g, a);
++	ASSERT_BIGNUM_EQ(priv_key, b);
++	ASSERT_BIGNUM_EQ(pub_key, c);
+ 	BN_free(a);
+ 	BN_free(b);
+ 	BN_free(c);
+--- openssh-7.7p1/regress/unittests/sshkey/test_sshkey.c
++++ openssh-7.7p1/regress/unittests/sshkey/test_sshkey.c
+@@ -197,9 +197,6 @@
+ 	k1 = sshkey_new(KEY_RSA);
+ 	ASSERT_PTR_NE(k1, NULL);
+ 	ASSERT_PTR_NE(k1->rsa, NULL);
+-	ASSERT_PTR_NE(k1->rsa->n, NULL);
+-	ASSERT_PTR_NE(k1->rsa->e, NULL);
+-	ASSERT_PTR_EQ(k1->rsa->p, NULL);
+ 	sshkey_free(k1);
+ 	TEST_DONE();
+ 
+@@ -207,8 +204,6 @@
+ 	k1 = sshkey_new(KEY_DSA);
+ 	ASSERT_PTR_NE(k1, NULL);
+ 	ASSERT_PTR_NE(k1->dsa, NULL);
+-	ASSERT_PTR_NE(k1->dsa->g, NULL);
+-	ASSERT_PTR_EQ(k1->dsa->priv_key, NULL);
+ 	sshkey_free(k1);
+ 	TEST_DONE();
+ 
+@@ -234,9 +229,6 @@
+ 	k1 = sshkey_new_private(KEY_RSA);
+ 	ASSERT_PTR_NE(k1, NULL);
+ 	ASSERT_PTR_NE(k1->rsa, NULL);
+-	ASSERT_PTR_NE(k1->rsa->n, NULL);
+-	ASSERT_PTR_NE(k1->rsa->e, NULL);
+-	ASSERT_PTR_NE(k1->rsa->p, NULL);
+ 	ASSERT_INT_EQ(sshkey_add_private(k1), 0);
+ 	sshkey_free(k1);
+ 	TEST_DONE();
+@@ -245,8 +237,6 @@
+ 	k1 = sshkey_new_private(KEY_DSA);
+ 	ASSERT_PTR_NE(k1, NULL);
+ 	ASSERT_PTR_NE(k1->dsa, NULL);
+-	ASSERT_PTR_NE(k1->dsa->g, NULL);
+-	ASSERT_PTR_NE(k1->dsa->priv_key, NULL);
+ 	ASSERT_INT_EQ(sshkey_add_private(k1), 0);
+ 	sshkey_free(k1);
+ 	TEST_DONE();
+@@ -285,18 +275,13 @@
+ 	ASSERT_INT_EQ(sshkey_generate(KEY_RSA, 1024, &kr), 0);
+ 	ASSERT_PTR_NE(kr, NULL);
+ 	ASSERT_PTR_NE(kr->rsa, NULL);
+-	ASSERT_PTR_NE(kr->rsa->n, NULL);
+-	ASSERT_PTR_NE(kr->rsa->e, NULL);
+-	ASSERT_PTR_NE(kr->rsa->p, NULL);
+-	ASSERT_INT_EQ(BN_num_bits(kr->rsa->n), 1024);
++	ASSERT_INT_EQ(RSA_bits(kr->rsa), 1024);
+ 	TEST_DONE();
+ 
+ 	TEST_START("generate KEY_DSA");
+ 	ASSERT_INT_EQ(sshkey_generate(KEY_DSA, 1024, &kd), 0);
+ 	ASSERT_PTR_NE(kd, NULL);
+ 	ASSERT_PTR_NE(kd->dsa, NULL);
+-	ASSERT_PTR_NE(kd->dsa->g, NULL);
+-	ASSERT_PTR_NE(kd->dsa->priv_key, NULL);
+ 	TEST_DONE();
+ 
+ #ifdef OPENSSL_HAS_ECC
+@@ -323,9 +308,6 @@
+ 	ASSERT_PTR_NE(kr, k1);
+ 	ASSERT_INT_EQ(k1->type, KEY_RSA);
+ 	ASSERT_PTR_NE(k1->rsa, NULL);
+-	ASSERT_PTR_NE(k1->rsa->n, NULL);
+-	ASSERT_PTR_NE(k1->rsa->e, NULL);
+-	ASSERT_PTR_EQ(k1->rsa->p, NULL);
+ 	TEST_DONE();
+ 
+ 	TEST_START("equal KEY_RSA/demoted KEY_RSA");
+@@ -339,8 +321,6 @@
+ 	ASSERT_PTR_NE(kd, k1);
+ 	ASSERT_INT_EQ(k1->type, KEY_DSA);
+ 	ASSERT_PTR_NE(k1->dsa, NULL);
+-	ASSERT_PTR_NE(k1->dsa->g, NULL);
+-	ASSERT_PTR_EQ(k1->dsa->priv_key, NULL);
+ 	TEST_DONE();
+ 
+ 	TEST_START("equal KEY_DSA/demoted KEY_DSA");
+--- openssh-7.7p1/ssh_api.c
++++ openssh-7.7p1/ssh_api.c
+@@ -79,9 +79,9 @@
+ 	int r;
+ 
+ 	if (!called) {
+-#ifdef WITH_OPENSSL
++#if defined(WITH_OPENSSL) && OPENSSL_VERSION_NUMBER < 0x10100000L
+ 		OpenSSL_add_all_algorithms();
+-#endif /* WITH_OPENSSL */
++#endif /* defined(WITH_OPENSSL) && OPENSSL_VERSION_NUMBER < 0x10100000L */
+ 		called = 1;
+ 	}
+ 
+--- openssh-7.7p1/ssh.c
++++ openssh-7.7p1/ssh.c
+@@ -816,7 +816,13 @@
+ 			fprintf(stderr, "%s, %s\n",
+ 			    SSH_RELEASE,
+ #ifdef WITH_OPENSSL
++# if defined(HAVE_SSLEAY_VERSION)
+ 			    SSLeay_version(SSLEAY_VERSION)
++# elif defined(HAVE_OPENSSL_VERSION)
++			    OpenSSL_version(OPENSSL_VERSION)
++# else
++#  error
++# endif
+ #else
+ 			    "without OpenSSL"
+ #endif
+@@ -1036,7 +1042,7 @@
+ 
+ 	host_arg = xstrdup(host);
+ 
+-#ifdef WITH_OPENSSL
++#if defined(WITH_OPENSSL) && OPENSSL_VERSION_NUMBER < 0x10100000L
+ 	OpenSSL_add_all_algorithms();
+ 	ERR_load_crypto_strings();
+ #endif
+@@ -1083,7 +1089,13 @@
+ 	if (debug_flag)
+ 		logit("%s, %s", SSH_RELEASE,
+ #ifdef WITH_OPENSSL
++# if defined(HAVE_SSLEAY_VERSION)
+ 		    SSLeay_version(SSLEAY_VERSION)
++# elif defined(HAVE_OPENSSL_VERSION)
++		    OpenSSL_version(OPENSSL_VERSION)
++# else
++#  error
++# endif
+ #else
+ 		    "without OpenSSL"
+ #endif
+--- openssh-7.7p1/sshd.c
++++ openssh-7.7p1/sshd.c
+@@ -908,7 +908,13 @@
+ 	fprintf(stderr, "%s, %s\n",
+ 	    SSH_RELEASE,
+ #ifdef WITH_OPENSSL
+-	    SSLeay_version(SSLEAY_VERSION)
++# if defined(HAVE_SSLEAY_VERSION)
++		    SSLeay_version(SSLEAY_VERSION)
++# elif defined(HAVE_OPENSSL_VERSION)
++		    OpenSSL_version(OPENSSL_VERSION)
++# else
++#  error
++# endif
+ #else
+ 	    "without OpenSSL"
+ #endif
+@@ -1675,7 +1681,13 @@
+ 
+ 	debug("sshd version %s, %s", SSH_VERSION,
+ #ifdef WITH_OPENSSL
++# if defined(HAVE_SSLEAY_VERSION)
+ 	    SSLeay_version(SSLEAY_VERSION)
++# elif defined(HAVE_OPENSSL_VERSION)
++	    OpenSSL_version(OPENSSL_VERSION)
++# else
++#  error
++# endif
+ #else
+ 	    "without OpenSSL"
+ #endif
+--- openssh-7.7p1/ssh-dss.c
++++ openssh-7.7p1/ssh-dss.c
+@@ -55,6 +55,7 @@
+ 	size_t rlen, slen, len, dlen = ssh_digest_bytes(SSH_DIGEST_SHA1);
+ 	struct sshbuf *b = NULL;
+ 	int ret = SSH_ERR_INVALID_ARGUMENT;
++	const BIGNUM *r, *s;
+ 
+ 	if (lenp != NULL)
+ 		*lenp = 0;
+@@ -76,15 +77,16 @@
+ 		goto out;
+ 	}
+ 
+-	rlen = BN_num_bytes(sig->r);
+-	slen = BN_num_bytes(sig->s);
++	DSA_SIG_get0(sig, &r, &s);
++	rlen = BN_num_bytes(r);
++	slen = BN_num_bytes(s);
+ 	if (rlen > INTBLOB_LEN || slen > INTBLOB_LEN) {
+ 		ret = SSH_ERR_INTERNAL_ERROR;
+ 		goto out;
+ 	}
+ 	explicit_bzero(sigblob, SIGBLOB_LEN);
+-	BN_bn2bin(sig->r, sigblob + SIGBLOB_LEN - INTBLOB_LEN - rlen);
+-	BN_bn2bin(sig->s, sigblob + SIGBLOB_LEN - slen);
++	BN_bn2bin(r, sigblob + SIGBLOB_LEN - INTBLOB_LEN - rlen);
++	BN_bn2bin(s, sigblob + SIGBLOB_LEN - slen);
+ 
+ 	if ((b = sshbuf_new()) == NULL) {
+ 		ret = SSH_ERR_ALLOC_FAIL;
+@@ -123,6 +125,7 @@
+ 	int ret = SSH_ERR_INTERNAL_ERROR;
+ 	struct sshbuf *b = NULL;
+ 	char *ktype = NULL;
++	BIGNUM *r = NULL, *s = NULL;
+ 
+ 	if (key == NULL || key->dsa == NULL ||
+ 	    sshkey_type_plain(key->type) != KEY_DSA ||
+@@ -155,16 +158,19 @@
+ 
+ 	/* parse signature */
+ 	if ((sig = DSA_SIG_new()) == NULL ||
+-	    (sig->r = BN_new()) == NULL ||
+-	    (sig->s = BN_new()) == NULL) {
++	    (r = BN_new()) == NULL ||
++	    (s = BN_new()) == NULL) {
+ 		ret = SSH_ERR_ALLOC_FAIL;
+ 		goto out;
+ 	}
+-	if ((BN_bin2bn(sigblob, INTBLOB_LEN, sig->r) == NULL) ||
+-	    (BN_bin2bn(sigblob+ INTBLOB_LEN, INTBLOB_LEN, sig->s) == NULL)) {
++	if ((BN_bin2bn(sigblob, INTBLOB_LEN, r) == NULL) ||
++	    (BN_bin2bn(sigblob+ INTBLOB_LEN, INTBLOB_LEN, s) == NULL) ||
++	    (DSA_SIG_set0(sig, r, s) == 0)) {
+ 		ret = SSH_ERR_LIBCRYPTO_ERROR;
+ 		goto out;
+ 	}
++	r = NULL;
++	s = NULL;
+ 
+ 	/* sha1 the data */
+ 	if ((ret = ssh_digest_memory(SSH_DIGEST_SHA1, data, datalen,
+@@ -185,6 +191,8 @@
+ 
+  out:
+ 	explicit_bzero(digest, sizeof(digest));
++	BN_free(r);
++	BN_free(s);
+ 	DSA_SIG_free(sig);
+ 	sshbuf_free(b);
+ 	free(ktype);
+--- openssh-7.7p1/ssh-ecdsa.c
++++ openssh-7.7p1/ssh-ecdsa.c
+@@ -54,6 +54,7 @@
+ 	size_t len, dlen;
+ 	struct sshbuf *b = NULL, *bb = NULL;
+ 	int ret = SSH_ERR_INTERNAL_ERROR;
++	const BIGNUM *r, *s;
+ 
+ 	if (lenp != NULL)
+ 		*lenp = 0;
+@@ -80,8 +81,9 @@
+ 		ret = SSH_ERR_ALLOC_FAIL;
+ 		goto out;
+ 	}
+-	if ((ret = sshbuf_put_bignum2(bb, sig->r)) != 0 ||
+-	    (ret = sshbuf_put_bignum2(bb, sig->s)) != 0)
++	ECDSA_SIG_get0(sig, &r, &s);
++	if ((ret = sshbuf_put_bignum2(bb, r)) != 0 ||
++	    (ret = sshbuf_put_bignum2(bb, s)) != 0)
+ 		goto out;
+ 	if ((ret = sshbuf_put_cstring(b, sshkey_ssh_name_plain(key))) != 0 ||
+ 	    (ret = sshbuf_put_stringb(b, bb)) != 0)
+@@ -118,6 +120,7 @@
+ 	int ret = SSH_ERR_INTERNAL_ERROR;
+ 	struct sshbuf *b = NULL, *sigbuf = NULL;
+ 	char *ktype = NULL;
++	BIGNUM *r = NULL, *s = NULL;
+ 
+ 	if (key == NULL || key->ecdsa == NULL ||
+ 	    sshkey_type_plain(key->type) != KEY_ECDSA ||
+@@ -146,15 +149,23 @@
+ 	}
+ 
+ 	/* parse signature */
+-	if ((sig = ECDSA_SIG_new()) == NULL) {
++	if ((sig = ECDSA_SIG_new()) == NULL ||
++	    (r = BN_new()) == NULL ||
++	    (s = BN_new()) == NULL) {
+ 		ret = SSH_ERR_ALLOC_FAIL;
+ 		goto out;
+ 	}
+-	if (sshbuf_get_bignum2(sigbuf, sig->r) != 0 ||
+-	    sshbuf_get_bignum2(sigbuf, sig->s) != 0) {
++	if (sshbuf_get_bignum2(sigbuf, r) != 0 ||
++	    sshbuf_get_bignum2(sigbuf, s) != 0) {
+ 		ret = SSH_ERR_INVALID_FORMAT;
+ 		goto out;
+ 	}
++	if (ECDSA_SIG_set0(sig, r, s) == 0) {
++		ret = SSH_ERR_LIBCRYPTO_ERROR;
++		goto out;
++	}
++	r = NULL;
++	s = NULL;
+ 	if (sshbuf_len(sigbuf) != 0) {
+ 		ret = SSH_ERR_UNEXPECTED_TRAILING_DATA;
+ 		goto out;
+@@ -179,6 +190,8 @@
+ 	explicit_bzero(digest, sizeof(digest));
+ 	sshbuf_free(sigbuf);
+ 	sshbuf_free(b);
++	BN_free(r);
++	BN_free(s);
+ 	ECDSA_SIG_free(sig);
+ 	free(ktype);
+ 	return ret;
+--- openssh-7.7p1/sshkey.c
++++ openssh-7.7p1/sshkey.c
+@@ -274,10 +274,10 @@
+ #ifdef WITH_OPENSSL
+ 	case KEY_RSA:
+ 	case KEY_RSA_CERT:
+-		return BN_num_bits(k->rsa->n);
++		return RSA_bits(k->rsa);
+ 	case KEY_DSA:
+ 	case KEY_DSA_CERT:
+-		return BN_num_bits(k->dsa->p);
++		return DSA_bits(k->dsa);
+ 	case KEY_ECDSA:
+ 	case KEY_ECDSA_CERT:
+ 		return sshkey_curve_nid_to_bits(k->ecdsa_nid);
+@@ -482,10 +482,7 @@
+ #ifdef WITH_OPENSSL
+ 	case KEY_RSA:
+ 	case KEY_RSA_CERT:
+-		if ((rsa = RSA_new()) == NULL ||
+-		    (rsa->n = BN_new()) == NULL ||
+-		    (rsa->e = BN_new()) == NULL) {
+-			RSA_free(rsa);
++	 if ((rsa = RSA_new()) == NULL) {
+ 			free(k);
+ 			return NULL;
+ 		}
+@@ -493,12 +490,7 @@
+ 		break;
+ 	case KEY_DSA:
+ 	case KEY_DSA_CERT:
+-		if ((dsa = DSA_new()) == NULL ||
+-		    (dsa->p = BN_new()) == NULL ||
+-		    (dsa->q = BN_new()) == NULL ||
+-		    (dsa->g = BN_new()) == NULL ||
+-		    (dsa->pub_key = BN_new()) == NULL) {
+-			DSA_free(dsa);
++		if ((dsa = DSA_new()) == NULL) {
+ 			free(k);
+ 			return NULL;
+ 		}
+@@ -539,21 +531,10 @@
+ #ifdef WITH_OPENSSL
+ 	case KEY_RSA:
+ 	case KEY_RSA_CERT:
+-#define bn_maybe_alloc_failed(p) (p == NULL && (p = BN_new()) == NULL)
+-		if (bn_maybe_alloc_failed(k->rsa->d) ||
+-		    bn_maybe_alloc_failed(k->rsa->iqmp) ||
+-		    bn_maybe_alloc_failed(k->rsa->q) ||
+-		    bn_maybe_alloc_failed(k->rsa->p) ||
+-		    bn_maybe_alloc_failed(k->rsa->dmq1) ||
+-		    bn_maybe_alloc_failed(k->rsa->dmp1))
+-			return SSH_ERR_ALLOC_FAIL;
+ 		break;
+ 	case KEY_DSA:
+ 	case KEY_DSA_CERT:
+-		if (bn_maybe_alloc_failed(k->dsa->priv_key))
+-			return SSH_ERR_ALLOC_FAIL;
+ 		break;
+-#undef bn_maybe_alloc_failed
+ 	case KEY_ECDSA:
+ 	case KEY_ECDSA_CERT:
+ 		/* Cannot do anything until we know the group */
+@@ -676,17 +657,31 @@
+ 	switch (a->type) {
+ #ifdef WITH_OPENSSL
+ 	case KEY_RSA_CERT:
+-	case KEY_RSA:
+-		return a->rsa != NULL && b->rsa != NULL &&
+-		    BN_cmp(a->rsa->e, b->rsa->e) == 0 &&
+-		    BN_cmp(a->rsa->n, b->rsa->n) == 0;
++	case KEY_RSA: {
++			const BIGNUM *a_e, *a_n, *b_e, *b_n;
++
++			if (a->rsa == NULL || b->rsa == NULL)
++				return 0;
++			RSA_get0_key(a->rsa, &a_n, &a_e, NULL);
++			RSA_get0_key(b->rsa, &b_n, &b_e, NULL);
++			return BN_cmp(a_e, b_e) == 0 && BN_cmp(a_n, b_n) == 0;
++		}
+ 	case KEY_DSA_CERT:
+-	case KEY_DSA:
+-		return a->dsa != NULL && b->dsa != NULL &&
+-		    BN_cmp(a->dsa->p, b->dsa->p) == 0 &&
+-		    BN_cmp(a->dsa->q, b->dsa->q) == 0 &&
+-		    BN_cmp(a->dsa->g, b->dsa->g) == 0 &&
+-		    BN_cmp(a->dsa->pub_key, b->dsa->pub_key) == 0;
++	case KEY_DSA: {
++			const BIGNUM *a_p, *a_q, *a_g, *a_pub_key;
++			const BIGNUM *b_p, *b_q, *b_g, *b_pub_key;
++
++			if (a->dsa == NULL || b->dsa == NULL)
++				return 0;
++			DSA_get0_pqg(a->dsa, &a_p, &a_q, &a_g);
++			DSA_get0_key(a->dsa, &a_pub_key, NULL);
++			DSA_get0_pqg(b->dsa, &b_p, &b_q, &b_g);
++			DSA_get0_key(b->dsa, &b_pub_key, NULL);
++			return BN_cmp(a_p, b_p) == 0 &&
++			    BN_cmp(a_q, b_q) == 0 &&
++			    BN_cmp(a_g, b_g) == 0 &&
++			    BN_cmp(a_pub_key, b_pub_key) == 0;
++		}
+ # ifdef OPENSSL_HAS_ECC
+ 	case KEY_ECDSA_CERT:
+ 	case KEY_ECDSA:
+@@ -772,15 +767,21 @@
+ 			return ret;
+ 		break;
+ #ifdef WITH_OPENSSL
+-	case KEY_DSA:
+-		if (key->dsa == NULL)
+-			return SSH_ERR_INVALID_ARGUMENT;
+-		if ((ret = sshbuf_put_cstring(b, typename)) != 0 ||
+-		    (ret = sshbuf_put_bignum2(b, key->dsa->p)) != 0 ||
+-		    (ret = sshbuf_put_bignum2(b, key->dsa->q)) != 0 ||
+-		    (ret = sshbuf_put_bignum2(b, key->dsa->g)) != 0 ||
+-		    (ret = sshbuf_put_bignum2(b, key->dsa->pub_key)) != 0)
+-			return ret;
++	case KEY_DSA: {
++			const BIGNUM *p, *q, *g, *pub_key;
++
++			if (key->dsa == NULL)
++				return SSH_ERR_INVALID_ARGUMENT;
++
++			DSA_get0_pqg(key->dsa, &p, &q, &g);
++			DSA_get0_key(key->dsa, &pub_key, NULL);
++			if ((ret = sshbuf_put_cstring(b, typename)) != 0 ||
++			    (ret = sshbuf_put_bignum2(b, p)) != 0 ||
++			    (ret = sshbuf_put_bignum2(b, q)) != 0 ||
++			    (ret = sshbuf_put_bignum2(b, g)) != 0 ||
++			    (ret = sshbuf_put_bignum2(b, pub_key)) != 0)
++				return ret;
++		}
+ 		break;
+ # ifdef OPENSSL_HAS_ECC
+ 	case KEY_ECDSA:
+@@ -793,13 +794,18 @@
+ 			return ret;
+ 		break;
+ # endif
+-	case KEY_RSA:
+-		if (key->rsa == NULL)
+-			return SSH_ERR_INVALID_ARGUMENT;
+-		if ((ret = sshbuf_put_cstring(b, typename)) != 0 ||
+-		    (ret = sshbuf_put_bignum2(b, key->rsa->e)) != 0 ||
+-		    (ret = sshbuf_put_bignum2(b, key->rsa->n)) != 0)
+-			return ret;
++	case KEY_RSA: {
++			const BIGNUM *e, *n;
++
++			if (key->rsa == NULL)
++				return SSH_ERR_INVALID_ARGUMENT;
++
++			RSA_get0_key(key->rsa, &n, &e, NULL);
++			if ((ret = sshbuf_put_cstring(b, typename)) != 0 ||
++			    (ret = sshbuf_put_bignum2(b, e)) != 0 ||
++			    (ret = sshbuf_put_bignum2(b, n)) != 0)
++				return ret;
++		}
+ 		break;
+ #endif /* WITH_OPENSSL */
+ 	case KEY_ED25519:
+@@ -1737,15 +1743,32 @@
+ 	switch (k->type) {
+ #ifdef WITH_OPENSSL
+ 	case KEY_DSA:
+-	case KEY_DSA_CERT:
+-		if ((n = sshkey_new(k->type)) == NULL)
+-			return SSH_ERR_ALLOC_FAIL;
+-		if ((BN_copy(n->dsa->p, k->dsa->p) == NULL) ||
+-		    (BN_copy(n->dsa->q, k->dsa->q) == NULL) ||
+-		    (BN_copy(n->dsa->g, k->dsa->g) == NULL) ||
+-		    (BN_copy(n->dsa->pub_key, k->dsa->pub_key) == NULL)) {
+-			sshkey_free(n);
+-			return SSH_ERR_ALLOC_FAIL;
++	case KEY_DSA_CERT: {
++			const BIGNUM *k_p, *k_q, *k_g, *k_pub_key;
++			BIGNUM *n_p = NULL, *n_q = NULL, *n_g = NULL, *n_pub_key = NULL;
++
++			if ((n = sshkey_new(k->type)) == NULL)
++				return SSH_ERR_ALLOC_FAIL;
++
++			DSA_get0_pqg(k->dsa, &k_p, &k_q, &k_g);
++			DSA_get0_key(k->dsa, &k_pub_key, NULL);
++
++			if (((n_p = BN_dup(k_p)) == NULL) ||
++			    ((n_q = BN_dup(k_q)) == NULL) ||
++			    ((n_g = BN_dup(k_g)) == NULL) ||
++			    (DSA_set0_pqg(n->dsa, n_p, n_q, n_g) == 0)) {
++				sshkey_free(n);
++				BN_free(n_p);
++				BN_free(n_q);
++				BN_free(n_g);
++				return SSH_ERR_ALLOC_FAIL;
++			}
++			if (((n_pub_key = BN_dup(k_pub_key)) == NULL) ||
++			    (DSA_set0_key(n->dsa, n_pub_key, NULL) == 0)) {
++				sshkey_free(n);
++				BN_free(n_pub_key);
++				return SSH_ERR_ALLOC_FAIL;
++			}
+ 		}
+ 		break;
+ # ifdef OPENSSL_HAS_ECC
+@@ -1767,13 +1790,22 @@
+ 		break;
+ # endif /* OPENSSL_HAS_ECC */
+ 	case KEY_RSA:
+-	case KEY_RSA_CERT:
+-		if ((n = sshkey_new(k->type)) == NULL)
+-			return SSH_ERR_ALLOC_FAIL;
+-		if ((BN_copy(n->rsa->n, k->rsa->n) == NULL) ||
+-		    (BN_copy(n->rsa->e, k->rsa->e) == NULL)) {
+-			sshkey_free(n);
+-			return SSH_ERR_ALLOC_FAIL;
++	case KEY_RSA_CERT: {
++			const BIGNUM *k_n, *k_e;
++			BIGNUM *n_n = NULL, *n_e = NULL;
++
++			if ((n = sshkey_new(k->type)) == NULL)
++				return SSH_ERR_ALLOC_FAIL;
++
++			RSA_get0_key(k->rsa, &k_n, &k_e, NULL);
++			if (((n_n = BN_dup(k_n)) == NULL) ||
++			    ((n_e = BN_dup(k_e)) == NULL) ||
++			    RSA_set0_key(n->rsa, n_n, n_e, NULL) == 0) {
++				sshkey_free(n);
++				BN_free(n_n);
++				BN_free(n_e);
++				return SSH_ERR_ALLOC_FAIL;
++                       }
+ 		}
+ 		break;
+ #endif /* WITH_OPENSSL */
+@@ -1995,12 +2027,22 @@
+ 			ret = SSH_ERR_ALLOC_FAIL;
+ 			goto out;
+ 		}
+-		if (sshbuf_get_bignum2(b, key->rsa->e) != 0 ||
+-		    sshbuf_get_bignum2(b, key->rsa->n) != 0) {
+-			ret = SSH_ERR_INVALID_FORMAT;
+-			goto out;
++		{
++			BIGNUM *e, *n;
++
++			e = BN_new();
++			n = BN_new();
++			if (e == NULL || n == NULL ||
++			    sshbuf_get_bignum2(b, e) != 0 ||
++			    sshbuf_get_bignum2(b, n) != 0 ||
++			    RSA_set0_key(key->rsa, n, e, NULL) == 0) {
++				BN_free(e);
++				BN_free(n);
++				ret = SSH_ERR_ALLOC_FAIL;
++				goto out;
++			}
+ 		}
+-		if (BN_num_bits(key->rsa->n) < SSH_RSA_MINIMUM_MODULUS_SIZE) {
++		if (RSA_bits(key->rsa) < SSH_RSA_MINIMUM_MODULUS_SIZE) {
+ 			ret = SSH_ERR_KEY_LENGTH;
+ 			goto out;
+ 		}
+@@ -2020,12 +2062,34 @@
+ 			ret = SSH_ERR_ALLOC_FAIL;
+ 			goto out;
+ 		}
+-		if (sshbuf_get_bignum2(b, key->dsa->p) != 0 ||
+-		    sshbuf_get_bignum2(b, key->dsa->q) != 0 ||
+-		    sshbuf_get_bignum2(b, key->dsa->g) != 0 ||
+-		    sshbuf_get_bignum2(b, key->dsa->pub_key) != 0) {
+-			ret = SSH_ERR_INVALID_FORMAT;
+-			goto out;
++		{
++			BIGNUM *p, *q, *g, *pub_key;
++
++			p = BN_new();
++			q = BN_new();
++			g = BN_new();
++			pub_key = BN_new();
++
++			if (p == NULL || q == NULL || g == NULL ||
++			    pub_key == NULL ||
++			    sshbuf_get_bignum2(b, p) != 0 ||
++			    sshbuf_get_bignum2(b, q) != 0 ||
++			    sshbuf_get_bignum2(b, g) != 0 ||
++			    sshbuf_get_bignum2(b, pub_key) != 0 ||
++			    DSA_set0_pqg(key->dsa, p, q, g) == 0) {
++				BN_free(p);
++				BN_free(q);
++				BN_free(g);
++				BN_free(pub_key);
++				ret = SSH_ERR_ALLOC_FAIL;
++				goto out;
++			}
++
++			if (DSA_set0_key(key->dsa, pub_key, NULL) == 0) {
++				BN_free(pub_key);
++				ret = SSH_ERR_LIBCRYPTO_ERROR;
++				goto out;
++			}
+ 		}
+ #ifdef DEBUG_PK
+ 		DSA_print_fp(stderr, key->dsa, 8);
+@@ -2326,26 +2390,53 @@
+ 		if ((ret = sshkey_cert_copy(k, pk)) != 0)
+ 			goto fail;
+ 		/* FALLTHROUGH */
+-	case KEY_RSA:
+-		if ((pk->rsa = RSA_new()) == NULL ||
+-		    (pk->rsa->e = BN_dup(k->rsa->e)) == NULL ||
+-		    (pk->rsa->n = BN_dup(k->rsa->n)) == NULL) {
+-			ret = SSH_ERR_ALLOC_FAIL;
+-			goto fail;
++	case KEY_RSA: {
++			const BIGNUM *k_e, *k_n;
++			BIGNUM *pk_e = NULL, *pk_n = NULL;
++
++			RSA_get0_key(k->rsa, &k_n, &k_e, NULL);
++			if ((pk->rsa = RSA_new()) == NULL ||
++			    (pk_e = BN_dup(k_e)) == NULL ||
++			    (pk_n = BN_dup(k_n)) == NULL ||
++			    RSA_set0_key(pk->rsa, pk_n, pk_e, NULL) == 0) {
++				BN_free(pk_e);
++				BN_free(pk_n);
++				ret = SSH_ERR_ALLOC_FAIL;
++				goto fail;
+ 			}
++		}
+ 		break;
+ 	case KEY_DSA_CERT:
+ 		if ((ret = sshkey_cert_copy(k, pk)) != 0)
+ 			goto fail;
+ 		/* FALLTHROUGH */
+-	case KEY_DSA:
+-		if ((pk->dsa = DSA_new()) == NULL ||
+-		    (pk->dsa->p = BN_dup(k->dsa->p)) == NULL ||
+-		    (pk->dsa->q = BN_dup(k->dsa->q)) == NULL ||
+-		    (pk->dsa->g = BN_dup(k->dsa->g)) == NULL ||
+-		    (pk->dsa->pub_key = BN_dup(k->dsa->pub_key)) == NULL) {
+-			ret = SSH_ERR_ALLOC_FAIL;
+-			goto fail;
++	case KEY_DSA: {
++			const BIGNUM *k_p, *k_q, *k_g, *k_pub_key;
++			BIGNUM *pk_p = NULL, *pk_q = NULL, *pk_g = NULL;
++			BIGNUM *pk_pub_key = NULL;
++
++			DSA_get0_pqg(k->dsa, &k_p, &k_q, &k_g);
++			DSA_get0_key(k->dsa, &k_pub_key, NULL);
++
++			if ((pk->dsa = DSA_new()) == NULL ||
++			    (pk_p = BN_dup(k_p)) == NULL ||
++			    (pk_q = BN_dup(k_q)) == NULL ||
++			    (pk_g = BN_dup(k_g)) == NULL ||
++			    (pk_pub_key = BN_dup(k_pub_key)) == NULL ||
++			    DSA_set0_pqg(pk->dsa, pk_p, pk_q, pk_g) == 0) {
++				BN_free(pk_p);
++				BN_free(pk_q);
++				BN_free(pk_g);
++				BN_free(pk_pub_key);
++				ret = SSH_ERR_ALLOC_FAIL;
++				goto fail;
++			}
++
++			if (DSA_set0_key(pk->dsa, pk_pub_key, NULL) == 0) {
++				BN_free(pk_pub_key);
++				ret = SSH_ERR_LIBCRYPTO_ERROR;
++				goto fail;
++			}
+ 		}
+ 		break;
+ 	case KEY_ECDSA_CERT:
+@@ -2495,12 +2586,17 @@
+ 	/* XXX this substantially duplicates to_blob(); refactor */
+ 	switch (k->type) {
+ #ifdef WITH_OPENSSL
+-	case KEY_DSA_CERT:
+-		if ((ret = sshbuf_put_bignum2(cert, k->dsa->p)) != 0 ||
+-		    (ret = sshbuf_put_bignum2(cert, k->dsa->q)) != 0 ||
+-		    (ret = sshbuf_put_bignum2(cert, k->dsa->g)) != 0 ||
+-		    (ret = sshbuf_put_bignum2(cert, k->dsa->pub_key)) != 0)
+-			goto out;
++	case KEY_DSA_CERT: {
++			const BIGNUM *p, *q, *g, *pub_key;
++
++			DSA_get0_pqg(k->dsa, &p, &q, &g);
++			DSA_get0_key(k->dsa, &pub_key, NULL);
++			if ((ret = sshbuf_put_bignum2(cert, p)) != 0 ||
++			    (ret = sshbuf_put_bignum2(cert, q)) != 0 ||
++			    (ret = sshbuf_put_bignum2(cert, g)) != 0 ||
++			    (ret = sshbuf_put_bignum2(cert, pub_key)) != 0)
++				goto out;
++		}
+ 		break;
+ # ifdef OPENSSL_HAS_ECC
+ 	case KEY_ECDSA_CERT:
+@@ -2512,10 +2608,15 @@
+ 			goto out;
+ 		break;
+ # endif /* OPENSSL_HAS_ECC */
+-	case KEY_RSA_CERT:
+-		if ((ret = sshbuf_put_bignum2(cert, k->rsa->e)) != 0 ||
+-		    (ret = sshbuf_put_bignum2(cert, k->rsa->n)) != 0)
+-			goto out;
++	case KEY_RSA_CERT: {
++			const BIGNUM *e, *n;
++
++			RSA_get0_key(k->rsa, &n, &e, NULL);
++			if (e == NULL || n == NULL ||
++			    (ret = sshbuf_put_bignum2(cert, e)) != 0 ||
++			    (ret = sshbuf_put_bignum2(cert, n)) != 0)
++				goto out;
++		}
+ 		break;
+ #endif /* WITH_OPENSSL */
+ 	case KEY_ED25519_CERT:
+@@ -2701,43 +2802,65 @@
+ 		goto out;
+ 	switch (key->type) {
+ #ifdef WITH_OPENSSL
+-	case KEY_RSA:
+-		if ((r = sshbuf_put_bignum2(b, key->rsa->n)) != 0 ||
+-		    (r = sshbuf_put_bignum2(b, key->rsa->e)) != 0 ||
+-		    (r = sshbuf_put_bignum2(b, key->rsa->d)) != 0 ||
+-		    (r = sshbuf_put_bignum2(b, key->rsa->iqmp)) != 0 ||
+-		    (r = sshbuf_put_bignum2(b, key->rsa->p)) != 0 ||
+-		    (r = sshbuf_put_bignum2(b, key->rsa->q)) != 0)
+-			goto out;
++	case KEY_RSA: {
++			const BIGNUM *n, *e, *d, *iqmp, *p, *q;
++			RSA_get0_key(key->rsa, &n, &e, &d);
++			RSA_get0_crt_params(key->rsa, NULL, NULL, &iqmp);
++			RSA_get0_factors(key->rsa, &p, &q);
++			if ((r = sshbuf_put_bignum2(b, n)) != 0 ||
++			    (r = sshbuf_put_bignum2(b, e)) != 0 ||
++			    (r = sshbuf_put_bignum2(b, d)) != 0 ||
++			    (r = sshbuf_put_bignum2(b, iqmp)) != 0 ||
++			    (r = sshbuf_put_bignum2(b, p)) != 0 ||
++			    (r = sshbuf_put_bignum2(b, q)) != 0)
++				goto out;
++		}
+ 		break;
+ 	case KEY_RSA_CERT:
+ 		if (key->cert == NULL || sshbuf_len(key->cert->certblob) == 0) {
+ 			r = SSH_ERR_INVALID_ARGUMENT;
+ 			goto out;
+ 		}
+-		if ((r = sshbuf_put_stringb(b, key->cert->certblob)) != 0 ||
+-		    (r = sshbuf_put_bignum2(b, key->rsa->d)) != 0 ||
+-		    (r = sshbuf_put_bignum2(b, key->rsa->iqmp)) != 0 ||
+-		    (r = sshbuf_put_bignum2(b, key->rsa->p)) != 0 ||
+-		    (r = sshbuf_put_bignum2(b, key->rsa->q)) != 0)
+-			goto out;
++		{
++			const BIGNUM *d, *iqmp, *p, *q;
++
++			RSA_get0_key(key->rsa, NULL, NULL, &d);
++			RSA_get0_factors(key->rsa, &p, &q);
++			RSA_get0_crt_params(key->rsa, NULL, NULL, &iqmp);
++			if ((r = sshbuf_put_stringb(b, key->cert->certblob)) != 0 ||
++			    (r = sshbuf_put_bignum2(b, d)) != 0 ||
++			    (r = sshbuf_put_bignum2(b, iqmp)) != 0 ||
++			    (r = sshbuf_put_bignum2(b, p)) != 0 ||
++			    (r = sshbuf_put_bignum2(b, q)) != 0)
++				goto out;
++		}
+ 		break;
+-	case KEY_DSA:
+-		if ((r = sshbuf_put_bignum2(b, key->dsa->p)) != 0 ||
+-		    (r = sshbuf_put_bignum2(b, key->dsa->q)) != 0 ||
+-		    (r = sshbuf_put_bignum2(b, key->dsa->g)) != 0 ||
+-		    (r = sshbuf_put_bignum2(b, key->dsa->pub_key)) != 0 ||
+-		    (r = sshbuf_put_bignum2(b, key->dsa->priv_key)) != 0)
+-			goto out;
++	case KEY_DSA: {
++			const BIGNUM *p, *q, *g, *pub_key, *priv_key;
++
++			DSA_get0_pqg(key->dsa, &p, &q, &g);
++			DSA_get0_key(key->dsa, &pub_key, &priv_key);
++			if ((r = sshbuf_put_bignum2(b, p)) != 0 ||
++			    (r = sshbuf_put_bignum2(b, q)) != 0 ||
++			    (r = sshbuf_put_bignum2(b, g)) != 0 ||
++			    (r = sshbuf_put_bignum2(b, pub_key)) != 0 ||
++			    (r = sshbuf_put_bignum2(b, priv_key)) != 0)
++				goto out;
++		}
+ 		break;
+ 	case KEY_DSA_CERT:
+ 		if (key->cert == NULL || sshbuf_len(key->cert->certblob) == 0) {
+ 			r = SSH_ERR_INVALID_ARGUMENT;
+ 			goto out;
+ 		}
+-		if ((r = sshbuf_put_stringb(b, key->cert->certblob)) != 0 ||
+-		    (r = sshbuf_put_bignum2(b, key->dsa->priv_key)) != 0)
+-			goto out;
++		{
++			const BIGNUM *priv_key;
++
++			DSA_get0_key(key->dsa, NULL, &priv_key);
++			if ((r = sshbuf_put_stringb(b, key->cert->certblob)) != 0 ||
++			    (r = sshbuf_put_bignum2(b, priv_key)) != 0)
++				goto out;
++		}
+ 		break;
+ # ifdef OPENSSL_HAS_ECC
+ 	case KEY_ECDSA:
+@@ -2851,18 +2974,51 @@
+ 			r = SSH_ERR_ALLOC_FAIL;
+ 			goto out;
+ 		}
+-		if ((r = sshbuf_get_bignum2(buf, k->dsa->p)) != 0 ||
+-		    (r = sshbuf_get_bignum2(buf, k->dsa->q)) != 0 ||
+-		    (r = sshbuf_get_bignum2(buf, k->dsa->g)) != 0 ||
+-		    (r = sshbuf_get_bignum2(buf, k->dsa->pub_key)) != 0 ||
+-		    (r = sshbuf_get_bignum2(buf, k->dsa->priv_key)) != 0)
+-			goto out;
++		{
++			BIGNUM *p, *q, *g, *pub_key, *priv_key;
++
++			p = BN_new();
++			q = BN_new();
++			g = BN_new();
++			pub_key = BN_new();
++			priv_key = BN_new();
++			if (p == NULL || q == NULL || g == NULL ||
++			    pub_key == NULL || priv_key == NULL ||
++			    (r = sshbuf_get_bignum2(buf, p)) != 0 ||
++			    (r = sshbuf_get_bignum2(buf, q)) != 0 ||
++			    (r = sshbuf_get_bignum2(buf, g)) != 0 ||
++			    (r = sshbuf_get_bignum2(buf, pub_key)) != 0 ||
++			    (r = sshbuf_get_bignum2(buf, priv_key)) != 0 ||
++			    (r = ((DSA_set0_pqg(k->dsa, p, q, g) == 0)
++			    ? SSH_ERR_LIBCRYPTO_ERROR : 0)) != 0) {
++				BN_free(p);
++				BN_free(q);
++				BN_free(g);
++				BN_free(pub_key);
++				BN_free(priv_key);
++				goto out;
++			}
++			if (DSA_set0_key(k->dsa, pub_key, priv_key) == 0) {
++				r = SSH_ERR_LIBCRYPTO_ERROR;
++				BN_free(pub_key);
++				BN_free(priv_key);
++				goto out;
++			}
++		}
+ 		break;
+-	case KEY_DSA_CERT:
+-		if ((r = sshkey_froms(buf, &k)) != 0 ||
+-		    (r = sshkey_add_private(k)) != 0 ||
+-		    (r = sshbuf_get_bignum2(buf, k->dsa->priv_key)) != 0)
+-			goto out;
++	case KEY_DSA_CERT: {
++			BIGNUM *priv_key = BN_new();
++
++			if (priv_key == NULL ||
++			    (r = sshkey_froms(buf, &k)) != 0 ||
++			    (r = sshkey_add_private(k)) != 0 ||
++			    (r = sshbuf_get_bignum2(buf, priv_key)) != 0 ||
++			    (r = ((DSA_set0_key(k->dsa, NULL, priv_key) == 0)
++			    ? SSH_ERR_LIBCRYPTO_ERROR : 0)) != 0) {
++				BN_free(priv_key);
++				goto out;
++			}
++		}
+ 		break;
+ # ifdef OPENSSL_HAS_ECC
+ 	case KEY_ECDSA:
+@@ -2921,29 +3077,89 @@
+ 			r = SSH_ERR_ALLOC_FAIL;
+ 			goto out;
+ 		}
+-		if ((r = sshbuf_get_bignum2(buf, k->rsa->n)) != 0 ||
+-		    (r = sshbuf_get_bignum2(buf, k->rsa->e)) != 0 ||
+-		    (r = sshbuf_get_bignum2(buf, k->rsa->d)) != 0 ||
+-		    (r = sshbuf_get_bignum2(buf, k->rsa->iqmp)) != 0 ||
+-		    (r = sshbuf_get_bignum2(buf, k->rsa->p)) != 0 ||
+-		    (r = sshbuf_get_bignum2(buf, k->rsa->q)) != 0 ||
+-		    (r = ssh_rsa_generate_additional_parameters(k)) != 0)
+-			goto out;
+-		if (BN_num_bits(k->rsa->n) < SSH_RSA_MINIMUM_MODULUS_SIZE) {
++		{
++			BIGNUM *n, *e, *d, *iqmp, *p, *q;
++
++			n = BN_new();
++			e = BN_new();
++			d = BN_new();
++			iqmp = BN_new();
++			p = BN_new();
++			q = BN_new();
++
++			if (n == NULL || e == NULL || d == NULL ||
++			    iqmp == NULL || p == NULL || q == NULL ||
++			    (r = sshbuf_get_bignum2(buf, n)) != 0 ||
++			    (r = sshbuf_get_bignum2(buf, e)) != 0 ||
++			    (r = sshbuf_get_bignum2(buf, d)) != 0 ||
++			    (r = sshbuf_get_bignum2(buf, iqmp)) != 0 ||
++			    (r = sshbuf_get_bignum2(buf, p)) != 0 ||
++			    (r = sshbuf_get_bignum2(buf, q)) != 0 ||
++			    (r = ((RSA_set0_key(k->rsa, n, e, d) == 0)
++			    ? SSH_ERR_LIBCRYPTO_ERROR : 0)) != 0) {
++				BN_free(n);
++				BN_free(e);
++				BN_free(d);
++				BN_free(iqmp);
++				BN_free(p);
++				BN_free(q);
++				goto out;
++			}
++			if (RSA_set0_factors(k->rsa, p, q) == 0) {
++				r = SSH_ERR_LIBCRYPTO_ERROR;
++				BN_free(iqmp);
++				BN_free(p);
++				BN_free(q);
++				goto out;
++			}
++			if ((r = ssh_rsa_generate_additional_parameters(k, iqmp)) != 0) {
++				BN_free(iqmp);
++				goto out;
++			}
++		}
++		if (RSA_bits(k->rsa) < SSH_RSA_MINIMUM_MODULUS_SIZE) {
+ 			r = SSH_ERR_KEY_LENGTH;
+ 			goto out;
+ 		}
+ 		break;
+-	case KEY_RSA_CERT:
+-		if ((r = sshkey_froms(buf, &k)) != 0 ||
+-		    (r = sshkey_add_private(k)) != 0 ||
+-		    (r = sshbuf_get_bignum2(buf, k->rsa->d)) != 0 ||
+-		    (r = sshbuf_get_bignum2(buf, k->rsa->iqmp)) != 0 ||
+-		    (r = sshbuf_get_bignum2(buf, k->rsa->p)) != 0 ||
+-		    (r = sshbuf_get_bignum2(buf, k->rsa->q)) != 0 ||
+-		    (r = ssh_rsa_generate_additional_parameters(k)) != 0)
+-			goto out;
+-		if (BN_num_bits(k->rsa->n) < SSH_RSA_MINIMUM_MODULUS_SIZE) {
++	case KEY_RSA_CERT: {
++			BIGNUM *d, *iqmp, *p, *q;
++
++			/* N and E are already set so make sure we will not overwrite them */
++			d = BN_new();
++			iqmp = BN_new();
++			p = BN_new();
++			q = BN_new();
++
++			if (d == NULL || iqmp == NULL || p == NULL ||
++			    q == NULL ||
++			    (r = sshkey_froms(buf, &k)) != 0 ||
++			    (r = sshkey_add_private(k)) != 0 ||
++			    (r = sshbuf_get_bignum2(buf, d)) != 0 ||
++			    (r = sshbuf_get_bignum2(buf, iqmp)) != 0 ||
++			    (r = sshbuf_get_bignum2(buf, p)) != 0 ||
++			    (r = sshbuf_get_bignum2(buf, q)) != 0 ||
++			    (r = ((RSA_set0_key(k->rsa, NULL, NULL, d) == 0)
++			    ? SSH_ERR_LIBCRYPTO_ERROR : 0)) != 0) {
++				BN_free(d);
++				BN_free(iqmp);
++				BN_free(p);
++				BN_free(q);
++				goto out;
++			}
++			if (RSA_set0_factors(k->rsa, p, q) == 0) {
++				r = SSH_ERR_LIBCRYPTO_ERROR;
++				BN_free(iqmp);
++				BN_free(p);
++				BN_free(q);
++				goto out;
++			}
++			if ((r = ssh_rsa_generate_additional_parameters(k, iqmp)) != 0) {
++				BN_free(iqmp);
++				goto out;
++			}
++		}
++		if (RSA_bits(k->rsa) < SSH_RSA_MINIMUM_MODULUS_SIZE) {
+ 			r = SSH_ERR_KEY_LENGTH;
+ 			goto out;
+ 		}
+@@ -3707,7 +3923,9 @@
+ 		switch (pem_reason) {
+ 		case EVP_R_BAD_DECRYPT:
+ 			return SSH_ERR_KEY_WRONG_PASSPHRASE;
++#ifdef EVP_R_BN_DECODE_ERROR
+ 		case EVP_R_BN_DECODE_ERROR:
++#endif
+ 		case EVP_R_DECODE_ERROR:
+ #ifdef EVP_R_PRIVATE_KEY_DECODE_ERROR
+ 		case EVP_R_PRIVATE_KEY_DECODE_ERROR:
+@@ -3772,7 +3990,7 @@
+ 		r = convert_libcrypto_error();
+ 		goto out;
+ 	}
+-	if (pk->type == EVP_PKEY_RSA &&
++	if (EVP_PKEY_id(pk) == EVP_PKEY_RSA &&
+ 	    (type == KEY_UNSPEC || type == KEY_RSA)) {
+ 		if ((prv = sshkey_new(KEY_UNSPEC)) == NULL) {
+ 			r = SSH_ERR_ALLOC_FAIL;
+@@ -3787,11 +4005,11 @@
+ 			r = SSH_ERR_LIBCRYPTO_ERROR;
+ 			goto out;
+ 		}
+-		if (BN_num_bits(prv->rsa->n) < SSH_RSA_MINIMUM_MODULUS_SIZE) {
++		if (RSA_bits(prv->rsa) < SSH_RSA_MINIMUM_MODULUS_SIZE) {
+ 			r = SSH_ERR_KEY_LENGTH;
+ 			goto out;
+ 		}
+-	} else if (pk->type == EVP_PKEY_DSA &&
++	} else if (EVP_PKEY_id(pk) == EVP_PKEY_DSA &&
+ 	    (type == KEY_UNSPEC || type == KEY_DSA)) {
+ 		if ((prv = sshkey_new(KEY_UNSPEC)) == NULL) {
+ 			r = SSH_ERR_ALLOC_FAIL;
+@@ -3803,7 +4021,7 @@
+ 		DSA_print_fp(stderr, prv->dsa, 8);
+ #endif
+ #ifdef OPENSSL_HAS_ECC
+-	} else if (pk->type == EVP_PKEY_EC &&
++	} else if (EVP_PKEY_id(pk) == EVP_PKEY_EC &&
+ 	    (type == KEY_UNSPEC || type == KEY_ECDSA)) {
+ 		if ((prv = sshkey_new(KEY_UNSPEC)) == NULL) {
+ 			r = SSH_ERR_ALLOC_FAIL;
+--- openssh-7.7p1/ssh-keygen.c
++++ openssh-7.7p1/ssh-keygen.c
+@@ -492,40 +492,68 @@
+ 	free(type);
+ 
+ 	switch (key->type) {
+-	case KEY_DSA:
+-		buffer_get_bignum_bits(b, key->dsa->p);
+-		buffer_get_bignum_bits(b, key->dsa->g);
+-		buffer_get_bignum_bits(b, key->dsa->q);
+-		buffer_get_bignum_bits(b, key->dsa->pub_key);
+-		buffer_get_bignum_bits(b, key->dsa->priv_key);
++	case KEY_DSA: {
++			BIGNUM *p = NULL, *g = NULL, *q = NULL, *pub_key = NULL, *priv_key = NULL;
++
++			if ((p = BN_new()) == NULL ||
++			    (g = BN_new()) == NULL ||
++			    (q = BN_new()) == NULL ||
++			    (pub_key = BN_new()) == NULL ||
++			    (priv_key = BN_new()) == NULL)
++				fatal("BN_new() failed");
++			buffer_get_bignum_bits(b, p);
++			buffer_get_bignum_bits(b, g);
++			buffer_get_bignum_bits(b, q);
++			buffer_get_bignum_bits(b, pub_key);
++			buffer_get_bignum_bits(b, priv_key);
++			if (DSA_set0_pqg(key->dsa, p, q, g) == 0 ||
++			    DSA_set0_key(key->dsa, pub_key, priv_key) == 0)
++				fatal("failed to set DSA key");
++		}
+ 		break;
+-	case KEY_RSA:
+-		if ((r = sshbuf_get_u8(b, &e1)) != 0 ||
+-		    (e1 < 30 && (r = sshbuf_get_u8(b, &e2)) != 0) ||
+-		    (e1 < 30 && (r = sshbuf_get_u8(b, &e3)) != 0))
+-			fatal("%s: buffer error: %s", __func__, ssh_err(r));
+-		e = e1;
+-		debug("e %lx", e);
+-		if (e < 30) {
+-			e <<= 8;
+-			e += e2;
+-			debug("e %lx", e);
+-			e <<= 8;
+-			e += e3;
++	case KEY_RSA: {
++			BIGNUM *bn_e = NULL, *bn_d = NULL, *bn_n = NULL, *bn_iqmp = NULL, *bn_p = NULL, *bn_q = NULL;
++
++			if ((bn_e = BN_new()) == NULL ||
++			    (bn_d = BN_new()) == NULL ||
++			    (bn_n = BN_new()) == NULL ||
++			    (bn_iqmp = BN_new()) == NULL ||
++			    (bn_p = BN_new()) == NULL ||
++			    (bn_q = BN_new()) == NULL)
++				fatal("BN_new() failed");
++
++			if ((r = sshbuf_get_u8(b, &e1)) != 0 ||
++			    (e1 < 30 && (r = sshbuf_get_u8(b, &e2)) != 0) ||
++			    (e1 < 30 && (r = sshbuf_get_u8(b, &e3)) != 0))
++				fatal("%s: buffer error: %s", __func__, ssh_err(r));
++			e = e1;
+ 			debug("e %lx", e);
++			if (e < 30) {
++				e <<= 8;
++				e += e2;
++				debug("e %lx", e);
++				e <<= 8;
++				e += e3;
++				debug("e %lx", e);
++			}
++			if (!BN_set_word(bn_e, e)) {
++				sshbuf_free(b);
++				sshkey_free(key);
++				return NULL;
++			}
++
++			buffer_get_bignum_bits(b, bn_d);
++			buffer_get_bignum_bits(b, bn_n);
++			buffer_get_bignum_bits(b, bn_iqmp);
++			buffer_get_bignum_bits(b, bn_q);
++			buffer_get_bignum_bits(b, bn_p);
++			if (RSA_set0_key(key->rsa, bn_n, bn_e, bn_d) == 0 ||
++			    RSA_set0_factors(key->rsa, bn_p, bn_q) == 0)
++				fatal("Failed to set RSA parameters");
++
++			if ((r = ssh_rsa_generate_additional_parameters(key, bn_iqmp)) != 0)
++				fatal("generate RSA parameters failed: %s", ssh_err(r));
+ 		}
+-		if (!BN_set_word(key->rsa->e, e)) {
+-			sshbuf_free(b);
+-			sshkey_free(key);
+-			return NULL;
+-		}
+-		buffer_get_bignum_bits(b, key->rsa->d);
+-		buffer_get_bignum_bits(b, key->rsa->n);
+-		buffer_get_bignum_bits(b, key->rsa->iqmp);
+-		buffer_get_bignum_bits(b, key->rsa->q);
+-		buffer_get_bignum_bits(b, key->rsa->p);
+-		if ((r = ssh_rsa_generate_additional_parameters(key)) != 0)
+-			fatal("generate RSA parameters failed: %s", ssh_err(r));
+ 		break;
+ 	}
+ 	rlen = sshbuf_len(b);
+@@ -633,7 +661,7 @@
+ 		    identity_file);
+ 	}
+ 	fclose(fp);
+-	switch (EVP_PKEY_type(pubkey->type)) {
++	switch (EVP_PKEY_base_id(pubkey)) {
+ 	case EVP_PKEY_RSA:
+ 		if ((*k = sshkey_new(KEY_UNSPEC)) == NULL)
+ 			fatal("sshkey_new failed");
+@@ -657,7 +685,7 @@
+ #endif
+ 	default:
+ 		fatal("%s: unsupported pubkey type %d", __func__,
+-		    EVP_PKEY_type(pubkey->type));
++		    EVP_PKEY_base_id(pubkey));
+ 	}
+ 	EVP_PKEY_free(pubkey);
+ 	return;
+--- openssh-7.7p1/sshkey.h
++++ openssh-7.7p1/sshkey.h
+@@ -217,7 +217,7 @@
+     const char *passphrase, struct sshkey **keyp, char **commentp);
+ 
+ /* XXX should be internal, but used by ssh-keygen */
+-int ssh_rsa_generate_additional_parameters(struct sshkey *);
++int ssh_rsa_generate_additional_parameters(struct sshkey *, BIGNUM *iqmp);
+ 
+ /* stateful keys (e.g. XMSS) */
+ #ifdef NO_ATTRIBUTE_ON_PROTOTYPE_ARGS
+--- openssh-7.7p1/ssh-keysign.c
++++ openssh-7.7p1/ssh-keysign.c
+@@ -230,7 +230,9 @@
+ 		fatal("could not open any host key");
+ 
+ #ifdef WITH_OPENSSL
++# if OPENSSL_VERSION_NUMBER < 0x10100000L
+ 	OpenSSL_add_all_algorithms();
++# endif
+ 	arc4random_buf(rnd, sizeof(rnd));
+ 	RAND_seed(rnd, sizeof(rnd));
+ #endif
+--- openssh-7.7p1/ssh-pkcs11.c
++++ openssh-7.7p1/ssh-pkcs11.c
+@@ -67,7 +67,7 @@
+ 	struct pkcs11_provider	*provider;
+ 	CK_ULONG		slotidx;
+ 	int			(*orig_finish)(RSA *rsa);
+-	RSA_METHOD		rsa_method;
++	RSA_METHOD		*rsa_method;
+ 	char			*keyid;
+ 	int			keyid_len;
+ };
+@@ -182,6 +182,7 @@
+ 			rv = k11->orig_finish(rsa);
+ 		if (k11->provider)
+ 			pkcs11_provider_unref(k11->provider);
++		RSA_meth_free(k11->rsa_method);
+ 		free(k11->keyid);
+ 		free(k11);
+ 	}
+@@ -326,13 +327,21 @@
+ 		k11->keyid = xmalloc(k11->keyid_len);
+ 		memcpy(k11->keyid, keyid_attrib->pValue, k11->keyid_len);
+ 	}
+-	k11->orig_finish = def->finish;
+-	memcpy(&k11->rsa_method, def, sizeof(k11->rsa_method));
+-	k11->rsa_method.name = "pkcs11";
+-	k11->rsa_method.rsa_priv_enc = pkcs11_rsa_private_encrypt;
+-	k11->rsa_method.rsa_priv_dec = pkcs11_rsa_private_decrypt;
+-	k11->rsa_method.finish = pkcs11_rsa_finish;
+-	RSA_set_method(rsa, &k11->rsa_method);
++	k11->orig_finish = RSA_meth_get_finish(def);
++	if ((k11->rsa_method = RSA_meth_dup(def)) == NULL ||
++	    RSA_meth_set1_name(k11->rsa_method, "pkcs11") == 0 ||
++	    RSA_meth_set_priv_enc(k11->rsa_method, pkcs11_rsa_private_encrypt) == 0 ||
++	    RSA_meth_set_priv_dec(k11->rsa_method, pkcs11_rsa_private_decrypt) == 0 ||
++	    RSA_meth_set_finish(k11->rsa_method, pkcs11_rsa_finish) == 0) {
++		RSA_meth_free(k11->rsa_method);
++		k11->rsa_method = NULL;
++		pkcs11_provider_unref(k11->provider);
++		free(k11->keyid);
++		free(k11);
++		return (-1);
++	}
++
++	RSA_set_method(rsa, k11->rsa_method);
+ 	RSA_set_app_data(rsa, k11);
+ 	return (0);
+ }
+@@ -512,10 +521,15 @@
+ 			if ((rsa = RSA_new()) == NULL) {
+ 				error("RSA_new failed");
+ 			} else {
+-				rsa->n = BN_bin2bn(attribs[1].pValue,
++				BIGNUM *rsa_n, *rsa_e;
++
++				rsa_n = BN_bin2bn(attribs[1].pValue,
+ 				    attribs[1].ulValueLen, NULL);
+-				rsa->e = BN_bin2bn(attribs[2].pValue,
++				rsa_e = BN_bin2bn(attribs[2].pValue,
+ 				    attribs[2].ulValueLen, NULL);
++				if (rsa_n == NULL || rsa_e == NULL ||
++				    RSA_set0_key(rsa, rsa_n, rsa_e, NULL) == 0)
++					error("RSA_set0_key failed");
+ 			}
+ 		} else {
+ 			cp = attribs[2].pValue;
+@@ -525,34 +539,39 @@
+ 			    == NULL) {
+ 				error("d2i_X509 failed");
+ 			} else if ((evp = X509_get_pubkey(x509)) == NULL ||
+-			    evp->type != EVP_PKEY_RSA ||
+-			    evp->pkey.rsa == NULL) {
++			  EVP_PKEY_id(evp) != EVP_PKEY_RSA ||
++			  EVP_PKEY_get0_RSA(evp) == NULL) {
+ 				debug("X509_get_pubkey failed or no rsa");
+-			} else if ((rsa = RSAPublicKey_dup(evp->pkey.rsa))
++				} else if ((rsa = RSAPublicKey_dup(EVP_PKEY_get0_RSA(evp)))
+ 			    == NULL) {
+ 				error("RSAPublicKey_dup");
+ 			}
+ 			X509_free(x509);
+ 		}
+-		if (rsa && rsa->n && rsa->e &&
+-		    pkcs11_rsa_wrap(p, slotidx, &attribs[0], rsa) == 0) {
+-			if ((key = sshkey_new(KEY_UNSPEC)) == NULL)
+-				fatal("sshkey_new failed");
+-			key->rsa = rsa;
+-			key->type = KEY_RSA;
+-			key->flags |= SSHKEY_FLAG_EXT;
+-			if (pkcs11_key_included(keysp, nkeys, key)) {
+-				sshkey_free(key);
++		if (rsa) {
++			const BIGNUM *n, *e;
++
++			RSA_get0_key(rsa, &n, &e, NULL);
++			if (n && e &&
++			    pkcs11_rsa_wrap(p, slotidx, &attribs[0], rsa) == 0) {
++				if ((key = sshkey_new(KEY_UNSPEC)) == NULL)
++					fatal("sshkey_new failed");
++				key->rsa = rsa;
++				key->type = KEY_RSA;
++				key->flags |= SSHKEY_FLAG_EXT;
++				if (pkcs11_key_included(keysp, nkeys, key)) {
++					sshkey_free(key);
++				} else {
++					/* expand key array and add key */
++					*keysp = xrecallocarray(*keysp, *nkeys,
++					    *nkeys + 1, sizeof(struct sshkey *));
++					(*keysp)[*nkeys] = key;
++					*nkeys = *nkeys + 1;
++					debug("have %d keys", *nkeys);
++				}
+ 			} else {
+-				/* expand key array and add key */
+-				*keysp = xrecallocarray(*keysp, *nkeys,
+-				    *nkeys + 1, sizeof(struct sshkey *));
+-				(*keysp)[*nkeys] = key;
+-				*nkeys = *nkeys + 1;
+-				debug("have %d keys", *nkeys);
++				RSA_free(rsa);
+ 			}
+-		} else if (rsa) {
+-			RSA_free(rsa);
+ 		}
+ 		for (i = 0; i < 3; i++)
+ 			free(attribs[i].pValue);
+--- openssh-7.7p1/ssh-pkcs11-client.c
++++ openssh-7.7p1/ssh-pkcs11-client.c
+@@ -144,12 +144,20 @@
+ static int
+ wrap_key(RSA *rsa)
+ {
+-	static RSA_METHOD helper_rsa;
++	static RSA_METHOD *helper_rsa;
+ 
+-	memcpy(&helper_rsa, RSA_get_default_method(), sizeof(helper_rsa));
+-	helper_rsa.name = "ssh-pkcs11-helper";
+-	helper_rsa.rsa_priv_enc = pkcs11_rsa_private_encrypt;
+-	RSA_set_method(rsa, &helper_rsa);
++	if (helper_rsa == NULL) {
++		helper_rsa = RSA_meth_dup(RSA_get_default_method());
++		if (helper_rsa == NULL)
++			return -1;
++		if (RSA_meth_set1_name(helper_rsa, "ssh-pkcs11-helper") == 0 ||
++		    RSA_meth_set_priv_enc(helper_rsa, pkcs11_rsa_private_encrypt) == 0) {
++			RSA_meth_free(helper_rsa);
++			helper_rsa = NULL;
++			return -1;
++		}
++	}
++	RSA_set_method(rsa, helper_rsa);
+ 	return (0);
+ }
+ 
+--- openssh-7.7p1/ssh-rsa.c
++++ openssh-7.7p1/ssh-rsa.c
+@@ -79,12 +79,15 @@
+ 	}
+ }
+ 
++/* Fill in the CRT parameters, calculate d mod (p-1) and d mod (q-1) */
+ int
+-ssh_rsa_generate_additional_parameters(struct sshkey *key)
++ssh_rsa_generate_additional_parameters(struct sshkey *key, BIGNUM *iqmp)
+ {
+ 	BIGNUM *aux = NULL;
++	BIGNUM *dmp1 = NULL;
++	BIGNUM *dmq1 = NULL;
++	const BIGNUM *p, *q, *d;
+ 	BN_CTX *ctx = NULL;
+-	BIGNUM d;
+ 	int r;
+ 
+ 	if (key == NULL || key->rsa == NULL ||
+@@ -99,16 +102,19 @@
+ 	}
+ 	BN_set_flags(aux, BN_FLG_CONSTTIME);
+ 
+-	BN_init(&d);
+-	BN_with_flags(&d, key->rsa->d, BN_FLG_CONSTTIME);
++	RSA_get0_key(key->rsa, NULL, NULL, &d);
++	RSA_get0_factors(key->rsa, &p, &q);
+ 
+-	if ((BN_sub(aux, key->rsa->q, BN_value_one()) == 0) ||
+-	    (BN_mod(key->rsa->dmq1, &d, aux, ctx) == 0) ||
+-	    (BN_sub(aux, key->rsa->p, BN_value_one()) == 0) ||
+-	    (BN_mod(key->rsa->dmp1, &d, aux, ctx) == 0)) {
++	if ((BN_sub(aux, q, BN_value_one()) == 0) ||
++	  (BN_mod(dmq1, d, aux, ctx) == 0) ||
++	  (BN_sub(aux, p, BN_value_one()) == 0) ||
++	  (BN_mod(dmp1, d, aux, ctx) == 0) ||
++	  (RSA_set0_crt_params(key->rsa, dmp1, dmq1, iqmp) == 0)) {
+ 		r = SSH_ERR_LIBCRYPTO_ERROR;
+ 		goto out;
+ 	}
++	dmp1 = NULL;
++	dmq1 = NULL;
+ 	r = 0;
+  out:
+ 	BN_clear_free(aux);
+@@ -139,7 +145,7 @@
+ 	if (key == NULL || key->rsa == NULL || hash_alg == -1 ||
+ 	    sshkey_type_plain(key->type) != KEY_RSA)
+ 		return SSH_ERR_INVALID_ARGUMENT;
+-	if (BN_num_bits(key->rsa->n) < SSH_RSA_MINIMUM_MODULUS_SIZE)
++	if (RSA_bits(key->rsa) < SSH_RSA_MINIMUM_MODULUS_SIZE)
+ 		return SSH_ERR_KEY_LENGTH;
+ 	slen = RSA_size(key->rsa);
+ 	if (slen <= 0 || slen > SSHBUF_MAX_BIGNUM)
+@@ -211,7 +217,7 @@
+ 	    sshkey_type_plain(key->type) != KEY_RSA ||
+ 	    sig == NULL || siglen == 0)
+ 		return SSH_ERR_INVALID_ARGUMENT;
+-	if (BN_num_bits(key->rsa->n) < SSH_RSA_MINIMUM_MODULUS_SIZE)
++	if (RSA_bits(key->rsa) < SSH_RSA_MINIMUM_MODULUS_SIZE)
+ 		return SSH_ERR_KEY_LENGTH;
+ 
+ 	if ((b = sshbuf_from(sig, siglen)) == NULL)
