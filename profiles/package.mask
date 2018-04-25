@@ -35,3 +35,6 @@ dev-java/openjfx
 
 # fails to link
 sci-astronomy/pulsatingscience
+
+# Masked as it should not be used yet (slot 1.0)
+=dev-libs/openssl-1.0.2o-r900
