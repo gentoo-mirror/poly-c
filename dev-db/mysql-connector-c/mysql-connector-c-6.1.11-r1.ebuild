@@ -45,6 +45,7 @@ DOCS=( README )
 PATCHES=(
 	"${FILESDIR}/mysql_com.patch"
 	"${FILESDIR}/20028_all_mysql-5.6-gcc7.patch"
+	"${FILESDIR}/${PN}-6.1.11-openssl-1.1.0.patch"
 )
 
 src_prepare() {
