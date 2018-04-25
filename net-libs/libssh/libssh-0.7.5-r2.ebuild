@@ -37,11 +37,10 @@ S="${WORKDIR}/${MY_P}"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-0.5.0-tests.patch
-	"${FILESDIR}"/${P}-fix-config-parsing.patch
+	"${FILESDIR}"/${PN}-0.7.x-openssl1.1.patch
 	"${FILESDIR}"/${P}-fix-config-buffer-underflow.patch
 	"${FILESDIR}"/${P}-add-macro-for-MAX.patch
 	"${FILESDIR}"/${P}-fix-internal-algo-selection.patch
-	"${FILESDIR}"/${P}-openssl-1.1.0.patch
 )
 
 src_prepare() {
