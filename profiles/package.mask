@@ -38,3 +38,6 @@ sci-astronomy/pulsatingscience
 
 # Masked as it should not be used yet (slot 1.0)
 =dev-libs/openssl-1.0.2o-r900
+
+# revdeps don't build against it yet
+>=media-libs/gegl-0.4.0_pre
