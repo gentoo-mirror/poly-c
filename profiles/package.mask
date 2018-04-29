@@ -40,7 +40,7 @@ sci-astronomy/pulsatingscience
 =dev-libs/openssl-1.0.2o-r900
 
 # revdeps don't build against it yet
->=media-libs/gegl-0.4.0_pre
+#>=media-libs/gegl-0.4.0_pre
 
 # needs gegl-0.4.0
->=media-gfx/gimp-2.10.0_rc99
+#>=media-gfx/gimp-2.10.0_rc99
