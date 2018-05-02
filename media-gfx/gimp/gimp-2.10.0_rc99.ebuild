@@ -30,10 +30,10 @@ RDEPEND="
 	dev-util/gtk-update-icon-cache
 	>=gnome-base/librsvg-2.40.6:2
 	>=media-gfx/mypaint-brushes-1.3.0
-	>=media-libs/babl-0.1.44
+	>=media-libs/babl-0.1.46
 	>=media-libs/fontconfig-2.12.4
 	>=media-libs/freetype-2.1.7
-	>=media-libs/gegl-0.4.0_pre:0.4[cairo]
+	>=media-libs/gegl-0.4.0:0.4[cairo]
 	>=media-libs/gexiv2-0.10.6
 	>=media-libs/harfbuzz-0.9.19
 	>=media-libs/lcms-2.8:2
@@ -53,7 +53,7 @@ RDEPEND="
 	alsa? ( media-libs/alsa-lib )
 	aqua? ( x11-libs/gtk-mac-integration )
 	gnome? ( gnome-base/gvfs )
-	jpeg2k? ( >=media-libs/openjpeg-2.1.0 )
+	jpeg2k? ( >=media-libs/openjpeg-2.1.0:2= )
 	mng? ( media-libs/libmng )
 	openexr? ( >=media-libs/openexr-1.6.1 )
 	postscript? ( app-text/ghostscript-gpl )
@@ -95,13 +95,11 @@ pkg_setup() {
 }
 
 src_prepare() {
-	default
+	gnome2_src_prepare
 
 	sed -i -e 's/== "xquartz"/= "xquartz"/' configure.ac || die #494864
 	sed 's:-DGIMP_DISABLE_DEPRECATED:-DGIMP_protect_DISABLE_DEPRECATED:g' -i configure.ac || die #615144
 	eautoreconf  # If you remove this: remove dev-util/gtk-doc-am from DEPEND, too
-
-	gnome2_src_prepare
 
 	sed 's:-DGIMP_protect_DISABLE_DEPRECATED:-DGIMP_DISABLE_DEPRECATED:g' -i configure || die #615144
 	fgrep -q GIMP_DISABLE_DEPRECATED configure || die #615144, self-test
