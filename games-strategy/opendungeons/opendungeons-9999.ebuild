@@ -10,11 +10,17 @@ MY_PN=OpenDungeons
 
 DESCRIPTION="An open source, real time strategy game based on the Dungeon Keeper series"
 HOMEPAGE="http://opendungeons.github.io/"
-SRC_URI="https://github.com/${MY_PN}/${MY_PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
+if [[ "${PV}" == 9999 ]] ; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/OpenDungeons/OpenDungeons.git"
+else
+	SRC_URI="https://github.com/${MY_PN}/${MY_PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="~amd64 ~x86"
+	S="${WORKDIR}/${MY_PN}-${PV}"
+fi
 
 LICENSE="GPL-3 CC-BY-SA-3.0"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND=">=dev-games/cegui-0.8.0[ogre,opengl]
@@ -30,8 +36,6 @@ RDEPEND=">=dev-games/cegui-0.8.0[ogre,opengl]
 	virtual/opengl"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
-
-S="${WORKDIR}/${MY_PN}-${PV}"
 
 CMAKE_IN_SOURCE_BUILD=1
 
