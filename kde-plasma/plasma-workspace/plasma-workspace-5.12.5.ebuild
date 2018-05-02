@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 6ed2c658078a834e3f8c70b49e8d31499d0d49b2 $
+# $Id: f21293f4fe5cf1822a6f415982e825b49f6772de $
 
 EAPI=6
 
@@ -77,7 +77,7 @@ COMMON_DEPEND="
 	x11-libs/xcb-util
 	x11-libs/xcb-util-image
 	appstream? ( dev-libs/appstream[qt5] )
-	calendar? ( || ( $(add_frameworks_dep kholidays) $(add_kdeapps_dep kholidays) ) )
+	calendar? ( $(add_frameworks_dep kholidays) )
 	geolocation? ( $(add_frameworks_dep networkmanager-qt) )
 	gps? ( sci-geosciences/gpsd )
 	prison? ( $(add_frameworks_dep prison) )
@@ -120,14 +120,13 @@ RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
 	$(add_qt_dep qtconcurrent)
-	x11-proto/xproto
+	x11-base/xorg-proto
 "
 
 PATCHES=(
 	"${FILESDIR}/${PN}-5.4-startkde-script.patch"
 	"${FILESDIR}/${PN}-5.10-startplasmacompositor-script.patch"
 	"${FILESDIR}/${PN}-5.10.4-unused-dep.patch"
-	"${FILESDIR}/${P}-bbc-weather.patch"
 )
 
 RESTRICT+=" test"
@@ -173,9 +172,7 @@ src_install() {
 pkg_postinst () {
 	kde5_pkg_postinst
 
-	echo
 	elog "To enable gpg-agent and/or ssh-agent in Plasma sessions,"
 	elog "edit ${EPREFIX}/etc/plasma/startup/10-agent-startup.sh and"
 	elog "${EPREFIX}/etc/plasma/shutdown/10-agent-shutdown.sh"
-	echo
 }

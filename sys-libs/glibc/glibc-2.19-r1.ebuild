@@ -1,6 +1,8 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: a2b10e2a5c15580ab9c3d500aa7d73fb7f86b27c $
+# $Id: 17506c5708a47d3da844addd112ee732aec260d2 $
+
+EAPI=0
 
 inherit toolchain-glibc
 
