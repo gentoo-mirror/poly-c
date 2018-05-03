@@ -107,7 +107,7 @@ src_prepare() {
 
 src_configure() {
 	local myconf=(
-		GEGL="${EPREFIX}"/usr/bin/gegl-0.3
+		GEGL="${EPREFIX}"/usr/bin/gegl-0.4
 		GDBUS_CODEGEN="${EPREFIX}"/bin/false
 
 		--enable-default-binary
