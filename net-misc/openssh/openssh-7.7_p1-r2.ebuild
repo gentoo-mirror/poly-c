@@ -230,7 +230,8 @@ src_prepare() {
 		"${S}"/sshd_config || die "Failed to remove removed UseLogin option (sshd_config)"
 	eapply "${WORKDIR}"/patch/*.patch
 
-	use X509 || eapply "${FILESDIR}/${PN}-7.7p1-openssl-1.1.0.patch"
+	# Breaks libcrypto
+	#use X509 || eapply "${FILESDIR}/${PN}-7.7p1-openssl-1.1.0.patch"
 
 	eapply_user #473004
 
