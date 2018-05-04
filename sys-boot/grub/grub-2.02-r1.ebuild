@@ -1,20 +1,23 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 7b3b5251bc115a05a3a5e3dc9908791d027cd477 $
+# $Id: 03b5f77360f38bbee6e335c0e6211ab8b55237a3 $
 
 EAPI=6
 
-if [[ ${PV} == 9999  ]]; then
-	GRUB_AUTOGEN=1
-fi
+GRUB_AUTOGEN=1
+GRUB_AUTORECONF=1
 
 if [[ -n ${GRUB_AUTOGEN} ]]; then
 	PYTHON_COMPAT=( python{2_7,3_3,3_4,3_5} )
-	WANT_LIBTOOL=none
-	inherit autotools python-any-r1
+	inherit python-any-r1
 fi
 
-inherit autotools bash-completion-r1 flag-o-matic multibuild pax-utils toolchain-funcs versionator
+if [[ -n ${GRUB_AUTORECONF} ]]; then
+	WANT_LIBTOOL=none
+	inherit autotools
+fi
+
+inherit bash-completion-r1 flag-o-matic multibuild pax-utils toolchain-funcs versionator
 
 if [[ ${PV} != 9999 ]]; then
 	if [[ ${PV} == *_alpha* || ${PV} == *_beta* || ${PV} == *_rc* ]]; then
@@ -37,7 +40,8 @@ PATCHES=(
 	"${FILESDIR}"/gfxpayload.patch
 	"${FILESDIR}"/grub-2.02_beta2-KERNEL_GLOBS.patch
 	"${FILESDIR}"/2.02-multiple-early-initrd.patch
-	"${FILESDIR}"/${P}-freetype_pkgconfig.patch
+	"${FILESDIR}"/2.02-freetype-capitalise-variables.patch
+	"${FILESDIR}"/2.02-freetype-pkg-config.patch
 )
 
 DEJAVU=dejavu-sans-ttf-2.37
@@ -65,7 +69,7 @@ REQUIRED_USE="
 
 # os-prober: Used on runtime to detect other OSes
 # xorriso (dev-libs/libisoburn): Used on runtime for mkrescue
-RDEPEND="
+COMMON_DEPEND="
 	app-arch/xz-utils
 	>=sys-libs/ncurses-5.2-r5:0=
 	debug? (
@@ -78,7 +82,7 @@ RDEPEND="
 	ppc? ( sys-apps/ibm-powerpc-utils sys-apps/powerpc-utils )
 	ppc64? ( sys-apps/ibm-powerpc-utils sys-apps/powerpc-utils )
 "
-DEPEND="${RDEPEND}
+DEPEND="${COMMON_DEPEND}
 	${PYTHON_DEPS}
 	app-misc/pax-utils
 	sys-devel/flex
@@ -97,6 +101,7 @@ DEPEND="${RDEPEND}
 			app-arch/bzip2[static-libs(+)]
 			media-libs/freetype[static-libs(+)]
 			sys-libs/zlib[static-libs(+)]
+			virtual/pkgconfig
 		)
 	)
 	test? (
@@ -114,8 +119,9 @@ DEPEND="${RDEPEND}
 		media-libs/freetype:2
 		virtual/pkgconfig
 	)
+	truetype? ( virtual/pkgconfig )
 "
-RDEPEND+="
+RDEPEND="${COMMON_DEPEND}
 	kernel_linux? (
 		grub_platforms_efi-32? ( sys-boot/efibootmgr )
 		grub_platforms_efi-64? ( sys-boot/efibootmgr )
@@ -123,8 +129,6 @@ RDEPEND+="
 	!multislot? ( !sys-boot/grub:0 !sys-boot/grub-static )
 	nls? ( sys-devel/gettext )
 "
-
-DEPEND+=" !!=media-libs/freetype-2.5.4"
 
 RESTRICT="strip !test? ( test )"
 
@@ -161,8 +165,11 @@ src_prepare() {
 		python_setup
 		bash autogen.sh || die
 	fi
-	autopoint() { :; }
-	eautoreconf
+
+	if [[ -n ${GRUB_AUTORECONF} ]]; then
+		autopoint() { :; }
+		eautoreconf
+	fi
 }
 
 grub_do() {
