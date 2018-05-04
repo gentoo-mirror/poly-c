@@ -1,6 +1,7 @@
 app-arch/xz-utils 5.2.2 5.2.3: utils for managing LZMA compressed files
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-misc/mc 4.8.15 4.8.18-r1 4.8.20-r1: GNU Midnight Commander is a text based file manager
+app-office/dia 0.97.3: Diagram/flowchart creation program
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/python 2.7.14-r1: An interpreted, interactive, object-oriented programming language

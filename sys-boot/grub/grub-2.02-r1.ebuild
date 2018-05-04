@@ -37,6 +37,7 @@ PATCHES=(
 	"${FILESDIR}"/gfxpayload.patch
 	"${FILESDIR}"/grub-2.02_beta2-KERNEL_GLOBS.patch
 	"${FILESDIR}"/2.02-multiple-early-initrd.patch
+	"${FILESDIR}"/${P}-freetype_pkgconfig.patch
 )
 
 DEJAVU=dejavu-sans-ttf-2.37
@@ -155,9 +156,9 @@ src_prepare() {
 	if [[ -n ${GRUB_AUTOGEN} ]]; then
 		python_setup
 		bash autogen.sh || die
-		autopoint() { :; }
-		eautoreconf
 	fi
+	autopoint() { :; }
+	eautoreconf
 }
 
 grub_do() {
