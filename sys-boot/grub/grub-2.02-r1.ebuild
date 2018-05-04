@@ -85,7 +85,10 @@ DEPEND="${RDEPEND}
 	sys-devel/bison
 	sys-apps/help2man
 	sys-apps/texinfo
-	fonts? ( media-libs/freetype:2 )
+	fonts? (
+		media-libs/freetype:2
+		virtual/pkgconfig
+	)
 	grub_platforms_xen? ( app-emulation/xen-tools:= )
 	grub_platforms_xen-32? ( app-emulation/xen-tools:= )
 	static? (
@@ -109,6 +112,7 @@ DEPEND="${RDEPEND}
 	themes? (
 		app-arch/unzip
 		media-libs/freetype:2
+		virtual/pkgconfig
 	)
 "
 RDEPEND+="
