@@ -1,4 +1,4 @@
-DEFINED_PHASES=compile configure install
+DEFINED_PHASES=compile configure install nofetch
 DESCRIPTION=CLI utility to manage Areca RAID controllers
 EAPI=6
 HOMEPAGE=http://www.areca.com.tw/support/s_linux/linux.htm

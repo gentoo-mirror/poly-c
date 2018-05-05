@@ -1,4 +1,4 @@
-DEFINED_PHASES=install postinst postrm prepare setup
+DEFINED_PHASES=install nofetch postinst postrm prepare setup
 DEPEND=app-arch/gzip
 DESCRIPTION=Cisco's Packet Tracer
 EAPI=5
