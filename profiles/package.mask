@@ -44,3 +44,6 @@ sci-astronomy/pulsatingscience
 
 # needs gegl-0.4.0
 #>=media-gfx/gimp-2.10.0_rc99
+
+# Requires masked spidermokey:52
+=sys-auth/polkit-0.114_pre

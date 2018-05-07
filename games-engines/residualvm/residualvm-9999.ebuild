@@ -31,6 +31,10 @@ RDEPEND="
 	virtual/opengl"
 DEPEND="${RDEPEND}"
 
+PATCHES=(
+	"${FILESDIR}/${PN}-0.3.0-freetype_pkgconfig.patch"
+)
+
 src_configure() {
 	# not an autotools script
 	# most configure options currently do nothing, verify on version bump !!!
