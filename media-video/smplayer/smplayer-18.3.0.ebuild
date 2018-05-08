@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: d8ae8f1fe3c6b66de01883e9afbb4086fb6accdb $
+# $Id: 711f309f6bec5f3ca40443059dc4314184fbe82f $
 
 EAPI=6
 
@@ -49,6 +49,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-14.9.0.6966-unbundle-qtsingleapplication.patch" # bug 487544
 	"${FILESDIR}/${PN}-17.1.0-advertisement_crap.patch"
 	"${FILESDIR}/${PN}-18.2.0-jobserver.patch"
+	"${FILESDIR}/${PN}-18.3.0-disable-werror.patch"
 )
 
 src_prepare() {

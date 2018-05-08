@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0a36b29819f2a772457d509dfffd6148bc3becd0 $
+# $Id: f77b64f1217536625de68467f14e730d72412c76 $
 
 EAPI="4"
 
@@ -12,7 +12,7 @@ SRC_URI="http://primates.ximian.com/~flucifredi/man/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm ~arm64 ~hppa ia64 ~m68k ~mips ~ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd"
+KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~m68k ~mips ppc ppc64 s390 sh sparc x86 ~amd64-fbsd ~x86-fbsd"
 IUSE="+lzma nls selinux"
 
 DEPEND="nls? ( sys-devel/gettext )"
@@ -81,7 +81,6 @@ src_configure() {
 
 	echoit \
 	./configure \
-		-confdir=/etc \
 		-bindir="${EPREFIX}"/usr/bin \
 		-confdir="${EPREFIX}"/etc \
 		+sgid +fhs \
