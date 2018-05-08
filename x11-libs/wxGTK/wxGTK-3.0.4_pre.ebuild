@@ -3,11 +3,12 @@
 
 EAPI=6
 
-inherit multilib-minimal poly-c_ebuilds
+inherit multilib-minimal poly-c_eapply
 
 DESCRIPTION="GTK+ version of wxWidgets, a cross-platform C++ GUI toolkit"
 HOMEPAGE="https://wxwidgets.org/"
 SRC_URI="https://github.com/wxWidgets/wxWidgets/releases/download/v${MY_PV}/wxWidgets-${MY_PV}.tar.bz2
+	https://dev.gentoo.org/~leio/distfiles/wxGTK-3.0.3_p20180104.tar.xz
 	doc? ( https://github.com/wxWidgets/wxWidgets/releases/download/v${MY_PV}/wxWidgets-${MY_PV}-docs-html.tar.bz2 )"
 
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
@@ -58,6 +59,14 @@ S="${WORKDIR}/wxWidgets-${MY_PV}"
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.0.3-collision.patch
 )
+
+src_prepare() {
+	local mypatch
+	for mypatch in "${WORKDIR}"/wxGTK-3.0.3_p20180104/*.patch ; do
+		try_apply "${mypatch}"
+	done
+	default
+}
 
 multilib_src_configure() {
 	local myconf
