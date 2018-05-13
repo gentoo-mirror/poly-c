@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 6916173e206e868d2e4bef1e497205b87a538b66 $
+# $Id: dd59406bd52aedcb85d9dd20f1ca7546148978bd $
 
 # Remember: we cannot leverage autotools in this ebuild in order
 #           to avoid circular deps with autotools
@@ -90,7 +90,10 @@ multilib_src_install() {
 }
 
 multilib_src_install_all() {
-	find "${ED}" \( -name '*.a' -o -name '*.la' \) -delete || die
+	find "${ED}" -name '*.la' -delete || die
+	if ! use static-libs ; then
+		find "${ED}" -name "*.a" -delete || die
+	fi
 	rm "${ED%/}"/usr/share/doc/${PF}/COPYING* || die
 }
 
