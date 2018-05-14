@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -21,7 +21,7 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~sh ~sparc ~x86 ~amd
 # +alsa-plugin as discussed in bug #519530
 IUSE="+alsa +alsa-plugin +asyncns bluetooth +caps dbus doc equalizer +gdbm +glib
 gnome gtk ipv6 jack libsamplerate libressl lirc native-headset neon ofono-headset
-+orc oss qt4 realtime selinux sox ssl systemd system-wide tcpd test +udev
++orc oss qt5 realtime selinux sox ssl systemd system-wide tcpd test +udev
 +webrtc-aec +X zeroconf"
 
 # See "*** BLUEZ support not found (requires D-Bus)" in configure.ac
@@ -75,17 +75,9 @@ RDEPEND="
 		!libressl? ( dev-libs/openssl:0= )
 		libressl? ( dev-libs/libressl:= )
 	)
-	|| (
-		(
-			>=media-libs/speex-1.2.0
-			media-libs/speexdsp
-		)
-		(
-			<media-libs/speex-1.2.0
-			>=media-libs/speex-1.2_rc1
-		)
-	)
-	gdbm? ( sys-libs/gdbm )
+	>=media-libs/speex-1.2.0
+	media-libs/speexdsp
+	gdbm? ( sys-libs/gdbm:= )
 	webrtc-aec? ( >=media-libs/webrtc-audio-processing-0.2 )
 	systemd? ( sys-apps/systemd:0=[${MULTILIB_USEDEP}] )
 	dev-libs/libltdl:0
@@ -98,7 +90,7 @@ DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )
 	test? ( >=dev-libs/check-0.9.10 )
 	X? (
-		x11-proto/xproto[${MULTILIB_USEDEP}]
+		x11-base/xorg-proto
 		>=x11-libs/libXtst-1.0.99.2[${MULTILIB_USEDEP}]
 	)
 	dev-libs/libatomic_ops
@@ -114,9 +106,9 @@ PDEPEND="
 
 # alsa-utils dep is for the alsasound init.d script (see bug #155707)
 # bluez dep is for the bluetooth init.d script
-# PyQt4 dep is for the qpaeq script
+# PyQt5 dep is for the qpaeq script
 RDEPEND="${RDEPEND}
-	equalizer? ( qt4? ( dev-python/PyQt4[dbus] ) )
+	equalizer? ( qt5? ( dev-python/PyQt5[dbus] ) )
 	system-wide? (
 		alsa? ( media-sound/alsa-utils )
 		bluetooth? ( >=net-wireless/bluez-5 )
@@ -347,8 +339,8 @@ pkg_postinst() {
 		fi
 	fi
 
-	if use equalizer && ! use qt4; then
-		elog "You've enabled the 'equalizer' USE-flag but not the 'qt4' USE-flag."
+	if use equalizer && ! use qt5; then
+		elog "You've enabled the 'equalizer' USE-flag but not the 'qt5' USE-flag."
 		elog "This will build the equalizer module, but the 'qpaeq' tool"
 		elog "which is required to set equalizer levels will not work."
 	fi
