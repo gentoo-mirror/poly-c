@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 90a239400cdfaad79d5985054472f176a2de6b25 $
+# $Id: 0b52031780bd472bd065167741d96661d8cc2e83 $
 
 EAPI=5
 
@@ -9,8 +9,8 @@ PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} )
 inherit bash-completion-r1 eutils multilib python-r1
 
 if [[ ${PV} == 9999* ]]; then
-	EGIT_REPO_URI="git://git.kernel.org/pub/scm/utils/kernel/${PN}/${PN}.git"
-	inherit autotools git-2
+	EGIT_REPO_URI="https://git.kernel.org/pub/scm/utils/kernel/${PN}/${PN}.git"
+	inherit autotools git-r3
 else
 	SRC_URI="mirror://kernel/linux/utils/kernel/kmod/${P}.tar.xz"
 	KEYWORDS="alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86"
