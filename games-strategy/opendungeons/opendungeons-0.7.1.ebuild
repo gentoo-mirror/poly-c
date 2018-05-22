@@ -23,7 +23,7 @@ RDEPEND=">=dev-games/cegui-0.8.0[ogre,opengl]
 	dev-libs/boost:=
 	media-libs/freetype:2
 	media-libs/glew:=
-	>=media-libs/libsfml-2
+	>=media-libs/libsfml-2:=
 	media-libs/libsndfile
 	media-libs/openal
 	virtual/jpeg
