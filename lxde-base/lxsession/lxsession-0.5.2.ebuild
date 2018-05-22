@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: acb3e77566ee24acb5c55935a0b4a16ea12b9732 $
+# $Id: 6a21d1dc18b454e87e9e43689cbe0be3283e72d5 $
 
 EAPI=6
 inherit vala autotools
@@ -37,7 +37,7 @@ DEPEND="${COMMON_DEPEND}
 	dev-util/intltool
 	sys-devel/gettext
 	virtual/pkgconfig
-	x11-proto/xproto
+	x11-base/xorg-proto
 "
 
 PATCHES=(

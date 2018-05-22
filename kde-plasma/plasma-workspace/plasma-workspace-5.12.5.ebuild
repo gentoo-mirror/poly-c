@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f21293f4fe5cf1822a6f415982e825b49f6772de $
+# $Id: bcf446915c5a7f9146c2ced74c6aa3c502dfbafc $
 
 EAPI=6
 
@@ -10,7 +10,7 @@ VIRTUALX_REQUIRED="test"
 inherit kde5 qmake-utils
 
 DESCRIPTION="KDE Plasma workspace"
-KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+KEYWORDS="amd64 ~arm ~arm64 ~x86"
 IUSE="appstream +calendar geolocation gps prison qalculate +semantic-desktop systemd wayland"
 
 REQUIRED_USE="gps? ( geolocation )"
