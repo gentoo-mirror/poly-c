@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id: 27270a0ad8d445228901162fc1c6e0e38a27db6f $
 
@@ -36,7 +36,7 @@ DEPEND="${COMMON_DEPEND}
 	dev-util/intltool
 	sys-devel/gettext
 	virtual/pkgconfig
-	x11-proto/xproto"
+	x11-base/xorg-proto"
 
 DOCS="AUTHORS ChangeLog README"
 

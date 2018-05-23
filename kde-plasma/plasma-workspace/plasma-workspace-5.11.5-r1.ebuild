@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: b03658be8cf9af8d1011757797446c1c0c6ad95f $
+# $Id: 02ce7d9a59d74d82c0eb5385e52bc5aac4c7ee04 $
 
 EAPI=6
 
@@ -10,7 +10,7 @@ VIRTUALX_REQUIRED="test"
 inherit kde5 qmake-utils
 
 DESCRIPTION="KDE Plasma workspace"
-KEYWORDS="amd64 ~arm ~arm64 ~x86"
+KEYWORDS="amd64 ~arm ~arm64 x86"
 IUSE="appstream +calendar geolocation gps prison qalculate +semantic-desktop systemd wayland"
 
 REQUIRED_USE="gps? ( geolocation )"
@@ -77,7 +77,7 @@ COMMON_DEPEND="
 	x11-libs/xcb-util
 	x11-libs/xcb-util-image
 	appstream? ( dev-libs/appstream[qt5] )
-	calendar? ( $(add_kdeapps_dep kholidays) )
+	calendar? ( $(add_frameworks_dep kholidays) )
 	geolocation? ( $(add_frameworks_dep networkmanager-qt) )
 	gps? ( sci-geosciences/gpsd )
 	prison? ( $(add_frameworks_dep prison) )
@@ -120,13 +120,15 @@ RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
 	$(add_qt_dep qtconcurrent)
-	x11-proto/xproto
+	x11-base/xorg-proto
 "
 
 PATCHES=(
 	"${FILESDIR}/${PN}-5.4-startkde-script.patch"
 	"${FILESDIR}/${PN}-5.10-startplasmacompositor-script.patch"
 	"${FILESDIR}/${PN}-5.10.4-unused-dep.patch"
+	"${FILESDIR}/${P}-CVE-2018-6790.patch"
+	"${FILESDIR}/${P}-CVE-2018-6791.patch"
 )
 
 RESTRICT+=" test"

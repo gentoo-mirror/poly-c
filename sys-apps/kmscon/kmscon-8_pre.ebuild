@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -32,7 +32,7 @@ RDEPEND="${COMMON_DEPEND}
 	x11-misc/xkeyboard-config"
 DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
-	x11-proto/xproto
+	x11-base/xorg-proto
 	doc? ( dev-util/gtk-doc )"
 
 REQUIRED_USE="gles2? ( drm )
