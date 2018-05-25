@@ -1,6 +1,5 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4c17da09db4a30d0ea45102afd3fc4145d00b109 $
 
 EAPI=6
 
@@ -140,7 +139,7 @@ src_install() {
 
 	insinto /etc/zsh
 	export PREFIX_QUOTE_CHAR='"' PREFIX_EXTRA_REGEX="/EUID/s,0,${EUID},"
-	newins "$(prefixify_ro "${FILESDIR}"/zprofile-3)" zprofile
+	newins "$(prefixify_ro "${FILESDIR}"/zprofile-4)" zprofile
 
 	keepdir /usr/share/zsh/site-functions
 	insinto /usr/share/zsh/${PV%_*}/functions/Prompts
