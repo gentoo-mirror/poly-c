@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 396b2366049057f39398834e23b67e1a79b9f6ae $
+# $Id: fc3445a32ddead873e742ed6906bb85fe32a0b75 $
 
 EAPI=6
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://kde/stable/${PN}/${PV}/src/${P}.tar.xz"
 
 LICENSE="LGPL-2.1"
 SLOT="2"
-KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
+KEYWORDS="amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 ~sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 
 IUSE="botan debug doc examples gcrypt gpg libressl logger nss pkcs11 sasl softstore +ssl test"
 
@@ -93,7 +93,7 @@ src_install() {
 
 	if use doc; then
 		pushd "${BUILD_DIR}" >/dev/null || die
-		doxygen Doxyfile.in || die
+		doxygen Doxyfile || die
 		dodoc -r apidocs/html
 		popd >/dev/null || die
 	fi

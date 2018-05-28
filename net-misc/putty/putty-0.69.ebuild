@@ -1,12 +1,12 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 448708462c8971a1ceb60c6f368c6155a0c5a741 $
+# $Id: 1d6f330296b343821d82afe4b7fa51c87287838b $
 
 EAPI=6
 inherit autotools eutils gnome2-utils toolchain-funcs
 
 DESCRIPTION="A Free Telnet/SSH Client"
-HOMEPAGE="http://www.chiark.greenend.org.uk/~sgtatham/putty/"
+HOMEPAGE="https://www.chiark.greenend.org.uk/~sgtatham/putty/"
 LICENSE="MIT"
 
 SLOT="0"
@@ -14,7 +14,7 @@ KEYWORDS="~alpha ~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
 IUSE="doc +gtk gtk3 ipv6 kerberos"
 SRC_URI="
 	https://dev.gentoo.org/~jer/${PN}-icons.tar.bz2
-	http://the.earth.li/~sgtatham/${PN}/latest/${P}.tar.gz
+	https://the.earth.li/~sgtatham/${PN}/latest/${P}.tar.gz
 "
 
 RDEPEND="
