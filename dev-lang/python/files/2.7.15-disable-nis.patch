@@ -1,0 +1,15 @@
+--- a/setup.py	2018-05-08 16:08:42.479599434 +0300
++++ b/setup.py	2018-05-08 16:11:09.777818652 +0300
+@@ -1361,11 +1361,7 @@ class PyBuildExt(build_ext):
+             else:
+                 missing.append('resource')
+ 
+-            nis = self._detect_nis(inc_dirs, lib_dirs)
+-            if nis is not None:
+-                exts.append(nis)
+-            else:
+-                missing.append('nis')
++            missing.append('nis')
+ 
+         # Curses support, requiring the System V version of curses, often
+         # provided by the ncurses library.
