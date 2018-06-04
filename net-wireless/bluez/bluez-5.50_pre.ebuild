@@ -46,6 +46,7 @@ TEST_DEPS="${PYTHON_DEPS}
 
 DEPEND="${CDEPEND}
 	virtual/pkgconfig
+	mesh? ( dev-libs/ell )
 	test? (	${TEST_DEPS} )
 "
 RDEPEND="${CDEPEND}
