@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: fc3445a32ddead873e742ed6906bb85fe32a0b75 $
+# $Id: a1d5bbb0df5fdd602aa52df5b83795aae8a6c834 $
 
 EAPI=6
 
@@ -34,9 +34,11 @@ COMMON_DEPEND="
 	)
 "
 DEPEND="${COMMON_DEPEND}
-	dev-qt/qtnetwork:5
 	doc? ( app-doc/doxygen )
-	test? ( dev-qt/qttest:5 )
+	test? (
+		dev-qt/qtnetwork:5
+		dev-qt/qttest:5
+	)
 "
 RDEPEND="${COMMON_DEPEND}
 	!app-crypt/qca-cyrus-sasl
@@ -49,6 +51,7 @@ RDEPEND="${COMMON_DEPEND}
 PATCHES=(
 	"${FILESDIR}/${PN}-disable-pgp-test.patch"
 	"${FILESDIR}/${P}-c++11.patch"
+	"${FILESDIR}/${P}-deps.patch"
 
 	# All required for the openssl-1.1 patch to apply cleanly.
 	"${FILESDIR}/${P}-aes_gcm_aes_ccm.patch"
