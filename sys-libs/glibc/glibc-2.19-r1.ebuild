@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 17506c5708a47d3da844addd112ee732aec260d2 $
+# $Id: d036a728e44753669f5486727359023d5d97cb35 $
 
 EAPI=0
 
@@ -19,8 +19,7 @@ RELEASE_VER=""
 case ${PV} in
 9999*)
 	EGIT_REPO_URIS="git://sourceware.org/git/glibc.git"
-	EGIT_SOURCEDIRS="${S}"
-	inherit git-2
+	inherit git-r3
 	;;
 *)
 	RELEASE_VER=${PV}
