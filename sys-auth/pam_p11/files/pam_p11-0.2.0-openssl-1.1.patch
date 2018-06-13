@@ -1,0 +1,30 @@
+From 0ff41097392354b22ad5c894ce3bd98d3c1e97fa Mon Sep 17 00:00:00 2001
+From: Peter Popovec <popovec.peter@gmail.com>
+Date: Thu, 17 May 2018 08:51:28 +0200
+Subject: [PATCH] Allow compilation with newer openssl version
+
+from https://www.openssl.org/news/changelog.html#x4:
+   EVP_MD_CTX_cleanup(), EVP_CIPHER_CTX_cleanup() and
+   HMAC_CTX_cleanup() were removed.  HMAC_CTX_reset() and
+   EVP_MD_CTX_reset() should be called instead to reinitialise
+   an already created structure.
+---
+ src/pam_p11.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/pam_p11.c b/src/pam_p11.c
+index 960c164..09aaa3c 100644
+--- a/src/pam_p11.c
++++ b/src/pam_p11.c
+@@ -590,7 +590,11 @@ static int key_verify(pam_handle_t *pamh, int flags, PKCS11_KEY *authkey)
+ 			|| !EVP_SignInit(md_ctx, md)
+ 			|| !EVP_SignUpdate(md_ctx, challenge, sizeof challenge)
+ 			|| !EVP_SignFinal(md_ctx, signature, &siglen, privkey)
++#if OPENSSL_VERSION_NUMBER < 0x10100000L
+ 			|| !EVP_MD_CTX_cleanup(md_ctx)
++#else
++			|| !EVP_MD_CTX_reset(md_ctx)
++#endif
+ 			|| !EVP_VerifyInit(md_ctx, md)
+ 			|| !EVP_VerifyUpdate(md_ctx, challenge, sizeof challenge)
+ 			|| 1 != EVP_VerifyFinal(md_ctx, signature, siglen, pubkey)) {
