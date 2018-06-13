@@ -12,15 +12,21 @@ HOMEPAGE="https://www.openssl.org/"
 SRC_URI="mirror://openssl/source/${MY_P}.tar.gz"
 
 LICENSE="openssl"
+api=""
 SLOT="0/1.1" # .so version of libssl/libcrypto
 if has api098 ${USE} ; then
-	SLOT="0/0.9.8"
+	SLOT="0/api098"
+	api="--api=0.9.8"
+elif has api100 ${USE} ; then
+	SLOT="0/api100"
+	api="--api=1.0.0"
 elif has api110 ${USE} ; then
-	SLOT="0/1.1.0"
+	SLOT="0/api110"
+	api="--api=1.1.0"
 fi
 [[ "${PV}" = *_pre* ]] || \
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
-IUSE="api098 api110 +asm bindist elibc_musl rfc3779 sctp cpu_flags_x86_sse2 static-libs test tls-heartbeat vanilla zlib"
+IUSE="api098 api100 api110 +asm bindist elibc_musl rfc3779 sctp cpu_flags_x86_sse2 static-libs test tls-heartbeat vanilla zlib"
 RESTRICT="!bindist? ( bindist )"
 
 RDEPEND=">=app-misc/c_rehash-1.7-r1
@@ -134,13 +140,6 @@ multilib_src_configure() {
 	#	fi
 	#fi
 
-	local myapi="1.0.0"
-	if use api098 ; then
-		myapi="0.9.8"
-	elif use api110 ; then
-		myapi="1.1.0"
-	fi
-
 	local sslout=$(./gentoo.config)
 	einfo "Use configuration ${sslout:-(openssl knows best)}"
 	local config="Configure"
@@ -150,10 +149,10 @@ multilib_src_configure() {
 	echoit \
 	./${config} \
 		${sslout} \
-		--api=${myapi} \
+		${api} \
 		$(use cpu_flags_x86_sse2 || echo "no-sse2") \
 		enable-camellia \
-		$(usex api110 disable-deprecated enable-deprecated) \
+		$(usex api110 disable-deprecated '') \
 		$(use_ssl !bindist ec) \
 		$(use_ssl !bindist srp) \
 		$(use elibc_musl && echo "no-async") \
