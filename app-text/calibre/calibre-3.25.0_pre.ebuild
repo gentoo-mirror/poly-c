@@ -45,6 +45,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	dev-libs/glib:2=
 	>=dev-libs/icu-57.1:=
 	dev-libs/libinput:=
+	dev-libs/openssl:0=
 	>=dev-python/apsw-3.13.0[${PYTHON_USEDEP}]
 	>=dev-python/beautifulsoup-3.0.5:python-2[${PYTHON_USEDEP}]
 	dev-python/chardet[${PYTHON_USEDEP}]
