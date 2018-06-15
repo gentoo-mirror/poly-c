@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -78,7 +78,7 @@ use_switch() {
 }	
 
 PATCHES=(
-	"${FILESDIR}/${PN}-1.51b-zlib.patch"
+	"${FILESDIR}/${PN}-1.51c-zlib.patch"
 )
 
 src_unpack() {
