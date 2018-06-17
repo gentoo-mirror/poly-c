@@ -12,7 +12,7 @@ PARCH=${P/_}
 
 #HPN_VER="14v15-gentoo1" HPN_PATCH="${PARCH}-hpnssh${HPN_VER}.patch.xz"
 SCTP_VER="1.0" SCTP_PATCH="${PARCH}-sctp-${SCTP_VER}.patch.xz"
-X509_VER="11.3.1" X509_PATCH="${PARCH}-x509-${X509_VER}.patch.xz"
+#X509_VER="11.3.1" X509_PATCH="${PARCH}-x509-${X509_VER}.patch.xz"
 
 # Disable LDAP support until someone will rewrite the patch,
 # upstream removed auth_parse_options() via commit 7c856857607112a3dfe6414696bf4c7ab7fb0cb3
