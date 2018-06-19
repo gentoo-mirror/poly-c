@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: d48f83135200eb7ece814ee60b00887e5a3b4b42 $
+# $Id: b9a58b2abe57ade99b6a16223befc4396d8404e0 $
 
 EAPI=6
 
@@ -10,8 +10,8 @@ inherit user flag-o-matic multilib autotools pam systemd versionator
 # and _p? releases.
 PARCH=${P/_}
 
-#HPN_VER="14v15-gentoo1" HPN_PATCH="${PARCH}-hpnssh${HPN_VER}.patch.xz"
-SCTP_VER="1.0" SCTP_PATCH="${PARCH}-sctp-${SCTP_VER}.patch.xz"
+#HPN_VER="14v15-gentoo2" HPN_PATCH="${PARCH}-hpnssh${HPN_VER}.patch.xz"
+SCTP_VER="1.1" SCTP_PATCH="${PARCH}-sctp-${SCTP_VER}.patch.xz"
 #X509_VER="11.3.1" X509_PATCH="${PARCH}-x509-${X509_VER}.patch.xz"
 
 # Disable LDAP support until someone will rewrite the patch,
