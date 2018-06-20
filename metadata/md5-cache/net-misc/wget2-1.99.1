@@ -1,7 +1,7 @@
 DEFINED_PHASES=configure install
 DEPEND=brotli? ( app-arch/brotli ) bzip2? ( app-arch/bzip2 ) !gnutls? ( dev-libs/libgcrypt:= ) gnutls? ( net-libs/gnutls ) gpgme? ( app-crypt/gpgme dev-libs/libassuan dev-libs/libgpg-error ) http2? ( net-libs/nghttp2 ) idn? ( net-dns/libidn2 ) lzma? ( app-arch/xz-utils ) pcre? ( dev-libs/libpcre2 ) psl? ( net-libs/libpsl ) xattr? ( sys-apps/attr ) zlib? ( sys-libs/zlib ) doc? ( app-doc/doxygen ) valgrind? ( dev-util/valgrind )
 DESCRIPTION=GNU Wget2 is a file and recursive website downloader
-EAPI=6
+EAPI=7
 HOMEPAGE=https://gitlab.com/gnuwget/wget2
 IUSE=brotli bzip2 doc +gnutls gpgme +http2 idn lzma pcre psl test valgrind xattr zlib
 KEYWORDS=~amd64 ~x86
@@ -9,5 +9,5 @@ LICENSE=GPL-3
 RDEPEND=brotli? ( app-arch/brotli ) bzip2? ( app-arch/bzip2 ) !gnutls? ( dev-libs/libgcrypt:= ) gnutls? ( net-libs/gnutls ) gpgme? ( app-crypt/gpgme dev-libs/libassuan dev-libs/libgpg-error ) http2? ( net-libs/nghttp2 ) idn? ( net-dns/libidn2 ) lzma? ( app-arch/xz-utils ) pcre? ( dev-libs/libpcre2 ) psl? ( net-libs/libpsl ) xattr? ( sys-apps/attr ) zlib? ( sys-libs/zlib )
 REQUIRED_USE=valgrind? ( test )
 SLOT=0/0
-SRC_URI=mirror://gnu-alpha/wget/wget2-1.99.0.tar.gz
-_md5_=c529fd937aa568aff2e5e55d9f526e00
+SRC_URI=mirror://gnu-alpha/wget/wget2-1.99.1.tar.gz
+_md5_=0b2fb1e167f366727947154d3cb854c7
