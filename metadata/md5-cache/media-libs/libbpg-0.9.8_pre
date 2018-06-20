@@ -1,5 +1,5 @@
 DEFINED_PHASES=install prepare
-DEPEND=dev-util/cmake
+DEPEND=dev-lang/yasm dev-util/cmake
 DESCRIPTION=BPG (Better Portable Graphics) is a new image format
 EAPI=7
 HOMEPAGE=http://bellard.org/bpg/
@@ -11,4 +11,4 @@ RESTRICT=mirror
 SLOT=0
 SRC_URI=http://bellard.org/bpg/libbpg-0.9.8.tar.gz
 _eclasses_=eutils	5b8ce72259e08104b337fe28c6de5dbc	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435
-_md5_=54314789fc27fab56369964f2f38a4e7
+_md5_=c989f446f25fbb46ef49663f6685e806

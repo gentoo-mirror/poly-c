@@ -13,7 +13,10 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="x265"
 
-DEPEND="dev-util/cmake"
+DEPEND="
+	dev-lang/yasm
+	dev-util/cmake
+"
 
 RDEPEND="media-libs/libjpeg-turbo
 	media-libs/libpng:0
@@ -32,7 +35,7 @@ src_prepare() {
 		-e '/^prefix=/s@/usr/local@/usr@' \
 		-e "/^CFLAGS:=/s@-Os@${CFLAGS}@" \
 		-e "/^LDFLAGS=/s@-g@${LDFLAGS}@" \
-		-e '/install/s@$(prefix)@$(DESTDIR)usr@' \
+		-e '/install/s@$(prefix)@$(DESTDIR)/usr@' \
 		-e '/install/s@-s@@' \
 		-i Makefile || die
 
@@ -44,6 +47,7 @@ src_prepare() {
 }
 
 src_install() {
+	ewarn "D: ${D}"
 	dodir /usr/bin
 	default
 }
