@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8ce813c89ca3d900d4432f30e23aa3a97fecb7ec $
+# $Id: cadc2109835461e21e5541e75fa7a440c5a7bcb4 $
 
 EAPI=6
 
@@ -192,7 +192,7 @@ src_prepare() {
 			einfo "Disabling known non-working MT AES cipher per default ..."
 
 			cat > "${T}"/disable_mtaes.conf <<- EOF
-			
+
 			# HPN's Multi-Threaded AES CTR cipher is currently known to be broken
 			# and therefore disabled per default.
 			DisableMTAES yes
@@ -333,14 +333,22 @@ src_test() {
 	[[ ${#failed[@]}  -gt 0 ]] && die "Some tests failed: ${failed[*]}"
 }
 
-src_install() {
-	emake install-nokeys DESTDIR="${D}"
-	fperms 600 /etc/ssh/sshd_config
-	dobin contrib/ssh-copy-id
-	newinitd "${FILESDIR}"/sshd.rc6.5 sshd
-	newconfd "${FILESDIR}"/sshd-r1.confd sshd
+# Gentoo tweaks to default config files
+tweak_ssh_configs() {
+	# First the server config.
+	cat <<-EOF >> "${ED%/}"/etc/ssh/sshd_config
 
-	newpamd "${FILESDIR}"/sshd.pam_include.2 sshd
+	# Allow client to pass locale environment variables #367017
+	AcceptEnv LANG LC_*
+	EOF
+
+	# Then the client config.
+	cat <<-EOF >> "${ED%/}"/etc/ssh/ssh_config
+
+	# Send locale environment variables #367017
+	SendEnv LANG LC_*
+	EOF
+
 	if use pam ; then
 		sed -i \
 			-e "/^#UsePAM /s:.*:UsePAM yes:" \
@@ -350,23 +358,23 @@ src_install() {
 			"${ED%/}"/etc/ssh/sshd_config || die
 	fi
 
-	# Gentoo tweaks to default config files
-	cat <<-EOF >> "${ED%/}"/etc/ssh/sshd_config
-
-	# Allow client to pass locale environment variables #367017
-	AcceptEnv LANG LC_*
-	EOF
-	cat <<-EOF >> "${ED%/}"/etc/ssh/ssh_config
-
-	# Send locale environment variables #367017
-	SendEnv LANG LC_*
-	EOF
-
 	if use livecd ; then
 		sed -i \
 			-e '/^#PermitRootLogin/c# Allow root login with password on livecds.\nPermitRootLogin Yes' \
 			"${ED%/}"/etc/ssh/sshd_config || die
 	fi
+}
+
+src_install() {
+	emake install-nokeys DESTDIR="${D}"
+	fperms 600 /etc/ssh/sshd_config
+	dobin contrib/ssh-copy-id
+	newinitd "${FILESDIR}"/sshd.rc6.5 sshd
+	newconfd "${FILESDIR}"/sshd-r1.confd sshd
+
+	newpamd "${FILESDIR}"/sshd.pam_include.2 sshd
+
+	tweak_ssh_configs
 
 	if use ldap && [[ -n ${LDAP_PATCH} ]] ; then
 		insinto /etc/openldap/schema/
