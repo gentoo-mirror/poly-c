@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c8bd4fb84d95ae0e36c228127a3f438a00f0b3e3 $
+# $Id: 01ea55f70e524d7ab21f35fd5e09855af2ba2b73 $
 
 EAPI=6
 
@@ -17,7 +17,7 @@ if [[ -n ${GRUB_AUTORECONF} ]]; then
 	inherit autotools
 fi
 
-inherit bash-completion-r1 flag-o-matic multibuild pax-utils toolchain-funcs versionator
+inherit bash-completion-r1 flag-o-matic multibuild pax-utils toolchain-funcs
 
 if [[ ${PV} != 9999 ]]; then
 	if [[ ${PV} == *_alpha* || ${PV} == *_beta* || ${PV} == *_rc* ]]; then
@@ -77,7 +77,7 @@ COMMON_DEPEND="
 	)
 	device-mapper? ( >=sys-fs/lvm2-2.02.45 )
 	libzfs? ( sys-fs/zfs )
-	mount? ( sys-fs/fuse )
+	mount? ( sys-fs/fuse:0 )
 	truetype? ( media-libs/freetype:2= )
 	ppc? ( sys-apps/ibm-powerpc-utils sys-apps/powerpc-utils )
 	ppc64? ( sys-apps/ibm-powerpc-utils sys-apps/powerpc-utils )

@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 225b5cc04f0264111a7196be3d2638a42b138be4 $
+# $Id: e84b7d126a32f2f8c870545280ff3b08e6ac1597 $
 
 EAPI=6
 
@@ -335,18 +335,34 @@ src_test() {
 
 # Gentoo tweaks to default config files.
 tweak_ssh_configs() {
+	local locale_vars=(
+		# These are language variables that POSIX defines.
+		# http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap08.html#tag_08_02
+		LANG LC_ALL LC_COLLATE LC_CTYPE LC_MESSAGES LC_MONETARY LC_NUMERIC LC_TIME
+
+		# These are the GNU extensions.
+		# https://www.gnu.org/software/autoconf/manual/html_node/Special-Shell-Variables.html
+		LANGUAGE LC_ADDRESS LC_IDENTIFICATION LC_MEASUREMENT LC_NAME LC_PAPER LC_TELEPHONE
+	)
+
 	# First the server config.
 	cat <<-EOF >> "${ED%/}"/etc/ssh/sshd_config
 
-	# Allow client to pass locale environment variables #367017
-	AcceptEnv LANG LC_*
+	# Allow client to pass locale environment variables. #367017
+	AcceptEnv ${locale_vars[*]}
+
+	# Allow client to pass COLORTERM to match TERM. #658540
+	AcceptEnv COLORTERM
 	EOF
 
 	# Then the client config.
 	cat <<-EOF >> "${ED%/}"/etc/ssh/ssh_config
 
-	# Send locale environment variables #367017
-	SendEnv LANG LC_*
+	# Send locale environment variables. #367017
+	SendEnv ${locale_vars[*]}
+
+	# Send COLORTERM to match TERM. #658540
+	SendEnv COLORTERM
 	EOF
 
 	if use pam ; then
