@@ -1,0 +1,23 @@
+--- nikto-2.1.6/program/nikto.pl
++++ nikto-2.1.6/program/nikto.pl
+@@ -45,7 +45,7 @@
+ $VARIABLES{'DIV'}        = "-" x 75;
+ $VARIABLES{'name'}       = "Nikto";
+ $VARIABLES{'version'}    = "2.1.6";
+-$VARIABLES{'configfile'} = "/etc/nikto.conf";    ### Change if it's having trouble finding it
++$VARIABLES{'configfile'} = "/etc/nikto/nikto.conf";    ### Change if it's having trouble finding it
+ 
+ # signal trap so we can close down reports properly
+ $SIG{'INT'} = \&safe_quit;
+@@ -54,10 +54,9 @@
+ setup_dirs();
+ require "$CONFIGFILE{'PLUGINDIR'}/nikto_core.plugin";
+ nprint("T:" . localtime($COUNTERS{'scan_start'}) . ": Starting", "d");
+-require "$CONFIGFILE{'PLUGINDIR'}/LW2.pm";
+ $VARIABLES{'GMTOFFSET'} = gmt_offset();
+ 
+-# use LW2;                   ### Change this line to use a different installed version
++use LW2;                   ### Change this line to use a different installed version
+ 
+ #set SSL Engine
+ LW2::init_ssl_engine($CONFIGFILE{'LW_SSL_ENGINE'});

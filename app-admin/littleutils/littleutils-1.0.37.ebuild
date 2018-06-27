@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI=7
 
 DESCRIPTION="The littleutils are a collection of small and simple utilities"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.xz"
@@ -21,6 +21,6 @@ DEPEND="png? (
 src_install (){
 	default
 	# Following are colliding with app-admin/realpath:
-	rm "${D}/usr/bin/realpath"
-	rm "${D}/usr/share/man/man1/realpath.1"
+	rm "${ED}/usr/bin/realpath"
+	rm "${ED}/usr/share/man/man1/realpath.1"
 }

@@ -1,13 +1,13 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id $
 
-EAPI=5
+EAPI=7
 
-inherit autotools eutils
+inherit autotools
 
 DESCRIPTION="sudosh is a sudo shell, filter and can be used as a login shell"
-HOMEPAGE="http://sourceforge.net/projects/sudosh2"
+HOMEPAGE="https://github.com/squash/sudosh2"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tgz"
 
 LICENSE="GPL-2"
@@ -17,8 +17,12 @@ IUSE=""
 RDEPEND=""
 DEPENDS="virtual/logger"
 
+PATCHES=(
+	"${FILESDIR}/${P}-makefile.patch"
+)
+
 src_prepare() {
-	epatch "${FILESDIR}/${P}-makefile.patch"
+	default
 	mv configure.{in,ac} || die
 	eautoreconf
 }

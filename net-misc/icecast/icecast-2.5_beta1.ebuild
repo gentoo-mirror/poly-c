@@ -10,7 +10,7 @@ SRC_URI="http://downloads.xiph.org/releases/icecast/${P/_/-}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ppc ppc64 x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~x86-fbsd"
 IUSE="kate libressl logrotate +speex +ssl +theora +yp"
 
 #Although there is a --with-ogg and --with-orbis configure option, they're
@@ -30,7 +30,7 @@ DEPEND="dev-libs/libxslt
 	)"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${PN}-2.4.99.1"
+S="${WORKDIR}/${PN}-2.4.99.${PV##*_beta}"
 
 PATCHES=(
 	# bug #368539

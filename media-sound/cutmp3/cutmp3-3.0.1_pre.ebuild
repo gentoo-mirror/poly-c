@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI=7
 
-inherit eutils poly-c_ebuilds
+inherit poly-c_ebuilds
 
 PATCH="${PN}-2.0.2-gentoo.patch"
 

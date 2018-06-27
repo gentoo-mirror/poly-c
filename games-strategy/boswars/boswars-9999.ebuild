@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit eutils scons-utils games subversion
+inherit desktop scons-utils subversion
 
 ESVN_REPO_URI="svn://bos.seul.org/svn/bos/bos/trunk"
 
@@ -36,9 +36,9 @@ PATCHES=(
 
 src_prepare() {
 	rm -f doc/{README-SDL.txt,guichan-copyright.txt}
-	epatch "${PATCHES[@]}"
+	default
 	sed -i \
-		-e "s:@GENTOO_DATADIR@:${GAMES_DATADIR}/${PN}:" \
+		-e "s:@GENTOO_DATADIR@:/usr/share/${PN}:" \
 		engine/include/stratagus.h \
 		|| die "sed stratagus.h failed"
 	sed -i \
@@ -52,13 +52,13 @@ src_compile() {
 }
 
 src_install() {
-	newgamesbin build/${PN}-release ${PN}
-	insinto "${GAMES_DATADIR}"/${PN}
+	newbin build/${PN}-release ${PN}
+	insinto /usr/share/${PN}
 	doins -r campaigns graphics intro languages maps patches scripts \
 		sounds units
 	newicon "${FILESDIR}"/bos.png ${PN}.png
 	make_desktop_entry ${PN} "Bos Wars"
 	dodoc CHANGELOG COPYRIGHT.txt README.txt
-	dohtml -r doc/*
-	prepgamesdirs
+	docinto html
+	dodoc -r doc/*.html
 }

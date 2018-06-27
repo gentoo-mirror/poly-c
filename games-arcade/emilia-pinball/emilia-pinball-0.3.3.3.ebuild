@@ -3,7 +3,7 @@
 # $Id: 0778efd94d9a99a807f266613481f741f9a113f7 $
 
 EAPI=6
-inherit autotools eutils user
+inherit autotools desktop user
 
 MY_PN="${PN/emilia-/}"
 MY_P="${MY_PN}-${PV}"

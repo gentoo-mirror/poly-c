@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=7
 
-inherit eutils flag-o-matic poly-c_ebuilds
+inherit flag-o-matic poly-c_ebuilds
 
 DESCRIPTION="Advanced TFTP implementation client/server"
 HOMEPAGE="http://sourceforge.net/projects/atftp/"
@@ -24,6 +24,7 @@ RDEPEND="${DEPEND}
 	!net-ftp/tftp-hpa"
 
 src_prepare() {
+	default
 	# remove upstream's broken CFLAGS
 	sed -i.orig -e \
 		'/^CFLAGS="-g -Wall -D_REENTRANT"/d' \
@@ -32,12 +33,13 @@ src_prepare() {
 
 src_compile() {
 	append-flags -D_REENTRANT -DRATE_CONTROL
-	econf \
-		$(use_enable tcpd libwrap) \
-		$(use_enable readline libreadline) \
-		$(use_enable pcre libpcre) \
+	local myeconfargs=(
+		$(use_enable tcpd libwrap)
+		$(use_enable readline libreadline)
+		$(use_enable pcre libpcre)
 		--enable-mtftp
-	emake CFLAGS="${CFLAGS}"
+	)
+	econf "${myeconfargs[@]}"
 }
 
 src_install() {

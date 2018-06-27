@@ -1,3 +1,0 @@
-Just fixing a dependency issue when building from stage1 which base-system
-doesn't agree with:
-https://bugs.gentoo.org/227441
