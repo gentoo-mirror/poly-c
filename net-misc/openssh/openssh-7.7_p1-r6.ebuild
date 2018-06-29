@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e84b7d126a32f2f8c870545280ff3b08e6ac1597 $
+# $Id: 2d068fd5c8e6cf149977c2eee5d9736234174b97 $
 
 EAPI=6
 
@@ -297,6 +297,9 @@ src_configure() {
 		$(use_with ssl md5-passwords)
 		$(use_with ssl ssl-engine)
 	)
+
+	# stackprotect is broken on musl x86
+	use elibc_musl && use x86 && myconf+=( --without-stackprotect )
 
 	# The seccomp sandbox is broken on x32, so use the older method for now. #553748
 	use amd64 && [[ ${ABI} == "x32" ]] && myconf+=( --with-sandbox=rlimit )
