@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: bc92a886e21c7eabbbdb209062c151c0efdb767b $
+# $Id: 2b29ae727520312a90685865307071e09fc1459c $
 
 EAPI=6
 
@@ -8,7 +8,7 @@ GRUB_AUTOGEN=1
 GRUB_AUTORECONF=1
 
 if [[ -n ${GRUB_AUTOGEN} ]]; then
-	PYTHON_COMPAT=( python{2_7,3_3,3_4,3_5} )
+	PYTHON_COMPAT=( python{2_7,3_3,3_4,3_5,3_6} )
 	inherit python-any-r1
 fi
 

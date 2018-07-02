@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 #
-# polyc_eapply.eclass: eclass for all _pre ebuilds cr
+# polyc_eapply.eclass: eclass for all _pre ebuilds
 
 inherit poly-c_ebuilds
 
