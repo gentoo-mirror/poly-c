@@ -13,6 +13,8 @@ SLOT="1.33"
 KEYWORDS="alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 s390 sh ~sparc x86 ~x64-cygwin ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
+RDEPEND="!<${CATEGORY}/${PN}-1.35:0"
+
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.33-CVE-2017-14062.patch
 	"${FILESDIR}"/${PN}-1.33-parallel-make.patch
@@ -20,9 +22,6 @@ PATCHES=(
 
 src_prepare() {
 	default
-
-	# bundled, with wrong bytecode
-	rm "${S}/java/${P}.jar" || die
 
 	# prevent triggering doc updates after punycode.c patch
 	touch doc/texi/punycode* doc/man/punycode* doc/libidn.info || die
