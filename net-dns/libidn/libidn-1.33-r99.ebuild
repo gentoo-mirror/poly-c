@@ -2,11 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-inherit multilib-minimal libtool
+inherit autotools multilib-minimal libtool
 
 DESCRIPTION="Internationalized Domain Names (IDN) implementation"
 HOMEPAGE="https://www.gnu.org/software/libidn/"
-SRC_URI="mirror://gnu/libidn/${P}.tar.gz"
+SRC_URI="mirror://gnu/libidn/${P}.tar.gz
+	https://dev.gentoo.org/~polynomial-c/${P}-security_backports-01.tar.xz"
 
 LICENSE="GPL-2 GPL-3 LGPL-3"
 SLOT="1.33"
@@ -16,16 +17,19 @@ IUSE=""
 RDEPEND="!<${CATEGORY}/${PN}-1.35:0"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-1.33-CVE-2017-14062.patch
 	"${FILESDIR}"/${PN}-1.33-parallel-make.patch
 )
 
 src_prepare() {
 	default
 
-	# prevent triggering doc updates after punycode.c patch
-	touch doc/texi/punycode* doc/man/punycode* doc/libidn.info || die
+	eapply "${WORKDIR}"/patches
 
+	# breaks eautoreconf
+	sed '/AM_INIT_AUTOMAKE/s@ -Werror@@' -i configure.ac || die
+	# Breaks build because --disable-gtk-doc* gets ignored
+	sed '/^SUBDIRS/s@ doc@@' -i Makefile.am || die
+	eautoreconf
 	elibtoolize  # for Solaris shared objects
 }
 
