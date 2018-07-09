@@ -1,0 +1,11 @@
+DEFINED_PHASES=install
+DEPEND=png? ( media-gfx/pngcrush media-gfx/pngrewrite )
+DESCRIPTION=The littleutils are a collection of small and simple utilities
+EAPI=7
+HOMEPAGE=http://sourceforge.net/projects/littleutils/
+IUSE=png
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+SLOT=0
+SRC_URI=mirror://sourceforge/littleutils/littleutils-1.0.39.tar.xz
+_md5_=6e4f4f233fb6516ea7047bf603cb6f56
