@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: aae43ea14cd3ea30f46af76ded89ef8f89fb5e1f $
+# $Id: 5b563ea9d02197d978b02ca1d087b2413e7c6a40 $
 
 EAPI=6
 
@@ -31,3 +31,5 @@ DEPEND="
 "
 
 RDEPEND="${DEPEND}"
+
+PATCHES=( "${FILESDIR}/${P}-wrong-port-avail.patch" )

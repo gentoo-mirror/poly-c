@@ -1,16 +1,16 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: a840ca91bf10f143608a23e70d8980f57e677690 $
+# $Id: b09e0c65e66c5f21198fb335c6adabb1c9388b46 $
 
 EAPI=6
 
-inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal toolchain-funcs udev user versionator poly-c_ebuilds
+inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal toolchain-funcs udev user versionator
 
-if [[ ${MY_PV} = 9999* ]]; then
+if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="https://github.com/systemd/systemd.git"
 	inherit git-r3
 else
-	SRC_URI="https://github.com/systemd/systemd/archive/v${MY_PV}.tar.gz -> systemd-${MY_PV}.tar.gz"
+	SRC_URI="https://github.com/systemd/systemd/archive/v${PV}.tar.gz -> systemd-${PV}.tar.gz"
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 
 	FIXUP_PATCH="${PN}-239-revert-systemd-messup.patch"
@@ -53,7 +53,7 @@ RDEPEND="${COMMON_DEPEND}
 PDEPEND=">=sys-apps/hwids-20140304[udev]
 	>=sys-fs/udev-init-scripts-26"
 
-S="${WORKDIR}/systemd-${MY_PV}"
+S="${WORKDIR}/systemd-${PV}"
 EGIT_CHECKOUT_DIR="${S}"
 
 pkg_setup() {
@@ -65,13 +65,13 @@ pkg_setup() {
 		local MINKV=2.6.39
 
 		if kernel_is -lt ${MINKV//./ }; then
-			eerror "Your running kernel is too old to run this version of ${MY_P}"
+			eerror "Your running kernel is too old to run this version of ${P}"
 			eerror "You need to upgrade kernel at least to ${MINKV}"
 		fi
 
 		if kernel_is -lt 3 7; then
 			ewarn "Your running kernel is too old to have firmware loader and"
-			ewarn "this version of ${MY_P} doesn't have userspace firmware loader"
+			ewarn "this version of ${P} doesn't have userspace firmware loader"
 			ewarn "If you need firmware support, you need to upgrade kernel at least to 3.7"
 		fi
 	fi
@@ -86,6 +86,7 @@ src_prepare() {
 
 	local PATCHES=(
 		"${FILESDIR}/236-uucp-group.patch"
+		"${FILESDIR}/239-basic-add-missing-comma-in-raw_clone-assembly-for-sp.patch"
 	)
 
 	default
