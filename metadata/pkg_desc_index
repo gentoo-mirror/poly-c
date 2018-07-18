@@ -6,7 +6,7 @@ app-shells/rssh 2.3.4: Restricted shell for SSHd
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-libs/openssl 1.0.2o-r3: full-strength general purpose cryptography library (including SSL and TLS)
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
-dev-qt/qtnetwork 5.9.4: Network abstraction library for the Qt5 framework
+dev-qt/qtnetwork 5.9.4 5.9.6: Network abstraction library for the Qt5 framework
 gnome-base/gnome-vfs 2.24.4-r5: Gnome Virtual Filesystem
 kde-apps/kde-wallpapers 15.08.3 15.08.3-r2: KDE wallpapers
 kde-plasma/plasma-workspace 5.12.5: KDE Plasma workspace
