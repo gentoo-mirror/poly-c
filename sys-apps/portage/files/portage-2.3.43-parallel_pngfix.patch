@@ -27,7 +27,7 @@ index 8d53040b66..2bf0200798 100644
 +	if xargs --help | grep -q -- --max-procs=; then
 +		jobs=$(makeopts_jobs)
 +		if [[ ${jobs} -gt 1 ]]; then
-+			xargs+=(--max-procs=${jobs})
++			xargs+=(--max-procs=${jobs} -L ${jobs})
 +		fi
 +	fi
 +
