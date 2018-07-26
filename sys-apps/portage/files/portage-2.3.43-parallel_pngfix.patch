@@ -1,0 +1,45 @@
+From ea2101abde676b7974d91659fdd05791b017c9ed Mon Sep 17 00:00:00 2001
+From: Zac Medico <zmedico@gentoo.org>
+Date: Wed, 25 Jul 2018 12:43:24 -0700
+Subject: [PATCH] install-qa-check.d/60pngfix: parallel support (bug 630292)
+
+If xargs supports the --max-procs option then use the makeopts_jobs
+function from helper-functions.sh to generate a --max-procs argument.
+
+Bug: https://bugs.gentoo.org/630292
+---
+ bin/install-qa-check.d/60pngfix | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/bin/install-qa-check.d/60pngfix b/bin/install-qa-check.d/60pngfix
+index 8d53040b66..2bf0200798 100644
+--- a/bin/install-qa-check.d/60pngfix
++++ b/bin/install-qa-check.d/60pngfix
+@@ -1,7 +1,17 @@
+ # Check for issues with PNG files
+ 
++source "${PORTAGE_BIN_PATH}/helper-functions.sh" || exit 1
++
+ pngfix_check() {
+-	local pngfix=$(type -P pngfix)
++	local jobs pngfix=$(type -P pngfix) xargs=(${XARGS})
++
++	if xargs --help | grep -q -- --max-procs=; then
++		jobs=$(makeopts_jobs)
++		if [[ ${jobs} -gt 1 ]]; then
++			xargs+=(--max-procs=${jobs})
++		fi
++	fi
++
+ 	if [[ -n ${pngfix} ]] ; then
+ 		local pngout=()
+ 		local next
+@@ -25,7 +35,7 @@ pngfix_check() {
+ 				fi
+ 				eqawarn "   ${pngout[@]:7}: ${error}"
+ 			fi
+-		done < <(find "${ED}" -type f -name '*.png' -exec "${pngfix}" {} +)
++		done < <(find "${ED}" -type f -name '*.png' -print0 | "${xargs[@]}" -0 "${pngfix}")
+ 	fi
+ }
+ 
