@@ -1,18 +1,25 @@
-From ea2101abde676b7974d91659fdd05791b017c9ed Mon Sep 17 00:00:00 2001
+From 2b1b63b4dab9e58706802aa430ab96516f7ee87c Mon Sep 17 00:00:00 2001
 From: Zac Medico <zmedico@gentoo.org>
 Date: Wed, 25 Jul 2018 12:43:24 -0700
 Subject: [PATCH] install-qa-check.d/60pngfix: parallel support (bug 630292)
 
 If xargs supports the --max-procs option then use the makeopts_jobs
 function from helper-functions.sh to generate a --max-procs argument.
+Use xargs -L 1 to limit the number of png files per pngfix process,
+in order to ensure that enough processes are spawned, since otherwise
+xargs minimizes the number of processes spawned. A benchmark with
+flightgear-data-2018.2.1 shows that larger values of -L only decrease
+performance.
 
 Bug: https://bugs.gentoo.org/630292
+Reviewed-by: Lars Wendler <polynomial-c@gentoo.org>
+Reviewed-by: Mike Gilbert <floppym@gentoo.org>
 ---
  bin/install-qa-check.d/60pngfix | 14 ++++++++++++--
  1 file changed, 12 insertions(+), 2 deletions(-)
 
 diff --git a/bin/install-qa-check.d/60pngfix b/bin/install-qa-check.d/60pngfix
-index 8d53040b66..2bf0200798 100644
+index 8d53040b66..12f57d73b2 100644
 --- a/bin/install-qa-check.d/60pngfix
 +++ b/bin/install-qa-check.d/60pngfix
 @@ -1,7 +1,17 @@
@@ -22,12 +29,12 @@ index 8d53040b66..2bf0200798 100644
 +
  pngfix_check() {
 -	local pngfix=$(type -P pngfix)
-+	local jobs pngfix=$(type -P pngfix) xargs=(${XARGS})
++	local chunksize=1 jobs pngfix=$(type -P pngfix) xargs=(${XARGS})
 +
 +	if xargs --help | grep -q -- --max-procs=; then
 +		jobs=$(makeopts_jobs)
 +		if [[ ${jobs} -gt 1 ]]; then
-+			xargs+=(--max-procs=${jobs} -L ${jobs})
++			xargs+=("--max-procs=${jobs}" -L "${chunksize}")
 +		fi
 +	fi
 +
