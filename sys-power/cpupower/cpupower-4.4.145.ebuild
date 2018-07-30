@@ -1,17 +1,18 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=5
-inherit eutils multilib toolchain-funcs
+EAPI=6
+
+# eutils: strip-linguas
+inherit eutils systemd toolchain-funcs
 
 DESCRIPTION="Shows and sets processor power related values"
-HOMEPAGE="http://www.kernel.org/"
+HOMEPAGE="https://www.kernel.org/"
 SRC_URI="mirror://kernel/linux/kernel/v4.x/linux-${PV}.tar.xz"
 
 LICENSE="GPL-2"
-SLOT="0"
-KEYWORDS="~amd64 ~arm ~x86"
+SLOT="0/0"
+KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86"
 IUSE="cpufreq_bench debug nls"
 
 # File collision w/ headers of the deprecated cpufrequtils
@@ -20,12 +21,11 @@ RDEPEND="sys-apps/pciutils
 	!sys-power/cpufrequtils"
 DEPEND="${RDEPEND}
 	virtual/os-headers
-	virtual/pkgconfig
 	nls? ( sys-devel/gettext )"
 
-S=${WORKDIR}/linux-${PV}/tools/power/${PN}
+S="${WORKDIR}/linux-${PV}/tools/power/${PN}"
 
-pkg_setup() {
+src_compile() {
 	myemakeargs=(
 		DEBUG=$(usex debug true false)
 		V=1
@@ -38,37 +38,26 @@ pkg_setup() {
 		CC="$(tc-getCC)"
 		LD="$(tc-getCC)"
 		STRIP=true
-		LDFLAGS="${LDFLAGS}"
-		OPTIMIZATION="${CFLAGS}"
-		)
-}
+		OPTIMIZATION=
+		VERSION=${PV}
+	)
 
-src_unpack() {
-	tar -xf "${DISTDIR}"/linux-${PV}.tar.xz \
-		linux-${PV}/tools/power/${PN} \
-		linux-${PV}/Makefile \
-		|| die
-}
+	if [[ -n ${LINGUAS+set} ]]; then
+		strip-linguas -i po
+		myemakeargs+=( LANGUAGES="${LINGUAS}" )
+	fi
 
-src_prepare() {
-	# -Wl,--as-needed compat
-	local libs="-lcpupower -lrt $($(tc-getPKG_CONFIG) --libs-only-l libpci)"
-	sed -i \
-		-e "/$libs/{ s,${libs},,g; s,\$, ${libs},g;}" \
-		-e "s:-O1 -g::" \
-		Makefile || die
-
-	strip-linguas -i po/
-}
-
-src_compile() {
-	emake "${myemakeargs[@]}" LANGUAGES="${LINGUAS}"
+	emake "${myemakeargs[@]}"
 }
 
 src_install() {
-	emake DESTDIR="${D}" "${myemakeargs[@]}" install LANGUAGES="${LINGUAS}"
+	emake DESTDIR="${D}" "${myemakeargs[@]}" install
+	doheader lib/cpufreq.h
 	dodoc README ToDo
 
-	newconfd "${FILESDIR}"/conf.d-r2 ${PN}
-	newinitd "${FILESDIR}"/init.d-r4 ${PN}
+	newconfd "${FILESDIR}"/conf.d-r2 cpupower
+	newinitd "${FILESDIR}"/init.d-r4 cpupower
+
+	systemd_dounit "${FILESDIR}"/cpupower-frequency-set.service
+	systemd_install_serviced "${FILESDIR}"/cpupower-frequency-set.service.conf
 }
