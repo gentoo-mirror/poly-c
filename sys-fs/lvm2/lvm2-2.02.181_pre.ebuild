@@ -1,8 +1,8 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-inherit autotools eutils linux-info multilib systemd toolchain-funcs udev flag-o-matic poly-c_ebuilds poly-c_ebuilds
+inherit autotools eutils linux-info multilib systemd toolchain-funcs udev flag-o-matic poly-c_ebuilds
 
 DESCRIPTION="User-land utilities for LVM2 (device-mapper) software"
 HOMEPAGE="https://sourceware.org/lvm2/"
@@ -11,13 +11,14 @@ SRC_URI="ftp://sourceware.org/pub/lvm2/${PN/lvm/LVM}.${MY_PV}.tgz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="readline static static-libs systemd clvm cman corosync lvm1 lvm2create_initrd openais sanlock selinux +udev +thin device-mapper-only"
-REQUIRED_USE="device-mapper-only? ( !clvm !cman !corosync !lvm1 !lvm2create_initrd !openais !sanlock !thin )
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
+IUSE="readline static static-libs systemd clvm cman corosync lvm2create_initrd openais sanlock selinux +udev +thin device-mapper-only"
+REQUIRED_USE="device-mapper-only? ( !clvm !cman !corosync !lvm2create_initrd !openais !sanlock !thin )
 	systemd? ( udev )
 	clvm? ( !systemd )"
 
 DEPEND_COMMON="
+	dev-libs/libaio
 	clvm? (
 		cman? ( =sys-cluster/cman-3* )
 		corosync? ( sys-cluster/corosync )
@@ -57,17 +58,19 @@ S=${WORKDIR}/${PN/lvm/LVM}.${MY_PV}
 
 PATCHES=(
 	# Gentoo specific modification(s):
-	"${FILESDIR}"/${PN}-2.02.129-example.conf.in.patch
+	"${FILESDIR}"/${PN}-2.02.178-example.conf.in.patch
 
 	# For upstream -- review and forward:
 	"${FILESDIR}"/${PN}-2.02.63-always-make-static-libdm.patch
 	"${FILESDIR}"/${PN}-2.02.56-lvm2create_initrd.patch
 	"${FILESDIR}"/${PN}-2.02.67-createinitrd.patch #301331
 	"${FILESDIR}"/${PN}-2.02.99-locale-muck.patch #330373
-	"${FILESDIR}"/${PN}-2.02.174-asneeded.patch # -Wl,--as-needed
-	"${FILESDIR}"/${PN}-2.02.174-dynamic-static-ldflags.patch #332905
-	"${FILESDIR}"/${PN}-2.02.174-static-pkgconfig-libs.patch #370217, #439414 + blkid
+	"${FILESDIR}"/${PN}-2.02.178-asneeded.patch # -Wl,--as-needed
+	"${FILESDIR}"/${PN}-2.02.178-dynamic-static-ldflags.patch #332905
+	"${FILESDIR}"/${PN}-2.02.178-static-pkgconfig-libs.patch #370217, #439414 + blkid
 	"${FILESDIR}"/${PN}-2.02.176-pthread-pkgconfig.patch #492450
+	"${FILESDIR}"/${PN}-2.02.171-static-libm.patch #617756
+	"${FILESDIR}"/${PN}-2.02.166-HPPA-no-O_DIRECT.patch #657446
 	#"${FILESDIR}"/${PN}-2.02.145-mkdev.patch #580062 # Merged upstream
 )
 
@@ -103,7 +106,7 @@ src_prepare() {
 		-e "s:CC ?= @CC@:CC = $(tc-getCC):" \
 		make.tmpl.in || die #444082
 
-	sed -i -e '/FLAG/s:-O2::' configure{.in,} || die #480212
+	sed -i -e '/FLAG/s:-O2::' configure{.ac,} || die #480212
 
 	if use udev && ! use device-mapper-only; then
 		sed -i -e '/use_lvmetad =/s:0:1:' conf/example.conf.in || die #514196
@@ -157,12 +160,6 @@ src_configure() {
 		done
 	else
 		myconf+=( --with-thin=none --with-cache=none )
-	fi
-
-	if use lvm1; then
-		myconf+=( --with-lvm1=${buildmode} )
-	else
-		myconf+=( --with-lvm1=none )
 	fi
 
 	# disable O_DIRECT support on hppa, breaks pv detection (#99532)
