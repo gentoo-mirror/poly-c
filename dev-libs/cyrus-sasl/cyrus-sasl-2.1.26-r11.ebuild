@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 40f3d86555661b0302d28b420ad645b5eb728eca $
+# $Id: 582c8463da1e2e9441a0ec96e9d3933857485393 $
 
 EAPI=5
 
@@ -9,7 +9,7 @@ inherit eutils flag-o-matic multilib multilib-minimal autotools pam java-pkg-opt
 SASLAUTHD_CONF_VER="2.1.26"
 
 DESCRIPTION="The Cyrus SASL (Simple Authentication and Security Layer)"
-HOMEPAGE="http://cyrusimap.web.cmu.edu/"
+HOMEPAGE="https://cyrusimap.web.cmu.edu/"
 SRC_URI="ftp://ftp.cyrusimap.org/cyrus-sasl/${P}.tar.gz"
 
 LICENSE="BSD-with-attribution"
