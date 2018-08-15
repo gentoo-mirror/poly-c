@@ -6,5 +6,5 @@ HOMEPAGE=https://github.com/lebarondemerde/sddm-gentoo-black-theme
 LICENSE=CC-BY-SA-3.0
 RDEPEND=x11-misc/sddm
 SLOT=0
-_eclasses_=git-r3	8f6de46b0aa318aea0e8cac62ece098b
+_eclasses_=git-r3	918d6a744039c29af2cadc7317459765
 _md5_=8024b85bb9714aac5bb41f1e3f734250

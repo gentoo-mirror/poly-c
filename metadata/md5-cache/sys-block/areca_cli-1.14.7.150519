@@ -5,5 +5,5 @@ HOMEPAGE=http://www.areca.com.tw/support/s_linux/linux.htm
 KEYWORDS=~amd64 ~x86
 SLOT=0
 SRC_URI=http://www.areca.us/support/s_linux/cli/linuxcli_V1.14.7_150519.zip
-_eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	versionator	26ca8a8bd95d6a74122c08ba98a4ee72
+_eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	versionator	2352c3fc97241f6a02042773c8287748
 _md5_=e5bf7358c8d860e645f0e7296d61deea

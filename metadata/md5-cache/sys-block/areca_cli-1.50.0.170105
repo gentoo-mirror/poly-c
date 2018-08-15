@@ -6,5 +6,5 @@ KEYWORDS=~amd64 ~x86
 RESTRICT=fetch
 SLOT=0
 SRC_URI=linuxcli_V1.50.0_170105.zip
-_eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	versionator	26ca8a8bd95d6a74122c08ba98a4ee72
+_eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	versionator	2352c3fc97241f6a02042773c8287748
 _md5_=c84d704637a7241b3f4a29ab03b8b0cd

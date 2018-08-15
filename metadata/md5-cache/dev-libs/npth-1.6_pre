@@ -9,5 +9,5 @@ LICENSE=LGPL-2.1+
 RESTRICT=mirror
 SLOT=0
 SRC_URI=mirror://gnupg/npth/npth-1.6.tar.bz2
-_eclasses_=libtool	0081a71a261724730ec4c248494f044d	ltprune	607e058da37aa6dabfa408b7d61da72e	multilib	97f470f374f2e94ccab04a2fb21d811e	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	1e35303c63cd707f6c3422b4493d5607
+_eclasses_=libtool	0081a71a261724730ec4c248494f044d	ltprune	08f9e1d9ee0af8f5d9a7854efbcd8c0e	multilib	97f470f374f2e94ccab04a2fb21d811e	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	1e35303c63cd707f6c3422b4493d5607
 _md5_=a2b9c8ef5abfde36790d15179a8f6c6d
