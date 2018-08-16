@@ -22,6 +22,7 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
 PATCHES=(
+	"${FILESDIR}/${P}-build.patch"
 	"${FILESDIR}"/${P}-openssl-1.1.patch
 )
 
