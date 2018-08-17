@@ -24,9 +24,10 @@ net-libs/webkit-gtk 2.4.11-r200: Open source web browser engine
 net-misc/openssh 7.7_p1-r6: Port of OpenBSD's free SSH release
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 sys-apps/gawk 4.1.4: GNU awk pattern-matching language
-sys-apps/iproute2 4.4.0 4.14.1-r1 4.14.1-r2: kernel routing and traffic control utilities
+sys-apps/iproute2 4.4.0 4.14.1-r2: kernel routing and traffic control utilities
 sys-apps/kmod 24: library and tools for managing linux kernel modules
 sys-apps/man 1.6g-r1: Standard commands to read man pages
+sys-auth/pam_p11 0.2.0: PAM module for authenticating against PKCS#11 tokens
 sys-boot/grub 2.02-r1: GNU GRUB boot loader
 sys-fs/udev 236-r1 238: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-power/cpupower 4.4.146 4.4.147 4.4.148 4.9.118 4.9.119 4.9.120: Shows and sets processor power related values
