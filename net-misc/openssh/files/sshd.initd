@@ -47,7 +47,7 @@ depend() {
 }
 
 checkconfig() {
-	checkpath --directory "${RC_PREFIX%/}/var/empty"
+	checkpath --mode 0755 --directory "${RC_PREFIX%/}/var/empty"
 
 	if [ ! -e "${SSHD_CONFIG}" ] ; then
 		eerror "You need an ${SSHD_CONFIG} file to run sshd"
