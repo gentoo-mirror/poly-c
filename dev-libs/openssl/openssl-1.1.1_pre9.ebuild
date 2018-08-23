@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 3acbe2ea21f21bbba79c32dd37a816265e4defeb $
+# $Id: c869ecb3ce06b6e635302a5432161eff7490a36e $
 
 EAPI="6"
 
@@ -48,10 +48,6 @@ MULTILIB_WRAPPED_HEADERS=(
 	usr/include/openssl/opensslconf.h
 )
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-1.0.2a-x32-asm.patch #542618
-)
-
 src_prepare() {
 	# keep this in sync with app-misc/c_rehash
 	SSL_CNF_DIR="/etc/ssl"
@@ -61,7 +57,9 @@ src_prepare() {
 	rm -f Makefile
 
 	if ! use vanilla ; then
-		eapply "${PATCHES[@]}"
+		if [[ $(declare -p PATCHES 2>/dev/null) == "declare -a"* ]] ; then
+			[[ ${#PATCHES[@]} -gt 0 ]] && eapply "${PATCHES[@]}"
+		fi
 	fi
 
 	eapply_user #332661
