@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e9af1d2b782728def1e3620c3df36fc5a7cab4e1 $
+# $Id: b64d100d14c7419f00ac7d840d607e422627c3ae $
 
 EAPI="6"
 
@@ -279,6 +279,7 @@ src_configure() {
 		$(use_with ssl openssl)
 		$(use_with ssl md5-passwords)
 		$(use_with ssl ssl-engine)
+		$(use_with !elibc_Cygwin hardening) #659210
 	)
 
 	# stackprotect is broken on musl x86
