@@ -4,7 +4,7 @@ app-crypt/qca 2.1.3-r2: Qt Cryptographic Architecture (QCA)
 app-misc/mc 4.8.20-r1: GNU Midnight Commander is a text based file manager
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
-dev-libs/openssl 1.0.2o-r3: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/openssl 1.0.2o-r3 1.0.2o-r6: full-strength general purpose cryptography library (including SSL and TLS)
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-qt/qtnetwork 5.9.4 5.9.6: Network abstraction library for the Qt5 framework
 gnome-base/gnome-vfs 2.24.4-r5: Gnome Virtual Filesystem

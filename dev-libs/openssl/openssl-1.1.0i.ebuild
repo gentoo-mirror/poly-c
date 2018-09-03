@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9cbb018e24cad20670c0972b6a73a4425fc30674 $
+# $Id: f97d4157d7e4c25039311a8da61e52d6ac151e8b $
 
 EAPI="6"
 
@@ -24,7 +24,7 @@ elif has api110 ${USE} ; then
 	SLOT="0/api110"
 	api="--api=1.1.0"
 fi
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-linux"
 IUSE="api098 api100 api110 +asm bindist elibc_musl rfc3779 sctp cpu_flags_x86_sse2 static-libs test tls-heartbeat vanilla zlib"
 RESTRICT="!bindist? ( bindist )"
 

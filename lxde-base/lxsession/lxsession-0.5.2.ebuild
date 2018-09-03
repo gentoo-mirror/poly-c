@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 6a21d1dc18b454e87e9e43689cbe0be3283e72d5 $
+# $Id: 612fe3e4ccb6f7434a8e13c1026531014280a7a7 $
 
 EAPI=6
 inherit vala autotools
@@ -10,7 +10,7 @@ HOMEPAGE="https://wiki.lxde.org/en/LXSession"
 SRC_URI="mirror://sourceforge/lxde/${P}.tar.xz"
 
 LICENSE="GPL-2"
-KEYWORDS="~alpha amd64 arm ~arm64 ppc x86 ~arm-linux ~x86-linux"
+KEYWORDS="~alpha amd64 arm ~arm64 ppc x86 ~arm-linux ~x86-linux ~x86-linux"
 SLOT="0"
 
 # upower USE flag is enabled by default in the desktop profile
