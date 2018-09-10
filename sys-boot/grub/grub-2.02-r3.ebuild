@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: d4640dd767bc49b3da450557ab29dbecf61737b2 $
+# $Id: a271278519571445ab5c8966cc992f0560cb1175 $
 
 EAPI="6"
 
@@ -44,6 +44,7 @@ PATCHES=(
 	"${FILESDIR}"/2.02-freetype-pkg-config.patch
 	"${FILESDIR}"/2.02-xfs-sparse-inodes.patch
 	"${FILESDIR}"/2.02-X86_64_PLT32.patch
+	"${FILESDIR}"/2.02-gcc8.patch
 )
 
 DEJAVU=dejavu-sans-ttf-2.37

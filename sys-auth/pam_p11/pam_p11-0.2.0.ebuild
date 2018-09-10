@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: b1872dfaa3ebfb641e5f67ee7b4deec7cacae969 $
+# $Id: 4ac3eb2f38cd7714ca9d8071fd043e86e3ede782 $
 
 EAPI=6
 
@@ -12,7 +12,7 @@ SRC_URI="https://github.com/OpenSC/${PN}/releases/download/${P}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha amd64 ~hppa ia64 ~ppc ppc64 ~sparc x86"
+KEYWORDS="alpha amd64 ~hppa ia64 ~ppc ppc64 ~sparc x86"
 IUSE=""
 
 RDEPEND="virtual/pam

@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e16b92f76ff6c69cc5d81f600d42025156362f9c $
+# $Id: 4c92eedb393af1fb93dabb1e6a1c928fe3deddf3 $
 
 EAPI="6"
 
@@ -72,7 +72,7 @@ src_prepare() {
 		-e '/^MAKEDEPPROG/s:=.*:=$(CC):' \
 		-e $(has noman FEATURES \
 			&& echo '/^install:/s:install_docs::' \
-			|| echo '/^MANDIR=/s:=.*:='${EPREFIX}'/usr/share/man:') \
+			|| echo '/^MANDIR=/s:=.*:='${EPREFIX%/}'/usr/share/man:') \
 		-e "/^DOCDIR/s@\$(BASENAME)@&-${PF}@" \
 		Configurations/unix-Makefile.tmpl \
 		|| die
@@ -92,7 +92,7 @@ src_prepare() {
 
 	# Prefixify Configure shebang (#141906)
 	sed \
-		-e "1s,/usr/bin/env,${EPREFIX}&," \
+		-e "1s,/usr/bin/env,${EPREFIX%/}&," \
 		-i Configure || die
 	# Remove test target when FEATURES=test isn't set
 	if ! use test ; then
@@ -199,6 +199,12 @@ multilib_src_test() {
 }
 
 multilib_src_install() {
+	# We need to create $ED/usr on our own to avoid a race condition #665130
+	if [[ ! -d "${ED%/}/usr" ]]; then
+		# We can only create this directory once
+		mkdir "${ED%/}"/usr || die
+	fi
+
 	emake DESTDIR="${D}" install
 }
 
