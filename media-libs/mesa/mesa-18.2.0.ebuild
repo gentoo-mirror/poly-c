@@ -1,5 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id: ce53ca4e9ad93e9be452458643a73a33e7e1603e $
 
 EAPI=6
 
@@ -216,6 +217,10 @@ DEPEND="${RDEPEND}
 	x11-libs/libXrandr[${MULTILIB_USEDEP}]
 	$(python_gen_any_dep ">=dev-python/mako-0.8.0[\${PYTHON_USEDEP}]")
 "
+
+PATCHES=(
+	"${FILESDIR}"/${PN}-no_asserts.patch
+)
 
 S="${WORKDIR}/${MY_P}"
 EGIT_CHECKOUT_DIR=${S}
@@ -477,7 +482,7 @@ multilib_src_configure() {
 		-Ddri-drivers=$(driver_list "${DRI_DRIVERS[*]}")
 		-Dgallium-drivers=$(driver_list "${GALLIUM_DRIVERS[*]}")
 		-Dvulkan-drivers=$(driver_list "${VULKAN_DRIVERS[*]}")
-		--buildtype $(usex debug debug plain)
+		--buildtype $(usex debug debug release)
 	)
 	meson_src_configure
 }
