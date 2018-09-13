@@ -4,21 +4,21 @@
 
 EAPI=6
 
-inherit user flag-o-matic multilib autotools pam systemd
+inherit autotools user flag-o-matic multilib autotools pam systemd
 
 # Make it more portable between straight releases
 # and _p? releases.
 PARCH=${P/_}
 CAP_PV="${PV^^}"
 
-HPN_VER="14.16"
-HPN_PATCHES=(
-	${PN}-${CAP_PV/./_}-hpn-DynWinNoneSwitch-${HPN_VER}.diff
-	${PN}-${CAP_PV/./_}-hpn-AES-CTR-${HPN_VER}.diff
-)
-HPN_DISABLE_MTAES=1 # unit tests hang on MT-AES-CTR
+#HPN_VER="14.16"
+#HPN_PATCHES=(
+#	${PN}-${CAP_PV/./_}-hpn-DynWinNoneSwitch-${HPN_VER}.diff
+#	${PN}-${CAP_PV/./_}-hpn-AES-CTR-${HPN_VER}.diff
+#)
+#HPN_DISABLE_MTAES=1 # unit tests hang on MT-AES-CTR
 SCTP_VER="1.1" SCTP_PATCH="${PARCH}-sctp-${SCTP_VER}.patch.xz"
-X509_VER="11.4" X509_PATCH="${PARCH}+x509-${X509_VER}.diff.gz"
+#X509_VER="11.4" X509_PATCH="${PARCH}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="https://www.openssh.com/"
@@ -110,6 +110,11 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-7.8_p1-GSSAPI-dns.patch #165444 integrated into gsskex
 	eapply "${FILESDIR}"/${PN}-6.7_p1-openssl-ignore-status.patch
 	eapply "${FILESDIR}"/${PN}-7.5_p1-disable-conch-interop-tests.patch
+
+	if ! use hpn && ! use X509 && has_version \>=dev-libs/openssl-1.1.0 ; then
+		eapply "${FILESDIR}"/${P}-openssl-1.1.patch
+		eautoreconf
+	fi
 
 	local PATCHSET_VERSION_MACROS=()
 
