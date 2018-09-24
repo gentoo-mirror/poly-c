@@ -15,12 +15,12 @@ LICENSE="GPL-3"
 SLOT="0"
 [[ ${PV} = *_pre* ]] || \
 KEYWORDS="alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~ppc-aix ~x64-cygwin ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="acl examples iconv ipv6 static stunnel xattr"
+IUSE="acl examples iconv ipv6 static stunnel +system-zlib xattr"
 
 LIB_DEPEND="acl? ( virtual/acl[static-libs(+)] )
 	xattr? ( kernel_linux? ( sys-apps/attr[static-libs(+)] ) )
-	>=dev-libs/popt-1.5[static-libs(+)]
-	sys-libs/zlib[static-libs(+)]"
+	system-zlib? ( sys-libs/zlib[static-libs(+)] )
+	>=dev-libs/popt-1.5[static-libs(+)]"
 RDEPEND="!static? ( ${LIB_DEPEND//\[static-libs(+)]} )
 	iconv? ( virtual/libiconv )"
 DEPEND="${RDEPEND}
@@ -33,11 +33,11 @@ src_configure() {
 	local myeconfargs=(
 		--with-rsyncd-conf="${EPREFIX}"/etc/rsyncd.conf
 		--without-included-popt
-		--without-included-zlib
 		$(use_enable acl acl-support)
 		$(use_enable iconv)
 		$(use_enable ipv6)
 		$(use_enable xattr xattr-support)
+		$(use_with !system-zlib included-zlib)
 	)
 	econf "${myeconfargs[@]}"
 	touch proto.h-tstamp #421625
