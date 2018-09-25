@@ -91,4 +91,14 @@ pkg_postinst() {
 		einfo "You maybe have to update the certificates configured in"
 		einfo "${EROOT}/etc/stunnel/rsync.conf"
 	fi
+	if use system-zlib ; then
+		ewarn "Using system-zlib is incompatible with <rsync-3.1.1 when"
+		ewarn "using the --compress option."
+		ewarn
+		ewarn "When syncing with >=rsync-3.1.1 built with bundled zlib,"
+		ewarn "and the --compress option, add --new-compress (-zz)."
+		ewarn
+		ewarn "For syncing the portage tree, add:"
+		ewarn "PORTAGE_RSYNC_EXTRA_OPTS=\"--new-compress\" to make.conf"
+	fi
 }
