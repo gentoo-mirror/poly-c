@@ -1,10 +1,10 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 012b53a32b659c97321cd31ce9b4e13461405814 $
+# $Id: cc81b3a08cbf24485b0dac5b38271834a133f31f $
 
-EAPI=6
+EAPI=7
 
-inherit ltprune pam
+inherit pam
 
 DESCRIPTION="PAM module for authenticating against PKCS#11 tokens"
 HOMEPAGE="https://github.com/opensc/pam_p11/wiki"
@@ -18,8 +18,8 @@ IUSE=""
 RDEPEND="virtual/pam
 		dev-libs/libp11
 		dev-libs/openssl:0="
-DEPEND="${RDEPEND}
-	virtual/pkgconfig"
+DEPEND="${RDEPEND}"
+BDEPEND="virtual/pkgconfig"
 
 PATCHES=(
 	"${FILESDIR}/${P}-build.patch"
@@ -32,5 +32,5 @@ src_configure() {
 
 src_install() {
 	default
-	prune_libtool_files --all
+	find "${D}" -name '*.la' -delete || die
 }
