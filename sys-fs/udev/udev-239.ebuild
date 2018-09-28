@@ -87,6 +87,7 @@ src_prepare() {
 	local PATCHES=(
 		"${FILESDIR}/236-uucp-group.patch"
 		"${FILESDIR}/239-basic-add-missing-comma-in-raw_clone-assembly-for-sp.patch"
+		"${FILESDIR}/${PV}-meson-0.48.0.patch"
 	)
 
 	default
