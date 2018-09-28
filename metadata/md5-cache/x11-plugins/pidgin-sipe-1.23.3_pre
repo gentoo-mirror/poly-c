@@ -10,5 +10,5 @@ RDEPEND=dev-libs/gmime:2.6 dev-libs/libxml2 openssl? ( dev-libs/openssl:= ) !ope
 RESTRICT=mirror
 SLOT=0
 SRC_URI=mirror://sourceforge/sipe/pidgin-sipe-1.23.3.tar.xz
-_eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	97f470f374f2e94ccab04a2fb21d811e	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	f164325a2cdb5b3ea39311d483988861
+_eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	b2f01ad412baf81650c23fcf0975fa33	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	f164325a2cdb5b3ea39311d483988861
 _md5_=4940fbce1d95ed21d235f5a3a3311ebc
