@@ -9,4 +9,5 @@ inherit poly-c_ebuilds
 
 MY_P=${QT5_MODULE}-everywhere-src-${MY_PV}
 SRC_URI="https://download.qt.io/official_releases/qt/${MY_PV%.*}/${MY_PV/_/-}/submodules/${MY_P}.tar.xz"
-S=${WORKDIR}/${MY_P}
+S="${WORKDIR}/${MY_P}"
+QT5_BUILD_DIR="${S}"
