@@ -3,7 +3,7 @@
 # $Id: 44197fb431a519b17930e9eecaefbd76dc8f81ab $
 
 EAPI=6
-inherit multilib cmake-multilib
+inherit flag-o-matic multilib cmake-multilib
 
 # Make sure that test data are not newer than release;
 # otherwise we will see "Found-But-No-Test" test failures!
@@ -47,6 +47,9 @@ src_prepare() {
 }
 
 multilib_src_configure() {
+	# required for >=poppler-0.69.0
+	append-cxxflags -std=c++14
+
 	local mycmakeargs=(
 		-DOPENJPEG_INSTALL_LIB_DIR="$(get_libdir)"
 		-DBUILD_TESTING="$(multilib_native_usex test)"

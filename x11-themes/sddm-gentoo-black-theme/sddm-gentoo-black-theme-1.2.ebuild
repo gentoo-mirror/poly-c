@@ -4,14 +4,15 @@
 EAPI=6
 
 DESCRIPTION="Simple SDDM theme inspired on FBSD SLiM theme"
-HOMEPAGE="https://github.com/lebarondemerde/gentoo-black-theme"
+HOMEPAGE="https://bitbucket.org/rigoletto-freebsd/sddm-gentoo-black-theme"
 
 if [[ "${PV}" != 9999 ]] ; then
-	SRC_URI="https://github.com/lebarondemerde/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
+	inherit vcs-snapshot
+	SRC_URI="https://bitbucket.org/rigoletto-freebsd/sddm-gentoo-black-theme/get/${PV}.tar.bz2 -> ${P}.tar.bz2"
 	KEYWORDS="~amd64 ~x86"
 else
 	inherit git-r3
-	EGIT_REPO_URI="https://github.com/lebarondemerde/sddm-gentoo-black-theme.git"
+	EGIT_REPO_URI="https://bitbucket.org/rigoletto-freebsd/sddm-gentoo-black-theme.git"
 fi
 
 LICENSE="CC-BY-SA-3.0"
@@ -21,9 +22,10 @@ IUSE=""
 RDEPEND="x11-misc/sddm"
 
 src_install() {
-	local DOCS=( AUTHORS COPYING README.md TRADEMARKS )
+	local DOCS=( doc/AUTHORS COPYING README.md doc/TRADEMARKS doc/CHANGELOG )
 	einstalldocs
-	rm ${DOCS[@]} || die
+
+	cd src || die
 
 	local target="/usr/share/sddm/themes/${PN}"
 	dodir ${target}
