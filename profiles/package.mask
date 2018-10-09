@@ -35,3 +35,6 @@ dev-java/openjfx
 
 # fails to link
 sci-astronomy/pulsatingscience
+
+# fails with USE="jpeg2k"
+=app-text/poppler-0.69.0_pre
