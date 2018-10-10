@@ -41,3 +41,6 @@ sci-astronomy/pulsatingscience
 
 # fails to build
 =games-simulation/lincity-ng-2.9_beta
+
+# fails to build
+=sys-fs/lvm2-2.03.00_pre

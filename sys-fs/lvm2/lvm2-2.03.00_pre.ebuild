@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -12,13 +12,12 @@ SRC_URI="ftp://sourceware.org/pub/lvm2/${PN/lvm/LVM}.${MY_PV}.tgz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
-IUSE="readline static static-libs systemd clvm cman corosync lvm2create_initrd openais sanlock selinux +udev +thin device-mapper-only"
-REQUIRED_USE="device-mapper-only? ( !clvm !cman !corosync !lvm2create_initrd !openais !sanlock !thin )
+IUSE="readline static static-libs systemd clvm cman corosync lvm1 lvm2create_initrd openais sanlock selinux +udev +thin device-mapper-only"
+REQUIRED_USE="device-mapper-only? ( !clvm !cman !corosync !lvm1 !lvm2create_initrd !openais !sanlock !thin )
 	systemd? ( udev )
 	clvm? ( !systemd )"
 
 DEPEND_COMMON="
-	dev-libs/libaio
 	clvm? (
 		cman? ( =sys-cluster/cman-3* )
 		corosync? ( sys-cluster/corosync )
@@ -26,6 +25,9 @@ DEPEND_COMMON="
 		=sys-cluster/libdlm-3*
 	)
 
+	dev-libs/libaio[static-libs?]
+	static? ( dev-libs/libaio[static-libs] )
+	!static? ( dev-libs/libaio[static-libs?] )
 	readline? ( sys-libs/readline:0= )
 	sanlock? ( sys-cluster/sanlock )
 	systemd? ( >=sys-apps/systemd-205:0= )
@@ -65,10 +67,9 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-2.02.56-lvm2create_initrd.patch
 	"${FILESDIR}"/${PN}-2.02.67-createinitrd.patch #301331
 	"${FILESDIR}"/${PN}-2.02.99-locale-muck.patch #330373
-	"${FILESDIR}"/${PN}-2.02.178-asneeded.patch # -Wl,--as-needed
-	"${FILESDIR}"/${PN}-2.02.178-dynamic-static-ldflags.patch #332905
+	"${FILESDIR}"/${PN}-2.03.00-dynamic-static-ldflags.patch #332905
 	"${FILESDIR}"/${PN}-2.02.178-static-pkgconfig-libs.patch #370217, #439414 + blkid
-	"${FILESDIR}"/${PN}-2.02.176-pthread-pkgconfig.patch #492450
+	"${FILESDIR}"/${PN}-2.03.00-pthread-pkgconfig.patch #492450
 	"${FILESDIR}"/${PN}-2.02.171-static-libm.patch #617756
 	"${FILESDIR}"/${PN}-2.02.166-HPPA-no-O_DIRECT.patch #657446
 	#"${FILESDIR}"/${PN}-2.02.145-mkdev.patch #580062 # Merged upstream
@@ -160,6 +161,12 @@ src_configure() {
 		done
 	else
 		myconf+=( --with-thin=none --with-cache=none )
+	fi
+
+	if use lvm1; then
+		myconf+=( --with-lvm1=${buildmode} )
+	else
+		myconf+=( --with-lvm1=none )
 	fi
 
 	# disable O_DIRECT support on hppa, breaks pv detection (#99532)
