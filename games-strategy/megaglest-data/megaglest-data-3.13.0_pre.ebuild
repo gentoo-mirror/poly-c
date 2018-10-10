@@ -1,8 +1,8 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
-inherit cmake-utils games poly-c_ebuilds
+EAPI=6
+inherit cmake-utils poly-c_ebuilds
 
 REAL_PN="megaglest"
 DESCRIPTION="Data files for the cross-platform 3D realtime strategy game MegaGlest"
@@ -16,7 +16,7 @@ IUSE="doc"
 
 DOCS=( docs/AUTHORS.data.txt docs/CHANGELOG.txt docs/README.txt )
 
-S=${WORKDIR}/${REAL_PN}-${MY_PV}
+S="${WORKDIR}/${REAL_PN}-${MY_PV}"
 
 src_prepare() {
 	cmake-utils_src_prepare
@@ -24,8 +24,8 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
-		-DMEGAGLEST_BIN_INSTALL_PATH="${GAMES_BINDIR}"
-		-DMEGAGLEST_DATA_INSTALL_PATH="${GAMES_DATADIR}/${REAL_PN}"
+		#-DMEGAGLEST_BIN_INSTALL_PATH="${GAMES_BINDIR}"
+		#-DMEGAGLEST_DATA_INSTALL_PATH="${GAMES_DATADIR}/${REAL_PN}"
 		-DMEGAGLEST_ICON_INSTALL_PATH="/usr/share/pixmaps"
 	)
 	cmake-utils_src_configure
@@ -38,5 +38,4 @@ src_compile() {
 src_install() {
 	use doc && HTML_DOCS="docs/glest_factions/"
 	cmake-utils_src_install
-	prepgamesdirs
 }

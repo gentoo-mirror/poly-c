@@ -1,0 +1,13 @@
+diff -Naur lincity-ng-2.9.beta.old/mk/jam/unix.jam lincity-ng-2.9.beta/mk/jam/unix.jam
+--- lincity-ng-2.9.beta.old/mk/jam/unix.jam	2017-01-04 10:19:17.981267518 +0100
++++ lincity-ng-2.9.beta/mk/jam/unix.jam	2017-01-04 10:20:57.282273276 +0100
+@@ -45,4 +45,8 @@
+     $(LINK) -o $(<) $(>) $(EXTRAOBJECTS) $(NEEDLIBS) $(LIBS)
+ }
+ 
+-
++# jam Archive action seems to include the arguments which will break our AR export
++actions Archive
++{
++    $(AR) ru $(<) $(>)
++}

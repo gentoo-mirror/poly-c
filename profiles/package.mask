@@ -38,3 +38,6 @@ sci-astronomy/pulsatingscience
 
 # fails with USE="jpeg2k"
 =app-text/poppler-0.69.0_pre
+
+# fails to build
+=games-simulation/lincity-ng-2.9_beta
