@@ -1,0 +1,69 @@
+From 878d6f6e4558b7e6d207f24c7499379ce3f9557d Mon Sep 17 00:00:00 2001
+From: hasufell <hasufell@gentoo.org>
+Date: Wed, 10 Oct 2018 11:33:54 +0200
+Subject: [PATCH] fix static build
+
+---
+ mk/cmake/Modules/FindFriBiDi.cmake | 6 +++---
+ mk/cmake/Modules/FindOGG.cmake     | 4 ++--
+ mk/cmake/Modules/FindXercesC.cmake | 5 ++++-
+ 3 files changed, 9 insertions(+), 6 deletions(-)
+
+diff --git a/mk/cmake/Modules/FindFriBiDi.cmake b/mk/cmake/Modules/FindFriBiDi.cmake
+index 2ea91778..3176a6fa 100644
+--- a/mk/cmake/Modules/FindFriBiDi.cmake
++++ b/mk/cmake/Modules/FindFriBiDi.cmake
+@@ -28,9 +28,9 @@ set(FRIBIDI_INCLUDE_DIR ${xFRIBIDI_INCLUDE_DIR})
+ 
+ SET(FRIBIDI_NAMES ${FRIBIDI_NAMES} fribidi libfribidi)
+ 
+-IF(STATIC_FriBiDi)
+-	SET(FRIBIDI_NAMES libfribidi.a fribidi.a ${FRIBIDI_NAMES})
+-ENDIF()
++#IF(STATIC_FriBiDi)
++#	SET(FRIBIDI_NAMES libfribidi.a fribidi.a ${FRIBIDI_NAMES})
++#ENDIF()
+ 
+ #MESSAGE(STATUS "** Searching for library names: [${FRIBIDI_NAMES}] ...")
+ 
+diff --git a/mk/cmake/Modules/FindOGG.cmake b/mk/cmake/Modules/FindOGG.cmake
+index 83d5a965..e135faa2 100644
+--- a/mk/cmake/Modules/FindOGG.cmake
++++ b/mk/cmake/Modules/FindOGG.cmake
+@@ -14,9 +14,9 @@ ENDIF()
+ FIND_PATH(OGG_INCLUDE_DIR ogg/ogg.h)
+ 
+ IF (STATIC_OGG AND NOT OGG_LIBRARY)
+-	FIND_LIBRARY(OGG_LIBRARY NAMES libogg.a ogg.a ogg)
++	FIND_LIBRARY(OGG_LIBRARY NAMES libogg.a)
+ ELSE()
+-	FIND_LIBRARY(OGG_LIBRARY NAMES ogg)
++	FIND_LIBRARY(OGG_LIBRARY NAMES libogg.so)
+ ENDIF()
+ 
+ IF (STATIC_OGG AND NOT VORBIS_LIBRARY)
+diff --git a/mk/cmake/Modules/FindXercesC.cmake b/mk/cmake/Modules/FindXercesC.cmake
+index 933525f9..20ecc26a 100644
+--- a/mk/cmake/Modules/FindXercesC.cmake
++++ b/mk/cmake/Modules/FindXercesC.cmake
+@@ -79,13 +79,16 @@ IF (STATIC_XercesC AND NOT XERCESC_LIBRARY)
+ 	 /usr/local/lib
+ 	)
+ 
++	FIND_LIBRARY(ICUUC_LIBRARY NAMES libicuuc.a)
++	FIND_LIBRARY(ICUDATA_LIBRARY NAMES libicudata.a)
++
+ 	IF (XERCESC_INCLUDE AND XERCESC_LIBRARY)
+                 MESSAGE(STATUS "Found static Xerces-C lib [${XERCESC_LIBRARY}]")
+ 		ADD_DEFINITIONS( -DXERCES_STATIC_LIBRARY )
+ 
+ 		IF(UNIX AND NOT APPLE)
+ 			#SET(XERCESC_LIBRARY "-Bstatic ${XERCESC_LIBRARY} -Bdynamic -licuuc -licudata")
+-			SET(XERCESC_LIBRARY "-Bstatic ${XERCESC_LIBRARY}")
++			SET(XERCESC_LIBRARY "-Bstatic ${XERCESC_LIBRARY}  ${ICUDATA_LIBRARY}")
+ 		ENDIF()
+ 	ENDIF()
+ ENDIF()
+-- 
+2.19.1
+
