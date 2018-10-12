@@ -1,16 +1,16 @@
 # Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 44197fb431a519b17930e9eecaefbd76dc8f81ab $
+# $Id: e447db85d6a1441b5ad0989646a64edea2e8fa15 $
 
 EAPI=6
-inherit flag-o-matic multilib cmake-multilib
+inherit cmake-multilib
 
 # Make sure that test data are not newer than release;
 # otherwise we will see "Found-But-No-Test" test failures!
 MY_TESTDATA_COMMIT="c07f38fae1e67adc288c2d6679df5d3652017fbe"
 
 DESCRIPTION="An open-source JPEG 2000 library"
-HOMEPAGE="http://www.openjpeg.org"
+HOMEPAGE="https://www.openjpeg.org"
 SRC_URI="https://github.com/uclouvain/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz
 	test? ( https://github.com/uclouvain/openjpeg-data/archive/${MY_TESTDATA_COMMIT}.tar.gz -> ${PN}-data_20170814.tar.gz )"
 
@@ -47,9 +47,6 @@ src_prepare() {
 }
 
 multilib_src_configure() {
-	# required for >=poppler-0.69.0
-	append-cxxflags -std=c++14
-
 	local mycmakeargs=(
 		-DOPENJPEG_INSTALL_LIB_DIR="$(get_libdir)"
 		-DBUILD_TESTING="$(multilib_native_usex test)"

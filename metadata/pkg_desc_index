@@ -12,6 +12,7 @@ kde-apps/kde-wallpapers 15.08.3 15.08.3-r2: KDE wallpapers
 kde-plasma/plasma-workspace 5.12.5: KDE Plasma workspace
 lxde-base/lxsession 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r8: An extensible mail filter which can identify and tag spam
+media-libs/freeimage 3.15.4-r1: Image library supporting many formats
 media-libs/libdvdcss 1.4.0 1.4.2: A portable abstraction library for DVD decryption
 media-libs/openjpeg 2.3.0: An open-source JPEG 2000 library
 media-sound/alsa-utils 1.1.2: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
