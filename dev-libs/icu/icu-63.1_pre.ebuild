@@ -3,15 +3,15 @@
 
 EAPI=6
 
-inherit flag-o-matic toolchain-funcs autotools multilib-minimal
+inherit flag-o-matic toolchain-funcs autotools multilib-minimal poly-c_ebuilds
 
 DESCRIPTION="International Components for Unicode"
 HOMEPAGE="http://www.icu-project.org/"
-SRC_URI="http://download.icu-project.org/files/icu4c/${PV/_/}/icu4c-${PV/_}-src.tgz"
+SRC_URI="http://download.icu-project.org/files/icu4c/${MY_PV}/icu4c-${MY_PV//./_}-src.tgz"
 
 LICENSE="BSD"
 
-SLOT="0/${PV}"
+SLOT="0/${MY_PV}"
 
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc examples static-libs"
