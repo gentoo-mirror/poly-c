@@ -9,13 +9,13 @@ dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-qt/qtnetwork 5.9.6: Network abstraction library for the Qt5 framework
 gnome-base/gnome-vfs 2.24.4-r5: Gnome Virtual Filesystem
 kde-apps/kde-wallpapers 15.08.3 15.08.3-r2: KDE wallpapers
-kde-plasma/plasma-workspace 5.12.5: KDE Plasma workspace
+kde-plasma/plasma-workspace 5.12.5 5.13.5-r1: KDE Plasma workspace
 lxde-base/lxsession 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r8: An extensible mail filter which can identify and tag spam
 media-libs/freeimage 3.15.4-r1: Image library supporting many formats
 media-libs/libdvdcss 1.4.0 1.4.2: A portable abstraction library for DVD decryption
 media-libs/openjpeg 2.3.0: An open-source JPEG 2000 library
-media-sound/alsa-utils 1.1.2: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
+media-sound/alsa-utils 1.1.2 1.1.6: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
 media-sound/pavucontrol 3.0: Pulseaudio Volume Control, GTK based mixer for Pulseaudio
 media-video/smplayer 18.6.0: Great Qt GUI front-end for mplayer/mpv
 net-analyzer/nagios-plugins 1.4.16-r2: Nagios 1.4.16 plugins - Pack of plugins to make Nagios work properly
