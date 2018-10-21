@@ -7,12 +7,6 @@ net-irc/pchat-irc
 # Missing dependencies
 media-radio/liquidsoap
 
-# Breaks nearly every reverse dependency
-=dev-libs/openssl-1.1*
-
-# Masked as these are development versions
-=x11-libs/cairo-1.15*
-
 # breaks dev-games/simgear
 =dev-games/openscenegraph-3.5.6_pre
 =dev-games/openscenegraph-3.5.9_pre
