@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0ab2823938475d92e4b199bbfb20729c2a4b984f $
+# $Id: a28b62b805c2f2391fe82e4cd93afedde63c8c32 $
 
 EAPI=6
 
@@ -107,7 +107,6 @@ RDEPEND="${COMMON_DEPEND}
 	x11-apps/xsetroot
 	systemd? ( sys-apps/dbus[user-session] )
 	!systemd? ( sys-apps/dbus )
-	!dev-libs/xembed-sni-proxy
 	!kde-plasma/freespacenotifier:4
 	!kde-plasma/libtaskmanager:4
 	!kde-plasma/kcminit:4
