@@ -7,7 +7,6 @@ dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-libs/openssl 1.0.2o-r3 1.0.2o-r6 1.0.2p: full-strength general purpose cryptography library (including SSL and TLS)
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-qt/qtnetwork 5.9.6: Network abstraction library for the Qt5 framework
-gnome-base/gnome-vfs 2.24.4-r5: Gnome Virtual Filesystem
 kde-apps/kde-wallpapers 15.08.3 15.08.3-r2: KDE wallpapers
 kde-plasma/plasma-workspace 5.12.5 5.13.5-r1: KDE Plasma workspace
 lxde-base/lxsession 0.5.2: LXDE session manager
@@ -29,7 +28,6 @@ sys-apps/gawk 4.1.4: GNU awk pattern-matching language
 sys-apps/iproute2 4.4.0 4.14.1-r2 4.17.0: kernel routing and traffic control utilities
 sys-apps/kmod 24: library and tools for managing linux kernel modules
 sys-apps/man 1.6g-r1: Standard commands to read man pages
-sys-auth/pam_p11 0.2.0: PAM module for authenticating against PKCS#11 tokens
 sys-boot/grub 2.02-r1: GNU GRUB boot loader
 sys-fs/udev 236-r1 238: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-power/cpupower 4.4.160 4.4.161 4.4.162 4.9.133 4.9.134 4.9.135: Shows and sets processor power related values
