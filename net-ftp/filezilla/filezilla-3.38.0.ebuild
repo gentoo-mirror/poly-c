@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f7f9eefa96715b83795612b849d66084fcc811ab $
+# $Id: 1f2606a52b39f7e12af52611f29301929e1b0255 $
 
 EAPI=6
 
@@ -24,7 +24,7 @@ IUSE="dbus nls test"
 RDEPEND=">=app-eselect/eselect-wxwidgets-0.7-r1
 	>=dev-libs/nettle-3.1:=
 	>=dev-db/sqlite-3.7
-	>=dev-libs/libfilezilla-0.13.2
+	>=dev-libs/libfilezilla-0.15.0
 	>=dev-libs/pugixml-1.7
 	>=net-libs/gnutls-3.4.15
 	>=x11-libs/wxGTK-3.0.4:${WX_GTK_VER}[X]

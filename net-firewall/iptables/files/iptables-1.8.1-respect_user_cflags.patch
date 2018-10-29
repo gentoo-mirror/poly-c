@@ -1,0 +1,25 @@
+From ea653f64552221523ca7316e471851d0bfadaa57 Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Mon, 29 Oct 2018 09:23:55 +0100
+Subject: [PATCH] Respect user CFLAGS
+
+---
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index 1da8555e..c8aa88e2 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -195,7 +195,7 @@ AC_SUBST([blacklist_a_modules])
+ AC_SUBST([blacklist_4_modules])
+ AC_SUBST([blacklist_6_modules])
+ 
+-regular_CFLAGS="-Wall -Waggregate-return -Wmissing-declarations \
++regular_CFLAGS="${CFLAGS} -Wall -Waggregate-return -Wmissing-declarations \
+ 	-Wmissing-prototypes -Wredundant-decls -Wshadow -Wstrict-prototypes \
+ 	-Wlogical-op \
+ 	-Winline -pipe";
+-- 
+2.19.1
+
