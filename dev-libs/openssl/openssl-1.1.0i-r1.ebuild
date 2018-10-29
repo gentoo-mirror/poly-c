@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f97d4157d7e4c25039311a8da61e52d6ac151e8b $
+# $Id: 4cc9eb656d0e1af9bbd55f94e8d23f8ece28083b $
 
 EAPI="6"
 
@@ -113,7 +113,7 @@ src_prepare() {
 		-e $(has noman FEATURES \
 			&& echo '/^install:/s:install_docs::' \
 			|| echo '/^MANDIR=/s:=.*:='${EPREFIX}'/usr/share/man:') \
-		-e "/^DOCDIR/s@\$(BASENAME)@&-${PF}@" \
+		-e "/^DOCDIR/s@\$(BASENAME)@&-${PVR}@" \
 		Configurations/unix-Makefile.tmpl \
 		|| die
 
