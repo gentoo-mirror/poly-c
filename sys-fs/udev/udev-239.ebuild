@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: b6ffc09d1854a562fc385eb78d1ad93d494a5c7c $
+# $Id: 5dbe6b7d4497ae9bfece59e19a194347a59ae192 $
 
 EAPI=6
 
@@ -88,6 +88,8 @@ src_prepare() {
 		"${FILESDIR}/236-uucp-group.patch"
 		"${FILESDIR}/239-basic-add-missing-comma-in-raw_clone-assembly-for-sp.patch"
 		"${FILESDIR}/239-debug-extra.patch"
+		"${FILESDIR}/239-stat-0.patch"
+		"${FILESDIR}/239-stat-1.patch"
 	)
 
 	default
