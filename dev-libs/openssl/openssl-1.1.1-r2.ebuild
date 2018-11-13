@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 01dfbd3ec61f4c68c944b5fccaef45d4d635dac1 $
+# $Id: 87d4a44d49a49701006d1472e7f3fd27573a4a2e $
 
 EAPI="6"
 
@@ -49,6 +49,7 @@ MULTILIB_WRAPPED_HEADERS=(
 )
 
 PATCHES=(
+	"${FILESDIR}"/${P}-CVE-2018-0734.patch
 	"${FILESDIR}"/${P}-CVE-2018-0735.patch
 )
 
