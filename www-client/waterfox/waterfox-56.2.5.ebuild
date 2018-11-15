@@ -65,7 +65,7 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}/Waterfox-${MOZ_PV}"
 
-QA_PRESTRIPPED="usr/lib*/${PN}/firefox"
+QA_PRESTRIPPED="usr/lib*/${PN}/waterfox"
 
 BUILD_OBJ_DIR="${S}/wf"
 
