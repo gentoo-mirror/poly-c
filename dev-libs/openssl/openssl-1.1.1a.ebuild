@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: /usr/local/portage/dev-libs/openssl/openssl-1.1.1a.ebuild $
+# $Id: 5b5bb76c6b75bb7922ecadfb48d2a0839e3fb8a6 $
 
 EAPI="6"
 
