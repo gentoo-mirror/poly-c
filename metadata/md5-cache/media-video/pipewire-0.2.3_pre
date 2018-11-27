@@ -1,15 +1,15 @@
 BDEPEND=>=dev-util/meson-0.45.1 >=dev-util/ninja-1.7.2
 DEFINED_PHASES=compile configure install test
-DEPEND=media-libs/alsa-lib media-libs/sbc media-video/ffmpeg sys-apps/dbus virtual/libudev gstreamer? ( media-libs/gstreamer:1.0 media-libs/gst-plugins-base:1.0 ) app-doc/xmltoman docs? ( app-doc/doxygen )
+DEPEND=media-libs/alsa-lib media-libs/sbc media-video/ffmpeg:= sys-apps/dbus virtual/libudev gstreamer? ( media-libs/gstreamer:1.0 media-libs/gst-plugins-base:1.0 ) app-doc/xmltoman docs? ( app-doc/doxygen )
 DESCRIPTION=Multimedia processing graphs
 EAPI=7
 HOMEPAGE=http://pipewire.org/
 IUSE=gstreamer docs
 KEYWORDS=~amd64 ~x86
 LICENSE=LGPL-2.1
-RDEPEND=media-libs/alsa-lib media-libs/sbc media-video/ffmpeg sys-apps/dbus virtual/libudev gstreamer? ( media-libs/gstreamer:1.0 media-libs/gst-plugins-base:1.0 )
+RDEPEND=media-libs/alsa-lib media-libs/sbc media-video/ffmpeg:= sys-apps/dbus virtual/libudev gstreamer? ( media-libs/gstreamer:1.0 media-libs/gst-plugins-base:1.0 )
 RESTRICT=mirror
 SLOT=0
 SRC_URI=https://github.com/PipeWire/pipewire/archive/0.2.3.tar.gz -> pipewire-0.2.3.tar.gz
 _eclasses_=meson	2780db7405ab6249571d07667ab97ba1	multilib	b2f01ad412baf81650c23fcf0975fa33	multiprocessing	cac3169468f893670dac3e7cb940e045	ninja-utils	132cbb376048d079b5a012f5467c4e7f	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	python-utils-r1	12114a2a9aab35b93efc037a196b3234	toolchain-funcs	f164325a2cdb5b3ea39311d483988861
-_md5_=295ed05ded8594c5f78ca7be504626be
+_md5_=c8a41a939bf13cb30f503bb84382fff7

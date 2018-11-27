@@ -12,7 +12,7 @@ SRC_URI="https://github.com/PipeWire/${PN}/archive/${MY_PV}.tar.gz -> ${MY_P}.ta
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="gstreamer docs"
+IUSE="docs gstreamer systemd"
 
 RDEPEND="
 	media-libs/alsa-lib
@@ -24,6 +24,7 @@ RDEPEND="
 		media-libs/gstreamer:1.0
 		media-libs/gst-plugins-base:1.0
 	)
+	systemd? ( sys-apps/systemd )
 "
 DEPEND="
 	${RDEPEND}
@@ -36,6 +37,7 @@ src_configure() {
 		-Denable_gstreamer="$(usex gstreamer true false)"
 		-Denable_man="true"
 		-Denable_docs="$(usex docs true false)"
+		-Denable_systemd="$(usex systemd true false)"
 	)
 	meson_src_configure
 }

@@ -38,3 +38,6 @@ sci-astronomy/pulsatingscience
 
 # fails to build / development version
 =sys-fs/lvm2-2.03.00_pre
+
+# Requires stuid deps
+media-video/pipewire
