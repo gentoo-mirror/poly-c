@@ -8,7 +8,7 @@ dev-libs/openssl 1.0.2p-r1: full-strength general purpose cryptography library (
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-qt/qtnetwork 5.9.6: Network abstraction library for the Qt5 framework
 kde-apps/kde-wallpapers 15.08.3 15.08.3-r2: KDE wallpapers
-kde-plasma/plasma-workspace 5.12.5 5.13.5-r1: KDE Plasma workspace
+kde-plasma/plasma-workspace 5.13.5-r1: KDE Plasma workspace
 lxde-base/lxsession 0.5.2: LXDE session manager
 mail-filter/spamassassin 3.4.1-r8: An extensible mail filter which can identify and tag spam
 media-libs/freeimage 3.15.4-r1: Image library supporting many formats
