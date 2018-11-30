@@ -1,10 +1,10 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
 EAPI=6
 
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python{2_7,3_{4,5,6,7}} )
 PYTHON_REQ_USE='threads(+)'
 
 inherit python-single-r1 waf-utils
@@ -32,7 +32,7 @@ RDEPEND="${PYTHON_DEPEND}
 		media-libs/freetype
 		x11-libs/cairo
 		x11-libs/gdk-pixbuf
-		x11-libs/gtk+:2
+		x11-libs/gtk+:3
 		x11-libs/pango
 	)"
 DEPEND="${RDEPEND}"
