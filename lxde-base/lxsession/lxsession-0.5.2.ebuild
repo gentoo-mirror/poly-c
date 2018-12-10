@@ -1,6 +1,6 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 612fe3e4ccb6f7434a8e13c1026531014280a7a7 $
+# $Id: 84ca13270d27d7670bd1faeaeeb6ee1a15e1bdff $
 
 EAPI=6
 inherit vala autotools
@@ -30,7 +30,7 @@ COMMON_DEPEND="
 RDEPEND="${COMMON_DEPEND}
 	!lxde-base/lxsession-edit
 	sys-apps/lsb-release
-	upower? ( || ( sys-power/upower sys-power/upower-pm-utils ) )
+	upower? ( sys-power/upower )
 "
 DEPEND="${COMMON_DEPEND}
 	$(vala_depend)
