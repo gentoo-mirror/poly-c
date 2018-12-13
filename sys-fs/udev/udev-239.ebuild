@@ -1,17 +1,17 @@
 # Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5dbe6b7d4497ae9bfece59e19a194347a59ae192 $
+# $Id: 7567abea1256c2785678ceeba0921fa8ad79ff17 $
 
 EAPI=6
 
-inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal toolchain-funcs udev user versionator
+inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal toolchain-funcs udev user
 
 if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="https://github.com/systemd/systemd.git"
 	inherit git-r3
 else
 	SRC_URI="https://github.com/systemd/systemd/archive/v${PV}.tar.gz -> systemd-${PV}.tar.gz"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
+	KEYWORDS="~alpha amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh sparc x86"
 
 	FIXUP_PATCH="${PN}-239-revert-systemd-messup.patch"
 	SRC_URI+=" https://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}.xz"
