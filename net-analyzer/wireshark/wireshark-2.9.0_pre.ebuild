@@ -174,15 +174,12 @@ src_install() {
 		ws_symbol_export.h \
 		wsutil/*.h
 	do
-		echo "Installing ${wsheader}"
+		echo "Installing ${wsheader/${WORKDIR}\/}"
 		insinto /usr/include/wireshark/$( dirname ${wsheader} )
 		doins ${wsheader}
 	done
 
-	for wsheader in \
-		../${MY_P}_build/config.h \
-		../${MY_P}_build/version.h
-	do
+	for wsheader in ${BUILD_DIR}/{config,version}.h ; do
 		echo "Installing ${wsheader}"
 		insinto /usr/include/wireshark
 		doins ${wsheader}
