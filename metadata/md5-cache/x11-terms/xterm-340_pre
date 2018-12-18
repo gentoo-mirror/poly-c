@@ -10,6 +10,6 @@ LICENSE=MIT
 RDEPEND=kernel_linux? ( sys-libs/libutempter ) kernel_FreeBSD? ( || ( >=sys-freebsd/freebsd-lib-9.0 sys-libs/libutempter ) ) media-libs/fontconfig:1.0 >=sys-libs/ncurses-5.7-r7:0= x11-apps/xmessage x11-libs/libICE x11-libs/libX11 x11-libs/libXaw x11-libs/libXft x11-libs/libxkbfile x11-libs/libXmu x11-libs/libXrender x11-libs/libXt unicode? ( x11-apps/luit ) Xaw3d? ( x11-libs/libXaw3d ) xinerama? ( x11-libs/libXinerama ) media-fonts/font-misc-misc x11-apps/rgb
 RESTRICT=mirror
 SLOT=0
-SRC_URI=ftp://ftp.invisible-island.net/xterm/xterm-338.tgz
+SRC_URI=ftp://ftp.invisible-island.net/xterm/xterm-340.tgz
 _eclasses_=desktop	b1d22ac8bdd4679ab79c71aca235009d	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	55aaa148741116aa54ad0d80e361818e	multilib	b2f01ad412baf81650c23fcf0975fa33	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	f164325a2cdb5b3ea39311d483988861
 _md5_=f2d1aa09e5a78a7e090b4c05e4d2b505
