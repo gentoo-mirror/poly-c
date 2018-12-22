@@ -50,6 +50,7 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 PATCHES=(
+	"${FILESDIR}"/${P}-box_drawing.patch
 	"${FILESDIR}"/${P}-antialiasing_blur.patch
 )
 
