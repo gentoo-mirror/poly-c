@@ -31,8 +31,8 @@ IUSE="${IUSE_DAEMON} ${IUSE_BACKEND} ${IUSE_OVERLAY} ${IUSE_OPTIONAL} ${IUSE_CON
 REQUIRED_USE="cxx? ( sasl )
 	?? ( gnutls libressl )
 	pbkdf2? ( ssl )
-	test? ( berkdb )
-	^^ ( test minimal )"
+	test? ( berkdb )"
+	#^^ ( test minimal )
 
 # always list newer first
 # Do not add any AGPL-3 BDB here!
@@ -369,7 +369,7 @@ src_prepare() {
 
 build_contrib_module() {
 	# <dir> <sources> <outputname>
-	pushd "contrib/slapd-modules/$1" &>/dev/null || die "pushd contrib/slapd-modules/$1"
+	pushd "${S}/contrib/slapd-modules/$1" &>/dev/null || die "pushd contrib/slapd-modules/$1"
 	einfo "Compiling contrib-module: $3"
 	# Make sure it's uppercase
 	local define_name="$(LC_ALL=C tr '[:lower:]' '[:upper:]' <<< "SLAPD_OVER_${1}")"
@@ -544,14 +544,13 @@ multilib_src_compile() {
 			einfo "Building contrib library: ldapc++"
 			src_configure_cxx
 			pushd "${BUILD_DIR}/contrib/ldapc++" &>/dev/null || die "pushd contrib/ldapc++"
-			emake \
-				CC="${CC}" CXX="${CXX}"
+			emake CC="${CC}" CXX="${CXX}"
 			popd &>/dev/null || die
 		fi
 
 		if use smbkrb5passwd ; then
 			einfo "Building contrib-module: smbk5pwd"
-			pushd contrib/slapd-modules/smbk5pwd &>/dev/null || die "pushd contrib/slapd-modules/smbk5pwd"
+			pushd "${S}/contrib/slapd-modules/smbk5pwd" &>/dev/null || die "pushd contrib/slapd-modules/smbk5pwd"
 
 			MY_DEFS="-DDO_SHADOW"
 			if use samba ; then
@@ -573,7 +572,7 @@ multilib_src_compile() {
 
 		if use overlays ; then
 			einfo "Building contrib-module: samba4"
-			pushd contrib/slapd-modules/samba4 &>/dev/null || die "pushd contrib/slapd-modules/samba4"
+			pushd "${S}/contrib/slapd-modules/samba4" &>/dev/null || die "pushd contrib/slapd-modules/samba4"
 
 			emake \
 				LDAP_BUILD="${BUILD_DIR}" \
@@ -585,7 +584,7 @@ multilib_src_compile() {
 			if use kinit ; then
 				build_contrib_module "kinit" "kinit.c" "kinit"
 			fi
-			pushd contrib/slapd-modules/passwd &>/dev/null || die "pushd contrib/slapd-modules/passwd"
+			pushd "${S}/contrib/slapd-modules/passwd" &>/dev/null || die "pushd contrib/slapd-modules/passwd"
 			einfo "Compiling contrib-module: pw-kerberos"
 			"${lt}" --mode=compile --tag=CC \
 				"${CC}" \
@@ -608,7 +607,7 @@ multilib_src_compile() {
 		fi
 
 		if use pbkdf2; then
-			pushd contrib/slapd-modules/passwd/pbkdf2 &>/dev/null || die "pushd contrib/slapd-modules/passwd/pbkdf2"
+			pushd "${S}/contrib/slapd-modules/passwd/pbkdf2" &>/dev/null || die "pushd contrib/slapd-modules/passwd/pbkdf2"
 			einfo "Compiling contrib-module: pw-pbkdf2"
 			"${lt}" --mode=compile --tag=CC \
 				"${CC}" \
@@ -629,7 +628,8 @@ multilib_src_compile() {
 		fi
 
 		if use sha2 ; then
-			pushd contrib/slapd-modules/passwd/sha2 &>/dev/null || die "pushd contrib/slapd-modules/passwd/sha2"
+			pwd
+			pushd "${S}/contrib/slapd-modules/passwd/sha2" &>/dev/null || die "pushd contrib/slapd-modules/passwd/sha2"
 			einfo "Compiling contrib-module: pw-sha2"
 			"${lt}" --mode=compile --tag=CC \
 				"${CC}" \
@@ -657,7 +657,7 @@ multilib_src_compile() {
 		fi
 
 		# We could build pw-radius if GNURadius would install radlib.h
-		pushd contrib/slapd-modules/passwd &>/dev/null || die "pushd contrib/slapd-modules/passwd"
+		pushd "${S}/contrib/slapd-modules/passwd" &>/dev/null || die "pushd contrib/slapd-modules/passwd"
 		einfo "Compiling contrib-module: pw-netscape"
 		"${lt}" --mode=compile --tag=CC \
 			"${CC}" \
@@ -695,7 +695,7 @@ multilib_src_compile() {
 		build_contrib_module "trace" "trace.c" "trace"
 		popd &>/dev/null || die
 		# build slapi-plugins
-		pushd contrib/slapi-plugins/addrdnvalues &>/dev/null || die "pushd contrib/slapi-plugins/addrdnvalues"
+		pushd "${S}/contrib/slapi-plugins/addrdnvalues" &>/dev/null || die "pushd contrib/slapi-plugins/addrdnvalues"
 		einfo "Building contrib-module: addrdnvalues plugin"
 		"${CC}" -shared \
 			-I"${BUILD_DIR}"/include \
