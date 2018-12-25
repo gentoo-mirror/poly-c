@@ -28,6 +28,7 @@ src_compile() {
 	create_man ssh-version "shows version of the SSH server you are connecting to"
 	create_man ssh-diff "diff a file over SSH"
 	create_man ssh-facts "get some facts about the remote system"
+	create-man ssh-hostkeys "prints server host keys in several formats"
 }
 
 src_install() {

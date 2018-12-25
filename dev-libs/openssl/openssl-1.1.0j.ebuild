@@ -1,6 +1,6 @@
 # Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e46218cc48380cbcbf832d5f68b3b0b6255069eb $
+# $Id: 9394eac2532726c61f90d6379484a4231482124a $
 
 EAPI="6"
 
@@ -70,6 +70,7 @@ MULTILIB_WRAPPED_HEADERS=(
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.0.2a-x32-asm.patch #542618
+	"${FILESDIR}"/${PN}-1.1.0j-parallel_install_fix.patch #671602
 )
 
 src_prepare() {
