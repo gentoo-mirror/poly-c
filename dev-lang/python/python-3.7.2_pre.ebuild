@@ -65,7 +65,8 @@ src_prepare() {
 	rm -fr Modules/zlib
 
 	local patch_exclude=(
-		3.6.7/0006-tests-environment.patch
+		3.6.8/0005-Improve-distutils-C-support.patch
+		3.6.8/0006-tests-environment.patch
 	)
 
 	local mpatch
