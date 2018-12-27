@@ -86,6 +86,7 @@ src_prepare() {
 
 	local PATCHES=(
 		"${FILESDIR}/236-uucp-group.patch"
+		"${FILESDIR}/${P}-uevent_dont_read_stdout_to_stderr.patch"
 	)
 
 	default
