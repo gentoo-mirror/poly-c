@@ -3,7 +3,7 @@
 
 EAPI=6
 
-PYTHON_COMPAT=( python2_7 pypy )
+PYTHON_COMPAT=( python3_{4,5,6,7} pypy )
 DISTUTILS_SINGLE_IMPL=1
 PYTHON_REQ_USE="sqlite"
 
@@ -11,7 +11,7 @@ inherit distutils-r1 git-r3
 
 DESCRIPTION="Anno-like real time strategy game"
 HOMEPAGE="http://www.unknown-horizons.org/"
-EGIT_REPO_URI="http://github.com/${PN}/${PN}"
+EGIT_REPO_URI="https://github.com/${PN}/${PN}"
 
 LICENSE="GPL-2"
 KEYWORDS=""
