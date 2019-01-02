@@ -1,6 +1,6 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 559a55814eb2d8101c882fe021f2e65fd04083ee $
+# $Id: 5fe9e849187043514eb4d7427f34de4c4e1c7d8d $
 
 EAPI=6
 inherit autotools flag-o-matic toolchain-funcs multilib-minimal
@@ -12,7 +12,7 @@ SRC_URI="http://www.libsdl.org/release/${MY_P}.tar.gz"
 
 LICENSE="ZLIB"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ia64 ~ppc ~ppc64 ~sparc ~x86"
 
 IUSE="cpu_flags_x86_3dnow alsa altivec aqua custom-cflags dbus gles haptic libsamplerate +joystick kms cpu_flags_x86_mmx nas opengl oss pulseaudio +sound cpu_flags_x86_sse cpu_flags_x86_sse2 static-libs +threads tslib udev +video video_cards_vc4 vulkan wayland X xinerama xscreensaver"
 REQUIRED_USE="
