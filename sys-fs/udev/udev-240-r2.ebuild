@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 3cf58bff5dee4541ce3fc02c6368c07ec43cbb1d $
+# $Id: 05b9ea36bd9ba352cc741d6da1f0d6fbaa38898b $
 
 EAPI=6
 
@@ -11,7 +11,7 @@ if [[ ${PV} = 9999* ]]; then
 	inherit git-r3
 else
 	SRC_URI="https://github.com/systemd/systemd/archive/v${PV}.tar.gz -> systemd-${PV}.tar.gz
-		https://dev.gentoo.org/~floppym/dist/systemd-${PV}-patches-0.tar.gz"
+		https://dev.gentoo.org/~floppym/dist/systemd-${PV}-patches-1.tar.gz"
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 
 	FIXUP_PATCH="${PN}-240-revert-systemd-messup.patch"
