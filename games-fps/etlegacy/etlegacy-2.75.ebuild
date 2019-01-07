@@ -1,10 +1,9 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 EAPI=6
 
-inherit cmake-utils gnome2-utils unpacker versionator xdg-utils
+inherit cmake-utils gnome2-utils unpacker eapi7-ver xdg-utils
 
 DESCRIPTION="Wolfenstein: Enemy Territory 2.60b compatible client/server"
 HOMEPAGE="http://www.etlegacy.com/"
@@ -74,7 +73,7 @@ src_unpack() {
 src_prepare() {
 	default
 	if [[ "${PV}" != 9999 ]] ; then
-		sed -e "/^set(ETLEGACY_VERSION_MINOR/s@[[:digit:]]\+@$(get_version_component_range 2)@" \
+		sed -e "/^set(ETLEGACY_VERSION_MINOR/s@[[:digit:]]\+@$(ver_cut 2)@" \
 			-i cmake/ETLVersion.cmake || die
 	fi
 	sed -e 's@[-_]dirty@@' -i cmake/ETLVersion.cmake || die
