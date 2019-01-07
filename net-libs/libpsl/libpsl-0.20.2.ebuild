@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id: 129f61dcdb296c77af1e8e1100091e02cce7515e $
 
@@ -19,7 +19,7 @@ RDEPEND="
 	icu? ( dev-libs/icu:= )
 	idn? (
 		dev-libs/libunistring
-		net-dns/libidn2
+		net-dns/libidn2:=
 	)
 "
 

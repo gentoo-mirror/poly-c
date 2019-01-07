@@ -39,5 +39,8 @@ sci-astronomy/pulsatingscience
 # fails to build / development version
 =sys-fs/lvm2-2.03.00_pre
 
-# Requires stuid deps
+# Requires stupid deps
 media-video/pipewire
+
+# requires css-parser from pypy which is not packaged
+>=app-text/calibre-3.37

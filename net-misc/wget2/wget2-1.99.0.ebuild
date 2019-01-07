@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -26,7 +26,7 @@ RDEPEND="
 		dev-libs/libgpg-error
 	)
 	http2? ( net-libs/nghttp2 )
-	idn? ( net-dns/libidn2 )
+	idn? ( net-dns/libidn2:= )
 	lzma? ( app-arch/xz-utils )
 	pcre? ( dev-libs/libpcre2 )
 	psl? ( net-libs/libpsl )
