@@ -1,6 +1,6 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8d0758cb39bbd13619fe64c142c712c30a9d6dfa $
+# $Id: 6b8b720cd49c3b3842f1dd0be705e338f2d0ad06 $
 
 EAPI=6
 
@@ -10,7 +10,7 @@ VIRTUALX_REQUIRED="test"
 inherit kde5 qmake-utils
 
 DESCRIPTION="KDE Plasma workspace"
-KEYWORDS="amd64 ~arm ~arm64 x86"
+KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 IUSE="appstream +calendar geolocation gps prison qalculate +semantic-desktop systemd wayland"
 
 REQUIRED_USE="gps? ( geolocation )"
@@ -55,11 +55,11 @@ COMMON_DEPEND="
 	$(add_plasma_dep kscreenlocker)
 	$(add_plasma_dep kwin)
 	$(add_plasma_dep libksysguard)
+	$(add_plasma_dep libkworkspace)
 	$(add_qt_dep qtdbus)
 	$(add_qt_dep qtdeclarative 'widgets')
 	$(add_qt_dep qtgui 'jpeg')
 	$(add_qt_dep qtnetwork)
-	$(add_qt_dep qtscript)
 	$(add_qt_dep qtsql)
 	$(add_qt_dep qtwidgets)
 	$(add_qt_dep qtx11extras)
@@ -128,7 +128,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-5.4-startkde-script.patch"
 	"${FILESDIR}/${PN}-5.10-startplasmacompositor-script.patch"
 	"${FILESDIR}/${PN}-5.12.80-tests-optional.patch"
-	"${FILESDIR}/${P}-double-positions.patch"
+	"${FILESDIR}/${PN}-5.14.2-split-libkworkspace.patch"
 )
 
 RESTRICT+=" test"
@@ -138,10 +138,17 @@ src_prepare() {
 
 	sed -e "s|\`qtpaths|\`$(qt5_get_bindir)/qtpaths|" \
 		-i startkde/startkde.cmake startkde/startplasmacompositor.cmake || die
+
+	cmake_comment_add_subdirectory libkworkspace
+	# delete colliding libkworkspace translations
+	if [[ ${KDE_BUILD_TYPE} = release ]]; then
+		find po -type f -name "*po" -and -name "libkworkspace*" -delete || die
+	fi
 }
 
 src_configure() {
 	local mycmakeargs=(
+		-DBUILD_xembed-sni-proxy=OFF
 		$(cmake-utils_use_find_package appstream AppStreamQt)
 		$(cmake-utils_use_find_package calendar KF5Holidays)
 		$(cmake-utils_use_find_package geolocation KF5NetworkManagerQt)
