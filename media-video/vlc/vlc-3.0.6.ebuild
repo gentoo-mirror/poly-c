@@ -1,29 +1,27 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 44f97c55f69a8ef5cdea5b77eb1772765b0eadc9 $
 
 EAPI=6
 
-inherit autotools flag-o-matic gnome2-utils toolchain-funcs virtualx xdg-utils poly-c_ebuilds
-
-MY_PV="${MY_PV/_/-}"
+MY_PV="${PV/_/-}"
 MY_PV="${MY_PV/-beta/-test}"
 MY_P="${PN}-${MY_PV}"
-if [[ ${MY_PV} = *9999 ]] ; then
-	inherit git-r3
-	if [[ ${MY_PV%.9999} != ${MY_PV} ]] ; then
-		EGIT_REPO_URI="https://git.videolan.org/git/vlc/vlc-${MY_PV%.9999}.git"
+if [[ ${PV} = *9999 ]] ; then
+	if [[ ${PV%.9999} != ${PV} ]] ; then
+		EGIT_REPO_URI="https://git.videolan.org/git/vlc/vlc-${PV%.9999}.git"
 	else
 		EGIT_REPO_URI="https://git.videolan.org/git/vlc.git"
 	fi
+	SCM="git-r3"
 else
-	if [[ ${MY_P} = ${MY_P} ]] ; then
-		SRC_URI="https://download.videolan.org/pub/videolan/${PN}/${MY_PV}/${MY_P}.tar.xz"
+	if [[ ${MY_P} = ${P} ]] ; then
+		SRC_URI="https://download.videolan.org/pub/videolan/${PN}/${PV}/${P}.tar.xz"
 	else
 		SRC_URI="https://download.videolan.org/pub/videolan/testing/${MY_P}/${MY_P}.tar.xz"
 	fi
 	KEYWORDS="~amd64 ~arm ~arm64 ~ppc ~ppc64 -sparc ~x86 ~x86-fbsd"
 fi
+inherit autotools flag-o-matic gnome2-utils toolchain-funcs virtualx xdg-utils ${SCM}
 
 DESCRIPTION="Media player and framework with support for most multimedia files and streaming"
 HOMEPAGE="https://www.videolan.org/vlc/"
@@ -31,11 +29,11 @@ HOMEPAGE="https://www.videolan.org/vlc/"
 LICENSE="LGPL-2.1 GPL-2"
 SLOT="0/5-9" # vlc - vlccore
 
-IUSE="a52 alsa altivec aom archive aribsub bidi bluray cddb chromaprint chromecast dbus
-	dc1394 debug directx dts +dvbpsi dvd +encode faad fdk +ffmpeg flac fluidsynth
-	fontconfig +gcrypt gme gnome-keyring gstreamer ieee1394 jack jpeg kate libass
-	libav libcaca libnotify +libsamplerate libtar libtiger linsys lirc live lua
-	macosx-notifications macosx-qtkit matroska modplug mp3 mpeg mtp musepack ncurses
+IUSE="10bit a52 alsa altivec aom archive aribsub bidi bluray cddb chromaprint chromecast
+	dav1d dbus dc1394 debug directx dts +dvbpsi dvd +encode faad fdk +ffmpeg flac
+	fluidsynth fontconfig +gcrypt gme gnome-keyring gstreamer ieee1394 jack jpeg kate
+	libass libav libcaca libnotify +libsamplerate libtar libtiger linsys lirc live lua
+	macosx-notifications macosx-qtkit mad matroska modplug mp3 mpeg mtp musepack ncurses
 	neon nfs ogg omxil opencv optimisememory opus png postproc projectm pulseaudio +qt5
 	rdp run-as-root samba sdl-image sftp shout sid skins soxr speex srt ssl
 	svg taglib theora tremor truetype twolame udev upnp vaapi v4l vdpau vnc vorbis vpx
@@ -77,6 +75,7 @@ RDEPEND="
 		>=dev-libs/protobuf-2.5.0:=
 		>=net-libs/libmicrodns-0.0.9:=
 	)
+	dav1d? ( media-libs/dav1d )
 	dbus? ( sys-apps/dbus:0 )
 	dc1394? (
 		media-libs/libdc1394:2
@@ -132,13 +131,14 @@ RDEPEND="
 	lirc? ( app-misc/lirc:0 )
 	live? ( media-plugins/live:0 )
 	lua? ( >=dev-lang/lua-5.1:0 )
+	mad? ( media-libs/libmad )
 	matroska? (
 		dev-libs/libebml:0=
 		media-libs/libmatroska:0=
 	)
-	modplug? ( media-libs/libmodplug:0 )
-	mp3? ( media-libs/libmad:0 )
-	mpeg? ( media-libs/libmpeg2:0 )
+	modplug? ( media-libs/libmodplug )
+	mp3? ( media-sound/mpg123 )
+	mpeg? ( media-libs/libmpeg2 )
 	mtp? ( media-libs/libmtp:0= )
 	musepack? ( media-sound/musepack-tools:0 )
 	ncurses? ( sys-libs/ncurses:0=[unicode] )
@@ -212,7 +212,7 @@ RDEPEND="
 		x11-libs/xcb-util
 		x11-libs/xcb-util-keysyms
 	)
-	x264? ( media-libs/x264:0= )
+	x264? ( >=media-libs/x264-0.0.20160712:0=[10bit?] )
 	x265? ( media-libs/x265:0= )
 	xml? ( dev-libs/libxml2:2 )
 	zeroconf? ( net-dns/avahi:0[dbus] )
@@ -244,7 +244,7 @@ src_prepare() {
 		eapply "${FILESDIR}"/${PN}-2.2.8-libupnp-slot-1.8.patch
 
 	# Bootstrap when we are on a git checkout.
-	if [[ ${MY_PV} = *9999 ]] ; then
+	if [[ ${PV} = *9999 ]] ; then
 		./bootstrap
 	fi
 
@@ -274,6 +274,7 @@ src_configure() {
 		--disable-aa
 		--disable-dependency-tracking
 		--disable-optimizations
+		--disable-rpath
 		--disable-update-check
 		--enable-fast-install
 		--enable-screen
@@ -335,9 +336,10 @@ src_configure() {
 		$(use_enable lua)
 		$(use_enable macosx-notifications osx-notifications)
 		$(use_enable macosx-qtkit)
+		$(use_enable mad)
 		$(use_enable matroska)
 		$(use_enable modplug mod)
-		$(use_enable mp3 mad)
+		$(use_enable mp3 mpg123)
 		$(use_enable mpeg libmpeg2)
 		$(use_enable mtp)
 		$(use_enable musepack mpc)
@@ -391,6 +393,7 @@ src_configure() {
 		$(use_enable zeroconf avahi)
 		$(use_enable zvbi)
 		$(use_enable !zvbi telx)
+		--with-kde-solid=/usr/share/solid/actions
 		--disable-asdcp
 		--disable-coverage
 		--disable-cprof
@@ -416,6 +419,12 @@ src_configure() {
 		--disable-wasapi
 	)
 	# ^ We don't have these disabled libraries in the Portage tree yet.
+
+	if use x264; then
+		myeconfargs+=( $(use_enable 10bit x26410b) )
+	else
+		myeconfargs+=( --disable-x26410b )
+	fi
 
 	# Compatibility fix for Samba 4.
 	use samba && append-cppflags "-I/usr/include/samba-4.0"
