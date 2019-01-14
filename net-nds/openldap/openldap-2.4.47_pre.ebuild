@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -48,10 +48,13 @@ CDEPEND="
 	ssl? (
 		!gnutls? (
 			!libressl? ( >=dev-libs/openssl-1.0.1h-r2:0=[${MULTILIB_USEDEP}] )
+			libressl? ( dev-libs/libressl[${MULTILIB_USEDEP}] )
 		)
-		gnutls? ( >=net-libs/gnutls-2.12.23-r6[${MULTILIB_USEDEP}]
-		libressl? ( dev-libs/libressl[${MULTILIB_USEDEP}] )
-		>=dev-libs/libgcrypt-1.5.3:0[${MULTILIB_USEDEP}] ) )
+		gnutls? (
+			>=net-libs/gnutls-2.12.23-r6[${MULTILIB_USEDEP}]
+			>=dev-libs/libgcrypt-1.5.3:0[${MULTILIB_USEDEP}]
+		)
+	)
 	sasl? ( dev-libs/cyrus-sasl:= )
 	!minimal? (
 		sys-devel/libtool
