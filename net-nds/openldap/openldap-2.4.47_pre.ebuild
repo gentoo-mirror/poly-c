@@ -31,8 +31,8 @@ IUSE="${IUSE_DAEMON} ${IUSE_BACKEND} ${IUSE_OVERLAY} ${IUSE_OPTIONAL} ${IUSE_CON
 REQUIRED_USE="cxx? ( sasl )
 	?? ( gnutls libressl )
 	pbkdf2? ( ssl )
-	test? ( berkdb )"
-	#^^ ( test minimal )
+	test? ( berkdb )
+	?? ( test minimal )"
 
 # always list newer first
 # Do not add any AGPL-3 BDB here!
@@ -631,7 +631,6 @@ multilib_src_compile() {
 		fi
 
 		if use sha2 ; then
-			pwd
 			pushd "${S}/contrib/slapd-modules/passwd/sha2" &>/dev/null || die "pushd contrib/slapd-modules/passwd/sha2"
 			einfo "Compiling contrib-module: pw-sha2"
 			"${lt}" --mode=compile --tag=CC \
