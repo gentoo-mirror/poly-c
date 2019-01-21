@@ -427,7 +427,7 @@ src_configure() {
 		--with-external-tar="${DISTDIR}"
 		--with-lang=""
 		--with-parallelism=$(makeopts_jobs)
-		--with-system-mariadb
+		#--with-system-mariadb
 		--with-system-ucpp
 		--with-tls=nss
 		--with-vendor="Gentoo Foundation"
