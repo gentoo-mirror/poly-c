@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8b125eb86e342b47a083812d9f6a0c2adc5d4741 $
+# $Id: d7262e896e2a6388084825de52c97735402a596a $
 
 EAPI=6
 
@@ -62,7 +62,10 @@ REQUIRED_USE="|| ( ${ALL_LLVM_TARGETS[*]} )
 
 S="${WORKDIR}/${MY_P}-src"
 
-PATCHES=( "${FILESDIR}"/1.30.1-clippy-sysroot.patch )
+PATCHES=(
+	"${FILESDIR}"/1.30.1-clippy-sysroot.patch
+	"${FILESDIR}"/1.32.0-fix-configure-of-bundled-llvm.patch
+)
 
 toml_usex() {
 	usex "$1" true false

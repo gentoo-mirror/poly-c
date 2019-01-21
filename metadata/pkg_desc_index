@@ -32,4 +32,4 @@ sys-boot/grub 2.02-r1: GNU GRUB boot loader
 sys-fs/udev 236-r1 238 239: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-power/cpupower 4.4.169 4.4.170 4.4.171 4.9.149 4.9.150 4.9.151: Shows and sets processor power related values
 sys-process/procps 3.3.15-r1: standard informational utilities and process-handling tools
-x11-apps/xinit 1.4.0: X Window System initializer
+x11-apps/xinit 1.4.0 1.4.0-r1: X Window System initializer
