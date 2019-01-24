@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -7,20 +7,27 @@ PYTHON_COMPAT=( python3_{4,5,6,7} pypy )
 DISTUTILS_SINGLE_IMPL=1
 PYTHON_REQ_USE="sqlite"
 
-inherit distutils-r1 git-r3
+inherit distutils-r1
+
+if [[ ${PV} == *9999 ]] ; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/${PN}/${PN}"
+else
+	SRC_URI=""
+	KEYWORDS="~amd64 ~x86"
+fi
 
 DESCRIPTION="Anno-like real time strategy game"
 HOMEPAGE="http://www.unknown-horizons.org/"
-EGIT_REPO_URI="https://github.com/${PN}/${PN}"
 
 LICENSE="GPL-2"
-KEYWORDS=""
 SLOT="0"
 IUSE="test"
 
-DEPEND="
-	dev-python/pyyaml[${PYTHON_USEDEP}]
+RDEPEND="
+	dev-python/future[${PYTHON_USEDEP}]
 	dev-python/pillow[${PYTHON_USEDEP}]
+	dev-python/pyyaml[${PYTHON_USEDEP}]
 	test? (
 		dev-python/greenlet[${PYTHON_USEDEP}]
 		dev-python/polib[${PYTHON_USEDEP}]
@@ -30,12 +37,12 @@ DEPEND="
 		dev-python/nose[${PYTHON_USEDEP}]
 		dev-python/pycodestyle[${PYTHON_USEDEP}]
 	)
-	games-engines/fifengine[${PYTHON_USEDEP}]
+	games-engines/fifengine[python,${PYTHON_USEDEP}]
 	games-engines/fifechan
 	${PYTHON_DEPS}
 "
 
-RDEPEND="$DEPEND"
+DEPEND="${RDEPEND}"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
@@ -45,8 +52,4 @@ src_test() {
 
 src_compile() {
 	distutils-r1_src_compile build_i18n
-}
-
-src_install() {
-	distutils-r1_src_install
 }
