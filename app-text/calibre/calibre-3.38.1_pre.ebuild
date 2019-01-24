@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -47,6 +47,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	>=dev-python/apsw-3.13.0[${PYTHON_USEDEP}]
 	>=dev-python/beautifulsoup-3.0.5:python-2[${PYTHON_USEDEP}]
 	>=dev-python/chardet-3.0.3[${PYTHON_USEDEP}]
+	>=dev-python/css-parser-1.0.4_pre[${PYTHON_USEDEP}]
 	>=dev-python/cssselect-0.7.1[${PYTHON_USEDEP}]
 	>=dev-python/cssutils-1.0.1[${PYTHON_USEDEP}]
 	>=dev-python/dbus-python-1.2.4[${PYTHON_USEDEP}]

@@ -41,6 +41,3 @@ sci-astronomy/pulsatingscience
 
 # Requires stupid deps
 media-video/pipewire
-
-# requires css-parser from pypy which is not packaged
->=app-text/calibre-3.37
