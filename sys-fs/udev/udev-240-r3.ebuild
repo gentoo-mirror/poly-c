@@ -11,7 +11,7 @@ if [[ ${PV} = 9999* ]]; then
 	inherit git-r3
 else
 	SRC_URI="https://github.com/systemd/systemd/archive/v${PV}.tar.gz -> systemd-${PV}.tar.gz
-		https://dev.gentoo.org/~floppym/dist/systemd-${PV}-patches-1.tar.gz"
+		https://dev.gentoo.org/~floppym/dist/systemd-${PV}-patches-3.tar.gz"
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 
 	FIXUP_PATCH="${PN}-240-revert-systemd-messup.patch"
