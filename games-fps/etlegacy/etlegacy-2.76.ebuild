@@ -30,6 +30,10 @@ REQUIRED_USE="omnibot? ( x86 )"
 
 RESTRICT="mirror"
 
+PATCHES=(
+	"${FILESDIR}"/${P}-ipv6_build_fix.patch
+)
+
 # TODO add debug use for CMAKE_BUILD_TYPE=debug
 
 if [[ ${PV} == "9999" ]]; then
