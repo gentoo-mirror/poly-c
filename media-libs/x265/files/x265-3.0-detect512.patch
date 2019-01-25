@@ -1,0 +1,26 @@
+--- x265_3.0/source/common/cpu.cpp
++++ x265_3.0/source/common/cpu.cpp
+@@ -110,6 +110,11 @@
+     { "", 0 },
+ };
+ 
++bool detect512()
++{
++    return(enable512);
++}
++
+ #if X265_ARCH_X86
+ 
+ extern "C" {
+@@ -123,11 +128,6 @@
+ #pragma warning(disable: 4309) // truncation of constant value
+ #endif
+ 
+-bool detect512()
+-{
+-    return(enable512);
+-}
+-
+ uint32_t cpu_detect(bool benableavx512 )
+ {
+ 
