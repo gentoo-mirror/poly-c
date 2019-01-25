@@ -20,7 +20,6 @@ IUSE="tk"
 
 DEPEND="
 	!app-laptop/i8kutils
-	tk? ( dev-lang/tk:0 )
 "
 RDEPEND="${DEPEND}
 	sys-power/acpi"
@@ -29,27 +28,21 @@ DOCS=( README.i8kutils )
 
 src_prepare() {
 	default
+
+	sed \
+		-e '/^CFLAGS/s@:=.*$@+=-fstack-protector-strong@' \
+		-e '/^LDFLAGS/s@:=@+=@' \
+		-i Makefile || die
+
 	tc-export CC
 }
 
 src_install() {
 	dobin i8kctl i8kfan
-	doman i8kctl.1
-	dodoc README.i8kutils
+	dosbin i8kmon-ng
+	doman i8kctl.1 i8kmon-ng.1
+	dodoc ${DOCS[@]}
 
-	newinitd "${FILESDIR}"/i8k.init-r1 i8k
-	newconfd "${FILESDIR}"/i8k.conf i8k
-
-	if use tk; then
-		dobin i8kmon
-		doman i8kmon.1
-		dodoc i8kmon.conf
-		systemd_dounit "${FILESDIR}"/i8kmon.service
-	else
-		cat >> "${ED}"/etc/conf.d/i8k <<- EOF
-
-		# i8kmon disabled because the package was installed without USE=tk
-		NOMON=1
-		EOF
-	fi
+	newinitd "${FILESDIR}"/i8kmon-ng.init i8kmon-ng
+	newconfd "${FILESDIR}"/i8kmon-ng.conf i8kmon-ng
 }

@@ -1,0 +1,17 @@
+#!/sbin/openrc-run
+
+description="Monitors fans of Dell Laptops"
+pidfile="/run/i8kmon-ng.pid"
+command="/usr/sbin/i8kmon-ng"
+
+depend() {
+	after modules
+}
+
+start_pre() {
+	if [ ! -e /proc/i8k ] ; then
+		eerror "The i8k driver is not installed"
+		return 1
+	fi
+}
+
