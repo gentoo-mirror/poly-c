@@ -5,5 +5,5 @@ EAPI=7
 HOMEPAGE=https://github.com/TomFreudenberg/dell-bios-fan-control
 LICENSE=AS-IS
 SLOT=0
-_eclasses_=git-r3	0d4635eeb5a96cd5315597a47eba25c9
-_md5_=f12f6ecc4184c3d8a13903bfdb2beb77
+_eclasses_=git-r3	0d4635eeb5a96cd5315597a47eba25c9	multilib	b2f01ad412baf81650c23fcf0975fa33	toolchain-funcs	f164325a2cdb5b3ea39311d483988861
+_md5_=5f7160ea1c56dc20bd7c585e3fab4417

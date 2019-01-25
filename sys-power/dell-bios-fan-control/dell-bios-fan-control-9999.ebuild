@@ -3,6 +3,8 @@
 
 EAPI=7
 
+inherit toolchain-funcs
+
 DESCRIPTION="Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell"
 HOMEPAGE="https://github.com/TomFreudenberg/dell-bios-fan-control"
 if [[ "${PV}" == *9999 ]] ; then
@@ -20,6 +22,8 @@ IUSE=""
 src_prepare() {
 	default
 	sed 's@$(CC)@$(CC) $(CFLAGS) $(LDFLAGS)@' -i Makefile || die
+
+	tc-export CC
 }
 
 src_install() {
