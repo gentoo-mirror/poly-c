@@ -14,7 +14,7 @@ else
 	SRC_URI=""
 	KEYWORDS="~amd64 ~x86"
 fi
-LICENSE="AS-IS"
+LICENSE="GPL-2"
 SLOT="0"
 
 IUSE=""
