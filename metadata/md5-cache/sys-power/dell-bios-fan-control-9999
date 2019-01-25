@@ -1,0 +1,9 @@
+BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=install prepare unpack
+DESCRIPTION=Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
+EAPI=7
+HOMEPAGE=https://github.com/TomFreudenberg/dell-bios-fan-control
+LICENSE=AS-IS
+SLOT=0
+_eclasses_=git-r3	0d4635eeb5a96cd5315597a47eba25c9
+_md5_=f12f6ecc4184c3d8a13903bfdb2beb77
