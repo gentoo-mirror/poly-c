@@ -1,8 +1,8 @@
 #!/sbin/openrc-run
 
 description="Monitors fans of Dell Laptops"
-pidfile="/run/i8kmon-ng.pid"
-command="/usr/sbin/i8kmon-ng"
+pidfile="/run/dell-fan-mon.pid"
+command="/usr/sbin/dell-fan-mon"
 
 depend() {
 	after modules
@@ -14,4 +14,3 @@ start_pre() {
 		return 1
 	fi
 }
-

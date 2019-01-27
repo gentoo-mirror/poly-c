@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit systemd toolchain-funcs
+inherit toolchain-funcs
 
 DESCRIPTION="Fan control for some Dell laptops"
 HOMEPAGE="https://github.com/ru-ace/dell-fan-mon"
@@ -16,10 +16,7 @@ else
 fi
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="tk"
-
-RDEPEND="sys-power/acpi"
-DEPEND="${RDEPEND}"
+IUSE=""
 
 DOCS=( readme.md )
 
@@ -35,10 +32,10 @@ src_prepare() {
 }
 
 src_install() {
-	dobin dell-fan-mon
-	doman dell-fan-mon.1
+	dosbin ${PN}
+	doman ${PN}.1
 	dodoc ${DOCS[@]}
 
-	newinitd "${FILESDIR}"/i8kmon-ng.init dell-fan-mon
-	newconfd "${FILESDIR}"/i8kmon-ng.conf dell-fan-mon
+	newinitd "${FILESDIR}"/${PN}.init ${PN}
+	newconfd "${FILESDIR}"/${PN}.conf ${PN}
 }
