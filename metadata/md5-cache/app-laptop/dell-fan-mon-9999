@@ -1,12 +1,12 @@
 BDEPEND=virtual/pkgconfig >=dev-vcs/git-1.8.2.1[curl]
 DEFINED_PHASES=install prepare unpack
-DEPEND=!app-laptop/i8kutils
+DEPEND=sys-power/acpi
 DESCRIPTION=Fan control for some Dell laptops
 EAPI=7
-HOMEPAGE=https://github.com/ru-ace/i8kutils
+HOMEPAGE=https://github.com/ru-ace/dell-fan-mon
 IUSE=tk
 LICENSE=GPL-3
-RDEPEND=!app-laptop/i8kutils sys-power/acpi
+RDEPEND=sys-power/acpi
 SLOT=0
 _eclasses_=git-r3	0d4635eeb5a96cd5315597a47eba25c9	multilib	b2f01ad412baf81650c23fcf0975fa33	systemd	71fd8d2065d102753fb9e4d20eaf3e9f	toolchain-funcs	f164325a2cdb5b3ea39311d483988861
-_md5_=7e3a433c15c8cf76c8a91b198829b64b
+_md5_=471167101750f2a6dfe5634f6c3f12bd
