@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 77c3ccca2221e3e9a9775ff669a230f321c1827d $
+# $Id: 93c5c8b00a07bb17ba1059fb135a69eb28dafbb2 $
 
 EAPI=6
 
@@ -30,7 +30,7 @@ HOMEPAGE="https://www.videolan.org/vlc/"
 LICENSE="LGPL-2.1 GPL-2"
 SLOT="0/5-9" # vlc - vlccore
 
-IUSE="10bit a52 alsa altivec aom archive aribsub bidi bluray cddb chromaprint chromecast
+IUSE="a52 alsa altivec aom archive aribsub bidi bluray cddb chromaprint chromecast
 	dav1d dbus dc1394 debug directx dts +dvbpsi dvd +encode faad fdk +ffmpeg flac
 	fluidsynth fontconfig +gcrypt gme gnome-keyring gstreamer ieee1394 jack jpeg kate
 	libass libav libcaca libnotify +libsamplerate libtar libtiger linsys lirc live lua
@@ -213,7 +213,7 @@ RDEPEND="
 		x11-libs/xcb-util
 		x11-libs/xcb-util-keysyms
 	)
-	x264? ( >=media-libs/x264-0.0.20160712:0=[10bit?] )
+	x264? ( >=media-libs/x264-0.0.20160712:0= )
 	x265? ( media-libs/x265:0= )
 	xml? ( dev-libs/libxml2:2 )
 	zeroconf? ( net-dns/avahi:0[dbus] )
@@ -418,14 +418,9 @@ src_configure() {
 		--disable-spatialaudio
 		--disable-vsxu
 		--disable-wasapi
+		--disable-x26410b
 	)
 	# ^ We don't have these disabled libraries in the Portage tree yet.
-
-	if use x264; then
-		myeconfargs+=( $(use_enable 10bit x26410b) )
-	else
-		myeconfargs+=( --disable-x26410b )
-	fi
 
 	# Compatibility fix for Samba 4.
 	use samba && append-cppflags "-I/usr/include/samba-4.0"

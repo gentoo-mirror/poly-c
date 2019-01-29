@@ -1,6 +1,6 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 1d6f330296b343821d82afe4b7fa51c87287838b $
+# $Id: 888ed3b7bbbb1e7c39897f6a9d354a0f9fdbbf8d $
 
 EAPI=6
 inherit autotools eutils gnome2-utils toolchain-funcs
@@ -11,7 +11,7 @@ LICENSE="MIT"
 
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
-IUSE="doc +gtk gtk3 ipv6 kerberos"
+IUSE="doc +gtk gtk3 ipv6 gssapi"
 SRC_URI="
 	https://dev.gentoo.org/~jer/${PN}-icons.tar.bz2
 	https://the.earth.li/~sgtatham/${PN}/latest/${P}.tar.gz
@@ -27,7 +27,7 @@ RDEPEND="
 		x11-libs/libX11
 		x11-libs/pango
 	)
-	kerberos? ( virtual/krb5 )
+	gssapi? ( virtual/krb5 )
 "
 DEPEND="
 	${RDEPEND}
@@ -49,7 +49,7 @@ src_prepare() {
 src_configure() {
 	cd "${S}"/unix || die
 	econf \
-		$(use_with kerberos gssapi) \
+		$(use_with gssapi) \
 		$(use_with gtk gtk $(usex gtk3 '3' '2'))
 }
 
