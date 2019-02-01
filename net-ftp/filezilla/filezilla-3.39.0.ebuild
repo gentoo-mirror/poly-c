@@ -1,6 +1,6 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: eb9f18cd0673e8981fb351982d57332185c9b687 $
+# $Id: be433a7763d840332e066381a167df330d469d57 $
 
 EAPI=6
 
@@ -17,7 +17,7 @@ SRC_URI="https://download.filezilla-project.org/client/${MY_P}_src.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~ia64 ~ppc ~x86"
+KEYWORDS="~amd64 ~arm ~ia64 ~ppc x86"
 IUSE="dbus nls test"
 
 # pugixml 1.7 minimal dependency is for c++11 proper configuration
