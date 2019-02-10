@@ -24,6 +24,8 @@ BDEPEND="
 	sys-apps/help2man
 "
 
+S="${WORKDIR}/${MY_P/a}"
+
 src_prepare() {
 	default
 
