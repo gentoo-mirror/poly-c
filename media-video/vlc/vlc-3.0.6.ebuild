@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 93c5c8b00a07bb17ba1059fb135a69eb28dafbb2 $
+# $Id: 9e6623d04fc5ecfe23cedd51b45829218cbb6f0d $
 
 EAPI=6
 
@@ -202,7 +202,7 @@ RDEPEND="
 	vdpau? ( x11-libs/libvdpau:0 )
 	vnc? ( net-libs/libvncserver:0 )
 	vorbis? ( media-libs/libvorbis:0 )
-	vpx? ( media-libs/libvpx:0= )
+	vpx? ( <media-libs/libvpx-1.8.0:0= )
 	wayland? (
 		>=dev-libs/wayland-1.15
 		dev-libs/wayland-protocols

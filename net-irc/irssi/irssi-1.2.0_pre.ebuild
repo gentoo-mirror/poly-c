@@ -22,7 +22,6 @@ IUSE="+perl selinux socks5 +proxy libressl"
 COMMON_DEPEND="
 	sys-libs/ncurses:0=
 	>=dev-libs/glib-2.6.0
-	dev-libs/libutf8proc
 	!libressl? ( dev-libs/openssl:= )
 	libressl? ( dev-libs/libressl:= )
 	perl? ( dev-lang/perl:= )
@@ -33,6 +32,7 @@ DEPEND="
 	virtual/pkgconfig"
 
 RDEPEND="
+	!net-irc/irssi-otr
 	${COMMON_DEPEND}
 	selinux? ( sec-policy/selinux-irc )
 	perl? ( !net-im/silc-client )"
@@ -42,6 +42,7 @@ RESTRICT="test"
 S="${WORKDIR}/${REAL_P}"
 
 src_configure() {
+	export ac_cv_lib_utf8proc_utf8proc_version=no
 	econf \
 		--with-perl-lib=vendor \
 		--enable-true-color \
