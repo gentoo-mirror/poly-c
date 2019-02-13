@@ -8,7 +8,7 @@ dev-libs/openssl 1.0.2q: full-strength general purpose cryptography library (inc
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-qt/qtnetwork 5.9.6: Network abstraction library for the Qt5 framework
 kde-apps/kde-wallpapers 15.08.3 15.08.3-r2: KDE wallpapers
-kde-plasma/plasma-workspace 5.14.3 5.14.5: KDE Plasma workspace
+kde-plasma/plasma-workspace 5.14.5: KDE Plasma workspace
 lxde-base/lxsession 0.5.2: LXDE session manager
 media-libs/freeimage 3.15.4-r1: Image library supporting many formats
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
