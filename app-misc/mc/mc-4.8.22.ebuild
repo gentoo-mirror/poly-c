@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e2a128c7a3d3728949a9598480a5c7cb91e6108e $
+# $Id: 7fdb6ba9ca1376374046bd3dfaf5fccb65ab6df2 $
 
 EAPI=7
 
@@ -14,7 +14,7 @@ SRC_URI="http://ftp.midnight-commander.org/${MY_P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~alpha amd64 ~arm ~arm64 hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~alpha amd64 ~arm arm64 hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="+edit gpm mclib nls samba sftp +slang spell test unicode X +xdg"
 
 REQUIRED_USE="spell? ( edit )"
@@ -53,10 +53,7 @@ pkg_pretend() {
 }
 
 src_prepare() {
-	[[ -n ${LIVE_EBUILD} ]] && ./autogen.sh
-
 	default
-
 	eautoreconf
 }
 
@@ -87,6 +84,15 @@ src_configure() {
 src_compile() {
 	default
 	use nls && emake -C po update-po
+}
+
+src_test() {
+	# CK_FORK=no to avoid using fork() in check library
+	# as mc mocks fork() itself: bug #644462.
+	#
+	# VERBOSE=1 to make test failures contain detailed
+	# information.
+	CK_FORK=no emake check VERBOSE=1
 }
 
 src_install() {
