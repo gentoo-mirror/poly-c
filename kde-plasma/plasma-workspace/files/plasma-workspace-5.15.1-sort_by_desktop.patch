@@ -1,0 +1,24 @@
+https://bugs.kde.org/show_bug.cgi?id=404572
+
+diff --git a/libtaskmanager/tasksmodel.cpp b/libtaskmanager/tasksmodel.cpp
+--- a/libtaskmanager/tasksmodel.cpp
++++ b/libtaskmanager/tasksmodel.cpp
+@@ -897,7 +897,7 @@
+             for (const QVariant &desktop : leftDesktops) {
+                 const int desktopPos = virtualDesktopInfo->position(desktop);
+ 
+-                if (desktopPos < leftDesktopPos) {
++                if (desktopPos <= leftDesktopPos) {
+                     leftDesktop = desktop;
+                     leftDesktopPos = desktopPos;
+                 }
+@@ -910,7 +910,7 @@
+             for (const QVariant &desktop : rightDesktops) {
+                 const int desktopPos = virtualDesktopInfo->position(desktop);
+ 
+-                if (desktopPos < rightDesktopPos) {
++                if (desktopPos <= rightDesktopPos) {
+                     rightDesktop = desktop;
+                     rightDesktopPos = desktopPos;
+                 }
+
