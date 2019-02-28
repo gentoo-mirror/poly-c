@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5b5bb76c6b75bb7922ecadfb48d2a0839e3fb8a6 $
+# $Id: 5e05c9dcab04ece5b649f141cfcb2e2b97dbab21 $
 
 EAPI="6"
 
@@ -42,6 +42,10 @@ PDEPEND="app-misc/ca-certificates"
 
 REQUIRED_USE="?? ( api098 api110 )"
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-1.1.0j-parallel_install_fix.patch #671602
+)
+
 # This does not copy the entire Fedora patchset, but JUST the parts that
 # are needed to make it safe to use EC with RESTRICT=bindist.
 # See openssl.spec for the matching numbering of SourceNNN, PatchNNN
@@ -74,6 +78,7 @@ src_prepare() {
 		for i in "${FEDORA_SOURCE[@]}" ; do
 			cp -f "${DISTDIR}"/"${P}_${i}" "${WORKDIR}"/"${i}" || die
 		done
+
 		# .spec %prep
 		bash "${WORKDIR}"/"${SOURCE1}" || die
 		cp -f "${WORKDIR}"/"${SOURCE12}" "${S}"/crypto/ec/ || die
