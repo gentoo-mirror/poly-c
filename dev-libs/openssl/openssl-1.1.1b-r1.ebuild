@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0ad3e058c0c9aed4d62598d1d6f25b05098d3275 $
+# $Id: 5b5bb76c6b75bb7922ecadfb48d2a0839e3fb8a6 $
 
 EAPI="6"
 
@@ -39,17 +39,6 @@ DEPEND="${RDEPEND}
 		sys-devel/bc
 	)"
 PDEPEND="app-misc/ca-certificates"
-
-PATCHES=(
-	"${FILESDIR}"/${P}-make-sure-build_SYS_str_reasons_preserves_errno.patch
-	"${FILESDIR}"/${P}-preserve-errno-on-dlopen.patch
-	"${FILESDIR}"/${P}-fix-wrong-return-value-in-ssl3_ctx_ctrl.patch
-	"${FILESDIR}"/${P}-revert-reduce-stack-usage-in-tls13_hkdf_expand.patch
-	"${FILESDIR}"/${P}-fix-some-SSL_export_keying_material-issues.patch
-	"${FILESDIR}"/${P}-preserve-system-error-number-in-a-few-more-places.patch
-	"${FILESDIR}"/${P}-fix-a-minor-nit-in-hkdflabel-size.patch
-	"${FILESDIR}"/${P}-fix-cert-with-rsa-instead-of-rsaEncryption.patch
-)
 
 REQUIRED_USE="?? ( api098 api110 )"
 
@@ -90,7 +79,12 @@ src_prepare() {
 		cp -f "${WORKDIR}"/"${SOURCE12}" "${S}"/crypto/ec/ || die
 		cp -f "${WORKDIR}"/"${SOURCE13}" "${S}"/test/ || die
 		for i in "${FEDORA_PATCH[@]}" ; do
-			eapply "${DISTDIR}"/"${i}"
+			if [[ "${i}" == "${PATCH37}" ]] ; then
+				# apply our own for OpenSSL 1.1.1b adjusted version of this patch
+				eapply "${FILESDIR}"/openssl-1.1.1b-ec-curves-patch.patch
+			else
+				eapply "${DISTDIR}"/"${i}"
+			fi
 		done
 		# Also see the configure parts below:
 		# enable-ec \

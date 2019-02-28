@@ -121,7 +121,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-5.10-startplasmacompositor-script.patch"
 	"${FILESDIR}/${PN}-5.12.80-tests-optional.patch"
 	"${FILESDIR}/${PN}-5.14.2-split-libkworkspace.patch"
-	"${FILESDIR}/${P}-sort_by_desktop.patch"
+	"${FILESDIR}/${PN}-5.15.1-sort_by_desktop.patch"
 )
 
 RESTRICT+=" test"
