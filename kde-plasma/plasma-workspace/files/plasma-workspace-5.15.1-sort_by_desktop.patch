@@ -1,5 +1,3 @@
-https://bugs.kde.org/show_bug.cgi?id=404572
-
 diff --git a/libtaskmanager/tasksmodel.cpp b/libtaskmanager/tasksmodel.cpp
 --- a/libtaskmanager/tasksmodel.cpp
 +++ b/libtaskmanager/tasksmodel.cpp
@@ -21,4 +19,13 @@ diff --git a/libtaskmanager/tasksmodel.cpp b/libtaskmanager/tasksmodel.cpp
                      rightDesktop = desktop;
                      rightDesktopPos = desktopPos;
                  }
+@@ -923,8 +923,6 @@
+             } else if (leftDesktop.isNull() && !rightDesktop.isNull()) {
+                 return true;
+             }
+-
+-            return false;
+         }
+         case SortActivity: {
+             // updateActivityTaskCounts() counts the number of window tasks on each
 
