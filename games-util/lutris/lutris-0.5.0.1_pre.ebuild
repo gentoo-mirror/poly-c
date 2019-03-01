@@ -4,8 +4,9 @@
 EAPI=6
 
 PYTHON_COMPAT=( python3_{4,5,6} )
+PYTHON_REQ_USE="sqlite,threads"
 
-inherit distutils-r1 eapi7-ver python-r1 xdg poly-c_ebuilds
+inherit distutils-r1 eapi7-ver xdg poly-c_ebuilds
 
 DESCRIPTION="Lutris is an open source gaming platform for GNU/Linux."
 HOMEPAGE="https://lutris.net/"
@@ -31,12 +32,12 @@ DEPEND="
 "
 RDEPEND="
 	${DEPEND}
-	dev-lang/python[sqlite,threads]
-	dev-python/dbus-python[${PYTHON_USEDEP}]
+	${PYTHON_DEPS}
 	dev-python/python-evdev[${PYTHON_USEDEP}]
 	dev-python/pyyaml[${PYTHON_USEDEP}]
-	gnome-base/gnome-desktop
+	gnome-base/gnome-desktop[introspection]
 	net-libs/libsoup
+	net-libs/webkit-gtk:4
 	sys-auth/polkit
 	sys-process/psmisc
 	x11-apps/xrandr
@@ -69,22 +70,10 @@ list_optional_dependencies() {
 	done
 }
 
-python_install() {
-	distutils-r1_python_install
-}
-
-src_prepare() {
-	distutils-r1_src_prepare
-}
-
-src_compile() {
-	distutils-r1_src_compile
-}
-
-src_install() {
+python_install_all() {
 	# README.rst contains list of optional deps
 	DOCS=( AUTHORS README.rst INSTALL.rst )
-	distutils-r1_src_install
+	distutils-r1_python_install_all
 }
 
 pkg_preinst() {
