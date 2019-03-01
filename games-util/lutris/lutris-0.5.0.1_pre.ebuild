@@ -37,7 +37,7 @@ RDEPEND="
 	dev-python/pyyaml[${PYTHON_USEDEP}]
 	gnome-base/gnome-desktop[introspection]
 	net-libs/libsoup
-	net-libs/webkit-gtk:4
+	net-libs/webkit-gtk:4[introspection]
 	sys-auth/polkit
 	sys-process/psmisc
 	x11-apps/xrandr
