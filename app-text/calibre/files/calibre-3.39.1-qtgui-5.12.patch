@@ -1,0 +1,12 @@
+https://bugs.gentoo.org/678022
+
+--- calibre-3.39.1/src/calibre/headless/fontconfig_database.cpp
++++ calibre-3.39.1/src/calibre/headless/fontconfig_database.cpp
+@@ -53,6 +53,7 @@
+ #include <QtPlatformSupport/private/qfontenginemultifontconfig_p.h>
+ #endif
+ #if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
++#undef QT_NO_FREETYPE
+ #include <QtFontDatabaseSupport/private/qfontengine_ft_p.h>
+ #else
+ #include <QtGui/private/qfontengine_ft_p.h>
