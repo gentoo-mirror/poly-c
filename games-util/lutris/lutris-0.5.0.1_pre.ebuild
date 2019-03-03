@@ -3,8 +3,8 @@
 
 EAPI=6
 
-PYTHON_COMPAT=( python3_{4,5,6} )
-PYTHON_REQ_USE="sqlite,threads"
+PYTHON_COMPAT=( python3_{4,5,6,7} )
+PYTHON_REQ_USE="sqlite,threads(+)"
 
 inherit distutils-r1 eapi7-ver xdg poly-c_ebuilds
 

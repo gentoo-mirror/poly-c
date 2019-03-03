@@ -1,0 +1,20 @@
+--- trunk/gcc/config/i386/i386.opt	2019/02/23 18:44:54	269163
++++ trunk/gcc/config/i386/i386.opt	2019/02/23 19:39:35	269164
+@@ -253,7 +253,7 @@
+ Enum(ix86_align_data) String(cacheline) Value(ix86_align_data_type_cacheline)
+ 
+ march=
+-Target RejectNegative Joined Var(ix86_arch_string)
++Target RejectNegative Negative(march=) Joined Var(ix86_arch_string)
+ Generate code for given CPU.
+ 
+ masm=
+@@ -510,7 +510,7 @@
+ Use direct references against %gs when accessing tls data.
+ 
+ mtune=
+-Target RejectNegative Joined Var(ix86_tune_string)
++Target RejectNegative Negative(mtune=) Joined Var(ix86_tune_string)
+ Schedule code for given CPU.
+ 
+ mtune-ctrl=
