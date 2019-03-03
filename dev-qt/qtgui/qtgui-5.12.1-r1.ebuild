@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 99baac703ae482b0ad8560d798e7af8298b1fe91 $
+# $Id: fa203bb4482e82a95b44bde5cc617ef39be1903e $
 
 EAPI=6
 QT5_MODULE="qtbase"
@@ -44,7 +44,7 @@ RDEPEND="
 	jpeg? ( virtual/jpeg:0 )
 	libinput? (
 		dev-libs/libinput:=
-		x11-libs/libxkbcommon
+		>=x11-libs/libxkbcommon-0.5.0
 	)
 	png? ( media-libs/libpng:0= )
 	tslib? ( x11-libs/tslib )
@@ -92,7 +92,7 @@ QT5_GENTOO_CONFIG=(
 	evdev:evdev:
 	evdev:mtdev:
 	:fontconfig:
-	:system-freetype:
+	:system-freetype:FREETYPE
 	!:no-freetype:
 	!gif:no-gif:
 	gles2::OPENGL_ES
