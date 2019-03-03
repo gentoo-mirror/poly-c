@@ -1,6 +1,6 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5a32471e2d6c14ac1a3a653f885854328f551b2d $
+# $Id: 481626bc8f13f233395f6070994d95e3b9f4aa84 $
 
 # Remember: we cannot leverage autotools in this ebuild in order
 #           to avoid circular deps with autotools
@@ -32,7 +32,6 @@ SLOT="0"
 IUSE="elibc_FreeBSD +extra-filters nls static-libs +threads"
 
 RDEPEND="!<app-arch/lzma-4.63
-	!app-arch/lzma-utils
 	!<app-arch/p7zip-4.57"
 DEPEND="${RDEPEND}
 	${EXTRA_DEPEND}"

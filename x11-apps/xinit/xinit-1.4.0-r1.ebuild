@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: a8b0150bc16d89b4db65ec0e5aafd9a581759b47 $
+# $Id: f8dedbb1ce77f5ba39062e396c8d6f26757f7a44 $
 
 EAPI=5
 
@@ -58,12 +58,14 @@ src_install() {
 
 pkg_postinst() {
 	xorg-2_pkg_postinst
-	ewarn "If you use startx to start X instead of a login manager like gdm/kdm,"
-	ewarn "you can set the XSESSION variable to anything in /etc/X11/Sessions/ or"
-	ewarn "any executable. When you run startx, it will run this as the login session."
-	ewarn "You can set this in a file in /etc/env.d/ for the entire system,"
-	ewarn "or set it per-user in ~/.bash_profile (or similar for other shells)."
-	ewarn "Here's an example of setting it for the whole system:"
-	ewarn "    echo XSESSION=\"Gnome\" > /etc/env.d/90xsession"
-	ewarn "    env-update && source /etc/profile"
+	if ! has_version 'x11-apps/xinit'; then
+		ewarn "If you use startx to start X instead of a login manager like gdm/kdm,"
+		ewarn "you can set the XSESSION variable to anything in /etc/X11/Sessions/ or"
+		ewarn "any executable. When you run startx, it will run this as the login session."
+		ewarn "You can set this in a file in /etc/env.d/ for the entire system,"
+		ewarn "or set it per-user in ~/.bash_profile (or similar for other shells)."
+		ewarn "Here's an example of setting it for the whole system:"
+		ewarn "    echo XSESSION=\"Gnome\" > /etc/env.d/90xsession"
+		ewarn "    env-update && source /etc/profile"
+	fi
 }
