@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -27,6 +27,7 @@ RESTRICT="!test? ( test )"
 
 RDEPEND="app-arch/bzip2:0=
 	app-arch/xz-utils:0=
+	sys-apps/util-linux
 	>=sys-libs/zlib-1.1.3:0=
 	virtual/libffi:=
 	virtual/libintl
