@@ -2,11 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI=7
 
-inherit versionator
-
-MY_P="linuxcli_V$(replace_version_separator 3 '_')"
+MY_P="linuxcli_V$(ver_rs 3 '_')"
 
 DESCRIPTION="CLI utility to manage Areca RAID controllers"
 HOMEPAGE="http://www.areca.com.tw/support/s_linux/linux.htm"
@@ -25,14 +23,6 @@ pkg_nofetch() {
 	elog "Download the client file ${A} from
 	http://www.areca.com.tw/support/s_linux/linux.htm"
 	elog "and place it in ${DISTDIR:-/usr/portage/distfiles}."
-}
-
-src_configure() {
-	:;
-}
-
-src_compile() {
-	:;
 }
 
 src_install() {
