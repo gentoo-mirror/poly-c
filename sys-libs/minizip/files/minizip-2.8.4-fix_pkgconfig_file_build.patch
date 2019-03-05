@@ -1,0 +1,50 @@
+From 86ae4be61f6c938dd69c5c1a301d7451edb7a0b1 Mon Sep 17 00:00:00 2001
+From: Matthias Schmieder <matthias.schmieder@stryker.com>
+Date: Mon, 18 Feb 2019 20:12:59 +0100
+Subject: [PATCH] fixed issue where install target failed due to the fact that
+ the .pc was never generated
+
+---
+ CMakeLists.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 7814725..7368684 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -55,8 +55,8 @@ set(INSTALL_PKGCONFIG_DIR "${CMAKE_INSTALL_FULL_LIBDIR}/pkgconfig" CACHE PATH "I
+ set(INSTALL_CMAKE_DIR "${CMAKE_INSTALL_FULL_LIBDIR}/cmake/minizip" CACHE PATH "Installation directory for cmake files.")
+ 
+ set(MINIZIP_PC ${CMAKE_CURRENT_BINARY_DIR}/minizip.pc)
+-if(EXISTS ${MINIZIP_PC}.cmakein)
+-    configure_file(${MINIZIP_PC}.cmakein ${MINIZIP_PC} @ONLY)
++if(EXISTS minizip.pc.cmakein)
++    configure_file(minizip.pc.cmakein ${MINIZIP_PC} @ONLY)
+ endif()
+ 
+ # Check if zlib installation is present
+
+From 991f91ad148eccf194217e6ffb911100f238147c Mon Sep 17 00:00:00 2001
+From: Matthias Schmieder <matthias.schmieder@stryker.com>
+Date: Tue, 19 Feb 2019 08:54:13 +0100
+Subject: [PATCH] fixed the configure step
+
+---
+ CMakeLists.txt | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 7368684..27c5ba3 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -55,9 +55,7 @@ set(INSTALL_PKGCONFIG_DIR "${CMAKE_INSTALL_FULL_LIBDIR}/pkgconfig" CACHE PATH "I
+ set(INSTALL_CMAKE_DIR "${CMAKE_INSTALL_FULL_LIBDIR}/cmake/minizip" CACHE PATH "Installation directory for cmake files.")
+ 
+ set(MINIZIP_PC ${CMAKE_CURRENT_BINARY_DIR}/minizip.pc)
+-if(EXISTS minizip.pc.cmakein)
+-    configure_file(minizip.pc.cmakein ${MINIZIP_PC} @ONLY)
+-endif()
++configure_file(minizip.pc.cmakein ${MINIZIP_PC} @ONLY)
+ 
+ # Check if zlib installation is present
+ if(MZ_ZLIB AND NOT MZ_LIBCOMP)
