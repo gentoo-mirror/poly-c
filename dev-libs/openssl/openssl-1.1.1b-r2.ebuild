@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5e05c9dcab04ece5b649f141cfcb2e2b97dbab21 $
+# $Id: 98e70d0580300ad98fdff158414fcd8b2c74eb15 $
 
 EAPI="6"
 
@@ -44,6 +44,7 @@ REQUIRED_USE="?? ( api098 api110 )"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.1.0j-parallel_install_fix.patch #671602
+	"${FILESDIR}"/${P}-CVE-2019-1543.patch
 )
 
 # This does not copy the entire Fedora patchset, but JUST the parts that
