@@ -1,12 +1,12 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 85ff00f6e5bd842908be539b6aa7c3fa58a8afc6 $
+# $Id: 2cdd971b5a3852efbe7ad63b35cd817dc42a1921 $
 
 EAPI=6
 
 WX_GTK_VER="3.0"
 
-inherit autotools flag-o-matic gnome2-utils wxwidgets
+inherit autotools flag-o-matic wxwidgets xdg
 
 MY_PV=${PV/_/-}
 MY_P="FileZilla_${MY_PV}"
@@ -24,7 +24,7 @@ IUSE="dbus nls test"
 RDEPEND=">=app-eselect/eselect-wxwidgets-0.7-r1
 	>=dev-libs/nettle-3.1:=
 	>=dev-db/sqlite-3.7
-	>=dev-libs/libfilezilla-0.14.0
+	>=dev-libs/libfilezilla-0.15.1
 	>=dev-libs/pugixml-1.7
 	>=net-libs/gnutls-3.4.15
 	>=x11-libs/wxGTK-3.0.4:${WX_GTK_VER}[X]
@@ -62,15 +62,23 @@ src_prepare() {
 }
 
 src_configure() {
-	econf $(use_with dbus) $(use_enable nls locales) \
-		--with-pugixml=system \
+	local myeconfargs=(
 		--disable-autoupdatecheck
+		--with-pugixml=system
+		$(use_enable nls locales)
+		$(use_with dbus)
+	)
+	econf "${myeconfargs[@]}"
+}
+
+pkg_preinst() {
+	xdg_pkg_preinst
 }
 
 pkg_postinst() {
-	gnome2_icon_cache_update
+	xdg_pkg_postinst
 }
 
 pkg_postrm() {
-	gnome2_icon_cache_update
+	xdg_pkg_postrm
 }
