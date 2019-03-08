@@ -1,15 +1,15 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: bc9cc6ade5026380d5a1b31e225b600ea05b0249 $
+# $Id: f8dedbb1ce77f5ba39062e396c8d6f26757f7a44 $
 
 EAPI=5
 
-inherit xorg-2
+inherit xorg-2 poly-c_x
 
 DESCRIPTION="X Window System initializer"
 
 LICENSE="${LICENSE} GPL-2"
-KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~mips ppc ppc64 s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-linux"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
 IUSE="+minimal systemd"
 
 RDEPEND="
@@ -48,7 +48,7 @@ src_install() {
 	exeinto /etc/X11/Sessions
 	doexe "${FILESDIR}"/Xsession
 	exeinto /etc/X11/xinit
-	newexe "${FILESDIR}"/xserverrc.1 xserverrc
+	newexe "${FILESDIR}"/xserverrc.2 xserverrc
 	exeinto /etc/X11/xinit/xinitrc.d/
 	doexe "${FILESDIR}"/00-xhost
 
@@ -58,12 +58,14 @@ src_install() {
 
 pkg_postinst() {
 	xorg-2_pkg_postinst
-	ewarn "If you use startx to start X instead of a login manager like gdm/kdm,"
-	ewarn "you can set the XSESSION variable to anything in /etc/X11/Sessions/ or"
-	ewarn "any executable. When you run startx, it will run this as the login session."
-	ewarn "You can set this in a file in /etc/env.d/ for the entire system,"
-	ewarn "or set it per-user in ~/.bash_profile (or similar for other shells)."
-	ewarn "Here's an example of setting it for the whole system:"
-	ewarn "    echo XSESSION=\"Gnome\" > /etc/env.d/90xsession"
-	ewarn "    env-update && source /etc/profile"
+	if ! has_version 'x11-apps/xinit'; then
+		ewarn "If you use startx to start X instead of a login manager like gdm/kdm,"
+		ewarn "you can set the XSESSION variable to anything in /etc/X11/Sessions/ or"
+		ewarn "any executable. When you run startx, it will run this as the login session."
+		ewarn "You can set this in a file in /etc/env.d/ for the entire system,"
+		ewarn "or set it per-user in ~/.bash_profile (or similar for other shells)."
+		ewarn "Here's an example of setting it for the whole system:"
+		ewarn "    echo XSESSION=\"Gnome\" > /etc/env.d/90xsession"
+		ewarn "    env-update && source /etc/profile"
+	fi
 }
