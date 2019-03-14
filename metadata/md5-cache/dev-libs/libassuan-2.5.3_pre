@@ -11,5 +11,5 @@ RDEPEND=>=dev-libs/libgpg-error-1.8
 RESTRICT=mirror
 SLOT=0
 SRC_URI=mirror://gnupg/libassuan/libassuan-2.5.3.tar.bz2
-_eclasses_=libtool	f143db5a74ccd9ca28c1234deffede96	multilib	b2f01ad412baf81650c23fcf0975fa33	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	f164325a2cdb5b3ea39311d483988861
+_eclasses_=libtool	f143db5a74ccd9ca28c1234deffede96	multilib	b2f01ad412baf81650c23fcf0975fa33	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	b45201c4e6c096b98e250336954e64b9
 _md5_=9e4d7143603cdd5edb89c4972975b9af
