@@ -30,14 +30,11 @@ dev-java/openjfx
 # fails to link
 sci-astronomy/pulsatingscience
 
-# fails with USE="jpeg2k"
-=app-text/poppler-0.69.0_pre
-
-# fails to build
-=games-simulation/lincity-ng-2.9_beta
-
 # fails to build / development version
 =sys-fs/lvm2-2.03.00_pre
 
 # Requires stupid deps
 media-video/pipewire
+
+# Breaks linking sometimes
+=dev-util/meson-0.50.0_pre
