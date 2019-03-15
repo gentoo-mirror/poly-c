@@ -22,10 +22,13 @@ SLOT="0"
 IUSE=""
 
 RDEPEND="
-	dev-db/sqlite
+	dev-db/sqlite:3
 	dev-libs/glib:2
 	dev-libs/json-glib
+	dev-libs/libgcrypt:=
+	dev-libs/olm
 	net-im/pidgin
+	net-libs/http-parser:=
 "
 DEPEND="${RDEPEND}"
 BDEPEND="

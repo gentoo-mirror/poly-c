@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile install prepare
+DESCRIPTION=An implementation of the Double Ratchet cryptographic ratchet in C++
+EAPI=7
+HOMEPAGE=https://git.matrix.org/git/olm/about/
+IUSE=debug
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-3
+SLOT=0
+SRC_URI=https://git.matrix.org/git/olm/snapshot/olm-2.3.0.tar.bz2
+_eclasses_=multilib	b2f01ad412baf81650c23fcf0975fa33	toolchain-funcs	b45201c4e6c096b98e250336954e64b9
+_md5_=13ce99c2e70558a586c849b14350ef2b
