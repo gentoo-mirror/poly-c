@@ -11,5 +11,5 @@ RDEPEND=kernel_linux? ( sys-libs/libutempter ) kernel_FreeBSD? ( || ( >=sys-free
 RESTRICT=mirror
 SLOT=0
 SRC_URI=ftp://ftp.invisible-island.net/xterm/xterm-344.tgz
-_eclasses_=desktop	b1d22ac8bdd4679ab79c71aca235009d	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	a09389deba2c0a7108b581e02c7cecbf	multilib	b2f01ad412baf81650c23fcf0975fa33	poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435	toolchain-funcs	b45201c4e6c096b98e250336954e64b9
+_eclasses_=desktop	b1d22ac8bdd4679ab79c71aca235009d	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	a09389deba2c0a7108b581e02c7cecbf	multilib	b2f01ad412baf81650c23fcf0975fa33	poly-c_ebuilds	3226e50d55a1c4b31aeb596b89bd0055	toolchain-funcs	b45201c4e6c096b98e250336954e64b9
 _md5_=f2d1aa09e5a78a7e090b4c05e4d2b505

@@ -8,5 +8,5 @@ RDEPEND=!<games-simulation/flightgear-2.10.0
 RESTRICT=mirror
 SLOT=0
 SRC_URI=mirror://sourceforge/flightgear/FlightGear-2018.3.2-data.tar.bz2
-_eclasses_=poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435
+_eclasses_=poly-c_ebuilds	3226e50d55a1c4b31aeb596b89bd0055
 _md5_=af89b837e300034e2c9358fa91120d01

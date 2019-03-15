@@ -8,5 +8,5 @@ LICENSE=fping
 RESTRICT=mirror
 SLOT=0
 SRC_URI=http://fping.org/dist/fping-4.2.tar.gz
-_eclasses_=poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435
+_eclasses_=poly-c_ebuilds	3226e50d55a1c4b31aeb596b89bd0055
 _md5_=8f8925b084f353e54624c43298cd6c57

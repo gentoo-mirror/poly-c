@@ -10,5 +10,5 @@ RDEPEND=>=media-libs/netpbm-9.12 doc? ( >=media-gfx/transfig-3.2 app-text/ghosts
 RESTRICT=mirror
 SLOT=0
 SRC_URI=http://www-e.uni-magdeburg.de/jschulen/ocr/gocr-0.51.tar.gz
-_eclasses_=poly-c_ebuilds	61e26cdc86a7f950bd5dd08da4b5e435
+_eclasses_=poly-c_ebuilds	3226e50d55a1c4b31aeb596b89bd0055
 _md5_=4e08e0b34d983c239878c0450c31880d
