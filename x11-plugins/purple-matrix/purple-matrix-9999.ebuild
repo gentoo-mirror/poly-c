@@ -26,7 +26,7 @@ RDEPEND="
 	dev-libs/glib:2
 	dev-libs/json-glib
 	dev-libs/libgcrypt:=
-	dev-libs/olm
+	dev-libs/olm:=
 	net-im/pidgin
 	net-libs/http-parser:=
 "
@@ -34,6 +34,11 @@ DEPEND="${RDEPEND}"
 BDEPEND="
 	virtual/pkgconfig
 "
+
+src_prepare() {
+	default
+	sed '/^CFLAGS.*-O0/d' -i Makefile.common || die
+}
 
 src_compile() {
 	emake CC="$(tc-getCC)" PKG_CONFIG="$(tc-getBUILD_PKG_CONFIG)"
