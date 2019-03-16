@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -112,13 +112,6 @@ pkg_pretend() {
 	check-reqs_pkg_setup
 }
 
-src_unpack() {
-	unpack ${A}
-
-	# Unpack language packs
-	#mozlinguas_src_unpack
-}
-
 src_prepare() {
 	local patch_exclude=(
 		2001_system_harfbuzz.patch
@@ -137,8 +130,6 @@ src_prepare() {
 
 	# Apply our patches
 	eapply "${WORKDIR}/firefox"
-
-	eapply "${FILESDIR}"/webrtc_gcc8.patch
 
 	# Enable gnomebreakpad
 	if use debug ; then
