@@ -1,9 +1,10 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
+# $Id: fa203bb4482e82a95b44bde5cc617ef39be1903e $
 
 EAPI=6
 QT5_MODULE="qtbase"
-inherit qt5-build poly-c_qt
+inherit qt5-build
 
 DESCRIPTION="The GUI module and platform plugins for the Qt5 framework"
 
