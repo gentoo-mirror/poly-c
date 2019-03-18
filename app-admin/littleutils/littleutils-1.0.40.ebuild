@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Technologies, Inc.
+# Copyright 1999-2019 Gentoo Technologies, Inc.
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=7
 
@@ -18,7 +17,7 @@ DEPEND="png? (
 		media-gfx/pngrewrite
 	)"
 
-src_install (){
+src_install() {
 	default
 	# Following are colliding with app-admin/realpath:
 	rm "${ED}/usr/bin/realpath"
