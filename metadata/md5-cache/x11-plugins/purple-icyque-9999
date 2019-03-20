@@ -1,0 +1,11 @@
+BDEPEND=virtual/pkgconfig >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile install unpack
+DEPEND=dev-libs/glib:2 dev-libs/json-glib net-im/pidgin sys-libs/zlib:=
+DESCRIPTION=ICQ WIM protocol for libpurple
+EAPI=7
+HOMEPAGE=https://github.com/EionRobb/icyque
+LICENSE=GPL-3+
+RDEPEND=dev-libs/glib:2 dev-libs/json-glib net-im/pidgin sys-libs/zlib:=
+SLOT=0
+_eclasses_=git-r3	0d4635eeb5a96cd5315597a47eba25c9	multilib	b2f01ad412baf81650c23fcf0975fa33	toolchain-funcs	b45201c4e6c096b98e250336954e64b9
+_md5_=346c21c20535a8203d01d6b9dffb764e

@@ -1,2 +1,3 @@
 # fails with imagemagick-7
 media-libs/libopenshot imagemagick
+net-im/licq qt4

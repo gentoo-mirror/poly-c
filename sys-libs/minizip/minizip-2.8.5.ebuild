@@ -29,14 +29,14 @@ DEPEND="${RDEPEND}"
 multilib_src_configure() {
 	local mycmakeargs=(
 		-DBUILD_SHARED_LIBS=ON
-		-DBUILD_TEST="$(usex test)"
-		-DBUILD_UNIT_TEST="$(usex test)"
+		-DMZ_BUILD_TEST="$(usex test)"
+		-DMZ_BUILD_UNIT_TEST="$(usex test)"
+		-DMZ_COMPAT=ON
+		-DMZ_ZLIB="$(usex zlib)"
+		-DMZ_BZIP2="$(usex bzip2)"
+		-DMZ_LZMA="$(usex lzma)"
+		-DMZ_OPENSSL="$(usex ssl)"
 		-DINSTALL_INC_DIR="/usr/include/${PN}"
-		-DUSE_COMPAT=ON
-		-DUSE_ZLIB="$(usex zlib)"
-		-DUSE_BZIP2="$(usex bzip2)"
-		-DUSE_LZMA="$(usex lzma)"
-		-DUSE_OPENSSL="$(usex ssl)"
 	)
 	cmake-utils_src_configure
 }
