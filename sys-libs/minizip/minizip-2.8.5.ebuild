@@ -9,7 +9,7 @@ DESCRIPTION="zip manipulation library found in the zlib distribution"
 HOMEPAGE="https://github.com/nmoinvaz/minizip"
 SRC_URI="https://github.com/nmoinvaz/minizip/archive/${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="ZLIB"
-SLOT="0"
+SLOT="0/2" # libminizip.so version
 
 KEYWORDS="~amd64 ~x86"
 IUSE="bzip2 libressl lzma ssl test +zlib"
@@ -21,7 +21,7 @@ RDEPEND="
 		!libressl? ( dev-libs/openssl:0= )
 		libressl? ( dev-libs/libressl:= )
 	)
-	zlib? ( sys-libs/zlib[-minizip] )
+	zlib? ( sys-libs/zlib:=[-minizip(-)] )
 "
 
 DEPEND="${RDEPEND}"
@@ -36,7 +36,7 @@ multilib_src_configure() {
 		-DMZ_BZIP2="$(usex bzip2)"
 		-DMZ_LZMA="$(usex lzma)"
 		-DMZ_OPENSSL="$(usex ssl)"
-		-DINSTALL_INC_DIR="/usr/include/${PN}"
+		-DINSTALL_INC_DIR="${EPREFIX}/usr/include/${PN}"
 	)
 	cmake-utils_src_configure
 }

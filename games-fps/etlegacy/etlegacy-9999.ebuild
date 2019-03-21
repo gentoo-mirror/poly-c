@@ -1,10 +1,10 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id $
 
-EAPI=6
+EAPI=7
 
-inherit cmake-utils gnome2-utils unpacker eapi7-ver xdg-utils
+inherit cmake-utils unpacker xdg
 
 DESCRIPTION="Wolfenstein: Enemy Territory 2.60b compatible client/server"
 HOMEPAGE="http://www.etlegacy.com/"
@@ -42,6 +42,10 @@ UIDEPEND=">=media-libs/glew-1.10.0
 	media-libs/libsdl2[sound,video,X]
 	virtual/jpeg:0
 	virtual/opengl
+	|| (
+		sys-libs/zlib:=[minizip(-)]
+		sys-libs/minizip:=
+	)
 	curl? ( net-misc/curl )
 	freetype? ( media-libs/freetype )
 	gettext? ( sys-devel/gettext )
@@ -137,7 +141,7 @@ src_install() {
 	cmake-utils_src_install
 
 	dodir "/usr/$(get_libdir)/${PN}"
-	mv "${ED%/}/usr/share/${PN}/legacy/"*.so "${ED%/}/usr/$(get_libdir)/${PN}"
+	mv "${ED}/usr/share/${PN}/legacy/"*.so "${ED}/usr/$(get_libdir)/${PN}"
 	dosym "../../../$(get_libdir)/${PN}" "/usr/share/${PN}/legacy/${PN}"
 
 	# Install the game files
@@ -145,10 +149,12 @@ src_install() {
 	doins "${WORKDIR}"/et/etmain/pak[012].pk3
 }
 
+pkg_preinst() {
+	xdg_pkg_preinst
+}
+
 pkg_postinst() {
-	gnome2_icon_cache_update
-	xdg_desktop_database_update
-	xdg_mimeinfo_database_update
+	xdg_pkg_postinst
 
 	elog "Copy genuine ET files pak0.pk3, pak1.pk3 and pak2.pk3"
 	elog "to /usr/share/${PN}/etmain in order so start"
@@ -159,7 +165,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	gnome2_icon_cache_update
-	xdg_desktop_database_update
-	xdg_mimeinfo_database_update
+	xdg_pkg_postrm
 }

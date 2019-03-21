@@ -1,10 +1,10 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI=7
 
-inherit eutils unpacker
+inherit desktop unpacker
 
 DESCRIPTION="Return to Castle Wolfenstein - IORTCW Project"
 HOMEPAGE="http://games.activision.com/games/wolfenstein/"
@@ -32,7 +32,12 @@ IUSE="+client curl mumble openal opus server truetype voip vorbis"
 REQUIRED_USE="|| ( client server )
 		voip? ( opus )"
 
-CDEPEND=">=sys-libs/zlib-1.2.11[minizip]"
+CDEPEND="
+	|| (
+		>=sys-libs/zlib-1.2.11:=[minizip(-)]
+		sys-libs/minizip:=
+	)
+"
 
 DEPEND="${CDEPEND}
 	client? (
@@ -149,11 +154,11 @@ src_compile() {
 src_install() {
 	cd "${S}/SP/"
 	ARCH="$(uname -m)" \
-	COPYDIR=${D}/${dir} \
+	COPYDIR="${D}/${dir}" \
 	emake copyfiles
 
 	sed "s@%dir%@${dir}@g;s@%exe%@iowolfsp.$(uname -m)@" \
-		"${FILESDIR}"/rtcw-wrapper > "${T}"/rtcwsp
+		"${FILESDIR}"/rtcw-wrapper > "${T}"/rtcwsp || die
 	dobin "${T}"/rtcwsp
 
 	#if use server; then
@@ -166,9 +171,9 @@ src_install() {
 	#fi
 
 	# install pk3 files from the point release
-	insinto ${dir}/main
-	doins ${WORKDIR}/main/*.pk3
-	doins -r ${WORKDIR}/main/scripts
+	insinto "${dir}"/main
+	doins "${WORKDIR}"/main/*.pk3
+	doins -r "${WORKDIR}"/main/scripts
 
 	doicon -s scalable misc/iortcw.svg
 	make_desktop_entry rtcwsp "Return to Castle Wolfenstein (SP)" iortcw

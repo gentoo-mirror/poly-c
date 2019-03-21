@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -32,7 +32,12 @@ IUSE="+client curl mumble openal opus server truetype voip vorbis"
 REQUIRED_USE="|| ( client server )
 		voip? ( opus )"
 
-CDEPEND=">=sys-libs/zlib-1.2.11[minizip]"
+CDEPEND="
+	|| (
+		>=sys-libs/zlib-1.2.11:=[minizip(-)]
+		sys-libs/minizip:=
+	)
+"
 
 DEPEND="${CDEPEND}
 	client? (

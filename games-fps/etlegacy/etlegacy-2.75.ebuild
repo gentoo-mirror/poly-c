@@ -41,6 +41,10 @@ UIDEPEND=">=media-libs/glew-1.10.0
 	media-libs/libsdl2[sound,video,X]
 	virtual/jpeg:0
 	virtual/opengl
+	|| (
+		sys-libs/zlib:=[minizip(-)]
+		sys-libs/minizip:=
+	)
 	curl? ( net-misc/curl )
 	freetype? ( media-libs/freetype )
 	gettext? ( sys-devel/gettext )
