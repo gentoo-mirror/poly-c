@@ -1,10 +1,9 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 77337142ec368ef43c179461f5ca0beb09d5cd21 $
 
 EAPI=7
 
-inherit cmake-utils flag-o-matic
+inherit cmake-utils multilib
 
 DESCRIPTION="Diablo build for modern operating systems"
 HOMEPAGE="https://github.com/diasurgical/devilutionX"
@@ -35,8 +34,6 @@ BDEPEND="
 src_configure() {
 	if use amd64 ; then
 		multilib_toolchain_setup x86
-		append-cflags -m32
-		append-cxxflags -m32
 	fi
 
 	local mycmakeargs=(
@@ -48,4 +45,12 @@ src_configure() {
 
 src_install() {
 	dobin ${BUILD_DIR}/${PN}
+}
+
+pkg_postinst() {
+	einfo "In order to play the game you need to install the file"
+	einfo "  diabdat.mpq"
+	einfo "from the original game CD into the following directory:"
+	einfo "  \${HOME}/.local/share/diasurgical/devilution/"
+	einfo "and make sure it's writeable (chmod u+w)."
 }
