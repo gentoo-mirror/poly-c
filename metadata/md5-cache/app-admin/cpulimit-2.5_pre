@@ -7,5 +7,5 @@ LICENSE=GPL-2
 RESTRICT=mirror
 SLOT=0
 SRC_URI=mirror://sourceforge/limitcpu/cpulimit-2.5.tar.gz
-_eclasses_=multilib	b2f01ad412baf81650c23fcf0975fa33	poly-c_ebuilds	3226e50d55a1c4b31aeb596b89bd0055	toolchain-funcs	b45201c4e6c096b98e250336954e64b9
+_eclasses_=multilib	b2f01ad412baf81650c23fcf0975fa33	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	toolchain-funcs	b45201c4e6c096b98e250336954e64b9
 _md5_=a618c3a17359c9f6ed73a997b3bfd05b
