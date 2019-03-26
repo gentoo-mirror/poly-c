@@ -22,7 +22,7 @@ IUSE="debug"
 
 RDEPEND="
 	dev-libs/libsodium[abi_x86_32]
-	media-libs/libsdl2[abi_x86_32]
+	media-libs/libsdl2[abi_x86_32,haptic]
 	media-libs/sdl2-mixer[abi_x86_32]
 	media-libs/sdl2-ttf[abi_x86_32]
 "
