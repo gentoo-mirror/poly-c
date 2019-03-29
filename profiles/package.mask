@@ -38,3 +38,7 @@ media-video/pipewire
 
 # Breaks linking sometimes
 =dev-util/meson-0.50.0_pre
+
+# Breaks libreoffice
+=dev-libs/icu-64.1_pre
+=dev-libs/icu-layoutex-64.1_pre
