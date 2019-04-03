@@ -32,9 +32,6 @@ RDEPEND="${DEPEND}
 	x11-themes/sound-theme-freedesktop
 "
 
-PATCHES=( "${FILESDIR}/${PN}-5.15.4-gesttings.patch" )
+PATCHES=( "${FILESDIR}/${PN}-5.15.4-gsettings.patch" )
 
-src_prepare() {
-	rm cmake/FindGLIB2.cmake || die
-	kde5_src_prepare
-}
+CMAKE_REMOVE_MODULES_LIST=( FindGLIB2 )
