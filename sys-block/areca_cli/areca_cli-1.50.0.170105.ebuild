@@ -7,7 +7,7 @@ EAPI=7
 MY_P="linuxcli_V$(ver_rs 3 '_')"
 
 DESCRIPTION="CLI utility to manage Areca RAID controllers"
-HOMEPAGE="http://www.areca.com.tw/support/s_linux/linux.htm"
+HOMEPAGE="https://www.areca.com.tw/support/downloads.html#linux"
 SRC_URI="${MY_P}.zip"
 LICENSE=""
 SLOT="0"
@@ -21,8 +21,8 @@ S="${WORKDIR}/${MY_P}"
 
 pkg_nofetch() {
 	elog "Download the client file ${A} from
-	http://www.areca.com.tw/support/s_linux/linux.htm"
-	elog "and place it in ${DISTDIR:-/usr/portage/distfiles}."
+	https://www.areca.com.tw/support/downloads.html#linux"
+	elog "and place it in your DISTDIR."
 }
 
 src_install() {
