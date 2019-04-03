@@ -1,18 +1,18 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 RESTRICT="test"
 
 PYTHON_COMPAT=( python2_7 )
-inherit eutils flag-o-matic python-single-r1 toolchain-funcs versionator poly-c_ebuilds
+inherit eutils flag-o-matic python-single-r1 toolchain-funcs poly-c_ebuilds
 
-REAL_PV="$(replace_all_version_separators _ ${MY_PV})"
+REAL_PV="$(ver_rs 1- _ ${MY_PV})"
 
 DESCRIPTION="A system for large project software construction, simple to use and powerful"
-HOMEPAGE="http://www.boost.org/doc/tools/build/index.html"
-SRC_URI="https://dl.bintray.com/boostorg/release/${MY_PV}/source/boost_${REAL_PV}.tar.bz2"
+HOMEPAGE="https://boostorg.github.io/build/"
+SRC_URI="https://downloads.sourceforge.net/project/boost/boost/${MY_PV}/boost_${REAL_PV}.tar.bz2"
 
 LICENSE="Boost-1.0"
 SLOT="0"
@@ -38,6 +38,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-1.52.0-darwin-no-python-framework.patch"
 	"${FILESDIR}/${PN}-1.54.0-support_dots_in_python-buildid.patch"
 	"${FILESDIR}/${PN}-1.55.0-ppc-aix.patch"
+	"${FILESDIR}/${PN}-1.62.0-sparc-no-default-flags.patch"
 	"${FILESDIR}/${PN}-1.66.0-add-none-feature-options.patch"
 )
 
@@ -48,7 +49,7 @@ pkg_setup() {
 }
 
 src_unpack() {
-	tar xjf "${DISTDIR}/${A}" boost_${REAL_PV}/tools/build || die "unpacking tar failed"
+	tar xojf "${DISTDIR}/${A}" boost_${REAL_PV}/tools/build || die "unpacking tar failed"
 }
 
 src_prepare() {
@@ -73,11 +74,11 @@ src_prepare() {
 	# and stripping flags when bjam is used as build-system
 	# We simply extend the optimization and debug-symbols feature
 	# with empty dummies called 'none'
-#	cd "${S}" || die
-#	sed -i \
-#		-e 's/\(off speed space\)/\1 none/' \
-#		-e 's/\(debug-symbols      : on off\)/\1 none/' \
-#		tools/builtin.jam || die "sed failed"
+	cd "${S}" || die
+	sed -i \
+		-e 's/\(off speed space\)/\1 none/' \
+		-e 's/\(debug-symbols      : on off\)/\1 none/' \
+		tools/builtin.jam || die "sed failed"
 }
 
 src_configure() {
@@ -108,9 +109,8 @@ src_compile() {
 src_install() {
 	dobin engine/bin.*/{bjam,b2}
 
-	cp "${FILESDIR}/site-config.jam-1.66.0" "${T}/site-config.jam" || die
 	insinto /usr/share/boost-build
-	doins -r "${T}/site-config.jam" \
+	doins -r "${FILESDIR}/site-config.jam" \
 		../boost-build.jam bootstrap.jam build-system.jam ../example/user-config.jam *.py \
 		build kernel options tools util
 

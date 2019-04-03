@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -30,7 +30,7 @@ RDEPEND="
 	dev-libs/tinyxml
 	media-libs/libpng:0
 	media-libs/mesa
-	>=dev-libs/boost-1.33.1
+	>=dev-libs/boost-1.33.1:=
 	media-libs/libsdl2
 	media-libs/sdl2-ttf
 	media-libs/sdl2-image[png]

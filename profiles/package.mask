@@ -23,10 +23,6 @@ dev-java/openjfx
 # masked for testing
 =net-misc/icecast-2.5_beta*
 
-# WIP. Python build is currently broken.
-=dev-libs/boost-1.67.0_pre
-=dev-util/boost-build-1.67.0_pre
-
 # fails to link
 sci-astronomy/pulsatingscience
 
