@@ -51,7 +51,7 @@ COMMON_DEPEND="
 	media-libs/gst-plugins-base:1.0
 	>=media-libs/libmygpo-qt-1.0.9[qt5(+)]
 	>=media-libs/taglib-1.11.1_p20181028
-	media-viceo/vlc
+	media-video/vlc
 	sys-libs/zlib
 	virtual/glu
 	x11-libs/libX11
