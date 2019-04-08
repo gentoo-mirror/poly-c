@@ -8,7 +8,7 @@ inherit cmake-utils flag-o-matic l10n virtualx xdg
 #PLOCALES="af ar be bg bn br bs ca cs cy da de el en en_CA en_GB eo es et eu fa fi fr ga gl he he_IL hi hr hu hy ia id is it ja ka kk ko lt lv mk_MK mr ms my nb nl oc pa pl pt pt_BR ro ru si_LK sk sl sr sr@latin sv te tr tr_TR uk uz vi zh_CN zh_TW"
 PLOCALES="es nb"
 
-DESCRIPTION="Modern music player and library organizer based on Amarok 1.4 and Qt"
+DESCRIPTION="Modern music player and library organizer based on Clementine and Qt"
 HOMEPAGE="https://www.strawbs.org/"
 if [[ ${PV} == *9999* ]]; then
 	EGIT_REPO_URI="https://github.com/jonaski/strawberry.git"
