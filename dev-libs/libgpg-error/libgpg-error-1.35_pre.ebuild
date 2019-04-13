@@ -1,9 +1,9 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-inherit libtool multilib-minimal toolchain-funcs poly-c_ebuilds
+inherit autotools libtool multilib-minimal toolchain-funcs poly-c_ebuilds
 
 DESCRIPTION="Contains error handling functions used by GnuPG software"
 HOMEPAGE="http://www.gnupg.org/related_software/libgpg-error"
@@ -26,8 +26,13 @@ MULTILIB_WRAPPED_HEADERS=(
 	/usr/include/gpgrt.h
 )
 
+PATCHES=(
+	"${FILESDIR}/${PN}-1.35-gawk5_namespace_reserved_word.patch"
+)
+
 src_prepare() {
 	default
+	eautoreconf
 	elibtoolize
 }
 
