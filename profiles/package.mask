@@ -26,15 +26,12 @@ dev-java/openjfx
 # fails to link
 sci-astronomy/pulsatingscience
 
-# fails to build / development version
-=sys-fs/lvm2-2.03.00_pre
-
 # Requires stupid deps
 media-video/pipewire
 
 # Breaks linking sometimes
 =dev-util/meson-0.50.0_pre
 
-# Breaks libreoffice
-=dev-libs/icu-64.1_pre
-=dev-libs/icu-layoutex-64.1_pre
+# Broken revdeps
+=dev-libs/boost-1.70.0_pre
+=dev-util/boost-build-1.70.0_pre
