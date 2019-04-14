@@ -1,8 +1,26 @@
-https://bugs.gentoo.org/683254
+From 55b9550de790126856666ad8cb78a75c5ae48220 Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Sat, 13 Apr 2019 19:59:45 +0200
+Subject: [PATCH] Fixed build with gawk-5
 
---- libgpg-error-1.35/src/Makefile.am
-+++ libgpg-error-1.35/src/Makefile.am
-@@ -293,7 +293,7 @@
+gawk-5 has the word "namespace" reserved which results in an error when
+building libgpg-error:
+
+  gawk: fatal: cannot use gawk builtin `namespace' as variable name
+
+Fixed this by renaming "namespace" to "libgpg_error_namespace".
+
+Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
+---
+ src/Makefile.am    | 2 +-
+ src/mkstrtable.awk | 8 ++++----
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/src/Makefile.am b/src/Makefile.am
+index ce1b882..b329242 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -293,7 +293,7 @@ code-from-errno.h: mkerrcodes$(EXEEXT_FOR_BUILD) Makefile
  
  errnos-sym.h: Makefile mkstrtable.awk errnos.in
  	$(AWK) -f $(srcdir)/mkstrtable.awk -v textidx=2 -v nogettext=1 \
@@ -11,8 +29,10 @@ https://bugs.gentoo.org/683254
  		$(srcdir)/errnos.in >$@
  
  
---- libgpg-error-1.35/src/mkstrtable.awk
-+++ libgpg-error-1.35/src/mkstrtable.awk
+diff --git a/src/mkstrtable.awk b/src/mkstrtable.awk
+index c9de9c1..5b5307b 100644
+--- a/src/mkstrtable.awk
++++ b/src/mkstrtable.awk
 @@ -77,7 +77,7 @@
  #
  # The variable prefix can be used to prepend a string to each message.
@@ -22,7 +42,7 @@ https://bugs.gentoo.org/683254
  # variable and macro name.
  
  BEGIN {
-@@ -102,7 +102,7 @@
+@@ -102,7 +102,7 @@ header {
        print "/* The purpose of this complex string table is to produce";
        print "   optimal code with a minimum of relocations.  */";
        print "";
@@ -31,7 +51,7 @@ https://bugs.gentoo.org/683254
        header = 0;
      }
    else
-@@ -150,7 +150,7 @@
+@@ -150,7 +150,7 @@ END {
    else
      print "  gettext_noop (\"" last_msgstr "\");";
    print "";
@@ -40,7 +60,7 @@ https://bugs.gentoo.org/683254
    print "  {";
    for (i = 0; i < coded_msgs; i++)
      print "    " pos[i] ",";
-@@ -158,7 +158,7 @@
+@@ -158,7 +158,7 @@ END {
    print "  };";
    print "";
    print "static GPG_ERR_INLINE int";
@@ -49,3 +69,6 @@ https://bugs.gentoo.org/683254
    print "{";
    print "  return (0 ? 0";
  
+-- 
+2.21.0
+
