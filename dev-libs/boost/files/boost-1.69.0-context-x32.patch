@@ -1,5 +1,5 @@
---- boost_1_69_0/libs/context/src/asm/jump_i386_sysv_elf_gas.S
-+++ boost_1_69_0/libs/context/src/asm/jump_i386_sysv_elf_gas.S
+--- a/libs/context/src/asm/jump_i386_sysv_elf_gas.S
++++ b/libs/context/src/asm/jump_i386_sysv_elf_gas.S
 @@ -24,6 +24,10 @@
   *                                                                                      *
   ****************************************************************************************/
@@ -17,8 +17,8 @@
  .section .note.GNU-stack,"",%progbits
 +
 +#endif
---- boost_1_69_0/libs/context/src/asm/make_i386_sysv_elf_gas.S
-+++ boost_1_69_0/libs/context/src/asm/make_i386_sysv_elf_gas.S
+--- a/libs/context/src/asm/make_i386_sysv_elf_gas.S
++++ b/libs/context/src/asm/make_i386_sysv_elf_gas.S
 @@ -24,6 +24,10 @@
   *                                                                                      *
   ****************************************************************************************/
