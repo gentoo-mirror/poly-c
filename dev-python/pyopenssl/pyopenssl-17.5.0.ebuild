@@ -1,10 +1,10 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0ee563cafbdd11855ac010b3540800a449002207 $
+# $Id: f5c8896f6034103c853c4ffa367dbb351b048514 $
 
 EAPI=6
 
-PYTHON_COMPAT=( python2_7 python3_{4,5,6,7} pypy{,3} )
+PYTHON_COMPAT=( python2_7 python3_{5,6,7} pypy{,3} )
 PYTHON_REQ_USE="threads(+)"
 
 inherit distutils-r1 flag-o-matic

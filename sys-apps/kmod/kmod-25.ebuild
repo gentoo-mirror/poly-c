@@ -1,10 +1,10 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 33a370a26392f32ec6ca58873952f359444d578b $
+# $Id: 543b412451a1b0dca894ede9f88af81efcb60f43 $
 
 EAPI=6
 
-PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} )
+PYTHON_COMPAT=( python{2_7,3_5,3_6} )
 
 inherit bash-completion-r1 ltprune multilib python-r1
 
