@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: d182bffd11372312165f448eddba15d6aaf593aa $
+# $Id: 165eaec43722eb368766feefacaeba036a99fd90 $
 
 EAPI=6
 
@@ -12,7 +12,7 @@ SRC_URI="https://www.clamav.net/downloads/production/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm hppa ia64 ppc ppc64 ~sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="alpha amd64 arm arm64 hppa ia64 ppc ppc64 ~sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 IUSE="bzip2 doc clamdtop iconv ipv6 libressl milter metadata-analysis-api selinux static-libs test uclibc xml"
 
 CDEPEND="bzip2? ( app-arch/bzip2 )
