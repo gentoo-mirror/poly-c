@@ -32,9 +32,9 @@ media-video/pipewire
 # Breaks linking sometimes
 =dev-util/meson-0.50.0_pre
 
-# Broken revdeps
-=dev-libs/boost-1.70.0_pre
-=dev-util/boost-build-1.70.0_pre
-
 # has incompatible python shebang
 =app-text/calibre-3.41.3_pre
+
+# Still breaks some packages (https://bugs.gentoo.org/674414)
+=dev-libs/icu-64.2_pre
+=dev-libs/icu-layoutex-64.2_pre

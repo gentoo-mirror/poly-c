@@ -3,7 +3,7 @@
 
 EAPI=6
 PYTHON_COMPAT=( python2_7 )
-inherit flag-o-matic multiprocessing pax-utils python-any-r1 qt5-build poly-c_qt
+inherit multiprocessing pax-utils python-any-r1 qt5-build poly-c_qt
 
 DESCRIPTION="Library for rendering dynamic web content in Qt5 C++ and QML applications"
 
@@ -112,7 +112,7 @@ src_prepare() {
 src_configure() {
 	export NINJA_PATH=/usr/bin/ninja
 	export NINJAFLAGS="${NINJAFLAGS:--j$(makeopts_jobs) -l$(makeopts_loadavg "${MAKEOPTS}" 0) -v}"
-	append-cxxflags -fPIC
+	#append-cxxflags -fPIC
 
 	local myqmakeargs=(
 		--
