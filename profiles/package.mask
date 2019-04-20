@@ -36,3 +36,5 @@ media-video/pipewire
 =dev-libs/boost-1.70.0_pre
 =dev-util/boost-build-1.70.0_pre
 
+# has incompatible python shebang
+=app-text/calibre-3.41.3_pre
