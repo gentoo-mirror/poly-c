@@ -35,6 +35,3 @@ media-video/pipewire
 # has incompatible python shebang
 =app-text/calibre-3.41.3_pre
 
-# Seems to have broken header files
-=dev-libs/icu-64.2_pre
-=dev-libs/icu-layoutex-64.2_pre

@@ -14,44 +14,6 @@ Run test/hdrtest during CI to detect future breakage.
 Signed-off-by: Alon Bar-Lev <alon.barlev@gmail.com>
 Closes: https://github.com/unicode-org/icu/pull/613
 Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
----
- .travis.yml                            |   7 +-
- icu4c/source/common/unicode/ucptrie.h  |  39 +-
- icu4c/source/common/unicode/udata.h    |  38 +-
- icu4c/source/common/unicode/uversion.h |  32 +-
- icu4c/source/i18n/unicode/reldatefmt.h |   1 +
- icu4c/source/i18n/unicode/uspoof.h     | 492 ++++++++++++-------------
- 6 files changed, 293 insertions(+), 316 deletions(-)
-
-diff --git a/.travis.yml b/.travis.yml
-index f92ef41f37..d0681296f4 100644
---- a/.travis.yml
-+++ b/.travis.yml
-@@ -41,18 +41,23 @@ matrix:
-     #
-     # Test both out-of-source and in-source builds. This one (gcc) for out-of-source,
-     # and linux clang (below) for in-source.
-+    #
-+    # Invokes test/hdrtst to check public headers compliance.
- 
-     - name: "c: linux gcc"
-       language: cpp
-       compiler: gcc
-+      env:      PREFIX=/tmp/icu-prefix
-       before_script:
-         - mkdir build
-         - cd build
--        - ../icu4c/source/runConfigureICU --enable-debug --disable-release Linux
-+        - ../icu4c/source/runConfigureICU --enable-debug --disable-release Linux --prefix="${PREFIX}"
-         - make -j2
-       script:
-         - make -j2 check
-         - ( cd ../icu4c/source/test/depstest && ./depstest.py ../../../../build/ )
-+        - make install
-+        - PATH="${PREFIX}/bin:$PATH" make -C test/hdrtst check
- 
-     - name: "c: linux clang"
-       language: cpp
 diff --git a/icu4c/source/common/unicode/ucptrie.h b/icu4c/source/common/unicode/ucptrie.h
 index 2718c984e4..ce7340b890 100644
 --- a/icu4c/source/common/unicode/ucptrie.h
