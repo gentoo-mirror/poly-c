@@ -4,7 +4,6 @@ app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, inclu
 app-crypt/qca 2.1.3-r2: Qt Cryptographic Architecture (QCA)
 app-misc/mc 4.8.22: GNU Midnight Commander is a text based file manager
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-dev-cpp/libcmis 0.5.2: C++ client library for the CMIS interface
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-libs/openssl 1.0.2r: full-strength general purpose cryptography library (including SSL and TLS)
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
