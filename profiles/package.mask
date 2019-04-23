@@ -32,6 +32,3 @@ media-video/pipewire
 # Breaks linking sometimes
 =dev-util/meson-0.50.0_pre
 
-# has incompatible python shebang
-=app-text/calibre-3.41.3_pre
-
