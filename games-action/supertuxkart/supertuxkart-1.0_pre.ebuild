@@ -23,6 +23,7 @@ RDEPEND="
 	dev-libs/angelscript
 	media-libs/glew:0=
 	media-libs/libpng:0=
+	media-libs/libsquish
 	media-libs/libvorbis
 	media-libs/openal
 	net-libs/enet:1.3=

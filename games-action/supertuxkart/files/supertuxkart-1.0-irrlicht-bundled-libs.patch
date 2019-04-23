@@ -17,7 +17,7 @@
  
  if(NOT SERVER_ONLY)
 -    target_link_libraries(stkirrlicht ${PNG_LIBRARY} ${JPEG_LIBRARY})
-+    target_link_libraries(stkirrlicht png jpeg z)
++    target_link_libraries(stkirrlicht png jpeg)
      if(UNIX AND NOT APPLE)
          target_link_libraries(stkirrlicht ${X11_X11_LIB} ${X11_Xrandr_LIB})
      endif()
