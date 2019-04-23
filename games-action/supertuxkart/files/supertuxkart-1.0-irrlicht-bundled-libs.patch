@@ -1,0 +1,23 @@
+--- supertuxkart-1.0/lib/irrlicht/CMakeLists.txt
++++ supertuxkart-1.0/lib/irrlicht/CMakeLists.txt
+@@ -3,10 +3,7 @@
+     find_package(PNG REQUIRED)
+     find_package(JPEG REQUIRED)
+ 
+-    include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include/"
+-                        "${JPEG_INCLUDE_DIR}"
+-                        "${PNG_INCLUDE_DIRS}"
+-                        "${ZLIB_INCLUDE_DIR}")
++    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/)
+ 
+     if(MSVC)
+         include_directories("${CMAKE_CURRENT_BINARY_DIR}/../zlib/") # For zconf.h on WIN32
+@@ -612,7 +609,7 @@
+ target_link_libraries(stkirrlicht ${ZLIB_LIBRARY})
+ 
+ if(NOT SERVER_ONLY)
+-    target_link_libraries(stkirrlicht ${PNG_LIBRARY} ${JPEG_LIBRARY})
++    target_link_libraries(stkirrlicht png jpeg z)
+     if(UNIX AND NOT APPLE)
+         target_link_libraries(stkirrlicht ${X11_X11_LIB} ${X11_Xrandr_LIB})
+     endif()
