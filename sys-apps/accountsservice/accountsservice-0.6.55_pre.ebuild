@@ -13,18 +13,19 @@ LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 
-IUSE="doc elogind +introspection selinux systemd"
-REQUIRED_USE="?? ( elogind systemd )"
+IUSE="doc consolekit elogind +introspection selinux systemd"
+REQUIRED_USE="^^ ( consolekit elogind systemd )"
 
 CDEPEND="
 	>=dev-libs/glib-2.44:2
 	sys-auth/polkit
+	consolekit? ( sys-auth/consolekit )
 	elogind? ( >=sys-auth/elogind-229.4 )
 	introspection? ( >=dev-libs/gobject-introspection-0.9.12:= )
 	systemd? ( >=sys-apps/systemd-186:0= )
-	!systemd? ( !elogind? ( sys-auth/consolekit ) )
 "
-DEPEND="${CDEPEND}
+DEPEND="${CDEPEND}"
+BDEPEND="
 	dev-libs/libxslt
 	dev-util/gdbus-codegen
 	>=dev-util/gtk-doc-am-1.15
