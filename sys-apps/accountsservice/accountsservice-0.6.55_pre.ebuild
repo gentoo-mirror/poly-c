@@ -28,7 +28,6 @@ DEPEND="${CDEPEND}"
 BDEPEND="
 	dev-libs/libxslt
 	dev-util/gdbus-codegen
-	>=dev-util/gtk-doc-am-1.15
 	sys-devel/gettext
 	virtual/pkgconfig
 	doc? (
@@ -55,11 +54,4 @@ src_configure() {
 		-Dgtk-doc="true"
 	)
 	meson_src_configure
-}
-
-src_install() {
-	meson_src_install
-
-	keepdir /var/lib/AccountsService/icons
-	keepdir /var/lib/AccountsService/users
 }
