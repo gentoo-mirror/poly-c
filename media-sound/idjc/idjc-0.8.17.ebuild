@@ -1,6 +1,5 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 EAPI=7
 
@@ -13,7 +12,7 @@ HOMEPAGE="http://idjc.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 
 IUSE="doc ffmpeg flac mad mpg123 mysql nls opus speex twolame"
 
@@ -33,7 +32,8 @@ RDEPEND="dev-python/eyeD3[${PYTHON_USEDEP}]
 	opus? ( media-libs/opus )
 	speex? ( media-libs/speex )
 	twolame? ( media-sound/twolame )"
-DEPEND="${RDEPEND}
+DEPEND="${RDEPEND}"
+BDEPEND="
 	virtual/pkgconfig
 	nls? ( sys-devel/gettext )"
 
@@ -60,8 +60,7 @@ src_configure() {
 		$(use_enable speex)
 		$(use_enable twolame)
 	)
-	ECONF_SOURCE="${S}" \
-	econf "${myeconfargs[@]}"
+	ECONF_SOURCE="${S}" econf "${myeconfargs[@]}"
 }
 
 src_install() {
