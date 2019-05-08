@@ -1,6 +1,6 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 74637c72653d51272cebbdb5ea162ef8f9f14d2e $
+# $Id: 3386bb728ed0a84122682b1b164ca4e5df6c4268 $
 
 EAPI=6
 
@@ -58,7 +58,7 @@ src_prepare() {
 	sed -i \
 		-e '/^CC :\?=/d' \
 		-e "/^LIBDIR/s:=.*:=/$(get_libdir):" \
-		-e "s:-O2:${CFLAGS} ${CPPFLAGS}:" \
+		-e "s|-O2|${CFLAGS} ${CPPFLAGS}|" \
 		-e "/^HOSTCC/s:=.*:= $(tc-getBUILD_CC):" \
 		-e "/^WFLAGS/s:-Werror::" \
 		-e "/^DBM_INCLUDE/s:=.*:=${T}:" \
