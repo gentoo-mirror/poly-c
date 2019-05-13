@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8f2fdbfb7d99564a70f595705f79820be0617f8c $
+# $Id: 5db7d040eeeeb5bb8c6be4b0e6c9e89abb883a28 $
 
 EAPI=7
 
@@ -33,17 +33,16 @@ RDEPEND="
 	atm? ( net-dialup/linux-atm )
 	selinux? ( sys-libs/libselinux )
 "
+# We require newer linux-headers for ipset support #549948 and some defines #553876
 DEPEND="
 	${RDEPEND}
+	>=sys-kernel/linux-headers-3.16
 "
-# We require newer linux-headers for ipset support #549948 and some defines #553876
 BDEPEND="
 	app-arch/xz-utils
 	>=sys-devel/bison-2.4
 	sys-devel/flex
-	>=sys-kernel/linux-headers-3.16
 	virtual/pkgconfig
-	elibc_glibc? ( >=sys-libs/glibc-2.7 )
 "
 
 PATCHES=(

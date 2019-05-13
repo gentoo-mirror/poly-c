@@ -1,6 +1,6 @@
 app-accessibility/at-spi2-core 2.30.1: D-Bus accessibility specifications and registration daemon
 app-antivirus/clamav 0.101.2: Clam Anti-Virus Scanner
-app-arch/xz-utils 5.2.3 5.2.4-r2: utils for managing LZMA compressed files
+app-arch/xz-utils 5.2.4-r2: utils for managing LZMA compressed files
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-crypt/qca 2.1.3-r2: Qt Cryptographic Architecture (QCA)
 app-misc/mc 4.8.22: GNU Midnight Commander is a text based file manager
