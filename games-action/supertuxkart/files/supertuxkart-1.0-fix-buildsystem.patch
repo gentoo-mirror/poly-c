@@ -1,16 +1,8 @@
---- supertuxkart-1.0/CMakeLists.txt
-+++ supertuxkart-1.0/CMakeLists.txt
-@@ -300,6 +300,7 @@
-     find_package(Angelscript)
-     if(ANGELSCRIPT_FOUND)
-         include_directories(${Angelscript_INCLUDE_DIRS})
-+        add_definitions(-DAS_DEPRECATED)
-     else()
-         message(FATAL_ERROR "Angelscript not found. "
-             "Either install angelscript or use built-in version using "
---- supertuxkart-1.0/lib/irrlicht/CMakeLists.txt
-+++ supertuxkart-1.0/lib/irrlicht/CMakeLists.txt
-@@ -96,15 +96,6 @@
+diff --git a/lib/irrlicht/CMakeLists.txt b/lib/irrlicht/CMakeLists.txt
+index 92a881c81..1371fdf11 100644
+--- a/lib/irrlicht/CMakeLists.txt
++++ b/lib/irrlicht/CMakeLists.txt
+@@ -96,15 +96,6 @@ endif()
  if(WIN32)
      add_definitions(-D_IRR_STATIC_LIB_)
      add_definitions(-D_CRT_SECURE_NO_WARNINGS) # Shut up about unsafe stuff
