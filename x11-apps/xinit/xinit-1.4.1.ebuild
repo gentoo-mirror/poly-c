@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 7217612718e61df0781013e435604c2c26e6d112 $
+# $Id: 5548d9324892d2d0f4913448bf1ba814fde9c48b $
 
 EAPI=7
 
@@ -55,8 +55,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	xorg-3_pkg_postinst
-
 	if ! has_version 'x11-apps/xinit'; then
 		ewarn "If you use startx to start X instead of a login manager like gdm/kdm,"
 		ewarn "you can set the XSESSION variable to anything in /etc/X11/Sessions/ or"
