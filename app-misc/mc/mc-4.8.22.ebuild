@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f8cbc5a2c3927f403ca8a8a2ee2deaed03613e1d $
+# $Id: 1e7d94b10815d5c0dca09a4c312ad2fe37652988 $
 
 EAPI=7
 
@@ -15,7 +15,7 @@ SRC_URI="http://ftp.midnight-commander.org/${MY_P}.tar.xz"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="alpha amd64 arm arm64 hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
-IUSE="+edit gpm mclib nls samba sftp +slang spell test unicode X +xdg"
+IUSE="+edit gpm nls samba sftp +slang spell test unicode X +xdg"
 
 REQUIRED_USE="spell? ( edit )"
 
@@ -68,7 +68,11 @@ src_configure() {
 		--with-homedir=$(usex xdg 'XDG' '.mc')
 		--with-screen=$(usex slang 'slang' "ncurses$(usex unicode 'w' '')")
 		$(use_enable kernel_linux vfs-undelfs)
-		$(use_enable mclib)
+		# Today mclib does not expose any headers and is linked to
+		# single 'mc' binary. Thus there is no advantage of having
+		# a library. Let's avoid shared library altogether
+		# as it also conflicts with sci-libs/mc: bug #685938
+		--disable-mclib
 		$(use_enable nls)
 		$(use_enable samba vfs-smb)
 		$(use_enable sftp vfs-sftp)

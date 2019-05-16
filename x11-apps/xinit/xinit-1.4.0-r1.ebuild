@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f8dedbb1ce77f5ba39062e396c8d6f26757f7a44 $
+# $Id: be9e7a84a648bccedfeec3b2130ba82cbff5d002 $
 
 EAPI=5
 
@@ -44,7 +44,7 @@ src_install() {
 	xorg-2_src_install
 
 	exeinto /etc/X11
-	doexe "${FILESDIR}"/chooser.sh "${FILESDIR}"/startDM.sh
+	doexe "${FILESDIR}"/chooser.sh "${FILESDIR}"/startDM.sh.1
 	exeinto /etc/X11/Sessions
 	doexe "${FILESDIR}"/Xsession
 	exeinto /etc/X11/xinit
@@ -58,6 +58,7 @@ src_install() {
 
 pkg_postinst() {
 	xorg-2_pkg_postinst
+
 	if ! has_version 'x11-apps/xinit'; then
 		ewarn "If you use startx to start X instead of a login manager like gdm/kdm,"
 		ewarn "you can set the XSESSION variable to anything in /etc/X11/Sessions/ or"

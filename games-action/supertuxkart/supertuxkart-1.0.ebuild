@@ -25,6 +25,7 @@ RDEPEND="
 	media-libs/freetype:2
 	media-libs/glew:0=
 	media-libs/libpng:0=
+	media-libs/libsquish
 	media-libs/libvorbis
 	media-libs/openal
 	net-libs/enet:1.3=
@@ -68,7 +69,7 @@ src_configure() {
 		-DUSE_SYSTEM_ANGELSCRIPT=ON
 		-DUSE_SYSTEM_ENET=ON
 		-DUSE_SYSTEM_GLEW=ON
-		-DUSE_SYSTEM_SQUISH=OFF
+		-DUSE_SYSTEM_SQUISH=ON
 		-DUSE_SYSTEM_WIIUSE=OFF
 		-DUSE_CRYPTO_OPENSSL=$(usex nettle no yes)
 		-DENABLE_WAYLAND_DEVICE=OFF
