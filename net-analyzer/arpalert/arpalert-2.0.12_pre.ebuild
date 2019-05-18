@@ -16,8 +16,7 @@ IUSE="debug syslog"
 DEPEND=""
 
 pkg_setup() {
-	enewuser ${PN} -1 -1 -1 nogroup \
-		|| die "failed to create user \"${PN}\""
+	enewuser ${PN} -1 -1 -1 nogroup
 }
 
 src_prepare() {

@@ -42,6 +42,7 @@ DEPEND="${RDEPEND}
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.8.9-fix-too-long-german-strings.patch
 	"${FILESDIR}"/${PN}-4.8.13-restore_saved_replace_string.patch
+	"${FILESDIR}"/${PN}-4.8.22-ebuild_syntax.patch
 )
 
 S=${WORKDIR}/${MY_P}
