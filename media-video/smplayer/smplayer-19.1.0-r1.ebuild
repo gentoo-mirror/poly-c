@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e2d8157b3424e46f6722c657c1ef9370e6fbf501 $
+# $Id: a7d7dc8f6ecfc16c62fa9f21c74b2ee2498d8b08 $
 
 EAPI=7
 
@@ -20,7 +20,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~arm ~hppa ~ppc ~ppc64 ~x86 ~x86-fbsd ~amd64-linux"
 IUSE="autoshutdown bidi debug mpris"
 
-COMMON_DEPEND="
+BDEPEND="dev-qt/linguist-tools:5"
+DEPEND="
 	dev-qt/qtcore:5
 	dev-qt/qtgui:5=
 	dev-qt/qtnetwork:5[ssl]
@@ -32,10 +33,7 @@ COMMON_DEPEND="
 	autoshutdown? ( dev-qt/qtdbus:5 )
 	mpris? ( dev-qt/qtdbus:5 )
 "
-DEPEND="${COMMON_DEPEND}
-	dev-qt/linguist-tools:5
-"
-RDEPEND="${COMMON_DEPEND}
+RDEPEND="${DEPEND}
 	|| (
 		media-video/mpv[libass,X]
 		media-video/mplayer[bidi?,libass,png,X]

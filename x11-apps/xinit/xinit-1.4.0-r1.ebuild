@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: be9e7a84a648bccedfeec3b2130ba82cbff5d002 $
+# $Id: e069d3d3c92e88a5ecf41fe20ea75ebfadef1c52 $
 
 EAPI=5
 
@@ -44,7 +44,8 @@ src_install() {
 	xorg-2_src_install
 
 	exeinto /etc/X11
-	doexe "${FILESDIR}"/chooser.sh "${FILESDIR}"/startDM.sh.1
+	doexe "${FILESDIR}"/chooser.sh
+	newexe "${FILESDIR}"/startDM.sh.1 startDM.sh
 	exeinto /etc/X11/Sessions
 	doexe "${FILESDIR}"/Xsession
 	exeinto /etc/X11/xinit
