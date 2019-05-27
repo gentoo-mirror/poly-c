@@ -1,12 +1,11 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=6
+EAPI=7
 
 inherit cmake-utils desktop
 
-MY_PN=OpenDungeons
+MY_PN="OpenDungeons"
 
 DESCRIPTION="An open source, real time strategy game based on the Dungeon Keeper series"
 HOMEPAGE="http://opendungeons.github.io/"
@@ -34,22 +33,25 @@ RDEPEND=">=dev-games/cegui-0.8.0[ogre,opengl]
 	media-libs/openal
 	virtual/jpeg
 	virtual/opengl"
-DEPEND="${RDEPEND}
+DEPEND="${RDEPEND}"
+BDEPEND="
 	virtual/pkgconfig"
 
 CMAKE_IN_SOURCE_BUILD=1
 
 src_prepare() {
 	default
-	sed '/-Werror/d' -i CMakeLists.txt || die
+	sed \
+		-e '/-Werror/d' \
+		-i CMakeLists.txt || die
 	cmake-utils_src_prepare
 }
 
 src_configure() {
 	local mycmakeargs=(
-		-DOD_DATA_PATH=/usr/share/${MY_PN}
-		-DOD_BIN_PATH=/usr/bin/
-		-DOD_SHARE_PATH=/usr/share
+		-DOD_DATA_PATH="${EPREFIX}/usr/share/${MY_PN}"
+		-DOD_BIN_PATH="${EPREFIX}/usr/bin"
+		-DOD_SHARE_PATH="${EPREFIX}/usr/share"
 		)
 
 	cmake-utils_src_configure
@@ -57,6 +59,7 @@ src_configure() {
 
 src_install() {
 	cmake-utils_src_install
+	mv "${ED}/usr/share/doc/${PN}" "${ED}/usr/share/doc/${PF}" || die
 	doicon "${FILESDIR}"/${PN}.svg
 	make_desktop_entry ${MY_PN} ${PN} ${PN}
 }
