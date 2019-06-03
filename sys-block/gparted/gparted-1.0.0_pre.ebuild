@@ -22,6 +22,7 @@ COMMON_DEPEND="
 	>=dev-libs/glib-2:2
 	>=sys-block/parted-3.2:=
 	>=dev-libs/libsigc++-2.5.1:2
+	x11-libs/gtk+:3
 "
 RDEPEND="${COMMON_DEPEND}
 	>=sys-apps/util-linux-2.20
