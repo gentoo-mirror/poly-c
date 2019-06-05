@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 1958025728305ff79525b8e6f42c14d80960ad27 $
+# $Id: 96f73a51563503431437a28b2a5a1ec2e6a9a4a8 $
 
 EAPI=6
 QT5_MODULE="qtbase"
@@ -9,7 +9,7 @@ inherit qt5-build
 DESCRIPTION="The GUI module and platform plugins for the Qt5 framework"
 
 if [[ ${QT5_BUILD_TYPE} == release ]]; then
-	KEYWORDS="amd64 arm arm64 ~hppa ~ppc ppc64 ~sparc x86 ~amd64-fbsd"
+	KEYWORDS="amd64 arm arm64 ~hppa ppc ppc64 ~sparc x86 ~amd64-fbsd"
 fi
 
 # TODO: linuxfb
