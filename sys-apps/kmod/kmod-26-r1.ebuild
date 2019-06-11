@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c65b8e722432d9f4bef8ff44fa36419995a5e7cb $
+# $Id: a10a6cdda8d6f1bc984b862459d5d873cba3c313 $
 
 EAPI=6
 
@@ -22,7 +22,7 @@ HOMEPAGE="https://git.kernel.org/?p=utils/kernel/kmod/kmod.git"
 
 LICENSE="LGPL-2"
 SLOT="0"
-IUSE="debug doc lzma python ssl static-libs +tools zlib"
+IUSE="debug doc libressl lzma python ssl static-libs +tools zlib"
 
 # Upstream does not support running the test suite with custom configure flags.
 # I was also told that the test suite is intended for kmod developers.
@@ -37,7 +37,10 @@ RDEPEND="!sys-apps/module-init-tools
 	!<sys-apps/systemd-216-r3
 	lzma? ( >=app-arch/xz-utils-5.0.4-r1 )
 	python? ( ${PYTHON_DEPS} )
-	ssl? ( >=dev-libs/openssl-1.1.0:0= )
+	ssl? (
+		!libressl? ( >=dev-libs/openssl-1.1.0:0= )
+		libressl? ( dev-libs/libressl:0= )
+	)
 	zlib? ( >=sys-libs/zlib-1.2.6 )" #427130
 DEPEND="${RDEPEND}
 	doc? ( dev-util/gtk-doc )
@@ -55,6 +58,10 @@ fi
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 DOCS="NEWS README TODO"
+
+PATCHES=(
+	"${FILESDIR}/${P}-libressl.patch" # bug 677960
+)
 
 src_prepare() {
 	default
