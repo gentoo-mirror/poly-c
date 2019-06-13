@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5db7d040eeeeb5bb8c6be4b0e6c9e89abb883a28 $
+# $Id: f2771e5b49e4568fdd2dbbbd91a61d05e0e1107b $
 
 EAPI=7
 
@@ -48,6 +48,7 @@ BDEPEND="
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.1.0-mtu.patch #291907
 	"${FILESDIR}"/${PN}-4.20.0-configure-nomagic.patch # bug 643722
+	"${FILESDIR}"/${PN}-5.1.0-portability.patch
 )
 
 src_prepare() {
