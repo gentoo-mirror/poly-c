@@ -191,14 +191,14 @@ src_configure() {
 
 src_compile() {
 	pushd include >/dev/null
-	emake
+	emake V=1
 	popd >/dev/null
 
 	if use device-mapper-only ; then
-		emake device-mapper
+		emake V=1 device-mapper
 	else
-		emake
-		emake CC="$(tc-getCC)" -C scripts lvm2_activation_generator_systemd_red_hat
+		emake V=1
+		emake V=1 CC="$(tc-getCC)" -C scripts lvm2_activation_generator_systemd_red_hat
 	fi
 }
 
@@ -209,7 +209,7 @@ src_install() {
 	use systemd && INSTALL_TARGETS+=( install_systemd_units install_systemd_generators )
 	use device-mapper-only && INSTALL_TARGETS=( install_device-mapper )
 	for inst in ${INSTALL_TARGETS[@]}; do
-		emake DESTDIR="${D}" ${inst}
+		emake V=1 DESTDIR="${D}" ${inst}
 	done
 
 	newinitd "${FILESDIR}"/device-mapper.rc-2.02.105-r2 device-mapper
