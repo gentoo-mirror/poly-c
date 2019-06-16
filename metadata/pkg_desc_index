@@ -10,7 +10,7 @@ dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-libs/openssl 1.0.2r: full-strength general purpose cryptography library (including SSL and TLS)
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-qt/qtgui 5.12.3-r1: The GUI module and platform plugins for the Qt5 framework
-kde-apps/kde-wallpapers 15.08.3 15.08.3-r2: KDE wallpapers
+kde-apps/kde-wallpapers 15.08.3 15.08.3-r2 15.08.3-r3: KDE wallpapers
 kde-plasma/plasma-workspace 5.14.5.1 5.15.5: KDE Plasma workspace
 lxde-base/lxsession 0.5.2: LXDE session manager
 media-libs/freeimage 3.15.4-r1: Image library supporting many formats
