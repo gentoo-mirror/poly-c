@@ -1,8 +1,8 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8ca2acf99e11e06f5301353c70e874127bb80161 $
+# $Id: 24e6c75bc03b74ffdd5990e8b626a79800c53db7 $
 
-EAPI=6
+EAPI=7
 
 KDE_HANDBOOK="forceoptional"
 KDE_TEST="forceoptional"
@@ -10,7 +10,7 @@ VIRTUALX_REQUIRED="test"
 inherit kde5 qmake-utils
 
 DESCRIPTION="KDE Plasma workspace"
-KEYWORDS="amd64 ~arm ~arm64 x86"
+KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 IUSE="appstream +calendar geolocation gps prison qalculate +semantic-desktop systemd wayland"
 
 REQUIRED_USE="gps? ( geolocation )"
@@ -26,6 +26,7 @@ COMMON_DEPEND="
 	$(add_frameworks_dep kcrash)
 	$(add_frameworks_dep kdbusaddons)
 	$(add_frameworks_dep kdeclarative)
+	$(add_frameworks_dep kded)
 	$(add_frameworks_dep kdelibs4support)
 	$(add_frameworks_dep kglobalaccel)
 	$(add_frameworks_dep kguiaddons)
@@ -91,8 +92,8 @@ DEPEND="${COMMON_DEPEND}
 	x11-base/xorg-proto
 "
 RDEPEND="${COMMON_DEPEND}
-	$(add_frameworks_dep kded)
 	$(add_frameworks_dep kdesu)
+	$(add_frameworks_dep kirigami)
 	$(add_kdeapps_dep kio-extras)
 	$(add_plasma_dep ksysguard)
 	$(add_plasma_dep milou)
@@ -101,33 +102,23 @@ RDEPEND="${COMMON_DEPEND}
 	$(add_qt_dep qtgraphicaleffects)
 	$(add_qt_dep qtpaths)
 	$(add_qt_dep qtquickcontrols 'widgets')
+	$(add_qt_dep qtquickcontrols2)
 	app-text/iso-codes
-	x11-apps/mkfontdir
 	x11-apps/xmessage
 	x11-apps/xprop
 	x11-apps/xrdb
-	x11-apps/xset
 	x11-apps/xsetroot
 	systemd? ( sys-apps/dbus[user-session] )
 	!systemd? ( sys-apps/dbus )
-	!kde-plasma/freespacenotifier:4
-	!kde-plasma/libtaskmanager:4
-	!kde-plasma/kcminit:4
-	!kde-plasma/kdebase-startkde:4
-	!kde-plasma/klipper:4
-	!kde-plasma/krunner:4
-	!kde-plasma/ksmserver:4
-	!kde-plasma/ksplash:4
-	!kde-plasma/plasma-workspace:4
+	!<kde-plasma/plasma-desktop-5.14.80:5
 "
 PDEPEND="
 	$(add_plasma_dep kde-cli-tools)
 "
 
 PATCHES=(
-	"${FILESDIR}/${PN}-5.4-startkde-script.patch"
+	"${FILESDIR}/${PN}-5.14.80-startkde-script.patch"
 	"${FILESDIR}/${PN}-5.10-startplasmacompositor-script.patch"
-	"${FILESDIR}/${PN}-5.12.80-tests-optional.patch"
 	"${FILESDIR}/${PN}-5.14.2-split-libkworkspace.patch"
 )
 

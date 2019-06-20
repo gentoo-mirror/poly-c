@@ -48,6 +48,9 @@ SRC_URI="
 	${MOZ_HTTP_URI}/${PV}.tar.gz -> ${P}.tar.gz
 	${PATCH_URIS[@]}"
 
+# New branding breaks build
+SRC_URI+=" https://www.gentoofan.org/gentoo/misc/${PN}-56.2.11-update_branding.patch.xz"
+
 ASM_DEPEND=">=dev-lang/yasm-1.1"
 
 RDEPEND="
@@ -130,6 +133,9 @@ src_prepare() {
 
 	# Apply our patches
 	eapply "${WORKDIR}/firefox"
+
+	# New branding breaks build
+	eapply -R "${FILESDIR}/${PN}-56.2.11-update_branding.patch"
 
 	# Enable gnomebreakpad
 	if use debug ; then
