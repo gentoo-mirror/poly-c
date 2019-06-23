@@ -1,0 +1,11 @@
+--- mc-4.8.23/po/de.po
++++ mc-4.8.23/po/de.po
+@@ -2982,7 +2982,7 @@
+ msgstr "Attri&bute sichern"
+ 
+ msgid "Di&ve into subdir if exists"
+-msgstr "In Unter&verz. legen, wenn es existiert"
++msgstr "In Unter&verz. legen, wenn exist."
+ 
+ msgid "&Stable symlinks"
+ msgstr "&Stabile symbolische Links"
