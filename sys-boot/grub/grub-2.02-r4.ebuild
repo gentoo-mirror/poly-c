@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e7fdf86942fe0708bf9cba9c8e0144d4a40d6db0 $
+# $Id: 2215a61ff455b511f8cd998b5741acca8f29e59f $
 
 EAPI="6"
 
@@ -59,7 +59,7 @@ HOMEPAGE="https://www.gnu.org/software/grub/"
 # Includes licenses for dejavu and unifont
 LICENSE="GPL-3 fonts? ( GPL-2-with-font-exception ) themes? ( BitstreamVera )"
 SLOT="2/${PVR}"
-IUSE="debug device-mapper doc efiemu +fonts mount multislot nls static sdl test +themes truetype libzfs"
+IUSE="device-mapper doc efiemu +fonts mount multislot nls static sdl test +themes truetype libzfs"
 
 GRUB_ALL_PLATFORMS=( coreboot efi-32 efi-64 emu ieee1275 loongson multiboot qemu qemu-mips pc uboot xen xen-32 )
 IUSE+=" ${GRUB_ALL_PLATFORMS[@]/#/grub_platforms_}"
@@ -76,9 +76,7 @@ REQUIRED_USE="
 COMMON_DEPEND="
 	app-arch/xz-utils
 	>=sys-libs/ncurses-5.2-r5:0=
-	debug? (
-		sdl? ( media-libs/libsdl )
-	)
+	sdl? ( media-libs/libsdl )
 	device-mapper? ( >=sys-fs/lvm2-2.02.45 )
 	libzfs? ( sys-fs/zfs )
 	mount? ( sys-fs/fuse:0 )
@@ -214,14 +212,13 @@ grub_configure() {
 		--bindir="${EPREFIX}"/bin
 		--libdir="${EPREFIX}"/lib
 		--htmldir="${EPREFIX}"/usr/share/doc/${PF}/html
-		$(use_enable debug mm-debug)
 		$(use_enable device-mapper)
 		$(use_enable mount grub-mount)
 		$(use_enable nls)
 		$(use_enable themes grub-themes)
 		$(use_enable truetype grub-mkfont)
 		$(use_enable libzfs)
-		$(use sdl && use_enable debug grub-emu-sdl)
+		$(use_enable sdl grub-emu-sdl)
 		${platform:+--with-platform=}${platform}
 
 		# Let configure detect this where supported
