@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: bcc1f868e6d6572ff506f7fc34ecc4d2861363e2 $
+# $Id: bfb1938f52be09aaa84f4ee016096806ae39b4a5 $
 
 EAPI=7
 inherit systemd udev
@@ -54,7 +54,7 @@ src_install() {
 
 	newbin "${WORKDIR}/alsa-driver-${ADRIVER_PV}/utils/alsa-info.sh" alsa-info
 
-	newinitd "${FILESDIR}"/alsasound.initd-r7 alsasound
+	newinitd "${FILESDIR}"/alsasound.initd-r8 alsasound
 	newconfd "${FILESDIR}"/alsasound.confd-r4 alsasound
 
 	insinto /etc/modprobe.d
