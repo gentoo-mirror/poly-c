@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 24e6c75bc03b74ffdd5990e8b626a79800c53db7 $
+# $Id: 5fbd5a4e8ad84bd7e52f07f71631559dc81e97b9 $
 
 EAPI=7
 
@@ -126,9 +126,6 @@ RESTRICT+=" test"
 
 src_prepare() {
 	kde5_src_prepare
-
-	sed -e "s|\`qtpaths|\`$(qt5_get_bindir)/qtpaths|" \
-		-i startkde/startkde.cmake startkde/startplasmacompositor.cmake || die
 
 	cmake_comment_add_subdirectory libkworkspace
 	# delete colliding libkworkspace translations

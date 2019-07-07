@@ -1,9 +1,10 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
+# $Id: 31b4a4ca658f879fea67500169547d98b5508d67 $
 
-EAPI=6
+EAPI=7
 QT5_MODULE="qtbase"
-inherit qt5-build poly-c_qt
+inherit qt5-build
 
 DESCRIPTION="The GUI module and platform plugins for the Qt5 framework"
 
@@ -27,6 +28,7 @@ REQUIRED_USE="
 RDEPEND="
 	dev-libs/glib:2
 	~dev-qt/qtcore-${PV}
+	dev-util/gtk-update-icon-cache
 	media-libs/fontconfig
 	>=media-libs/freetype-2.6.1:2
 	>=media-libs/harfbuzz-1.6.0:=
@@ -120,6 +122,10 @@ QT5_GENTOO_CONFIG=(
 
 QT5_GENTOO_PRIVATE_CONFIG=(
 	:gui
+)
+
+PATCHES+=(
+	"${FILESDIR}/${P}-fix-highdpi-crash.patch" # QTBUG-76440
 )
 
 src_prepare() {
