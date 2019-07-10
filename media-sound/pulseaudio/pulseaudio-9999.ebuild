@@ -13,7 +13,7 @@ if [[ "${PV}" == 9999 ]] ; then
 	EGIT_REPO_URI="https://gitlab.freedesktop.org/pulseaudio/pulseaudio.git"
 else
 	SRC_URI=""
-	KEYWORDS="alpha amd64 arm ~arm64 ~hppa ia64 ppc ppc64 ~sh sparc x86 ~amd64-fbsd ~amd64-linux ~x86-linux"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~sh ~sparc ~x86 ~amd64-fbsd ~amd64-linux ~x86-linux"
 fi
 
 # libpulse-simple and libpulse link to libpulse-core; this is daemon's
@@ -199,12 +199,30 @@ multilib_src_configure() {
 multilib_src_compile() {
 	if multilib_is_native_abi ; then
 		meson_src_compile
+	#else
+	#	local targets=(
+	#		src/pulse/libpulse
+	#		src/pulse/libpulsedsp
+	#		src/pulse/libpulse_simple
+	#		$(usex glib 'src/pulse/libpulse_mainloop_glib' '')
+	#	)
+	#	eninja "${targets[@]}"
 	fi
 }
 
 multilib_src_install() {
 	if multilib_is_native_abi ; then
 		meson_src_install
+	#else
+	#	local targets=(
+	#		src/pulse/libpulse
+	#		src/pulse/libpulsedsp
+	#		src/pulse/libpulse_simple
+	#		$(usex glib 'src/pulse/libpulse_mainloop_glib' '')
+	#		src/pulse/libpulse_headers
+	#		pc_files
+	#	)
+	#	eninja "${targets[@]}" install
 	fi
 }
 
@@ -241,8 +259,6 @@ multilib_src_install_all() {
 
 	# Create the state directory
 	use prefix || diropts -o pulse -g pulse -m0755
-
-	find "${ED}" \( -name '*.a' -o -name '*.la' \) -delete || die
 }
 
 pkg_preinst() {
