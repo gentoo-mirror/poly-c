@@ -277,7 +277,7 @@ src_install() {
 	insinto /etc/default
 	newins "${FILESDIR}"/grub.default-3 grub
 
-	dostrip -x /usr/lib/grub
+	dostrip -x /lib/grub
 }
 
 pkg_postinst() {
