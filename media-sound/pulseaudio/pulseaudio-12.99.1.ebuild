@@ -162,7 +162,6 @@ src_prepare() {
 multilib_src_configure() {
 	local myconf=(
 		--disable-adrian-aec
-		--disable-bluez4
 		--disable-esound
 		--disable-gconf
 		--disable-solaris
