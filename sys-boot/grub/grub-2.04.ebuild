@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 567c292711229ccdcb2a2997bbdf338b36e444c5 $
+# $Id: 07f21fac67051c2eb1359da4260a8fcdda801cf2 $
 
 EAPI=7
 
@@ -277,6 +277,7 @@ src_install() {
 	insinto /etc/default
 	newins "${FILESDIR}"/grub.default-3 grub
 
+	# https://bugs.gentoo.org/231935
 	dostrip -x /lib/grub
 }
 
