@@ -71,7 +71,7 @@ BUILD_OBJ_DIR="${S}/wf"
 
 # allow GMP_PLUGIN_LIST to be set in an eclass or
 # overridden in the enviromnent (advanced hackers only)
-if [[ -z $GMP_PLUGIN_LIST ]]; then
+if [[ -z ${GMP_PLUGIN_LIST} ]]; then
 	GMP_PLUGIN_LIST=( gmp-gmpopenh264 gmp-widevinecdm )
 fi
 
@@ -114,6 +114,7 @@ pkg_pretend() {
 
 src_prepare() {
 	local patch_exclude=(
+		1000_gentoo_install_dir.patch
 		2001_system_harfbuzz.patch
 		2002_system_graphite2.patch
 	)
@@ -356,9 +357,9 @@ src_install() {
 	done
 	# The 128x128 icon has a different name
 	insinto "/usr/share/icons/hicolor/128x128/apps"
-	newins "${icon_path}/mozicon128.png" "${icon}.png"
+	doins "${icon_path}/${icon}.png"
 	# Install a 48x48 icon into /usr/share/pixmaps for legacy DEs
-	newicon "${icon_path}/content/icon48.png" "${icon}.png"
+	newicon "${icon_path}/default48.png" "${icon}.png"
 	newmenu "${FILESDIR}/icon/${PN}.desktop" "${PN}.desktop"
 	sed -i -e "s:@NAME@:${name}:" -e "s:@ICON@:${icon}:" \
 		"${ED%/}/usr/share/applications/${PN}.desktop" || die
