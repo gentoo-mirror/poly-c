@@ -7,5 +7,5 @@ IUSE=png
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-2
 SLOT=0
-SRC_URI=mirror://sourceforge/littleutils/littleutils-1.0.40.tar.xz
+SRC_URI=mirror://sourceforge/littleutils/littleutils-1.0.42.tar.xz
 _md5_=da96e11bd23aece538ab456a277134fa
