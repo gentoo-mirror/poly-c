@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0f8314dc272ae7950646a03fc70dbf7eccfead71 $
+# $Id: dee75ce2d972a3681a62f2f71adc730117eea9e1 $
 
 EAPI=6
 
@@ -11,7 +11,7 @@ if [[ ${PV} == "9999" ]] ; then
 	inherit git-r3
 else
 	SRC_URI="mirror://kernel/linux/utils/net/${PN}/${P}.tar.xz"
-	KEYWORDS="~alpha amd64 ~arm ~arm64 hppa ia64 ~m68k ~mips ~ppc ~ppc64 s390 ~sh sparc x86"
+	KEYWORDS="~alpha amd64 ~arm ~arm64 hppa ia64 ~m68k ~mips ppc ppc64 s390 ~sh sparc x86"
 fi
 
 DESCRIPTION="kernel routing and traffic control utilities"
@@ -56,6 +56,9 @@ src_prepare() {
 	fi
 
 	default
+
+	# echo -n is not POSIX compliant
+	sed 's@echo -n@printf@' -i configure || die
 
 	sed -i \
 		-e '/^CC :\?=/d' \

@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 3386bb728ed0a84122682b1b164ca4e5df6c4268 $
+# $Id: e143e6550286a87a30bbc2b2f94c0618bad4b466 $
 
 EAPI=6
 
@@ -54,6 +54,9 @@ src_prepare() {
 	fi
 
 	default
+
+	# echo -n is not POSIX compliant
+	sed 's@echo -n@printf@' -i configure || die
 
 	sed -i \
 		-e '/^CC :\?=/d' \
