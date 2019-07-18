@@ -9,5 +9,5 @@ RDEPEND=>=sys-block/parted-2.3 >=sys-libs/ncurses-5.7-r7:=
 RESTRICT=mirror
 SLOT=0
 SRC_URI=https://github.com/martijnvanbrummelen/nwipe/archive/v0.24.tar.gz -> nwipe-0.24.tar.gz
-_eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	1d91b03d42ab6308b5f4f6b598ed110e	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	toolchain-funcs	8c7f9d80beedd16f2e5a7f612c609529
+_eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	1d91b03d42ab6308b5f4f6b598ed110e	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	toolchain-funcs	a3a237ef6c0c58546bf23b2c382f9e56
 _md5_=f3e2f3c83e4fe20f05c45ea6bbf8390e
