@@ -1,10 +1,10 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: d4d59fece48c60dcb068a164214e2b2b52ec4a7b $
+# $Id: 29af5f7bd47dcdceb3e5307fbf1f2c873f48938a $
 
 EAPI=6
 
-inherit toolchain-funcs flag-o-matic
+inherit toolchain-funcs flag-o-matic usr-ldscript
 
 DESCRIPTION="standard informational utilities and process-handling tools"
 HOMEPAGE="http://procps-ng.sourceforge.net/ https://gitlab.com/procps-ng/procps"

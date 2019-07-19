@@ -1,13 +1,13 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 249d0a2b31e2c92b4cabb2fa37176c397f6cc008 $
+# $Id: ac156fa115ad423665f720fee4107fc1860025ff $
 
 # Remember: we cannot leverage autotools in this ebuild in order
 #           to avoid circular deps with autotools
 
 EAPI=6
 
-inherit multilib toolchain-funcs libtool multilib-minimal preserve-libs
+inherit multilib toolchain-funcs libtool multilib-minimal preserve-libs usr-ldscript
 
 if [[ ${PV} == "9999" ]] ; then
 	EGIT_REPO_URI="https://git.tukaani.org/xz.git"
