@@ -12,7 +12,6 @@ dev-libs/openssl 1.0.2r: full-strength general purpose cryptography library (inc
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-qt/qtgui 5.12.3-r1: The GUI module and platform plugins for the Qt5 framework
 kde-apps/kde-wallpapers 15.08.3 15.08.3-r2 15.08.3-r3: KDE wallpapers
-kde-plasma/plasma-workspace 5.15.5: KDE Plasma workspace
 lxde-base/lxsession 0.5.2: LXDE session manager
 media-libs/freeimage 3.15.4-r1: Image library supporting many formats
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
@@ -34,6 +33,6 @@ sys-apps/kmod 25: library and tools for managing linux kernel modules
 sys-apps/man 1.6g-r1: Standard commands to read man pages
 sys-boot/grub 2.02-r4: GNU GRUB boot loader
 sys-fs/udev 236-r1 238 239: Linux dynamic and persistent device naming support (aka userspace devfs)
-sys-power/cpupower 4.4.183 4.4.184 4.4.185 4.9.183 4.9.184 4.9.185: Shows and sets processor power related values
+sys-power/cpupower 4.4.184 4.4.185 4.4.186 4.9.184 4.9.185 4.9.186: Shows and sets processor power related values
 sys-process/procps 3.3.15-r1: standard informational utilities and process-handling tools
 x11-apps/xinit 1.4.0-r1 1.4.1: X Window System initializer
