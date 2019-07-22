@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 31b4a4ca658f879fea67500169547d98b5508d67 $
+# $Id: 81db316f4805ef1cb5bb2bcd4b1a24e19024b3cf $
 
 EAPI=7
 QT5_MODULE="qtbase"
@@ -15,7 +15,7 @@ fi
 # TODO: linuxfb
 
 IUSE="accessibility dbus egl eglfs evdev +gif gles2 ibus
-	jpeg +libinput +png tslib tuio +udev vnc +xcb"
+	jpeg +libinput +png tslib tuio +udev vnc wayland +xcb"
 REQUIRED_USE="
 	|| ( eglfs xcb )
 	accessibility? ( dbus xcb )
@@ -70,6 +70,7 @@ DEPEND="${RDEPEND}
 "
 PDEPEND="
 	ibus? ( app-i18n/ibus )
+	wayland? ( ~dev-qt/qtwayland-${PV} )
 "
 
 QT5_TARGET_SUBDIRS=(
