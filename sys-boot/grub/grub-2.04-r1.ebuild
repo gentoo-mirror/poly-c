@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 07f21fac67051c2eb1359da4260a8fcdda801cf2 $
+# $Id: 81bd769728c964d21384b3abdaca3318bac5cd3b $
 
 EAPI=7
 
@@ -40,6 +40,7 @@ fi
 PATCHES=(
 	"${FILESDIR}"/gfxpayload.patch
 	"${FILESDIR}"/grub-2.02_beta2-KERNEL_GLOBS.patch
+	"${FILESDIR}"/2.04-sparc64-bios-boot.patch
 )
 
 DEJAVU=dejavu-sans-ttf-2.37
