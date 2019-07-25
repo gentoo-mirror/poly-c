@@ -5,7 +5,7 @@ EAPI=6
 GNOME_ORG_MODULE="gtk-doc"
 PYTHON_COMPAT=( python3_{5,6,7} )
 
-inherit gnome.org python-any-r1 poly-c_gnome
+inherit gnome.org python-single-r1 poly-c_gnome
 
 DESCRIPTION="Automake files from gtk-doc"
 HOMEPAGE="https://www.gtk.org/gtk-doc/"
