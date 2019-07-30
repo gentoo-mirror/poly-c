@@ -1,6 +1,6 @@
 # Copyright 2003-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e3c9cbfb5d8894ff4e344beb7c41d518f5d5572a $
+# $Id: 126aa9ccf37e924d42c0e3ac63a6338d8f6d8ff5 $
 
 EAPI=6
 
@@ -101,7 +101,7 @@ src_prepare() {
 	fi
 
 	local PATCHES=(
-		"${FILESDIR}/236-uucp-group.patch"
+		"${FILESDIR}"/242-gcc-9.patch
 	)
 
 	default
