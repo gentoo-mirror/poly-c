@@ -32,6 +32,6 @@ sys-apps/kmod 25: library and tools for managing linux kernel modules
 sys-apps/man 1.6g-r1: Standard commands to read man pages
 sys-boot/grub 2.02-r4: GNU GRUB boot loader
 sys-fs/udev 236-r1 238 239 242: Linux dynamic and persistent device naming support (aka userspace devfs)
-sys-power/cpupower 4.4.185 4.4.186 4.4.187 4.9.185 4.9.186 4.9.187: Shows and sets processor power related values
+sys-power/cpupower 4.4.186 4.4.187 4.4.188 4.9.186 4.9.187 4.9.188: Shows and sets processor power related values
 sys-process/procps 3.3.15-r1: standard informational utilities and process-handling tools
 x11-apps/xinit 1.4.0-r1 1.4.1: X Window System initializer
