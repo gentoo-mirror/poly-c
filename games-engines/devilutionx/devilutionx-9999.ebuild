@@ -3,6 +3,8 @@
 
 EAPI=7
 
+#CMAKE_MAKEFILE_GENERATOR="emake"
+
 inherit cmake-utils multilib
 
 DESCRIPTION="Diablo build for modern operating systems"
@@ -30,6 +32,11 @@ DEPEND="${RDEPEND}"
 BDEPEND="
 	virtual/pkgconfig
 "
+
+src_prepare() {
+	eapply -R "${FILESDIR}"/${PN}-facebookincubator_find_libsodium.patch
+	cmake-utils_src_prepare
+}
 
 src_configure() {
 	if use amd64 ; then
