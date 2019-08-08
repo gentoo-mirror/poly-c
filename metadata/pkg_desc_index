@@ -11,7 +11,6 @@ dev-libs/openssl 1.0.2r: full-strength general purpose cryptography library (inc
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-qt/qtgui 5.12.3-r1: The GUI module and platform plugins for the Qt5 framework
 kde-apps/kde-wallpapers 15.08.3 15.08.3-r2 15.08.3-r3: KDE wallpapers
-kde-frameworks/kconfig 5.60.0: Framework for reading and writing configuration
 lxde-base/lxsession 0.5.2: LXDE session manager
 media-libs/freeimage 3.15.4-r1: Image library supporting many formats
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
