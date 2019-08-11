@@ -1,37 +1,184 @@
 acct-user/ftp 0: File Transfer Protocol server user
 app-accessibility/at-spi2-core 2.30.1: D-Bus accessibility specifications and registration daemon
-app-arch/xz-utils 5.2.4-r2: utils for managing LZMA compressed files
+app-accessibility/speech-dispatcher 0.8.8_pre: Speech synthesis interface
+app-admin/cpulimit 2.5_pre 2.6_pre: Limits the CPU usage of a process
+app-admin/littleutils 1.0.41 1.0.42: The littleutils are a collection of small and simple utilities
+app-admin/remotebox 2.2 2.5: Open Source VirtualBox Client with Remote Management
+app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
+app-arch/xz-utils 5.2.4-r2 5.2.4-r3: utils for managing LZMA compressed files
+app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
+app-crypt/gpgme 1.13.1_pre: GnuPG Made Easy is a library for making GnuPG easier to use
+app-crypt/libu2f-host 1.1.6_pre: Yubico Universal 2nd Factor (U2F) Host C Library
+app-crypt/nwipe 0.24_pre: Securely erase disks using a variety of recognized methods
 app-crypt/qca 2.1.3-r2: Qt Cryptographic Architecture (QCA)
-app-misc/mc 4.8.22: GNU Midnight Commander is a text based file manager
+app-editors/cooledit 3.17.19: Cooledit is a full featured multiple window text editor
+app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
+app-laptop/dell-fan-mon 1.0 9999: Fan control for some Dell laptops
+app-laptop/i8kutils 1.43_pre: Dell Inspiron and Latitude utilities
+app-misc/kenny 0.1: command-line kennyfier
+app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
+app-misc/mc 4.8.22 4.8.23 4.8.23-r1: GNU Midnight Commander is a text based file manager
+app-misc/mmv 1.01b_p19_pre: Move/copy/append/link multiple files according to a set of wildcard patterns
+app-misc/osmo 0.4.2: Handy personal organizer
+app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-shells/rssh 2.3.4: Restricted shell for SSHd
+app-text/enchant 2.2.4_pre: Spellchecker wrapping library
+app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
+app-text/gspell 1.8.1: Spell check library for GTK+ applications
 app-text/gtkspell 2.0.16: Spell checking widget for GTK
+app-text/po4a 0.55_pre 0.56_pre: Tools to ease the translation of documentation
+dev-games/openscenegraph 3.5.6_pre 3.5.9_pre: Open source high performance 3D graphics toolkit
+dev-games/simgear 2019.1.1_pre: Development library for simulation games
+dev-java/ant-core 1.9.8_pre: Java-based build tool similar to 'make' that uses XML configuration files
+dev-java/commons-compress 1.12_pre: Java API for working with archive files
+dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
+dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
-dev-libs/openssl 1.0.2r: full-strength general purpose cryptography library (including SSL and TLS)
+dev-lang/openwatcom-v2 9999: Open Watcom compiler
+dev-libs/boost 1.65.1_pre 1.69.0: Boost Libraries for C++
+dev-libs/libassuan 2.5.2_pre 2.5.3_pre: IPC library used by GnuPG and GPGME
+dev-libs/libev 4.27_pre: A high-performance event loop/event model with lots of feature
+dev-libs/libtasn1 4.14_pre: ASN.1 library
+dev-libs/libverto 0.3.1_pre: Main event loop abstraction library
+dev-libs/newt 0.52.20_pre: Redhat's Newt windowing toolkit development files
+dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
+dev-libs/openssl 1.0.2r 1.0.2r-r200 1.0.2s 1.0.2s-r200 1.1.1b-r2 1.1.1c: full-strength general purpose cryptography library (including SSL and TLS)
+dev-python/PyQt5 5.13.0: Python bindings for the Qt framework
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
-dev-qt/qtgui 5.12.3-r1: The GUI module and platform plugins for the Qt5 framework
+dev-python/pyscard 1.9.6_pre 1.9.7_pre: Smart cards support in python
+dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
+dev-python/sphinx 1.8.2_pre: Python documentation generator
+dev-python/wget 3.2: pure python download utility
+dev-qt/qtgui 5.12.3-r1 5.12.4: The GUI module and platform plugins for the Qt5 framework
+dev-scheme/guile 2.2.6_pre: GNU Ubiquitous Intelligent Language for Extensions
+dev-util/bcc 0.7.0_pre: Tools for BPF-based Linux IO analysis, networking, monitoring, and more
+dev-util/boost-build 1.65.1_pre 1.69.0: A system for large project software construction, simple to use and powerful
+dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
+dev-util/gtk-doc 1.30_pre: GTK+ Documentation Generator
+dev-util/gtk-doc-am 1.30_pre-r1: Automake files from gtk-doc
+dev-util/itstool 2.0.5_pre 2.0.6_pre: Translation tool for XML documents that uses gettext files and ITS rules
+dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
+games-action/supertuxkart 1.0_pre 1.0: A kart racing game starring Tux, the linux penguin (TuxKart fork)
+games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
+games-engines/devilutionx 9999: Diablo build for modern operating systems
+games-engines/fifechan 0.1.4 9999: Lightweight cross platform GUI C++ library designed for games
+games-engines/fifengine 0.4.1 9999: Flexible Isometric Free Engine, 2D
+games-engines/stratagus 2.4.2_pre: A realtime strategy game engine
+games-fps/dhewm3 1.4.1 9999: A Doom 3 GPL source modification.
+games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
+games-fps/etlegacy 2.75 2.76 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
+games-fps/rtcw 1.51b 9999: Return to Castle Wolfenstein - IORTCW Project
+games-rpg/freedroidrpg 0.16.1_pre: A modification of the classical Freedroid engine into an RPG
+games-simulation/flightgear 2019.1.1_pre: Open Source Flight Simulator
+games-simulation/flightgear-data 2019.1.1_pre: FlightGear data files
+games-strategy/boswars 9999: Futuristic real-time strategy game
+games-strategy/megaglest 3.13.0_pre: Cross-platform 3D realtime strategy game
+games-strategy/megaglest-data 3.13.0_pre: Data files for the cross-platform 3D realtime strategy game MegaGlest
+games-strategy/opendungeons 0.7.1 9999: An open source, real time strategy game based on the Dungeon Keeper series
+games-strategy/unknown-horizons 9999: Anno-like real time strategy game
+games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
+games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
+games-util/x52pro-linux 9999: Saitek X52pro drivers & controller mapping software for Linux
 kde-apps/kde-wallpapers 15.08.3 15.08.3-r2 15.08.3-r3: KDE wallpapers
+kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
+kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
 lxde-base/lxsession 0.5.2: LXDE session manager
 media-libs/freeimage 3.15.4-r1: Image library supporting many formats
+media-libs/libbpg 0.9.7_pre 0.9.8_pre: BPG (Better Portable Graphics) is a new image format
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
-media-sound/alsa-utils 1.1.2 1.1.6 1.1.8: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
+media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
+media-libs/libsquish 1.15: DXT compression library
+media-libs/x265 3.1.1_pre: Library for encoding video streams into the H.265/HEVC format
+media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
+media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
+media-sound/alsa-utils 1.1.2 1.1.6 1.1.7 1.1.8 1.1.9: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
+media-sound/ameter 0.44_pre: Ameter is an Alsa meter plugin
+media-sound/cutmp3 2.1.2_pre 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
+media-sound/idjc 0.8.17: Internet DJ Console has two media players, jingles player, crossfader, VoIP and streaming
 media-sound/pavucontrol 3.0: Pulseaudio Volume Control, GTK based mixer for Pulseaudio
-media-video/smplayer 18.6.0: Great Qt GUI front-end for mplayer/mpv
-net-analyzer/nagios-plugins 1.4.16-r2: Nagios 1.4.16 plugins - Pack of plugins to make Nagios work properly
+media-sound/pulseaudio 12.99.1 12.99.2 9999: A networked sound server with an advanced plugin system
+media-sound/scdl 1.3.3_beta1 9999: Soundcloud Music Downloader
+media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
+media-sound/strawberry 9999: Modern music player and library organizer based on Clementine and Qt
+media-tv/mediathekview-bin 11 12 13.0.2 13.2.1: Download files from the public broadcasting services
+media-video/cinelerraGG 9999: The most advanced non-linear video editor and compositor - Good Guy's version
+media-video/mplayer 1.4_pre: Media Player for Linux
+media-video/ogmrip 1.0.1: Graphical frontend and libraries for ripping DVDs and encoding to AVI/OGM/MKV/MP4
+media-video/smplayer 18.6.0 19.1.0-r1 19.5.0: Great Qt GUI front-end for mplayer/mpv
+net-analyzer/arpalert 2.0.11_pre 2.0.12_pre: arpalert is used for monitoring ethernet networks
+net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
+net-analyzer/nagios-plugins 1.4.16-r2 1.4.16-r3: Nagios 1.4.16 plugins - Pack of plugins to make Nagios work properly
+net-analyzer/netsniff-ng 0.6.6 9999: high performance network sniffer for packet inspection
+net-analyzer/nikto 2.1.5_pre 2.1.6_pre: Web Server vulnerability scanner.
 net-dialup/mingetty 1.08-r1: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
-net-ftp/filezilla 3.39.0: FTP client with lots of useful features and an intuitive interface
+net-ftp/filezilla 3.39.0 3.40.0 3.41.1 3.41.2 3.42.0 3.42.1 3.43.0: FTP client with lots of useful features and an intuitive interface
 net-im/jabberd2 2.7.0: Open Source Jabber Server
 net-im/licq 1.8.2: ICQ Client with v8 support
+net-irc/pchat-irc 1.5.3: Graphical IRC client
+net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
+net-libs/bctoolbox 0.6.0_pre: Utilities library used by Belledonne Communications softwares like belle-sip, mediastreamer2 and linphone.
+net-libs/enet 1.3.14_pre: relatively thin, simple and robust network communication layer on top of UDP
+net-libs/gnutls 3.6.7.1_pre 3.6.8_pre 3.6.9_pre: A TLS 1.2 and SSL 3.0 implementation for the GNU project
+net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
+net-misc/dhcpcd 8.0.1: A fully featured, yet light weight RFC2131 compliant DHCP client
+net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
+net-misc/lldpd 1.0.4_pre: Implementation of IEEE 802.1ab (LLDP)
+net-misc/networkmanager 1.20.0_pre: A set of co-operative tools that make networking simple and straightforward
+net-misc/ns 3.28 3.29: A discrete-event network simulator for Internet systems.
 net-misc/rsync 3.1.3: File transfer program to keep remote files into sync
+net-misc/ssh-tools 1.5: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
+net-misc/wget2 1.99.0 1.99.1: GNU Wget2 is a file and recursive website downloader
+net-p2p/ncdc 1.21_pre: ncurses directconnect client
+net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
+sci-astronomy/pulsatingscience 9999: 3D binary pulsar animation and outreach application
+sci-libs/dcmtk 3.6.2: The DICOM Toolkit
+sci-libs/gdcm 2.8.2: GDCM is an implementation of the DICOM standard.
+sci-libs/maxflow 3.0.4: Library that implements the maxflow-mincut algorithm
+sci-libs/nifticlib 2.0.0: The NIFTI IO Library
+sci-libs/vistaio 1.2.18: Vista file IO library
+sci-libs/vtk-dicom 0.7.11: DICOM for VTK tools
+sci-misc/dicom3tools 1.00.20160402132920: Command line utilities for manipulating and convertin DICOM files
+sci-misc/mia 2.4.4: Library and tools for medical image processing
+sci-misc/xmedcon 0.14.1: Medical Image Conversion Utility
+sci-visualization/amide 1.0.5: AMIDE's a Medical Imaging Data Examiner
+sci-visualization/ginkgocadx 3.8.6: An advanced DICOM viewer and dicomizer
+sys-apps/accountsservice 0.6.54_pre 0.6.55_pre: D-Bus interfaces for querying and manipulating user account information
 sys-apps/baselayout 2.6-r1: Filesystem baselayout and init scripts
-sys-apps/gawk 4.1.4 4.2.1-r1: GNU awk pattern-matching language
-sys-apps/iproute2 4.4.0 4.14.1-r2 4.17.0-r1 4.19.0-r1: kernel routing and traffic control utilities
-sys-apps/kmod 25: library and tools for managing linux kernel modules
+sys-apps/fwup 1.0.0 1.2.1: Configurable embedded Linux firmware update creator and runner
+sys-apps/gawk 4.1.4 4.2.1-r1 5.0.0 5.0.1: GNU awk pattern-matching language
+sys-apps/hwloc 2.0.3_pre: displays the hardware topology in convenient formats
+sys-apps/iproute2 4.4.0 4.9.0 4.14.1-r2 4.14.1-r4 4.17.0-r1 4.18.0-r1 4.19.0-r1 4.20.0 5.0.0 5.1.0 5.2.0: kernel routing and traffic control utilities
+sys-apps/kmod 25 26-r1: library and tools for managing linux kernel modules
+sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g-r1: Standard commands to read man pages
-sys-boot/grub 2.02-r4: GNU GRUB boot loader
-sys-fs/udev 236-r1 238 239 242: Linux dynamic and persistent device naming support (aka userspace devfs)
-sys-power/cpupower 4.4.186 4.4.187 4.4.188 4.9.186 4.9.187 4.9.188: Shows and sets processor power related values
+sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
+sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
+sys-block/gparted 1.0.0_pre: Gnome Partition Editor
+sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
+sys-boot/grub 2.02-r4 2.04_rc1 2.04-r1: GNU GRUB boot loader
+sys-fs/udev 236-r1 238 239 241 242 243_rc1: Linux dynamic and persistent device naming support (aka userspace devfs)
+sys-fs/udev-init-scripts 30: udev startup scripts for openrc
+sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
+sys-libs/libtsm 3_pre: Terminal Emulator State Machine
+sys-libs/minizip 2.8.5 2.8.9: zip manipulation library found in the zlib distribution
+sys-libs/slang 2.3.3_pre9: Multi-platform library designed to allow a developer to create robust software
+sys-power/cpupower 4.4.186 4.4.187 4.4.188 4.9.186 4.9.187 4.9.188 4.14.136 4.14.137 4.14.138 4.19.64 4.19.65 4.19.66: Shows and sets processor power related values
+sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
+sys-process/htop 9999: interactive process viewer
+sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.15-r1: standard informational utilities and process-handling tools
+www-apps/baikal 0.5.3_pre: Lightweight CalDAV+CardDAV server
+www-client/links 2.17 2.18 2.19_pre: A fast and lightweight web browser running in both graphics and text mode
+www-client/waterfox 56.2.11 56.2.12: Waterfox Web Browser
 x11-apps/xinit 1.4.0-r1 1.4.1: X Window System initializer
+x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
+x11-misc/adriconf 1.4 9999: Advanced DRI Configurator
+x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
+x11-plugins/pidgin-skypeweb 1.5_pre: SkypeWeb Plugin for Pidgin
+x11-plugins/purple-icyque 9999: ICQ WIM protocol for libpurple
+x11-plugins/purple-matrix 9999: Libpurple protocol plugin for matrix
+x11-themes/sddm-gentoo-black-theme 1.2 9999: Simple SDDM theme inspired on FBSD SLiM theme
+xfce-base/xfconf 4.13.6: A configuration management system for Xfce
