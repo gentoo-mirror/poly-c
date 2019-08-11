@@ -22,9 +22,3 @@ media-radio/liquidsoap
 
 # fails to link
 sci-astronomy/pulsatingscience
-
-# Breaks linking sometimes
-=dev-util/meson-0.50.0_pre
-
-# Breaks multiple things
-=media-sound/pulseaudio-12.99*
