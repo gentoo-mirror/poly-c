@@ -82,8 +82,6 @@ src_install() {
 
 	# handle is for xfsdump, the rest for xfsprogs
 	gen_usr_ldscript -a handle xcmd xfs xlog frog
-	# removing unnecessary .la files if not needed
-	if ! use static-libs ; then
-		find "${ED}" -type f -name '*.la' -delete || die
-	fi
+	# removing unnecessary .la files
+	find "${ED}" -type f -name '*.la' -delete || die
 }
