@@ -167,7 +167,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre9: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.4.187 4.4.188 4.4.189 4.9.187 4.9.188 4.9.189 4.14.136 4.14.137 4.14.138 4.19.64 4.19.65 4.19.66: Shows and sets processor power related values
+sys-power/cpupower 4.4.187 4.4.188 4.4.189 4.9.187 4.9.188 4.9.189 4.14.137 4.14.138 4.14.139 4.19.65 4.19.66 4.19.67: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
