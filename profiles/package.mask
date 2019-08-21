@@ -26,3 +26,7 @@ sci-astronomy/pulsatingscience
 # Break at least x11-libs/pangox-compat:
 # https://gitlab.gnome.org/Archive/pangox-compat/issues/1
 =x11-libs/pango-1.44.5_pre
+
+# Fails to build:
+# https://github.com/MrAlex94/Waterfox/issues/1103
+=www-client/waterfox-56.2.13

@@ -105,6 +105,7 @@ media-video/cinelerraGG 9999: The most advanced non-linear video editor and comp
 media-video/mplayer 1.4_pre: Media Player for Linux
 media-video/ogmrip 1.0.1: Graphical frontend and libraries for ripping DVDs and encoding to AVI/OGM/MKV/MP4
 media-video/smplayer 18.6.0 19.1.0-r1 19.5.0: Great Qt GUI front-end for mplayer/mpv
+media-video/vlc 3.0.8_pre: Media player and framework with support for most multimedia files and streaming
 net-analyzer/arpalert 2.0.11_pre 2.0.12_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
 net-analyzer/nagios-plugins 1.4.16-r2 1.4.16-r3: Nagios 1.4.16 plugins - Pack of plugins to make Nagios work properly
@@ -172,7 +173,7 @@ sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.15-r1: standard informational utilities and process-handling tools
 www-apps/baikal 0.5.3_pre: Lightweight CalDAV+CardDAV server
 www-client/links 2.17 2.18 2.19_pre: A fast and lightweight web browser running in both graphics and text mode
-www-client/waterfox 56.2.11 56.2.12: Waterfox Web Browser
+www-client/waterfox 56.2.12 56.2.13: Waterfox Web Browser
 x11-apps/xinit 1.4.0-r1 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-libs/pango 1.44.5_pre: Internationalized text layout and rendering library
