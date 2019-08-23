@@ -29,6 +29,7 @@ app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
 app-text/gspell 1.8.1: Spell check library for GTK+ applications
 app-text/gtkspell 2.0.16: Spell checking widget for GTK
 app-text/po4a 0.55_pre 0.56_pre: Tools to ease the translation of documentation
+app-text/poppler 0.80.0_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-games/openscenegraph 3.5.6_pre 3.5.9_pre: Open source high performance 3D graphics toolkit
 dev-games/simgear 2019.1.1_pre: Development library for simulation games
 dev-java/ant-core 1.9.8_pre: Java-based build tool similar to 'make' that uses XML configuration files
@@ -42,7 +43,7 @@ dev-libs/libev 4.27_pre: A high-performance event loop/event model with lots of 
 dev-libs/libverto 0.3.1_pre: Main event loop abstraction library
 dev-libs/newt 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
-dev-libs/openssl 1.0.2r 1.0.2r-r200 1.0.2s 1.0.2s-r200 1.1.1b-r2 1.1.1c: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/openssl 1.0.2r 1.0.2s-r1 1.1.1b-r2 1.1.1c-r1: full-strength general purpose cryptography library (including SSL and TLS)
 dev-python/PyQt5 5.13.0: Python bindings for the Qt framework
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-python/pyscard 1.9.6_pre 1.9.7_pre: Smart cards support in python
@@ -161,7 +162,6 @@ sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management 
 sys-boot/grub 2.02-r4 2.04_rc1 2.04-r1: GNU GRUB boot loader
 sys-fs/udev 236-r1 238 239 241 242 243_rc1: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
-sys-fs/xfsprogs 5.2.0_pre: xfs filesystem utilities
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9: zip manipulation library found in the zlib distribution

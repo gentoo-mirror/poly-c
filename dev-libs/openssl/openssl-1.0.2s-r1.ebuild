@@ -1,10 +1,10 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 44b9547d141ea4bf8628d8ec62a3e39e6ddb585a $
+# $Id: b4902db7e537d9b727eda80cf8aa6e91b5e6ce5c $
 
-EAPI="6"
+EAPI="7"
 
-inherit eutils flag-o-matic toolchain-funcs multilib multilib-minimal
+inherit flag-o-matic toolchain-funcs multilib multilib-minimal
 
 # openssl-1.0.2-patches-1.6 contain additional CVE patches
 # which got fixed with this release.
@@ -20,32 +20,28 @@ SRC_URI="mirror://openssl/source/${MY_P}.tar.gz
 		https://dev.gentoo.org/~whissi/dist/${PN}/${PATCH_SET}.tar.xz
 		https://dev.gentoo.org/~polynomial-c/dist/${PATCH_SET}.tar.xz
 	)"
-
+    
 LICENSE="openssl"
 # subslot set to 1.0.2g version as this is the first release without SSLv2
 # support and thus breaks nearly every openssl consumer (see bug #575548)
-SLOT="1.0.0/1.0.2g"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-linux"
+SLOT="0/1.0.2g"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-linux"
 IUSE="+asm bindist gmp kerberos rfc3779 sctp cpu_flags_x86_sse2 static-libs test +tls-heartbeat vanilla zlib"
 RESTRICT="!bindist? ( bindist )"
 
 RDEPEND=">=app-misc/c_rehash-1.7-r1
 	gmp? ( >=dev-libs/gmp-5.1.3-r1[static-libs(+)?,${MULTILIB_USEDEP}] )
-	zlib? ( >=sys-libs/zlib-1.2.8-r1[static-libs(+)?,${MULTILIB_USEDEP}] )
 	kerberos? ( >=app-crypt/mit-krb5-1.11.4[${MULTILIB_USEDEP}] )
-	!=dev-libs/openssl-1.0.2*:0"
-DEPEND="${RDEPEND}
+	zlib? ( >=sys-libs/zlib-1.2.8-r1[static-libs(+)?,${MULTILIB_USEDEP}] )"
+DEPEND="${RDEPEND}"
+BDEPEND="
 	>=dev-lang/perl-5
 	sctp? ( >=net-misc/lksctp-tools-1.0.12 )
 	test? (
 		sys-apps/diffutils
 		sys-devel/bc
 	)"
-
-RESTRICT="test"
-
-# Do not install any docs
-DOCS=()
+PDEPEND="app-misc/ca-certificates"
 
 # This does not copy the entire Fedora patchset, but JUST the parts that
 # are needed to make it safe to use EC with RESTRICT=bindist.
@@ -103,9 +99,12 @@ src_prepare() {
 	rm -f Makefile
 
 	if ! use vanilla ; then
-		eapply "${WORKDIR}"/patch/*.patch
+		if [[ $(declare -p PATCHES 2>/dev/null) == "declare -a"* ]] ; then
+			[[ ${#PATCHES[@]} -gt 0 ]] && eapply "${PATCHES[@]}"
+		fi
 
 		eapply "${FILESDIR}"/${PN}-1.0.2g-disable_ssl3_tests.patch
+		eapply "${FILESDIR}"/${PN}-1.0.2g-soversion.patch
 	fi
 
 	eapply_user
@@ -119,7 +118,7 @@ src_prepare() {
 		-e '/^MAKEDEPPROG/s:=.*:=$(CC):' \
 		-e $(has noman FEATURES \
 			&& echo '/^install:/s:install_docs::' \
-			|| echo '/^MANDIR=/s:=.*:='${EPREFIX%/}'/usr/share/man:') \
+			|| echo '/^MANDIR=/s:=.*:='${EPREFIX}'/usr/share/man:') \
 		Makefile.org \
 		|| die
 	# show the actual commands in the log
@@ -144,7 +143,7 @@ src_prepare() {
 	append-flags $(test-flags-CC -Wa,--noexecstack)
 	append-cppflags -DOPENSSL_NO_BUF_FREELISTS
 
-	sed -i '1s,^:$,#!'${EPREFIX%/}'/usr/bin/perl,' Configure #141906
+	sed -i '1s,^:$,#!'${EPREFIX}'/usr/bin/perl,' Configure #141906
 	# The config script does stupid stuff to prompt the user.  Kill it.
 	sed -i '/stty -icanon min 0 time 50; read waste/d' config || die
 	./config --test-sanity || die "I AM NOT SANE"
@@ -194,7 +193,9 @@ multilib_src_configure() {
 	[[ -z ${sslout} ]] && config="config"
 
 	# Fedora hobbled-EC needs 'no-ec2m', 'no-srp'
-	echoit \
+	# Make sure user flags don't get added *yet* to avoid duplicated
+	# flags.
+	CFLAGS= LDFLAGS= echoit \
 	./${config} \
 		${sslout} \
 		$(use cpu_flags_x86_sse2 || echo "no-sse2") \
@@ -218,24 +219,30 @@ multilib_src_configure() {
 		$(use_ssl sctp) \
 		$(use_ssl tls-heartbeat heartbeats) \
 		$(use_ssl zlib) \
-		--prefix="${EPREFIX%/}"/usr \
-		--openssldir="${EPREFIX%/}"${SSL_CNF_DIR} \
+		--prefix="${EPREFIX}"/usr \
+		--openssldir="${EPREFIX}"${SSL_CNF_DIR} \
 		--libdir=$(get_libdir) \
 		shared threads \
 		|| die
 
 	# Clean out hardcoded flags that openssl uses
-	local CFLAG=$(grep ^CFLAG= Makefile | LC_ALL=C sed \
+	local DEFAULT_CFLAGS=$(grep ^CFLAG= Makefile | LC_ALL=C sed \
 		-e 's:^CFLAG=::' \
-		-e 's:-fomit-frame-pointer ::g' \
-		-e 's:-O[0-9] ::g' \
-		-e 's:-march=[-a-z0-9]* ::g' \
-		-e 's:-mcpu=[-a-z0-9]* ::g' \
-		-e 's:-m[a-z0-9]* ::g' \
+		-e 's:\(^\| \)-fomit-frame-pointer::g' \
+		-e 's:\(^\| \)-O[^ ]*::g' \
+		-e 's:\(^\| \)-march=[^ ]*::g' \
+		-e 's:\(^\| \)-mcpu=[^ ]*::g' \
+		-e 's:\(^\| \)-m[^ ]*::g' \
+		-e 's:^ *::' \
+		-e 's: *$::' \
+		-e 's: \+: :g' \
+		-e 's:\\:\\\\:g'
 	)
+
+	# Now insert clean default flags with user flags
 	sed -i \
-		-e "/^CFLAG/s|=.*|=${CFLAG} ${CFLAGS}|" \
-		-e "/^SHARED_LDFLAGS=/s|$| ${LDFLAGS}|" \
+		-e "/^CFLAG/s|=.*|=${DEFAULT_CFLAGS} ${CFLAGS}|" \
+		-e "/^LDFLAGS=/s|=[[:space:]]*$|=${LDFLAGS}|" \
 		Makefile || die
 }
 
@@ -243,7 +250,10 @@ multilib_src_compile() {
 	# depend is needed to use $confopts; it also doesn't matter
 	# that it's -j1 as the code itself serializes subdirs
 	emake -j1 V=1 depend
-	emake build_libs
+	emake all
+	# rehash is needed to prep the certs/ dir; do this
+	# separately to avoid parallel build issues.
+	emake rehash
 }
 
 multilib_src_test() {
@@ -251,5 +261,68 @@ multilib_src_test() {
 }
 
 multilib_src_install() {
-	dolib.so lib{crypto,ssl}.so.${SLOT}
+	# We need to create $ED/usr on our own to avoid a race condition #665130
+	if [[ ! -d "${ED}/usr" ]]; then
+		# We can only create this directory once
+		mkdir "${ED}"/usr || die
+	fi
+
+	emake INSTALL_PREFIX="${D}" install
+}
+
+multilib_src_install_all() {
+	# openssl installs perl version of c_rehash by default, but
+	# we provide a shell version via app-misc/c_rehash
+	rm "${ED}"/usr/bin/c_rehash || die
+
+	local -a DOCS=( CHANGES* FAQ NEWS README doc/*.txt doc/c-indentation.el )
+	einstalldocs
+
+	use rfc3779 && dodoc engines/ccgost/README.gost
+
+	# This is crappy in that the static archives are still built even
+	# when USE=static-libs.  But this is due to a failing in the openssl
+	# build system: the static archives are built as PIC all the time.
+	# Only way around this would be to manually configure+compile openssl
+	# twice; once with shared lib support enabled and once without.
+	use static-libs || rm -f "${ED}"/usr/lib*/lib*.a
+
+	# create the certs directory
+	dodir ${SSL_CNF_DIR}/certs
+	cp -RP certs/* "${ED}"${SSL_CNF_DIR}/certs/ || die
+	rm -r "${ED}"${SSL_CNF_DIR}/certs/{demo,expired}
+
+	# Namespace openssl programs to prevent conflicts with other man pages
+	cd "${ED}"/usr/share/man
+	local m d s
+	for m in $(find . -type f | xargs grep -L '#include') ; do
+		d=${m%/*} ; d=${d#./} ; m=${m##*/}
+		[[ ${m} == openssl.1* ]] && continue
+		[[ -n $(find -L ${d} -type l) ]] && die "erp, broken links already!"
+		mv ${d}/{,ssl-}${m}
+		# fix up references to renamed man pages
+		sed -i '/^[.]SH "SEE ALSO"/,/^[.]/s:\([^(, ]*(1)\):ssl-\1:g' ${d}/ssl-${m}
+		ln -s ssl-${m} ${d}/openssl-${m}
+		# locate any symlinks that point to this man page ... we assume
+		# that any broken links are due to the above renaming
+		for s in $(find -L ${d} -type l) ; do
+			s=${s##*/}
+			rm -f ${d}/${s}
+			ln -s ssl-${m} ${d}/ssl-${s}
+			ln -s ssl-${s} ${d}/openssl-${s}
+		done
+	done
+	[[ -n $(find -L ${d} -type l) ]] && die "broken manpage links found :("
+
+	dodir /etc/sandbox.d #254521
+	echo 'SANDBOX_PREDICT="/dev/crypto"' > "${ED}"/etc/sandbox.d/10openssl
+
+	diropts -m0700
+	keepdir ${SSL_CNF_DIR}/private
+}
+
+pkg_postinst() {
+	ebegin "Running 'c_rehash ${EROOT}${SSL_CNF_DIR}/certs/' to rebuild hashes #333069"
+	c_rehash "${EROOT}${SSL_CNF_DIR}/certs" >/dev/null
+	eend $?
 }
