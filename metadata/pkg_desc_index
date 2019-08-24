@@ -31,7 +31,6 @@ app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
 app-text/gspell 1.8.1: Spell check library for GTK+ applications
 app-text/gtkspell 2.0.16: Spell checking widget for GTK
 app-text/po4a 0.55_pre 0.56_pre: Tools to ease the translation of documentation
-app-text/poppler 0.80.0_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-games/openscenegraph 3.5.6_pre 3.5.9_pre: Open source high performance 3D graphics toolkit
 dev-games/simgear 2019.1.1_pre: Development library for simulation games
 dev-java/ant-core 1.9.8_pre: Java-based build tool similar to 'make' that uses XML configuration files
@@ -63,7 +62,7 @@ dev-util/itstool 2.0.5_pre 2.0.6_pre: Translation tool for XML documents that us
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-action/supertuxkart 1.0_pre 1.0: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
-games-engines/devilutionx 9999: Diablo build for modern operating systems
+games-engines/devilutionx 9999 9999-r1: Diablo build for modern operating systems
 games-engines/fifechan 0.1.4 9999: Lightweight cross platform GUI C++ library designed for games
 games-engines/fifengine 0.4.1 9999: Flexible Isometric Free Engine, 2D
 games-engines/stratagus 2.4.2_pre: A realtime strategy game engine
@@ -126,7 +125,6 @@ net-libs/enet 1.3.14_pre: relatively thin, simple and robust network communicati
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-misc/dhcpcd 8.0.1: A fully featured, yet light weight RFC2131 compliant DHCP client
 net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
-net-misc/lldpd 1.0.4_pre: Implementation of IEEE 802.1ab (LLDP)
 net-misc/networkmanager 1.20.0_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.28 3.29: A discrete-event network simulator for Internet systems.
 net-misc/rsync 3.1.3: File transfer program to keep remote files into sync
