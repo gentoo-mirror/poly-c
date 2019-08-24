@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9033f5cd956c2357e698538f77f1d42245e0a6c9 $
+# $Id: 5beda6e4bc4e3ec5ed066658e354a801cec46f08 $
 
 EAPI=7
 
@@ -135,12 +135,11 @@ src_install() {
 
 	emake \
 		DESTDIR="${D}" \
+		PREFIX="${EPREFIX}/usr" \
 		LIBDIR="${EPREFIX}"/$(get_libdir) \
 		SBINDIR="${EPREFIX}"/sbin \
 		CONFDIR="${EPREFIX}"/etc/iproute2 \
-		DATADIR="${EPREFIX}"/usr/share \
 		DOCDIR="${EPREFIX}"/usr/share/doc/${PF} \
-		HDRDIR="${EPREFIX}"/usr/include \
 		MANDIR="${EPREFIX}"/usr/share/man \
 		ARPDDIR="${EPREFIX}"/var/lib/arpd \
 		install

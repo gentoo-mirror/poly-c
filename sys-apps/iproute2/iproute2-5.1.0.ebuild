@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 81245c6d74f5f123a797d849677c730fa6d429c7 $
+# $Id: 5beda6e4bc4e3ec5ed066658e354a801cec46f08 $
 
 EAPI=7
 
@@ -135,6 +135,7 @@ src_install() {
 
 	emake \
 		DESTDIR="${D}" \
+		PREFIX="${EPREFIX}/usr" \
 		LIBDIR="${EPREFIX}"/$(get_libdir) \
 		SBINDIR="${EPREFIX}"/sbin \
 		CONFDIR="${EPREFIX}"/etc/iproute2 \
