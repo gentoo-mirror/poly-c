@@ -59,6 +59,7 @@ dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/gtk-doc 1.30_pre 1.32_pre: GTK+ Documentation Generator
 dev-util/gtk-doc-am 1.30_pre-r1 1.32_pre: Automake files from gtk-doc
 dev-util/itstool 2.0.5_pre 2.0.6_pre: Translation tool for XML documents that uses gettext files and ITS rules
+dev-util/meson 0.51.2_pre: Open source build system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-action/supertuxkart 1.0_pre 1.0: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
@@ -90,7 +91,6 @@ media-libs/libbpg 0.9.7_pre 0.9.8_pre: BPG (Better Portable Graphics) is a new i
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
-media-libs/x265 3.1.1_pre 3.1.2_pre: Library for encoding video streams into the H.265/HEVC format
 media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
 media-sound/alsa-utils 1.1.2 1.1.6 1.1.7 1.1.8 1.1.9: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
