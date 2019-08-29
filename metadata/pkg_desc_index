@@ -41,6 +41,7 @@ dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/boost 1.65.1_pre 1.69.0: Boost Libraries for C++
 dev-libs/libev 4.27_pre: A high-performance event loop/event model with lots of feature
+dev-libs/libgcrypt 1.8.5_pre: General purpose crypto library based on the code used in GnuPG
 dev-libs/libverto 0.3.1_pre: Main event loop abstraction library
 dev-libs/newt 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++

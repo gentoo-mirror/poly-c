@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 1e7d94b10815d5c0dca09a4c312ad2fe37652988 $
+# $Id: 769e4414056a9db5f0c3590d487d11dadcbc4a57 $
 
 EAPI=7
 
@@ -112,7 +112,7 @@ src_install() {
 
 	if ! use xdg ; then
 		sed 's@MC_XDG_OPEN="xdg-open"@MC_XDG_OPEN="/bin/false"@' \
-			-i "${ED%/}"/usr/libexec/mc/ext.d/*.sh || die
+			-i "${ED}"/usr/libexec/mc/ext.d/*.sh || die
 	fi
 }
 

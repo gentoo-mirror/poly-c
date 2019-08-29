@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0dcb43c065301e19e5f1fa024e16d24b80fb2126 $
+# $Id: f25b06af8d7b401ec6008a32d33205d251af55a1 $
 
 EAPI=7
 inherit systemd udev
@@ -14,7 +14,7 @@ SRC_URI="mirror://alsaproject/utils/${P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0.9"
-KEYWORDS="~alpha amd64 arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc x86"
+KEYWORDS="~alpha amd64 arm ~arm64 ~hppa ~ia64 ~mips ppc ppc64 ~sh ~sparc x86"
 IUSE="bat doc +libsamplerate +ncurses nls selinux"
 
 CDEPEND=">=media-libs/alsa-lib-${PV}
