@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -23,8 +23,11 @@ CDEPEND="
 	berkdb? ( >=sys-libs/db-4.1.25:= )
 	ldap? ( net-nds/openldap )
 	mysql? (
-		virtual/libmysqlclient:=
 		virtual/mysql:=
+		|| (
+			dev-db/mariadb-connector-c
+			dev-db/mysql-connector-c
+		)
 	)
 	pam? ( virtual/pam )
 	postgres? ( dev-db/postgresql:= )
