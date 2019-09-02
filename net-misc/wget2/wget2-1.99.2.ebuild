@@ -72,6 +72,7 @@ src_configure() {
 }
 
 src_install() {
+	export LDCONFIG="/bin/true"
 	default
 
 	find "${ED}" -type f \( -name "*.a" -o -name "*.la" \) -delete || die
