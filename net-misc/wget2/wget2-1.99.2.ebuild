@@ -82,6 +82,8 @@ src_configure() {
 src_install() {
 	default
 
+	doman docs/man/man{1/*.1,3/*.3}
+
 	find "${ED}" -type f \( -name "*.a" -o -name "*.la" \) -delete || die
 	rm "${ED}"/usr/bin/${PN}_noinstall || die
 }
