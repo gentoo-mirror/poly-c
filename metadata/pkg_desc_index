@@ -61,7 +61,6 @@ dev-util/itstool 2.0.5_pre 2.0.6_pre: Translation tool for XML documents that us
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-action/supertuxkart 1.0_pre 1.0: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
-games-engines/devilutionx 9999 9999-r1: Diablo build for modern operating systems
 games-engines/fifechan 0.1.4 9999: Lightweight cross platform GUI C++ library designed for games
 games-engines/fifengine 0.4.1 9999: Flexible Isometric Free Engine, 2D
 games-engines/stratagus 2.4.2_pre: A realtime strategy game engine
@@ -174,7 +173,7 @@ sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.15-r1: standard informational utilities and process-handling tools
 www-apps/baikal 0.5.3_pre: Lightweight CalDAV+CardDAV server
 www-client/links 2.17 2.18 2.19_pre 2.20_pre: A fast and lightweight web browser running in both graphics and text mode
-www-client/waterfox 56.2.12 56.2.13: Waterfox Web Browser
+www-client/waterfox 56.2.13: Waterfox Web Browser
 x11-apps/xinit 1.4.0-r1 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-libs/pango 1.44.5_pre: Internationalized text layout and rendering library

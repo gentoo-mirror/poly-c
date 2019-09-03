@@ -47,6 +47,14 @@ DEPEND="
 	valgrind? ( dev-util/valgrind )
 "
 
+src_prepare() {
+	default
+
+	# Upstream attempts to be "smart" by calling ldconfig in
+	# install-exec-hook
+	sed '/^install-exec-hook:/,+2d' -i Makefile.in || die
+}
+
 src_configure() {
 	local ssl_impl="$(usex ssl $(usex gnutls gnutls openssl) none)"
 
@@ -72,7 +80,6 @@ src_configure() {
 }
 
 src_install() {
-	export LDCONFIG="/bin/true"
 	default
 
 	find "${ED}" -type f \( -name "*.a" -o -name "*.la" \) -delete || die
