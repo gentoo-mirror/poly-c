@@ -102,6 +102,7 @@ media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-sound/strawberry 9999: Modern music player and library organizer based on Clementine and Qt
 media-tv/mediathekview-bin 11 12 13.0.2 13.2.1: Download files from the public broadcasting services
 media-video/cinelerraGG 9999: The most advanced non-linear video editor and compositor - Good Guy's version
+media-video/ffmpeg 4.2.1_pre: Complete solution to record, convert and stream audio and video. Includes libavcodec
 media-video/mkvtoolnix 37.0.0_pre: Tools to create, alter, and inspect Matroska files
 media-video/mplayer 1.4_pre: Media Player for Linux
 media-video/ogmrip 1.0.1: Graphical frontend and libraries for ripping DVDs and encoding to AVI/OGM/MKV/MP4
