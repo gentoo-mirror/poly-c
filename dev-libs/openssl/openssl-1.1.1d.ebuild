@@ -1,15 +1,26 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 09f5e991cf94c4cfa2bf66b02129e00e87e688a9 $
+# $Id: a3a0f2a2c06e386f34a6726211c3e331dd7ee858 $
 
-EAPI="6"
+EAPI="7"
 
 inherit flag-o-matic toolchain-funcs multilib multilib-minimal
 
 MY_P=${P/_/-}
+
+# This patch set is based on the following files from Fedora 31,
+# see https://src.fedoraproject.org/rpms/openssl/blob/f31/f/openssl.spec
+# for more details:
+# - hobble-openssl (SOURCE1)
+# - ec_curve.c (SOURCE12)
+# - ectest.c (SOURCE13)
+# - openssl-1.1.1-ec-curves.patch (PATCH37) -- MODIFIED
+BINDIST_PATCH_SET="openssl-1.1.1c-bindist-1.0.tar.xz"
+
 DESCRIPTION="full-strength general purpose cryptography library (including SSL and TLS)"
 HOMEPAGE="https://www.openssl.org/"
-SRC_URI="mirror://openssl/source/${MY_P}.tar.gz"
+SRC_URI="mirror://openssl/source/${MY_P}.tar.gz
+	bindist? ( https://dev.gentoo.org/~whissi/dist/openssl/${BINDIST_PATCH_SET} )"
 
 LICENSE="openssl"
 api=""
@@ -31,7 +42,8 @@ RESTRICT="!bindist? ( bindist )"
 
 RDEPEND=">=app-misc/c_rehash-1.7-r1
 	zlib? ( >=sys-libs/zlib-1.2.8-r1[static-libs(+)?,${MULTILIB_USEDEP}] )"
-DEPEND="${RDEPEND}
+DEPEND="${RDEPEND}"
+BDEPEND="
 	>=dev-lang/perl-5
 	sctp? ( >=net-misc/lksctp-tools-1.0.12 )
 	test? (
@@ -44,28 +56,7 @@ REQUIRED_USE="?? ( api098 api110 )"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.1.0j-parallel_install_fix.patch #671602
-	"${FILESDIR}"/${P}-CVE-2019-1543.patch
 )
-
-# This does not copy the entire Fedora patchset, but JUST the parts that
-# are needed to make it safe to use EC with RESTRICT=bindist.
-# See openssl.spec for the matching numbering of SourceNNN, PatchNNN
-SOURCE1=hobble-openssl
-SOURCE12=ec_curve.c
-SOURCE13=ectest.c
-PATCH37=openssl-1.1.1-ec-curves.patch
-FEDORA_GIT_BASE='https://src.fedoraproject.org/cgit/rpms/openssl.git/plain/'
-FEDORA_GIT_BRANCH='f29'
-FEDORA_SRC_URI=()
-FEDORA_SOURCE=( ${SOURCE1} ${SOURCE12} ${SOURCE13} )
-FEDORA_PATCH=( ${PATCH37} )
-for i in "${FEDORA_SOURCE[@]}" ; do
-	FEDORA_SRC_URI+=( "${FEDORA_GIT_BASE}/${i}?h=${FEDORA_GIT_BRANCH} -> ${P}_${i}" )
-done
-for i in "${FEDORA_PATCH[@]}" ; do # Already have a version prefix
-	FEDORA_SRC_URI+=( "${FEDORA_GIT_BASE}/${i}?h=${FEDORA_GIT_BRANCH} -> ${i}" )
-done
-SRC_URI+=" bindist? ( ${FEDORA_SRC_URI[@]} )"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -75,27 +66,27 @@ MULTILIB_WRAPPED_HEADERS=(
 
 src_prepare() {
 	if use bindist; then
-		# This just removes the prefix, and puts it into WORKDIR like the RPM.
-		for i in "${FEDORA_SOURCE[@]}" ; do
-			cp -f "${DISTDIR}"/"${P}_${i}" "${WORKDIR}"/"${i}" || die
+		mv "${WORKDIR}"/bindist-patches/hobble-openssl "${WORKDIR}" || die
+		bash "${WORKDIR}"/hobble-openssl || die
+
+		cp -f "${WORKDIR}"/bindist-patches/ec_curve.c "${S}"/crypto/ec/ || die
+		cp -f "${WORKDIR}"/bindist-patches/ectest.c "${S}"/test/ || die
+
+		eapply "${WORKDIR}"/bindist-patches/ec-curves.patch
+
+		local known_failing_test
+		for known_failing_test in \
+			30-test_evp_extra.t \
+			80-test_ssl_new.t \
+		; do
+			ebegin "Disabling test '${known_failing_test}' which is known to fail with USE=bindist"
+			rm test/recipes/${known_failing_test} || die
+			eend $?
 		done
 
-		# .spec %prep
-		bash "${WORKDIR}"/"${SOURCE1}" || die
-		cp -f "${WORKDIR}"/"${SOURCE12}" "${S}"/crypto/ec/ || die
-		cp -f "${WORKDIR}"/"${SOURCE13}" "${S}"/test/ || die
-		for i in "${FEDORA_PATCH[@]}" ; do
-			if [[ "${i}" == "${PATCH37}" ]] ; then
-				# apply our own for OpenSSL 1.1.1b adjusted version of this patch
-				eapply "${FILESDIR}"/openssl-1.1.1b-ec-curves-patch.patch
-			else
-				eapply "${DISTDIR}"/"${i}"
-			fi
-		done
 		# Also see the configure parts below:
 		# enable-ec \
 		# $(use_ssl !bindist ec2m) \
-
 	fi
 
 	# keep this in sync with app-misc/c_rehash
@@ -121,7 +112,7 @@ src_prepare() {
 		-e '/^MAKEDEPPROG/s:=.*:=$(CC):' \
 		-e $(has noman FEATURES \
 			&& echo '/^install:/s:install_docs::' \
-			|| echo '/^MANDIR=/s:=.*:='${EPREFIX%/}'/usr/share/man:') \
+			|| echo '/^MANDIR=/s:=.*:='${EPREFIX}'/usr/share/man:') \
 		-e "/^DOCDIR/s@\$(BASENAME)@&-${PVR}@" \
 		Configurations/unix-Makefile.tmpl \
 		|| die
@@ -141,7 +132,7 @@ src_prepare() {
 
 	# Prefixify Configure shebang (#141906)
 	sed \
-		-e "1s,/usr/bin/env,${EPREFIX%/}&," \
+		-e "1s,/usr/bin/env,${EPREFIX}&," \
 		-i Configure || die
 	# Remove test target when FEATURES=test isn't set
 	if ! use test ; then
@@ -193,7 +184,9 @@ multilib_src_configure() {
 
 	# Fedora hobbled-EC needs 'no-ec2m'
 	# 'srp' was restricted until early 2017 as well.
-	echoit \
+	# Make sure user flags don't get added *yet* to avoid duplicated
+	# flags.
+	CFLAGS= LDFLAGS= echoit \
 	./${config} \
 		${sslout} \
 		${api} \
@@ -222,16 +215,20 @@ multilib_src_configure() {
 		|| die
 
 	# Clean out hardcoded flags that openssl uses
-	# Fix quoting for sed
 	local DEFAULT_CFLAGS=$(grep ^CFLAGS= Makefile | LC_ALL=C sed \
 		-e 's:^CFLAGS=::' \
-		-e 's:-fomit-frame-pointer ::g' \
-		-e 's:-O[0-9] ::g' \
-		-e 's:-march=[-a-z0-9]* ::g' \
-		-e 's:-mcpu=[-a-z0-9]* ::g' \
-		-e 's:-m[a-z0-9]* ::g' \
-		-e 's:\\:\\\\:g' \
+		-e 's:\(^\| \)-fomit-frame-pointer::g' \
+		-e 's:\(^\| \)-O[^ ]*::g' \
+		-e 's:\(^\| \)-march=[^ ]*::g' \
+		-e 's:\(^\| \)-mcpu=[^ ]*::g' \
+		-e 's:\(^\| \)-m[^ ]*::g' \
+		-e 's:^ *::' \
+		-e 's: *$::' \
+		-e 's: \+: :g' \
+		-e 's:\\:\\\\:g'
 	)
+
+	# Now insert clean default flags with user flags
 	sed -i \
 		-e "/^CFLAGS=/s|=.*|=${DEFAULT_CFLAGS} ${CFLAGS}|" \
 		-e "/^LDFLAGS=/s|=[[:space:]]*$|=${LDFLAGS}|" \
@@ -251,9 +248,9 @@ multilib_src_test() {
 
 multilib_src_install() {
 	# We need to create $ED/usr on our own to avoid a race condition #665130
-	if [[ ! -d "${ED%/}/usr" ]]; then
+	if [[ ! -d "${ED}/usr" ]]; then
 		# We can only create this directory once
-		mkdir "${ED%/}"/usr || die
+		mkdir "${ED}"/usr || die
 	fi
 
 	emake DESTDIR="${D}" install
@@ -262,7 +259,7 @@ multilib_src_install() {
 multilib_src_install_all() {
 	# openssl installs perl version of c_rehash by default, but
 	# we provide a shell version via app-misc/c_rehash
-	rm "${ED%/}"/usr/bin/c_rehash || die
+	rm "${ED}"/usr/bin/c_rehash || die
 
 	dodoc CHANGES* FAQ NEWS README doc/*.txt doc/${PN}-c-indent.el
 
@@ -271,13 +268,13 @@ multilib_src_install_all() {
 	# build system: the static archives are built as PIC all the time.
 	# Only way around this would be to manually configure+compile openssl
 	# twice; once with shared lib support enabled and once without.
-	use static-libs || rm -f "${ED%/}"/usr/lib*/lib*.a
+	use static-libs || rm -f "${ED}"/usr/lib*/lib*.a
 
 	# create the certs directory
 	keepdir ${SSL_CNF_DIR}/certs
 
 	# Namespace openssl programs to prevent conflicts with other man pages
-	cd "${ED%/}"/usr/share/man || die
+	cd "${ED}"/usr/share/man || die
 	local m d s
 	for m in $(find . -type f | xargs grep -L '#include') ; do
 		d=${m%/*} ; d=${d#./} ; m=${m##*/}
@@ -300,14 +297,14 @@ multilib_src_install_all() {
 	[[ -n $(find -L ${d} -type l) ]] && die "broken manpage links found :("
 
 	dodir /etc/sandbox.d #254521
-	echo 'SANDBOX_PREDICT="/dev/crypto"' > "${ED%/}"/etc/sandbox.d/10openssl
+	echo 'SANDBOX_PREDICT="/dev/crypto"' > "${ED}"/etc/sandbox.d/10openssl
 
 	diropts -m0700
 	keepdir ${SSL_CNF_DIR}/private
 }
 
 pkg_postinst() {
-	ebegin "Running 'c_rehash ${EROOT%/}${SSL_CNF_DIR}/certs/' to rebuild hashes #333069"
-	c_rehash "${EROOT%/}${SSL_CNF_DIR}/certs" >/dev/null
+	ebegin "Running 'c_rehash ${EROOT}${SSL_CNF_DIR}/certs/' to rebuild hashes #333069"
+	c_rehash "${EROOT}${SSL_CNF_DIR}/certs" >/dev/null
 	eend $?
 }
