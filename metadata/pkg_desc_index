@@ -125,6 +125,7 @@ net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/bctoolbox 0.6.0_pre: Utilities library used by Belledonne Communications softwares like belle-sip, mediastreamer2 and linphone.
 net-libs/enet 1.3.14_pre: relatively thin, simple and robust network communication layer on top of UDP
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
+net-misc/curl 7.66.0_pre: A Client that groks URLs
 net-misc/dhcpcd 8.0.1: A fully featured, yet light weight RFC2131 compliant DHCP client
 net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/networkmanager 1.20.0_pre: A set of co-operative tools that make networking simple and straightforward
@@ -179,7 +180,7 @@ www-client/links 2.17 2.18 2.19_pre 2.20_pre 2.20.1_pre: A fast and lightweight 
 www-client/waterfox 56.2.13 56.2.14: Waterfox Web Browser
 x11-apps/xinit 1.4.0-r1 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
-x11-libs/pango 1.44.5_pre: Internationalized text layout and rendering library
+x11-libs/pango 1.44.6_pre: Internationalized text layout and rendering library
 x11-misc/adriconf 1.4 1.5.1 9999: Advanced DRI Configurator
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-plugins/pidgin-skypeweb 1.5_pre: SkypeWeb Plugin for Pidgin
