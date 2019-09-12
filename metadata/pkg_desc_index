@@ -44,7 +44,7 @@ dev-libs/boost 1.65.1_pre 1.69.0: Boost Libraries for C++
 dev-libs/libverto 0.3.1_pre: Main event loop abstraction library
 dev-libs/newt 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
-dev-libs/openssl 1.0.2r 1.0.2s-r1 1.1.1c-r1 1.1.1d: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/openssl 1.0.2r 1.0.2s-r1 1.0.2t 1.1.1c-r1 1.1.1d: full-strength general purpose cryptography library (including SSL and TLS)
 dev-python/PyQt5 5.13.0: Python bindings for the Qt framework
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-python/pyscard 1.9.6_pre 1.9.7_pre: Smart cards support in python
@@ -159,6 +159,7 @@ sys-apps/iproute2 4.4.0 4.9.0 4.14.1-r2 4.14.1-r4 4.17.0-r1 4.18.0-r1 4.19.0-r1 
 sys-apps/kmod 25 26-r2: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g-r1: Standard commands to read man pages
+sys-auth/pam_p11 0.3.1_pre: PAM module for authenticating against PKCS#11 tokens
 sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/gparted 1.0.0_pre: Gnome Partition Editor
@@ -169,6 +170,7 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9: zip manipulation library found in the zlib distribution
+sys-libs/readline 8.0_p1: Another cute console display library
 sys-libs/slang 2.3.3_pre9: Multi-platform library designed to allow a developer to create robust software
 sys-power/cpupower 4.4.190 4.4.191 4.4.192 4.9.190 4.9.191 4.9.192 4.14.141 4.14.142 4.14.143 4.19.69 4.19.71 4.19.72: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
