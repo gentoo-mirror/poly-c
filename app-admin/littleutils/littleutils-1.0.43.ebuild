@@ -3,6 +3,10 @@
 
 EAPI=7
 
+PYTHON_COMPAT=( python3_{5,6,7} )
+
+inherit python-single-r1
+
 DESCRIPTION="The littleutils are a collection of small and simple utilities"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.xz"
 HOMEPAGE="http://sourceforge.net/projects/littleutils/"
@@ -12,10 +16,23 @@ SLOT="0"
 
 IUSE="png"
 
-DEPEND="png? (
+RDEPEND="
+	${PYTHON_DEPEND}
+	media-libs/imlib2
+	png? (
+		media-libs/libpng:0
+	)
+"
+DEPEND="${RDEPEND}
+	png? (
 		media-gfx/pngcrush
 		media-gfx/pngrewrite
-	)"
+	)
+"
+
+src_configure() {
+	ac_cv_path_PROGPYTHON="${PYTHON}" econf
+}
 
 src_install() {
 	default
