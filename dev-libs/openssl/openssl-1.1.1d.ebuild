@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: a3a0f2a2c06e386f34a6726211c3e331dd7ee858 $
+# $Id: dfb4be45e23975faf350411bd010d3546eab8936 $
 
 EAPI="7"
 
@@ -12,15 +12,18 @@ MY_P=${P/_/-}
 # see https://src.fedoraproject.org/rpms/openssl/blob/f31/f/openssl.spec
 # for more details:
 # - hobble-openssl (SOURCE1)
-# - ec_curve.c (SOURCE12)
+# - ec_curve.c (SOURCE12) -- MODIFIED
 # - ectest.c (SOURCE13)
 # - openssl-1.1.1-ec-curves.patch (PATCH37) -- MODIFIED
-BINDIST_PATCH_SET="openssl-1.1.1c-bindist-1.0.tar.xz"
+BINDIST_PATCH_SET="openssl-1.1.1d-bindist-1.0.tar.xz"
 
 DESCRIPTION="full-strength general purpose cryptography library (including SSL and TLS)"
 HOMEPAGE="https://www.openssl.org/"
 SRC_URI="mirror://openssl/source/${MY_P}.tar.gz
-	bindist? ( https://dev.gentoo.org/~whissi/dist/openssl/${BINDIST_PATCH_SET} )"
+	bindist? (
+		mirror://gentoo/${BINDIST_PATCH_SET}
+		https://dev.gentoo.org/~whissi/dist/openssl/${BINDIST_PATCH_SET}
+	)"
 
 LICENSE="openssl"
 api=""
