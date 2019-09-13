@@ -12,5 +12,5 @@ REQUIRED_USE=regex
 RESTRICT=strip
 SLOT=12/2.2-1
 SRC_URI=mirror://gnu/guile/guile-2.2.6.tar.gz
-_eclasses_=eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	7ba73aee7fe4462b3a745e3645ab92ca	multilib	1d91b03d42ab6308b5f4f6b598ed110e	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	toolchain-funcs	a3a237ef6c0c58546bf23b2c382f9e56
+_eclasses_=eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	7ba73aee7fe4462b3a745e3645ab92ca	multilib	1d91b03d42ab6308b5f4f6b598ed110e	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	toolchain-funcs	2f8b8f320bee13b71a8a54cc6d09e08a
 _md5_=5cd576f20602d78b425de35ce7d04317
