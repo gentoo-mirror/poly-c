@@ -7,6 +7,8 @@ EAPI=7
 # py3 is not yet tested by upstream -> not merged in master
 PYTHON_COMPAT=( pypy python3_{4,5,6,7} )
 
+#CMAKE_MAKEFILE_GENERATOR="emake"
+
 inherit python-single-r1 cmake-utils
 
 DESCRIPTION="Flexible Isometric Free Engine, 2D"
@@ -60,6 +62,29 @@ usx() { usex $* ON OFF; }
 
 pkg_setup() {
 	use python && python-single-r1_pkg_setup
+}
+
+src_prepare() {
+	if has_version \>=dev-lang/swig-4.0.0 ; then
+		local deprecated_options=(
+			-modern
+			-nosafecstrings
+			-noproxydel
+			-fastinit
+			-fastunpack
+			-nobuildnone
+			-fastqueryargs
+		)
+		local opt
+		for opt in ${deprecated_options[@]} ; do
+			sed \
+				-e "s@ ${opt}@@g" \
+				-i CMakeLists.txt \
+				|| die
+		done
+	fi
+
+	cmake-utils_src_prepare
 }
 
 src_configure() {
