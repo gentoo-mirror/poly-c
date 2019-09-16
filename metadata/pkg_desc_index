@@ -44,7 +44,7 @@ dev-libs/boost 1.65.1_pre 1.69.0: Boost Libraries for C++
 dev-libs/libverto 0.3.1_pre: Main event loop abstraction library
 dev-libs/newt 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
-dev-libs/openssl 1.0.2r 1.0.2s-r1 1.0.2t 1.1.1c-r1 1.1.1d: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/openssl 1.0.2r 1.0.2s-r1 1.0.2t-r1 1.1.1c-r1 1.1.1d: full-strength general purpose cryptography library (including SSL and TLS)
 dev-python/PyQt5 5.13.0: Python bindings for the Qt framework
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-python/pyscard 1.9.6_pre 1.9.7_pre: Smart cards support in python

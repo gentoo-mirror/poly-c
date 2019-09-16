@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: cbf7e2beb3e68cc98fc5ce1e98750ed9bf7db26a $
+# $Id: 6dbbac432cd7035ee6f14872d52a06026706550b $
 
 EAPI="7"
 
@@ -35,12 +35,12 @@ SRC_URI="mirror://openssl/source/${MY_P}.tar.gz
 		https://dev.gentoo.org/~whissi/dist/${PN}/${PATCH_SET}.tar.xz
 		https://dev.gentoo.org/~polynomial-c/dist/${PATCH_SET}.tar.xz
 	)"
-    
+
 LICENSE="openssl"
 # subslot set to 1.0.2g version as this is the first release without SSLv2
 # support and thus breaks nearly every openssl consumer (see bug #575548)
 SLOT="0/1.0.2g"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-linux"
+KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 ~riscv ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-linux"
 IUSE="+asm bindist gmp kerberos rfc3779 sctp cpu_flags_x86_sse2 static-libs test +tls-heartbeat vanilla zlib"
 RESTRICT="!bindist? ( bindist )"
 
@@ -88,9 +88,7 @@ src_prepare() {
 	rm -f Makefile
 
 	if ! use vanilla ; then
-		if [[ $(declare -p PATCHES 2>/dev/null) == "declare -a"* ]] ; then
-			[[ ${#PATCHES[@]} -gt 0 ]] && eapply "${PATCHES[@]}"
-		fi
+		eapply "${WORKDIR}"/patch/*.patch
 
 		eapply "${FILESDIR}"/${PN}-1.0.2g-disable_ssl3_tests.patch
 		eapply "${FILESDIR}"/${PN}-1.0.2g-soversion.patch
