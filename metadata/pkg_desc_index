@@ -51,7 +51,7 @@ dev-python/pyscard 1.9.6_pre 1.9.7_pre: Smart cards support in python
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/sphinx 1.8.2_pre: Python documentation generator
 dev-python/wget 3.2: pure python download utility
-dev-qt/qtgui 5.12.3-r1 5.12.4: The GUI module and platform plugins for the Qt5 framework
+dev-qt/qtgui 5.12.3-r1 5.12.4 5.12.5: The GUI module and platform plugins for the Qt5 framework
 dev-scheme/guile 2.2.6_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/bcc 0.7.0_pre: Tools for BPF-based Linux IO analysis, networking, monitoring, and more
 dev-util/boost-build 1.65.1_pre 1.69.0: A system for large project software construction, simple to use and powerful
@@ -171,7 +171,7 @@ sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9: zip manipulation library found in the zlib distribution
 sys-libs/readline 8.0_p1: Another cute console display library
 sys-libs/slang 2.3.3_pre9: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.4.190 4.4.191 4.4.192 4.9.190 4.9.191 4.9.192 4.14.141 4.14.142 4.14.143 4.19.69 4.19.71 4.19.72: Shows and sets processor power related values
+sys-power/cpupower 4.4.191 4.4.192 4.4.193 4.9.191 4.9.192 4.9.193 4.14.142 4.14.143 4.14.144 4.19.71 4.19.72 4.19.73: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
