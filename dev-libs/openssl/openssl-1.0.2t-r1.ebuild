@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 6dbbac432cd7035ee6f14872d52a06026706550b $
+# $Id: eb39171323f6ba923ef4a7b20ccb1d9697edef9a $
 
 EAPI="7"
 
@@ -40,7 +40,7 @@ LICENSE="openssl"
 # subslot set to 1.0.2g version as this is the first release without SSLv2
 # support and thus breaks nearly every openssl consumer (see bug #575548)
 SLOT="0/1.0.2g"
-KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 ~riscv ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-linux"
+KEYWORDS="alpha amd64 arm arm64 hppa ia64 ~m68k ~mips ppc ppc64 ~riscv s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-linux"
 IUSE="+asm bindist gmp kerberos rfc3779 sctp cpu_flags_x86_sse2 static-libs test +tls-heartbeat vanilla zlib"
 RESTRICT="!bindist? ( bindist )"
 
