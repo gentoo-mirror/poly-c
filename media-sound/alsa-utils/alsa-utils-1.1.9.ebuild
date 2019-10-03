@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: fb31c6bb07a73b2de5a1cb53eeb25d0f0c1991ae $
+# $Id: 280d4466e121cf7d07def7c72ded35777bac9785 $
 
 EAPI=7
 inherit systemd udev
@@ -9,8 +9,7 @@ ADRIVER_PV="1.0.25"
 
 DESCRIPTION="Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)"
 HOMEPAGE="https://alsa-project.org/"
-SRC_URI="mirror://alsaproject/utils/${P}.tar.bz2
-	mirror://alsaproject/driver/alsa-driver-${ADRIVER_PV}.tar.bz2"
+SRC_URI="https://www.alsa-project.org/files/pub/utils/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0.9"
@@ -29,6 +28,7 @@ BDEPEND="virtual/pkgconfig"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.1.8-missing_header.patch
+	"${FILESDIR}"/${P}-axfer-test-fix-invalid-comparison-of-64-bit-storage-.patch
 )
 
 src_configure() {
