@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: a3a0f2a2c06e386f34a6726211c3e331dd7ee858 $
+# $Id: dfb4be45e23975faf350411bd010d3546eab8936 $
 
 EAPI="7"
 
@@ -12,15 +12,18 @@ MY_P=${P/_/-}
 # see https://src.fedoraproject.org/rpms/openssl/blob/f31/f/openssl.spec
 # for more details:
 # - hobble-openssl (SOURCE1)
-# - ec_curve.c (SOURCE12)
+# - ec_curve.c (SOURCE12) -- MODIFIED
 # - ectest.c (SOURCE13)
 # - openssl-1.1.1-ec-curves.patch (PATCH37) -- MODIFIED
-BINDIST_PATCH_SET="openssl-1.1.1c-bindist-1.0.tar.xz"
+BINDIST_PATCH_SET="openssl-1.1.1d-bindist-1.0.tar.xz"
 
 DESCRIPTION="full-strength general purpose cryptography library (including SSL and TLS)"
 HOMEPAGE="https://www.openssl.org/"
 SRC_URI="mirror://openssl/source/${MY_P}.tar.gz
-	bindist? ( https://dev.gentoo.org/~whissi/dist/openssl/${BINDIST_PATCH_SET} )"
+	bindist? (
+		mirror://gentoo/${BINDIST_PATCH_SET}
+		https://dev.gentoo.org/~whissi/dist/openssl/${BINDIST_PATCH_SET}
+	)"
 
 LICENSE="openssl"
 api=""
@@ -56,6 +59,8 @@ REQUIRED_USE="?? ( api098 api110 )"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.1.0j-parallel_install_fix.patch #671602
+	"${FILESDIR}"/${P}-fix-zlib.patch
+	"${FILESDIR}"/${P}-fix-potential-memleaks-w-BN_to_ASN1_INTEGER.patch
 )
 
 S="${WORKDIR}/${MY_P}"
@@ -63,6 +68,20 @@ S="${WORKDIR}/${MY_P}"
 MULTILIB_WRAPPED_HEADERS=(
 	usr/include/openssl/opensslconf.h
 )
+
+pkg_setup() {
+	[[ ${MERGE_TYPE} == binary ]] && return
+
+	# must check in pkg_setup; sysctl don't work with userpriv!
+	if has test ${FEATURES} && use sctp ; then
+		# test_ssl_new will fail with "Ensure SCTP AUTH chunks are enabled in kernel"
+		# if sctp.auth_enable is not enabled.
+		local sctp_auth_status=$(sysctl -n net.sctp.auth_enable 2>/dev/null)
+		if [[ -z "${sctp_auth_status}" ]] || [[ ${sctp_auth_status} != 1 ]] ; then
+			die "FEATURES=test with USE=sctp requires net.sctp.auth_enable=1!"
+		fi
+	fi
+}
 
 src_prepare() {
 	if use bindist; then
@@ -103,6 +122,12 @@ src_prepare() {
 	fi
 
 	eapply_user #332661
+
+	if has test ${FEATURES} && use sctp && has network-sandbox ${FEATURES} ; then
+		ebegin "Disabling test '80-test_ssl_new.t' which is known to fail with FEATURES=network-sandbox"
+		rm test/recipes/80-test_ssl_new.t || die
+		eend $?
+	fi
 
 	# make sure the man pages are suffixed #302165
 	# don't bother building man pages if they're disabled

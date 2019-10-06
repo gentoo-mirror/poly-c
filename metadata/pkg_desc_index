@@ -24,7 +24,6 @@ app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LD
 app-misc/mc 4.8.22 4.8.23 4.8.23-r1: GNU Midnight Commander is a text based file manager
 app-misc/mmv 1.01b_p19_pre: Move/copy/append/link multiple files according to a set of wildcard patterns
 app-misc/osmo 0.4.2: Handy personal organizer
-app-misc/screen 4.7.0_pre: screen manager with VT100/ANSI terminal emulation
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/enchant 2.2.4_pre: Spellchecker wrapping library
@@ -43,7 +42,7 @@ dev-libs/boost 1.65.1_pre 1.69.0: Boost Libraries for C++
 dev-libs/libverto 0.3.1_pre: Main event loop abstraction library
 dev-libs/newt 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
-dev-libs/openssl 1.0.2r 1.0.2s-r1 1.0.2t-r1 1.1.1c-r1 1.1.1d: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/openssl 1.0.2r 1.0.2s-r1 1.0.2t-r1 1.1.1d-r1: full-strength general purpose cryptography library (including SSL and TLS)
 dev-python/PyQt5 5.13.0: Python bindings for the Qt framework
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-python/pyscard 1.9.6_pre 1.9.7_pre: Smart cards support in python
@@ -169,7 +168,7 @@ sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9: zip manipulation library found in the zlib distribution
 sys-libs/readline 8.0_p1: Another cute console display library
 sys-libs/slang 2.3.3_pre9: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.4.192 4.4.193 4.4.194 4.9.192 4.9.193 4.9.194 4.14.143 4.14.144 4.14.146 4.19.73 4.19.75 4.19.76: Shows and sets processor power related values
+sys-power/cpupower 4.4.193 4.4.194 4.4.195 4.9.193 4.9.194 4.9.195 4.14.144 4.14.146 4.14.147 4.19.75 4.19.76 4.19.77: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
@@ -179,6 +178,7 @@ www-client/links 2.17 2.18 2.19_pre 2.20_pre 2.20.1_pre: A fast and lightweight 
 www-client/waterfox 56.2.13 56.2.14: Waterfox Web Browser
 x11-apps/xinit 1.4.0-r1 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
+x11-libs/gtk+ 3.24.12_pre: Gimp ToolKit +
 x11-libs/pango 1.44.6_pre: Internationalized text layout and rendering library
 x11-misc/adriconf 1.4 1.5.1 9999: Advanced DRI Configurator
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
