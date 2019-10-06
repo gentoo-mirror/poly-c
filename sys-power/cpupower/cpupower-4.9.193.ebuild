@@ -8,7 +8,7 @@ inherit eutils systemd toolchain-funcs
 
 DESCRIPTION="Shows and sets processor power related values"
 HOMEPAGE="https://www.kernel.org/"
-SRC_URI="mirror://kernel/linux/kernel/v4.x/linux-${PV}.tar.xz"
+SRC_URI="https://www.kernel.org/pub/linux/kernel/v4.x/linux-${PV}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0/0"

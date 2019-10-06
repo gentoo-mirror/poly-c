@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 543b412451a1b0dca894ede9f88af81efcb60f43 $
+# $Id: 885f06a977670849842ab93b9076ace093820177 $
 
 EAPI=6
 
@@ -12,7 +12,7 @@ if [[ ${PV} == 9999* ]]; then
 	EGIT_REPO_URI="https://git.kernel.org/pub/scm/utils/kernel/${PN}/${PN}.git"
 	inherit autotools git-r3
 else
-	SRC_URI="mirror://kernel/linux/utils/kernel/kmod/${P}.tar.xz"
+	SRC_URI="https://www.kernel.org/pub/linux/utils/kernel/kmod/${P}.tar.xz"
 	KEYWORDS="alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86"
 	inherit libtool
 fi
