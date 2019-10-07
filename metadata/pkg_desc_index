@@ -57,6 +57,7 @@ dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/gtk-doc 1.30_pre 1.32_pre: GTK+ Documentation Generator
 dev-util/gtk-doc-am 1.30_pre-r1 1.32_pre: Automake files from gtk-doc
 dev-util/itstool 2.0.5_pre 2.0.6_pre: Translation tool for XML documents that uses gettext files and ITS rules
+dev-util/meson 0.52.0_pre: Open source build system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-action/supertuxkart 1.0_pre 1.0: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
@@ -102,7 +103,7 @@ media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-sound/strawberry 9999: Modern music player and library organizer based on Clementine and Qt
 media-tv/mediathekview-bin 11 12 13.0.2 13.2.1: Download files from the public broadcasting services
 media-video/cinelerraGG 9999: The most advanced non-linear video editor and compositor - Good Guy's version
-media-video/mkvtoolnix 37.0.0_pre: Tools to create, alter, and inspect Matroska files
+media-video/mkvtoolnix 37.0.0_pre 38.0.0_pre: Tools to create, alter, and inspect Matroska files
 media-video/mplayer 1.4_pre: Media Player for Linux
 media-video/ogmrip 1.0.1: Graphical frontend and libraries for ripping DVDs and encoding to AVI/OGM/MKV/MP4
 media-video/smplayer 18.6.0 19.1.0-r1 19.5.0: Great Qt GUI front-end for mplayer/mpv
