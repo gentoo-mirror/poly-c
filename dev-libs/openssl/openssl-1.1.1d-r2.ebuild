@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2b1894650b9c871f61dfa9549c39f391e295a5a1 $
+# $Id: 3ff2f47bbdeb1e597e0cd3c4af234133e78c1771 $
 
 EAPI="7"
 
@@ -64,6 +64,9 @@ PATCHES=(
 )
 
 S="${WORKDIR}/${MY_P}"
+
+# force upgrade to prevent broken login, bug 696950
+RDEPEND+=" !<net-misc/openssh-8.0_p1-r3"
 
 MULTILIB_WRAPPED_HEADERS=(
 	usr/include/openssl/opensslconf.h
