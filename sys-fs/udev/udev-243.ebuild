@@ -1,16 +1,16 @@
 # Copyright 2003-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 6aa2af42bb05821359ca11ac933d43c22be9dd24 $
+# $Id: d48c72b25fa7f85c21d6b9a6caf7c8c42d1d904a $
 
 EAPI=6
 
-inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal toolchain-funcs udev poly-c_ebuilds
+inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal toolchain-funcs udev
 
-if [[ ${MY_PV} = 9999* ]]; then
+if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="https://github.com/systemd/systemd.git"
 	inherit git-r3
 else
-	MY_PV=${MY_PV/_/-}
+	MY_PV=${PV/_/-}
 	MY_P=systemd-${MY_PV}
 	S=${WORKDIR}/${MY_P}
 	SRC_URI="https://github.com/systemd/systemd/archive/v${MY_PV}/${MY_P}.tar.gz"
