@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 18dcf94ede51c001e8bf2993a230d9df34d15160 $
+# $Id: 29b5aa6fd9feb07e11f94938eb1b926571488405 $
 
 EAPI="6"
 VALA_USE_DEPEND="vapigen"
@@ -12,7 +12,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/gspell"
 
 LICENSE="LGPL-2.1+"
 SLOT="0/1" # subslot = libgspell-1 soname version
-KEYWORDS="~alpha ~amd64 ~arm ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd"
+KEYWORDS="~alpha ~amd64 ~arm ~ppc ~ppc64 ~sparc ~x86"
 
 IUSE="+introspection vala"
 REQUIRED_USE="vala? ( introspection )"

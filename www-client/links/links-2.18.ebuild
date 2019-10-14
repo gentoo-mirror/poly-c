@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: fba1f9ce5002c95bf9b56a2d0c953e5b98f4ed02 $
+# $Id: e551302f81e3fcc6d3442acaae5314792ca653c2 $
 
 EAPI=6
 
@@ -12,7 +12,7 @@ SRC_URI="http://${PN}.twibright.com/download/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="bzip2 fbcon gpm ipv6 jpeg libevent libressl livecd lzma ssl suid svga tiff unicode X zlib"
 
 GRAPHICS_DEPEND="media-libs/libpng:0="

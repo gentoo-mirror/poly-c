@@ -1,6 +1,6 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f32f253d755e8c39f994e0087da7501a0aa8deab $
+# $Id: 074bee78290222a183d62946398af47dbe7a3267 $
 
 EAPI=5
 inherit flag-o-matic
@@ -11,7 +11,7 @@ SRC_URI="https://freedesktop.org/software/pulseaudio/${PN}/${P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ~arm64 ppc ~ppc64 ~sparc x86 ~x86-fbsd"
+KEYWORDS="amd64 ~arm64 ppc ~ppc64 ~sparc x86"
 IUSE="gtk2 nls"
 
 RDEPEND="

@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4a7db89b050836eb657ae4e6a5b132050f6f7774 $
+# $Id: 0176daf8f1c2455afc3c2efebabf09d7b19c0c76 $
 
 EAPI=6
 
@@ -17,7 +17,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2+ BSD-2"
 SLOT="0"
-KEYWORDS="amd64 ~arm ~hppa ~ppc ~ppc64 x86 ~x86-fbsd ~amd64-linux"
+KEYWORDS="amd64 ~arm ~hppa ~ppc ~ppc64 x86 ~amd64-linux"
 IUSE="autoshutdown bidi debug mpris"
 
 COMMON_DEPEND="
