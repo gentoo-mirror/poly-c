@@ -37,6 +37,8 @@ dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/boost 1.65.1_pre 1.69.0: Boost Libraries for C++
+dev-libs/icu 65.1_pre: International Components for Unicode
+dev-libs/icu-layoutex 65.1_pre: External layout part of International Components for Unicode
 dev-libs/libverto 0.3.1_pre: Main event loop abstraction library
 dev-libs/newt 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
@@ -160,13 +162,13 @@ sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/gparted 1.0.0_pre: Gnome Partition Editor
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
+sys-boot/gnu-efi 3.0.10_pre: Library for build EFI Applications
 sys-boot/grub 2.02-r4 2.04_rc1 2.04-r1: GNU GRUB boot loader
 sys-fs/udev 236-r1 238 239 241 242 243_rc1 243: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9: zip manipulation library found in the zlib distribution
-sys-libs/readline 8.0_p1: Another cute console display library
 sys-libs/slang 2.3.3_pre9: Multi-platform library designed to allow a developer to create robust software
 sys-power/cpupower 4.4.194 4.4.195 4.4.196 4.9.194 4.9.195 4.9.196 4.14.147 4.14.148 4.14.149 4.19.77 4.19.78 4.19.79: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
@@ -174,7 +176,7 @@ sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.15-r1: standard informational utilities and process-handling tools
 www-apps/baikal 0.5.3_pre 0.6.0_pre: Lightweight CalDAV+CardDAV server
-www-client/links 2.17 2.18 2.19_pre 2.20_pre 2.20.1_pre: A fast and lightweight web browser running in both graphics and text mode
+www-client/links 2.17 2.18 2.19_pre 2.20.1_pre 2.20.2_pre: A fast and lightweight web browser running in both graphics and text mode
 www-client/waterfox 56.2.13 56.2.14: Waterfox Web Browser
 x11-apps/xinit 1.4.0-r1 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library

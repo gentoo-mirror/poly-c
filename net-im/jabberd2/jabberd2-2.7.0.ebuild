@@ -29,7 +29,7 @@ CDEPEND="
 			dev-db/mysql-connector-c
 		)
 	)
-	pam? ( virtual/pam )
+	pam? ( sys-libs/pam )
 	postgres? ( dev-db/postgresql:= )
 	ssl? (
 		!libressl? ( >=dev-libs/openssl-1.0.1:0=[-bindist] )
