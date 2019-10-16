@@ -1,0 +1,10 @@
+--- knemo-0.8.0_pre20161211/src/knemod/trayicon.h
++++ knemo-0.8.0_pre20161211/src/knemod/trayicon.h
+@@ -22,6 +22,7 @@
+ 
+ #include "config-knemo.h"
+ 
++#include <QMap>
+ #include <KStatusNotifierItem>
+ 
+ class Interface;

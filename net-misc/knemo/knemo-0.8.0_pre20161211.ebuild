@@ -47,6 +47,10 @@ RDEPEND="${DEPEND}
 	!net-misc/knemo:4
 "
 
+PATCHES=(
+	"${FILESDIR}/${PN}-0.8.0_pre20161211-frameworks-5630.patch" #697780
+)
+
 src_prepare() {
 	kde5_src_prepare
 
