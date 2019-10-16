@@ -36,6 +36,7 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
+dev-lang/python 3.7.5_pre: An interpreted, interactive, object-oriented programming language
 dev-libs/appstream-glib 0.7.16_pre: Provides GObjects and helper methods to read and write AppStream metadata
 dev-libs/boost 1.65.1_pre 1.69.0: Boost Libraries for C++
 dev-libs/icu 65.1_pre: International Components for Unicode
