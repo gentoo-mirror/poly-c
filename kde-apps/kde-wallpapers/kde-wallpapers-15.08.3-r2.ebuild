@@ -1,8 +1,8 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id: 4930f5bab8a204a954d41b2d0941d53c8b5f4c0f $
 
-EAPI=6
+EAPI=7
 
 KMNAME="kde-wallpapers"
 KDE_AUTODEPS="false"

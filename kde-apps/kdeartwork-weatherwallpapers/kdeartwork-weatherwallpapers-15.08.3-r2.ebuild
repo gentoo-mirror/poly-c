@@ -1,8 +1,8 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id: 11bf1eb9d4ead4f2637063f8430acb4a27d8e857 $
 
-EAPI=6
+EAPI=7
 
 KMNAME="kdeartwork"
 KDE_AUTODEPS="false"
