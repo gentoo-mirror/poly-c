@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 48f903c3ae549e3b86f478310a3345460f58446b $
+# $Id: 9f58fc20268295a6f7970334b78189274451693f $
 
 EAPI=7
 
@@ -44,6 +44,8 @@ S="${WORKDIR}/${MY_P}"
 PATCHES=(
 	"${FILESDIR}"/${P}-3933-iso9660-1.patch
 	"${FILESDIR}"/${P}-3933-iso9660-2.patch
+	"${FILESDIR}"/${PN}-4.8.23-gettext.patch
+	"${FILESDIR}"/${PN}-4.8.23-gettext-test.patch
 
 	"${FILESDIR}"/${PN}-4.8.13-restore_saved_replace_string.patch
 	"${FILESDIR}"/${PN}-4.8.23-shorten-too-long-german-strings.patch

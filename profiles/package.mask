@@ -27,3 +27,6 @@ sci-astronomy/pulsatingscience
 # https://gitlab.gnome.org/Archive/pangox-compat/issues/1
 =x11-libs/pango-1.44.6_pre
 
+# Breaks webkit based packages
+=dev-libs/icu-65.1_pre
+=dev-libs/icu-layoutex-65.1_pre

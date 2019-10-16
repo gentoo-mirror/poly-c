@@ -12,4 +12,4 @@ REQUIRED_USE=spell? ( edit )
 SLOT=0
 SRC_URI=http://ftp.midnight-commander.org/mc-4.8.23.tar.xz
 _eclasses_=autotools	1bf086cdd7356f5c9a4acd9727bd2065	eutils	6e6c2737b59a4b982de6fb3ecefd87f8	flag-o-matic	8a43b9830f1e64a7a5fc0a276afa0275	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	1d91b03d42ab6308b5f4f6b598ed110e	toolchain-funcs	2f8b8f320bee13b71a8a54cc6d09e08a
-_md5_=c4cf497af67879e89a40c158a4ee7a50
+_md5_=12963aa684460d20d7cedbf1272ec568
