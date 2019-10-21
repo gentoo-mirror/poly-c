@@ -36,7 +36,7 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
-dev-lang/python 3.7.5_pre: An interpreted, interactive, object-oriented programming language
+dev-lang/python 2.7.17_pre: An interpreted, interactive, object-oriented programming language
 dev-libs/appstream-glib 0.7.16_pre: Provides GObjects and helper methods to read and write AppStream metadata
 dev-libs/boost 1.65.1_pre 1.69.0: Boost Libraries for C++
 dev-libs/icu 65.1_pre: International Components for Unicode
@@ -59,7 +59,6 @@ dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/gtk-doc 1.30_pre 1.32_pre: GTK+ Documentation Generator
 dev-util/gtk-doc-am 1.30_pre-r1 1.32_pre: Automake files from gtk-doc
 dev-util/itstool 2.0.5_pre 2.0.6_pre: Translation tool for XML documents that uses gettext files and ITS rules
-dev-util/meson 0.52.0_pre: Open source build system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-action/supertuxkart 1.0_pre 1.0: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
