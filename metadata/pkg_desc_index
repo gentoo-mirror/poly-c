@@ -24,9 +24,7 @@ app-misc/mmv 1.01b_p19_pre: Move/copy/append/link multiple files according to a 
 app-misc/osmo 0.4.2: Handy personal organizer
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/enchant 2.2.4_pre: Spellchecker wrapping library
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
-app-text/gspell 1.8.1: Spell check library for GTK+ applications
 app-text/gtkspell 2.0.16: Spell checking widget for GTK
 dev-games/openscenegraph 3.5.6_pre 3.5.9_pre: Open source high performance 3D graphics toolkit
 dev-games/simgear 2019.1.1_pre: Development library for simulation games
