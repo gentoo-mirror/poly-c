@@ -53,6 +53,7 @@ dev-qt/qtgui 5.12.3-r1 5.12.4 5.12.5: The GUI module and platform plugins for th
 dev-scheme/guile 2.2.6_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/bcc 0.7.0_pre: Tools for BPF-based Linux IO analysis, networking, monitoring, and more
 dev-util/boost-build 1.65.1_pre 1.69.0: A system for large project software construction, simple to use and powerful
+dev-util/cloc 1.84_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/gtk-doc 1.30_pre 1.32_pre: GTK+ Documentation Generator
 dev-util/gtk-doc-am 1.30_pre-r1 1.32_pre: Automake files from gtk-doc
