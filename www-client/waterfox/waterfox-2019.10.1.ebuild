@@ -13,16 +13,6 @@ gd gl gn gu-IN he hi-IN hr hsb hu hy-AM id is it ja ka kab kk km kn ko lij lt lv
 mai mk ml mr ms nb-NO nl nn-NO or pa-IN pl pt-BR pt-PT rm ro ru si sk sl son sq
 sr sv-SE ta te th tr uk uz vi xh zh-CN zh-TW )
 
-# Convert the ebuild version to the upstream mozilla version, used by mozlinguas
-MOZ_PV="${PV/_alpha/a}" # Handle alpha for SRC_URI
-MOZ_PV="${MOZ_PV/_beta/b}" # Handle beta for SRC_URI
-MOZ_PV="${MOZ_PV/_rc/rc}" # Handle rc for SRC_URI
-
-if [[ ${MOZ_ESR} == 1 ]]; then
-	# ESR releases have slightly different version numbers
-	MOZ_PV="${MOZ_PV}esr"
-fi
-
 # Patch version
 PATCH="firefox-56.0-patches-07"
 MOZ_HTTP_URI="https://github.com/MrAlex94/Waterfox/archive"
@@ -30,8 +20,9 @@ MOZ_HTTP_URI="https://github.com/MrAlex94/Waterfox/archive"
 
 MOZCONFIG_OPTIONAL_WIFI=1
 
-inherit check-reqs flag-o-matic toolchain-funcs eutils gnome2-utils mozconfig-v6.56 pax-utils xdg-utils autotools virtualx 
-#mozlinguas-v2
+inherit check-reqs eapi7-ver flag-o-matic toolchain-funcs eutils gnome2-utils mozconfig-v6.56 pax-utils xdg-utils autotools virtualx 
+
+MY_PV="$(ver_cut 1-2)-classic-$(ver_cut 3)"
 
 DESCRIPTION="Waterfox Web Browser"
 HOMEPAGE="http://www.waterfoxproject.org"
@@ -45,7 +36,7 @@ IUSE="eme-free +gmp-autoupdate hardened hwaccel jack nsplugin pgo selinux test"
 
 PATCH_URIS=( https://dev.gentoo.org/~{anarchy,axs,polynomial-c}/mozilla/patchsets/${PATCH}.tar.xz )
 SRC_URI="
-	${MOZ_HTTP_URI}/${PV}.tar.gz -> ${P}.tar.gz
+	${MOZ_HTTP_URI}/${MY_PV}.tar.gz -> ${P}.tar.gz
 	${PATCH_URIS[@]}"
 
 ASM_DEPEND=">=dev-lang/yasm-1.1"
@@ -63,7 +54,7 @@ DEPEND="${RDEPEND}
 	amd64? ( ${ASM_DEPEND} virtual/opengl )
 	x86? ( ${ASM_DEPEND} virtual/opengl )"
 
-S="${WORKDIR}/Waterfox-${MOZ_PV}"
+S="${WORKDIR}/Waterfox-${MY_PV}"
 
 QA_PRESTRIPPED="usr/lib*/${PN}/waterfox"
 
