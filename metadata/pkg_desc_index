@@ -168,6 +168,7 @@ sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9: zip manipulation library found in the zlib distribution
+sys-libs/ncurses 6.1_p20191026: console display library
 sys-libs/slang 2.3.3_pre9: Multi-platform library designed to allow a developer to create robust software
 sys-power/cpupower 4.4.196 4.4.197 4.4.198 4.9.196 4.9.197 4.9.198 4.14.149 4.14.150 4.14.151 4.19.79 4.19.80 4.19.81: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
@@ -179,7 +180,7 @@ www-client/waterfox 56.2.14 2019.10.1: Waterfox Web Browser
 x11-apps/xinit 1.4.0-r1 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-libs/gtk+ 3.24.12_pre: Gimp ToolKit +
-x11-libs/pango 1.44.6_pre: Internationalized text layout and rendering library
+x11-libs/pango 1.44.7_pre: Internationalized text layout and rendering library
 x11-misc/adriconf 1.4 1.5.1 9999: Advanced DRI Configurator
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-plugins/pidgin-skypeweb 1.5_pre: SkypeWeb Plugin for Pidgin
