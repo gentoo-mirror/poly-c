@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 81bd769728c964d21384b3abdaca3318bac5cd3b $
+# $Id: 7135f70c7f9843611262ac370d34163842e4d88f $
 
 EAPI=7
 
@@ -56,7 +56,7 @@ LICENSE="GPL-3 fonts? ( GPL-2-with-font-exception ) themes? ( BitstreamVera )"
 SLOT="2/${PVR}"
 IUSE="device-mapper doc efiemu +fonts mount nls sdl test +themes truetype libzfs"
 
-GRUB_ALL_PLATFORMS=( coreboot efi-32 efi-64 emu ieee1275 loongson multiboot qemu qemu-mips pc uboot xen xen-32 )
+GRUB_ALL_PLATFORMS=( coreboot efi-32 efi-64 emu ieee1275 loongson multiboot qemu qemu-mips pc uboot xen xen-32 xen-pvh )
 IUSE+=" ${GRUB_ALL_PLATFORMS[@]/#/grub_platforms_}"
 
 REQUIRED_USE="
@@ -106,6 +106,7 @@ DEPEND="
 	ppc64? ( >=sys-apps/ibm-powerpc-utils-1.3.5 )
 	grub_platforms_xen? ( app-emulation/xen-tools:= )
 	grub_platforms_xen-32? ( app-emulation/xen-tools:= )
+	grub_platforms_xen-pvh? ( app-emulation/xen-tools:= )
 "
 RDEPEND="${DEPEND}
 	kernel_linux? (
@@ -178,6 +179,7 @@ grub_configure() {
 
 	case ${MULTIBUILD_VARIANT} in
 		efi*) platform=efi ;;
+		xen-pvh) platform=xen_pvh ;;
 		xen*) platform=xen ;;
 		guessed) ;;
 		*) platform=${MULTIBUILD_VARIANT} ;;

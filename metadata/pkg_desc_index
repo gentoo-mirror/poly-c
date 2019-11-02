@@ -48,7 +48,7 @@ dev-python/pyscard 1.9.6_pre 1.9.7_pre: Smart cards support in python
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/sphinx 1.8.2_pre: Python documentation generator
 dev-python/wget 3.2: pure python download utility
-dev-qt/qtgui 5.12.3-r1 5.12.4 5.12.5: The GUI module and platform plugins for the Qt5 framework
+dev-qt/qtgui 5.12.3-r1 5.12.5 5.13.2: The GUI module and platform plugins for the Qt5 framework
 dev-scheme/guile 2.2.6_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/bcc 0.7.0_pre: Tools for BPF-based Linux IO analysis, networking, monitoring, and more
 dev-util/boost-build 1.65.1_pre 1.69.0: A system for large project software construction, simple to use and powerful

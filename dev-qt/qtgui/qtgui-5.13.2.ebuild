@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 81db316f4805ef1cb5bb2bcd4b1a24e19024b3cf $
+# $Id: 6bec13c736d101152501b23e727d2f5c0e798483 $
 
 EAPI=7
 QT5_MODULE="qtbase"
@@ -9,7 +9,7 @@ inherit qt5-build
 DESCRIPTION="The GUI module and platform plugins for the Qt5 framework"
 
 if [[ ${QT5_BUILD_TYPE} == release ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd"
+	KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
 fi
 
 # TODO: linuxfb
@@ -123,10 +123,6 @@ QT5_GENTOO_CONFIG=(
 
 QT5_GENTOO_PRIVATE_CONFIG=(
 	:gui
-)
-
-PATCHES+=(
-	"${FILESDIR}/${P}-fix-highdpi-crash.patch" # QTBUG-76440
 )
 
 src_prepare() {

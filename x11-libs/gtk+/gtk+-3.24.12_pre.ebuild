@@ -152,7 +152,6 @@ multilib_src_configure() {
 		$(use_enable xinerama)
 		# cloudprovider is not packaged in Gentoo yet
 		--disable-cloudproviders
-		--disable-mir-backend
 		--disable-papi
 		# sysprof integration needs >=sysprof-3.33.2
 		--disable-profiler
