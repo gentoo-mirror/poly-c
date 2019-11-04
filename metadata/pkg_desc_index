@@ -25,6 +25,7 @@ app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iP
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
 app-text/gtkspell 2.0.16: Spell checking widget for GTK
+app-text/po4a 0.57_pre: Tools to ease the translation of documentation
 dev-games/openscenegraph 3.5.6_pre 3.5.9_pre: Open source high performance 3D graphics toolkit
 dev-games/simgear 2019.1.1_pre: Development library for simulation games
 dev-java/ant-core 1.9.8_pre: Java-based build tool similar to 'make' that uses XML configuration files
@@ -38,7 +39,10 @@ dev-libs/appstream-glib 0.7.16_pre: Provides GObjects and helper methods to read
 dev-libs/boost 1.65.1_pre 1.69.0: Boost Libraries for C++
 dev-libs/icu 65.1_pre: International Components for Unicode
 dev-libs/icu-layoutex 65.1_pre: External layout part of International Components for Unicode
+dev-libs/libpwquality 1.4.2_pre: Library for password quality checking and generating random passwords
 dev-libs/libverto 0.3.1_pre: Main event loop abstraction library
+dev-libs/libxml2 2.9.10_pre: XML C parser and toolkit
+dev-libs/libxslt 1.1.34_pre: XSLT libraries and tools
 dev-libs/newt 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.0.2r 1.0.2s-r1 1.0.2t-r1 1.1.1d-r2: full-strength general purpose cryptography library (including SSL and TLS)
