@@ -1,0 +1,30 @@
+From fbb4345914d1ddb882db65d4ffed37308d0359aa Mon Sep 17 00:00:00 2001
+From: Diego Escalante Urrelo <diegoe@gnome.org>
+Date: Thu, 31 Oct 2019 05:51:22 -0500
+Subject: [PATCH] build: Update use of link_whole for meson-0.52
+
+meson has changed some behavior in link_with/link_whole, using
+link_whole internally leads to duplicate symbols.
+
+See: https://github.com/mesonbuild/meson/pull/6030
+Fixes: https://gitlab.gnome.org/GNOME/dconf/issues/59
+---
+ common/meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/common/meson.build b/common/meson.build
+index 58e0fa8..61af2f9 100644
+--- a/common/meson.build
++++ b/common/meson.build
+@@ -28,7 +28,7 @@ libdconf_common = static_library(
+ 
+ libdconf_common_dep = declare_dependency(
+   dependencies: glib_dep,
+-  link_whole: libdconf_common,
++  link_with: libdconf_common,
+ )
+ 
+ libdconf_common_hidden = static_library(
+-- 
+2.22.0
+
