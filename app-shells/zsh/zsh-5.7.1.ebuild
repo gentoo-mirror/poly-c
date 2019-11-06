@@ -52,7 +52,7 @@ if [[ ${PV} == 9999* ]] ; then
 fi
 
 PATCHES=(
-	"${FILESDIR}/${P}-git_switch_restore.patch"
+	"${FILESDIR}/${P}-git_command_completion_updates.patch"
 )
 
 src_prepare() {
