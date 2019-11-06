@@ -173,7 +173,7 @@ sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/gparted 1.0.0_pre: Gnome Partition Editor
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
-sys-boot/gnu-efi 3.0.10_pre: Library for build EFI Applications
+sys-boot/gnu-efi 3.0.10_pre 3.0.11_pre: Library for build EFI Applications
 sys-boot/grub 2.02-r4 2.04_rc1 2.04-r1: GNU GRUB boot loader
 sys-fs/udev 242 243 243-r2: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
