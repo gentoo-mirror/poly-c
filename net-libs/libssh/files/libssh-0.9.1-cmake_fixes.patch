@@ -1,0 +1,1327 @@
+From 00f5807095e1fae925e6ab55fcac5c2cce941f64 Mon Sep 17 00:00:00 2001
+From: Andreas Schneider <asn@cryptomilk.org>
+Date: Tue, 5 Nov 2019 08:50:12 +0100
+Subject: [PATCH 01/15] cmake: Use target_include_directories()
+
+Signed-off-by: Andreas Schneider <asn@cryptomilk.org>
+---
+ src/CMakeLists.txt | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
+
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 0c153ad3..1a2036f0 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -295,11 +295,6 @@ if (NOT WITH_NACL)
+     endif (NOT HAVE_OPENSSL_ED25519)
+ endif (NOT WITH_NACL)
+ 
+-include_directories(
+-  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
+-  ${LIBSSH_PRIVATE_INCLUDE_DIRS}
+-)
+-
+ # Set the path to the default map file
+ set(MAP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.map")
+ 
+@@ -336,6 +331,8 @@ target_compile_options(${LIBSSH_SHARED_LIBRARY}
+                        PRIVATE
+                            ${DEFAULT_C_COMPILE_FLAGS}
+                            -D_GNU_SOURCE)
++target_include_directories(${LIBSSH_SHARED_LIBRARY}
++                           PRIVATE ${LIBSSH_PUBLIC_INCLUDE_DIRS} ${LIBSSH_PRIVATE_INCLUDE_DIRS})
+ 
+ target_link_libraries(${LIBSSH_SHARED_LIBRARY}
+                       PRIVATE ${LIBSSH_LINK_LIBRARIES})
+@@ -390,6 +387,8 @@ if (BUILD_STATIC_LIB)
+                             ${DEFAULT_C_COMPILE_FLAGS}
+                             -D_GNU_SOURCE)
+ 
++  target_include_directories(${LIBSSH_STATIC_LIBRARY}
++                             PRIVATE ${LIBSSH_PUBLIC_INCLUDE_DIRS} ${LIBSSH_PRIVATE_INCLUDE_DIRS})
+   target_link_libraries(${LIBSSH_STATIC_LIBRARY}
+                         PUBLIC ${LIBSSH_LINK_LIBRARIES})
+ 
+-- 
+2.24.0
+
+
+From 070818e3d032f9046abb89dacfd5fd6faf0b3bcb Mon Sep 17 00:00:00 2001
+From: Andreas Schneider <asn@cryptomilk.org>
+Date: Tue, 5 Nov 2019 08:50:52 +0100
+Subject: [PATCH 02/15] cmake: Remove libsocket
+
+This is already part of LIBSSH_REQUIRED_LIBRARIES
+
+Signed-off-by: Andreas Schneider <asn@cryptomilk.org>
+---
+ src/CMakeLists.txt | 7 -------
+ 1 file changed, 7 deletions(-)
+
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 1a2036f0..a64fa929 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -18,13 +18,6 @@ if (WIN32)
+   )
+ endif (WIN32)
+ 
+-if (HAVE_LIBSOCKET)
+-  set(LIBSSH_LINK_LIBRARIES
+-    ${LIBSSH_LINK_LIBRARIES}
+-    socket
+-  )
+-endif (HAVE_LIBSOCKET)
+-
+ if (OPENSSL_CRYPTO_LIBRARY)
+   set(LIBSSH_PRIVATE_INCLUDE_DIRS
+     ${LIBSSH_PRIVATE_INCLUDE_DIRS}
+-- 
+2.24.0
+
+
+From aa06078dfb56d99578e424a753689f01b867015f Mon Sep 17 00:00:00 2001
+From: Andreas Schneider <asn@cryptomilk.org>
+Date: Tue, 5 Nov 2019 09:02:51 +0100
+Subject: [PATCH 03/15] cmake:pkd: Don't use LIBSSH_LINK_LIBRARIES
+
+Signed-off-by: Andreas Schneider <asn@cryptomilk.org>
+---
+ tests/pkd/CMakeLists.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/tests/pkd/CMakeLists.txt b/tests/pkd/CMakeLists.txt
+index 71355b08..3eefae87 100644
+--- a/tests/pkd/CMakeLists.txt
++++ b/tests/pkd/CMakeLists.txt
+@@ -21,7 +21,6 @@ set(pkd_hello_src
+ set(pkd_libs
+     ${CMOCKA_LIBRARY}
+     ${LIBSSH_STATIC_LIBRARY}
+-    ${LIBSSH_LINK_LIBRARIES}
+     ${ARGP_LIBRARIES}
+     pthread
+ )
+-- 
+2.24.0
+
+
+From 47be0245b1eea39f96e0ce93180f4018bd17c6d5 Mon Sep 17 00:00:00 2001
+From: Andreas Schneider <asn@cryptomilk.org>
+Date: Tue, 5 Nov 2019 09:03:49 +0100
+Subject: [PATCH 04/15] cmake: Don't cache LIBSSH_LINK_LIBRARIES
+
+Signed-off-by: Andreas Schneider <asn@cryptomilk.org>
+---
+ src/CMakeLists.txt | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index a64fa929..7b01c0a8 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -88,11 +88,6 @@ if (WITH_NACL AND NACL_FOUND)
+   )
+ endif (WITH_NACL AND NACL_FOUND)
+ 
+-set(LIBSSH_LINK_LIBRARIES
+-  ${LIBSSH_LINK_LIBRARIES}
+-  CACHE INTERNAL "libssh link libraries"
+-)
+-
+ set(LIBSSH_SHARED_LIBRARY
+   ssh_shared
+   CACHE INTERNAL "libssh shared library"
+-- 
+2.24.0
+
+
+From 29e6cc75aea3525cb75cc9b148de605c5490f511 Mon Sep 17 00:00:00 2001
+From: Andreas Schneider <asn@cryptomilk.org>
+Date: Wed, 6 Nov 2019 08:58:34 +0100
+Subject: [PATCH 05/15] cmake: Remove WITH_STATIC_LIB
+
+We will honor BUILD_SHARED_LIBS from cmake next.
+
+Signed-off-by: Andreas Schneider <asn@cryptomilk.org>
+---
+ CMakeLists.txt      | 1 -
+ DefineOptions.cmake | 9 ++-------
+ src/CMakeLists.txt  | 9 ---------
+ 3 files changed, 2 insertions(+), 17 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index a8d739ae..953bfe83 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -222,7 +222,6 @@ message(STATUS "Server support : ${WITH_SERVER}")
+ message(STATUS "GSSAPI support : ${WITH_GSSAPI}")
+ message(STATUS "GEX support : ${WITH_GEX}")
+ message(STATUS "Pcap debugging support : ${WITH_PCAP}")
+-message(STATUS "With static library: ${WITH_STATIC_LIB}")
+ message(STATUS "Unit testing: ${UNIT_TESTING}")
+ message(STATUS "Client code testing: ${CLIENT_TESTING}")
+ message(STATUS "Blowfish cipher support: ${WITH_BLOWFISH_CIPHER}")
+diff --git a/DefineOptions.cmake b/DefineOptions.cmake
+index 52b68a73..ac81b47b 100644
+--- a/DefineOptions.cmake
++++ b/DefineOptions.cmake
+@@ -2,7 +2,6 @@ option(WITH_GSSAPI "Build with GSSAPI support" ON)
+ option(WITH_ZLIB "Build with ZLIB support" ON)
+ option(WITH_SFTP "Build with SFTP support" ON)
+ option(WITH_SERVER "Build with SSH server support" ON)
+-option(WITH_STATIC_LIB "Build with a static library" OFF)
+ option(WITH_DEBUG_CRYPTO "Build with cryto debug output" OFF)
+ option(WITH_DEBUG_PACKET "Build with packet debug output" OFF)
+ option(WITH_DEBUG_CALLTRACE "Build with calltrace debug output" ON)
+@@ -34,13 +33,9 @@ if (WITH_BENCHMARKS)
+   set(CLIENT_TESTING ON)
+ endif()
+ 
+-if (WITH_STATIC_LIB)
+-    set(BUILD_STATIC_LIB ON)
+-endif (WITH_STATIC_LIB)
+-
+-if (UNIT_TESTING)
++if (UNIT_TESTING OR CLIENT_TESTING OR SERVER_TESTING)
+   set(BUILD_STATIC_LIB ON)
+-endif (UNIT_TESTING)
++endif()
+ 
+ if (WITH_NACL)
+   set(WITH_NACL ON)
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 7b01c0a8..04d3719f 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -406,15 +406,6 @@ if (BUILD_STATIC_LIB)
+             "-DLIBSSH_STATIC"
+     )
+   endif (WIN32)
+-
+-    if (WITH_STATIC_LIB)
+-      install(TARGETS
+-                ${LIBSSH_STATIC_LIBRARY}
+-              DESTINATION
+-                  ${CMAKE_INSTALL_LIBDIR}/${OUTPUT_SUFFIX}
+-              COMPONENT
+-                libraries)
+-    endif (WITH_STATIC_LIB)
+ endif (BUILD_STATIC_LIB)
+ 
+ message(STATUS "Threads_FOUND=${Threads_FOUND}")
+-- 
+2.24.0
+
+
+From 35063276b277c94dce66f3d97e0d9e95054cd53f Mon Sep 17 00:00:00 2001
+From: Andreas Schneider <asn@cryptomilk.org>
+Date: Wed, 6 Nov 2019 09:10:09 +0100
+Subject: [PATCH 06/15] cmake: Add option to build shared libs
+
+See https://cmake.org/cmake/help/latest/variable/BUILD_SHARED_LIBS.html
+
+Signed-off-by: Andreas Schneider <asn@cryptomilk.org>
+---
+ CMakeLists.txt      | 1 +
+ DefineOptions.cmake | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 953bfe83..49a9389a 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -222,6 +222,7 @@ message(STATUS "Server support : ${WITH_SERVER}")
+ message(STATUS "GSSAPI support : ${WITH_GSSAPI}")
+ message(STATUS "GEX support : ${WITH_GEX}")
+ message(STATUS "Pcap debugging support : ${WITH_PCAP}")
++message(STATUS "Build shared library: ${BUILD_SHARED_LIBS}")
+ message(STATUS "Unit testing: ${UNIT_TESTING}")
+ message(STATUS "Client code testing: ${CLIENT_TESTING}")
+ message(STATUS "Blowfish cipher support: ${WITH_BLOWFISH_CIPHER}")
+diff --git a/DefineOptions.cmake b/DefineOptions.cmake
+index ac81b47b..b82a5018 100644
+--- a/DefineOptions.cmake
++++ b/DefineOptions.cmake
+@@ -10,6 +10,7 @@ option(WITH_MBEDTLS "Compile against libmbedtls" OFF)
+ option(WITH_BLOWFISH_CIPHER "Compile with blowfish support" OFF)
+ option(WITH_PCAP "Compile with Pcap generation support" ON)
+ option(WITH_INTERNAL_DOC "Compile doxygen internal documentation" OFF)
++option(BUILD_SHARED_LIBS "Build shared libraries" ON)
+ option(UNIT_TESTING "Build with unit tests" OFF)
+ option(CLIENT_TESTING "Build with client tests; requires openssh" OFF)
+ option(SERVER_TESTING "Build with server tests; requires openssh and dropbear" OFF)
+-- 
+2.24.0
+
+
+From 84d923a3b75495de32618796360bd33ab88b3b43 Mon Sep 17 00:00:00 2001
+From: Andreas Schneider <asn@cryptomilk.org>
+Date: Wed, 6 Nov 2019 09:03:11 +0100
+Subject: [PATCH 07/15] cmake: Create ssh library directly as libssh
+
+Signed-off-by: Andreas Schneider <asn@cryptomilk.org>
+---
+ examples/CMakeLists.txt | 30 +++++++++++++++---------------
+ src/CMakeLists.txt      | 30 +++++++++++++-----------------
+ 2 files changed, 28 insertions(+), 32 deletions(-)
+
+diff --git a/examples/CMakeLists.txt b/examples/CMakeLists.txt
+index d064fd5d..82df58d0 100644
+--- a/examples/CMakeLists.txt
++++ b/examples/CMakeLists.txt
+@@ -18,68 +18,68 @@ endif()
+ if (UNIX AND NOT WIN32)
+     add_executable(libssh_scp libssh_scp.c ${examples_SRCS})
+     target_compile_options(libssh_scp PRIVATE ${DEFAULT_C_COMPILE_FLAGS})
+-    target_link_libraries(libssh_scp ${LIBSSH_SHARED_LIBRARY})
++    target_link_libraries(libssh_scp ssh::ssh)
+ 
+     add_executable(scp_download scp_download.c ${examples_SRCS})
+     target_compile_options(scp_download PRIVATE ${DEFAULT_C_COMPILE_FLAGS})
+-    target_link_libraries(scp_download ${LIBSSH_SHARED_LIBRARY})
++    target_link_libraries(scp_download ssh::ssh)
+ 
+     add_executable(sshnetcat sshnetcat.c ${examples_SRCS})
+     target_compile_options(sshnetcat PRIVATE ${DEFAULT_C_COMPILE_FLAGS})
+-    target_link_libraries(sshnetcat ${LIBSSH_SHARED_LIBRARY})
++    target_link_libraries(sshnetcat ssh::ssh)
+ 
+     if (WITH_SFTP)
+         add_executable(samplesftp samplesftp.c ${examples_SRCS})
+         target_compile_options(samplesftp PRIVATE ${DEFAULT_C_COMPILE_FLAGS})
+-        target_link_libraries(samplesftp ${LIBSSH_SHARED_LIBRARY})
++        target_link_libraries(samplesftp ssh::ssh)
+     endif (WITH_SFTP)
+ 
+     add_executable(ssh-client ssh_client.c ${examples_SRCS})
+     target_compile_options(ssh-client PRIVATE ${DEFAULT_C_COMPILE_FLAGS})
+-    target_link_libraries(ssh-client ${LIBSSH_SHARED_LIBRARY})
++    target_link_libraries(ssh-client ssh::ssh)
+ 
+     if (WITH_SERVER AND (ARGP_LIBRARY OR HAVE_ARGP_H))
+         if (HAVE_LIBUTIL)
+             add_executable(ssh_server_fork ssh_server_fork.c)
+             target_compile_options(ssh_server_fork PRIVATE ${DEFAULT_C_COMPILE_FLAGS})
+-            target_link_libraries(ssh_server_fork ${LIBSSH_SHARED_LIBRARY} ${ARGP_LIBRARY} util)
++            target_link_libraries(ssh_server_fork ssh::ssh ${ARGP_LIBRARY} util)
+         endif (HAVE_LIBUTIL)
+ 
+         if (WITH_GSSAPI AND GSSAPI_FOUND)
+             add_executable(samplesshd-cb samplesshd-cb.c)
+             target_compile_options(samplesshd-cb PRIVATE ${DEFAULT_C_COMPILE_FLAGS})
+-            target_link_libraries(samplesshd-cb ${LIBSSH_SHARED_LIBRARY} ${ARGP_LIBRARY})
++            target_link_libraries(samplesshd-cb ssh::ssh ${ARGP_LIBRARY})
+ 
+             add_executable(proxy proxy.c)
+             target_compile_options(proxy PRIVATE ${DEFAULT_C_COMPILE_FLAGS})
+-            target_link_libraries(proxy ${LIBSSH_SHARED_LIBRARY} ${ARGP_LIBRARY})
++            target_link_libraries(proxy ssh::ssh ${ARGP_LIBRARY})
+ 
+             add_executable(sshd_direct-tcpip sshd_direct-tcpip.c)
+             target_compile_options(sshd_direct-tcpip PRIVATE ${DEFAULT_C_COMPILE_FLAGS})
+-            target_link_libraries(sshd_direct-tcpip ${LIBSSH_SHARED_LIBRARY} ${ARGP_LIBRARY})
++            target_link_libraries(sshd_direct-tcpip ssh::ssh ${ARGP_LIBRARY})
+         endif (WITH_GSSAPI AND GSSAPI_FOUND)
+ 
+         add_executable(samplesshd-kbdint samplesshd-kbdint.c)
+         target_compile_options(samplesshd-kbdint PRIVATE ${DEFAULT_C_COMPILE_FLAGS})
+-        target_link_libraries(samplesshd-kbdint ${LIBSSH_SHARED_LIBRARY} ${ARGP_LIBRARY})
++        target_link_libraries(samplesshd-kbdint ssh::ssh ${ARGP_LIBRARY})
+ 
+     endif()
+ endif (UNIX AND NOT WIN32)
+ 
+ add_executable(exec exec.c ${examples_SRCS})
+ target_compile_options(exec PRIVATE ${DEFAULT_C_COMPILE_FLAGS})
+-target_link_libraries(exec ${LIBSSH_SHARED_LIBRARY})
++target_link_libraries(exec ssh::ssh)
+ 
+ add_executable(senddata senddata.c ${examples_SRCS})
+ target_compile_options(senddata PRIVATE ${DEFAULT_C_COMPILE_FLAGS})
+-target_link_libraries(senddata ${LIBSSH_SHARED_LIBRARY})
++target_link_libraries(senddata ssh::ssh)
+ 
+ add_executable(keygen keygen.c)
+ target_compile_options(keygen PRIVATE ${DEFAULT_C_COMPILE_FLAGS})
+-target_link_libraries(keygen ${LIBSSH_SHARED_LIBRARY})
++target_link_libraries(keygen ssh::ssh)
+ 
+ add_executable(libsshpp libsshpp.cpp)
+-target_link_libraries(libsshpp ${LIBSSH_SHARED_LIBRARY})
++target_link_libraries(libsshpp ssh::ssh)
+ 
+ add_executable(libsshpp_noexcept libsshpp_noexcept.cpp)
+-target_link_libraries(libsshpp_noexcept ${LIBSSH_SHARED_LIBRARY})
++target_link_libraries(libsshpp_noexcept ssh::ssh)
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 04d3719f..5904ac67 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -88,11 +88,6 @@ if (WITH_NACL AND NACL_FOUND)
+   )
+ endif (WITH_NACL AND NACL_FOUND)
+ 
+-set(LIBSSH_SHARED_LIBRARY
+-  ssh_shared
+-  CACHE INTERNAL "libssh shared library"
+-)
+-
+ if (BUILD_STATIC_LIB)
+   set(LIBSSH_STATIC_LIBRARY
+     ssh_static
+@@ -314,51 +309,52 @@ if (WITH_SYMBOL_VERSIONING AND HAVE_LD_VERSION_SCRIPT AND ABIMAP_FOUND)
+     )
+ endif (WITH_SYMBOL_VERSIONING AND HAVE_LD_VERSION_SCRIPT AND ABIMAP_FOUND)
+ 
+-add_library(${LIBSSH_SHARED_LIBRARY} SHARED ${libssh_SRCS})
+-target_compile_options(${LIBSSH_SHARED_LIBRARY}
++# This gets built as a static library, if -DBUILD_SHARED_LIBS=OFF is passed to
++# cmake.
++add_library(ssh ${libssh_SRCS})
++target_compile_options(ssh
+                        PRIVATE
+                            ${DEFAULT_C_COMPILE_FLAGS}
+                            -D_GNU_SOURCE)
+-target_include_directories(${LIBSSH_SHARED_LIBRARY}
++target_include_directories(ssh
+                            PRIVATE ${LIBSSH_PUBLIC_INCLUDE_DIRS} ${LIBSSH_PRIVATE_INCLUDE_DIRS})
+ 
+-target_link_libraries(${LIBSSH_SHARED_LIBRARY}
++target_link_libraries(ssh
+                       PRIVATE ${LIBSSH_LINK_LIBRARIES})
+ 
++add_library(ssh::ssh ALIAS ssh)
++
+ if (WITH_SYMBOL_VERSIONING AND HAVE_LD_VERSION_SCRIPT)
+     if (ABIMAP_FOUND)
+         # Change path to devel map file
+         set(MAP_PATH "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_dev.map")
+     endif (ABIMAP_FOUND)
+ 
+-    set_target_properties(${LIBSSH_SHARED_LIBRARY}
++    set_target_properties(ssh
+                           PROPERTIES LINK_FLAGS
+                           "-Wl,--version-script,\"${MAP_PATH}\"")
+ endif (WITH_SYMBOL_VERSIONING AND HAVE_LD_VERSION_SCRIPT)
+ 
+-set_target_properties(
+-  ${LIBSSH_SHARED_LIBRARY}
++set_target_properties(ssh
+     PROPERTIES
+       VERSION
+         ${LIBRARY_VERSION}
+       SOVERSION
+         ${LIBRARY_SOVERSION}
+-      OUTPUT_NAME
+-        ssh
+       DEFINE_SYMBOL
+         LIBSSH_EXPORTS
+ )
+ 
+ if (WITH_VISIBILITY_HIDDEN)
+-  set_target_properties(${LIBSSH_SHARED_LIBRARY} PROPERTIES COMPILE_FLAGS "-fvisibility=hidden")
++  set_target_properties(ssh PROPERTIES COMPILE_FLAGS "-fvisibility=hidden")
+ endif (WITH_VISIBILITY_HIDDEN)
+ 
+ if (MINGW)
+-    set_target_properties(${LIBSSH_SHARED_LIBRARY} PROPERTIES LINK_FLAGS "-Wl,--enable-stdcall-fixup")
++    set_target_properties(ssh PROPERTIES LINK_FLAGS "-Wl,--enable-stdcall-fixup")
+ endif ()
+ 
+ 
+-install(TARGETS ${LIBSSH_SHARED_LIBRARY}
++install(TARGETS ssh
+         EXPORT libssh-config
+         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+-- 
+2.24.0
+
+
+From c4fa2a31b9003b23c1b6413c76b62e4c732176d7 Mon Sep 17 00:00:00 2001
+From: Andreas Schneider <asn@cryptomilk.org>
+Date: Fri, 25 Jan 2019 11:18:23 +0100
+Subject: [PATCH 08/15] cmake: Fix building the ssh_server_fuzzer
+
+Signed-off-by: Andreas Schneider <asn@cryptomilk.org>
+Reviewed-by: Anderson Toshiyuki Sasaki <ansasaki@redhat.com>
+---
+ tests/fuzz/CMakeLists.txt | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/tests/fuzz/CMakeLists.txt b/tests/fuzz/CMakeLists.txt
+index 5c1e63b0..bf920e73 100644
+--- a/tests/fuzz/CMakeLists.txt
++++ b/tests/fuzz/CMakeLists.txt
+@@ -2,6 +2,10 @@ project(fuzzing CXX)
+ 
+ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+     add_executable(ssh_server_fuzzer ssh_server_fuzzer.cpp)
++    target_link_libraries(ssh_server_fuzzer
++                          PRIVATE
++                              ${LIBSSH_STATIC_LIBRARY}
++                              ${LIBSSH_LINK_LIBRARIES})
+     set_target_properties(ssh_server_fuzzer
+         PROPERTIES
+             COMPILE_FLAGS "-fsanitize=fuzzer"
+-- 
+2.24.0
+
+
+From 1503e4b0c61cca4148c9af465f22da307fa3c423 Mon Sep 17 00:00:00 2001
+From: Andreas Schneider <asn@cryptomilk.org>
+Date: Sat, 6 Jul 2019 17:13:33 +0200
+Subject: [PATCH 09/15] cmake: We don't have to define the ssh link libraries
+
+Signed-off-by: Andreas Schneider <asn@cryptomilk.org>
+Reviewed-by: Jakub Jelen <jjelen@redhat.com>
+---
+ tests/CMakeLists.txt      | 3 +--
+ tests/fuzz/CMakeLists.txt | 3 +--
+ 2 files changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
+index aeb0b17c..8ee2deef 100644
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -18,8 +18,7 @@ include_directories(
+ 
+ set(TORTURE_LINK_LIBRARIES
+     ${CMOCKA_LIBRARY}
+-    ${LIBSSH_STATIC_LIBRARY}
+-    ${LIBSSH_LINK_LIBRARIES})
++    ${LIBSSH_STATIC_LIBRARY})
+ 
+ # create test library
+ add_library(${TORTURE_LIBRARY}
+diff --git a/tests/fuzz/CMakeLists.txt b/tests/fuzz/CMakeLists.txt
+index bf920e73..a12e4c6c 100644
+--- a/tests/fuzz/CMakeLists.txt
++++ b/tests/fuzz/CMakeLists.txt
+@@ -4,8 +4,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+     add_executable(ssh_server_fuzzer ssh_server_fuzzer.cpp)
+     target_link_libraries(ssh_server_fuzzer
+                           PRIVATE
+-                              ${LIBSSH_STATIC_LIBRARY}
+-                              ${LIBSSH_LINK_LIBRARIES})
++                              ${LIBSSH_STATIC_LIBRARY})
+     set_target_properties(ssh_server_fuzzer
+         PROPERTIES
+             COMPILE_FLAGS "-fsanitize=fuzzer"
+-- 
+2.24.0
+
+
+From 9183e9761f9dc5c1ebbfe718b678f2fda94f01d5 Mon Sep 17 00:00:00 2001
+From: Andreas Schneider <asn@cryptomilk.org>
+Date: Sat, 6 Jul 2019 17:12:16 +0200
+Subject: [PATCH 10/15] ctest: Run the ssh_server_fuzzer to check it works
+
+Signed-off-by: Andreas Schneider <asn@cryptomilk.org>
+Reviewed-by: Jakub Jelen <jjelen@redhat.com>
+---
+ tests/fuzz/CMakeLists.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/tests/fuzz/CMakeLists.txt b/tests/fuzz/CMakeLists.txt
+index a12e4c6c..72ca1f47 100644
+--- a/tests/fuzz/CMakeLists.txt
++++ b/tests/fuzz/CMakeLists.txt
+@@ -9,4 +9,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+         PROPERTIES
+             COMPILE_FLAGS "-fsanitize=fuzzer"
+             LINK_FLAGS "-fsanitize=fuzzer")
++
++    # Run the fuzzer to make sure it works
++    add_test(ssh_server_fuzzer ${CMAKE_CURRENT_BINARY_DIR}/ssh_server_fuzzer -runs=1)
+ endif()
+-- 
+2.24.0
+
+
+From 16d6c20fffb0cbc5f543521f868dc26868a15907 Mon Sep 17 00:00:00 2001
+From: Andreas Schneider <asn@cryptomilk.org>
+Date: Sat, 2 Feb 2019 16:28:38 +0100
+Subject: [PATCH 11/15] tests: Add ssh_client_fuzzer
+
+Signed-off-by: Andreas Schneider <asn@cryptomilk.org>
+Reviewed-by: Jakub Jelen <jjelen@redhat.com>
+---
+ tests/fuzz/CMakeLists.txt        |  11 +++
+ tests/fuzz/ssh_client_fuzzer.cpp | 157 +++++++++++++++++++++++++++++++
+ 2 files changed, 168 insertions(+)
+ create mode 100644 tests/fuzz/ssh_client_fuzzer.cpp
+
+diff --git a/tests/fuzz/CMakeLists.txt b/tests/fuzz/CMakeLists.txt
+index 72ca1f47..d8663b51 100644
+--- a/tests/fuzz/CMakeLists.txt
++++ b/tests/fuzz/CMakeLists.txt
+@@ -1,6 +1,16 @@
+ project(fuzzing CXX)
+ 
+ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
++    add_executable(ssh_client_fuzzer ssh_client_fuzzer.cpp)
++    target_link_libraries(ssh_client_fuzzer
++                          PRIVATE
++                              ${LIBSSH_STATIC_LIBRARY})
++    set_target_properties(ssh_client_fuzzer
++                          PROPERTIES
++                              COMPILE_FLAGS "-fsanitize=fuzzer"
++                              LINK_FLAGS "-fsanitize=fuzzer")
++
++
+     add_executable(ssh_server_fuzzer ssh_server_fuzzer.cpp)
+     target_link_libraries(ssh_server_fuzzer
+                           PRIVATE
+@@ -11,5 +21,6 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+             LINK_FLAGS "-fsanitize=fuzzer")
+ 
+     # Run the fuzzer to make sure it works
++    add_test(ssh_client_fuzzer ${CMAKE_CURRENT_BINARY_DIR}/ssh_client_fuzzer -runs=1)
+     add_test(ssh_server_fuzzer ${CMAKE_CURRENT_BINARY_DIR}/ssh_server_fuzzer -runs=1)
+ endif()
+diff --git a/tests/fuzz/ssh_client_fuzzer.cpp b/tests/fuzz/ssh_client_fuzzer.cpp
+new file mode 100644
+index 00000000..eabe294c
+--- /dev/null
++++ b/tests/fuzz/ssh_client_fuzzer.cpp
+@@ -0,0 +1,157 @@
++/*
++ * Copyright 2019 Andreas Schneider <asn@cryptomilk.org>
++ *
++ * Licensed under the Apache License, Version 2.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++#include "config.h"
++
++#include <assert.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <signal.h>
++
++#define LIBSSH_STATIC 1
++#include <libssh/libssh.h>
++#include <libssh/priv.h>
++#include <libssh/callbacks.h>
++
++static int auth_callback(UNUSED_PARAM(const char *prompt),
++                         char *buf,
++                         size_t len,
++                         UNUSED_PARAM(int echo),
++                         int verify,
++                         UNUSED_PARAM(void *userdata))
++{
++    snprintf(buf, len, "secret");
++
++    return 0;
++}
++
++struct ssh_callbacks_struct cb = {
++    .auth_function = auth_callback,
++    .userdata = NULL,
++};
++
++static void select_loop(ssh_session session, ssh_channel channel)
++{
++    ssh_connector connector_in, connector_out, connector_err;
++
++    ssh_event event = ssh_event_new();
++
++    /* stdin */
++    connector_in = ssh_connector_new(session);
++    ssh_connector_set_out_channel(connector_in, channel, SSH_CONNECTOR_STDINOUT);
++    ssh_connector_set_in_fd(connector_in, 0);
++    ssh_event_add_connector(event, connector_in);
++
++    /* stdout */
++    connector_out = ssh_connector_new(session);
++    ssh_connector_set_out_fd(connector_out, 1);
++    ssh_connector_set_in_channel(connector_out, channel, SSH_CONNECTOR_STDINOUT);
++    ssh_event_add_connector(event, connector_out);
++
++    /* stderr */
++    connector_err = ssh_connector_new(session);
++    ssh_connector_set_out_fd(connector_err, 2);
++    ssh_connector_set_in_channel(connector_err, channel, SSH_CONNECTOR_STDERR);
++    ssh_event_add_connector(event, connector_err);
++
++    while (ssh_channel_is_open(channel)) {
++        ssh_event_dopoll(event, 60000);
++    }
++    ssh_event_remove_connector(event, connector_in);
++    ssh_event_remove_connector(event, connector_out);
++    ssh_event_remove_connector(event, connector_err);
++
++    ssh_connector_free(connector_in);
++    ssh_connector_free(connector_out);
++    ssh_connector_free(connector_err);
++
++    ssh_event_free(event);
++}
++
++extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size)
++{
++    ssh_session session = NULL;
++    ssh_channel channel = NULL;
++    char *banner = NULL;
++    const char *env = NULL;
++    int socket_fds[2] = {-1, -1};
++    ssize_t nwritten;
++    int rc;
++
++    /* Set up the socket to send data */
++    rc = socketpair(AF_UNIX, SOCK_STREAM, 0, socket_fds);
++    assert(rc == 0);
++
++    nwritten = send(socket_fds[1], data, size, 0);
++    assert(nwritten == size);
++
++    rc = shutdown(socket_fds[1], SHUT_WR);
++    assert(rc == 0);
++
++    ssh_init();
++
++    session = ssh_new();
++    assert(session != NULL);
++
++    env = getenv("LIBSSH_VERBOSITY");
++    if (env != NULL && strlen(env) > 0) {
++        ssh_options_set(session, SSH_OPTIONS_LOG_VERBOSITY_STR, env);
++    }
++    rc = ssh_options_set(session, SSH_OPTIONS_FD, &socket_fds[0]);
++    assert(rc == 0);
++    rc = ssh_options_set(session, SSH_OPTIONS_HOST, "127.0.0.1");
++    assert(rc == 0);
++    rc = ssh_options_set(session, SSH_OPTIONS_USER, "alice");
++    assert(rc == 0);
++
++    ssh_callbacks_init(&cb);
++    ssh_set_callbacks(session, &cb);
++
++    rc = ssh_connect(session);
++    if (rc != SSH_OK) {
++        goto out;
++    }
++
++    rc = ssh_userauth_none(session, NULL);
++    if (rc != SSH_OK) {
++        goto out;
++    }
++
++    channel = ssh_channel_new(session);
++    assert(channel != NULL);
++
++    rc = ssh_channel_open_session(channel);
++    if (rc != SSH_OK) {
++        goto out;
++    }
++
++    rc = ssh_channel_request_exec(channel, "ls");
++    assert(rc == SSH_OK);
++
++    select_loop(session, channel);
++
++out:
++    ssh_channel_free(channel);
++    ssh_disconnect(session);
++    ssh_free(session);
++
++    ssh_finalize();
++
++    close(socket_fds[0]);
++    close(socket_fds[1]);
++
++    return 0;
++}
+-- 
+2.24.0
+
+
+From d64a26da416339eb90dd55237062bd3c84848bdb Mon Sep 17 00:00:00 2001
+From: Andreas Schneider <asn@cryptomilk.org>
+Date: Wed, 6 Nov 2019 09:06:05 +0100
+Subject: [PATCH 12/15] cmake: Rename static library
+
+This is only compiled for tests and fuzzers!
+
+Signed-off-by: Andreas Schneider <asn@cryptomilk.org>
+---
+ src/CMakeLists.txt        | 13 +++++++------
+ tests/CMakeLists.txt      |  2 +-
+ tests/fuzz/CMakeLists.txt |  4 ++--
+ 3 files changed, 10 insertions(+), 9 deletions(-)
+
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 5904ac67..300c28d7 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -365,16 +365,17 @@ install(EXPORT libssh-config
+         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
+ 
+ if (BUILD_STATIC_LIB)
+-  add_library(${LIBSSH_STATIC_LIBRARY} STATIC ${libssh_SRCS})
+-  target_compile_options(${LIBSSH_STATIC_LIBRARY}
++  add_library(ssh-static STATIC ${libssh_SRCS})
++  target_compile_options(ssh-static
+                          PRIVATE
+                             ${DEFAULT_C_COMPILE_FLAGS}
+                             -D_GNU_SOURCE)
+ 
+-  target_include_directories(${LIBSSH_STATIC_LIBRARY}
++  target_include_directories(ssh-static
+                              PRIVATE ${LIBSSH_PUBLIC_INCLUDE_DIRS} ${LIBSSH_PRIVATE_INCLUDE_DIRS})
+-  target_link_libraries(${LIBSSH_STATIC_LIBRARY}
++  target_link_libraries(ssh-static
+                         PUBLIC ${LIBSSH_LINK_LIBRARIES})
++  add_library(ssh::static ALIAS ssh-static)
+ 
+   if (MSVC)
+     set(OUTPUT_SUFFIX static)
+@@ -382,7 +383,7 @@ if (BUILD_STATIC_LIB)
+     set(OUTPUT_SUFFIX )
+   endif (MSVC)
+   set_target_properties(
+-    ${LIBSSH_STATIC_LIBRARY}
++    ssh-static
+       PROPERTIES
+         VERSION
+           ${LIBRARY_VERSION}
+@@ -396,7 +397,7 @@ if (BUILD_STATIC_LIB)
+ 
+   if (WIN32)
+     set_target_properties(
+-      ${LIBSSH_STATIC_LIBRARY}
++      ssh-static
+         PROPERTIES
+           COMPILE_FLAGS
+             "-DLIBSSH_STATIC"
+diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
+index 8ee2deef..79d38536 100644
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -18,7 +18,7 @@ include_directories(
+ 
+ set(TORTURE_LINK_LIBRARIES
+     ${CMOCKA_LIBRARY}
+-    ${LIBSSH_STATIC_LIBRARY})
++    ssh::static)
+ 
+ # create test library
+ add_library(${TORTURE_LIBRARY}
+diff --git a/tests/fuzz/CMakeLists.txt b/tests/fuzz/CMakeLists.txt
+index d8663b51..bfbf9c4e 100644
+--- a/tests/fuzz/CMakeLists.txt
++++ b/tests/fuzz/CMakeLists.txt
+@@ -4,7 +4,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+     add_executable(ssh_client_fuzzer ssh_client_fuzzer.cpp)
+     target_link_libraries(ssh_client_fuzzer
+                           PRIVATE
+-                              ${LIBSSH_STATIC_LIBRARY})
++                              ssh::static)
+     set_target_properties(ssh_client_fuzzer
+                           PROPERTIES
+                               COMPILE_FLAGS "-fsanitize=fuzzer"
+@@ -14,7 +14,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+     add_executable(ssh_server_fuzzer ssh_server_fuzzer.cpp)
+     target_link_libraries(ssh_server_fuzzer
+                           PRIVATE
+-                              ${LIBSSH_STATIC_LIBRARY})
++                              ssh::static)
+     set_target_properties(ssh_server_fuzzer
+         PROPERTIES
+             COMPILE_FLAGS "-fsanitize=fuzzer"
+-- 
+2.24.0
+
+
+From 0444869ea700e8567f360c99ce9b57510dbc7608 Mon Sep 17 00:00:00 2001
+From: Andreas Schneider <asn@cryptomilk.org>
+Date: Wed, 6 Nov 2019 09:26:15 +0100
+Subject: [PATCH 13/15] cmake: Don't cache LIBSSH_PUBLIC_INCLUDE_DIR
+
+Signed-off-by: Andreas Schneider <asn@cryptomilk.org>
+---
+ examples/CMakeLists.txt                 |  6 ++----
+ src/CMakeLists.txt                      |  5 +----
+ tests/CMakeLists.txt                    |  4 ++--
+ tests/benchmarks/CMakeLists.txt         | 13 ++-----------
+ tests/pkd/CMakeLists.txt                | 15 ++++++---------
+ tests/server/CMakeLists.txt             |  8 +++-----
+ tests/server/test_server/CMakeLists.txt |  6 ++----
+ 7 files changed, 18 insertions(+), 39 deletions(-)
+
+diff --git a/examples/CMakeLists.txt b/examples/CMakeLists.txt
+index 82df58d0..4341ac0e 100644
+--- a/examples/CMakeLists.txt
++++ b/examples/CMakeLists.txt
+@@ -6,10 +6,8 @@ set(examples_SRCS
+   connect_ssh.c
+ )
+ 
+-include_directories(
+-  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
+-  ${CMAKE_BINARY_DIR}
+-)
++include_directories(${libssh_SOURCE_DIR}/include
++                    ${libssh_BINARY_DIR})
+ 
+ if (ARGP_INCLUDE_DIR)
+     include_directories(${ARGP_INCLUDE_DIR})
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 300c28d7..b4ce17b9 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -1,7 +1,4 @@
+-set(LIBSSH_PUBLIC_INCLUDE_DIRS
+-  ${libssh_SOURCE_DIR}/include
+-  CACHE INTERNAL "libssh public include directories"
+-)
++set(LIBSSH_PUBLIC_INCLUDE_DIRS ${libssh_SOURCE_DIR}/include)
+ 
+ set(LIBSSH_PRIVATE_INCLUDE_DIRS
+   ${libssh_BINARY_DIR}
+diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
+index 79d38536..be1a3558 100644
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -7,12 +7,12 @@ endif (BSD OR SOLARIS OR OSX)
+ set(TORTURE_LIBRARY torture)
+ 
+ include_directories(
+-  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
++  ${libssh_SOURCE_DIR}/include
+   ${OPENSSL_INCLUDE_DIR}
+   ${CMOCKA_INCLUDE_DIR}
+   ${ZLIB_INCLUDE_DIR}
+   ${CMAKE_BINARY_DIR}
+-  ${CMAKE_SOURCE_DIR}/src
++  ${libssh_SOURCE_DIR}/src
+   ${CMAKE_CURRENT_SOURCE_DIR}
+ )
+ 
+diff --git a/tests/benchmarks/CMakeLists.txt b/tests/benchmarks/CMakeLists.txt
+index 8dc8552f..ddf3ff13 100644
+--- a/tests/benchmarks/CMakeLists.txt
++++ b/tests/benchmarks/CMakeLists.txt
+@@ -4,18 +4,9 @@ set(benchmarks_SRCS
+   bench_scp.c bench_sftp bench_raw.c benchmarks.c latency.c
+ )
+ 
+-include_directories(
+-  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
+-)
++include_directories(${libssh_SOURCE_DIR}/include
++                    ${libssh_BINARY_DIR})
+ 
+ add_executable(benchmarks ${benchmarks_SRCS})
+ 
+ target_link_libraries(benchmarks ${LIBSSH_SHARED_LIBRARY})
+-
+-include_directories(
+-  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
+-  ${CMAKE_BINARY_DIR}
+-)
+-
+-if (WITH_SFTP)
+-endif (WITH_SFTP)
+diff --git a/tests/pkd/CMakeLists.txt b/tests/pkd/CMakeLists.txt
+index 3eefae87..1f85637a 100644
+--- a/tests/pkd/CMakeLists.txt
++++ b/tests/pkd/CMakeLists.txt
+@@ -1,15 +1,12 @@
+ project(pkd C)
+ 
+ if (WITH_SERVER AND UNIX AND NOT WIN32)
+-
+-include_directories(
+-  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
+-  ${CMOCKA_INCLUDE_DIR}
+-  ${ZLIB_INCLUDE_DIR}
+-  ${CMAKE_BINARY_DIR}
+-  ${CMAKE_SOURCE_DIR}/src
+-  ${CMAKE_CURRENT_SOURCE_DIR}
+-)
++    include_directories(${libssh_SOURCE_DIR}/include
++                        ${CMOCKA_INCLUDE_DIR}
++                        ${ZLIB_INCLUDE_DIR}
++                        ${CMAKE_BINARY_DIR}
++                        ${libssh_SOURCE_DIR}/src
++                        ${CMAKE_CURRENT_SOURCE_DIR})
+ 
+ set(pkd_hello_src
+   pkd_daemon.c
+diff --git a/tests/server/CMakeLists.txt b/tests/server/CMakeLists.txt
+index deba556b..9476ea91 100644
+--- a/tests/server/CMakeLists.txt
++++ b/tests/server/CMakeLists.txt
+@@ -12,11 +12,9 @@ set(LIBSSH_SERVER_TESTS
+     torture_server_config
+ )
+ 
+-include_directories(
+-  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
+-  ${CMAKE_BINARY_DIR}
+-  test_server
+-)
++include_directories(${libssh_SOURCE_DIR}/include
++                    ${libssh_BINARY_DIR}
++                    test_server)
+ 
+ if (ARGP_INCLUDE_DIR)
+     include_directories(${ARGP_INCLUDE_DIR})
+diff --git a/tests/server/test_server/CMakeLists.txt b/tests/server/test_server/CMakeLists.txt
+index cc8ed6f0..da02a054 100644
+--- a/tests/server/test_server/CMakeLists.txt
++++ b/tests/server/test_server/CMakeLists.txt
+@@ -16,10 +16,8 @@ set(LIBSSH_SERVER_TESTS
+ #    torture_server_kbdint
+ )
+ 
+-include_directories(
+-  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
+-  ${CMAKE_BINARY_DIR}
+-)
++include_directories(${libssh_SOURCE_DIR}/include
++                    ${libssh_BINARY_DIR})
+ 
+ if (ARGP_INCLUDE_DIR)
+     include_directories(${ARGP_INCLUDE_DIR})
+-- 
+2.24.0
+
+
+From ebb26da866770dd00573314d5369ace62f5a9e49 Mon Sep 17 00:00:00 2001
+From: Andreas Schneider <asn@cryptomilk.org>
+Date: Wed, 6 Nov 2019 09:38:33 +0100
+Subject: [PATCH 14/15] Revert "cmake: Don't cache LIBSSH_PUBLIC_INCLUDE_DIR"
+
+This reverts commit 1b3747b5e00e46a454edb9e498a5198e5418dee3.
+---
+ examples/CMakeLists.txt                 |  6 ++++--
+ src/CMakeLists.txt                      |  5 ++++-
+ tests/CMakeLists.txt                    |  4 ++--
+ tests/benchmarks/CMakeLists.txt         | 13 +++++++++++--
+ tests/pkd/CMakeLists.txt                | 15 +++++++++------
+ tests/server/CMakeLists.txt             |  8 +++++---
+ tests/server/test_server/CMakeLists.txt |  6 ++++--
+ 7 files changed, 39 insertions(+), 18 deletions(-)
+
+diff --git a/examples/CMakeLists.txt b/examples/CMakeLists.txt
+index 4341ac0e..82df58d0 100644
+--- a/examples/CMakeLists.txt
++++ b/examples/CMakeLists.txt
+@@ -6,8 +6,10 @@ set(examples_SRCS
+   connect_ssh.c
+ )
+ 
+-include_directories(${libssh_SOURCE_DIR}/include
+-                    ${libssh_BINARY_DIR})
++include_directories(
++  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
++  ${CMAKE_BINARY_DIR}
++)
+ 
+ if (ARGP_INCLUDE_DIR)
+     include_directories(${ARGP_INCLUDE_DIR})
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index b4ce17b9..300c28d7 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -1,4 +1,7 @@
+-set(LIBSSH_PUBLIC_INCLUDE_DIRS ${libssh_SOURCE_DIR}/include)
++set(LIBSSH_PUBLIC_INCLUDE_DIRS
++  ${libssh_SOURCE_DIR}/include
++  CACHE INTERNAL "libssh public include directories"
++)
+ 
+ set(LIBSSH_PRIVATE_INCLUDE_DIRS
+   ${libssh_BINARY_DIR}
+diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
+index be1a3558..79d38536 100644
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -7,12 +7,12 @@ endif (BSD OR SOLARIS OR OSX)
+ set(TORTURE_LIBRARY torture)
+ 
+ include_directories(
+-  ${libssh_SOURCE_DIR}/include
++  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
+   ${OPENSSL_INCLUDE_DIR}
+   ${CMOCKA_INCLUDE_DIR}
+   ${ZLIB_INCLUDE_DIR}
+   ${CMAKE_BINARY_DIR}
+-  ${libssh_SOURCE_DIR}/src
++  ${CMAKE_SOURCE_DIR}/src
+   ${CMAKE_CURRENT_SOURCE_DIR}
+ )
+ 
+diff --git a/tests/benchmarks/CMakeLists.txt b/tests/benchmarks/CMakeLists.txt
+index ddf3ff13..8dc8552f 100644
+--- a/tests/benchmarks/CMakeLists.txt
++++ b/tests/benchmarks/CMakeLists.txt
+@@ -4,9 +4,18 @@ set(benchmarks_SRCS
+   bench_scp.c bench_sftp bench_raw.c benchmarks.c latency.c
+ )
+ 
+-include_directories(${libssh_SOURCE_DIR}/include
+-                    ${libssh_BINARY_DIR})
++include_directories(
++  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
++)
+ 
+ add_executable(benchmarks ${benchmarks_SRCS})
+ 
+ target_link_libraries(benchmarks ${LIBSSH_SHARED_LIBRARY})
++
++include_directories(
++  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
++  ${CMAKE_BINARY_DIR}
++)
++
++if (WITH_SFTP)
++endif (WITH_SFTP)
+diff --git a/tests/pkd/CMakeLists.txt b/tests/pkd/CMakeLists.txt
+index 1f85637a..3eefae87 100644
+--- a/tests/pkd/CMakeLists.txt
++++ b/tests/pkd/CMakeLists.txt
+@@ -1,12 +1,15 @@
+ project(pkd C)
+ 
+ if (WITH_SERVER AND UNIX AND NOT WIN32)
+-    include_directories(${libssh_SOURCE_DIR}/include
+-                        ${CMOCKA_INCLUDE_DIR}
+-                        ${ZLIB_INCLUDE_DIR}
+-                        ${CMAKE_BINARY_DIR}
+-                        ${libssh_SOURCE_DIR}/src
+-                        ${CMAKE_CURRENT_SOURCE_DIR})
++
++include_directories(
++  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
++  ${CMOCKA_INCLUDE_DIR}
++  ${ZLIB_INCLUDE_DIR}
++  ${CMAKE_BINARY_DIR}
++  ${CMAKE_SOURCE_DIR}/src
++  ${CMAKE_CURRENT_SOURCE_DIR}
++)
+ 
+ set(pkd_hello_src
+   pkd_daemon.c
+diff --git a/tests/server/CMakeLists.txt b/tests/server/CMakeLists.txt
+index 9476ea91..deba556b 100644
+--- a/tests/server/CMakeLists.txt
++++ b/tests/server/CMakeLists.txt
+@@ -12,9 +12,11 @@ set(LIBSSH_SERVER_TESTS
+     torture_server_config
+ )
+ 
+-include_directories(${libssh_SOURCE_DIR}/include
+-                    ${libssh_BINARY_DIR}
+-                    test_server)
++include_directories(
++  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
++  ${CMAKE_BINARY_DIR}
++  test_server
++)
+ 
+ if (ARGP_INCLUDE_DIR)
+     include_directories(${ARGP_INCLUDE_DIR})
+diff --git a/tests/server/test_server/CMakeLists.txt b/tests/server/test_server/CMakeLists.txt
+index da02a054..cc8ed6f0 100644
+--- a/tests/server/test_server/CMakeLists.txt
++++ b/tests/server/test_server/CMakeLists.txt
+@@ -16,8 +16,10 @@ set(LIBSSH_SERVER_TESTS
+ #    torture_server_kbdint
+ )
+ 
+-include_directories(${libssh_SOURCE_DIR}/include
+-                    ${libssh_BINARY_DIR})
++include_directories(
++  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
++  ${CMAKE_BINARY_DIR}
++)
+ 
+ if (ARGP_INCLUDE_DIR)
+     include_directories(${ARGP_INCLUDE_DIR})
+-- 
+2.24.0
+
+
+From 4999da1ce26a9755c7a5c8d661522f3043fe8321 Mon Sep 17 00:00:00 2001
+From: Andreas Schneider <asn@cryptomilk.org>
+Date: Wed, 6 Nov 2019 09:43:49 +0100
+Subject: [PATCH 15/15] cmake: Do not use cached LIBSSH_PUBLIC_INCLUDE_DIRS
+
+Signed-off-by: Andreas Schneider <asn@cryptomilk.org>
+---
+ examples/CMakeLists.txt                 |  5 +----
+ src/CMakeLists.txt                      | 10 +++++-----
+ tests/CMakeLists.txt                    | 15 ++++++---------
+ tests/benchmarks/CMakeLists.txt         | 12 +-----------
+ tests/pkd/CMakeLists.txt                | 13 +++++--------
+ tests/server/CMakeLists.txt             |  7 ++-----
+ tests/server/test_server/CMakeLists.txt |  5 +----
+ 7 files changed, 21 insertions(+), 46 deletions(-)
+
+diff --git a/examples/CMakeLists.txt b/examples/CMakeLists.txt
+index 82df58d0..70a296c6 100644
+--- a/examples/CMakeLists.txt
++++ b/examples/CMakeLists.txt
+@@ -6,10 +6,7 @@ set(examples_SRCS
+   connect_ssh.c
+ )
+ 
+-include_directories(
+-  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
+-  ${CMAKE_BINARY_DIR}
+-)
++include_directories(${libssh_BINARY_DIR})
+ 
+ if (ARGP_INCLUDE_DIR)
+     include_directories(${ARGP_INCLUDE_DIR})
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 300c28d7..102b3bb3 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -1,7 +1,4 @@
+-set(LIBSSH_PUBLIC_INCLUDE_DIRS
+-  ${libssh_SOURCE_DIR}/include
+-  CACHE INTERNAL "libssh public include directories"
+-)
++set(LIBSSH_PUBLIC_INCLUDE_DIRS ${libssh_SOURCE_DIR}/include)
+ 
+ set(LIBSSH_PRIVATE_INCLUDE_DIRS
+   ${libssh_BINARY_DIR}
+@@ -317,7 +314,10 @@ target_compile_options(ssh
+                            ${DEFAULT_C_COMPILE_FLAGS}
+                            -D_GNU_SOURCE)
+ target_include_directories(ssh
+-                           PRIVATE ${LIBSSH_PUBLIC_INCLUDE_DIRS} ${LIBSSH_PRIVATE_INCLUDE_DIRS})
++                           PUBLIC
++                               $<BUILD_INTERFACE:${libssh_SOURCE_DIR}/include>
++                               $<INSTALL_INTERFACE:include>
++                           PRIVATE ${LIBSSH_PRIVATE_INCLUDE_DIRS})
+ 
+ target_link_libraries(ssh
+                       PRIVATE ${LIBSSH_LINK_LIBRARIES})
+diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
+index 79d38536..7d4d0688 100644
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -6,15 +6,12 @@ endif (BSD OR SOLARIS OR OSX)
+ 
+ set(TORTURE_LIBRARY torture)
+ 
+-include_directories(
+-  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
+-  ${OPENSSL_INCLUDE_DIR}
+-  ${CMOCKA_INCLUDE_DIR}
+-  ${ZLIB_INCLUDE_DIR}
+-  ${CMAKE_BINARY_DIR}
+-  ${CMAKE_SOURCE_DIR}/src
+-  ${CMAKE_CURRENT_SOURCE_DIR}
+-)
++include_directories(${OPENSSL_INCLUDE_DIR}
++                    ${CMOCKA_INCLUDE_DIR}
++                    ${ZLIB_INCLUDE_DIR}
++                    ${libssh_BINARY_DIR}
++                    ${libssh_SOURCE_DIR}/src
++                    ${CMAKE_CURRENT_SOURCE_DIR})
+ 
+ set(TORTURE_LINK_LIBRARIES
+     ${CMOCKA_LIBRARY}
+diff --git a/tests/benchmarks/CMakeLists.txt b/tests/benchmarks/CMakeLists.txt
+index 8dc8552f..54ac1071 100644
+--- a/tests/benchmarks/CMakeLists.txt
++++ b/tests/benchmarks/CMakeLists.txt
+@@ -4,18 +4,8 @@ set(benchmarks_SRCS
+   bench_scp.c bench_sftp bench_raw.c benchmarks.c latency.c
+ )
+ 
+-include_directories(
+-  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
+-)
++include_directories(${libssh_BINARY_DIR})
+ 
+ add_executable(benchmarks ${benchmarks_SRCS})
+ 
+ target_link_libraries(benchmarks ${LIBSSH_SHARED_LIBRARY})
+-
+-include_directories(
+-  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
+-  ${CMAKE_BINARY_DIR}
+-)
+-
+-if (WITH_SFTP)
+-endif (WITH_SFTP)
+diff --git a/tests/pkd/CMakeLists.txt b/tests/pkd/CMakeLists.txt
+index 3eefae87..35d13442 100644
+--- a/tests/pkd/CMakeLists.txt
++++ b/tests/pkd/CMakeLists.txt
+@@ -2,14 +2,11 @@ project(pkd C)
+ 
+ if (WITH_SERVER AND UNIX AND NOT WIN32)
+ 
+-include_directories(
+-  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
+-  ${CMOCKA_INCLUDE_DIR}
+-  ${ZLIB_INCLUDE_DIR}
+-  ${CMAKE_BINARY_DIR}
+-  ${CMAKE_SOURCE_DIR}/src
+-  ${CMAKE_CURRENT_SOURCE_DIR}
+-)
++    include_directories(${CMOCKA_INCLUDE_DIR}
++                        ${ZLIB_INCLUDE_DIR}
++                        ${CMAKE_BINARY_DIR}
++                        ${libssh_SOURCE_DIR}/src
++                        ${CMAKE_CURRENT_SOURCE_DIR})
+ 
+ set(pkd_hello_src
+   pkd_daemon.c
+diff --git a/tests/server/CMakeLists.txt b/tests/server/CMakeLists.txt
+index deba556b..c497d9b3 100644
+--- a/tests/server/CMakeLists.txt
++++ b/tests/server/CMakeLists.txt
+@@ -12,11 +12,8 @@ set(LIBSSH_SERVER_TESTS
+     torture_server_config
+ )
+ 
+-include_directories(
+-  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
+-  ${CMAKE_BINARY_DIR}
+-  test_server
+-)
++include_directories(${libssh_BINARY_DIR}
++                    test_server)
+ 
+ if (ARGP_INCLUDE_DIR)
+     include_directories(${ARGP_INCLUDE_DIR})
+diff --git a/tests/server/test_server/CMakeLists.txt b/tests/server/test_server/CMakeLists.txt
+index cc8ed6f0..0f23f7aa 100644
+--- a/tests/server/test_server/CMakeLists.txt
++++ b/tests/server/test_server/CMakeLists.txt
+@@ -16,10 +16,7 @@ set(LIBSSH_SERVER_TESTS
+ #    torture_server_kbdint
+ )
+ 
+-include_directories(
+-  ${LIBSSH_PUBLIC_INCLUDE_DIRS}
+-  ${CMAKE_BINARY_DIR}
+-)
++include_directories(${libssh_BINARY_DIR})
+ 
+ if (ARGP_INCLUDE_DIR)
+     include_directories(${ARGP_INCLUDE_DIR})
+-- 
+2.24.0
+

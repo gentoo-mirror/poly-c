@@ -45,7 +45,7 @@ DOCS=( AUTHORS README ChangeLog )
 
 PATCHES=(
 	"${FILESDIR}/${PN}-0.8.0-tests.patch"
-	"${FILESDIR}/${PN}-0.9.1-cmake_export_revert.patch"
+	"${FILESDIR}/${PN}-0.9.1-cmake_fixes.patch"
 )
 
 src_prepare() {
