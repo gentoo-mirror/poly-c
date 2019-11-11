@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: a246a79ffb5ab726344b2579f40b0630a51d4213 $
+# $Id: 256d07fc143e834d20e0fe5612ede80cd3d27bb0 $
 
 EAPI=7
 
@@ -44,6 +44,8 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-4.8.13-restore_saved_replace_string.patch
 	"${FILESDIR}"/${PN}-4.8.22-ebuild_syntax.patch
 )
+
+RESTRICT="!test? ( test )"
 
 S=${WORKDIR}/${MY_P}
 

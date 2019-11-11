@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9f58fc20268295a6f7970334b78189274451693f $
+# $Id: 7791376a19daa5596e2ad389ba4e941ee0c7b755 $
 
 EAPI=7
 
@@ -38,6 +38,8 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )
 	test? ( dev-libs/check )
 	"
+
+RESTRICT="!test? ( test )"
 
 S="${WORKDIR}/${MY_P}"
 

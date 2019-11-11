@@ -30,3 +30,6 @@ sci-astronomy/pulsatingscience
 # Breaks webkit based packages
 =dev-libs/icu-65.1_pre
 =dev-libs/icu-layoutex-65.1_pre
+
+# Fails to build
+=media-video/handbrake-1.3.0_pre

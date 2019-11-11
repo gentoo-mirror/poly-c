@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 68fb0b3b5ad995219aff8068682ccf650ad0f370 $
+# $Id: 1b8d0ea6945d1760f20961e0d54266937100fdc9 $
 
 EAPI="7"
 
@@ -87,6 +87,10 @@ pkg_setup() {
 }
 
 src_prepare() {
+	# allow openssl to be cross-compiled
+	cp "${FILESDIR}"/gentoo.config-1.0.2 gentoo.config || die
+	chmod a+rx gentoo.config || die
+
 	if use bindist; then
 		mv "${WORKDIR}"/bindist-patches/hobble-openssl "${WORKDIR}" || die
 		bash "${WORKDIR}"/hobble-openssl || die
@@ -149,10 +153,6 @@ src_prepare() {
 	# doesn't have well-split CFLAGS and we're making it even worse
 	# and 'make depend' uses -Werror for added fun (#417795 again)
 	[[ ${CC} == *clang* ]] && append-flags -Qunused-arguments
-
-	# allow openssl to be cross-compiled
-	cp "${FILESDIR}"/gentoo.config-1.0.2 gentoo.config || die
-	chmod a+rx gentoo.config || die
 
 	append-flags -fno-strict-aliasing
 	append-flags $(test-flags-CC -Wa,--noexecstack)
