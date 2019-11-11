@@ -123,6 +123,8 @@ src_prepare() {
 	# Apply our patches
 	eapply "${WORKDIR}/firefox"
 
+	eapply "${FILESDIR}"/${PN}-2019.10-classic_rust-1.39.patch
+
 	# Enable gnomebreakpad
 	if use debug ; then
 		sed -i -e "s:GNOME_DISABLE_CRASH_DIALOG=1:GNOME_DISABLE_CRASH_DIALOG=0:g" \
