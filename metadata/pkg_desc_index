@@ -137,13 +137,13 @@ net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that s
 net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
 net-misc/networkmanager 1.20.0_pre 1.20.4_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.28 3.29: A discrete-event network simulator for Internet systems.
+net-misc/owncloud-client 2.6.0.13018_pre: Synchronize files from ownCloud Server with your computer
 net-misc/rsync 3.1.3: File transfer program to keep remote files into sync
 net-misc/ssh-tools 1.5: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-misc/wget2 1.99.0 1.99.1 1.99.2: GNU Wget2 is a file and recursive website downloader
 net-p2p/ncdc 1.21_pre: ncurses directconnect client
 net-print/hplip 3.19.11_pre: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
-net-wireless/bluez 5.52_pre: Bluetooth Tools and System Daemons for Linux
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 net-wireless/wpa_supplicant 2.9_pre: IEEE 802.1X/WPA supplicant for secure wireless transfers
 sci-astronomy/pulsatingscience 9999: 3D binary pulsar animation and outreach application
