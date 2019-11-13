@@ -25,6 +25,7 @@ SLOT="0"
 IUSE="test"
 
 RDEPEND="
+	dev-python/distro[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	dev-python/pillow[${PYTHON_USEDEP}]
 	dev-python/pyyaml[${PYTHON_USEDEP}]

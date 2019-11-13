@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c2aa5bc3dd974e06d055c265ee65aa7914248b28 $
+# $Id: 32bfde82f66c2a2f84598c814b51f8fbed945871 $
 
 EAPI=6
 
@@ -13,7 +13,7 @@ if [[ ${PV} == 9999* ]]; then
 	inherit autotools git-r3
 else
 	SRC_URI="https://www.kernel.org/pub/linux/utils/kernel/kmod/${P}.tar.xz"
-	KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 m68k ~mips ~ppc ~ppc64 ~riscv s390 sh ~sparc x86"
+	KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 m68k ~mips ppc ppc64 ~riscv s390 sh sparc x86"
 	inherit libtool
 fi
 
