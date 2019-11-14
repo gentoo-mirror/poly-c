@@ -1,0 +1,13 @@
+BDEPEND=>=app-portage/elt-patches-20170815 || ( >=sys-devel/automake-1.16.1:1.16 >=sys-devel/automake-1.15.1:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DEFINED_PHASES=compile configure install prepare test
+DESCRIPTION=Optimized and portable routines for integer theoretic applications
+EAPI=7
+HOMEPAGE=http://www.libtom.net/
+IUSE=doc examples static-libs
+KEYWORDS=~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos
+LICENSE=WTFPL-2
+RESTRICT=mirror
+SLOT=0
+SRC_URI=https://github.com/libtom/libtommath/releases/download/v1.2.0/ltm-1.2.0.tar.xz
+_eclasses_=autotools	ea7865c8fba1ea8d3639f355fffe1a3c	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	1d91b03d42ab6308b5f4f6b598ed110e	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	toolchain-funcs	512eb3367f507ebaa1d1d43ab7d66e6c
+_md5_=f42775ecea8074f450ba0904a5c1611b

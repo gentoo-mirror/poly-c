@@ -44,6 +44,7 @@ dev-libs/boost 1.65.1_pre 1.69.0: Boost Libraries for C++
 dev-libs/icu 65.1_pre: International Components for Unicode
 dev-libs/icu-layoutex 65.1_pre: External layout part of International Components for Unicode
 dev-libs/libpwquality 1.4.2_pre: Library for password quality checking and generating random passwords
+dev-libs/libtommath 1.2.0_pre: Optimized and portable routines for integer theoretic applications
 dev-libs/libverto 0.3.1_pre: Main event loop abstraction library
 dev-libs/libxml2 2.9.10_pre: XML C parser and toolkit
 dev-libs/libxslt 1.1.34_pre: XSLT libraries and tools
@@ -146,7 +147,6 @@ net-misc/ssh-tools 1.5: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-misc/wget2 1.99.0 1.99.1 1.99.2: GNU Wget2 is a file and recursive website downloader
 net-p2p/ncdc 1.21_pre: ncurses directconnect client
-net-print/hplip 3.19.11_pre: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 net-wireless/wpa_supplicant 2.9_pre: IEEE 802.1X/WPA supplicant for secure wireless transfers
 sci-astronomy/pulsatingscience 9999: 3D binary pulsar animation and outreach application
