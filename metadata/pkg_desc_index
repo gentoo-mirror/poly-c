@@ -165,7 +165,7 @@ sys-apps/accountsservice 0.6.54_pre 0.6.55_pre: D-Bus interfaces for querying an
 sys-apps/baselayout 2.6-r1: Filesystem baselayout and init scripts
 sys-apps/fwup 1.0.0 1.2.1: Configurable embedded Linux firmware update creator and runner
 sys-apps/gawk 4.1.4 4.2.1-r1 5.0.0 5.0.1: GNU awk pattern-matching language
-sys-apps/haveged 1.9.6_pre 1.9.8_pre: A simple entropy daemon using the HAVEGE algorithm
+sys-apps/haveged 1.9.6_pre 1.9.8c: A simple entropy daemon using the HAVEGE algorithm
 sys-apps/hwloc 2.0.3_pre: displays the hardware topology in convenient formats
 sys-apps/iproute2 4.4.0 4.9.0 4.14.1-r2 4.14.1-r4 4.17.0-r1 4.18.0-r1 4.19.0-r1 4.20.0 5.0.0 5.1.0 5.2.0-r1 5.3.0: kernel routing and traffic control utilities
 sys-apps/kmod 25 26-r2: library and tools for managing linux kernel modules

@@ -1,32 +1,38 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id: cbc4aa61acf3f1789039f6658f22830abf1afc14 $
 
 EAPI=7
-inherit systemd poly-c_ebuilds
+inherit systemd
 
 DESCRIPTION="A simple entropy daemon using the HAVEGE algorithm"
 HOMEPAGE="http://www.issihosts.com/haveged/"
-#SRC_URI="https://github.com/jirka-h/${PN}/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
-SRC_URI="https://github.com/jirka-h/${PN}/archive/v${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
+SRC_URI="https://github.com/jirka-h/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~arm64 ~ppc ~x86"
-IUSE="selinux static-libs"
+IUSE="selinux static-libs threads"
 
 RDEPEND="
 	!<sys-apps/openrc-0.11.8
 	selinux? ( sec-policy/selinux-entropyd )
 "
 
+PATCHES=(
+	"${FILESDIR}/${PN}-1.9.8c-threads_build_fix.patch"
+)
+
 # threads are broken right now, but eventually
 # we should add $(use_enable threads)
 src_configure() {
-	econf \
-		$(use_enable static-libs static) \
-		--bindir=/usr/sbin \
-		--enable-nistest \
-		--disable-threads
+	local myeconfargs=(
+		$(use_enable static-libs static)
+		$(use_enable threads)
+		--bindir=/usr/sbin
+		--enable-nistest
+	)
+	econf "${myeconfargs[@]}"
 }
 
 src_install() {
