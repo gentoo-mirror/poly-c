@@ -1,6 +1,6 @@
 # Copyright 2003-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 1acd9c5d2d3166725a626bf40e823ec3d382b484 $
+# $Id: 0fd7e2a6f45b7cd1c6c54514aaceb054feb12b0e $
 
 EAPI=6
 
@@ -14,7 +14,7 @@ else
 	MY_P=systemd-${MY_PV}
 	S=${WORKDIR}/${MY_P}
 	SRC_URI="https://github.com/systemd/systemd/archive/v${MY_PV}/${MY_P}.tar.gz"
-	KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ~m68k ~mips ppc ppc64 s390 ~sh sparc x86"
+	KEYWORDS="~alpha amd64 arm arm64 ~hppa ia64 ~m68k ~mips ppc ppc64 s390 ~sh sparc x86"
 
 	FIXUP_PATCH="${PN}-243_rc1-revert-systemd-messup.patch"
 	SRC_URI+=" https://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}.xz"

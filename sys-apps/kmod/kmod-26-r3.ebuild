@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 08754b1f8b1e7be61ee5471e3f743fe92611afa2 $
+# $Id: 4c0380e44bde65250c04dc5f92a01b57c222c349 $
 
 EAPI=6
 
@@ -22,7 +22,7 @@ HOMEPAGE="https://git.kernel.org/?p=utils/kernel/kmod/kmod.git"
 
 LICENSE="LGPL-2"
 SLOT="0"
-IUSE="debug doc libressl lzma python ssl static-libs +tools zlib"
+IUSE="debug doc libressl lzma pkcs7 python static-libs +tools zlib"
 
 # Upstream does not support running the test suite with custom configure flags.
 # I was also told that the test suite is intended for kmod developers.
@@ -37,7 +37,7 @@ RDEPEND="!sys-apps/module-init-tools
 	!<sys-apps/systemd-216-r3
 	lzma? ( >=app-arch/xz-utils-5.0.4-r1 )
 	python? ( ${PYTHON_DEPS} )
-	ssl? (
+	pkcs7? (
 		!libressl? ( >=dev-libs/openssl-1.1.0:0= )
 		libressl? ( dev-libs/libressl:0= )
 	)
@@ -94,7 +94,7 @@ src_configure() {
 		$(use_enable static-libs static)
 		$(use_enable tools)
 		$(use_with lzma xz)
-		$(use_with ssl openssl)
+		$(use_with pkcs7 openssl)
 		$(use_with zlib)
 	)
 
