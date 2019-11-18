@@ -66,7 +66,6 @@ dev-util/cloc 1.84_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/gtk-doc 1.30_pre 1.32_pre: GTK+ Documentation Generator
 dev-util/gtk-doc-am 1.30_pre-r1 1.32_pre: Automake files from gtk-doc
-dev-util/itstool 2.0.5_pre 2.0.6_pre: Translation tool for XML documents that uses gettext files and ITS rules
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-action/supertuxkart 1.0_pre 1.0: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
@@ -170,6 +169,7 @@ sys-apps/iproute2 4.4.0 4.9.0 4.14.1-r2 4.14.1-r4 4.17.0-r1 4.18.0-r1 4.19.0-r1 
 sys-apps/kmod 25 26-r3: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g-r1: Standard commands to read man pages
+sys-apps/shadow 4.7-r1: Utilities to deal with user accounts
 sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/gparted 1.0.0_pre: Gnome Partition Editor

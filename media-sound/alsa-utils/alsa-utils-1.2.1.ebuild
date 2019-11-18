@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 280d4466e121cf7d07def7c72ded35777bac9785 $
+# $Id: cdc8f1f1a025ad112df36e38582cff7357f7e02c $
 
 EAPI=7
 inherit systemd udev
@@ -13,7 +13,7 @@ SRC_URI="https://www.alsa-project.org/files/pub/utils/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0.9"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh sparc ~x86"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86"
 IUSE="bat doc +libsamplerate +ncurses nls selinux"
 
 CDEPEND=">=media-libs/alsa-lib-${PV}
@@ -50,8 +50,6 @@ src_configure() {
 src_install() {
 	default
 	dodoc seq/*/README.*
-
-	newbin "${WORKDIR}/alsa-driver-${ADRIVER_PV}/utils/alsa-info.sh" alsa-info
 
 	newinitd "${FILESDIR}"/alsasound.initd-r8 alsasound
 	newconfd "${FILESDIR}"/alsasound.confd-r4 alsasound
