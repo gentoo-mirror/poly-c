@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 167d9dc598541aa70a4ebdcaed17b0cbf209b693 $
+# $Id: a7d7cf3f88f93ef4268f3307970bd9fa6d8ae8a1 $
 
 EAPI=6
 
@@ -24,6 +24,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc examples test"
+RESTRICT="!test? ( test )"
 
 RDEPEND="
 	>=dev-python/six-1.5.2[${PYTHON_USEDEP}]
