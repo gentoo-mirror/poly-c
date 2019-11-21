@@ -53,8 +53,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-4.8.23-shorten-too-long-german-strings.patch
 )
 
-S=${WORKDIR}/${MY_P}
-
 pkg_pretend() {
 	if use slang && use unicode ; then
 		ewarn "\"unicode\" USE flag only takes effect when the \"slang\" USE flag is disabled."

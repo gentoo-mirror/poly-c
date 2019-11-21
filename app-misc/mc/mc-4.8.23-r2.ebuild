@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 32597904a63f73cd73d6ed68e9d6699527f988a0 $
+# $Id: 856331ef9aa1017c05c539c01bd0eccf4743e379 $
 
 EAPI=7
 
@@ -39,12 +39,20 @@ DEPEND="${RDEPEND}
 	test? ( dev-libs/check )
 	"
 
+RESTRICT="!test? ( test )"
+
+S="${WORKDIR}/${MY_P}"
+
 PATCHES=(
+	"${FILESDIR}"/${P}-3933-iso9660-1.patch
+	"${FILESDIR}"/${P}-3933-iso9660-2.patch
+	"${FILESDIR}"/${PN}-4.8.23-gettext.patch
+	"${FILESDIR}"/${PN}-4.8.23-gettext-test.patch
+	"${FILESDIR}"/${PN}-4.8.23-vfs-gc-SEGV.patch
+
 	"${FILESDIR}"/${PN}-4.8.13-restore_saved_replace_string.patch
 	"${FILESDIR}"/${PN}-4.8.23-shorten-too-long-german-strings.patch
 )
-
-S=${WORKDIR}/${MY_P}
 
 pkg_pretend() {
 	if use slang && use unicode ; then

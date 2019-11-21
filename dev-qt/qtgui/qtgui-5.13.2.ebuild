@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 6bec13c736d101152501b23e727d2f5c0e798483 $
+# $Id: 20a5adb6d94f7f51fc218f5fcecb50a71f046559 $
 
 EAPI=7
 QT5_MODULE="qtbase"
@@ -123,6 +123,10 @@ QT5_GENTOO_CONFIG=(
 
 QT5_GENTOO_PRIVATE_CONFIG=(
 	:gui
+)
+
+PATCHES=(
+	"${FILESDIR}/${P}-no-xcb-no-xkbcommon.patch" # bug 699110
 )
 
 src_prepare() {
