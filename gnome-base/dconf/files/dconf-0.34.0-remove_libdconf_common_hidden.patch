@@ -1,0 +1,90 @@
+From afd0cbe5dd14d19b89fcb8ae31deaf05bf4b55f0 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?I=C3=B1igo=20Mart=C3=ADnez?= <inigomartinez@gmail.com>
+Date: Mon, 13 Aug 2018 23:52:05 +0200
+Subject: [PATCH] build: Remove libdconf-common-hidden
+
+`libdconf-common-hidden` is built to hide symbols not necessary
+in the `gsettings` gio module that only needs to expose
+`g_io_module_[load|query|unload]` symbols.
+
+To achieve this a symbol map along with `version-script` linker flag
+is used. Thanks to this only the necessary symbols are exposed,
+building `libdconf-common-hidden` static library is not necessary
+anymore and the existing dependencies can be used.
+---
+ common/meson.build    | 14 --------------
+ gsettings/meson.build | 15 ++++++++-------
+ gsettings/symbol.map  |  8 ++++++++
+ 3 files changed, 16 insertions(+), 21 deletions(-)
+ create mode 100644 gsettings/symbol.map
+
+diff --git a/common/meson.build b/common/meson.build
+index 61af2f9..befa9bc 100644
+--- a/common/meson.build
++++ b/common/meson.build
+@@ -30,17 +30,3 @@ libdconf_common_dep = declare_dependency(
+   dependencies: glib_dep,
+   link_with: libdconf_common,
+ )
+-
+-libdconf_common_hidden = static_library(
+-  'dconf-common-hidden',
+-  sources: sources,
+-  include_directories: top_inc,
+-  dependencies: glib_dep,
+-  c_args: dconf_c_args + cc.get_supported_arguments('-fvisibility=hidden'),
+-  pic: true,
+-)
+-
+-libdconf_common_hidden_dep = declare_dependency(
+-  dependencies: glib_dep,
+-  link_with: libdconf_common_hidden,
+-)
+diff --git a/gsettings/meson.build b/gsettings/meson.build
+index a28892d..ca86d5c 100644
+--- a/gsettings/meson.build
++++ b/gsettings/meson.build
+@@ -1,18 +1,19 @@
+-# We use the libraries directly, as the dependency objects use
+-# link_whole; this avoids the gsettings backend module exposing
+-# symbols other than g_io_module_*
+ backend_deps = [
+-  libdconf_common_hidden,
+-  libdconf_gdbus_thread,
++  libdconf_common_dep,
++  libdconf_gdbus_thread_dep,
+ ]
+ 
++symbol_map = join_paths(meson.current_source_dir(), 'symbol.map')
++ldflags = cc.get_supported_link_arguments('-Wl,--version-script,@0@'.format(symbol_map))
++
+ libdconf_settings = shared_library(
+   'dconfsettings',
+   sources: 'dconfsettingsbackend.c',
+   include_directories: top_inc,
+-  link_with: backend_deps,
+-  dependencies: gio_dep,
++  dependencies: backend_deps,
+   c_args: dconf_c_args,
++  link_args: ldflags,
++  link_depends: symbol_map,
+   install: true,
+   install_dir: gio_module_dir,
+ )
+diff --git a/gsettings/symbol.map b/gsettings/symbol.map
+new file mode 100644
+index 0000000..43ed5a7
+--- /dev/null
++++ b/gsettings/symbol.map
+@@ -0,0 +1,8 @@
++{
++global:
++  g_io_module_load;
++  g_io_module_unload;
++  g_io_module_query;
++local:
++  *;
++};
+-- 
+2.22.0
+

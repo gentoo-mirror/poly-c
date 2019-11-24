@@ -1,0 +1,80 @@
+From 30edd20b126dd6f0b249cb20b4498d59835372d9 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?I=C3=B1igo=20Mart=C3=ADnez?= <inigomartinez@gmail.com>
+Date: Sun, 12 Aug 2018 11:54:14 +0200
+Subject: [PATCH] build: Improve libdconf visible symbols
+
+One of the changes in c50f3758d3e5da4f8b244227b211c3c3f454275c that
+was part of the GNOME/dconf!11 merge request, removed the list of
+libraries `libdconf` linked with. This was overlooked because meson
+build files used the same `deps` variable in several files and this
+make `libdconf` library function to use dependencies from
+`gsettings` library. Due to this, only `dconf_client_*` symbols
+where visible in `libdconf`.
+
+The set of libraries to link with in `libdconf` has been restored so
+now all the necessary symbols are visible again.
+
+The `link_whole` parameter in both `libdconf_client_dep` and
+`libdconf_common_dep` has been changed back to `link_with`.
+---
+ client/meson.build | 15 ++++++++-------
+ common/meson.build |  2 +-
+ 2 files changed, 9 insertions(+), 8 deletions(-)
+
+diff --git a/client/meson.build b/client/meson.build
+index 74fb090..7ba477e 100644
+--- a/client/meson.build
++++ b/client/meson.build
+@@ -12,11 +12,6 @@ install_headers(
+ 
+ sources = files('dconf-client.c')
+ 
+-deps = [
+-  libdconf_common_hidden_dep,
+-  libdconf_gdbus_thread_dep,
+-]
+-
+ libdconf_client = static_library(
+   'dconf-client',
+   sources: sources,
+@@ -28,16 +23,22 @@ libdconf_client = static_library(
+ 
+ libdconf_client_dep = declare_dependency(
+   dependencies: gio_dep,
+-  link_whole: libdconf_client,
++  link_with: libdconf_client,
+ )
+ 
++client_deps = [
++  libdconf_common_dep,
++  libdconf_engine_dep,
++  libdconf_gdbus_thread_dep,
++]
++
+ libdconf = shared_library(
+   'dconf',
+   sources: sources,
+   version: libversion,
+   soversion: soversion,
+   include_directories: top_inc,
+-  dependencies: deps,
++  dependencies: client_deps,
+   c_args: dconf_c_args,
+   install: true,
+ )
+diff --git a/common/meson.build b/common/meson.build
+index 58e0fa8..61af2f9 100644
+--- a/common/meson.build
++++ b/common/meson.build
+@@ -28,7 +28,7 @@ libdconf_common = static_library(
+ 
+ libdconf_common_dep = declare_dependency(
+   dependencies: glib_dep,
+-  link_whole: libdconf_common,
++  link_with: libdconf_common,
+ )
+ 
+ libdconf_common_hidden = static_library(
+-- 
+2.22.0
+

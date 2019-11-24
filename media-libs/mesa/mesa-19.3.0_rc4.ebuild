@@ -120,8 +120,8 @@ RDEPEND="
 		!video_cards_i965? ( ${LIBDRM_DEPSTRING}[video_cards_intel] )
 	)
 	video_cards_i915? ( ${LIBDRM_DEPSTRING}[video_cards_intel] )
-	vulkan? ( media-libs/vulkan-loader[${MULTILIB_USEDEP}] )
 	vulkan-overlay? ( dev-util/glslang:0=[${MULTILIB_USEDEP}] )
+	zink? ( media-libs/vulkan-loader[${MULTILIB_USEDEP}] )
 	X? (
 		>=x11-libs/libX11-1.6.2:=[${MULTILIB_USEDEP}]
 		>=x11-libs/libxshmfence-1.1:=[${MULTILIB_USEDEP}]

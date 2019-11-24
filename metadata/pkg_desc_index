@@ -88,6 +88,7 @@ games-strategy/unknown-horizons 9999: Anno-like real time strategy game
 games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 games-util/x52pro-linux 9999: Saitek X52pro drivers & controller mapping software for Linux
+gnome-base/dconf 0.34.0_pre: Simple low-level configuration system
 kde-apps/kde-wallpapers 15.08.3 15.08.3-r2 15.08.3-r3: KDE wallpapers
 kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
@@ -102,7 +103,6 @@ media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
 media-libs/mesa 19.3.0_rc4: OpenGL-like graphic library for Linux
-media-libs/phonon 4.11.1: KDE multimedia abstraction library
 media-libs/x265 3.2.1_pre: Library for encoding video streams into the H.265/HEVC format
 media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
