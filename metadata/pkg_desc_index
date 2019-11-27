@@ -23,7 +23,6 @@ app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LD
 app-misc/mc 4.8.22 4.8.23-r1 4.8.23-r2: GNU Midnight Commander is a text based file manager
 app-misc/mmv 1.01b_p19_pre: Move/copy/append/link multiple files according to a set of wildcard patterns
 app-misc/osmo 0.4.2: Handy personal organizer
-app-misc/tmux 3.0_rc5: Terminal multiplexer
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-shells/zsh 5.7.1: UNIX Shell similar to the Korn shell
@@ -166,10 +165,11 @@ sys-apps/baselayout 2.6-r1: Filesystem baselayout and init scripts
 sys-apps/fwup 1.0.0 1.2.1: Configurable embedded Linux firmware update creator and runner
 sys-apps/gawk 4.1.4 4.2.1-r1 5.0.0 5.0.1: GNU awk pattern-matching language
 sys-apps/hwloc 2.0.3_pre: displays the hardware topology in convenient formats
-sys-apps/iproute2 4.4.0 4.9.0 4.14.1-r2 4.14.1-r4 4.17.0-r1 4.18.0-r1 4.19.0-r1 4.20.0 5.0.0 5.1.0 5.2.0-r1 5.3.0: kernel routing and traffic control utilities
+sys-apps/iproute2 4.4.0 4.9.0 4.14.1-r2 4.14.1-r4 4.17.0-r1 4.18.0-r1 4.19.0-r1 4.20.0 5.0.0 5.1.0 5.2.0-r1 5.3.0 5.4.0: kernel routing and traffic control utilities
 sys-apps/kmod 25 26-r3: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g-r1: Standard commands to read man pages
+sys-apps/portage 2.3.80: Portage is the package management and distribution system for Gentoo
 sys-apps/shadow 4.7-r1: Utilities to deal with user accounts
 sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)

@@ -1,0 +1,31 @@
+From 313124e846a3857629a10939e558fe4a16174fea Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Wed, 27 Nov 2019 13:34:18 +0100
+Subject: [PATCH] Revert "eapply: Drop -s option for patch."
+
+This reverts commit 12d0c48addaf4506dfd7b33f85f2441618a46dd2.
+
+There's no need to accept every stupid brainfart...
+---
+ bin/phase-helpers.sh | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/bin/phase-helpers.sh b/bin/phase-helpers.sh
+index 60f8d32438..b53d396502 100644
+--- a/bin/phase-helpers.sh
++++ b/bin/phase-helpers.sh
+@@ -993,9 +993,10 @@ if ___eapi_has_eapply; then
+ 			ebegin "${prefix:-Applying }${f##*/}"
+ 			# -p1 as a sane default
+ 			# -f to avoid interactivity
++			# -s to silence progress output
+ 			# -g0 to guarantee no VCS interaction
+ 			# --no-backup-if-mismatch not to pollute the sources
+-			${patch_cmd} -p1 -f -g0 --no-backup-if-mismatch \
++			${patch_cmd} -p1 -f -s -g0 --no-backup-if-mismatch \
+ 				"${patch_options[@]}" < "${f}"
+ 			failed=${?}
+ 			if ! eend "${failed}"; then
+-- 
+2.24.0
+
