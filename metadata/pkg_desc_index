@@ -15,7 +15,6 @@ app-crypt/nwipe 0.24_pre: Securely erase disks using a variety of recognized met
 app-crypt/qca 2.1.3-r2: Qt Cryptographic Architecture (QCA)
 app-editors/cooledit 3.17.19: Cooledit is a full featured multiple window text editor
 app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
-app-emulation/virtualbox-modules 6.0.14: Kernel Modules for Virtualbox
 app-laptop/dell-fan-mon 1.0 9999: Fan control for some Dell laptops
 app-laptop/i8kutils 1.43_pre: Dell Inspiron and Latitude utilities
 app-misc/kenny 0.1: command-line kennyfier
@@ -100,7 +99,7 @@ media-libs/libdvbpsi 1.3.3_pre: library for MPEG TS/DVB PSI tables decoding and 
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
-media-libs/mesa 19.3.0_rc4: OpenGL-like graphic library for Linux
+media-libs/mesa 19.3.0_rc5: OpenGL-like graphic library for Linux
 media-libs/x265 3.2.1_pre: Library for encoding video streams into the H.265/HEVC format
 media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
@@ -127,7 +126,7 @@ net-analyzer/netsniff-ng 0.6.6 9999: high performance network sniffer for packet
 net-analyzer/nikto 2.1.5_pre 2.1.6_pre: Web Server vulnerability scanner.
 net-dialup/mingetty 1.08-r1: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
-net-ftp/filezilla 3.39.0 3.42.1 3.43.0 3.44.1 3.44.2 3.45.1: FTP client with lots of useful features and an intuitive interface
+net-ftp/filezilla 3.39.0 3.42.1 3.43.0 3.44.1 3.44.2 3.45.1 3.46.0: FTP client with lots of useful features and an intuitive interface
 net-im/jabberd2 2.7.0: Open Source Jabber Server
 net-im/licq 1.8.2: ICQ Client with v8 support
 net-irc/pchat-irc 1.5.3: Graphical IRC client
@@ -169,7 +168,7 @@ sys-apps/iproute2 4.4.0 4.9.0 4.14.1-r2 4.14.1-r4 4.17.0-r1 4.18.0-r1 4.19.0-r1 
 sys-apps/kmod 25 26-r3: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g-r1: Standard commands to read man pages
-sys-apps/portage 2.3.80: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.3.80-r1: Portage is the package management and distribution system for Gentoo
 sys-apps/shadow 4.7-r1: Utilities to deal with user accounts
 sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)

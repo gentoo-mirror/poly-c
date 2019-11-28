@@ -1,12 +1,12 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 94eaa9c0660f5dc9b1184c56f283a03606aa3b49 $
+# $Id: 16d30fb6b0ee189e36ef1612dfb400eaf7ce34cc $
 
 EAPI=6
 
 WX_GTK_VER="3.0"
 
-inherit autotools flag-o-matic gnome2-utils wxwidgets
+inherit autotools flag-o-matic wxwidgets xdg
 
 MY_PV=${PV/_/-}
 MY_P="FileZilla_${MY_PV}"
@@ -17,17 +17,17 @@ SRC_URI="https://download.filezilla-project.org/client/${MY_P}_src.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ~arm ~ia64 ~ppc x86"
+KEYWORDS="~amd64 ~arm ~ia64 ~ppc ~x86"
 IUSE="dbus nls test"
 
 # pugixml 1.7 minimal dependency is for c++11 proper configuration
 RDEPEND=">=app-eselect/eselect-wxwidgets-0.7-r1
 	>=dev-libs/nettle-3.1:=
 	>=dev-db/sqlite-3.7
-	>=dev-libs/libfilezilla-0.15.1
-	<dev-libs/libfilezilla-0.16.0
+	>=dev-libs/libfilezilla-0.19.1:=
+	<dev-libs/libfilezilla-0.20.0:=
 	>=dev-libs/pugixml-1.7
-	>=net-libs/gnutls-3.4.15
+	>=net-libs/gnutls-3.5.7
 	>=x11-libs/wxGTK-3.0.4:${WX_GTK_VER}[X]
 	x11-misc/xdg-utils
 	dbus? ( sys-apps/dbus )"
@@ -65,15 +65,23 @@ src_prepare() {
 }
 
 src_configure() {
-	econf $(use_with dbus) $(use_enable nls locales) \
-		--with-pugixml=system \
+	local myeconfargs=(
 		--disable-autoupdatecheck
+		--with-pugixml=system
+		$(use_enable nls locales)
+		$(use_with dbus)
+	)
+	econf "${myeconfargs[@]}"
+}
+
+pkg_preinst() {
+	xdg_pkg_preinst
 }
 
 pkg_postinst() {
-	gnome2_icon_cache_update
+	xdg_pkg_postinst
 }
 
 pkg_postrm() {
-	gnome2_icon_cache_update
+	xdg_pkg_postrm
 }

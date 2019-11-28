@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2b4fb7350c29ac1789f1f722433f1dbe6dda558e $
+# $Id: 1231209ea1f53ed5e7c1b2eff943fafb28fe9894 $
 
 EAPI=6
 
@@ -37,6 +37,8 @@ DEPEND="${RDEPEND}
 	>=sys-devel/libtool-1.4
 	nls? ( >=sys-devel/gettext-0.11 )
 	test? ( >=dev-util/cppunit-1.13.0 )"
+
+RESTRICT="!test? ( test )"
 
 S="${WORKDIR}"/${PN}-${MY_PV}
 

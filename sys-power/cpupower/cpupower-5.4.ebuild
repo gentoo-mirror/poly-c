@@ -1,14 +1,14 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
+# $Id: d45b53b560a1b222326e276969e432df713598dd $
 
-EAPI=6
+EAPI=7
 
-# eutils: strip-linguas
-inherit eutils systemd toolchain-funcs eapi7-ver
+inherit systemd toolchain-funcs
 
 DESCRIPTION="Shows and sets processor power related values"
 HOMEPAGE="https://www.kernel.org/"
-SRC_URI="https://www.kernel.org/pub/linux/kernel/v$(ver_cut 1).x/linux-${PV}.tar.xz"
+SRC_URI="https://www.kernel.org/pub/linux/kernel/v${PV%%.*}.x/linux-${PV}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0/0"
@@ -22,6 +22,10 @@ RDEPEND="sys-apps/pciutils
 DEPEND="${RDEPEND}
 	virtual/os-headers
 	nls? ( sys-devel/gettext )"
+
+PATCHES=(
+	-p4 "${FILESDIR}/cpupower-5.4-cflags.patch"
+)
 
 S="${WORKDIR}/linux-${PV}/tools/power/${PN}"
 
@@ -47,18 +51,13 @@ src_compile() {
 		VERSION=${PV}
 	)
 
-	if [[ -n ${LINGUAS+set} ]]; then
-		strip-linguas -i po
-		myemakeargs+=( LANGUAGES="${LINGUAS}" )
-	fi
-
 	emake "${myemakeargs[@]}"
 }
 
 src_install() {
-	emake DESTDIR="${D}" "${myemakeargs[@]}" install
+	emake "${myemakeargs[@]}" DESTDIR="${D}" install
 	doheader lib/cpupower.h
-	dodoc README ToDo
+	einstalldocs
 
 	newconfd "${FILESDIR}"/conf.d-r2 cpupower
 	newinitd "${FILESDIR}"/init.d-r4 cpupower

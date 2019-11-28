@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e7b9119d36b62424270418b6081e42c516065417 $
+# $Id: 6d384ab8fdd8f582f9a65d379949031e5840d1ef $
 
 EAPI=5
 
@@ -11,7 +11,7 @@ PYTHON_COMPAT=(
 )
 PYTHON_REQ_USE='bzip2(+),threads(+)'
 
-inherit distutils-r1 linux-info systemd prefix
+inherit distutils-r1 epatch linux-info systemd prefix
 
 DESCRIPTION="Portage is the package management and distribution system for Gentoo"
 HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Portage"
@@ -76,10 +76,6 @@ PDEPEND="
 
 REQUIRED_USE="epydoc? ( $(python_gen_useflags 'python2*') )"
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-2.3.80-eapply_non_verbose.patch
-)
-
 SRC_ARCHIVES="https://dev.gentoo.org/~zmedico/portage/archives"
 
 prefix_src_archives() {
@@ -93,7 +89,8 @@ prefix_src_archives() {
 
 TARBALL_PV=${PV}
 SRC_URI="mirror://gentoo/${PN}-${TARBALL_PV}.tar.bz2
-	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.bz2)"
+	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.bz2)
+	https://github.com/gentoo/portage/commit/a107f5bad841e5fad65298881e5a1feb9ffdbed1.patch -> ${P}-depgraph-fix-buildtime_blockers-logic-bug-689226.patch"
 
 pkg_pretend() {
 	local CONFIG_CHECK="~IPC_NS ~PID_NS ~NET_NS"
@@ -107,6 +104,9 @@ pkg_setup() {
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
+
+	epatch "${DISTDIR}/${P}-depgraph-fix-buildtime_blockers-logic-bug-689226.patch"
+	epatch "${FILESDIR}/${PN}-2.3.80-eapply_non_verbose.patch"
 
 	if use gentoo-dev; then
 		einfo "Disabling --dynamic-deps by default for gentoo-dev..."
