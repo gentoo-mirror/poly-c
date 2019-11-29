@@ -183,7 +183,7 @@ sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9: zip manipulation library found in the zlib distribution
 sys-libs/ncurses 6.1_p20191026: console display library
 sys-libs/slang 2.3.3_pre15: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.201 4.9.202 4.9.203 4.14.154 4.14.155 4.14.156 4.19.84 4.19.85 4.19.86 5.4: Shows and sets processor power related values
+sys-power/cpupower 4.9.202 4.9.203 4.9.204 4.14.154 4.14.155 4.14.156 4.19.84 4.19.85 4.19.86 5.4 5.4.1: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
@@ -192,7 +192,7 @@ www-client/links 2.17 2.18 2.19_pre 2.20.1_pre 2.20.2_pre: A fast and lightweigh
 www-client/waterfox 56.2.14 2019.10.1: Waterfox Web Browser
 x11-apps/xinit 1.4.0-r1 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
-x11-libs/gtk+ 3.24.12_pre: Gimp ToolKit +
+x11-libs/gtk+ 3.24.12_pre 3.24.13_pre: Gimp ToolKit +
 x11-libs/pango 1.44.7_pre: Internationalized text layout and rendering library
 x11-misc/adriconf 1.4 1.5.1 9999: Advanced DRI Configurator
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
