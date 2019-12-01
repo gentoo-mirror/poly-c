@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 932e1a155f542c6dcfd0870ef8264099919a3ffc $
+# $Id: 774605b4bf1de7b31c947f54f8cc17d5fc8ecbc2 $
 
 EAPI="7"
 
@@ -53,6 +53,7 @@ BDEPEND="
 	test? (
 		sys-apps/diffutils
 		sys-devel/bc
+		sys-process/procps
 	)"
 PDEPEND="app-misc/ca-certificates"
 
@@ -78,11 +79,11 @@ pkg_setup() {
 	[[ ${MERGE_TYPE} == binary ]] && return
 
 	# must check in pkg_setup; sysctl don't work with userpriv!
-	if has test ${FEATURES} && use sctp ; then
+	if has test ${FEATURES} && use sctp; then
 		# test_ssl_new will fail with "Ensure SCTP AUTH chunks are enabled in kernel"
 		# if sctp.auth_enable is not enabled.
 		local sctp_auth_status=$(sysctl -n net.sctp.auth_enable 2>/dev/null)
-		if [[ -z "${sctp_auth_status}" ]] || [[ ${sctp_auth_status} != 1 ]] ; then
+		if [[ -z "${sctp_auth_status}" ]] || [[ ${sctp_auth_status} != 1 ]]; then
 			die "FEATURES=test with USE=sctp requires net.sctp.auth_enable=1!"
 		fi
 	fi
@@ -132,7 +133,7 @@ src_prepare() {
 
 	eapply_user #332661
 
-	if has test ${FEATURES} && use sctp && has network-sandbox ${FEATURES} ; then
+	if has test ${FEATURES} && use sctp && has network-sandbox ${FEATURES}; then
 		ebegin "Disabling test '80-test_ssl_new.t' which is known to fail with FEATURES=network-sandbox"
 		rm test/recipes/80-test_ssl_new.t || die
 		eend $?
