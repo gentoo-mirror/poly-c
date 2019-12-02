@@ -51,6 +51,7 @@ dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptogra
 dev-libs/openssl 1.0.2r 1.0.2s-r1 1.0.2t-r1 1.1.1d-r3: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2t-r1: full-strength general purpose cryptography library (including SSL and TLS)
 dev-python/PyQt5 5.13.0: Python bindings for the Qt framework
+dev-python/dbus-python 1.2.14_pre: Python bindings for the D-Bus messagebus
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-python/pyscard 1.9.6_pre 1.9.7_pre: Smart cards support in python
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
@@ -92,7 +93,6 @@ kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
 lxde-base/lxsession 0.5.2: LXDE session manager
 media-fonts/font-util 1.3.2: X.Org font utilities
-media-gfx/gimp 2.10.14_pre: GNU Image Manipulation Program
 media-libs/freeimage 3.15.4-r1: Image library supporting many formats
 media-libs/glm 0.9.9.6: OpenGL Mathematics
 media-libs/libbpg 0.9.7_pre 0.9.8_pre: BPG (Better Portable Graphics) is a new image format
@@ -171,6 +171,7 @@ sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g-r1: Standard commands to read man pages
 sys-apps/portage 2.3.80-r1: Portage is the package management and distribution system for Gentoo
 sys-apps/shadow 4.7-r1: Utilities to deal with user accounts
+sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/gparted 1.0.0_pre: Gnome Partition Editor
