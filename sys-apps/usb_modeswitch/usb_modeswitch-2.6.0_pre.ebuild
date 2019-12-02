@@ -17,15 +17,13 @@ SRC_URI="http://www.draisberghof.de/${PN}/${REAL_P}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~x86"
-IUSE="jimtcl"
+IUSE=""
 
 COMMON_DEPEND="
 	virtual/udev
 	virtual/libusb:1
 "
-RDEPEND="${COMMON_DEPEND}
-	jimtcl? ( dev-lang/jimtcl )
-	!jimtcl? ( dev-lang/tcl:0 )" # usb_modeswitch script is tcl
+RDEPEND="${COMMON_DEPEND}"
 DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 "
@@ -48,7 +46,7 @@ src_install() {
 		DESTDIR="${D}" \
 		SYSDIR="${D}/$(systemd_get_unitdir)" \
 		UDEVDIR="${D}/$(get_udevdir)" \
-		$(usex jimtcl install-shared install)
+		install
 
 	# Even if we set SYSDIR above, the Makefile is causing automagic detection of `systemctl` binary,
 	# which is why we need to force the .service file to be installed:
