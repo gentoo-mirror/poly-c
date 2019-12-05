@@ -99,7 +99,7 @@ media-libs/libdvbpsi 1.3.3_pre: library for MPEG TS/DVB PSI tables decoding and 
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
-media-libs/mesa 19.3.0_rc5: OpenGL-like graphic library for Linux
+media-libs/mesa 19.3.0_rc6: OpenGL-like graphic library for Linux
 media-libs/x265 3.2.1_pre: Library for encoding video streams into the H.265/HEVC format
 media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
@@ -174,7 +174,6 @@ sys-apps/shadow 4.7-r1: Utilities to deal with user accounts
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
-sys-block/gparted 1.0.0_pre: Gnome Partition Editor
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/gnu-efi 3.0.10_pre 3.0.11_pre: Library for build EFI Applications
 sys-boot/grub 2.02-r4 2.04_rc1 2.04-r1: GNU GRUB boot loader
@@ -185,7 +184,7 @@ sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9: zip manipulation library found in the zlib distribution
 sys-libs/ncurses 6.1_p20191026 6.1_p20191130: console display library
 sys-libs/slang 2.3.3_pre15: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.202 4.9.203 4.9.204 4.14.155 4.14.156 4.14.157 4.19.85 4.19.86 4.19.87 5.4 5.4.1: Shows and sets processor power related values
+sys-power/cpupower 4.9.202 4.9.203 4.9.204 4.14.155 4.14.156 4.14.157 4.19.85 4.19.86 4.19.87 5.4 5.4.1 5.4.2: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
