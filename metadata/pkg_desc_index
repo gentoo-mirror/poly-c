@@ -169,7 +169,7 @@ sys-apps/iproute2 4.4.0 4.9.0 4.14.1-r2 4.14.1-r4 4.17.0-r1 4.18.0-r1 4.19.0-r1 
 sys-apps/kmod 25 26-r3: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g-r1: Standard commands to read man pages
-sys-apps/portage 2.3.80-r1: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.3.80-r1 2.3.81: Portage is the package management and distribution system for Gentoo
 sys-apps/shadow 4.7-r1: Utilities to deal with user accounts
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
@@ -184,7 +184,7 @@ sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9: zip manipulation library found in the zlib distribution
 sys-libs/ncurses 6.1_p20191026 6.1_p20191130: console display library
 sys-libs/slang 2.3.3_pre15: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.202 4.9.203 4.9.204 4.14.155 4.14.156 4.14.157 4.19.85 4.19.86 4.19.87 5.4 5.4.1 5.4.2: Shows and sets processor power related values
+sys-power/cpupower 4.9.203 4.9.204 4.9.206 4.14.156 4.14.157 4.14.158 4.19.86 4.19.87 4.19.88 5.4 5.4.1 5.4.2: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality

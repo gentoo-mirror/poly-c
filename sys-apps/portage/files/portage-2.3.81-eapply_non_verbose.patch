@@ -1,0 +1,43 @@
+From 61922306368e90ca0e13c97586b1a023c1ae89f1 Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Fri, 6 Dec 2019 11:37:40 +0100
+Subject: [PATCH] Revert "eapply: Output verbosely only if patch fails to apply
+ with -F0"
+
+This reverts commit 4a315c41b43867320b27e882bb1427ac553e683c.
+
+There's no need to accept every stupid brainfart...
+---
+ bin/phase-helpers.sh | 16 ++--------------
+ 1 file changed, 2 insertions(+), 14 deletions(-)
+
+diff --git a/bin/phase-helpers.sh b/bin/phase-helpers.sh
+index b5691bd700..60f8d32438 100644
+--- a/bin/phase-helpers.sh
++++ b/bin/phase-helpers.sh
+@@ -995,20 +995,8 @@ if ___eapi_has_eapply; then
+ 			# -f to avoid interactivity
+ 			# -g0 to guarantee no VCS interaction
+ 			# --no-backup-if-mismatch not to pollute the sources
+-			local all_opts=(
+-				-p1 -f -g0 --no-backup-if-mismatch
+-				"${patch_options[@]}"
+-			)
+-			# try applying with -F0 first, output a verbose warning
+-			# if fuzz factor is necessary
+-			if ${patch_cmd} "${all_opts[@]}" --dry-run -s -F0 \
+-					< "${f}" &>/dev/null; then
+-				all_opts+=( -s -F0 )
+-			else
+-				eqawarn "    ${f}: patch failed to apply without a fuzz factor, please rebase"
+-			fi
+-
+-			${patch_cmd} "${all_opts[@]}" < "${f}"
++			${patch_cmd} -p1 -f -g0 --no-backup-if-mismatch \
++				"${patch_options[@]}" < "${f}"
+ 			failed=${?}
+ 			if ! eend "${failed}"; then
+ 				__helpers_die "patch -p1 ${patch_options[*]} failed with ${f}"
+-- 
+2.24.0
+
