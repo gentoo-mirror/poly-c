@@ -6,7 +6,7 @@ EAPI=7
 inherit cmake-utils flag-o-matic l10n virtualx xdg
 
 #PLOCALES="af ar be bg bn br bs ca cs cy da de el en en_CA en_GB eo es et eu fa fi fr ga gl he he_IL hi hr hu hy ia id is it ja ka kk ko lt lv mk_MK mr ms my nb nl oc pa pl pt pt_BR ro ru si_LK sk sl sr sr@latin sv te tr tr_TR uk uz vi zh_CN zh_TW"
-PLOCALES="es nb ru"
+PLOCALES="es fr id nb ru"
 
 DESCRIPTION="Modern music player and library organizer based on Clementine and Qt"
 HOMEPAGE="https://www.strawbs.org/"
@@ -58,6 +58,7 @@ COMMON_DEPEND="
 	dbus? ( dev-qt/qtdbus:5 )
 	ipod? ( >=media-libs/libgpod-0.8.0 )
 	mtp? ( >=media-libs/libmtp-1.0.0 )
+	pulseaudio? ( media-sound/pulseaudio )
 "
 # Note: sqlite driver of dev-qt/qtsql is bundled, so no sqlite use is required; check if this can be overcome someway;
 RDEPEND="${COMMON_DEPEND}
@@ -73,7 +74,6 @@ DEPEND="${COMMON_DEPEND}
 	dev-qt/qtopengl:5
 	dev-qt/qtx11extras:5
 	dev-qt/qtxml:5
-	pulseaudio? ( media-sound/pulseaudio )
 "
 
 DOCS=( Changelog README.md )
