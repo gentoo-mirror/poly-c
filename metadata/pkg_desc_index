@@ -8,7 +8,7 @@ app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a log
 app-arch/xz-utils 5.2.4-r2 5.2.4-r3: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
-app-crypt/gnupg 2.2.18_pre: The GNU Privacy Guard, a GPL OpenPGP implementation
+app-crypt/gnupg 2.2.18_pre 2.2.19_pre: The GNU Privacy Guard, a GPL OpenPGP implementation
 app-crypt/libsecret 0.19.0_pre 0.19.1_pre: GObject library for accessing the freedesktop.org Secret Service API
 app-crypt/libu2f-host 1.1.6_pre: Yubico Universal 2nd Factor (U2F) Host C Library
 app-crypt/nwipe 0.24_pre: Securely erase disks using a variety of recognized methods
@@ -28,7 +28,6 @@ app-shells/zsh 5.7.1: UNIX Shell similar to the Korn shell
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
 app-text/gtkspell 2.0.16: Spell checking widget for GTK
 app-text/po4a 0.57_pre: Tools to ease the translation of documentation
-dev-db/sqlite 3.30.1_pre: SQL database engine
 dev-games/openscenegraph 3.5.6_pre 3.5.9_pre: Open source high performance 3D graphics toolkit
 dev-games/simgear 2019.1.1_pre: Development library for simulation games
 dev-java/ant-core 1.9.8_pre: Java-based build tool similar to 'make' that uses XML configuration files
@@ -57,7 +56,6 @@ dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/sphinx 1.8.2_pre: Python documentation generator
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtgui 5.12.3-r1 5.12.5 5.13.2: The GUI module and platform plugins for the Qt5 framework
-dev-scheme/guile 2.2.6_pre: GNU Ubiquitous Intelligent Language for Extensions
 dev-util/bcc 0.7.0_pre: Tools for BPF-based Linux IO analysis, networking, monitoring, and more
 dev-util/boost-build 1.65.1_pre 1.69.0: A system for large project software construction, simple to use and powerful
 dev-util/cloc 1.84_pre: Count Lines of Code
