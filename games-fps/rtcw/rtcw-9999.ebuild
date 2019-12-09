@@ -11,7 +11,7 @@ HOMEPAGE="http://games.activision.com/games/wolfenstein/"
 if [[ "${PV}" = 9999 ]] ; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/iortcw/iortcw.git"
-	RELEASE="${PN}-1.51b"
+	RELEASE="${PN}-1.51d"
 else
 	SRC_URI="https://github.com/iortcw/iortcw/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	S="${WORKDIR}/iortcw-${PV}"
