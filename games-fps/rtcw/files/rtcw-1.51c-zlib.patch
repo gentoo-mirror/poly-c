@@ -1,8 +1,18 @@
+From 454ad5dd97df7eb3983cd5f34151ef2a173d9e3d Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Mon, 9 Dec 2019 17:30:28 +0100
+Subject: [PATCH] build: Use system-zlib/-minizip
+
+---
+ SP/Makefile             | 6 +-----
+ SP/code/qcommon/files.c | 2 +-
+ 2 files changed, 2 insertions(+), 6 deletions(-)
+
 diff --git a/SP/Makefile b/SP/Makefile
-index 93de5c5..39fefcd 100644
+index 667aeebb..333ef655 100644
 --- a/SP/Makefile
 +++ b/SP/Makefile
-@@ -1098,7 +1098,7 @@ ifeq ($(USE_INTERNAL_ZLIB),1)
+@@ -1084,7 +1084,7 @@ ifeq ($(USE_INTERNAL_ZLIB),1)
    ZLIB_CFLAGS = -DNO_GZIP -I$(ZDIR)
  else
    ZLIB_CFLAGS ?= $(shell $(PKG_CONFIG) --silence-errors --cflags zlib || true)
@@ -11,7 +21,7 @@ index 93de5c5..39fefcd 100644
  endif
  BASE_CFLAGS += $(ZLIB_CFLAGS)
  LIBS += $(ZLIB_LIBS)
-@@ -1639,8 +1639,6 @@ Q3OBJ = \
+@@ -1626,8 +1626,6 @@ Q3OBJ = \
    $(B)/client/q_math.o \
    $(B)/client/q_shared.o \
    \
@@ -20,7 +30,7 @@ index 93de5c5..39fefcd 100644
    $(B)/client/puff.o \
    $(B)/client/vm.o \
    $(B)/client/vm_interpreted.o \
-@@ -2239,8 +2237,6 @@ Q3DOBJ = \
+@@ -2226,8 +2224,6 @@ Q3DOBJ = \
    $(B)/ded/q_math.o \
    $(B)/ded/q_shared.o \
    \
@@ -30,7 +40,7 @@ index 93de5c5..39fefcd 100644
    $(B)/ded/vm_interpreted.o \
    \
 diff --git a/SP/code/qcommon/files.c b/SP/code/qcommon/files.c
-index da03b12..ef2c8bf 100644
+index caf9f41a..3abb08a1 100644
 --- a/SP/code/qcommon/files.c
 +++ b/SP/code/qcommon/files.c
 @@ -38,7 +38,7 @@ If you have questions concerning this license or the applicable additional terms
@@ -42,3 +52,6 @@ index da03b12..ef2c8bf 100644
  
  /*
  =============================================================================
+-- 
+2.24.0
+

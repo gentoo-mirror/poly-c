@@ -1,17 +1,18 @@
---- iortcw-1.51b/SP/code/qcommon/files.c
-+++ iortcw-1.51b/SP/code/qcommon/files.c
-@@ -38,7 +38,7 @@
- 
- #include "q_shared.h"
- #include "qcommon.h"
--#include "../zlib-1.2.11/unzip.h"
-+#include <minizip/unzip.h>
- 
- /*
- =============================================================================
---- iortcw-1.51b/SP/Makefile
-+++ iortcw-1.51b/SP/Makefile
-@@ -1073,7 +1073,7 @@
+From 10fc3e320ac989efd29b1dad761504070f674276 Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Mon, 9 Dec 2019 17:29:34 +0100
+Subject: [PATCH] build: USe system-zlib/-minizip
+
+---
+ SP/Makefile             | 6 +-----
+ SP/code/qcommon/files.c | 2 +-
+ 2 files changed, 2 insertions(+), 6 deletions(-)
+
+diff --git a/SP/Makefile b/SP/Makefile
+index fce01884..4c131fc0 100644
+--- a/SP/Makefile
++++ b/SP/Makefile
+@@ -1073,7 +1073,7 @@ ifeq ($(USE_INTERNAL_ZLIB),1)
    ZLIB_CFLAGS = -DNO_GZIP -I$(ZDIR)
  else
    ZLIB_CFLAGS ?= $(shell pkg-config --silence-errors --cflags zlib || true)
@@ -20,7 +21,7 @@
  endif
  BASE_CFLAGS += $(ZLIB_CFLAGS)
  LIBS += $(ZLIB_LIBS)
-@@ -1608,8 +1608,6 @@
+@@ -1608,8 +1608,6 @@ Q3OBJ = \
    $(B)/client/q_math.o \
    $(B)/client/q_shared.o \
    \
@@ -29,7 +30,7 @@
    $(B)/client/puff.o \
    $(B)/client/vm.o \
    $(B)/client/vm_interpreted.o \
-@@ -2208,8 +2206,6 @@
+@@ -2208,8 +2206,6 @@ Q3DOBJ = \
    $(B)/ded/q_math.o \
    $(B)/ded/q_shared.o \
    \
@@ -38,3 +39,19 @@
    $(B)/ded/vm.o \
    $(B)/ded/vm_interpreted.o \
    \
+diff --git a/SP/code/qcommon/files.c b/SP/code/qcommon/files.c
+index 30b7805c..12ea337e 100644
+--- a/SP/code/qcommon/files.c
++++ b/SP/code/qcommon/files.c
+@@ -38,7 +38,7 @@ If you have questions concerning this license or the applicable additional terms
+ 
+ #include "q_shared.h"
+ #include "qcommon.h"
+-#include "../zlib-1.2.11/unzip.h"
++#include <minizip/unzip.h>
+ 
+ /*
+ =============================================================================
+-- 
+2.24.0
+

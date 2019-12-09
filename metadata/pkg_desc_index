@@ -38,8 +38,6 @@ dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/appstream-glib 0.7.16_pre: Provides GObjects and helper methods to read and write AppStream metadata
 dev-libs/boost 1.65.1_pre 1.69.0: Boost Libraries for C++
-dev-libs/icu 65.1_pre: International Components for Unicode
-dev-libs/icu-layoutex 65.1_pre: External layout part of International Components for Unicode
 dev-libs/libpwquality 1.4.2_pre: Library for password quality checking and generating random passwords
 dev-libs/libtommath 1.2.0_pre: Optimized and portable routines for integer theoretic applications
 dev-libs/libverto 0.3.1_pre: Main event loop abstraction library
@@ -72,7 +70,7 @@ games-engines/stratagus 2.4.2_pre: A realtime strategy game engine
 games-fps/dhewm3 1.4.1 9999: A Doom 3 GPL source modification.
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.75 2.76 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
-games-fps/rtcw 1.51b 9999: Return to Castle Wolfenstein - IORTCW Project
+games-fps/rtcw 1.51b 1.51c 9999: Return to Castle Wolfenstein - IORTCW Project
 games-rpg/freedroidrpg 0.16.1_pre: A modification of the classical Freedroid engine into an RPG
 games-simulation/flightgear 2019.1.1_pre: Open Source Flight Simulator
 games-simulation/flightgear-data 2019.1.1_pre: FlightGear data files
@@ -112,7 +110,6 @@ media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-sound/strawberry 9999: Modern music player and library organizer based on Clementine and Qt
 media-tv/mediathekview-bin 11 12 13.0.2 13.2.1: Download files from the public broadcasting services
 media-video/cinelerraGG 9999: The most advanced non-linear video editor and compositor - Good Guy's version
-media-video/handbrake 1.3.0_pre: Open-source, GPL-licensed, multiplatform, multithreaded video transcoder
 media-video/mkvtoolnix 38.0.0_pre 39.0.0_pre 40.0.0_pre: Tools to create, alter, and inspect Matroska files
 media-video/mplayer 1.4_pre: Media Player for Linux
 media-video/ogmrip 1.0.1: Graphical frontend and libraries for ripping DVDs and encoding to AVI/OGM/MKV/MP4

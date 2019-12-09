@@ -27,13 +27,6 @@ sci-astronomy/pulsatingscience
 # https://gitlab.gnome.org/Archive/pangox-compat/issues/1
 =x11-libs/pango-1.44.7_pre
 
-# Breaks webkit based packages
-=dev-libs/icu-65.1_pre
-=dev-libs/icu-layoutex-65.1_pre
-
-# Fails to build
-=media-video/handbrake-1.3.0_pre
-
 # Official 2019.12-classic release tarball has changes not being in the 
 # upstream git repo. Using a self rolled source tarball instead.
 =www-client/waterfox-2019.12
