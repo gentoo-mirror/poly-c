@@ -11,7 +11,7 @@ HOMEPAGE="http://games.activision.com/games/wolfenstein/"
 if [[ "${PV}" = 9999 ]] ; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/iortcw/iortcw.git"
-	RELEASE="${PN}-1.51d"
+	RELEASE="${PN}-1.51c"
 else
 	SRC_URI="https://github.com/iortcw/iortcw/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	S="${WORKDIR}/iortcw-${PV}"
@@ -22,7 +22,7 @@ fi
 WOLF_POINTRELEASE="wolf-linux-1.41b.x86.run"
 PATCH_DATA="patch-data-141.zip"
 SRC_URI+=" mirror://idsoftware/wolf/linux/${WOLF_POINTRELEASE}
-	https://github.com/iortcw/iortcw/releases/download/1.51b/patch-data-141.zip -> ${RELEASE}-${PATCH_DATA}"
+	https://github.com/iortcw/iortcw/releases/download/1.51c/patch-data-141.zip -> ${RELEASE}-${PATCH_DATA}"
 # iortcw is GPL-2 but the point release files still have the original copyrights
 # from ID-software
 LICENSE="GPL-2 RTCW"

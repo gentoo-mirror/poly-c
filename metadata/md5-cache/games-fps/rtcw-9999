@@ -10,6 +10,6 @@ PROPERTIES=live
 RDEPEND=|| ( >=sys-libs/zlib-1.2.11:=[minizip(-)] sys-libs/minizip:= ) client? ( media-libs/libsdl2 virtual/opengl virtual/jpeg:0 curl? ( net-misc/curl ) mumble? ( media-sound/mumble ) openal? ( media-libs/openal ) opus? ( media-libs/libogg media-libs/opus media-libs/opusfile ) truetype? ( media-libs/freetype ) vorbis? ( media-libs/libogg media-libs/libvorbis ) )
 REQUIRED_USE=|| ( client server ) voip? ( opus )
 SLOT=0
-SRC_URI=mirror://idsoftware/wolf/linux/wolf-linux-1.41b.x86.run https://github.com/iortcw/iortcw/releases/download/1.51b/patch-data-141.zip -> rtcw-1.51d-patch-data-141.zip
+SRC_URI=mirror://idsoftware/wolf/linux/wolf-linux-1.41b.x86.run https://github.com/iortcw/iortcw/releases/download/1.51c/patch-data-141.zip -> rtcw-1.51c-patch-data-141.zip
 _eclasses_=desktop	b1d22ac8bdd4679ab79c71aca235009d	git-r3	6d22636df236df4cc8475f7b7668bdcd	unpacker	3cd8bad0d31e525cd26be1bfa4e61631
-_md5_=c32ee40f47d62db496acb4594b4d0459
+_md5_=0f67b040c0337ac22ea498be5e5655f6
