@@ -6,6 +6,7 @@ app-admin/littleutils 1.0.42 1.0.43: The littleutils are a collection of small a
 app-admin/remotebox 2.2 2.5: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-arch/xz-utils 5.2.4-r2 5.2.4-r3: utils for managing LZMA compressed files
+app-backup/snapper 0.8.5_pre: Command-line program for btrfs and lvm snapshot management
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-crypt/gnupg 2.2.18_pre 2.2.19_pre: The GNU Privacy Guard, a GPL OpenPGP implementation
