@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 29af5f7bd47dcdceb3e5307fbf1f2c873f48938a $
+# $Id: dd4a44aa180f754c32a404d20a666ef17320c40a $
 
 EAPI=6
 
@@ -14,6 +14,7 @@ LICENSE="GPL-2"
 SLOT="0/6" # libprocps.so
 KEYWORDS="alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 ~riscv s390 sh sparc x86 ~amd64-linux ~x86-linux"
 IUSE="elogind +kill modern-top +ncurses nls selinux static-libs systemd test unicode"
+RESTRICT="!test? ( test )"
 
 COMMON_DEPEND="
 	elogind? ( sys-auth/elogind )
