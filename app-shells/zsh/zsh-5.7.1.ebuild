@@ -54,6 +54,7 @@ fi
 
 PATCHES=(
 	"${FILESDIR}/${P}-git_command_completion_updates.patch"
+	"${FILESDIR}/${PN}-5.7.1-ncurses_colors.patch"
 )
 
 src_prepare() {
@@ -86,6 +87,7 @@ src_configure() {
 		--enable-site-fndir="${EPREFIX}"/usr/share/zsh/site-functions
 		--enable-function-subdirs
 		--with-tcsetpgrp
+		--with-term-lib="$(usex unicode 'tinfow ncursesw' 'tinfo ncurses')"
 		$(use_enable maildir maildir-support)
 		$(use_enable pcre)
 		$(use_enable caps cap)
@@ -125,11 +127,8 @@ src_configure() {
 			sed -i '/^name=zsh\/db\/gdbm/s,link=static,link=no,' \
 				"${S}"/config.modules || die
 		fi
-	else
-		# enable curses module
-		# configure disables it because of stupid...
-		sed '/^name=zsh\/curses/s@link=no@link=dynamic@' \
-			-i config.modules || die
+	#else
+	#	sed '/^name=zsh\/curses/s@link=no@link=dynamic@' -i config.modules || die
 	fi
 }
 
