@@ -125,6 +125,11 @@ src_configure() {
 			sed -i '/^name=zsh\/db\/gdbm/s,link=static,link=no,' \
 				"${S}"/config.modules || die
 		fi
+	else
+		# enable curses module
+		# configure disables it because of stupid...
+		sed '/^name=zsh\/curses/s@link=no@link=dynamic@' \
+			-i config.modules || die
 	fi
 }
 
