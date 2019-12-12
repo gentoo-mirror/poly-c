@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c9003dab0f4e463e02033ca1bc39c64cb263f02c $
+# $Id: 391dda5cc547fdccd251c5fa85cbe2f6d14228ad $
 
 EAPI=7
 
@@ -127,8 +127,6 @@ src_configure() {
 			sed -i '/^name=zsh\/db\/gdbm/s,link=static,link=no,' \
 				"${S}"/config.modules || die
 		fi
-	#else
-	#	sed '/^name=zsh\/curses/s@link=no@link=dynamic@' -i config.modules || die
 	fi
 }
 

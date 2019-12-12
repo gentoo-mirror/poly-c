@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 77a3f91809bff0656801d2223cb67275bdb88610 $
+# $Id: 098628c40d4be4615f392e887b2a19718f30c58e $
 
 EAPI="4"
 
@@ -91,7 +91,7 @@ src_configure() {
 src_install() {
 	unset NLSPATH #175258
 
-	emake PREFIX="${D}" install || die "make install failed"
+	emake PREFIX="${D}" install
 	dosym man /usr/bin/manpath
 
 	dodoc LSM README* TODO

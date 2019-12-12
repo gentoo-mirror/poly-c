@@ -1,10 +1,10 @@
-From 6b90b81ec684e6c16cbc10823684c7af503b6838 Mon Sep 17 00:00:00 2001
+From 7ce49801cc8ebc6f3a343ee5b829007f8cfb2bce Mon Sep 17 00:00:00 2001
 From: Lars Wendler <polynomial-c@gentoo.org>
 Date: Wed, 11 Dec 2019 14:56:25 +0100
 Subject: [PATCH] configure.ac: check for has_colors symbol in curses lib
 
 Otherwise zsh/curses module won't get built if ncurses was built with
-separare tinfo lib.
+separate tinfo lib.
 One could still force-build the module but loading it later yields the
 following error message:
 
