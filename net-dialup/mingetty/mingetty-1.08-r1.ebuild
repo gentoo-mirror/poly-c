@@ -1,10 +1,10 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id: c70e8e1d58715a7b29c7fe2e16231f91e254703c $
 
 EAPI=6
 
-inherit toolchain-funcs eutils
+inherit toolchain-funcs
 
 DESCRIPTION="A compact getty program for virtual consoles only"
 HOMEPAGE="https://sourceforge.net/projects/mingetty"
@@ -16,8 +16,8 @@ KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 sparc x86"
 IUSE="unicode"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-1.08-openlog.patch \
-	"${FILESDIR}"/${PN}-1.08-check_chroot_chdir_nice.patch \
+	"${FILESDIR}"/${PN}-1.08-openlog.patch
+	"${FILESDIR}"/${PN}-1.08-check_chroot_chdir_nice.patch
 	"${FILESDIR}"/${PN}-1.08-limit_tty_length.patch
 )
 
