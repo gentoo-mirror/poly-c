@@ -5,18 +5,18 @@ EAPI=7
 
 PYTHON_COMPAT=( python{2_7,3_{5,6,7}} )
 
-inherit flag-o-matic multiprocessing python-r1 toolchain-funcs multilib-minimal
+inherit flag-o-matic multiprocessing python-r1 toolchain-funcs multilib-minimal poly-c_ebuilds
 
-MY_P="${PN}_$(ver_rs 1- _)"
-MAJOR_V="$(ver_cut 1-2)"
+REAL_PV="$(ver_rs 1- _ ${MY_PV})"
+MAJOR_V="$(ver_cut 1-2 ${MY_PV})"
 
 DESCRIPTION="Boost Libraries for C++"
 HOMEPAGE="https://www.boost.org/"
-SRC_URI="https://downloads.sourceforge.net/project/boost/${PN}/${PV}/${MY_P}.tar.bz2"
+SRC_URI="https://dl.bintray.com/boostorg/release/${MY_PV}/source/boost_${REAL_PV}.tar.bz2"
 
 LICENSE="Boost-1.0"
-SLOT="0/${PV}" # ${PV} instead ${MAJOR_V} due to bug 486122
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
+SLOT="0/${MY_PV}" # ${MY_PV} instead ${MAJOR_V} due to bug 486122
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
 IUSE="bzip2 context debug doc icu lzma +nls mpi numpy python static-libs +threads tools zlib zstd"
 REQUIRED_USE="
 	mpi? ( threads )
@@ -31,6 +31,7 @@ RESTRICT="test"
 
 RDEPEND="
 	!app-admin/eselect-boost
+	!dev-libs/boost-numpy
 	bzip2? ( app-arch/bzip2:=[${MULTILIB_USEDEP}] )
 	icu? ( >=dev-libs/icu-3.6:=[${MULTILIB_USEDEP}] )
 	!icu? ( virtual/libiconv[${MULTILIB_USEDEP}] )
@@ -42,15 +43,15 @@ RDEPEND="
 	)
 	zlib? ( sys-libs/zlib:=[${MULTILIB_USEDEP}] )
 	zstd? ( app-arch/zstd:=[${MULTILIB_USEDEP}] )"
-DEPEND="${RDEPEND}
-	=dev-util/boost-build-${MAJOR_V}*"
+DEPEND="${RDEPEND}"
+BDEPEND="=dev-util/boost-build-${MAJOR_V}*"
 
-S="${WORKDIR}/${MY_P}"
+S="${WORKDIR}/${PN}_${REAL_PV}"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-1.48.0-disable_icu_rpath.patch
-	"${FILESDIR}"/${PN}-1.69.0-context-x32.patch
-	"${FILESDIR}"/${PN}-1.56.0-build-auto_index-tool.patch
+	"${FILESDIR}"/${PN}-1.71.0-disable_icu_rpath.patch
+	"${FILESDIR}"/${PN}-1.71.0-context-x32.patch
+	"${FILESDIR}"/${PN}-1.71.0-build-auto_index-tool.patch
 )
 
 python_bindings_needed() {
@@ -117,8 +118,8 @@ create_user-config.jam() {
 
 pkg_setup() {
 	# Bail out on unsupported build configuration, bug #456792
-	if [[ -f "${EROOT}/etc/site-config.jam" ]]; then
-		if ! grep -q 'gentoo\(debug\|release\)' "${EROOT}/etc/site-config.jam"; then
+	if [[ -f "${EROOT}"/etc/site-config.jam ]]; then
+		if ! grep -q 'gentoo\(debug\|release\)' "${EROOT}"/etc/site-config.jam; then
 			eerror "You are using custom ${EROOT}/etc/site-config.jam without defined gentoorelease/gentoodebug targets."
 			eerror "Boost can not be built in such configuration."
 			eerror "Please, either remove this file or add targets from ${EROOT}/usr/share/boost-build/site-config.jam to it."
@@ -129,11 +130,6 @@ pkg_setup() {
 
 src_prepare() {
 	default
-
-	# Do not try to build missing 'wave' tool, bug #522682
-	# Upstream bugreport - https://svn.boost.org/trac/boost/ticket/10507
-	sed -i -e 's:wave/build//wave::' tools/Jamfile.v2 || die
-
 	multilib_copy_sources
 }
 
@@ -165,14 +161,19 @@ src_configure() {
 		-q
 		-d+2
 		pch=off
-		$(usex icu "-sICU_PATH=${EPREFIX}/usr" '--disable-icu boost.locale.icu=off')
+		$(usex icu "-sICU_PATH=${ESYSROOT}/usr" '--disable-icu boost.locale.icu=off')
 		$(usex mpi '' '--without-mpi')
 		$(usex nls '' '--without-locale')
 		$(usex context '' '--without-context --without-coroutine --without-fiber')
 		$(usex threads '' '--without-thread')
-		--boost-build="${EPREFIX}"/usr/share/boost-build
+		--without-stacktrace
+		--boost-build="${BROOT}"/usr/share/boost-build
 		--prefix="${ED}/usr"
 		--layout=system
+		# CMake has issues working with multiple python impls,
+		# disable cmake config generation for the time being
+		# https://github.com/boostorg/python/issues/262#issuecomment-483069294
+		--no-cmake-config
 		# building with threading=single is currently not possible
 		# https://svn.boost.org/trac/boost/ticket/7105
 		threading=multi
@@ -189,11 +190,6 @@ src_configure() {
 		# We need to add the prefix, and in two cases this exceeds, so prepare
 		# for the largest possible space allocation.
 		append-ldflags -Wl,-headerpad_max_install_names
-	fi
-
-	# bug 298489
-	if use ppc || use ppc64; then
-		[[ $(gcc-version) > 4.3 ]] && append-flags -mno-altivec
 	fi
 
 	# Use C++14 globally as of 1.62
@@ -313,7 +309,7 @@ pkg_preinst() {
 	# resorting to dirty hacks like these. Removes lingering symlinks
 	# from the slotted versions.
 	local symlink
-	for symlink in "${EROOT}/usr/include/boost" "${EROOT}/usr/share/boostbook"; do
+	for symlink in "${EROOT}"/usr/include/boost "${EROOT}"/usr/share/boostbook; do
 		if [[ -L ${symlink} ]]; then
 			rm -f "${symlink}" || die
 		fi
@@ -323,4 +319,17 @@ pkg_preinst() {
 	# for unknown reasons, causing havoc for reverse dependencies
 	# Bug: 607734
 	rm -rf "${EROOT}"/usr/include/boost-1_[3-5]? || die
+}
+
+pkg_postinst() {
+	elog "Boost.Regex is *extremely* ABI sensitive. If you get errors such as"
+	elog
+	elog "  undefined reference to \`boost::re_detail_$(ver_cut 1)0$(ver_cut 2)00::cpp_regex_traits_implementation"
+	elog "    <char>::transform_primary[abi:cxx11](char const*, char const*) const'"
+	elog
+	elog "Then you need you need to recompile Boost and all its reverse dependencies"
+	elog "using the same toolchain. In general, *every* change of the C++ toolchain"
+	elog "requires a complete rebuild of the boost-dependent ecosystem."
+	elog
+	elog "See for instance https://bugs.gentoo.org/638138"
 }
