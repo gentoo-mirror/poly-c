@@ -153,7 +153,6 @@ LLVM_DEPSTR="
 	|| (
 		sys-devel/llvm:9[${MULTILIB_USEDEP}]
 		sys-devel/llvm:8[${MULTILIB_USEDEP}]
-		sys-devel/llvm:7[${MULTILIB_USEDEP}]
 	)
 	sys-devel/llvm:=[${MULTILIB_USEDEP}]
 "
