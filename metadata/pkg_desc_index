@@ -37,7 +37,6 @@ dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/appstream-glib 0.7.16_pre: Provides GObjects and helper methods to read and write AppStream metadata
-dev-libs/boost 1.72.0_pre: Boost Libraries for C++
 dev-libs/libpwquality 1.4.2_pre: Library for password quality checking and generating random passwords
 dev-libs/libtommath 1.2.0_pre: Optimized and portable routines for integer theoretic applications
 dev-libs/libxml2 2.9.10_pre: XML C parser and toolkit
@@ -54,7 +53,6 @@ dev-python/sphinx 1.8.2_pre: Python documentation generator
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtgui 5.12.3-r1 5.12.5 5.13.2: The GUI module and platform plugins for the Qt5 framework
 dev-util/bcc 0.7.0_pre: Tools for BPF-based Linux IO analysis, networking, monitoring, and more
-dev-util/boost-build 1.72.0_pre: A system for large project software construction, simple to use and powerful
 dev-util/cloc 1.84_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/gtk-doc 1.30_pre 1.32_pre: GTK+ Documentation Generator
