@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 682da81bfcf252213107c122c0ac4c8ebd6cf837 $
+# $Id: 5938d58d4a07f6bca9b05568ee581750587d3f06 $
 
 EAPI=7
 
@@ -33,6 +33,8 @@ RDEPEND="
 		!sys-apps/coreutils[kill]
 		!sys-apps/util-linux[kill]
 	)
+	!<app-i18n/man-pages-de-2.12-r1
+	!<app-i18n/man-pages-pl-0.7-r1
 	!<sys-apps/sysvinit-2.88-r6
 "
 
