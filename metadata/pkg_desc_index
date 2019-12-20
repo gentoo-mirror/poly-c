@@ -36,6 +36,7 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
+dev-lang/python 3.8.1_pre: An interpreted, interactive, object-oriented programming language
 dev-libs/appstream-glib 0.7.16_pre: Provides GObjects and helper methods to read and write AppStream metadata
 dev-libs/fribidi 1.0.8_pre: A free implementation of the unicode bidirectional algorithm
 dev-libs/libpwquality 1.4.2_pre: Library for password quality checking and generating random passwords
