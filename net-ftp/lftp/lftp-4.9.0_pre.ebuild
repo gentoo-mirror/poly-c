@@ -61,6 +61,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-4.8.2-libdir-libidn2.patch
 	"${FILESDIR}"/${PN}-4.8.2-libdir-openssl.patch
 	"${FILESDIR}"/${PN}-4.8.2-libdir-zlib.patch
+	"${FILESDIR}"/${PN}-4.9.0-no_ipv6.patch
 )
 
 src_prepare() {

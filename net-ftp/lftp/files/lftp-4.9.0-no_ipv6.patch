@@ -1,0 +1,46 @@
+From 72ee769548292bae3ad6fc198052a9441a8378bc Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Sun, 22 Dec 2019 01:46:23 +0100
+Subject: [PATCH] Fix build with --disable-ipv6
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Otherwise this fails with:
+
+ftpclass.cc: In member function ‘Ftp::pasv_state_t Ftp::Handle_EPSV_CEPR()’:
+ftpclass.cc:854:53: error: ‘union sockaddr_u’ has no member named ‘in6’; did you mean ‘in’?
+  854 |       inet_pton(AF_INET6, pasv_addr, &conn->data_sa.in6.sin6_addr);
+      |                                                     ^~~
+      |                                                     in
+ftpclass.cc:855:21: error: ‘union sockaddr_u’ has no member named ‘in6’; did you mean ‘in’?
+  855 |       conn->data_sa.in6.sin6_port=htons(port);
+      |                     ^~~
+      |                     in
+---
+ src/ftpclass.cc | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/ftpclass.cc b/src/ftpclass.cc
+index b067c0fc..a6d39b29 100644
+--- a/src/ftpclass.cc
++++ b/src/ftpclass.cc
+@@ -848,6 +848,7 @@ Ftp::pasv_state_t Ftp::Handle_EPSV_CEPR()
+       conn->data_sa.in.sin_port=htons(port);
+       conn->data_sa.sa.sa_family=AF_INET;
+    }
++#if INET6
+    // V6 / AF_INET6
+    else if (proto == 2)
+    {
+@@ -855,6 +856,7 @@ Ftp::pasv_state_t Ftp::Handle_EPSV_CEPR()
+       conn->data_sa.in6.sin6_port=htons(port);
+       conn->data_sa.sa.sa_family=AF_INET6;
+    }
++#endif
+    else
+    {
+       Disconnect("unsupported address family");
+-- 
+2.24.1
+
