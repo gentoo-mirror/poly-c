@@ -25,7 +25,7 @@ MOZCONFIG_OPTIONAL_WIFI=1
 inherit check-reqs eapi7-ver flag-o-matic toolchain-funcs eutils gnome2-utils mozconfig-v6.56 pax-utils xdg-utils autotools virtualx 
 
 if [[ -z "$(ver_cut 3)" ]] ; then
-	MY_PV="$(ver_cut 1-2)-classic"
+	MY_PV="${PV}-classic"
 else
 	MY_PV="$(ver_cut 1-2)-classic-$(ver_cut 3)"
 fi
@@ -45,6 +45,8 @@ SRC_URI="
 	${MOZ_HTTP_URI}/${P}.tar.xz
 	${PATCH_URIS[@]}"
 	#${MOZ_HTTP_URI}/${MY_PV}.tar.gz -> ${P}.tar.gz
+
+SRC_URI+=" https://www.gentoofan.org/gentoo/misc/${PN}-2019.12-classic_rust-1.40.patch.xz"
 
 ASM_DEPEND=">=dev-lang/yasm-1.1"
 
@@ -129,6 +131,8 @@ src_prepare() {
 
 	# Apply our patches
 	eapply "${WORKDIR}/firefox"
+
+	eapply "${WORKDIR}"/${PN}-2019.12-classic_rust-1.40.patch
 
 	# Enable gnomebreakpad
 	if use debug ; then
