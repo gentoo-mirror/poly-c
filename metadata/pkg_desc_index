@@ -37,7 +37,6 @@ dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/appstream-glib 0.7.16_pre: Provides GObjects and helper methods to read and write AppStream metadata
-dev-libs/fribidi 1.0.8_pre: A free implementation of the unicode bidirectional algorithm
 dev-libs/libev 4.31_pre: A high-performance event loop/event model with lots of feature
 dev-libs/libpwquality 1.4.2_pre: Library for password quality checking and generating random passwords
 dev-libs/libtommath 1.2.0_pre: Optimized and portable routines for integer theoretic applications
@@ -133,7 +132,7 @@ net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC
 net-misc/dhcpcd 8.0.1: A fully featured, yet light weight RFC2131 compliant DHCP client
 net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
-net-misc/networkmanager 1.20.6_pre 1.20.8_pre: A set of co-operative tools that make networking simple and straightforward
+net-misc/networkmanager 1.20.8_pre 1.22.2_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.28 3.29: A discrete-event network simulator for Internet systems.
 net-misc/owncloud-client 2.6.0.13018_pre: Synchronize files from ownCloud Server with your computer
 net-misc/rsync 3.1.3: File transfer program to keep remote files into sync
@@ -164,7 +163,7 @@ sys-apps/iproute2 4.4.0 4.9.0 4.14.1-r2 4.14.1-r4 4.17.0-r1 4.18.0-r1 4.19.0-r1 
 sys-apps/kmod 25 26-r3: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g-r1: Standard commands to read man pages
-sys-apps/portage 2.3.81 2.3.82: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.3.82 2.3.83: Portage is the package management and distribution system for Gentoo
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
@@ -186,7 +185,6 @@ www-client/links 2.17 2.18 2.19_pre 2.20.1_pre 2.20.2_pre: A fast and lightweigh
 www-client/waterfox 56.2.14 2019.10.1 2019.12: Waterfox Web Browser
 x11-apps/xinit 1.4.0-r1 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
-x11-libs/gtk+ 3.24.12_pre 3.24.13_pre: Gimp ToolKit +
 x11-libs/pango 1.44.7_pre: Internationalized text layout and rendering library
 x11-misc/adriconf 1.4 1.5.1 9999: Advanced DRI Configurator
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
