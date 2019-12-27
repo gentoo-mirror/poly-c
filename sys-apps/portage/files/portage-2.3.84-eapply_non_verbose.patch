@@ -1,0 +1,28 @@
+From 096209bc773c10605e3aa908e68acf2728dcc3be Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Fri, 27 Dec 2019 09:54:44 +0100
+Subject: [PATCH] Revert "eapply: Drop QA warning for fuzz factor."
+
+This reverts commit 42e7a93971ec55b87d5f290a67ef83fe7454c844.
+
+There's no need to accept every stupid brainfart...
+---
+ bin/phase-helpers.sh | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/bin/phase-helpers.sh b/bin/phase-helpers.sh
+index 020862ba03..b5691bd700 100644
+--- a/bin/phase-helpers.sh
++++ b/bin/phase-helpers.sh
+@@ -1004,6 +1004,8 @@ if ___eapi_has_eapply; then
+ 			if ${patch_cmd} "${all_opts[@]}" --dry-run -s -F0 \
+ 					< "${f}" &>/dev/null; then
+ 				all_opts+=( -s -F0 )
++			else
++				eqawarn "    ${f}: patch failed to apply without a fuzz factor, please rebase"
+ 			fi
+ 
+ 			${patch_cmd} "${all_opts[@]}" < "${f}"
+-- 
+2.24.1
+
