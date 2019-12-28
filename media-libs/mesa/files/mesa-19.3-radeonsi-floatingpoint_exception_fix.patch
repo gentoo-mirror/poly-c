@@ -1,0 +1,27 @@
+From 1bb24f91e1dae1d2e987308e313f9fc9821ad6c4 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marek=20Ol=C5=A1=C3=A1k?= <marek.olsak@amd.com>
+Date: Fri, 27 Dec 2019 18:02:33 -0500
+Subject: [PATCH] winsys/radeon: initialize pte_fragment_size
+
+Cc: 19.2 19.3 <mesa-stable@lists.freedesktop.org>
+
+Closes: #2179
+---
+ src/gallium/winsys/radeon/drm/radeon_drm_winsys.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/gallium/winsys/radeon/drm/radeon_drm_winsys.c b/src/gallium/winsys/radeon/drm/radeon_drm_winsys.c
+index 0a4da02262e..31a6758fe90 100644
+--- a/src/gallium/winsys/radeon/drm/radeon_drm_winsys.c
++++ b/src/gallium/winsys/radeon/drm/radeon_drm_winsys.c
+@@ -946,6 +946,7 @@ radeon_drm_winsys_create(int fd, const struct pipe_screen_config *config,
+ 
+     /* TTM aligns the BO size to the CPU page size */
+     ws->info.gart_page_size = sysconf(_SC_PAGESIZE);
++    ws->info.pte_fragment_size = 64 * 1024; /* GPUVM page size */
+ 
+     if (ws->num_cpus > 1 && debug_get_option_thread())
+         util_queue_init(&ws->cs_queue, "rcs", 8, 1, 0);
+-- 
+2.24.1
+
