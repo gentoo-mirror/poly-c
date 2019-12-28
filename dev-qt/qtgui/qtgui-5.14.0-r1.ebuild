@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: de5574c33afdb804481bbe0b07d50514e944bd7d $
+# $Id: 592b885552ca4d714820b9a0e3b8d63eaf78c4a8 $
 
 EAPI=7
 QT5_MODULE="qtbase"
@@ -48,7 +48,7 @@ COMMON_DEPEND="
 		>=x11-libs/libxkbcommon-0.5.0
 	)
 	png? ( media-libs/libpng:0= )
-	tslib? ( x11-libs/tslib )
+	tslib? ( >=x11-libs/tslib-1.21 )
 	tuio? ( ~dev-qt/qtnetwork-${PV} )
 	udev? ( virtual/libudev:= )
 	vnc? ( ~dev-qt/qtnetwork-${PV} )
