@@ -1,6 +1,6 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 545017ee85a8efd7a4eb37195e42b073d81bcd36 $
+# $Id: 3eadfcfcfbe4c61ea22f1152d280cb8f0dc54bff $
 
 EAPI=7
 
@@ -51,7 +51,7 @@ DESCRIPTION="GNU GRUB boot loader"
 HOMEPAGE="https://www.gnu.org/software/grub/"
 
 # Includes licenses for dejavu and unifont
-LICENSE="GPL-3 fonts? ( GPL-2-with-font-exception ) themes? ( BitstreamVera )"
+LICENSE="GPL-3+ BSD MIT fonts? ( GPL-2-with-font-exception ) themes? ( CC-BY-SA-3.0 BitstreamVera )"
 SLOT="2/${PVR}"
 IUSE="device-mapper doc efiemu +fonts mount nls static sdl test +themes truetype libzfs"
 
