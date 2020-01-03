@@ -1,7 +1,7 @@
-From 89952e2f6e824e73b2df0b8cd5e4484ff87e5412 Mon Sep 17 00:00:00 2001
+From 23d545de15d63869c769db4190d34998064ecfb4 Mon Sep 17 00:00:00 2001
 From: Lars Wendler <polynomial-c@gentoo.org>
 Date: Fri, 3 Jan 2020 21:30:28 +0100
-Subject: [PATCH] pppd.sh: ppp-2.4.8 "introduced defaultroute-metric" option
+Subject: [PATCH] pppd.sh: ppp-2.4.8 introduced "defaultroute-metric" option
 
 That option name differs from the one we patched into previous pppd releases
 so check if we are on >=2.4.8 version and use the correct option name
