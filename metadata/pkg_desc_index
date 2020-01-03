@@ -133,6 +133,7 @@ net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC
 net-misc/dhcpcd 8.0.1: A fully featured, yet light weight RFC2131 compliant DHCP client
 net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
+net-misc/netifrc 0.5.1 0.6.1: Gentoo Network Interface Management Scripts
 net-misc/networkmanager 1.20.8_pre 1.22.2_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.28 3.29: A discrete-event network simulator for Internet systems.
 net-misc/owncloud-client 2.6.0.13018_pre: Synchronize files from ownCloud Server with your computer

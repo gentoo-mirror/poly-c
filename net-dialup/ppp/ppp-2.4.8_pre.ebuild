@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -216,9 +216,9 @@ pkg_postinst() {
 	fi
 
 	# create *-secrets files if not exists
-	[[ ! -f "${EROOT}/etc/ppp/pap-secrets" ]] || \
+	[[ -f "${EROOT}/etc/ppp/pap-secrets" ]] || \
 		cp -pP "${EROOT}/etc/ppp/pap-secrets.example" "${EROOT}/etc/ppp/pap-secrets"
-	[[ ! -f "${EROOT}/etc/ppp/chap-secrets" ]] || \
+	[[ -f "${EROOT}/etc/ppp/chap-secrets" ]] || \
 		cp -pP "${EROOT}/etc/ppp/chap-secrets.example" "${EROOT}/etc/ppp/chap-secrets"
 
 	# lib name has changed
