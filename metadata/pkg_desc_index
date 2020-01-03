@@ -110,7 +110,7 @@ media-sound/strawberry 9999: Modern music player and library organizer based on 
 media-tv/mediathekview-bin 11 12 13.0.2 13.2.1: Download files from the public broadcasting services
 media-video/cinelerraGG 9999: The most advanced non-linear video editor and compositor - Good Guy's version
 media-video/ffmpeg 4.2.2_pre: Complete solution to record, convert and stream audio and video. Includes libavcodec
-media-video/mkvtoolnix 38.0.0_pre 39.0.0_pre 40.0.0_pre 41.0.0_pre: Tools to create, alter, and inspect Matroska files
+media-video/mkvtoolnix 38.0.0_pre 39.0.0_pre 40.0.0_pre 41.0.0_pre 42.0.0_pre: Tools to create, alter, and inspect Matroska files
 media-video/mplayer 1.4_pre: Media Player for Linux
 media-video/ogmrip 1.0.1: Graphical frontend and libraries for ripping DVDs and encoding to AVI/OGM/MKV/MP4
 media-video/smplayer 18.6.0 19.5.0 19.5.0-r1 19.10.2: Great Qt GUI front-end for mplayer/mpv
@@ -120,6 +120,7 @@ net-analyzer/nagios-plugins 1.4.16-r2 1.4.16-r3: Nagios 1.4.16 plugins - Pack of
 net-analyzer/netsniff-ng 0.6.6 9999: high performance network sniffer for packet inspection
 net-analyzer/nikto 2.1.5_pre 2.1.6_pre: Web Server vulnerability scanner.
 net-dialup/mingetty 1.08-r1: A compact getty program for virtual consoles only
+net-dialup/ppp 2.4.8_pre: Point-to-Point Protocol (PPP)
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/filezilla 3.39.0 3.42.1 3.43.0 3.44.1 3.44.2 3.45.1 3.46.0 3.46.3: FTP client with lots of useful features and an intuitive interface
 net-im/jabberd2 2.7.0: Open Source Jabber Server
