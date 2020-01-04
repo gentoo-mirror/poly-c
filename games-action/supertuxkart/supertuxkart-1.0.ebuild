@@ -1,10 +1,10 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 96746c833f783a669e4c208ccdd0269457e91f27 $
+# $Id: 1f2999ac01bbc6c57ce16f9991b5239c0d1edc6b $
 
 EAPI=7
 
-inherit cmake-utils desktop xdg-utils
+inherit cmake desktop xdg-utils
 
 DESCRIPTION="A kart racing game starring Tux, the linux penguin (TuxKart fork)"
 HOMEPAGE="https://supertuxkart.net/"
@@ -58,7 +58,7 @@ PATCHES=(
 )
 
 src_prepare() {
-	cmake-utils_src_prepare
+	cmake_src_prepare
 
 	# remove bundled libraries, just to be sure
 	rm -r lib/{angelscript,enet,glew,jpeglib,libpng,zlib} || die
@@ -80,11 +80,11 @@ src_configure() {
 		-DSTK_INSTALL_DATA_DIR=share/${PN}
 		-DBUILD_SHARED_LIBS=OFF # build bundled libsquish as static library
 	)
-	cmake-utils_src_configure
+	cmake_src_configure
 }
 
 src_install() {
-	cmake-utils_src_install
+	cmake_src_install
 	dodoc CHANGELOG.md
 
 	doicon -s 64 "${DISTDIR}"/${PN}.png

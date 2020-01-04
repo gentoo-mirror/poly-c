@@ -1,12 +1,12 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4254b42f9d031b262dc07b03e475b992c05464a6 $
+# $Id: edcc3d2203ea53d52fb8657664cf9c17fd44fce4 $
 
 EAPI=5
 
 DISTUTILS_USE_SETUPTOOLS=no
 PYTHON_COMPAT=(
-	pypy
+	pypy pypy3
 	python3_5 python3_6 python3_7 python3_8
 	python2_7
 )
