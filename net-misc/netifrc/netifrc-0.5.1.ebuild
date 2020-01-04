@@ -1,5 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
+# $Id: 0f0e43e0d55bfbf8b7c8915f9b80aca925adb900 $
 
 EAPI=5
 
@@ -13,7 +14,7 @@ if [[ ${PV} == "9999" ]]; then
 	#EGIT_REPO_URI="https://github.com/gentoo/${PN}" # Alternate
 	inherit git-r3
 else
-	SRC_URI="https://gitweb.gentoo.org/proj/${PN}.git/snapshot/${P}.tar.gz"
+	SRC_URI="https://dev.gentoo.org/~robbat2/distfiles/${P}.tar.bz2"
 	KEYWORDS="alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 ~riscv s390 sh sparc x86"
 fi
 
@@ -53,7 +54,7 @@ src_compile() {
 
 src_install() {
 	emake ${MAKE_ARGS} DESTDIR="${D}" install
-	dodoc README CREDITS FEATURE-REMOVAL-SCHEDULE STYLE TODO
+	dodoc README CREDITS FEATURE-REMOVAL-SCHEDULE STYLE TODO ChangeLog
 
 	# Install the service file
 	LIBEXECDIR=${EPREFIX}/lib/${PN}
