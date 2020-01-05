@@ -1,13 +1,13 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: edcc3d2203ea53d52fb8657664cf9c17fd44fce4 $
+# $Id: 15f50027e29c9a71db226774d4eaf82b9e1a8c7e $
 
 EAPI=5
 
 DISTUTILS_USE_SETUPTOOLS=no
 PYTHON_COMPAT=(
-	pypy pypy3
-	python3_5 python3_6 python3_7 python3_8
+	pypy3
+	python3_6 python3_7 python3_8
 	python2_7
 )
 PYTHON_REQ_USE='bzip2(+),threads(+)'

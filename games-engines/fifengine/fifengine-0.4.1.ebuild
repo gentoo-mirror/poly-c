@@ -1,11 +1,11 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
 #PYTHON_COMPAT=( pypy{,3} python{2_7,3_{4,5}} )
 # py3 is not yet tested by upstream -> not merged in master
-PYTHON_COMPAT=( pypy python2_7 )
+PYTHON_COMPAT=( python2_7 )
 
 inherit python-single-r1 cmake-utils
 
