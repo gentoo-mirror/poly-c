@@ -37,7 +37,6 @@ dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/appstream-glib 0.7.16_pre: Provides GObjects and helper methods to read and write AppStream metadata
-dev-libs/libev 4.31_pre: A high-performance event loop/event model with lots of feature
 dev-libs/libpwquality 1.4.2_pre: Library for password quality checking and generating random passwords
 dev-libs/libtommath 1.2.0_pre: Optimized and portable routines for integer theoretic applications
 dev-libs/libxml2 2.9.10_pre: XML C parser and toolkit
@@ -55,7 +54,7 @@ dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/gtk-doc 1.32_pre: GTK+ Documentation Generator
 dev-util/gtk-doc-am 1.32_pre: Automake files from gtk-doc
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
-games-action/supertuxkart 1.0_pre 1.0: A kart racing game starring Tux, the linux penguin (TuxKart fork)
+games-action/supertuxkart 1.0 1.1_pre: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
 games-engines/fifechan 0.1.4 9999: Lightweight cross platform GUI C++ library designed for games
 games-engines/fifengine 0.4.1 9999: Flexible Isometric Free Engine, 2D
