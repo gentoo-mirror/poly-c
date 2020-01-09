@@ -1,0 +1,29 @@
+From bdb07004fcc843ff1cab7afccf5775dbb730df22 Mon Sep 17 00:00:00 2001
+From: James Hilliard <james.hilliard1@gmail.com>
+Date: Wed, 8 Jan 2020 19:32:09 -0600
+Subject: [PATCH] Prevent passing an invalid linker to gcc.
+
+Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+---
+ mesonbuild/compilers/mixins/gnu.py | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/mesonbuild/compilers/mixins/gnu.py b/mesonbuild/compilers/mixins/gnu.py
+index dcca2271..3ff20874 100644
+--- a/mesonbuild/compilers/mixins/gnu.py
++++ b/mesonbuild/compilers/mixins/gnu.py
+@@ -304,7 +304,10 @@ class GnuLikeCompiler(metaclass=abc.ABCMeta):
+ 
+     @classmethod
+     def use_linker_args(cls, linker: str) -> typing.List[str]:
+-        return ['-fuse-ld={}'.format(linker)]
++        if linker in ['bfd', 'gold', 'lld']:
++            return ['-fuse-ld={}'.format(linker)]
++        else:
++            return []
+ 
+ 
+ class GnuCompiler(GnuLikeCompiler):
+-- 
+2.24.1
+
