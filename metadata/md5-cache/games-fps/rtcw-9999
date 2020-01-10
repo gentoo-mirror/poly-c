@@ -11,5 +11,5 @@ RDEPEND=|| ( >=sys-libs/zlib-1.2.11:=[minizip(-)] sys-libs/minizip:= ) client? (
 REQUIRED_USE=|| ( client server ) voip? ( opus )
 SLOT=0
 SRC_URI=mirror://idsoftware/wolf/linux/wolf-linux-1.41b.x86.run https://github.com/iortcw/iortcw/releases/download/1.51c/patch-data-141.zip -> rtcw-1.51c-patch-data-141.zip
-_eclasses_=desktop	b1d22ac8bdd4679ab79c71aca235009d	git-r3	7d6c351ee8b1feb12ed8c8b0adae088b	unpacker	3cd8bad0d31e525cd26be1bfa4e61631
+_eclasses_=desktop	b1d22ac8bdd4679ab79c71aca235009d	git-r3	809e27702c573cbba31c08ed00bbad33	unpacker	3cd8bad0d31e525cd26be1bfa4e61631
 _md5_=0f67b040c0337ac22ea498be5e5655f6
