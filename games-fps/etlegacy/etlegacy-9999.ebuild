@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id $
 
@@ -149,10 +149,6 @@ src_install() {
 	doins "${WORKDIR}"/et/etmain/pak[012].pk3
 }
 
-pkg_preinst() {
-	xdg_pkg_preinst
-}
-
 pkg_postinst() {
 	xdg_pkg_postinst
 
@@ -162,8 +158,4 @@ pkg_postinst() {
 	elog
 	elog "If you are using opensource drivers you should consider installing: "
 	elog "    media-libs/libtxc_dxtn"
-}
-
-pkg_postrm() {
-	xdg_pkg_postrm
 }

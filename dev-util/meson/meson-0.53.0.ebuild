@@ -1,18 +1,19 @@
 # Copyright 2016-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
+# $Id: b70381e6157d5c92db0a9a037b0fe31f49813235 $
 
 EAPI=7
 PYTHON_COMPAT=( python3_{6,7} )
 
-inherit distutils-r1 toolchain-funcs poly-c_ebuilds
-
-if [[ ${MY_PV} = *9999* ]]; then
+if [[ ${PV} = *9999* ]]; then
 	EGIT_REPO_URI="https://github.com/mesonbuild/meson"
 	inherit git-r3
 else
-	SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${MY_P}.tar.gz"
+	SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sh ~sparc ~x86 ~x64-cygwin ~amd64-linux ~x86-linux ~x64-macos ~x64-solaris"
 fi
+
+inherit distutils-r1 toolchain-funcs
 
 DESCRIPTION="Open source build system"
 HOMEPAGE="http://mesonbuild.com/"
@@ -34,9 +35,7 @@ DEPEND="${RDEPEND}
 	)
 "
 
-PATCHES=(
-	"${FILESDIR}/${PN}-0.53.0-invalid_linker.patch"
-)
+PATCHES=( "${FILESDIR}/${PN}-0.53.0-invalid_linker.patch" )
 
 python_prepare_all() {
 	# ASAN and sandbox both want control over LD_PRELOAD
