@@ -1,0 +1,19 @@
+diff -Naur a/setup.py b/setup.py
+--- a/setup.py	2019-11-05 17:10:37.000000000 -0000
++++ b/setup.py	2019-12-27 14:24:53.454392275 -0000
+@@ -1482,15 +1482,6 @@
+ ]
+ 
+ 
+-sys.path.insert(0, 'contrib/python-zstandard')
+-import setup_zstd
+-
+-extmodules.append(
+-    setup_zstd.get_c_extension(
+-        name='mercurial.zstd', root=os.path.abspath(os.path.dirname(__file__))
+-    )
+-)
+-
+ try:
+     from distutils import cygwinccompiler
+ 

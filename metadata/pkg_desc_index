@@ -54,6 +54,7 @@ dev-util/gtk-doc 1.32_pre: GTK+ Documentation Generator
 dev-util/gtk-doc-am 1.32_pre: Automake files from gtk-doc
 dev-util/meson 0.53.0: Open source build system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
+dev-vcs/mercurial 5.2.2_pre: Scalable distributed SCM
 games-action/supertuxkart 1.0 1.1_pre: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
 games-engines/fifechan 0.1.4 9999: Lightweight cross platform GUI C++ library designed for games
@@ -75,6 +76,7 @@ games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky
 games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 games-util/x52pro-linux 9999: Saitek X52pro drivers & controller mapping software for Linux
 gnome-base/dconf 0.34.0_pre: Simple low-level configuration system
+gnome-base/gconf 3.2.6-r4: GNOME configuration system and daemon
 kde-apps/kde-wallpapers 15.08.3 15.08.3-r2 15.08.3-r3: KDE wallpapers
 kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
