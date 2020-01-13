@@ -27,12 +27,3 @@ sci-astronomy/pulsatingscience
 # https://gitlab.gnome.org/Archive/pangox-compat/issues/1
 =x11-libs/pango-1.44.7_pre
 
-# Official 2019.12-classic release tarball has changes not being in the 
-# upstream git repo. Using a self rolled source tarball instead.
-=www-client/waterfox-2019.12
-
-# Sources are broken:
-#   puttyps.h:14:10: fatal error: unix/unix.h: No such file or directory
-# See https://trac.filezilla-project.org/ticket/12067
-=net-ftp/filezilla-3.46.1
-=net-ftp/filezilla-3.46.2
