@@ -7,10 +7,6 @@ net-irc/pchat-irc
 # Missing dependencies
 media-radio/liquidsoap
 
-# breaks dev-games/simgear
-=dev-games/openscenegraph-3.5.6_pre
-=dev-games/openscenegraph-3.5.9_pre
-
 # Requires java8 and FXCollections
 >=media-tv/mediathekview-bin-12
 

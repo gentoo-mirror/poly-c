@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake-utils desktop
+inherit cmake desktop
 
 MY_PN="OpenDungeons"
 
@@ -44,7 +44,7 @@ src_prepare() {
 	sed \
 		-e '/-Werror/d' \
 		-i CMakeLists.txt || die
-	cmake-utils_src_prepare
+	cmake_src_prepare
 }
 
 src_configure() {
@@ -54,11 +54,11 @@ src_configure() {
 		-DOD_SHARE_PATH="${EPREFIX}/usr/share"
 		)
 
-	cmake-utils_src_configure
+	cmake_src_configure
 }
 
 src_install() {
-	cmake-utils_src_install
+	cmake_src_install
 	mv "${ED}/usr/share/doc/${PN}" "${ED}/usr/share/doc/${PF}" || die
 	doicon "${FILESDIR}"/${PN}.svg
 	make_desktop_entry ${MY_PN} ${PN} ${PN}
