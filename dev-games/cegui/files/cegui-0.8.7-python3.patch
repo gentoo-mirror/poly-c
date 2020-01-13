@@ -1,0 +1,200 @@
+From 0a2cf56ad20a431cfc78dc6178d6031ab67fa305 Mon Sep 17 00:00:00 2001
+From: Olek Wojnar <olekw.dev@gmail.com>
+Date: Mon, 13 Jan 2020 13:43:14 +0100
+Subject: [PATCH 1/2] Update source code for Python 3
+
+Python 2 reaches End-of-Life in January 2020
+---
+ CMakeLists.txt                                | 33 ++++++++++++++-----
+ .../Python/bindings/CMakeLists.txt            | 26 +++------------
+ .../Python/bindings/common.cmake              | 14 ++++++++
+ .../Python/bindings/python2.cmake             | 13 ++++++++
+ .../Python/bindings/python3.cmake             | 13 ++++++++
+ cmake/CEGUIMacros.cmake                       | 11 ++++---
+ 6 files changed, 76 insertions(+), 34 deletions(-)
+ create mode 100644 cegui/src/ScriptModules/Python/bindings/common.cmake
+ create mode 100644 cegui/src/ScriptModules/Python/bindings/python2.cmake
+ create mode 100644 cegui/src/ScriptModules/Python/bindings/python3.cmake
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 1eb336e15..a4504e7a5 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,7 +1,7 @@
+ ################################################################################
+ # Top-level CMakeLists.txt file for Crazy Eddie's GUI System
+ ################################################################################
+-cmake_minimum_required(VERSION 2.8.11)
++cmake_minimum_required(VERSION 3.12.4)
+ if (POLICY CMP0017)
+     cmake_policy(SET CMP0017 OLD)
+ endif()
+@@ -117,16 +117,33 @@ find_package(PVRTools)
+ 
+ find_package(Lua51)
+ find_package(TOLUAPP)
+-find_package(PythonInterp)
+ 
+-## ensure python3 not picked up as default
+-find_package(PythonVersion)
+-if (UNIX AND PYTHON_VERSION_FOUND)
+-  find_package(PythonLibs ${PYTHON_VERSION_STRING} EXACT)
++find_package(Python2 COMPONENTS Interpreter Development)
++find_package(Python3 COMPONENTS Interpreter Development)
++find_package(Boost)
++if(${Boost_VERSION} GREATER_EQUAL 106700)
++    if (Python2_FOUND)
++        set(CEGUI_PYTHON2_VERSION_NUM ${Python2_VERSION_MAJOR}${Python2_VERSION_MINOR})
++        find_package(Boost COMPONENTS python${CEGUI_PYTHON2_VERSION_NUM})
++        set(CEGUI_Boost_PYTHON2_LIBRARY_VARIABLE Boost_PYTHON${CEGUI_PYTHON2_VERSION_NUM}_LIBRARY)
++        set(CEGUI_Boost_PYTHON2_LIBRARY ${${CEGUI_Boost_PYTHON2_LIBRARY_VARIABLE}})
++    endif()
++    if (Python3_FOUND)
++        set(CEGUI_PYTHON3_VERSION_NUM ${Python3_VERSION_MAJOR}${Python3_VERSION_MINOR})
++        find_package(Boost COMPONENTS python${CEGUI_PYTHON3_VERSION_NUM})
++        set(CEGUI_Boost_PYTHON3_LIBRARY_VARIABLE Boost_PYTHON${CEGUI_PYTHON3_VERSION_NUM}_LIBRARY)
++        set(CEGUI_Boost_PYTHON3_LIBRARY ${${CEGUI_Boost_PYTHON3_LIBRARY_VARIABLE}})
++    endif()
+ else()
+-  find_package(PythonLibs)
++    find_package(Boost 1.36.0 COMPONENTS python unit_test_framework system timer)
++endif()
++
++if (Python2_Interpreter_FOUND OR Python3_Interpreter_FOUND)
++    set (PYTHONINTERP_FOUND TRUE)
++endif()
++if (DEFINED Python2_LIBRARIES OR DEFINED Python3_LIBRARIES)
++    set (PYTHONLIBS_FOUND TRUE)
+ endif()
+-find_package(Boost 1.36.0 COMPONENTS python unit_test_framework system timer)
+ 
+ find_package(Doxygen)
+ find_package(GTK2 COMPONENTS gtk)
+diff --git a/cegui/src/ScriptModules/Python/bindings/CMakeLists.txt b/cegui/src/ScriptModules/Python/bindings/CMakeLists.txt
+index bba24a1e4..e11476eac 100644
+--- a/cegui/src/ScriptModules/Python/bindings/CMakeLists.txt
++++ b/cegui/src/ScriptModules/Python/bindings/CMakeLists.txt
+@@ -1,26 +1,8 @@
+-execute_process(
+-    COMMAND ${PYTHON_EXECUTABLE} -c "import distutils.sysconfig; print distutils.sysconfig.get_python_lib(plat_specific=True, prefix=\"\")"
+-    OUTPUT_VARIABLE CEGUI_PYTHON_INSTALL_DIR
+-    OUTPUT_STRIP_TRAILING_WHITESPACE
+-)
+-
+-set( CEGUI_PYTHON_INSTALL_DIR "${CEGUI_PYTHON_INSTALL_DIR}/${CMAKE_PROJECT_NAME}-${CEGUI_VERSION_MAJOR}.${CEGUI_VERSION_MINOR}" )
+-
+-include_directories(${CMAKE_CURRENT_SOURCE_DIR}
+-                    ${PYTHON_INCLUDE_DIR}
+-                    ${Boost_INCLUDE_DIR})
+-
+-cegui_add_python_module( ${CEGUI_PYCEGUI_CORE_LIBNAME} "output/CEGUI" "" )
+-
+-if (CEGUI_BUILD_RENDERER_NULL)
+-    cegui_add_python_module( ${CEGUI_PYCEGUI_NULL_RENDERER_LIBNAME} "output/CEGUINullRenderer" ${CEGUI_NULL_RENDERER_LIBNAME} )
+-endif()
+-
+-if (CEGUI_BUILD_RENDERER_OGRE)
+-    cegui_add_python_module( ${CEGUI_PYCEGUI_OGRE_RENDERER_LIBNAME} "output/CEGUIOgreRenderer" ${CEGUI_OGRE_RENDERER_LIBNAME} )
++if (Python2_FOUND AND Python2_Development_FOUND)
++  include(python2.cmake)
+ endif()
+ 
+-if (CEGUI_BUILD_RENDERER_OPENGL)
+-    cegui_add_python_module( ${CEGUI_PYCEGUI_OPENGL_RENDERER_LIBNAME} "output/CEGUIOpenGLRenderer" ${CEGUI_OPENGL_RENDERER_LIBNAME} )
++if (Python3_FOUND AND Python3_Development_FOUND)
++  include(python3.cmake)
+ endif()
+ 
+diff --git a/cegui/src/ScriptModules/Python/bindings/common.cmake b/cegui/src/ScriptModules/Python/bindings/common.cmake
+new file mode 100644
+index 000000000..cbdd955df
+--- /dev/null
++++ b/cegui/src/ScriptModules/Python/bindings/common.cmake
+@@ -0,0 +1,14 @@
++cegui_add_python_module( ${CEGUI_PYCEGUI_CORE_LIBNAME} "output/CEGUI" "" )
++
++if (CEGUI_BUILD_RENDERER_NULL)
++    cegui_add_python_module( ${CEGUI_PYCEGUI_NULL_RENDERER_LIBNAME} "output/CEGUINullRenderer" ${CEGUI_NULL_RENDERER_LIBNAME} )
++endif()
++
++if (CEGUI_BUILD_RENDERER_OGRE)
++    cegui_add_python_module( ${CEGUI_PYCEGUI_OGRE_RENDERER_LIBNAME} "output/CEGUIOgreRenderer" ${CEGUI_OGRE_RENDERER_LIBNAME} )
++endif()
++
++if (CEGUI_BUILD_RENDERER_OPENGL)
++    cegui_add_python_module( ${CEGUI_PYCEGUI_OPENGL_RENDERER_LIBNAME} "output/CEGUIOpenGLRenderer" ${CEGUI_OPENGL_RENDERER_LIBNAME} )
++endif()
++
+diff --git a/cegui/src/ScriptModules/Python/bindings/python2.cmake b/cegui/src/ScriptModules/Python/bindings/python2.cmake
+new file mode 100644
+index 000000000..f17197af9
+--- /dev/null
++++ b/cegui/src/ScriptModules/Python/bindings/python2.cmake
+@@ -0,0 +1,13 @@
++set(MODULE_SUFFIX python2)
++set(PYTHON_INCLUDE_DIR ${Python2_INCLUDE_DIRS})
++set(CEGUI_PYTHON_INSTALL_DIR "${Python2_SITEARCH}/${CMAKE_PROJECT_NAME}-${CEGUI_VERSION_MAJOR}.${CEGUI_VERSION_MINOR}")
++set(PYTHON_LIBRARIES ${Python2_LIBRARIES})
++set(Boost_PYTHON_LIBRARY ${CEGUI_Boost_PYTHON2_LIBRARY})
++
++include(common.cmake)
++
++unset(MODULE_SUFFIX)
++unset(PYTHON_INCLUDE_DIR)
++unset(CEGUI_PYTHON_INSTALL_DIR)
++unset(PYTHON_LIBRARIES)
++unset(Boost_PYTHON_LIBRARY)
+diff --git a/cegui/src/ScriptModules/Python/bindings/python3.cmake b/cegui/src/ScriptModules/Python/bindings/python3.cmake
+new file mode 100644
+index 000000000..933a47161
+--- /dev/null
++++ b/cegui/src/ScriptModules/Python/bindings/python3.cmake
+@@ -0,0 +1,13 @@
++set(MODULE_SUFFIX python3)
++set(PYTHON_INCLUDE_DIR ${Python3_INCLUDE_DIRS})
++set(CEGUI_PYTHON_INSTALL_DIR "${Python3_SITEARCH}/${CMAKE_PROJECT_NAME}-${CEGUI_VERSION_MAJOR}.${CEGUI_VERSION_MINOR}")
++set(PYTHON_LIBRARIES ${Python3_LIBRARIES})
++set(Boost_PYTHON_LIBRARY ${CEGUI_Boost_PYTHON3_LIBRARY})
++
++include(common.cmake)
++
++unset(MODULE_SUFFIX)
++unset(PYTHON_INCLUDE_DIR)
++unset(CEGUI_PYTHON_INSTALL_DIR)
++unset(PYTHON_LIBRARIES)
++unset(Boost_PYTHON_LIBRARY)
+diff --git a/cmake/CEGUIMacros.cmake b/cmake/CEGUIMacros.cmake
+index ce0c59fcf..15f68a246 100644
+--- a/cmake/CEGUIMacros.cmake
++++ b/cmake/CEGUIMacros.cmake
+@@ -447,12 +447,15 @@ endmacro()
+ #
+ # Define a PyCEGUI* extension module
+ #
+-macro( cegui_add_python_module PYTHON_MODULE_NAME SOURCE_DIR EXTRA_LIBS )
++macro( cegui_add_python_module PYTHON_MODULE_NAME_GENERIC SOURCE_DIR EXTRA_LIBS )
++	set(PYTHON_MODULE_NAME ${PYTHON_MODULE_NAME_GENERIC}_${MODULE_SUFFIX})
+     file( GLOB ${PYTHON_MODULE_NAME}_SOURCE_FILES ${SOURCE_DIR}/*.cpp )
+ 
+-    include_directories(BEFORE ${SOURCE_DIR})
+-
+     add_library(${PYTHON_MODULE_NAME} MODULE ${${PYTHON_MODULE_NAME}_SOURCE_FILES})
++    target_include_directories(${PYTHON_MODULE_NAME} PRIVATE ${SOURCE_DIR}
++                               ${CMAKE_CURRENT_SOURCE_DIR}
++                               ${PYTHON_INCLUDE_DIR}
++                               ${Boost_INCLUDE_DIR})
+     target_link_libraries(${PYTHON_MODULE_NAME} ${CEGUI_BASE_LIBNAME} ${Boost_PYTHON_LIBRARY} ${PYTHON_LIBRARIES} ${EXTRA_LIBS} )
+     set_target_properties(${PYTHON_MODULE_NAME} PROPERTIES PREFIX "")
+ 
+@@ -467,7 +470,7 @@ macro( cegui_add_python_module PYTHON_MODULE_NAME SOURCE_DIR EXTRA_LIBS )
+     endif()
+ 
+     if (CMAKE_COMPILER_IS_GNUCXX)
+-        set_target_properties(${PYTHON_MODULE_NAME} PROPERTIES COMPILE_FLAGS "-fvisibility=hidden")
++        set_target_properties(${PYTHON_MODULE_NAME} PROPERTIES COMPILE_FLAGS "-fvisibility=hidden" ARCHIVE_OUTPUT_NAME ${PYTHON_MODULE_NAME} OUTPUT_NAME ${PYTHON_MODULE_NAME_GENERIC} LIBRARY_OUTPUT_DIRECTORY "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/${MODULE_SUFFIX}")
+     endif()
+ 
+     install(TARGETS ${PYTHON_MODULE_NAME} LIBRARY DESTINATION "${CEGUI_PYTHON_INSTALL_DIR}")
+-- 
+2.24.1
+

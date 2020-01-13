@@ -1,0 +1,36 @@
+From bb41b7f308e864828c32d51ce65d34ca5afdd704 Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Mon, 13 Jan 2020 13:53:52 +0100
+Subject: [PATCH 2/2] CMakeLists.txt: Add USE_PYTHON{2,3} options
+
+---
+ CMakeLists.txt | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index a4504e7a5..73b6a1820 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -118,8 +118,17 @@ find_package(PVRTools)
+ find_package(Lua51)
+ find_package(TOLUAPP)
+ 
+-find_package(Python2 COMPONENTS Interpreter Development)
+-find_package(Python3 COMPONENTS Interpreter Development)
++option(USE_PYTHON2 "Use deprecated python2 instead of python3" OFF)
++option(USE_PYTHON3 "Use python3" ON)
++if(USE_PYTHON2)
++    find_package(Python2 COMPONENTS Interpreter Development)
++endif()
++if(USE_PYTHON3)
++    find_package(Python3 COMPONENTS Interpreter Development)
++endif()
++if(NOT USE_PYTHON3 AND NOT USE_PYTHON2)
++    message(FATAL_ERROR "You need to select one python interpreter")
++endif()
+ find_package(Boost)
+ if(${Boost_VERSION} GREATER_EQUAL 106700)
+     if (Python2_FOUND)
+-- 
+2.24.1
+
