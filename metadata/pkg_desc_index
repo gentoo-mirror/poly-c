@@ -46,7 +46,9 @@ dev-libs/newt 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.0.2r 1.0.2s-r1 1.0.2t-r1 1.1.1d-r3: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2t-r1 1.0.2u: full-strength general purpose cryptography library (including SSL and TLS)
+dev-python/fido2 0.7.3: Python based FIDO 2.0 library
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
+dev-python/pyscard 1.9.9_pre: Smart cards support in python
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtgui 5.12.3-r1 5.12.5 5.13.2 5.14.0-r1: The GUI module and platform plugins for the Qt5 framework
