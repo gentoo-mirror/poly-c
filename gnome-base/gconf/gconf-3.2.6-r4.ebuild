@@ -60,7 +60,7 @@ src_prepare() {
 	# gsettings-data-convert: Warn (and fix) invalid schema paths
 	epatch "${FILESDIR}/${P}-gsettings-data-convert-paths.patch"
 
-	# https://bugzilla.gnome.org/show_bug.cgi?id=759334
+	# https://gitlab.gnome.org/Archive/gconf/merge_requests/3
 	epatch "${FILESDIR}/${P}-gsettings-schema-convert-python3.patch"
 
 	gnome2_src_prepare

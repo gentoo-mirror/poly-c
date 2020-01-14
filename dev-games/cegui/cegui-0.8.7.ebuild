@@ -98,7 +98,6 @@ src_configure() {
 		-DCEGUI_SAMPLES_ENABLED=OFF
 		$(cmake-utils_use bidi CEGUI_USE_FRIBIDI)
 		-DCEGUI_USE_MINIBIDI=OFF
-		-DUSE_PYTHON2=OFF
 	)
 
 	cmake-utils_src_configure

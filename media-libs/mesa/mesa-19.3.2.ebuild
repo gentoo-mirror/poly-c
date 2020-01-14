@@ -1,10 +1,10 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 14fc7bb1985c50d22ed657327490609a1bce4dd1 $
+# $Id: 26304ad69b1acd1454c73d87eb5e0b4473a34da8 $
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_6 python3_7 )
+PYTHON_COMPAT=( python3_{6,7,8} )
 
 inherit llvm meson multilib-minimal pax-utils python-any-r1
 

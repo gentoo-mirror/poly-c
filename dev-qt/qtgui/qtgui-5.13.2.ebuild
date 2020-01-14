@@ -1,6 +1,6 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 260ba818a019c4609743c64df9e3514b2798956a $
+# $Id: a444969036ed20ce58d72a1093e3e645fcadbf4c $
 
 EAPI=7
 QT5_MODULE="qtbase"
@@ -9,7 +9,7 @@ inherit qt5-build
 DESCRIPTION="The GUI module and platform plugins for the Qt5 framework"
 
 if [[ ${QT5_BUILD_TYPE} == release ]]; then
-	KEYWORDS="amd64 ~arm arm64 ~hppa ~ppc ppc64 ~sparc ~x86"
+	KEYWORDS="amd64 ~arm arm64 ~hppa ppc ppc64 ~sparc ~x86"
 fi
 
 # TODO: linuxfb
@@ -125,7 +125,7 @@ QT5_GENTOO_PRIVATE_CONFIG=(
 	:gui
 )
 
-PATCHES=(
+PATCHES+=(
 	"${FILESDIR}/${P}-no-xcb-no-xkbcommon.patch" # bug 699110
 )
 
