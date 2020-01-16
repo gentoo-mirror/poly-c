@@ -101,6 +101,7 @@ media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Soun
 media-sound/alsa-utils 1.1.2 1.1.6 1.1.7 1.1.8 1.1.9 1.2.1: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
 media-sound/ameter 0.44_pre: Ameter is an Alsa meter plugin
 media-sound/cutmp3 2.1.2_pre 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
+media-sound/grip 4.0.1: GTK+ based Audio CD Player/Ripper
 media-sound/idjc 0.8.17: Internet DJ Console has two media players, jingles player, crossfader, VoIP and streaming
 media-sound/pavucontrol 3.0: Pulseaudio Volume Control, GTK based mixer for Pulseaudio
 media-sound/pulseaudio 12.99.2 12.99.3 9999: A networked sound server with an advanced plugin system
