@@ -51,8 +51,7 @@ dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-python/pyscard 1.9.9_pre: Smart cards support in python
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
-dev-qt/qtgui 5.12.3-r1 5.12.5 5.13.2 5.14.0-r1: The GUI module and platform plugins for the Qt5 framework
-dev-qt/qtsvg 5.14.0: SVG rendering library for the Qt5 framework
+dev-qt/qtgui 5.12.3-r1 5.12.5 5.13.2 5.14.0-r1 5.14.0-r2: The GUI module and platform plugins for the Qt5 framework
 dev-util/cloc 1.84_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/gtk-doc 1.32_pre: GTK+ Documentation Generator
@@ -67,6 +66,7 @@ games-engines/fifengine 0.4.1 9999: Flexible Isometric Free Engine, 2D
 games-engines/stratagus 2.4.2_pre: A realtime strategy game engine
 games-fps/dhewm3 1.4.1 9999: A Doom 3 GPL source modification.
 games-fps/enemy-territory 2.60b-r1: standalone multi-player game based on Return to Castle Wolfenstein
+games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.75 2.76 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.51b 1.51c 9999: Return to Castle Wolfenstein - IORTCW Project
 games-simulation/flightgear 2019.1.1_pre: Open Source Flight Simulator
@@ -101,7 +101,6 @@ media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Soun
 media-sound/alsa-utils 1.1.2 1.1.6 1.1.7 1.1.8 1.1.9 1.2.1: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
 media-sound/ameter 0.44_pre: Ameter is an Alsa meter plugin
 media-sound/cutmp3 2.1.2_pre 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
-media-sound/grip 4.0.1: GTK+ based Audio CD Player/Ripper
 media-sound/idjc 0.8.17: Internet DJ Console has two media players, jingles player, crossfader, VoIP and streaming
 media-sound/pavucontrol 3.0: Pulseaudio Volume Control, GTK based mixer for Pulseaudio
 media-sound/pulseaudio 12.99.2 12.99.3 9999: A networked sound server with an advanced plugin system
