@@ -1,7 +1,11 @@
-# Copyright 1999-2019 Gentoo Technologies, Inc.
+# Copyright 1999-2020 Gentoo Technologies, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
+
+PYTHON_COMPAT=( python3_{6,7,8} )
+
+inherit python-single-r1
 
 DESCRIPTION="The littleutils are a collection of small and simple utilities"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.xz"
@@ -12,10 +16,25 @@ SLOT="0"
 
 IUSE="png"
 
-DEPEND="png? (
+RDEPEND="
+	${PYTHON_DEPEND}
+	media-libs/imlib2
+	png? (
+		media-libs/libpng:0
+	)
+"
+DEPEND="${RDEPEND}
+	png? (
 		media-gfx/pngcrush
 		media-gfx/pngrewrite
-	)"
+	)
+"
+
+S="${WORKDIR}/${PN}-${PV/a}"
+
+src_configure() {
+	ac_cv_path_PROGPYTHON="${PYTHON}" econf
+}
 
 src_install() {
 	default

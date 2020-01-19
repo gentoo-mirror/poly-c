@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 PYTHON_COMPAT=( python3_{6,7} )
 
@@ -14,7 +14,7 @@ SRC_URI="http://www.freebsoft.org/pub/projects/speechd/${MY_P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
-IUSE="alsa ao +espeak flite nas pulseaudio python static-libs"
+IUSE="alsa ao +espeak flite nas pulseaudio python"
 
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
@@ -33,12 +33,14 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40.0
 	virtual/pkgconfig"
 RDEPEND="${COMMON_DEPEND}
-	dev-python/pyxdg"
+	python? ( dev-python/pyxdg[${PYTHON_USEDEP}] )"
 
 src_configure() {
+	# bug 573732
+	export GIT_CEILING_DIRECTORIES="${WORKDIR}"
 	local myeconfargs=(
 		--disable-python
-		$(use_enable static-libs static)
+		--disable-static
 		$(use_with alsa)
 		$(use_with ao libao)
 		$(use_with espeak)
@@ -69,8 +71,6 @@ src_install() {
 	emake DESTDIR="${D}" install
 	dodoc ANNOUNCE AUTHORS BUGS FAQ NEWS README*
 
-	prune_libtool_files --all
-
 	if use python; then
 		installation() {
 			cd src/api/python || die
@@ -83,6 +83,8 @@ src_install() {
 		python_foreach_impl run_in_build_dir installation
 		python_replicate_script "${ED}"/usr/bin/spd-conf
 	fi
+
+	find "${D}" -name '*.la' -delete || die
 }
 
 pkg_postinst() {
@@ -100,7 +102,7 @@ pkg_postinst() {
 		editconfig="y"
 	fi
 	if [[ "${editconfig}" == "y" ]]; then
-		ewarn "You must edit ${EROOT}etc/speech-dispatcher/speechd.conf"
+		ewarn "You must edit ${EROOT}/etc/speech-dispatcher/speechd.conf"
 		ewarn "and make sure the settings there match your system."
 		ewarn
 	fi

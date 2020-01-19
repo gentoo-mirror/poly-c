@@ -2,13 +2,14 @@ acct-user/ftp 0: File Transfer Protocol server user
 app-accessibility/at-spi2-core 2.30.1: D-Bus accessibility specifications and registration daemon
 app-accessibility/speech-dispatcher 0.8.8_pre: Speech synthesis interface
 app-admin/cpulimit 2.5_pre 2.6_pre: Limits the CPU usage of a process
-app-admin/littleutils 1.0.42 1.0.43: The littleutils are a collection of small and simple utilities
+app-admin/littleutils 1.0.43 1.0.44a: The littleutils are a collection of small and simple utilities
 app-admin/remotebox 2.2 2.5: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
+app-arch/libarchive 3.4.1_pre: Multi-format archive and compression library
 app-arch/xz-utils 5.2.4-r2 5.2.4-r3: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
-app-crypt/libsecret 0.19.1_pre: GObject library for accessing the freedesktop.org Secret Service API
+app-crypt/libsecret 0.19.1_pre 0.20.0_pre: GObject library for accessing the freedesktop.org Secret Service API
 app-crypt/libu2f-host 1.1.6_pre: Yubico Universal 2nd Factor (U2F) Host C Library
 app-crypt/nwipe 0.24_pre: Securely erase disks using a variety of recognized methods
 app-crypt/qca 2.1.3-r2: Qt Cryptographic Architecture (QCA)
@@ -21,7 +22,7 @@ app-laptop/dell-fan-mon 1.0 9999: Fan control for some Dell laptops
 app-laptop/i8kutils 1.43_pre: Dell Inspiron and Latitude utilities
 app-misc/kenny 0.1: command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
-app-misc/mc 4.8.22 4.8.23-r1 4.8.23-r2: GNU Midnight Commander is a text based file manager
+app-misc/mc 4.8.22 4.8.23-r1 4.8.23-r2 4.8.24_pre: GNU Midnight Commander is a text based file manager
 app-misc/mmv 1.01b_p19_pre: Move/copy/append/link multiple files according to a set of wildcard patterns
 app-misc/osmo 0.4.2: Handy personal organizer
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
@@ -46,6 +47,7 @@ dev-libs/newt 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.0.2r 1.0.2s-r1 1.0.2t-r1 1.1.1d-r3: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2t-r1 1.0.2u: full-strength general purpose cryptography library (including SSL and TLS)
+dev-python/dbus-python 1.2.16_pre: Python bindings for the D-Bus messagebus
 dev-python/fido2 0.7.3: Python based FIDO 2.0 library
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-python/pyscard 1.9.9_pre: Smart cards support in python
@@ -109,7 +111,6 @@ media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2 13.2.1: Download files from the public broadcasting services
 media-video/cinelerraGG 9999: The most advanced non-linear video editor and compositor - Good Guy's version
 media-video/ffmpeg 4.2.2_pre: Complete solution to record, convert and stream audio and video. Includes libavcodec
-media-video/mkvtoolnix 38.0.0_pre 39.0.0_pre 40.0.0_pre 41.0.0_pre 42.0.0_pre: Tools to create, alter, and inspect Matroska files
 media-video/mplayer 1.4_pre: Media Player for Linux
 media-video/ogmrip 1.0.1: Graphical frontend and libraries for ripping DVDs and encoding to AVI/OGM/MKV/MP4
 media-video/smplayer 18.6.0 19.5.0 19.5.0-r1 19.10.2: Great Qt GUI front-end for mplayer/mpv
@@ -177,7 +178,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre15: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.208 4.9.209 4.9.210 4.14.163 4.14.164 4.14.165 4.19.94 4.19.95 4.19.96 5.4.10 5.4.11 5.4.12: Shows and sets processor power related values
+sys-power/cpupower 4.9.208 4.9.209 4.9.210 4.14.164 4.14.165 4.14.166 4.19.95 4.19.96 4.19.97 5.4.11 5.4.12 5.4.13: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
