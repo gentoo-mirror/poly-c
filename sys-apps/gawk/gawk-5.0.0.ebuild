@@ -1,6 +1,6 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 36ac1b77e8d9fa988644fb4f4aaf217d55bbb31a $
+# $Id: 403c0d5ab7e94bdad4716c503c71d796badb89b4 $
 
 EAPI="6"
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://gnu/gawk/${P}.tar.xz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sh ~sparc ~x86 ~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="forced-sandbox mpfr nls readline"
+IUSE="mpfr nls readline"
 
 RDEPEND="
 	dev-libs/gmp:0=
@@ -38,16 +38,6 @@ src_prepare() {
 			-e '/\<_XOPEN_SOURCE\>/s/1$/600/' \
 			-e '/\<_XOPEN_SOURCE_EXTENDED\>/s/1//' \
 			extension/inplace.c || die
-	fi
-
-	if use forced-sandbox ; then
-		# Upstream doesn't want to add a configure flag for this.
-		# https://lists.gnu.org/archive/html/bug-sed/2018-03/msg00001.html
-		sed -i \
-			-e '/^int do_flags = false;/s:false:DO_SANDBOX:' \
-			main.c || die
-		# Make sure the sed took.
-		grep -q '^int do_flags = DO_SANDBOX;' main.c || die "forcing sandbox failed"
 	fi
 }
 

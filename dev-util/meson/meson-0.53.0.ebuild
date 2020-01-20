@@ -1,6 +1,6 @@
 # Copyright 2016-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c03f936be1baf83a07d0124ac19926e21eae5b95 $
+# $Id: 0c1735955a4935e3a06c188e58bdd5fd4e9f9154 $
 
 EAPI=7
 PYTHON_COMPAT=( python3_{6,7,8} )
@@ -49,7 +49,7 @@ python_prepare_all() {
 	# https://bugs.gentoo.org/692822
 	sed -i -e 's/test_pch_with_address_sanitizer/_&/' run_unittests.py || die
 
-	# Requires python2
+	# Broken due to python2 script created by python_wrapper_setup
 	rm -r "test cases/frameworks/1 boost" || die
 
 	distutils-r1_python_prepare_all

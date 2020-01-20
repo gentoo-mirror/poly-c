@@ -1,6 +1,6 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 856331ef9aa1017c05c539c01bd0eccf4743e379 $
+# $Id: 64112aaf67bd150323f1c0038febba059a3b4a02 $
 
 EAPI=7
 
@@ -49,6 +49,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-4.8.23-gettext.patch
 	"${FILESDIR}"/${PN}-4.8.23-gettext-test.patch
 	"${FILESDIR}"/${PN}-4.8.23-vfs-gc-SEGV.patch
+	"${FILESDIR}"/${PN}-4.8.23-gcc-10.patch
 
 	"${FILESDIR}"/${PN}-4.8.13-restore_saved_replace_string.patch
 	"${FILESDIR}"/${PN}-4.8.23-shorten-too-long-german-strings.patch

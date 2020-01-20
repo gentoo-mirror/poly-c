@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 15f50027e29c9a71db226774d4eaf82b9e1a8c7e $
+# $Id: 73a8a9bc006e5bb69170068f7db75c2b18eb1014 $
 
 EAPI=5
 
@@ -18,7 +18,7 @@ DESCRIPTION="Portage is the package management and distribution system for Gento
 HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Portage"
 
 LICENSE="GPL-2"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sh ~sparc ~x86"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sh ~sparc x86"
 SLOT="0"
 IUSE="build doc epydoc gentoo-dev +ipc +native-extensions +rsync-verify selinux xattr"
 
