@@ -89,7 +89,9 @@ kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Chan
 lxde-base/lxsession 0.5.2: LXDE session manager
 media-fonts/font-util 1.3.2: X.Org font utilities
 media-fonts/fontawesome 5.12.0_pre: The iconic font
+media-libs/babl 0.1.74_pre: A dynamic, any to any, pixel format conversion library
 media-libs/freeimage 3.15.4-r1: Image library supporting many formats
+media-libs/gegl 0.4.20_pre: A graph based image processing framework
 media-libs/glm 0.9.9.6: OpenGL Mathematics
 media-libs/libbpg 0.9.7_pre 0.9.8_pre: BPG (Better Portable Graphics) is a new image format
 media-libs/libdvbpsi 1.3.3_pre: library for MPEG TS/DVB PSI tables decoding and generation
@@ -188,7 +190,7 @@ www-client/waterfox 56.2.14 2019.10.1 2019.12: Waterfox Web Browser
 x11-apps/xinit 1.4.0-r1 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-libs/pango 1.44.7_pre: Internationalized text layout and rendering library
-x11-misc/adriconf 1.4 1.5.1 9999: Advanced DRI Configurator
+x11-misc/adriconf 1.5.1 1.6 9999: Advanced DRI Configurator
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-plugins/pidgin-skypeweb 1.5_pre: SkypeWeb Plugin for Pidgin
 x11-plugins/purple-icyque 9999: ICQ WIM protocol for libpurple

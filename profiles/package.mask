@@ -23,3 +23,6 @@ sci-astronomy/pulsatingscience
 # https://gitlab.gnome.org/Archive/pangox-compat/issues/1
 =x11-libs/pango-1.44.7_pre
 
+# Fails to link:
+# https://github.com/jlHertel/adriconf/issues/78
+=x11-misc/adriconf-1.6
