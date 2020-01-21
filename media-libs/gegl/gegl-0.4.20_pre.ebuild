@@ -83,6 +83,7 @@ DOCS=( AUTHORS docs/ChangeLog docs/NEWS.txt )
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-0.4.18-drop-failing-tests.patch
+	"${FILESDIR}"/${PN}-0.4.18-program-suffix.patch
 )
 
 python_check_deps() {

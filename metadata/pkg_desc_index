@@ -89,7 +89,6 @@ kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Chan
 lxde-base/lxsession 0.5.2: LXDE session manager
 media-fonts/font-util 1.3.2: X.Org font utilities
 media-fonts/fontawesome 5.12.0_pre: The iconic font
-media-libs/babl 0.1.74_pre: A dynamic, any to any, pixel format conversion library
 media-libs/freeimage 3.15.4-r1: Image library supporting many formats
 media-libs/gegl 0.4.20_pre: A graph based image processing framework
 media-libs/glm 0.9.9.6: OpenGL Mathematics
@@ -99,7 +98,6 @@ media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
 media-libs/mesa 19.3.2: OpenGL-like graphic library for Linux
-media-libs/x265 3.2.1_pre: Library for encoding video streams into the H.265/HEVC format
 media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
 media-sound/alsa-utils 1.1.2 1.1.6 1.1.7 1.1.8 1.1.9 1.2.1: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
@@ -112,7 +110,6 @@ media-sound/scdl 1.3.3_beta1 9999: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2 13.2.1: Download files from the public broadcasting services
 media-video/cinelerraGG 9999: The most advanced non-linear video editor and compositor - Good Guy's version
-media-video/ffmpeg 4.2.2_pre: Complete solution to record, convert and stream audio and video. Includes libavcodec
 media-video/mplayer 1.4_pre: Media Player for Linux
 media-video/ogmrip 1.0.1: Graphical frontend and libraries for ripping DVDs and encoding to AVI/OGM/MKV/MP4
 media-video/smplayer 18.6.0 19.5.0 19.5.0-r1 19.10.2: Great Qt GUI front-end for mplayer/mpv
@@ -171,6 +168,7 @@ sys-apps/portage 2.3.84-r1: Portage is the package management and distribution s
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
+sys-block/gparted 1.1.0_pre: Gnome Partition Editor
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/gnu-efi 3.0.10_pre 3.0.11_pre: Library for build EFI Applications
 sys-boot/grub 2.02-r4 2.04_rc1 2.04-r1: GNU GRUB boot loader
@@ -178,7 +176,7 @@ sys-fs/udev 242 243 243-r2 244_pre: Linux dynamic and persistent device naming s
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-libs/minizip 2.8.5 2.8.9: zip manipulation library found in the zlib distribution
+sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre15: Multi-platform library designed to allow a developer to create robust software
 sys-power/cpupower 4.9.208 4.9.209 4.9.210 4.14.164 4.14.165 4.14.166 4.19.95 4.19.96 4.19.97 5.4.11 5.4.12 5.4.13: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
