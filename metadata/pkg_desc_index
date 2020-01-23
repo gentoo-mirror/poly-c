@@ -92,12 +92,38 @@ media-fonts/fontawesome 5.12.0_pre: The iconic font
 media-libs/freeimage 3.15.4-r1: Image library supporting many formats
 media-libs/gegl 0.4.20_pre: A graph based image processing framework
 media-libs/glm 0.9.9.6: OpenGL Mathematics
+media-libs/gst-plugins-bad 1.16.2_pre: Less plugins for GStreamer
+media-libs/gst-plugins-base 1.16.2_pre: Basepack of plugins for gstreamer
+media-libs/gst-plugins-good 1.16.2_pre: Basepack of plugins for GStreamer
+media-libs/gst-plugins-ugly 1.16.2_pre: Basepack of plugins for gstreamer
+media-libs/gstreamer 1.16.2_pre: Open source multimedia framework
 media-libs/libbpg 0.9.7_pre 0.9.8_pre: BPG (Better Portable Graphics) is a new image format
 media-libs/libdvbpsi 1.3.3_pre: library for MPEG TS/DVB PSI tables decoding and generation
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
 media-libs/mesa 19.3.2: OpenGL-like graphic library for Linux
+media-plugins/gst-plugins-a52dec 1.16.2_pre: ATSC A/52 audio decoder plugin for GStreamer
+media-plugins/gst-plugins-cdparanoia 1.16.2_pre: CD Audio Source (cdda) plugin for GStreamer
+media-plugins/gst-plugins-dts 1.16.2_pre: DTS audio decoder plugin for Gstreamer
+media-plugins/gst-plugins-dvdread 1.16.2_pre: DVD read plugin for GStreamer
+media-plugins/gst-plugins-faad 1.16.2_pre: AAC audio decoder plugin.
+media-plugins/gst-plugins-flac 1.16.2_pre: FLAC encoder/decoder/tagger plugin for GStreamer
+media-plugins/gst-plugins-gtk 1.16.2_pre: Video sink plugin for GStreamer that renders to a GtkWidget
+media-plugins/gst-plugins-lame 1.16.2_pre: MP3 encoder plugin for GStreamer
+media-plugins/gst-plugins-libav 1.16.2_pre: FFmpeg based gstreamer plugin
+media-plugins/gst-plugins-meta 1.16.2_pre: Meta ebuild to pull in gst plugins for apps
+media-plugins/gst-plugins-mpeg2dec 1.16.2_pre: MPEG2 decoder plugin for GStreamer
+media-plugins/gst-plugins-mpg123 1.16.2_pre: MP3 decoder plugin for GStreamer
+media-plugins/gst-plugins-mplex 1.16.2_pre: MPEG/DVD/SVCD/VCD video/audio multiplexing plugin for GStreamer
+media-plugins/gst-plugins-opus 1.16.2_pre: Opus audio parser plugin for GStreamer
+media-plugins/gst-plugins-pulse 1.16.2_pre: PulseAudio sound server plugin for GStreamer
+media-plugins/gst-plugins-resindvd 1.16.2_pre: DVD playback support plugin for GStreamer
+media-plugins/gst-plugins-soup 1.16.2_pre: HTTP client source/sink plugin for GStreamer
+media-plugins/gst-plugins-taglib 1.16.2_pre: ID3v2/APEv2 tagger plugin for GStreamer
+media-plugins/gst-plugins-vaapi 1.16.2_pre: Hardware accelerated video decoding through VA-API plugin for GStreamer
+media-plugins/gst-plugins-vpx 1.16.2_pre: VP8/VP9 video encoder/decoder plugin for GStreamer
+media-plugins/gst-plugins-x264 1.16.2_pre: H.264 encoder plugin for GStreamer
 media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
 media-sound/alsa-utils 1.1.2 1.1.6 1.1.7 1.1.8 1.1.9 1.2.1: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
@@ -164,7 +190,7 @@ sys-apps/iproute2 4.4.0 4.9.0 4.14.1-r2 4.14.1-r4 4.17.0-r1 4.18.0-r1 4.19.0-r1 
 sys-apps/kmod 25 26-r3: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g-r1: Standard commands to read man pages
-sys-apps/portage 2.3.84-r1: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.3.84-r1 2.3.85: Portage is the package management and distribution system for Gentoo
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
@@ -178,7 +204,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre15: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.208 4.9.209 4.9.210 4.14.164 4.14.165 4.14.166 4.19.95 4.19.96 4.19.97 5.4.11 5.4.12 5.4.13: Shows and sets processor power related values
+sys-power/cpupower 4.9.209 4.9.210 4.9.211 4.14.165 4.14.166 4.14.167 4.19.96 4.19.97 4.19.98 5.4.12 5.4.13 5.4.14: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
