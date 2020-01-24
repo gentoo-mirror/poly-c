@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ffffd5b59655c43af06539eee6e4b3562de1bbf8 $
+# $Id: b99c3df60e6e663cab3662653a0afb316c4e9e0c $
 
 EAPI=5
 
@@ -12,7 +12,7 @@ PYTHON_COMPAT=(
 )
 PYTHON_REQ_USE='bzip2(+),threads(+)'
 
-inherit distutils-r1 linux-info systemd prefix
+inherit distutils-r1 epatch linux-info systemd prefix
 
 DESCRIPTION="Portage is the package management and distribution system for Gentoo"
 HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Portage"
@@ -94,7 +94,8 @@ prefix_src_archives() {
 
 TARBALL_PV=${PV}
 SRC_URI="mirror://gentoo/${PN}-${TARBALL_PV}.tar.bz2
-	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.bz2)"
+	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.bz2)
+	https://github.com/gentoo/portage/commit/27d653052549e5d1880ab68be12f3b82857506fe.patch -> ${P}-bug-706186.patch"
 
 pkg_pretend() {
 	local CONFIG_CHECK="~IPC_NS ~PID_NS ~NET_NS"
@@ -108,6 +109,10 @@ pkg_setup() {
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
+
+	# Omit hunk for the unit test which is not included in this source tree.
+	head -n 52 "${DISTDIR}/${P}-bug-706186.patch" > "${WORKDIR}/${P}-bug-706186.patch" || die
+	epatch "${WORKDIR}/${P}-bug-706186.patch"
 
 	epatch "${FILESDIR}/${PN}-2.3.84-eapply_non_verbose.patch"
 	epatch "${FILESDIR}/${PN}-2.3.81-eapply_non_verbose.patch"
