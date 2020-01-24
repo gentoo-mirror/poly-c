@@ -104,25 +104,36 @@ media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extens
 media-libs/libsquish 1.15: DXT compression library
 media-libs/mesa 19.3.2: OpenGL-like graphic library for Linux
 media-plugins/gst-plugins-a52dec 1.16.2_pre: ATSC A/52 audio decoder plugin for GStreamer
+media-plugins/gst-plugins-assrender 1.16.2_pre: ASS/SSA rendering with effects support plugin for GStreamer
+media-plugins/gst-plugins-cdio 1.16.2_pre: CD Audio Source (cdda) plugin for GStreamer
 media-plugins/gst-plugins-cdparanoia 1.16.2_pre: CD Audio Source (cdda) plugin for GStreamer
 media-plugins/gst-plugins-dts 1.16.2_pre: DTS audio decoder plugin for Gstreamer
+media-plugins/gst-plugins-dv 1.16.2_pre: DV demuxer and decoder plugin for GStreamer
+media-plugins/gst-plugins-dvb 1.16.2_pre: plugin for gstreamer
 media-plugins/gst-plugins-dvdread 1.16.2_pre: DVD read plugin for GStreamer
 media-plugins/gst-plugins-faad 1.16.2_pre: AAC audio decoder plugin.
 media-plugins/gst-plugins-flac 1.16.2_pre: FLAC encoder/decoder/tagger plugin for GStreamer
 media-plugins/gst-plugins-gtk 1.16.2_pre: Video sink plugin for GStreamer that renders to a GtkWidget
+media-plugins/gst-plugins-jack 1.16.2_pre: plugin for gstreamer
 media-plugins/gst-plugins-lame 1.16.2_pre: MP3 encoder plugin for GStreamer
 media-plugins/gst-plugins-libav 1.16.2_pre: FFmpeg based gstreamer plugin
+media-plugins/gst-plugins-libmms 1.16.2_pre: Microsoft Multi Media Server source plugin for GStreamer
+media-plugins/gst-plugins-libvisual 1.16.2_pre: Visualization elements for GStreamer
 media-plugins/gst-plugins-meta 1.16.2_pre: Meta ebuild to pull in gst plugins for apps
+media-plugins/gst-plugins-modplug 1.16.2_pre: MOD audio decoder plugin for GStreamer
 media-plugins/gst-plugins-mpeg2dec 1.16.2_pre: MPEG2 decoder plugin for GStreamer
 media-plugins/gst-plugins-mpg123 1.16.2_pre: MP3 decoder plugin for GStreamer
 media-plugins/gst-plugins-mplex 1.16.2_pre: MPEG/DVD/SVCD/VCD video/audio multiplexing plugin for GStreamer
 media-plugins/gst-plugins-opus 1.16.2_pre: Opus audio parser plugin for GStreamer
+media-plugins/gst-plugins-oss 1.16.2_pre: OSS (Open Sound System) support plugin for GStreamer
 media-plugins/gst-plugins-pulse 1.16.2_pre: PulseAudio sound server plugin for GStreamer
 media-plugins/gst-plugins-resindvd 1.16.2_pre: DVD playback support plugin for GStreamer
 media-plugins/gst-plugins-soup 1.16.2_pre: HTTP client source/sink plugin for GStreamer
 media-plugins/gst-plugins-taglib 1.16.2_pre: ID3v2/APEv2 tagger plugin for GStreamer
+media-plugins/gst-plugins-v4l2 1.16.2_pre: plugin for gstreamer
 media-plugins/gst-plugins-vaapi 1.16.2_pre: Hardware accelerated video decoding through VA-API plugin for GStreamer
 media-plugins/gst-plugins-vpx 1.16.2_pre: VP8/VP9 video encoder/decoder plugin for GStreamer
+media-plugins/gst-plugins-wavpack 1.16.2_pre: Wavpack audio encoder/decoder plugin for GStreamer
 media-plugins/gst-plugins-x264 1.16.2_pre: H.264 encoder plugin for GStreamer
 media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
