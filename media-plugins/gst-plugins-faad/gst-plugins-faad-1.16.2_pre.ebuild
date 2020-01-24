@@ -7,7 +7,7 @@ GST_ORG_MODULE=gst-plugins-bad
 PV="${PV%_*}"
 P="${PN}-${PV}"
 
-inherit gstreamer poly-c_ebuilds
+inherit autotools gstreamer poly-c_ebuilds
 
 DESCRIPTION="AAC audio decoder plugin."
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86"
