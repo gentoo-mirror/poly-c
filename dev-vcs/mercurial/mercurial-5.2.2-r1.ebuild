@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 339f1ec904c2f58a6992a9b7f5e6ed536fb6322c $
+# $Id: 7d67135fc8ab6001f8a1b64d2523dfdd3f4fa2bf $
 
 EAPI=7
 
@@ -47,14 +47,17 @@ python_prepare_all() {
 	# fix up logic that won't work in Gentoo Prefix (also won't outside in
 	# certain cases), bug #362891
 	sed -i -e 's:xcodebuild:nocodebuild:' setup.py || die
-	cp "${FILESDIR}/zstd.py" mercurial/
+	# Use absolute import for zstd
+	sed -i -e 's/from \.* import zstd/import zstd/' \
+		mercurial/utils/compression.py \
+		mercurial/wireprotoframing.py || die
 
 	distutils-r1_python_prepare_all
 }
 
 python_compile() {
 	strip-flags -ftracer -ftree-vectorize
-	python_is_python3 || append-flags -fno-strict-aliasing
+	python_is_python3 || local -x CFLAGS="${CFLAGS} -fno-strict-aliasing"
 	distutils-r1_python_compile build_ext --no-zstd
 }
 

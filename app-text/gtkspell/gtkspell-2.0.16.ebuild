@@ -1,6 +1,6 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4db14eabbaecdfeea932e4359ca8887c5d3b275d $
+# $Id: 932bb5de0db2d849b684c85bad5913e03331a080 $
 
 EAPI=7
 
@@ -13,7 +13,7 @@ SRC_URI="http://${PN}.sourceforge.net/download/${P}.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="2"
-KEYWORDS="alpha amd64 arm arm64 hppa ia64 ~mips ppc ppc64 sparc x86 ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
+KEYWORDS="~alpha amd64 arm arm64 hppa ia64 ~mips ppc ppc64 sparc x86 ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
 IUSE=""
 
 RDEPEND="x11-libs/gtk+:2

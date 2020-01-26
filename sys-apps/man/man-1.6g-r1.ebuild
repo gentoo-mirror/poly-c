@@ -1,6 +1,6 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 098628c40d4be4615f392e887b2a19718f30c58e $
+# $Id: d0b9d848063c010cd848573b8afffa847462056a $
 
 EAPI="4"
 
@@ -12,7 +12,7 @@ SRC_URI="http://primates.ximian.com/~flucifredi/man/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86"
+KEYWORDS="~alpha amd64 arm ~arm64 hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86"
 IUSE="+lzma nls selinux"
 
 DEPEND="nls? ( sys-devel/gettext )"
