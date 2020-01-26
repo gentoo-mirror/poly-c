@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -15,14 +15,20 @@ sr sv-SE ta te th tr uk uz vi xh zh-CN zh-TW )
 
 # Patch version
 PATCH="firefox-56.0-patches-07"
+#PATCH="waterfox-2019.12-patches-01"
 MOZ_HTTP_URI="https://github.com/MrAlex94/Waterfox/archive"
+#MOZ_HTTP_URI="https://www.gentoofan.org/files"
 #MOZ_LANGPACK_HTTP_URI="https://github.com/MrAlex94/www.waterfoxproject.org"
 
 MOZCONFIG_OPTIONAL_WIFI=1
 
 inherit check-reqs eapi7-ver flag-o-matic toolchain-funcs eutils gnome2-utils mozconfig-v6.56 pax-utils xdg-utils autotools virtualx 
 
-MY_PV="$(ver_cut 1-2)-classic-$(ver_cut 3)"
+if [[ -z "$(ver_cut 3)" ]] ; then
+	MY_PV="${PV}-classic"
+else
+	MY_PV="$(ver_cut 1-2)-classic-$(ver_cut 3)"
+fi
 
 DESCRIPTION="Waterfox Web Browser"
 HOMEPAGE="http://www.waterfoxproject.org"
@@ -37,7 +43,9 @@ IUSE="eme-free +gmp-autoupdate hardened hwaccel jack nsplugin pgo selinux test"
 PATCH_URIS=( https://dev.gentoo.org/~{anarchy,axs,polynomial-c}/mozilla/patchsets/${PATCH}.tar.xz )
 SRC_URI="
 	${MOZ_HTTP_URI}/${MY_PV}.tar.gz -> ${P}.tar.gz
-	${PATCH_URIS[@]}"
+	${PATCH_URIS[@]}
+"
+	#${MOZ_HTTP_URI}/${P}.tar.xz
 
 ASM_DEPEND=">=dev-lang/yasm-1.1"
 
@@ -54,7 +62,7 @@ DEPEND="${RDEPEND}
 	amd64? ( ${ASM_DEPEND} virtual/opengl )
 	x86? ( ${ASM_DEPEND} virtual/opengl )"
 
-S="${WORKDIR}/Waterfox-${MY_PV}"
+S="${WORKDIR}/${PN^}-${MY_PV}"
 
 QA_PRESTRIPPED="usr/lib*/${PN}/waterfox"
 
@@ -123,7 +131,7 @@ src_prepare() {
 	# Apply our patches
 	eapply "${WORKDIR}/firefox"
 
-	eapply "${FILESDIR}"/${PN}-2019.10-classic_rust-1.39.patch
+	eapply "${FILESDIR}/${P}-classic-no_BigInt.patch"
 
 	# Enable gnomebreakpad
 	if use debug ; then
