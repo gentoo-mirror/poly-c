@@ -131,7 +131,8 @@ src_prepare() {
 	# Apply our patches
 	eapply "${WORKDIR}/firefox"
 
-	eapply "${FILESDIR}/${P}-classic-no_BigInt.patch"
+	eapply "${FILESDIR}/${P}-classic-no_BigInt.patch" \
+		"${FILESDIR}/${P}-classic-version.patch"
 
 	# Enable gnomebreakpad
 	if use debug ; then

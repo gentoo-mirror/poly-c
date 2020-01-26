@@ -1,0 +1,19 @@
+From 229e69e8bfe7e7ff7dee50ebfc661d0cc5fd1c72 Mon Sep 17 00:00:00 2001
+From: Alex Kontos <MrAlex94@users.noreply.github.com>
+Date: Fri, 10 Jan 2020 16:42:37 +0000
+Subject: [PATCH] Update version_display.txt
+
+---
+ browser/config/version_display.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/browser/config/version_display.txt b/browser/config/version_display.txt
+index e921f9477a1b..e88c1018871d 100644
+--- a/browser/config/version_display.txt
++++ b/browser/config/version_display.txt
+@@ -1 +1 @@
+-2019.12
++2020.01
+-- 
+2.25.0
+
