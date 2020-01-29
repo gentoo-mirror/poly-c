@@ -1,31 +1,32 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 291c505bf4c8805a196595dfd0bc4859afc07298 $
+# $Id: ab7524bb0d79f4fa8ad0dfa0ddf527d0d0678475 $
 
 EAPI=7
+
 QT5_MODULE="qtbase"
 inherit qt5-build
 
 DESCRIPTION="The GUI module and platform plugins for the Qt5 framework"
 
 if [[ ${QT5_BUILD_TYPE} == release ]]; then
-	KEYWORDS="amd64 arm arm64 ~hppa ppc ppc64 ~sparc ~x86"
+	KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
 fi
 
 # TODO: linuxfb
 
 IUSE="accessibility dbus egl eglfs evdev +gif gles2 ibus
-	jpeg +libinput +png tslib tuio +udev vnc wayland +xcb"
+	jpeg +libinput +png tslib tuio +udev vnc wayland +X"
 REQUIRED_USE="
-	|| ( eglfs xcb )
-	accessibility? ( dbus xcb )
+	|| ( eglfs X )
+	accessibility? ( dbus X )
 	eglfs? ( egl )
 	ibus? ( dbus )
 	libinput? ( udev )
-	xcb? ( gles2? ( egl ) )
+	X? ( gles2? ( egl ) )
 "
 
-RDEPEND="
+COMMON_DEPEND="
 	dev-libs/glib:2
 	~dev-qt/qtcore-${PV}
 	dev-util/gtk-update-icon-cache
@@ -48,11 +49,11 @@ RDEPEND="
 		>=x11-libs/libxkbcommon-0.5.0
 	)
 	png? ( media-libs/libpng:0= )
-	tslib? ( x11-libs/tslib )
+	tslib? ( >=x11-libs/tslib-1.21 )
 	tuio? ( ~dev-qt/qtnetwork-${PV} )
 	udev? ( virtual/libudev:= )
 	vnc? ( ~dev-qt/qtnetwork-${PV} )
-	xcb? (
+	X? (
 		x11-libs/libICE
 		x11-libs/libSM
 		x11-libs/libX11
@@ -64,9 +65,16 @@ RDEPEND="
 		x11-libs/xcb-util-wm
 	)
 "
-DEPEND="${RDEPEND}
+DEPEND="${COMMON_DEPEND}
 	evdev? ( sys-kernel/linux-headers )
 	udev? ( sys-kernel/linux-headers )
+"
+# bug 703306, _populate_Gui_plugin_properties breaks installed cmake modules
+RDEPEND="${COMMON_DEPEND}
+	!<dev-qt/qtimageformats-5.14.0:5
+	!<dev-qt/qtsvg-5.14.0:5
+	!<dev-qt/qtvirtualkeyboard-5.14.0:5
+	!<dev-qt/qtwayland-5.14.0:5
 "
 PDEPEND="
 	ibus? ( app-i18n/ibus )
@@ -112,29 +120,25 @@ QT5_GENTOO_CONFIG=(
 	!png:no-png:
 	tslib:tslib:
 	udev:libudev:
-	xcb:xcb:
-	xcb:xcb-glx:
-	xcb:xcb-plugin:
-	xcb:xcb-render:
-	xcb:xcb-sm:
-	xcb:xcb-xlib:
-	xcb:xcb-xinput:
+	X:xcb:
+	X:xcb-glx:
+	X:xcb-plugin:
+	X:xcb-render:
+	X:xcb-sm:
+	X:xcb-xlib:
+	X:xcb-xinput:
 )
 
 QT5_GENTOO_PRIVATE_CONFIG=(
 	:gui
 )
 
-PATCHES+=(
-	"${FILESDIR}/${P}-no-xcb-no-xkbcommon.patch" # bug 699110
-)
-
 src_prepare() {
 	# don't add -O3 to CXXFLAGS, bug 549140
 	sed -i -e '/CONFIG\s*+=/s/optimize_full//' src/gui/gui.pro || die
 
-	# egl_x11 is activated when both egl and xcb are enabled
-	use egl && QT5_GENTOO_CONFIG+=(xcb:egl_x11:) || QT5_GENTOO_CONFIG+=(egl:egl_x11:)
+	# egl_x11 is activated when both egl and X are enabled
+	use egl && QT5_GENTOO_CONFIG+=(X:egl_x11:) || QT5_GENTOO_CONFIG+=(egl:egl_x11:)
 
 	qt_use_disable_config dbus dbus \
 		src/platformsupport/themes/genericunix/genericunix.pri
@@ -169,10 +173,10 @@ src_configure() {
 		$(qt_use png libpng system)
 		$(qt_use tslib)
 		$(qt_use udev libudev)
-		$(qt_use xcb xcb system)
-		$(usex xcb '-xcb-xlib -xcb-xinput -xkb' '')
+		$(qt_use X xcb system)
+		$(usex X '-xcb-xlib -xcb-xinput -xkb' '')
 	)
-	if use libinput || use xcb; then
+	if use libinput || use X; then
 		myconf+=( -xkbcommon )
 	fi
 	qt5-build_src_configure
