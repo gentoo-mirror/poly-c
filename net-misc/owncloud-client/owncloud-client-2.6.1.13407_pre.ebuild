@@ -1,9 +1,9 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
-inherit cmake-utils gnome2-utils poly-c_ebuilds
+inherit cmake-utils xdg poly-c_ebuilds
 
 DESCRIPTION="Synchronize files from ownCloud Server with your computer"
 HOMEPAGE="https://owncloud.org/"
@@ -47,6 +47,8 @@ DEPEND="${COMMON_DEPEND}
 		dev-qt/qttest:5
 	)"
 
+RESTRICT="!test? ( test )"
+
 S=${WORKDIR}/${MY_P/-}
 
 src_prepare() {
@@ -79,9 +81,5 @@ pkg_postinst() {
 		elog "Documentation and man pages not installed"
 		elog "Enable doc USE-flag to generate them"
 	fi
-	gnome2_icon_cache_update
-}
-
-pkg_postrm() {
-	gnome2_icon_cache_update
+	xdg_pkg_postinst
 }
