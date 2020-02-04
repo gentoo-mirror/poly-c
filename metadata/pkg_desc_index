@@ -46,6 +46,7 @@ dev-libs/newt 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.0.2r 1.0.2s-r1 1.0.2t-r1 1.1.1d-r3: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2t-r1 1.0.2u: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/protobuf 3.11.3_pre: Google's Protocol Buffers - Extensible mechanism for serializing structured data
 dev-python/dbus-python 1.2.16_pre: Python bindings for the D-Bus messagebus
 dev-python/fido2 0.7.3: Python based FIDO 2.0 library
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
@@ -84,7 +85,6 @@ kde-apps/kde-wallpapers 15.08.3 15.08.3-r2 15.08.3-r3: KDE wallpapers
 kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
 lxde-base/lxsession 0.5.2: LXDE session manager
-mail-filter/spamassassin 3.4.4_pre: An extensible mail filter which can identify and tag spam
 media-fonts/font-util 1.3.2: X.Org font utilities
 media-fonts/fontawesome 5.12.0_pre: The iconic font
 media-libs/freeimage 3.15.4-r1: Image library supporting many formats
@@ -169,7 +169,6 @@ net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
 net-misc/netifrc 0.5.1 0.6.1: Gentoo Network Interface Management Scripts
 net-misc/networkmanager 1.20.8_pre 1.22.2_pre 1.22.4_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
-net-misc/owncloud-client 2.6.1.13407_pre: Synchronize files from ownCloud Server with your computer
 net-misc/rsync 3.1.3: File transfer program to keep remote files into sync
 net-misc/ssh-tools 1.5: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
@@ -219,7 +218,6 @@ sys-process/procps 3.3.15-r1 3.3.16: standard informational utilities and proces
 www-client/links 2.17 2.18 2.19_pre 2.20.1_pre 2.20.2_pre: A fast and lightweight web browser running in both graphics and text mode
 www-client/waterfox 2019.12 2020.01: Waterfox Web Browser
 x11-apps/xinit 1.4.0-r1 1.4.1: X Window System initializer
-x11-libs/cairo 1.16.0-r3: A vector graphics library with cross-device output support
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-libs/pango 1.44.7_pre: Internationalized text layout and rendering library
 x11-misc/adriconf 1.5.1 1.6 9999: Advanced DRI Configurator
