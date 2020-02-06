@@ -1,10 +1,10 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 172b58fd1d47949df1c177c7a96c92c5b3687080 $
+# $Id: fc86c9f356f162e9a8c6ada40351a0362ed661de $
 
 EAPI=7
 
-PYTHON_COMPAT=( python{2_7,3_{6,7}} )
+PYTHON_COMPAT=( python3_{6,7} )
 inherit distutils-r1
 
 DESCRIPTION="Python based FIDO 2.0 library"

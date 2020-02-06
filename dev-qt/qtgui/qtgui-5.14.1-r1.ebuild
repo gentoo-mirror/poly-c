@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ab7524bb0d79f4fa8ad0dfa0ddf527d0d0678475 $
+# $Id: f613f1709b547e01f24317a1c69c42bcf96f5414 $
 
 EAPI=7
 
@@ -8,6 +8,7 @@ QT5_MODULE="qtbase"
 inherit qt5-build
 
 DESCRIPTION="The GUI module and platform plugins for the Qt5 framework"
+SLOT=5/${PV} # bug 707658
 
 if [[ ${QT5_BUILD_TYPE} == release ]]; then
 	KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
