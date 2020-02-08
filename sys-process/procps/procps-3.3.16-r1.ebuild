@@ -1,5 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
+# $Id: b99fef6e400d118fc1d8d2903d5519d2929b9927 $
 
 EAPI=7
 
@@ -50,7 +51,7 @@ multilib_src_configure() {
 	local myeconfargs=(
 		--docdir='$(datarootdir)'/doc/${PF}
 		--sbindir="${EPREFIX}/sbin"
-		$(use_with elogind)
+		$(multilib_native_use_with elogind) # No elogind multilib support
 		$(multilib_native_use_enable kill)
 		$(multilib_native_use_enable modern-top)
 		$(multilib_native_use_with ncurses)
