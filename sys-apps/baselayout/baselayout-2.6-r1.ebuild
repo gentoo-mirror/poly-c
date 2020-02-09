@@ -1,13 +1,13 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 6398d236aca7f0ee8586f30395daf71fb5c2af89 $
+# $Id: 0e9f29a78742308f17ac521e40e2745bb64ecc32 $
 
 EAPI=6
 
 inherit multilib versionator prefix
 
 DESCRIPTION="Filesystem baselayout and init scripts"
-HOMEPAGE="https://www.gentoo.org/"
+HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
 if [[ ${PV} = 9999 ]]; then
 	EGIT_REPO_URI="https://anongit.gentoo.org/git/proj/${PN}.git"
 	inherit git-r3

@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e0e3327e66ce9f47303ef9fce12812530beb9684 $
+# $Id: 7c6651c21260a9476f715fc59dbc31d5b0702d10 $
 
 EAPI=6
 
@@ -130,13 +130,13 @@ src_install() {
 
 	emake \
 		DESTDIR="${D}" \
-		PREFIX="${EPREFIX%/}/usr" \
-		LIBDIR="${EPREFIX%/}"/$(get_libdir) \
-		SBINDIR="${EPREFIX%/}"/sbin \
-		CONFDIR="${EPREFIX%/}"/etc/iproute2 \
-		DOCDIR="${EPREFIX%/}"/usr/share/doc/${PF} \
-		MANDIR="${EPREFIX%/}"/usr/share/man \
-		ARPDDIR="${EPREFIX%/}"/var/lib/arpd \
+		PREFIX="${EPREFIX}/usr" \
+		LIBDIR="${EPREFIX}"/$(get_libdir) \
+		SBINDIR="${EPREFIX}"/sbin \
+		CONFDIR="${EPREFIX}"/etc/iproute2 \
+		DOCDIR="${EPREFIX}"/usr/share/doc/${PF} \
+		MANDIR="${EPREFIX}"/usr/share/man \
+		ARPDDIR="${EPREFIX}"/var/lib/arpd \
 		install
 
 	dodir /bin
