@@ -1,11 +1,11 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 179c88599c41b0445071d9c5a2bfaa64b91d1854 $
+# $Id: d89518d63680f2590dc883e8a33f95b9b0738d5a $
 
 EAPI=5
 
 # TODO: multiple ABI?
-PYTHON_COMPAT=( python3_{5,6,7,8} )
+PYTHON_COMPAT=( python3_{6,7,8} )
 inherit eutils flag-o-matic cmake-utils python-single-r1
 
 DESCRIPTION="Crazy Eddie's GUI System"
@@ -44,7 +44,9 @@ RDEPEND="
 	pcre? ( dev-libs/libpcre )
 	python? (
 		${PYTHON_DEPS}
-		dev-libs/boost:=[python,${PYTHON_USEDEP}]
+		$(python_gen_cond_dep '
+			dev-libs/boost:=[python,${PYTHON_MULTI_USEDEP}]
+		')
 	)
 	tinyxml? ( dev-libs/tinyxml )
 	truetype? ( media-libs/freetype:2 )
