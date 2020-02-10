@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8ab48c846dd5b6da12fa2d5de55f5d784ff9d3d6 $
+# $Id: f613f1709b547e01f24317a1c69c42bcf96f5414 $
 
 EAPI=7
 
@@ -8,6 +8,7 @@ QT5_MODULE="qtbase"
 inherit qt5-build
 
 DESCRIPTION="The GUI module and platform plugins for the Qt5 framework"
+SLOT=5/${PV} # bug 707658
 
 if [[ ${QT5_BUILD_TYPE} == release ]]; then
 	KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
@@ -134,8 +135,7 @@ QT5_GENTOO_PRIVATE_CONFIG=(
 )
 
 PATCHES=(
-	"${FILESDIR}/${PN}-5.13.2-no-xcb-no-xkbcommon.patch" # bug 699110
-	"${FILESDIR}/${P}-restore-scaling.patch" # QTBUG-80967, in Qt 5.14.1
+	"${FILESDIR}/${PN}-5.14.1-cmake-macro-backward-compat.patch" # bug 703306
 )
 
 src_prepare() {

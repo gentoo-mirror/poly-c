@@ -55,7 +55,7 @@ dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-python/pyscard 1.9.9_pre: Smart cards support in python
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
-dev-qt/qtgui 5.12.3-r1 5.12.5 5.13.2 5.14.0-r3 5.14.1-r1: The GUI module and platform plugins for the Qt5 framework
+dev-qt/qtgui 5.12.3-r1 5.12.5 5.13.2 5.14.1-r2: The GUI module and platform plugins for the Qt5 framework
 dev-util/cloc 1.84_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/meson 0.53.0 0.53.1_pre: Open source build system
@@ -189,7 +189,7 @@ sci-misc/xmedcon 0.14.1: Medical Image Conversion Utility
 sci-visualization/amide 1.0.5: AMIDE's a Medical Imaging Data Examiner
 sci-visualization/ginkgocadx 3.8.6: An advanced DICOM viewer and dicomizer
 sys-apps/accountsservice 0.6.54_pre 0.6.55_pre: D-Bus interfaces for querying and manipulating user account information
-sys-apps/baselayout 2.6-r1: Filesystem baselayout and init scripts
+sys-apps/baselayout 2.6-r1 2.7: Filesystem baselayout and init scripts
 sys-apps/fwup 1.0.0 1.2.1: Configurable embedded Linux firmware update creator and runner
 sys-apps/gawk 4.1.4 4.2.1-r1 5.0.0 5.0.1: GNU awk pattern-matching language
 sys-apps/hwloc 2.0.3_pre: displays the hardware topology in convenient formats
