@@ -30,6 +30,15 @@ RDEPEND="
 		dev-python/future[${PYTHON_MULTI_USEDEP}]
 		dev-python/pillow[${PYTHON_MULTI_USEDEP}]
 		dev-python/pyyaml[${PYTHON_MULTI_USEDEP}]
+	')
+	games-engines/fifengine[python,${PYTHON_SINGLE_USEDEP}]
+	games-engines/fifechan
+	${PYTHON_DEPS}
+"
+
+DEPEND="
+	${RDEPEND}
+	$(python_gen_cond_dep '
 		test? (
 			dev-python/greenlet[${PYTHON_MULTI_USEDEP}]
 			dev-python/polib[${PYTHON_MULTI_USEDEP}]
@@ -39,13 +48,8 @@ RDEPEND="
 			dev-python/nose[${PYTHON_MULTI_USEDEP}]
 			dev-python/pycodestyle[${PYTHON_MULTI_USEDEP}]
 		)
-		games-engines/fifengine[python,${PYTHON_MULTI_USEDEP}]
 	')
-	games-engines/fifechan
-	${PYTHON_DEPS}
 "
-
-DEPEND="${RDEPEND}"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
