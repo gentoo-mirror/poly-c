@@ -45,7 +45,9 @@ RDEPEND="
 	virtual/opengl
 	virtual/glu
 	python? (
-		dev-python/pyyaml[${PYTHON_USEDEP}]
+		$(python_gen_cond_dep '
+			dev-python/pyyaml[${PYTHON_MULTI_USEDEP}]
+		')
 		${PYTHON_DEPS}
 	)
 "

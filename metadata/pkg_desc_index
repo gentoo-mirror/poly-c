@@ -62,8 +62,8 @@ dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision cont
 dev-vcs/mercurial 5.2.2-r1: Scalable distributed SCM
 games-action/supertuxkart 1.0 1.1_pre: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
-games-engines/fifechan 0.1.4 9999: Lightweight cross platform GUI C++ library designed for games
-games-engines/fifengine 0.4.1 9999: Flexible Isometric Free Engine, 2D
+games-engines/fifechan 9999: Lightweight cross platform GUI C++ library designed for games
+games-engines/fifengine 9999: Flexible Isometric Free Engine, 2D
 games-engines/stratagus 2.4.2_pre: A realtime strategy game engine
 games-fps/dhewm3 1.4.1 9999: A Doom 3 GPL source modification.
 games-fps/enemy-territory 2.60b-r1: standalone multi-player game based on Return to Castle Wolfenstein

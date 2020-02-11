@@ -25,20 +25,22 @@ SLOT="0"
 IUSE="test"
 
 RDEPEND="
-	dev-python/distro[${PYTHON_SINGLE_USEDEP}]
-	dev-python/future[${PYTHON_SINGLE_USEDEP}]
-	dev-python/pillow[${PYTHON_SINGLE_USEDEP}]
-	dev-python/pyyaml[${PYTHON_SINGLE_USEDEP}]
-	test? (
-		dev-python/greenlet[${PYTHON_SINGLE_USEDEP}]
-		dev-python/polib[${PYTHON_SINGLE_USEDEP}]
-		dev-python/isort[${PYTHON_SINGLE_USEDEP}]
-		dev-python/pylint[${PYTHON_SINGLE_USEDEP}]
-		dev-python/mock[${PYTHON_SINGLE_USEDEP}]
-		dev-python/nose[${PYTHON_SINGLE_USEDEP}]
-		dev-python/pycodestyle[${PYTHON_SINGLE_USEDEP}]
-	)
-	games-engines/fifengine[python,${PYTHON_SINGLE_USEDEP}]
+	$(python_gen_cond_dep '
+		dev-python/distro[${PYTHON_MULTI_USEDEP}]
+		dev-python/future[${PYTHON_MULTI_USEDEP}]
+		dev-python/pillow[${PYTHON_MULTI_USEDEP}]
+		dev-python/pyyaml[${PYTHON_MULTI_USEDEP}]
+		test? (
+			dev-python/greenlet[${PYTHON_MULTI_USEDEP}]
+			dev-python/polib[${PYTHON_MULTI_USEDEP}]
+			dev-python/isort[${PYTHON_MULTI_USEDEP}]
+			dev-python/pylint[${PYTHON_MULTI_USEDEP}]
+			dev-python/mock[${PYTHON_MULTI_USEDEP}]
+			dev-python/nose[${PYTHON_MULTI_USEDEP}]
+			dev-python/pycodestyle[${PYTHON_MULTI_USEDEP}]
+		)
+		games-engines/fifengine[python,${PYTHON_MULTI_USEDEP}]
+	')
 	games-engines/fifechan
 	${PYTHON_DEPS}
 "
