@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 99fb80953a8b9d6c64f7a18cbf901ab53d0f3cea $
+# $Id: 6fb3d2e0e3061186692f573ec77760e8ae011e0d $
 
 EAPI=6
 
@@ -18,10 +18,12 @@ KEYWORDS="~amd64"
 REQUIRED_USE=${PYTHON_REQUIRED_USE}
 
 DEPEND="${PYTHON_DEPS}
-	>=app-crypt/yubikey-manager-1.0.0[${PYTHON_USEDEP}]
-	<app-crypt/yubikey-manager-4.0.0[${PYTHON_USEDEP}]
-	dev-python/cryptography[${PYTHON_USEDEP}]
-	dev-python/pyotherside[${PYTHON_USEDEP}]
+	$(python_gen_cond_dep '
+		>=app-crypt/yubikey-manager-1.0.0[${PYTHON_MULTI_USEDEP}]
+		<app-crypt/yubikey-manager-4.0.0[${PYTHON_MULTI_USEDEP}]
+		dev-python/cryptography[${PYTHON_MULTI_USEDEP}]
+	')
+	dev-python/pyotherside[${PYTHON_SINGLE_USEDEP}]
 	dev-qt/qtcore:5
 	dev-qt/qtdeclarative:5
 	dev-qt/qtgraphicaleffects:5

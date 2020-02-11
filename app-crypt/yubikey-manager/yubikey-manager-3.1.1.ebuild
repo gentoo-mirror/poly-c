@@ -1,17 +1,17 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: b471c2587921e81537f0271b2f1112c4d2731335 $
+# $Id: c510503999b1e7bbea7603b01fabd23a2628d9a0 $
 
 EAPI=6
 
 PYTHON_COMPAT=( python3_{6,7} )
-inherit readme.gentoo-r1 distutils-r1 poly-c_ebuilds
+inherit readme.gentoo-r1 distutils-r1
 
 DESCRIPTION="Python library and command line tool for configuring a YubiKey"
 HOMEPAGE="https://developers.yubico.com/yubikey-manager/"
 # Per https://github.com/Yubico/yubikey-manager/issues/217, Yubico is
 # the official source for tarballs, not Github
-SRC_URI="https://developers.yubico.com/${PN}/Releases/${MY_P}.tar.gz"
+SRC_URI="https://developers.yubico.com/${PN}/Releases/${P}.tar.gz"
 
 LICENSE="BSD-2"
 SLOT="0"
