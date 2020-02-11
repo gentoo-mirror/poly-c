@@ -25,20 +25,20 @@ SLOT="0"
 IUSE="test"
 
 RDEPEND="
-	dev-python/distro[${PYTHON_USEDEP}]
-	dev-python/future[${PYTHON_USEDEP}]
-	dev-python/pillow[${PYTHON_USEDEP}]
-	dev-python/pyyaml[${PYTHON_USEDEP}]
+	dev-python/distro[${PYTHON_SINGLE_USEDEP}]
+	dev-python/future[${PYTHON_SINGLE_USEDEP}]
+	dev-python/pillow[${PYTHON_SINGLE_USEDEP}]
+	dev-python/pyyaml[${PYTHON_SINGLE_USEDEP}]
 	test? (
-		dev-python/greenlet[${PYTHON_USEDEP}]
-		dev-python/polib[${PYTHON_USEDEP}]
-		dev-python/isort[${PYTHON_USEDEP}]
-		dev-python/pylint[${PYTHON_USEDEP}]
-		dev-python/mock[${PYTHON_USEDEP}]
-		dev-python/nose[${PYTHON_USEDEP}]
-		dev-python/pycodestyle[${PYTHON_USEDEP}]
+		dev-python/greenlet[${PYTHON_SINGLE_USEDEP}]
+		dev-python/polib[${PYTHON_SINGLE_USEDEP}]
+		dev-python/isort[${PYTHON_SINGLE_USEDEP}]
+		dev-python/pylint[${PYTHON_SINGLE_USEDEP}]
+		dev-python/mock[${PYTHON_SINGLE_USEDEP}]
+		dev-python/nose[${PYTHON_SINGLE_USEDEP}]
+		dev-python/pycodestyle[${PYTHON_SINGLE_USEDEP}]
 	)
-	games-engines/fifengine[python,${PYTHON_USEDEP}]
+	games-engines/fifengine[python,${PYTHON_SINGLE_USEDEP}]
 	games-engines/fifechan
 	${PYTHON_DEPS}
 "
