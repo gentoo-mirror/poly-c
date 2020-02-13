@@ -1,0 +1,16 @@
+https://bugs.gentoo.org/709484
+https://phabricator.kde.org/D27366
+
+diff --git a/src/plasma/private/dataenginemanager.cpp b/src/plasma/private/dataenginemanager.cpp
+--- a/src/plasma/private/dataenginemanager.cpp
++++ b/src/plasma/private/dataenginemanager.cpp
+@@ -40,7 +40,7 @@
+ {
+ public:
+     explicit NullEngine(QObject *parent = nullptr)
+-        : DataEngine(KPluginInfo(), parent)
++        : DataEngine(KPluginMetaData(), parent)
+     {
+         setValid(false);
+ 
+
