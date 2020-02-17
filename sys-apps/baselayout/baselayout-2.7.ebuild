@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: a4b8ca535ac9d559e4213ce155455784745a7515 $
+# $Id: ea29ca415bdfba9c433738eff0b3abe1f85c8ce4 $
 
 EAPI=6
 
@@ -226,6 +226,7 @@ src_install() {
 		DESTDIR="${ED}" \
 		install
 	dodoc ChangeLog
+	rm "${ED}"/etc/sysctl.d/README
 
 	# need the makefile in pkg_preinst
 	insinto /usr/share/${PN}
