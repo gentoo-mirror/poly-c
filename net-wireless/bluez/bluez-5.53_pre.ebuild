@@ -258,7 +258,7 @@ multilib_src_install_all() {
 	use doc && dodoc doc/*.txt
 	# Install .json files as examples to be used by meshctl
 	if use mesh; then
-		dodoc tools/mesh/*.json
+		dodoc tools/mesh-gatt/*.json
 		local DOC_CONTENTS="Some example .json files were installed into
 		/usr/share/doc/${PF} to be used with meshctl. Feel free to
 		uncompress and copy them to ~/.config/meshctl to use them."
