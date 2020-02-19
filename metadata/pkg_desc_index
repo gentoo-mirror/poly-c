@@ -48,6 +48,7 @@ dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptogra
 dev-libs/openssl 1.0.2r 1.0.2s-r1 1.0.2t-r1 1.1.1d-r3: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2t-r1 1.0.2u: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf 3.11.3_pre: Google's Protocol Buffers - Extensible mechanism for serializing structured data
+dev-libs/wayland 1.18.0_pre: Wayland protocol libraries
 dev-python/dbus-python 1.2.16_pre: Python bindings for the D-Bus messagebus
 dev-python/fido2 0.7.3: Python based FIDO 2.0 library
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
@@ -169,7 +170,7 @@ net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that s
 net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
 net-misc/lldpd 1.0.5_pre: Implementation of IEEE 802.1ab (LLDP)
 net-misc/netifrc 0.5.1 0.6.1: Gentoo Network Interface Management Scripts
-net-misc/networkmanager 1.20.8_pre 1.22.4_pre 1.22.6_pre: A set of co-operative tools that make networking simple and straightforward
+net-misc/networkmanager 1.20.8_pre 1.22.6_pre 1.22.8_pre: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/rsync 3.1.3: File transfer program to keep remote files into sync
 net-misc/ssh-tools 1.5: collection of various tools using ssh
@@ -196,7 +197,7 @@ sys-apps/fwup 1.0.0 1.2.1: Configurable embedded Linux firmware update creator a
 sys-apps/gawk 4.1.4 4.2.1-r1 5.0.0 5.0.1: GNU awk pattern-matching language
 sys-apps/hwloc 2.0.3_pre: displays the hardware topology in convenient formats
 sys-apps/iproute2 4.4.0 4.9.0 4.14.1-r2 4.14.1-r4 4.17.0-r1 4.18.0-r1 4.19.0-r1 4.20.0 5.0.0 5.1.0 5.2.0-r1 5.4.0 5.5.0: kernel routing and traffic control utilities
-sys-apps/kmod 25 26-r3: library and tools for managing linux kernel modules
+sys-apps/kmod 25 26-r3 27: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g-r1: Standard commands to read man pages
 sys-apps/portage 2.3.84-r1 2.3.85-r1 2.3.86 2.3.87 2.3.88 2.3.89: Portage is the package management and distribution system for Gentoo
