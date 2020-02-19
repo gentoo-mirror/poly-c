@@ -1,10 +1,11 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
 inherit cmake desktop
 
+CMAKE_IN_SOURCE_BUILD=1
 MY_PN="OpenDungeons"
 
 DESCRIPTION="An open source, real time strategy game based on the Dungeon Keeper series"
@@ -37,10 +38,11 @@ DEPEND="${RDEPEND}"
 BDEPEND="
 	virtual/pkgconfig"
 
-CMAKE_IN_SOURCE_BUILD=1
+PATCHES=(
+	"${FILESDIR}/${PN}-metainfo_dir.patch"
+)
 
 src_prepare() {
-	default
 	sed \
 		-e '/-Werror/d' \
 		-i CMakeLists.txt || die

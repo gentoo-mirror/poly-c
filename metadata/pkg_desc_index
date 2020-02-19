@@ -27,6 +27,7 @@ app-misc/mc 4.8.22 4.8.23-r1 4.8.23-r2 4.8.24: GNU Midnight Commander is a text 
 app-misc/mmv 1.01b_p19_pre: Move/copy/append/link multiple files according to a set of wildcard patterns
 app-misc/osmo 0.4.2: Handy personal organizer
 app-misc/screen 4.8.0_pre: screen manager with VT100/ANSI terminal emulation
+app-misc/tmux 3.1_rc: Terminal multiplexer
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-shells/zsh 5.7.1-r1: UNIX Shell similar to the Korn shell
