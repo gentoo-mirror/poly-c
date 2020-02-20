@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 39da329b5dd5f3924575e325c5e860aebfe60433 $
+# $Id: d02cf2adf0b50c45d9169d249df7faa631cd4051 $
 
 EAPI=7
 
@@ -38,7 +38,7 @@ done
 IUSE="${IUSE_VIDEO_CARDS}
 	+classic d3d9 debug +dri3 +egl +gallium +gbm gles1 +gles2 libglvnd +llvm
 	lm-sensors opencl osmesa selinux test unwind vaapi valgrind vdpau vulkan
-	vulkan-overlay wayland +X xa xvmc zink"
+	vulkan-overlay wayland +X xa xvmc zink +zstd"
 
 REQUIRED_USE="
 	d3d9?   ( dri3 || ( video_cards_iris video_cards_r300 video_cards_r600 video_cards_radeonsi video_cards_nouveau video_cards_vmware ) )
@@ -131,6 +131,7 @@ RDEPEND="
 		>=x11-libs/libxcb-1.13:=[${MULTILIB_USEDEP}]
 		x11-libs/libXfixes:=[${MULTILIB_USEDEP}]
 	)
+	zstd? ( app-arch/zstd:=[${MULTILIB_USEDEP}] )
 "
 for card in ${RADEON_CARDS}; do
 	RDEPEND="${RDEPEND}
@@ -486,6 +487,7 @@ multilib_src_configure() {
 		$(meson_use gles2)
 		$(meson_use libglvnd glvnd)
 		$(meson_use selinux)
+		$(meson_use zstd)
 		-Dvalgrind=$(usex valgrind auto false)
 		-Ddri-drivers=$(driver_list "${DRI_DRIVERS[*]}")
 		-Dgallium-drivers=$(driver_list "${GALLIUM_DRIVERS[*]}")
