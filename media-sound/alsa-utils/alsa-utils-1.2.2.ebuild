@@ -1,8 +1,8 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 757dbfdfeb79bada3bdffb2911cee0518a63e8fe $
+# $Id: 564a4e6888fcbe6021e2351b74cb2d0ed29c4c94 $
 
-EAPI=6
+EAPI=7
 inherit systemd udev
 
 ADRIVER_PV="1.0.25"
@@ -13,7 +13,7 @@ SRC_URI="https://www.alsa-project.org/files/pub/utils/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0.9"
-KEYWORDS="~alpha amd64 arm ~arm64 hppa ~ia64 ~mips ppc ppc64 ~sh sparc x86"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86"
 IUSE="bat doc +libsamplerate +ncurses nls selinux"
 
 CDEPEND=">=media-libs/alsa-lib-${PV}
@@ -21,10 +21,14 @@ CDEPEND=">=media-libs/alsa-lib-${PV}
 	ncurses? ( >=sys-libs/ncurses-5.7-r7:0= )
 	bat? ( sci-libs/fftw:= )"
 DEPEND="${CDEPEND}
-	virtual/pkgconfig
 	doc? ( app-text/xmlto )"
 RDEPEND="${CDEPEND}
 	selinux? ( sec-policy/selinux-alsa )"
+BDEPEND="virtual/pkgconfig"
+
+PATCHES=(
+	"${FILESDIR}"/${PN}-1.1.8-missing_header.patch
+)
 
 src_configure() {
 	local myeconfargs=(
@@ -47,9 +51,7 @@ src_install() {
 	default
 	dodoc seq/*/README.*
 
-	newbin "${WORKDIR}/alsa-driver-${ADRIVER_PV}/utils/alsa-info.sh" alsa-info
-
-	newinitd "${FILESDIR}"/alsasound.initd-r7 alsasound
+	newinitd "${FILESDIR}"/alsasound.initd-r8 alsasound
 	newconfd "${FILESDIR}"/alsasound.confd-r4 alsasound
 
 	insinto /etc/modprobe.d

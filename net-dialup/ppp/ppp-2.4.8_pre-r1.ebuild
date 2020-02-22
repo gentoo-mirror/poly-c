@@ -38,6 +38,8 @@ src_prepare() {
 	fi
 	eapply "${WORKDIR}"/patches
 
+	eapply "${FILESDIR}"/${MY_P}-eap_bounds_check.patch
+
 	if use atm ; then
 		einfo "Enabling PPPoATM support"
 		sed -i '/^#HAVE_LIBATM=yes/s:#::' \

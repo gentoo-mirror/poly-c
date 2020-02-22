@@ -1,0 +1,37 @@
+From b09c1e6717e3a54c2ad17ed8776a85af40b7e3e5 Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Wed, 19 Feb 2020 14:01:48 +0100
+Subject: [PATCH] Rename appdata to metainfo
+
+See https://www.freedesktop.org/software/appstream/docs/chap-Metadata.html
+chapter 2.1.2 "Filesystem locations"
+
+Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
+---
+ CMakeLists.txt                                               | 4 ++--
+ dist/{opendungeons.appdata.xml => opendungeons.metainfo.xml} | 0
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+ rename dist/{opendungeons.appdata.xml => opendungeons.metainfo.xml} (100%)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9f4b5785..ac9c9003 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -789,8 +789,8 @@ if(UNIX)
+             DESTINATION ${OD_DATA_PATH})
+ 
+     # Additional distribution content (desktop file, icons, man page, doc)
+-    install(FILES ${CMAKE_SOURCE_DIR}/dist/opendungeons.appdata.xml
+-            DESTINATION ${OD_SHARE_PATH}/appdata)
++    install(FILES ${CMAKE_SOURCE_DIR}/dist/opendungeons.metainfo.xml
++            DESTINATION ${OD_SHARE_PATH}/metainfo)
+     install(FILES ${CMAKE_BINARY_DIR}/opendungeons.desktop
+             DESTINATION ${OD_SHARE_PATH}/applications)
+     install(FILES ${CMAKE_BINARY_DIR}/opendungeons.6
+diff --git a/dist/opendungeons.appdata.xml b/dist/opendungeons.metainfo.xml
+similarity index 100%
+rename from dist/opendungeons.appdata.xml
+rename to dist/opendungeons.metainfo.xml
+-- 
+2.25.1
+

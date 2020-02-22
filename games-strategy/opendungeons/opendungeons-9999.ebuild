@@ -39,7 +39,7 @@ BDEPEND="
 	virtual/pkgconfig"
 
 PATCHES=(
-	"${FILESDIR}/${PN}-metainfo_dir.patch"
+	"${FILESDIR}/${PN}-metainfo.patch"
 )
 
 src_prepare() {

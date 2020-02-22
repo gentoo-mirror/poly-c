@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit toolchain-funcs
+inherit toolchain-funcs eutils
 
 DESCRIPTION="A compact getty program for virtual consoles only"
 HOMEPAGE="https://sourceforge.net/projects/mingetty"
@@ -35,7 +35,7 @@ src_compile() {
 	emake CFLAGS="${CFLAGS} -Wall -W -pipe -D_GNU_SOURCE" CC="$(tc-getCC)"
 }
 
-src_install () {
+src_install() {
 	dodir /sbin /usr/share/man/man8
 	emake DESTDIR="${D}" install
 }

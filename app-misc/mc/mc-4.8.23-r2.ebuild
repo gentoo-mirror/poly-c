@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: aa4702844356f9c180e1839dd266f151212bbdac $
+# $Id: 8de901785a39b2c74f71ca91037b74c456481d5d $
 
 EAPI=7
 
@@ -70,8 +70,6 @@ src_configure() {
 	[[ ${CHOST} == *-solaris* ]] && append-ldflags "-lnsl -lsocket"
 
 	local myeconfargs=(
-		--disable-dependency-tracking
-		--disable-silent-rules
 		--enable-charset
 		--enable-vfs
 		--with-homedir=$(usex xdg 'XDG' '.mc')
