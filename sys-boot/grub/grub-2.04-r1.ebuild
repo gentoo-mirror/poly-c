@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: b7569f41dca106cf0f8096b14e94a55a0148f90e $
+# $Id: 1076dff5072941fe6b2241e8f06af279bcb6f325 $
 
 EAPI=7
 
@@ -204,7 +204,6 @@ grub_configure() {
 		--sbindir="${EPREFIX}"/sbin
 		--bindir="${EPREFIX}"/bin
 		--libdir="${EPREFIX}"/lib
-		--htmldir="${EPREFIX}"/usr/share/doc/${PF}/html
 		$(use_enable device-mapper)
 		$(use_enable mount grub-mount)
 		$(use_enable nls)

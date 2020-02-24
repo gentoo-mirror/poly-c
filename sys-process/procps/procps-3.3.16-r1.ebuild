@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0693c7fc4d752a4154c31f6e15df93d93bbb1f4c $
+# $Id: b7c8b18e23207cdaba87e5101472f6f3c1b539b2 $
 
 EAPI=7
 
@@ -49,7 +49,6 @@ multilib_src_configure() {
 	# http://www.freelists.org/post/procps/PATCH-enable-transparent-large-file-support
 	append-lfs-flags #471102
 	local myeconfargs=(
-		--docdir='$(datarootdir)'/doc/${PF}
 		--sbindir="${EPREFIX}/sbin"
 		$(multilib_native_use_with elogind) # No elogind multilib support
 		$(multilib_native_use_enable kill)

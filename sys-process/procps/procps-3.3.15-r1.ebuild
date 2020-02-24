@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: d3e3ac0f62341742bae908d704e058a7038843b5 $
+# $Id: d1b833ff9f177d83d9c81b0cf17d38c86a33445f $
 
 EAPI=6
 
@@ -48,7 +48,6 @@ src_configure() {
 	# http://www.freelists.org/post/procps/PATCH-enable-transparent-large-file-support
 	append-lfs-flags #471102
 	local myeconfargs=(
-		--docdir='$(datarootdir)'/doc/${PF}
 		--sbindir="${EPREFIX}/sbin"
 		$(use_with elogind)
 		$(use_enable kill)
