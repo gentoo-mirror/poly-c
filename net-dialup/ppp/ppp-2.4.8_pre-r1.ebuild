@@ -5,7 +5,7 @@ EAPI=7
 
 inherit linux-info multilib pam toolchain-funcs poly-c_ebuilds
 
-PATCH_VER="01"
+PATCH_VER="02"
 DESCRIPTION="Point-to-Point Protocol (PPP)"
 HOMEPAGE="https://ppp.samba.org/"
 SRC_URI="https://github.com/paulusmack/ppp/archive/ppp-2.4.8.tar.gz
@@ -37,8 +37,6 @@ src_prepare() {
 		rm "${WORKDIR}"/patches/8?_all_eaptls-* || die
 	fi
 	eapply "${WORKDIR}"/patches
-
-	eapply "${FILESDIR}"/${MY_P}-eap_bounds_check.patch
 
 	if use atm ; then
 		einfo "Enabling PPPoATM support"
