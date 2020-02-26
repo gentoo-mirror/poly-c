@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8800d05fac78f5530a255617e0bd8d8bc6e83d43 $
+# $Id: 97a1002fac7820ca9dfcd7ca801df529162d8d28 $
 
 EAPI="7"
 
@@ -64,6 +64,7 @@ PATCHES=(
 	"${FILESDIR}"/${P}-fix-zlib.patch
 	"${FILESDIR}"/${P}-fix-potential-memleaks-w-BN_to_ASN1_INTEGER.patch
 	"${FILESDIR}"/${P}-reenable-the-stitched-AES-CBC-HMAC-SHA-implementations.patch
+	"${FILESDIR}"/${P}-config-Drop-linux-alpha-gcc-bwx.patch
 )
 
 S="${WORKDIR}/${MY_P}"
