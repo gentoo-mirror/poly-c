@@ -110,8 +110,6 @@ python_prepare_all() {
 	distutils-r1_python_prepare_all
 
 	epatch "${FILESDIR}/${PN}-2.3.84-eapply_non_verbose.patch"
-	epatch "${FILESDIR}/${PN}-2.3.81-eapply_non_verbose.patch"
-	epatch "${FILESDIR}/${PN}-2.3.80-eapply_non_verbose.patch"
 
 	# Apply 605ae9eb6dae230d8bb967edbdd719c61a2b14b8 for bug 704256.
 	sed -e 's|^		rsync ${rsync_opts} . "${repo_location%%/}"$|\t\tchmod 755 .\n\0|' -i bin/emerge-webrsync || die

@@ -26,7 +26,6 @@ app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LD
 app-misc/mc 4.8.22 4.8.23-r1 4.8.23-r2 4.8.24: GNU Midnight Commander is a text based file manager
 app-misc/mmv 1.01b_p19_pre: Move/copy/append/link multiple files according to a set of wildcard patterns
 app-misc/osmo 0.4.2: Handy personal organizer
-app-misc/screen 4.8.0_pre: screen manager with VT100/ANSI terminal emulation
 app-misc/tmux 3.1_rc: Terminal multiplexer
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-shells/rssh 2.3.4: Restricted shell for SSHd
@@ -50,7 +49,6 @@ dev-libs/openssl 1.0.2r 1.0.2s-r1 1.0.2t-r1 1.1.1d-r3: full-strength general pur
 dev-libs/openssl-compat 1.0.2t-r1 1.0.2u: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf 3.11.3_pre: Google's Protocol Buffers - Extensible mechanism for serializing structured data
 dev-libs/wayland 1.18.0_pre: Wayland protocol libraries
-dev-python/dbus-python 1.2.16_pre: Python bindings for the D-Bus messagebus
 dev-python/fido2 0.7.3: Python based FIDO 2.0 library
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-python/pyscard 1.9.9_pre: Smart cards support in python
@@ -157,7 +155,6 @@ net-analyzer/nagios-plugins 1.4.16-r2 1.4.16-r3: Nagios 1.4.16 plugins - Pack of
 net-analyzer/netsniff-ng 0.6.6 9999: high performance network sniffer for packet inspection
 net-analyzer/nikto 2.1.5_pre 2.1.6_pre: Web Server vulnerability scanner.
 net-dialup/mingetty 1.08-r1: A compact getty program for virtual consoles only
-net-dialup/ppp 2.4.8_pre-r1: Point-to-Point Protocol (PPP)
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/filezilla 3.39.0 3.42.1 3.43.0 3.44.1 3.44.2 3.45.1 3.46.0 3.46.3 3.47.1: FTP client with lots of useful features and an intuitive interface
 net-im/jabberd2 2.7.0: Open Source Jabber Server

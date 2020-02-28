@@ -103,8 +103,6 @@ python_prepare_all() {
 	distutils-r1_python_prepare_all
 
 	epatch "${FILESDIR}/${PN}-2.3.84-eapply_non_verbose.patch"
-	epatch "${FILESDIR}/${PN}-2.3.81-eapply_non_verbose.patch"
-	epatch "${FILESDIR}/${PN}-2.3.80-eapply_non_verbose.patch"
 
 	sed -e "s:^VERSION = \"HEAD\"$:VERSION = \"${PV}\":" -i lib/portage/__init__.py || die
 
