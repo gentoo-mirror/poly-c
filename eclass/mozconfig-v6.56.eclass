@@ -26,7 +26,13 @@ case ${EAPI} in
 		;;
 esac
 
-inherit flag-o-matic toolchain-funcs mozcoreconf-v5
+inherit flag-o-matic toolchain-funcs
+
+case ${PN} in
+	(seamonkey) inherit mozcoreconf-v6 ;;
+	(waterfox) inherit mozcoreconf-v5 ;;
+	(*) die "Don't use this eclass with some other package!" ;;
+esac
 
 # @ECLASS-VARIABLE: MOZCONFIG_OPTIONAL_WIFI
 # @DESCRIPTION:

@@ -34,8 +34,7 @@ else
 	#MOZ_LANGPACK_PREFIX="langpack/${MY_MOZ_P}."
 	#MOZ_LANGPACK_SUFFIX=".langpack.xpi"
 	S="${WORKDIR}/${PN}-${MOZ_PV}"
-	#SRC_URI+=" ${MOZ_HTTP_URI}/source/${MY_MOZ_P}.source.tar.xz -> ${P}.source.tar.xz
-	SRC_URI+=" https://www.gentoofan.org/gentoo/misc/${P}.source.tar.xz
+	SRC_URI+=" ${MOZ_HTTP_URI}/source/${MY_MOZ_P}.source.tar.xz -> ${P}.source.tar.xz
 		${MOZ_HTTP_URI}/source/${MY_MOZ_P}.source-l10n.tar.xz -> ${P}.source-l10n.tar.xz"
 fi
 
@@ -43,7 +42,7 @@ MOZCONFIG_OPTIONAL_WIFI=1
 MOZ_GENERATE_LANGPACKS=1
 MOZ_L10N_SOURCEDIR="${S}/${P}-l10n"
 MOZCONFIG_OPTIONAL_GTK3=enabled
-inherit check-reqs flag-o-matic toolchain-funcs eutils mozconfig-v6.60 pax-utils xdg-utils autotools mozextension nsplugins mozlinguas-v2
+inherit check-reqs flag-o-matic toolchain-funcs eutils mozconfig-v6.56 pax-utils xdg-utils autotools mozextension nsplugins mozlinguas-v2
 
 PATCH="${PN}-2.53.1-patches-01"
 
@@ -120,7 +119,6 @@ src_prepare() {
 	eapply "${WORKDIR}"/seamonkey
 
 	# browser patches go here
-	rm "${WORKDIR}"/firefox/7000_update_elfhack_to_fx67.patch || die
 	pushd "${S}"/mozilla &>/dev/null || die
 	eapply "${WORKDIR}"/firefox
 	popd &>/dev/null || die
