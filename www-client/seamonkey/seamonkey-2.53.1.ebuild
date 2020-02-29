@@ -310,7 +310,7 @@ src_install() {
 	fi
 
 	# Install icon and .desktop for menu entry
-	newicon "${S}"/suite/branding/nightly/content/icon64.png ${PN}.png
+	newicon "${S}"/suite/branding/${PN}/default64.png ${PN}.png
 	domenu "${T}"/${PN}.desktop
 
 	# Required in order to use plugins and even run seamonkey on hardened.
