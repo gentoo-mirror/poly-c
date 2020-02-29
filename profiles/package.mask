@@ -27,3 +27,5 @@ sci-astronomy/pulsatingscience
 # https://github.com/jlHertel/adriconf/issues/78
 =x11-misc/adriconf-1.6
 
+# WIP
+=www-client/seamonkey-2.53.1
