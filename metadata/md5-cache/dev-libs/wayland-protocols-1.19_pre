@@ -1,0 +1,14 @@
+BDEPEND=virtual/pkgconfig
+DEFINED_PHASES=prepare test
+DEPEND=dev-libs/wayland
+DESCRIPTION=Wayland protocol files
+EAPI=7
+HOMEPAGE=https://wayland.freedesktop.org/
+KEYWORDS=~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86
+LICENSE=MIT
+RDEPEND=dev-libs/wayland
+RESTRICT=mirror
+SLOT=0
+SRC_URI=https://wayland.freedesktop.org/releases/wayland-protocols-1.19.tar.xz
+_eclasses_=poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac
+_md5_=bf90698872524c6dc83b6975372b6177

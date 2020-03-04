@@ -3,6 +3,7 @@ app-accessibility/at-spi2-core 2.30.1: D-Bus accessibility specifications and re
 app-accessibility/speech-dispatcher 0.8.8_pre: Speech synthesis interface
 app-admin/cpulimit 2.5_pre 2.6_pre: Limits the CPU usage of a process
 app-admin/littleutils 1.0.43 1.0.44a: The littleutils are a collection of small and simple utilities
+app-admin/logrotate 3.16.0_pre: Rotates, compresses, and mails system logs
 app-admin/remotebox 2.2 2.5: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-arch/libarchive 3.4.1_pre: Multi-format archive and compression library
@@ -37,6 +38,7 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
+dev-libs/libevdev 1.9.0_pre: Handler library for evdev events
 dev-libs/libpwquality 1.4.2_pre: Library for password quality checking and generating random passwords
 dev-libs/libtommath 1.2.0_pre: Optimized and portable routines for integer theoretic applications
 dev-libs/libxml2 2.9.10_pre: XML C parser and toolkit
@@ -47,6 +49,7 @@ dev-libs/openssl 1.0.2r 1.0.2s-r1 1.0.2t-r1 1.1.1d-r3: full-strength general pur
 dev-libs/openssl-compat 1.0.2t-r1 1.0.2u: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf 3.11.3_pre: Google's Protocol Buffers - Extensible mechanism for serializing structured data
 dev-libs/wayland 1.18.0_pre: Wayland protocol libraries
+dev-libs/wayland-protocols 1.19_pre: Wayland protocol files
 dev-python/fido2 0.7.3: Python based FIDO 2.0 library
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-python/pyscard 1.9.9_pre: Smart cards support in python
