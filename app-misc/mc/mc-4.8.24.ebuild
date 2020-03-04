@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2fff74e2efc51d166fd44934053caefaf7a71107 $
+# $Id: e328e4b0c768910fc3bf6c2fabe1e8bcee34c121 $
 
 EAPI=7
 
@@ -14,7 +14,7 @@ SRC_URI="http://ftp.midnight-commander.org/${MY_P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~alpha amd64 arm ~arm64 ~hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="+edit gpm nls samba sftp +slang spell test unicode X +xdg"
 
 REQUIRED_USE="spell? ( edit )"
@@ -46,6 +46,8 @@ S="${WORKDIR}/${MY_P}"
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.8.13-restore_saved_replace_string.patch
 	"${FILESDIR}"/${PN}-4.8.23-shorten-too-long-german-strings.patch
+
+	"${FILESDIR}"/${P}-mc-lib-twice-4070.patch
 )
 
 pkg_pretend() {
