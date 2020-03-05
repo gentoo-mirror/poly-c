@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e0a5eee807dfb4ff50baaab2a102b6796d4cd052 $
+# $Id: f7ff20bf0dbd1cbeee5781665da88924af5c52ff $
 
 EAPI=7
 
@@ -145,6 +145,7 @@ src_install() {
 				VPATH="${native_builddir}:${S}" \
 				install-pkgpyexecLTLIBRARIES \
 				install-dist_pkgpyexecPYTHON
+			python_optimize
 		}
 
 		python_foreach_impl python_install
