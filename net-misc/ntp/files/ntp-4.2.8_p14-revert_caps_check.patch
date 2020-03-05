@@ -1,0 +1,47 @@
+https://bugs.gentoo.org/711530
+
+This reverts the fix from https://bugs.ntp.org/show_bug.cgi?id=1433
+
+--- ntp-4.2.8p14/ntpd/ntpd.c
++++ ntp-4.2.8p14/ntpd/ntpd.c
+@@ -214,10 +214,6 @@
+ int mdnstries = 5;
+ #endif  /* HAVE_DNSREGISTRATION */
+ 
+-#ifdef HAVE_LINUX_CAPABILITIES
+-int have_caps;		/* runtime check whether capabilities work */
+-#endif /* HAVE_LINUX_CAPABILITIES */
+-
+ #ifdef HAVE_DROPROOT
+ int droproot;
+ int root_dropped;
+@@ -1182,29 +1178,8 @@
+ 	report_event(EVNT_SYSRESTART, NULL, NULL);
+ 	initializing = FALSE;
+ 
+-# ifdef HAVE_LINUX_CAPABILITIES
+-	{
+-		/*  Check that setting capabilities actually works; we might be
+-		 *  run on a kernel with disabled capabilities. We must not
+-		 *  drop privileges in this case.
+-		 */
+-		cap_t caps;
+-		caps = cap_from_text("cap_sys_time,cap_setuid,cap_setgid,cap_sys_chroot,cap_net_bind_service=pe");
+-		if ( ! caps) {
+-			msyslog( LOG_ERR, "cap_from_text() failed: %m" );
+-			exit(-1);
+-		}
+-		have_caps = (cap_set_proc(caps) == 0);
+-		cap_free(caps);	/* caps not NULL here! */
+-	}
+-# endif /* HAVE_LINUX_CAPABILITIES */
+-
+ # ifdef HAVE_DROPROOT
+-#  ifdef HAVE_LINUX_CAPABILITIES
+-	if (droproot && have_caps) {
+-#  else
+ 	if (droproot) {
+-#  endif /*HAVE_LINUX_CAPABILITIES*/
+ 
+ #  ifdef NEED_EARLY_FORK
+ 		fork_nonchroot_worker();
