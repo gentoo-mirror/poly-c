@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 7cbac60a898c249ad6a5aab819e224c8e197a22d $
+# $Id: e52a12f5f205fbaa55f277d607394c4b5c485acf $
 
 EAPI="6"
 
@@ -95,8 +95,6 @@ DEPEND="${COMMON_DEPEND}
 		media-libs/freetype:2
 		virtual/pkgconfig
 	)
-	grub_platforms_xen? ( app-emulation/xen-tools:= )
-	grub_platforms_xen-32? ( app-emulation/xen-tools:= )
 	static? (
 		app-arch/xz-utils[static-libs(+)]
 		truetype? (

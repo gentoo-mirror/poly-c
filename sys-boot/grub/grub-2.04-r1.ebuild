@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 1076dff5072941fe6b2241e8f06af279bcb6f325 $
+# $Id: a08398a4c9e6a767921327101eb00828f80015a2 $
 
 EAPI=7
 
@@ -104,9 +104,6 @@ DEPEND="
 	truetype? ( media-libs/freetype:2= )
 	ppc? ( >=sys-apps/ibm-powerpc-utils-1.3.5 )
 	ppc64? ( >=sys-apps/ibm-powerpc-utils-1.3.5 )
-	grub_platforms_xen? ( app-emulation/xen-tools:= )
-	grub_platforms_xen-32? ( app-emulation/xen-tools:= )
-	grub_platforms_xen-pvh? ( app-emulation/xen-tools:= )
 "
 RDEPEND="${DEPEND}
 	kernel_linux? (

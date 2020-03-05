@@ -38,7 +38,6 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
-dev-libs/libevdev 1.9.0_pre: Handler library for evdev events
 dev-libs/libpwquality 1.4.2_pre: Library for password quality checking and generating random passwords
 dev-libs/libtommath 1.2.0_pre: Optimized and portable routines for integer theoretic applications
 dev-libs/libxml2 2.9.10_pre: XML C parser and toolkit
@@ -48,8 +47,6 @@ dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptogra
 dev-libs/openssl 1.0.2r 1.0.2s-r1 1.0.2t-r1 1.1.1d-r3: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2t-r1 1.0.2u: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf 3.11.3_pre: Google's Protocol Buffers - Extensible mechanism for serializing structured data
-dev-libs/wayland 1.18.0_pre: Wayland protocol libraries
-dev-libs/wayland-protocols 1.19_pre: Wayland protocol files
 dev-python/fido2 0.7.3: Python based FIDO 2.0 library
 dev-python/pyopenssl 17.5.0: Python interface to the OpenSSL library
 dev-python/pyscard 1.9.9_pre: Smart cards support in python
@@ -60,7 +57,7 @@ dev-util/cloc 1.84_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/meson 0.53.2_pre: Open source build system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
-dev-vcs/mercurial 5.2.2-r1 5.3_pre: Scalable distributed SCM
+dev-vcs/mercurial 5.2.2-r1 5.3_pre 5.3.1_pre: Scalable distributed SCM
 games-action/supertuxkart 1.0 1.1_pre: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
 games-engines/fifechan 9999: Lightweight cross platform GUI C++ library designed for games
@@ -202,7 +199,7 @@ sys-apps/iproute2 4.4.0 4.9.0 4.14.1-r2 4.14.1-r4 4.17.0-r1 4.18.0-r1 4.19.0-r1 
 sys-apps/kmod 25 26-r3 27: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g-r1: Standard commands to read man pages
-sys-apps/portage 2.3.84-r1 2.3.89-r1 2.3.91: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.3.84-r1 2.3.89-r1 2.3.92: Portage is the package management and distribution system for Gentoo
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
@@ -222,7 +219,6 @@ sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.15-r1 3.3.16 3.3.16-r1: standard informational utilities and process-handling tools
 www-client/links 2.17 2.18 2.19_pre 2.20.1_pre 2.20.2_pre: A fast and lightweight web browser running in both graphics and text mode
-www-client/seamonkey 2.53.1: Seamonkey Web Browser
 www-client/waterfox 2019.12 2020.01 2020.02: Waterfox Web Browser
 x11-apps/xinit 1.4.0-r1 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
