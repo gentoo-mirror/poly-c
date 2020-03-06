@@ -1,4 +1,4 @@
-# Copyright 2003-2019 Gentoo Authors
+# Copyright 2003-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id: 0fd7e2a6f45b7cd1c6c54514aaceb054feb12b0e $
 
@@ -322,13 +322,6 @@ pkg_postinst() {
 	elog "fixing known issues visit:"
 	elog "https://wiki.gentoo.org/wiki/Udev"
 	elog "https://wiki.gentoo.org/wiki/Udev/upgrade"
-
-	# https://cgit.freedesktop.org/systemd/systemd/commit/rules/50-udev-default.rules?id=3dff3e00e044e2d53c76fa842b9a4759d4a50e69
-	# https://bugs.gentoo.org/246847
-	# https://bugs.gentoo.org/514174
-	enewgroup input
-	enewgroup kvm 78
-	enewgroup render
 
 	# Update hwdb database in case the format is changed by udev version.
 	if use hwdb && has_version 'sys-apps/hwids[udev]'; then

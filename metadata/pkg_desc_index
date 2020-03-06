@@ -204,7 +204,7 @@ sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management 
 sys-boot/gnu-efi 3.0.10_pre 3.0.11_pre: Library for build EFI Applications
 sys-boot/grub 2.02-r4 2.04_rc1 2.04-r1: GNU GRUB boot loader
 sys-fs/fswatch 1.14.0 9999: cross-platform file change monitor with multiple backends
-sys-fs/udev 242 243 243-r2 244_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
+sys-fs/udev 242 243 243-r2 244_pre 245_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine

@@ -320,13 +320,6 @@ pkg_postinst() {
 	elog "https://wiki.gentoo.org/wiki/Udev"
 	elog "https://wiki.gentoo.org/wiki/Udev/upgrade"
 
-	# https://cgit.freedesktop.org/systemd/systemd/commit/rules/50-udev-default.rules?id=3dff3e00e044e2d53c76fa842b9a4759d4a50e69
-	# https://bugs.gentoo.org/246847
-	# https://bugs.gentoo.org/514174
-	enewgroup input
-	enewgroup kvm 78
-	enewgroup render
-
 	# Update hwdb database in case the format is changed by udev version.
 	if use hwdb && has_version 'sys-apps/hwids[udev]'; then
 		udev-hwdb --root="${ROOT%/}" update

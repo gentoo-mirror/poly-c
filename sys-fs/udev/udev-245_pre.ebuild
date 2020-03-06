@@ -1,22 +1,22 @@
 # Copyright 2003-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 96cb445a0a97e8355a782a3ee076857d87a34be3 $
+# $Id: 0fd7e2a6f45b7cd1c6c54514aaceb054feb12b0e $
 
 EAPI=6
 
-inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal toolchain-funcs udev usr-ldscript
+inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal toolchain-funcs udev usr-ldscript poly-c_ebuilds
 
-if [[ ${PV} = 9999* ]]; then
+if [[ ${MY_PV} = 9999* ]]; then
 	EGIT_REPO_URI="https://github.com/systemd/systemd.git"
 	inherit git-r3
 else
-	MY_PV=${PV/_/-}
+	MY_PV=${MY_PV/_/-}
 	MY_P=systemd-${MY_PV}
 	S=${WORKDIR}/${MY_P}
 	SRC_URI="https://github.com/systemd/systemd/archive/v${MY_PV}/${MY_P}.tar.gz"
-	KEYWORDS="~alpha amd64 arm arm64 hppa ia64 ~m68k ~mips ppc ppc64 s390 ~sh sparc x86"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 
-	FIXUP_PATCH="${PN}-243_rc1-revert-systemd-messup.patch"
+	FIXUP_PATCH="${PN}-245-revert-systemd-messup.patch"
 	SRC_URI+=" https://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}.xz"
 fi
 
@@ -77,13 +77,13 @@ pkg_setup() {
 		local MINKV=2.6.39
 
 		if kernel_is -lt ${MINKV//./ }; then
-			eerror "Your running kernel is too old to run this version of ${P}"
+			eerror "Your running kernel is too old to run this version of ${MY_P}"
 			eerror "You need to upgrade kernel at least to ${MINKV}"
 		fi
 
 		if kernel_is -lt 3 7; then
 			ewarn "Your running kernel is too old to have firmware loader and"
-			ewarn "this version of ${P} doesn't have userspace firmware loader"
+			ewarn "this version of ${MY_P} doesn't have userspace firmware loader"
 			ewarn "If you need firmware support, you need to upgrade kernel at least to 3.7"
 		fi
 	fi
@@ -196,9 +196,9 @@ multilib_src_install() {
 		exeinto /lib/udev
 		doexe src/udev/{ata_id,cdrom_id,mtd_probe,scsi_id,v4l_id}
 
-		rm rules/99-systemd.rules || die
+		rm rules.d/99-systemd.rules || die
 		insinto /lib/udev/rules.d
-		doins rules/*.rules
+		doins rules.d/*.rules
 
 		insinto /usr/share/pkgconfig
 		doins src/udev/udev.pc
@@ -222,7 +222,7 @@ multilib_src_install_all() {
 	# see src_prepare() for content of 40-gentoo.rules
 	insinto /lib/udev/rules.d
 	doins "${T}"/40-gentoo.rules
-	doins "${S}"/rules/*.rules
+	doins "${S}"/rules.d/*.rules
 
 	dobashcomp shell-completion/bash/udevadm
 
