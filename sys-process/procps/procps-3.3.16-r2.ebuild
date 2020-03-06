@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: b7c8b18e23207cdaba87e5101472f6f3c1b539b2 $
+# $Id: 8a5e2ae740e2d049c8a7b64d73042ef957cd0492 $
 
 EAPI=7
 
@@ -43,6 +43,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-3.3.12-proc-tests.patch # 583036
 
 	# Upstream fixes
+	"${FILESDIR}"/${P}-toprc_backwards_compatibility.patch #711676
 )
 
 multilib_src_configure() {
