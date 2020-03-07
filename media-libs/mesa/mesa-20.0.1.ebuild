@@ -1,21 +1,21 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: d02cf2adf0b50c45d9169d249df7faa631cd4051 $
+# $Id: b7e1f507aed55586730ec5bf03bed929445b5a34 $
 
 EAPI=7
 
 PYTHON_COMPAT=( python3_{6,7,8} )
 
-inherit llvm meson multilib-minimal pax-utils python-any-r1 poly-c_ebuilds
+inherit llvm meson multilib-minimal pax-utils python-any-r1
 
 OPENGL_DIR="xorg-x11"
 
-MY_P="${MY_P/_/-}"
+MY_P="${P/_/-}"
 
 DESCRIPTION="OpenGL-like graphic library for Linux"
 HOMEPAGE="https://www.mesa3d.org/ https://mesa.freedesktop.org/"
 
-if [[ ${MY_PV} == 9999 ]]; then
+if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="https://gitlab.freedesktop.org/mesa/mesa.git"
 	inherit git-r3
 else
@@ -36,7 +36,7 @@ for card in ${VIDEO_CARDS}; do
 done
 
 IUSE="${IUSE_VIDEO_CARDS}
-	+classic d3d9 debug +dri3 +egl +gallium +gbm gles1 +gles2 libglvnd +llvm
+	+classic d3d9 debug +dri3 +egl +gallium +gbm gles1 +gles2 +libglvnd +llvm
 	lm-sensors opencl osmesa selinux test unwind vaapi valgrind vdpau vulkan
 	vulkan-overlay wayland +X xa xvmc zink +zstd"
 
