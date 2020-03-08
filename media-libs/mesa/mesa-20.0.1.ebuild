@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: b7e1f507aed55586730ec5bf03bed929445b5a34 $
+# $Id: 8805749d430f579b4ad9b5173df8256b60f5e3da $
 
 EAPI=7
 
@@ -79,7 +79,7 @@ RDEPEND="
 	>=dev-libs/expat-2.1.0-r3:=[${MULTILIB_USEDEP}]
 	>=sys-libs/zlib-1.2.8[${MULTILIB_USEDEP}]
 	libglvnd? (
-		>=media-libs/libglvnd-1.2.0-r1[${MULTILIB_USEDEP}]
+		>=media-libs/libglvnd-1.2.0-r1[X?,${MULTILIB_USEDEP}]
 		!app-eselect/eselect-opengl
 	)
 	!libglvnd? (

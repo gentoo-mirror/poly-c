@@ -197,7 +197,7 @@ sys-apps/iproute2 4.4.0 4.9.0 4.14.1-r2 4.14.1-r4 4.17.0-r1 4.18.0-r1 4.19.0-r1 
 sys-apps/kmod 26-r5 27-r1: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g-r1: Standard commands to read man pages
-sys-apps/portage 2.3.84-r1 2.3.89-r1 2.3.92: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.3.84-r1 2.3.89-r1 2.3.92 2.3.93: Portage is the package management and distribution system for Gentoo
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
@@ -205,7 +205,7 @@ sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management 
 sys-boot/gnu-efi 3.0.10_pre 3.0.11_pre: Library for build EFI Applications
 sys-boot/grub 2.02-r4 2.04_rc1 2.04-r1: GNU GRUB boot loader
 sys-fs/fswatch 1.14.0 9999: cross-platform file change monitor with multiple backends
-sys-fs/udev 242 243 243-r2 244_pre 245_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
+sys-fs/udev 242 243 243-r2 244_pre 245: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-fs/udev-init-scripts 30: udev startup scripts for openrc
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
