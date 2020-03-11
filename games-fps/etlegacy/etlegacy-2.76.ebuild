@@ -1,19 +1,17 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id $
 
-EAPI=6
+EAPI=7
 
-inherit cmake-utils gnome2-utils unpacker eapi7-ver xdg-utils
+inherit cmake unpacker xdg
 
 DESCRIPTION="Wolfenstein: Enemy Territory 2.60b compatible client/server"
 HOMEPAGE="http://www.etlegacy.com/"
 
 # We need the game files from the original enemy-territory release
-ET_RELEASE="2.60b"
-SRC_URI="mirror://3dgamers/wolfensteinet/et-linux-${ET_RELEASE/b}.x86.run
-	mirror://idsoftware/et/linux/et-linux-${ET_RELEASE/b}.x86.run
-	ftp://ftp.red.telefonica-wholesale.net/GAMES/ET/linux/et-linux-${ET_RELEASE/b}.x86.run"
+ET_RELEASE="et260b"
+SRC_URI="https://cdn.splashdamage.com/downloads/games/wet/${ET_RELEASE}.x86_full.zip"
 
 if [[ ${PV} = "9999" ]]; then
 	inherit git-r3
@@ -26,13 +24,9 @@ fi
 LICENSE="GPL-3 RTCW-ETEULA"
 SLOT="0"
 IUSE="+opengl dedicated omnibot +curl +vorbis +openal +freetype lua curses autoupdate renderer2 renderer-gles ipv6 irc +gettext jansson"
-REQUIRED_USE="omnibot? ( x86 )"
+#REQUIRED_USE="omnibot? ( x86 )"
 
 RESTRICT="mirror"
-
-PATCHES=(
-	"${FILESDIR}"/${P}-ipv6_build_fix.patch
-)
 
 # TODO add debug use for CMAKE_BUILD_TYPE=debug
 
@@ -47,8 +41,7 @@ UIDEPEND=">=media-libs/glew-1.10.0
 	virtual/jpeg:0
 	virtual/opengl
 	|| (
-		sys-libs/zlib:=[minizip(-)]
-		sys-libs/minizip:=
+		sys-libs/zlib:=[minizip]
 	)
 	curl? ( net-misc/curl )
 	freetype? ( media-libs/freetype )
@@ -65,7 +58,7 @@ DEPEND="!games-fps/etlegacy-bin
 
 RDEPEND="${DEPEND}"
 
-QA_TEXTRELS="usr/share/games/etlegacy/legacy/omni-bot/omnibot_et.so"
+#QA_TEXTRELS="usr/share/games/etlegacy/legacy/omni-bot/omnibot_et.so"
 
 S="${WORKDIR}/${P/_rc/rc}"
 
@@ -76,11 +69,12 @@ src_unpack() {
 		default
 	fi
 	mkdir et && cd et || die
-	unpack_makeself et-linux-${ET_RELEASE/b}.x86.run
+	unzip "${DISTDIR}"/${ET_RELEASE}.x86_full.zip
+	unpack_makeself ${ET_RELEASE}.x86_keygen_V03.run
 }
 
 src_prepare() {
-	default
+	cmake_src_prepare
 	if [[ "${PV}" != 9999 ]] ; then
 		sed -e "/^set(ETLEGACY_VERSION_MINOR/s@[[:digit:]]\+@$(ver_cut 2)@" \
 			-i cmake/ETLVersion.cmake || die
@@ -138,14 +132,14 @@ src_configure() {
 		-DINSTALL_WOLFADMIN="0"
 	)
 
-	cmake-utils_src_configure
+	cmake_src_configure
 }
 
 src_install() {
-	cmake-utils_src_install
+	cmake_src_install
 
 	dodir "/usr/$(get_libdir)/${PN}"
-	mv "${ED%/}/usr/share/${PN}/legacy/"*.so "${ED%/}/usr/$(get_libdir)/${PN}"
+	mv "${ED}/usr/share/${PN}/legacy/"*.so "${ED}/usr/$(get_libdir)/${PN}"
 	dosym "../../../$(get_libdir)/${PN}" "/usr/share/${PN}/legacy/${PN}"
 
 	# Install the game files
@@ -154,9 +148,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome2_icon_cache_update
-	xdg_desktop_database_update
-	xdg_mimeinfo_database_update
+	xdg_pkg_postinst
 
 	elog "Copy genuine ET files pak0.pk3, pak1.pk3 and pak2.pk3"
 	elog "to /usr/share/${PN}/etmain in order so start"
@@ -164,10 +156,4 @@ pkg_postinst() {
 	elog
 	elog "If you are using opensource drivers you should consider installing: "
 	elog "    media-libs/libtxc_dxtn"
-}
-
-pkg_postrm() {
-	gnome2_icon_cache_update
-	xdg_desktop_database_update
-	xdg_mimeinfo_database_update
 }
