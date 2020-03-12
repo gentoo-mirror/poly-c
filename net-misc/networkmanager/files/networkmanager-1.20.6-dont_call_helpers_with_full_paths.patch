@@ -1,3 +1,5 @@
+We don't have sed in /usr/bin
+
 --- NetworkManager-1.20.6/data/84-nm-drivers.rules
 +++ NetworkManager-1.20.6/data/84-nm-drivers.rules
 @@ -7,6 +7,6 @@

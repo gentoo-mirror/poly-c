@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -16,8 +16,8 @@ sr sv-SE ta te th tr uk uz vi xh zh-CN zh-TW )
 # Patch version
 PATCH="firefox-56.0-patches-07"
 #PATCH="waterfox-2019.12-patches-01"
-#MOZ_HTTP_URI="https://github.com/MrAlex94/Waterfox/archive"
-MOZ_HTTP_URI="https://www.gentoofan.org/files"
+MOZ_HTTP_URI="https://github.com/MrAlex94/Waterfox/archive"
+#MOZ_HTTP_URI="https://www.gentoofan.org/files"
 #MOZ_LANGPACK_HTTP_URI="https://github.com/MrAlex94/www.waterfoxproject.org"
 
 MOZCONFIG_OPTIONAL_WIFI=1
@@ -42,11 +42,10 @@ IUSE="eme-free +gmp-autoupdate hardened hwaccel jack nsplugin pgo selinux test"
 
 PATCH_URIS=( https://dev.gentoo.org/~{anarchy,axs,polynomial-c}/mozilla/patchsets/${PATCH}.tar.xz )
 SRC_URI="
-	${MOZ_HTTP_URI}/${P}.tar.xz
-	${PATCH_URIS[@]}"
-	#${MOZ_HTTP_URI}/${MY_PV}.tar.gz -> ${P}.tar.gz
-
-SRC_URI+=" https://www.gentoofan.org/gentoo/misc/${PN}-2019.12-classic_rust-1.40.patch.xz"
+	${MOZ_HTTP_URI}/${MY_PV}.tar.gz -> ${P}.tar.gz
+	${PATCH_URIS[@]}
+"
+	#${MOZ_HTTP_URI}/${P}.tar.xz
 
 ASM_DEPEND=">=dev-lang/yasm-1.1"
 
@@ -131,7 +130,7 @@ src_prepare() {
 	# Apply our patches
 	eapply "${WORKDIR}/firefox"
 
-	eapply "${WORKDIR}"/${PN}-2019.12-classic_rust-1.40.patch
+	#eapply "${FILESDIR}/${P}-classic-version.patch"
 
 	# Enable gnomebreakpad
 	if use debug ; then

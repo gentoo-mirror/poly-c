@@ -146,14 +146,3 @@ src_install() {
 	insinto /usr/share/etlegacy/etmain
 	doins "${WORKDIR}"/et/etmain/pak[012].pk3
 }
-
-pkg_postinst() {
-	xdg_pkg_postinst
-
-	elog "Copy genuine ET files pak0.pk3, pak1.pk3 and pak2.pk3"
-	elog "to /usr/share/${PN}/etmain in order so start"
-	elog "the game."
-	elog
-	elog "If you are using opensource drivers you should consider installing: "
-	elog "    media-libs/libtxc_dxtn"
-}
