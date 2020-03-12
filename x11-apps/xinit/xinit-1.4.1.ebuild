@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: cd467fa426af42337f9be922f0acc1d456ed49bd $
+# $Id: dc256942fd433de23ab842380badee308d8d0595 $
 
 EAPI=7
 
@@ -13,7 +13,6 @@ KEYWORDS="~alpha amd64 arm arm64 hppa ia64 ~mips ppc ppc64 s390 ~sh sparc x86 ~a
 IUSE="twm systemd"
 
 RDEPEND="
-	!<x11-base/xorg-server-1.8.0
 	x11-apps/xauth
 	x11-libs/libX11
 "

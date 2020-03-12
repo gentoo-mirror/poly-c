@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9f99a47ff4415b39a7604d75f25de245bc312436 $
+# $Id: 9781e040e7d5b3623b4b67e005bd83647098d113 $
 
 EAPI=6
 
@@ -25,7 +25,7 @@ RDEPEND=">=app-eselect/eselect-wxwidgets-0.7-r1
 	>=dev-libs/nettle-3.1:=
 	>=dev-db/sqlite-3.7
 	>=dev-libs/libfilezilla-0.20.0:=
-	<dev-libs/libfilezilla-0.21.0:=
+	<dev-libs/libfilezilla-0.20.2:=
 	>=dev-libs/pugixml-1.7
 	>=net-libs/gnutls-3.5.7
 	>=x11-libs/wxGTK-3.0.4:${WX_GTK_VER}[X]
