@@ -28,6 +28,7 @@ app-misc/tmux 3.1_rc: Terminal multiplexer
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-shells/zsh 5.7.1-r1: UNIX Shell similar to the Korn shell
+app-text/enchant 2.2.8_pre: Spellchecker wrapping library
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
 app-text/po4a 0.57_pre: Tools to ease the translation of documentation
 dev-games/cegui 0.8.7-r1: Crazy Eddie's GUI System
@@ -38,6 +39,8 @@ dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/appstream-glib 0.7.17_pre: Provides GObjects and helper methods to read and write AppStream metadata
+dev-libs/icu 66.1_pre: International Components for Unicode
+dev-libs/icu-layoutex 66.1_pre: External layout part of International Components for Unicode
 dev-libs/libpwquality 1.4.2_pre: Library for password quality checking and generating random passwords
 dev-libs/libtommath 1.2.0_pre: Optimized and portable routines for integer theoretic applications
 dev-libs/libxml2 2.9.10_pre: XML C parser and toolkit
@@ -210,7 +213,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre15: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.214 4.9.215 4.9.216 4.14.171 4.14.172 4.14.173 4.19.107 4.19.108 4.19.109 5.4.22 5.4.23 5.4.24: Shows and sets processor power related values
+sys-power/cpupower 4.9.214 4.9.215 4.9.216 4.14.171 4.14.172 4.14.173 4.19.107 4.19.108 4.19.109 5.4.23 5.4.24 5.4.25: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
