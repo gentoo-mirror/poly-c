@@ -24,11 +24,12 @@ MOZCONFIG_OPTIONAL_WIFI=1
 
 inherit check-reqs eapi7-ver flag-o-matic toolchain-funcs eutils gnome2-utils mozconfig-v6.56 pax-utils xdg-utils autotools virtualx 
 
-if [[ -z "$(ver_cut 3)" ]] ; then
-	MY_PV="${PV}-classic"
-else
-	MY_PV="$(ver_cut 1-2)-classic-$(ver_cut 3)"
-fi
+#if [[ -z "$(ver_cut 3)" ]] ; then
+#	MY_PV="${PV}-classic"
+#else
+#	MY_PV="$(ver_cut 1-2)-classic-$(ver_cut 3)"
+#fi
+MY_PV="${PV}-classic"
 
 DESCRIPTION="Waterfox Web Browser"
 HOMEPAGE="http://www.waterfoxproject.org"

@@ -128,6 +128,7 @@ media-plugins/gst-plugins-oss 1.16.2_pre: OSS (Open Sound System) support plugin
 media-plugins/gst-plugins-pulse 1.16.2_pre: PulseAudio sound server plugin for GStreamer
 media-plugins/gst-plugins-resindvd 1.16.2_pre: DVD playback support plugin for GStreamer
 media-plugins/gst-plugins-soup 1.16.2_pre: HTTP client source/sink plugin for GStreamer
+media-plugins/gst-plugins-srtp 1.16.2_pre: SRTP encoder/decoder plugin for GStreamer
 media-plugins/gst-plugins-taglib 1.16.2_pre: ID3v2/APEv2 tagger plugin for GStreamer
 media-plugins/gst-plugins-v4l2 1.16.2_pre: plugin for gstreamer
 media-plugins/gst-plugins-vaapi 1.16.2_pre: Hardware accelerated video decoding through VA-API plugin for GStreamer
@@ -219,7 +220,7 @@ sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.15-r1 3.3.16-r2: standard informational utilities and process-handling tools
 www-client/links 2.17 2.18 2.19_pre 2.20.1_pre 2.20.2_pre: A fast and lightweight web browser running in both graphics and text mode
-www-client/waterfox 2020.02 2020.03: Waterfox Web Browser
+www-client/waterfox 2020.02 2020.03.1: Waterfox Web Browser
 x11-apps/xinit 1.4.0-r1 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-libs/libnotify 0.7.9_pre: A library for sending desktop notifications
