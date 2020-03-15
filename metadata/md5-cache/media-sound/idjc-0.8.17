@@ -11,5 +11,5 @@ RDEPEND=dev-python/eyeD3[%PYTHON_USEDEP-HAS-BEEN-REMOVED%] dev-python/pygtk[%PYT
 RESTRICT=mirror
 SLOT=0
 SRC_URI=mirror://sourceforge/idjc/idjc-0.8.17.tar.gz
-_eclasses_=autotools	ea7865c8fba1ea8d3639f355fffe1a3c	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	1d91b03d42ab6308b5f4f6b598ed110e	python-single-r1	01eeb2dae449b6155b46f8deb0a2087d	python-utils-r1	3ab704558125f1813be1cc37ed9e2667	toolchain-funcs	512eb3367f507ebaa1d1d43ab7d66e6c
+_eclasses_=autotools	7d999b62b8749fad43fff00620cedf47	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	1d91b03d42ab6308b5f4f6b598ed110e	python-single-r1	01eeb2dae449b6155b46f8deb0a2087d	python-utils-r1	3ab704558125f1813be1cc37ed9e2667	toolchain-funcs	512eb3367f507ebaa1d1d43ab7d66e6c
 _md5_=517f23112fd00fd53a7bac02bb4273e7
