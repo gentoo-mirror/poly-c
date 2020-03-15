@@ -164,6 +164,7 @@ net-irc/pchat-irc 1.5.3: Graphical IRC client
 net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/bctoolbox 0.6.0_pre: Utilities library used by Belledonne Communications softwares like belle-sip, mediastreamer2 and linphone.
 net-libs/enet 1.3.14_pre: relatively thin, simple and robust network communication layer on top of UDP
+net-libs/farstream 0.2.9_pre: Audio/video conferencing framework specifically designed for instant messengers
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-misc/curl 7.69.1_pre: A Client that groks URLs
 net-misc/dhcpcd 8.0.1: A fully featured, yet light weight RFC2131 compliant DHCP client
