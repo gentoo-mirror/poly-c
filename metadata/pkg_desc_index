@@ -60,7 +60,7 @@ dev-util/cloc 1.84_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/meson 0.53.2_pre: Open source build system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
-dev-vcs/mercurial 5.2.2-r1 5.3_pre 5.3.1_pre: Scalable distributed SCM
+dev-vcs/mercurial 5.2.2-r1 5.3.1_pre: Scalable distributed SCM
 games-action/supertuxkart 1.0 1.1_pre: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
 games-engines/fifechan 9999: Lightweight cross platform GUI C++ library designed for games
@@ -201,7 +201,7 @@ sys-apps/iproute2 4.4.0 4.9.0 4.14.1-r2 4.14.1-r4 4.17.0-r1 4.18.0-r1 4.19.0-r1 
 sys-apps/kmod 26-r5 27-r1: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g-r1: Standard commands to read man pages
-sys-apps/portage 2.3.84-r1 2.3.89-r1 2.3.92 2.3.93: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.3.84-r1 2.3.89-r1 2.3.92 2.3.93 2.3.94: Portage is the package management and distribution system for Gentoo
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)

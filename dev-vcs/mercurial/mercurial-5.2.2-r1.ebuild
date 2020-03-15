@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 474c441d67787161ea87aec7352bb3bd5ddf6fa5 $
+# $Id: 051a9978464b932faabfcebd3e218177a7d379d2 $
 
 EAPI=7
 
@@ -56,7 +56,7 @@ python_prepare_all() {
 }
 
 python_compile() {
-	strip-flags -ftracer -ftree-vectorize
+	strip-flags # was '-ftracer -ftree-vectorize', TODO: see bug #712594
 	python_is_python3 || local -x CFLAGS="${CFLAGS} -fno-strict-aliasing"
 	distutils-r1_python_compile build_ext --no-zstd
 }
