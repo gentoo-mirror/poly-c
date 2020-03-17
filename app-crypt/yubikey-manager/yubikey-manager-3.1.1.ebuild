@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c510503999b1e7bbea7603b01fabd23a2628d9a0 $
+# $Id: ac83c7f009adef0313b38979d60ba830c0763129 $
 
 EAPI=6
 
@@ -22,7 +22,6 @@ RESTRICT="!test? ( test )"
 RDEPEND="
 	dev-python/click[${PYTHON_USEDEP}]
 	dev-python/cryptography[${PYTHON_USEDEP}]
-	$(python_gen_cond_dep 'dev-python/enum34[${PYTHON_USEDEP}]' python2_7)
 	>=dev-python/fido2-0.7.0[${PYTHON_USEDEP}]
 	<dev-python/fido2-0.8.0[${PYTHON_USEDEP}]
 	dev-python/pyopenssl[${PYTHON_USEDEP}]
@@ -35,7 +34,6 @@ DEPEND="
 	dev-python/setuptools[${PYTHON_USEDEP}]
 	test? (
 		${RDEPEND}
-		$(python_gen_cond_dep 'dev-python/mock[${PYTHON_USEDEP}]' 'python2_7')
 	)
 "
 

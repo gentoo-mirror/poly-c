@@ -138,10 +138,6 @@ src_configure() {
 src_install() {
 	cmake_src_install
 
-	dodir "/usr/$(get_libdir)/${PN}"
-	mv "${ED}/usr/share/${PN}/legacy/"*.so "${ED}/usr/$(get_libdir)/${PN}"
-	dosym "../../../$(get_libdir)/${PN}" "/usr/share/${PN}/legacy/${PN}"
-
 	# Install the game files
 	insinto /usr/share/etlegacy/etmain
 	doins "${WORKDIR}"/et/etmain/pak[012].pk3

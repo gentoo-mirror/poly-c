@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: fc86c9f356f162e9a8c6ada40351a0362ed661de $
+# $Id: de26e16eb4bfb2511a601d5dea30f30eafc8f500 $
 
 EAPI=7
 
@@ -21,7 +21,6 @@ RDEPEND="
 	dev-python/six[${PYTHON_USEDEP}]
 	dev-python/cryptography[${PYTHON_USEDEP}]
 	dev-python/pyscard[${PYTHON_USEDEP}]
-	$(python_gen_cond_dep 'dev-python/enum34[${PYTHON_USEDEP}]' python2_7)
 	examples? (
 		dev-python/flask[${PYTHON_USEDEP}]
 		dev-python/pyopenssl[${PYTHON_USEDEP}]
