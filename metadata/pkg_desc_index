@@ -7,7 +7,7 @@ app-admin/logrotate 3.16.0: Rotates, compresses, and mails system logs
 app-admin/remotebox 2.2 2.5: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-arch/libarchive 3.4.1_pre: Multi-format archive and compression library
-app-arch/xz-utils 5.2.4-r2 5.2.4-r3: utils for managing LZMA compressed files
+app-arch/xz-utils 5.2.4-r2 5.2.4-r3 5.2.5: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-crypt/libu2f-host 1.1.6_pre: Yubico Universal 2nd Factor (U2F) Host C Library
@@ -47,7 +47,7 @@ dev-libs/libxml2 2.9.10_pre: XML C parser and toolkit
 dev-libs/libxslt 1.1.34_pre: XSLT libraries and tools
 dev-libs/newt 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
-dev-libs/openssl 1.0.2r 1.0.2s-r1 1.0.2t-r1 1.1.1d-r3: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/openssl 1.0.2r 1.0.2s-r1 1.0.2t-r1 1.1.1d-r3 1.1.1e: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2t-r1 1.0.2u: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf 3.11.3_pre: Google's Protocol Buffers - Extensible mechanism for serializing structured data
 dev-python/fido2 0.7.3: Python based FIDO 2.0 library
@@ -164,7 +164,6 @@ net-libs/bctoolbox 0.6.0_pre: Utilities library used by Belledonne Communication
 net-libs/enet 1.3.14_pre: relatively thin, simple and robust network communication layer on top of UDP
 net-libs/farstream 0.2.9_pre: Audio/video conferencing framework specifically designed for instant messengers
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
-net-misc/curl 7.69.1_pre: A Client that groks URLs
 net-misc/dhcpcd 8.0.1: A fully featured, yet light weight RFC2131 compliant DHCP client
 net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
@@ -177,7 +176,6 @@ net-misc/ssh-tools 1.5: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-p2p/ncdc 1.21_pre: ncurses directconnect client
 net-print/hplip 3.20.3_pre: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
-net-wireless/bluez 5.54_pre: Bluetooth Tools and System Daemons for Linux
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/pulsatingscience 9999: 3D binary pulsar animation and outreach application
 sci-libs/dcmtk 3.6.2: The DICOM Toolkit
@@ -214,7 +212,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre15: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.214 4.9.215 4.9.216 4.14.171 4.14.172 4.14.173 4.19.108 4.19.109 4.19.110 5.4.23 5.4.24 5.4.25: Shows and sets processor power related values
+sys-power/cpupower 4.9.214 4.9.215 4.9.216 4.14.171 4.14.172 4.14.173 4.19.109 4.19.110 4.19.111 5.4.24 5.4.25 5.4.26: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
