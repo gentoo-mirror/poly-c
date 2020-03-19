@@ -1,11 +1,12 @@
 # Copyright 2019-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
+# $Id: dc42b9360620cc2b0b0dd567b9fd995b6bcdfe5f $
 
 EAPI=7
 
 PYTHON_COMPAT=( python3_{6,7} )
 
-inherit meson linux-info python-any-r1 systemd udev vala
+inherit meson linux-info python-any-r1 systemd tmpfiles udev vala
 
 DESCRIPTION="A set of co-operative tools that make networking simple and straightforward"
 HOMEPAGE="https://wiki.gnome.org/Projects/NetworkManager"
@@ -17,7 +18,7 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 IUSE="audit bluetooth +concheck connection-sharing consolekit +dhclient dhcpcd "
 IUSE+="debug doc elogind examples +gnutls introspection iwd json kernel_linux "
 IUSE+="libpsl lto modemmanager nss ofono ovs +policykit ppp resolvconf selinux "
-IUSE+="syslog systemd teamd +tools vala wext +wifi"
+IUSE+="syslog systemd teamd test +tools vala wext +wifi"
 
 REQUIRED_USE="
 	doc? ( introspection )
@@ -101,8 +102,7 @@ BDEPEND="dev-util/intltool
 
 S="${WORKDIR}"/NetworkManager-${PV}
 
-# Not implemented yet.
-RESTRICT="test"
+RESTRICT="!test? ( test )"
 
 PATCHES=(
 	"${FILESDIR}/${PN}-1.20.6-dont_call_helpers_with_full_paths.patch"
@@ -113,7 +113,10 @@ python_check_deps() {
 		has_version "dev-python/pygobject:3[${PYTHON_USEDEP}]" || return
 	fi
 
-	# test requirements here
+	if use test; then
+		has_version "dev-python/dbus-python[${PYTHON_USEDEP}]" &&
+		has_version "dev-python/pygobject:3[${PYTHON_USEDEP}]"
+	fi
 }
 
 sysfs_deprecated_check() {
@@ -278,7 +281,6 @@ src_configure() {
 src_install() {
 	meson_src_install
 
-	# ---- openrc untested, this is copied from current networkmanager ebuild.
 	newinitd "${FILESDIR}/init.d.NetworkManager-r1" NetworkManager
 	newconfd "${FILESDIR}/conf.d.NetworkManager" NetworkManager
 
@@ -297,7 +299,6 @@ src_install() {
 	# Allow users in plugdev group to modify system connections
 	insinto /usr/share/polkit-1/rules.d/
 	doins "${FILESDIR}/01-org.freedesktop.NetworkManager.settings.modify.system.rules"
-	# ----
 
 	if use iwd; then
 		insinto /usr/lib/NetworkManager/conf.d/
@@ -313,19 +314,21 @@ src_install() {
 		insinto /usr/lib/NetworkManager/conf.d
 		doins "${S}"/examples/nm-conf.d/{30-anon,31-mac-addr-change}.conf
 
-		# Temporary workaround before patching,
+		# Temporary workaround
 		cp "${ED}"/usr/share/doc/NetworkManager/examples/server.conf \
 			"${ED}"/usr/share/doc/${PF}/examples/ ||
 			die "Failed to copy server.conf example."
 	fi
 
-	# Temporary workaround, can be patched later.
+	# Temporary workaround,
 	# The file will be installed regargless of 'examples' USE.
 	rm "${ED}"/usr/share/doc/NetworkManager/examples/server.conf || die
 	rm -r "${ED}"/usr/share/doc/NetworkManager || die
 
 	# Empty dirs
 	rm -r "${ED}/var" || die
+
+	newtmpfiles - networkmanager.conf <<< "d /run/NetworkManager"
 }
 
 pkg_postinst() {
