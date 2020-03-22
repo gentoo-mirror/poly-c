@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0a1d2df46afd392051a6e33a2748aa8fc440abdf $
+# $Id: 9705e8ae619369ae50a20f701c6c3f25466d03e1 $
 
 EAPI=7
 
@@ -57,6 +57,19 @@ PATCHES=(
 	"${FILESDIR}/${PN}-2.2.16-scdaemon_shared-access.patch"
 )
 
+src_prepare() {
+	default
+
+	# Inject SSH_AUTH_SOCK into user's sessions after enabling gpg-agent-ssh.socket in systemctl --user mode,
+	# idea borrowed from libdbus, see
+	#   https://gitlab.freedesktop.org/dbus/dbus/-/blob/master/bus/systemd-user/dbus.socket.in#L6
+	#
+	# This cannot be upstreamed, as it requires determining the exact prefix of 'systemctl',
+	# which in turn requires discovery in Autoconf, something that upstream deeply resents.
+	sed -e "/DirectoryMode=/a ExecStartPost=-${EPREFIX}/bin/systemctl --user set-environment SSH_AUTH_SOCK=%t/gnupg/S.gpg-agent.ssh" \
+		-i doc/examples/systemd-user/gpg-agent-ssh.socket || die
+}
+
 src_configure() {
 	local myconf=()
 
@@ -64,6 +77,11 @@ src_configure() {
 		# bug #649598
 		append-cppflags -I"${EPREFIX}/usr/include/libusb-1.0"
 	fi
+
+	# Remove when https://dev.gnupg.org/T4831 gets released.
+	[[ $PV != 2.2.19 ]] && die "Check if -fcommon workaround is still needed."
+	# Workaround gcc-10 build failure (bug #705884).
+	append-cflags -fcommon
 
 	if use elibc_SunOS || use elibc_AIX; then
 		myconf+=( --disable-symcryptrun )

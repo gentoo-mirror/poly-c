@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ea716c993c10bd641656060f1cb44c8d83aa4991 $
+# $Id: e0d7de8eec77ceb94030de5fbdf0a8756b60afe7 $
 
 EAPI=7
 
@@ -328,7 +328,7 @@ pkg_setup() {
 		ewarn "detected! This can cause problems. For details, see bug 459306."
 	fi
 
-	if use llvm; then
+	if use gallium && use llvm; then
 		llvm_pkg_setup
 	fi
 	python-any-r1_pkg_setup
