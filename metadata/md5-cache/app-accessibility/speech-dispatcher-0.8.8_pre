@@ -11,5 +11,5 @@ REQUIRED_USE=python? ( || ( python_targets_python3_6 python_targets_python3_7 ) 
 RESTRICT=mirror
 SLOT=0
 SRC_URI=http://www.freebsoft.org/pub/projects/speechd/speech-dispatcher-0.8.8.tar.gz
-_eclasses_=eutils	fcb2aa98e1948b835b5ae66ca52868c5	multibuild	40fe59465edacd730c644ec2bc197809	multilib	1d91b03d42ab6308b5f4f6b598ed110e	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	python-r1	4dfa39908a2b26ac08e45ca546f7c9b6	python-utils-r1	89113cd44c8118e781d18387d4256fe3	toolchain-funcs	512eb3367f507ebaa1d1d43ab7d66e6c
+_eclasses_=eutils	fcb2aa98e1948b835b5ae66ca52868c5	multibuild	40fe59465edacd730c644ec2bc197809	multilib	1d91b03d42ab6308b5f4f6b598ed110e	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	python-r1	8386b016a2b3bbefa88443fdaa898057	python-utils-r1	e03f98555f2634bb9fb3160a8e30e3ec	toolchain-funcs	512eb3367f507ebaa1d1d43ab7d66e6c
 _md5_=e1df42b045253bd400ea8a435965acae
