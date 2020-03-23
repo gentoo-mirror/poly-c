@@ -2,7 +2,7 @@ acct-user/ftp 0: File Transfer Protocol server user
 app-accessibility/at-spi2-core 2.30.1: D-Bus accessibility specifications and registration daemon
 app-accessibility/speech-dispatcher 0.8.8_pre: Speech synthesis interface
 app-admin/cpulimit 2.5_pre 2.6_pre: Limits the CPU usage of a process
-app-admin/littleutils 1.0.43 1.0.44a: The littleutils are a collection of small and simple utilities
+app-admin/littleutils 1.0.44a 1.2.0: The littleutils are a collection of small and simple utilities
 app-admin/logrotate 3.16.0: Rotates, compresses, and mails system logs
 app-admin/remotebox 2.2 2.5: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
@@ -194,7 +194,7 @@ sys-apps/iproute2 4.4.0 4.9.0 4.14.1-r2 4.14.1-r4 4.17.0-r1 4.18.0-r1 4.19.0-r1 
 sys-apps/kmod 26-r5 27-r1: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/man 1.6g-r1: Standard commands to read man pages
-sys-apps/portage 2.3.84-r1 2.3.89-r1 2.3.92 2.3.93 2.3.94: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.3.84-r1 2.3.89-r1 2.3.92 2.3.93 2.3.94 2.3.95: Portage is the package management and distribution system for Gentoo
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)

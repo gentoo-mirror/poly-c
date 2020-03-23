@@ -30,6 +30,8 @@ DEPEND="${RDEPEND}
 	)
 "
 
+S="${WORKDIR}/${PN}-${PV/a}"
+
 src_configure() {
 	ac_cv_path_PROGPYTHON="${PYTHON}" econf
 }
