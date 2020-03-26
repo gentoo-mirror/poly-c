@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 1e0dc18322bebf6396b4a90715f888d2593144de $
+# $Id: 3c6d08531c7fddb0d4bcb0006bc444c00e9946cc $
 
 EAPI=5
 
@@ -99,6 +99,9 @@ python_prepare_all() {
 	distutils-r1_python_prepare_all
 
 	epatch "${FILESDIR}/${PN}-2.3.84-eapply_non_verbose.patch"
+
+	# Apply 2b3fc2be07ad
+	sed -e '422s/return True/return (True, None)/' -i lib/portage/locks.py || die
 
 	sed -e "s:^VERSION = \"HEAD\"$:VERSION = \"${PV}\":" -i lib/portage/__init__.py || die
 
