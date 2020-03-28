@@ -9,5 +9,5 @@ LICENSE=WTFPL-2
 RESTRICT=mirror
 SLOT=0
 SRC_URI=https://github.com/libtom/libtommath/releases/download/v1.2.0/ltm-1.2.0.tar.xz
-_eclasses_=autotools	7d999b62b8749fad43fff00620cedf47	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	1d91b03d42ab6308b5f4f6b598ed110e	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	toolchain-funcs	512eb3367f507ebaa1d1d43ab7d66e6c
+_eclasses_=autotools	7d999b62b8749fad43fff00620cedf47	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	c9e26066f2b7b5a91ad08d042f7f7306	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	toolchain-funcs	512eb3367f507ebaa1d1d43ab7d66e6c
 _md5_=f42775ecea8074f450ba0904a5c1611b
