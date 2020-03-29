@@ -10,7 +10,7 @@ P="${PN}-${PV}"
 inherit autotools gstreamer poly-c_ebuilds
 
 DESCRIPTION="FLAC encoder/decoder/tagger plugin for GStreamer"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86"
 IUSE=""
 
 RDEPEND=">=media-libs/flac-1.2.1-r5[${MULTILIB_USEDEP}]"

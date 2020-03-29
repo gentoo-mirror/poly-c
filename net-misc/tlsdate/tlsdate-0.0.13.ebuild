@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id: 135c195e304e5155f58de1c5cea8b0b5bd201df5 $
 
@@ -12,7 +12,7 @@ SRC_URI="https://github.com/ioerror/tlsdate/tarball/${P} -> ${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="amd64 arm arm64 hppa ia64 m68k ~mips s390 sh sparc x86"
+KEYWORDS="amd64 arm arm64 hppa ia64 m68k ~mips s390 sparc x86"
 IUSE="dbus +seccomp static-libs"
 
 DEPEND="dev-libs/openssl:0=

@@ -1,28 +1,35 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: fba1f9ce5002c95bf9b56a2d0c953e5b98f4ed02 $
+# $Id: d8a1e24533cf58aa026de8650118068fe2be88b5 $
 
 EAPI=6
 
-inherit autotools desktop xdg poly-c_ebuilds
+inherit autotools desktop xdg
 
 DESCRIPTION="A fast and lightweight web browser running in both graphics and text mode"
 HOMEPAGE="http://links.twibright.com/"
-SRC_URI="http://${PN}.twibright.com/download/${MY_P}.tar.bz2"
+SRC_URI="http://${PN}.twibright.com/download/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="bzip2 fbcon gpm ipv6 jpeg libevent libressl livecd lzma ssl suid svga tiff unicode X zlib"
+KEYWORDS="~alpha amd64 arm arm64 hppa ia64 ~mips ppc ppc64 s390 sparc x86 ~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~x64-solaris ~x86-solaris"
+IUSE="brotli bzip2 fbcon freetype gpm ipv6 jpeg libevent libressl livecd lzip lzma ssl suid svga tiff unicode X zlib zstd"
 
 GRAPHICS_DEPEND="media-libs/libpng:0="
 
 RDEPEND="
+	brotli? (
+		app-arch/brotli
+	)
 	bzip2? (
 		app-arch/bzip2
 	)
 	fbcon? (
 		${GRAPHICS_DEPEND}
+	)
+	freetype? (
+		media-libs/fontconfig
+		media-libs/freetype
 	)
 	gpm? (
 		sys-libs/gpm
@@ -37,6 +44,9 @@ RDEPEND="
 		${GRAPHICS_DEPEND}
 		sys-libs/gpm
 		virtual/jpeg:0
+	)
+	lzip? (
+		app-arch/lzip
 	)
 	lzma? (
 		app-arch/xz-utils
@@ -58,6 +68,9 @@ RDEPEND="
 	)
 	zlib? (
 		sys-libs/zlib
+	)
+	zstd? (
+		app-arch/zstd
 	)"
 
 DEPEND="${RDEPEND}
@@ -70,12 +83,10 @@ REQUIRED_USE="!livecd? ( fbcon? ( gpm ) )
 
 DOCS=( AUTHORS BRAILLE_HOWTO ChangeLog KEYS NEWS README SITES )
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-2.17-replace_echo-n_with_printf.patch
-)
-
 src_prepare() {
 	xdg_src_prepare
+
+	eapply "${FILESDIR}/${PN}-2.17-replace_echo-n_with_printf.patch"
 
 	if use unicode; then
 		pushd intl > /dev/null || die
@@ -112,17 +123,22 @@ src_configure() {
 
 	econf \
 		--without-directfb \
-		$(use_with ipv6) \
-		$(use_with ssl) \
-		$(use_with zlib) \
+		--without-librsvg \
+		$(use_with brotli) \
 		$(use_with bzip2) \
-		$(use_with lzma) \
-		$(use_with svga svgalib) \
-		$(use_with X x) \
 		$(use_with fbcon fb) \
-		$(use_with libevent) \
+		$(use_with freetype) \
+		$(use_with ipv6) \
 		$(use_with jpeg libjpeg) \
+		$(use_with libevent) \
+		$(use_with lzip) \
+		$(use_with lzma) \
+		$(use_with ssl) \
+		$(use_with svga svgalib) \
 		$(use_with tiff libtiff) \
+		$(use_with X x) \
+		$(use_with zlib) \
+		$(use_with zstd) \
 		${myconf}
 }
 
