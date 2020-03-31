@@ -9,7 +9,7 @@ app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a log
 app-arch/xz-utils 5.2.4-r2 5.2.4-r3 5.2.5: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
-app-crypt/gnupg 2.2.19 2.2.20_pre: The GNU Privacy Guard, a GPL OpenPGP implementation
+app-crypt/gnupg 2.2.19 2.2.20: The GNU Privacy Guard, a GPL OpenPGP implementation
 app-crypt/libu2f-host 1.1.6_pre: Yubico Universal 2nd Factor (U2F) Host C Library
 app-crypt/nwipe 0.24_pre: Securely erase disks using a variety of recognized methods
 app-crypt/qca 2.1.3-r2: Qt Cryptographic Architecture (QCA)

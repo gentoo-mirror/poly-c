@@ -1,12 +1,12 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ba7ae751e334528eb58e998079587caef2d7d185 $
+# $Id: cc4778f3c4b9465446f7514bbca8b2dd8f86a92e $
 
 EAPI=7
 
-inherit flag-o-matic systemd toolchain-funcs poly-c_ebuilds
+inherit flag-o-matic systemd toolchain-funcs
 
-MY_P="${MY_P/_/-}"
+MY_P="${P/_/-}"
 
 DESCRIPTION="The GNU Privacy Guard, a GPL OpenPGP implementation"
 HOMEPAGE="http://www.gnupg.org/"
@@ -77,11 +77,6 @@ src_configure() {
 		# bug #649598
 		append-cppflags -I"${EPREFIX}/usr/include/libusb-1.0"
 	fi
-
-	# Remove when https://dev.gnupg.org/T4831 gets released.
-	[[ $PV != 2.2.19 ]] && die "Check if -fcommon workaround is still needed."
-	# Workaround gcc-10 build failure (bug #705884).
-	append-cflags -fcommon
 
 	if use elibc_SunOS || use elibc_AIX; then
 		myconf+=( --disable-symcryptrun )
