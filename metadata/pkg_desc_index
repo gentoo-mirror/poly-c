@@ -40,7 +40,7 @@ dev-libs/libxml2 2.9.10_pre: XML C parser and toolkit
 dev-libs/libxslt 1.1.34_pre: XSLT libraries and tools
 dev-libs/newt 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
-dev-libs/openssl 1.1.1d-r3 1.1.1e: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/openssl 1.1.1d-r3 1.1.1f: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u: full-strength general purpose cryptography library (including SSL and TLS)
 dev-python/pyscard 1.9.9_pre: Smart cards support in python
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
