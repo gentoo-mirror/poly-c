@@ -1,11 +1,11 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9267d9bd83e3209d2a814c40921503f51bac14fd $
+# $Id: ead0b6f0193241c79080b7001d48d29db23e837d $
 
 EAPI=5
 
 DISTUTILS_USE_SETUPTOOLS=no
-PYTHON_COMPAT=( pypy3 python3_5 python3_6 python3_7 python3_8 )
+PYTHON_COMPAT=( pypy3 python3_6 python3_7 python3_8 )
 PYTHON_REQ_USE='bzip2(+),threads(+)'
 
 inherit distutils-r1 epatch linux-info systemd prefix
@@ -43,8 +43,6 @@ RDEPEND="
 		>=sys-apps/sed-4.0.5
 		app-shells/bash:0[readline]
 		>=app-admin/eselect-1.2
-		$(python_gen_cond_dep 'dev-python/pyblake2[${PYTHON_USEDEP}]' \
-			python{2_7,3_5} pypy)
 		rsync-verify? (
 			>=app-portage/gemato-14[${PYTHON_USEDEP}]
 			>=app-crypt/openpgp-keys-gentoo-release-20180706
@@ -60,8 +58,6 @@ RDEPEND="
 	selinux? ( >=sys-libs/libselinux-2.0.94[python,${PYTHON_USEDEP}] )
 	xattr? ( kernel_linux? (
 		>=sys-apps/install-xattr-0.3
-		$(python_gen_cond_dep 'dev-python/pyxattr[${PYTHON_USEDEP}]' \
-			python2_7 pypy)
 	) )
 	!<app-admin/logrotate-3.8.0
 	!<app-portage/gentoolkit-0.4.6
