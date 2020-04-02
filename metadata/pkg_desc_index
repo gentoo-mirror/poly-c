@@ -87,7 +87,7 @@ media-libs/libdvbpsi 1.3.3_pre: library for MPEG TS/DVB PSI tables decoding and 
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
-media-libs/mesa 19.3.5 20.0.2: OpenGL-like graphic library for Linux
+media-libs/mesa 19.3.5 20.0.3: OpenGL-like graphic library for Linux
 media-libs/x265 3.3_pre: Library for encoding video streams into the H.265/HEVC format
 media-plugins/gst-plugins-a52dec 1.16.2_pre: ATSC A/52 audio decoder plugin for GStreamer
 media-plugins/gst-plugins-assrender 1.16.2_pre: ASS/SSA rendering with effects support plugin for GStreamer
@@ -197,7 +197,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre19: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.215 4.9.216 4.9.217 4.14.172 4.14.173 4.14.174 4.19.111 4.19.112 4.19.113 5.4.27 5.4.28 5.4.29: Shows and sets processor power related values
+sys-power/cpupower 4.9.216 4.9.217 4.9.218 4.14.173 4.14.174 4.14.175 4.19.112 4.19.113 4.19.114 5.4.28 5.4.29 5.4.30: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
