@@ -50,6 +50,7 @@ dev-util/cloc 1.84_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/meson 0.53.2_pre: Open source build system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
+dev-vcs/mercurial 5.3.2_pre: Scalable distributed SCM
 games-action/supertuxkart 1.0 1.1: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
 games-engines/fifechan 9999: Lightweight cross platform GUI C++ library designed for games
