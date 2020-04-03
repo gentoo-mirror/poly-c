@@ -1,0 +1,22 @@
+--- lsiutil/lsiutil.c
++++ lsiutil/lsiutil.c
+@@ -1581,7 +1581,7 @@
+ 
+     if (argc > 1)
+     {
+-        while ((arg = getopt(argc, argv, "?a:bc:def:ghij:kl:m:np:qrst:uv:wxyz018")) != EOF)
++        while ((arg = getopt(argc, argv, "?a:bc:def:ghij:kl:m:np:qrst:uv:wxyzV018")) != EOF)
+         {
+             switch (arg)
+             {
+@@ -1655,6 +1655,10 @@
+ );
+                 return 0;
+ 
++			case 'V':
++				printf(LSIUTIL_VERSION);
++				return 0;
++
+             case 'a':
+                 args = optarg;
+                 break;
