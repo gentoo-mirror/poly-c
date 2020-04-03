@@ -9,12 +9,23 @@
          {
              switch (arg)
              {
-@@ -1655,6 +1655,10 @@
+@@ -1614,6 +1614,10 @@
+ "      -b                Show board manufacturing information.\n"
+ "      -m freq[,time]    Monitor port performance, updating the display\n"
+ "                        every 'freq' seconds, for 'time' seconds.\n\n");
++				printf(
++"\n"
++"      -h                Shows this help text\n"
++"      -V                Prints the program name and version\n");
+                 printf(
+ "Examples:\n"
+ "1. to display the port settings and targets for port 1:\n"
+@@ -1655,6 +1659,10 @@
  );
                  return 0;
  
 +			case 'V':
-+				printf(LSIUTIL_VERSION);
++				/* already done before options parsing */
 +				return 0;
 +
              case 'a':

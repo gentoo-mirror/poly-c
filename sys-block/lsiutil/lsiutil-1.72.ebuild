@@ -24,8 +24,7 @@ PATCHES=( "${FILESDIR}/${PN}-1.72-version_option.patch" )
 src_compile() {
 	$(tc-getCC) ${CFLAGS} ${LDFLAGS} ${PN}.c -o ${PN} || die
 
-	help2man -s 8 -N -o --help-option=h --version-option=V ${PN}.8 ${PN} \
-		|| die
+	help2man -s 8 -N -h -h -v -V -o ${PN}.8 ${PN} || die
 }
 
 src_install() {
