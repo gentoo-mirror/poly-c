@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 40c7e1ff1676545fd8ee84412b8091709820792b $
+# $Id: ebaac26eb04beb8cf28115198ea7aab6ea0fdd30 $
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -16,7 +16,7 @@ HOMEPAGE="https://projects.gnome.org/gconf/"
 
 LICENSE="LGPL-2+"
 SLOT="2"
-KEYWORDS="~alpha amd64 arm arm64 ia64 ~mips ppc ppc64 sparc x86 ~x86-linux"
+KEYWORDS="~alpha amd64 arm arm64 ~ia64 ~mips ppc ppc64 sparc x86 ~x86-linux"
 IUSE="debug +introspection ldap policykit"
 
 RDEPEND="

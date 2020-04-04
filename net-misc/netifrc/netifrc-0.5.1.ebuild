@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4d878bdd6594eed655b8c82cdb777d3f675def38 $
+# $Id: ec5504ee9114ab7fe9568eddd6c1c97c4fb0f696 $
 
 EAPI=5
 
@@ -15,7 +15,7 @@ if [[ ${PV} == "9999" ]]; then
 	inherit git-r3
 else
 	SRC_URI="https://dev.gentoo.org/~robbat2/distfiles/${P}.tar.bz2"
-	KEYWORDS="~alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 ~riscv s390 sparc x86"
+	KEYWORDS="~alpha amd64 arm ~arm64 hppa ia64 m68k ~mips ppc ppc64 ~riscv s390 sparc x86"
 fi
 
 LICENSE="BSD-2"

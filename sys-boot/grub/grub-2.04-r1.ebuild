@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: a08398a4c9e6a767921327101eb00828f80015a2 $
+# $Id: bb96453cd6acfcad5a013cd4eaebb4ea58701b5a $
 
 EAPI=7
 
@@ -31,7 +31,7 @@ if [[ ${PV} != 9999 ]]; then
 		SRC_URI="mirror://gnu/${PN}/${P}.tar.xz"
 		S=${WORKDIR}/${P%_*}
 	fi
-	KEYWORDS="amd64 ~arm ~arm64 ia64 ppc ppc64 x86"
+	KEYWORDS="amd64 ~arm ~arm64 ~ia64 ppc ppc64 x86"
 else
 	inherit git-r3
 	EGIT_REPO_URI="https://git.savannah.gnu.org/git/grub.git"
