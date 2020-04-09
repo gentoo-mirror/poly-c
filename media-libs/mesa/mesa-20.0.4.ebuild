@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2e2725b40c94b53b1a249d69a5637a81f2ab3271 $
+# $Id: 18accf194edaad7ebac30bbd6e80b4314ff160b2 $
 
 EAPI=7
 
@@ -100,7 +100,7 @@ RDEPEND="
 		)
 		lm-sensors? ( sys-apps/lm-sensors:=[${MULTILIB_USEDEP}] )
 		opencl? (
-					dev-libs/ocl-icd[khronos-headers,${MULTILIB_USEDEP}]
+					>=virtual/opencl-3[${MULTILIB_USEDEP}]
 					dev-libs/libclc
 					virtual/libelf:0=[${MULTILIB_USEDEP}]
 				)
