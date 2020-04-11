@@ -29,3 +29,6 @@ sci-astronomy/pulsatingscience
 
 # broken (bug 711322)
 =sys-apps/portage-2.3.91
+
+# has issues with pkgconfig files
+=dev-util/meson-0.54.0_pre
