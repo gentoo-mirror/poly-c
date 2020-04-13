@@ -37,7 +37,6 @@ dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/libtommath 1.2.0_pre: Optimized and portable routines for integer theoretic applications
 dev-libs/libxml2 2.9.10_pre: XML C parser and toolkit
 dev-libs/libxslt 1.1.34_pre: XSLT libraries and tools
-dev-libs/newt 0.52.20_pre: Redhat's Newt windowing toolkit development files
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.1.1d-r3 1.1.1f: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u: full-strength general purpose cryptography library (including SSL and TLS)
@@ -88,7 +87,7 @@ media-libs/libdvbpsi 1.3.3_pre: library for MPEG TS/DVB PSI tables decoding and 
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
-media-libs/mesa 19.3.5 20.0.4: OpenGL-like graphic library for Linux
+media-libs/mesa 19.3.5 20.0.4-r1: OpenGL-like graphic library for Linux
 media-libs/x265 3.3_pre: Library for encoding video streams into the H.265/HEVC format
 media-plugins/gst-plugins-a52dec 1.16.2_pre: ATSC A/52 audio decoder plugin for GStreamer
 media-plugins/gst-plugins-assrender 1.16.2_pre: ASS/SSA rendering with effects support plugin for GStreamer
@@ -153,7 +152,6 @@ net-irc/sbnc 1.1_pre 1.2_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/bctoolbox 0.6.0_pre: Utilities library used by Belledonne Communications softwares like belle-sip, mediastreamer2 and linphone.
 net-libs/enet 1.3.14_pre: relatively thin, simple and robust network communication layer on top of UDP
 net-libs/farstream 0.2.9_pre: Audio/video conferencing framework specifically designed for instant messengers
-net-libs/libmicrodns 0.1.2_pre: Minimal mDNS resolver (and announcer) library
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor

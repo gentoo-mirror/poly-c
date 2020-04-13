@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 18accf194edaad7ebac30bbd6e80b4314ff160b2 $
+# $Id: a0d7a8ff5ca4091a26fa248bf64b6243cae35875 $
 
 EAPI=7
 
@@ -248,6 +248,10 @@ x86? (
 	usr/lib*/libOSMesa.so.8.0.0
 	libglvnd? ( usr/lib/libGLX_mesa.so.0.0.0 )
 )"
+
+PATCHES=(
+	"${FILESDIR}"/${P}-meson-Specify-the-maximum-required-libdrm-in-dri.pc.patch
+)
 
 llvm_check_deps() {
 	local flags=${MULTILIB_USEDEP}
