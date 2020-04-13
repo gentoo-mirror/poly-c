@@ -186,7 +186,7 @@ sys-apps/hwloc 2.0.3_pre: displays the hardware topology in convenient formats
 sys-apps/iproute2 4.19.0-r1 5.2.0-r1 5.4.0 5.5.0 5.6.0: kernel routing and traffic control utilities
 sys-apps/kmod 26-r5 27-r1: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
-sys-apps/portage 2.3.89-r1 2.3.96-r1 2.3.97 2.3.98-r1 2.3.99: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.3.89-r2 2.3.96-r1 2.3.97 2.3.98-r1 2.3.99-r1: Portage is the package management and distribution system for Gentoo
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/areca_cli 1.50.0.170105: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)

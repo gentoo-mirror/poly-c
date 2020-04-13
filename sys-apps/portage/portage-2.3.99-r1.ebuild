@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: f3080d284367ce9c8b1f0f3cdcc00608d88a2af6 $
+# $Id: 2b801329cf67d9b91972f7cbabb59c6dde3f7411 $
 
 EAPI=5
 
@@ -14,7 +14,7 @@ DESCRIPTION="Portage is the package management and distribution system for Gento
 HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Portage"
 
 LICENSE="GPL-2"
-KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 ~riscv s390 sparc x86"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86"
 SLOT="0"
 IUSE="apidoc build doc gentoo-dev +ipc +native-extensions +rsync-verify selinux xattr"
 
@@ -28,10 +28,6 @@ DEPEND="!build? ( $(python_gen_impl_dep 'ssl(+)') )
 		dev-python/sphinx-epytext
 	)"
 # Require sandbox-2.2 for bug #288863.
-# For xattr, we can spawn getfattr and setfattr from sys-apps/attr, but that's
-# quite slow, so it's not considered in the dependencies as an alternative to
-# to python-3.3 / pyxattr. Also, xattr support is only tested with Linux, so
-# for now, don't pull in xattr deps for other kernels.
 # For whirlpool hash, require python[ssl] (bug #425046).
 # For compgen, require bash[readline] (bug #445576).
 # app-portage/gemato goes without PYTHON_USEDEP since we're calling
@@ -96,9 +92,8 @@ python_prepare_all() {
 
 	epatch "${FILESDIR}/${PN}-2.3.84-eapply_non_verbose.patch"
 
-	# Apply e762752a8bf5c19e0d6d7b22de86306bfa4270ba for bug 711400.
-	sed -e 's|\(if\) \(graph_interface.want_update_pkg(parent, avail_pkg):\)|\1 parent is not None and \2|' \
-		-i lib/portage/dep/dep_check.py || die
+	# Apply 03efd1125214
+	sed -e '50s|"EMERGE_FROM", "EPREFIX",|"EMERGE_FROM", "ENV_UNSET", "EPREFIX",|' -i lib/portage/package/ebuild/_config/special_env_vars.py || die
 
 	sed -e "s:^VERSION = \"HEAD\"$:VERSION = \"${PV}\":" -i lib/portage/__init__.py || die
 
