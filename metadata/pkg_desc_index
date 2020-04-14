@@ -178,7 +178,7 @@ sci-visualization/ginkgocadx 3.8.6: An advanced DICOM viewer and dicomizer
 sys-apps/accountsservice 0.6.54_pre 0.6.55_pre: D-Bus interfaces for querying and manipulating user account information
 sys-apps/baselayout 2.6-r1 2.7: Filesystem baselayout and init scripts
 sys-apps/fwup 1.0.0 1.2.1: Configurable embedded Linux firmware update creator and runner
-sys-apps/gawk 4.2.1-r1 5.0.0 5.0.1: GNU awk pattern-matching language
+sys-apps/gawk 4.2.1-r1 5.0.1 5.1.0: GNU awk pattern-matching language
 sys-apps/hwloc 2.0.3_pre: displays the hardware topology in convenient formats
 sys-apps/iproute2 4.19.0-r1 5.2.0-r1 5.4.0 5.5.0 5.6.0: kernel routing and traffic control utilities
 sys-apps/kmod 26-r5 27-r1: library and tools for managing linux kernel modules
@@ -190,7 +190,7 @@ sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/lsiutil 1.72: LSI Logic Fusion MPT Command Line Interface management tool
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/gnu-efi 3.0.10_pre 3.0.11_pre: Library for build EFI Applications
-sys-boot/grub 2.02-r4 2.04_rc1 2.04-r1: GNU GRUB boot loader
+sys-boot/grub 2.04-r1: GNU GRUB boot loader
 sys-fs/fswatch 1.14.0 9999: cross-platform file change monitor with multiple backends
 sys-fs/udev 242 243 243-r2 245: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
