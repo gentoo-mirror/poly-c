@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5701c73bab72f1265e650b9e6111d44956fee8c4 $
+# $Id: 77e990201cd298e2ea946774d1e80cd9370ef82c $
 
 EAPI=7
 
@@ -25,6 +25,7 @@ RDEPEND="
 	dev-libs/fribidi
 	media-libs/freetype:2
 	media-libs/glew:0=
+	media-libs/harfbuzz:=
 	media-libs/libpng:0=
 	media-libs/libsquish
 	media-libs/libvorbis
