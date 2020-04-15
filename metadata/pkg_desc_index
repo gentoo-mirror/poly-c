@@ -70,8 +70,6 @@ games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 games-util/x52pro-linux 9999: Saitek X52pro drivers & controller mapping software for Linux
 gnome-base/gconf 3.2.6-r4: GNOME configuration system and daemon
 kde-apps/kde-wallpapers 15.08.3 15.08.3-r2 15.08.3-r3: KDE wallpapers
-kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
-kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
 kde-frameworks/plasma 5.67.0: Plasma framework
 lxde-base/lxsession 0.5.2: LXDE session manager
 media-fonts/fontawesome 5.12.0_pre: The iconic font
