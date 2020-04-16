@@ -1,9 +1,8 @@
-DEFINED_PHASES=install nofetch
+DEFINED_PHASES=install
 DESCRIPTION=CLI utility to manage Areca RAID controllers
 EAPI=7
 HOMEPAGE=https://www.areca.com.tw/support/downloads.html#linux
 KEYWORDS=~amd64 ~x86
-RESTRICT=fetch
 SLOT=0
-SRC_URI=linuxcli_V1.50.0_170105.zip
-_md5_=6df68f37c865085d5c4ff88d9cc479f1
+SRC_URI=http://www.areca.us/support/s_linux/driver/cli/linuxcli_V1.15.8_180529.zip
+_md5_=56101db781a9d2e79b9574c6ee2cd06e
