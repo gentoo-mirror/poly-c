@@ -191,6 +191,7 @@ sys-block/lsiutil 1.72: LSI Logic Fusion MPT Command Line Interface management t
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/gnu-efi 3.0.10_pre 3.0.11_pre: Library for build EFI Applications
 sys-boot/grub 2.04-r1: GNU GRUB boot loader
+sys-devel/distcc 3.3.3-r1: Distribute compilation of C code across several machines on a network
 sys-fs/fswatch 1.14.0 9999: cross-platform file change monitor with multiple backends
 sys-fs/udev 242 243 243-r2 245: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
