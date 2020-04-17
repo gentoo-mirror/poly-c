@@ -7,13 +7,19 @@ depend() {
 	use avahi-daemon ypbind
 }
 
+user="distcc"
+
 command="${DISTCCD_EXEC:-usr/bin/distccd}"
-command_args="--user distcc --daemon --no-detach ${DISTCCD_OPTS}"
+command_args="--user ${user} --daemon --no-detach ${DISTCCD_OPTS}"
 command_background="true"
 pidfile="/run/${RC_SVCNAME}.pid"
 
 export TMPDIR="${TMPDIR:-/tmp}"
 
 start_pre() {
-	checkpath -d "${TMPDIR}"
+	local owner=""
+	if ! [ -e "${TMPDIR}" ] ; then
+		owner="-o ${user}"
+	fi
+	checkpath -d ${owner} "${TMPDIR}"
 }

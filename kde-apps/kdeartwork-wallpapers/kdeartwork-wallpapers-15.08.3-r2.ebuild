@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id: bfb5b223ec3b0e0002476e72e99fbf0ed74bdece $
 
@@ -6,20 +6,21 @@ EAPI=7
 
 RESTRICT="binchecks strip"
 
-KMNAME="kdeartwork"
-KDE_AUTODEPS="false"
-KDE_DEBUG="false"
-inherit kde5
+MY_P="${PN/-*}-${PV}"
+
+ECM_NONGUI="true"
+ECM_DEBUG="false"
+inherit ecm
 
 DESCRIPTION="Wallpapers from KDE"
+HOMEPAGE="https://www.kde.org"
+SRC_URI="mirror://kde/Attic/applications/${PV}/src/${MY_P}.tar.xz"
 KEYWORDS="amd64 x86"
 IUSE=""
+SLOT="5"
+LICENSE="LGPL-3"
 
-DEPEND="
-	$(add_frameworks_dep extra-cmake-modules)
-	$(add_qt_dep qtcore)
-"
-RDEPEND="!kde-apps/kdeartwork-wallpapers:4"
+S="${WORKDIR}/${MY_P}"
 
 PATCHES=( "${FILESDIR}/${P}-kf5-port.patch" )
 
@@ -30,5 +31,5 @@ src_configure() {
 		-DBUILD_HighResolutionWallpapers=TRUE
 	)
 
-	kde5_src_configure
+	ecm_src_configure
 }
