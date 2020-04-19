@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: bb96453cd6acfcad5a013cd4eaebb4ea58701b5a $
+# $Id: 5d09c7bf0cffebe06782c9635d512084c12b47e2 $
 
 EAPI=7
 
@@ -10,7 +10,7 @@ if [[ ${PV} == 9999  ]]; then
 fi
 
 if [[ -n ${GRUB_AUTOGEN} || -n ${GRUB_BOOTSTRAP} ]]; then
-	PYTHON_COMPAT=( python{2_7,3_{6,7}} )
+	PYTHON_COMPAT=( python{2_7,3_{6,7,8}} )
 	inherit python-any-r1
 fi
 

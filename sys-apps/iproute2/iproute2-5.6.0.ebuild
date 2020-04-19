@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9e2e1f7f4e540927af55848aa4b5298b8da7b380 $
+# $Id: 622ac0d68948399aaa8bc90215fae5f1abbce31e $
 
 EAPI=7
 
@@ -161,5 +161,7 @@ src_install() {
 		# bug 47482, arpd doesn't need to be in /sbin
 		dodir /usr/bin
 		mv "${ED}"/sbin/arpd "${ED}"/usr/bin/ || die
+	elif [[ -d "${ED}"/var/lib/arpd ]]; then
+		rmdir --ignore-fail-on-non-empty -p "${ED}"/var/lib/arpd || die
 	fi
 }
