@@ -12,6 +12,10 @@ depend() {
 	provide net
 }
 
+start_pre() {
+	checkpath -q -d /run/NetworkManager
+}
+
 start() {
 	# If we are re-called by a dispatcher event, we want to mark the service
 	# as started without starting the daemon again
