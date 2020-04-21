@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 82f329575e06d8226fbc795bc16f2fb97f7d3b76 $
+# $Id: 33c9b7f89e8830d3d844baa8253e75f86edbf80c $
 
 EAPI=5
 
@@ -83,7 +83,8 @@ prefix_src_archives() {
 
 TARBALL_PV=${PV}
 SRC_URI="mirror://gentoo/${PN}-${TARBALL_PV}.tar.bz2
-	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.bz2)"
+	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.bz2)
+	https://github.com/gentoo/portage/commit/9738a404e876270cbdef2514f66915bce35d7435.patch -> portage-2.3.89-bug-718578.patch"
 
 pkg_pretend() {
 	local CONFIG_CHECK="~IPC_NS ~PID_NS ~NET_NS"
@@ -94,6 +95,7 @@ pkg_pretend() {
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
+	epatch "${DISTDIR}/portage-2.3.89-bug-718578.patch"
 	epatch "${FILESDIR}/${PN}-2.3.84-eapply_non_verbose.patch"
 
 	# Apply e762752a8bf5c19e0d6d7b22de86306bfa4270ba for bug 711400.
