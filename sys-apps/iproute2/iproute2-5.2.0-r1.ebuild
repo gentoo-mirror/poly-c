@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: b5a9b12c68b61408bdc37e7c7fc37fd0aa01f1a8 $
+# $Id: a42b969cc0b83a6b74e56308e72cd4b75777225d $
 
 EAPI=7
 
@@ -11,7 +11,7 @@ if [[ ${PV} == "9999" ]] ; then
 	inherit git-r3
 else
 	SRC_URI="https://www.kernel.org/pub/linux/utils/net/${PN}/${P}.tar.xz"
-	KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 m68k ~mips ppc ppc64 ~riscv s390 sparc x86"
+	KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 ~riscv s390 sparc x86"
 fi
 
 DESCRIPTION="kernel routing and traffic control utilities"
