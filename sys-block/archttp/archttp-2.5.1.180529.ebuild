@@ -3,11 +3,11 @@
 
 EAPI=7
 
-MY_P="linuxcli_V$(ver_rs 3 '_')"
+MY_P="Linuxhttp_V$(ver_rs 3 '_')"
 
 DESCRIPTION="CLI utility to manage Areca RAID controllers"
 HOMEPAGE="https://www.areca.com.tw/support/downloads.html#linux"
-SRC_URI="http://www.areca.us/support/s_linux/driver/cli/${MY_P}.zip"
+SRC_URI="http://www.areca.us/support/s_linux/http/${MY_P}.zip"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -24,11 +24,11 @@ src_install() {
 	case ${ARCH} in
 		amd64)
 			dir="x86_64"
-			bin="cli64"
+			bin="${PN}64"
 		;;
 		x86)
 			dir="i386"
-			bin="cli"
+			bin="${PN32}"
 		;;
 		*)
 			die "This arch is not supported."
@@ -37,6 +37,8 @@ src_install() {
 
 	dodir /opt/${PN}
 	exeinto /opt/${PN}
-	newexe "${S}/${dir}/${bin}" areca_cli
-	dosym ../${PN}/areca_cli /opt/bin/areca_cli
+	newexe "${S}/${dir}/${bin}" ${PN}
+	dosym ../${PN}/${PN} /opt/bin/${PN}
+
+	newinitd "${FILESDIR}"/${PN}.initd ${PN}
 }

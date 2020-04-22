@@ -1,0 +1,8 @@
+#!/sbin/openrc-run
+# Copyright 1999-2020 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+description="Areca RAID HTTP proxy daemon"
+pidfile="/run/${SVCNAME}.pid"
+command="/opt/bin/archttp"
+command_background="true"
