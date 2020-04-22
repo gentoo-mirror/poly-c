@@ -118,6 +118,10 @@ RDEPEND="${RDEPEND}
 	)
 "
 
+PATCHES=(
+	"${FILESDIR}/${PN}-13.0-hfp.patch"
+)
+
 pkg_pretend() {
 	CONFIG_CHECK="~HIGH_RES_TIMERS"
 	WARNING_HIGH_RES_TIMERS="CONFIG_HIGH_RES_TIMERS:\tis not set (required for enabling timer-based scheduling in pulseaudio)\n"
