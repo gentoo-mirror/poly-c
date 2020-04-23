@@ -1,12 +1,12 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: a0d7a8ff5ca4091a26fa248bf64b6243cae35875 $
+# $Id: 85944a36141eaa2ba0c7216a2777b317e32a3e4b $
 
 EAPI=7
 
 PYTHON_COMPAT=( python3_{6,7,8} )
 
-inherit llvm meson multilib-minimal pax-utils python-any-r1
+inherit llvm meson multilib-minimal python-any-r1
 
 OPENGL_DIR="xorg-x11"
 
@@ -248,10 +248,6 @@ x86? (
 	usr/lib*/libOSMesa.so.8.0.0
 	libglvnd? ( usr/lib/libGLX_mesa.so.0.0.0 )
 )"
-
-PATCHES=(
-	"${FILESDIR}"/${P}-meson-Specify-the-maximum-required-libdrm-in-dri.pc.patch
-)
 
 llvm_check_deps() {
 	local flags=${MULTILIB_USEDEP}
@@ -509,8 +505,6 @@ multilib_src_compile() {
 
 multilib_src_install() {
 	meson_src_install
-
-	use libglvnd && rm -f "${D}"/usr/$(get_libdir)/pkgconfig/{egl,gl}.pc
 }
 
 multilib_src_install_all() {

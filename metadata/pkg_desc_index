@@ -87,7 +87,7 @@ media-libs/libdvbpsi 1.3.3_pre: library for MPEG TS/DVB PSI tables decoding and 
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
-media-libs/mesa 19.3.5 20.0.4-r1: OpenGL-like graphic library for Linux
+media-libs/mesa 19.3.5 20.0.5: OpenGL-like graphic library for Linux
 media-libs/x265 3.3_pre: Library for encoding video streams into the H.265/HEVC format
 media-plugins/gst-plugins-a52dec 1.16.2_pre: ATSC A/52 audio decoder plugin for GStreamer
 media-plugins/gst-plugins-assrender 1.16.2_pre: ASS/SSA rendering with effects support plugin for GStreamer
