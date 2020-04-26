@@ -47,9 +47,8 @@ dev-python/wget 3.2: pure python download utility
 dev-qt/qtgui 5.13.2 5.14.1-r2: The GUI module and platform plugins for the Qt5 framework
 dev-util/cloc 1.84_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
-dev-util/meson 0.53.2_pre 0.54.0_pre: Open source build system
+dev-util/meson 0.53.2_pre: Open source build system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
-dev-vcs/mercurial 5.3.2_pre: Scalable distributed SCM
 games-action/supertuxkart 1.0 1.1: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
 games-engines/fifechan 9999: Lightweight cross platform GUI C++ library designed for games
@@ -199,17 +198,15 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre19: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.217 4.9.218 4.9.219 4.14.174 4.14.175 4.14.176 4.19.115 4.19.116 4.19.117 5.4.32 5.4.33 5.4.34: Shows and sets processor power related values
+sys-power/cpupower 4.9.218 4.9.219 4.9.220 4.14.175 4.14.176 4.14.177 4.19.116 4.19.117 4.19.118 5.4.33 5.4.34 5.4.35: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.15-r1 3.3.16-r2: standard informational utilities and process-handling tools
-www-apps/baikal 0.6.1_pre: Lightweight CalDAV+CardDAV server
 www-client/links 2.20.2 2.20.2-r1: A fast and lightweight web browser running in both graphics and text mode
 www-client/waterfox 2020.03.1 2020.04: Waterfox Web Browser
 x11-apps/xinit 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
-x11-libs/libnotify 0.7.9_pre: A library for sending desktop notifications
 x11-misc/adriconf 1.5.1 1.6 9999: Advanced DRI Configurator
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-plugins/pidgin-skypeweb 1.5_pre: SkypeWeb Plugin for Pidgin
