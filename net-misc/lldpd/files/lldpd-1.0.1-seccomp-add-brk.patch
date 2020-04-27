@@ -1,7 +1,18 @@
-diff -purN lldpd-1.0.1.orig/src/daemon/priv-seccomp.c lldpd-1.0.1/src/daemon/priv-seccomp.c
---- lldpd-1.0.1.orig/src/daemon/priv-seccomp.c	2018-06-12 07:48:04.282557213 +0200
-+++ lldpd-1.0.1/src/daemon/priv-seccomp.c	2018-06-12 07:52:26.214348537 +0200
-@@ -162,6 +162,7 @@ priv_seccomp_init(int remote, int child)
+From de8946077b464a4fda652146d04761d8e6667343 Mon Sep 17 00:00:00 2001
+From: Patrick McLean <chutzpah@gentoo.org>
+Date: Mon, 27 Apr 2020 20:38:42 +0200
+Subject: [PATCH 2/4] v1.0.1: seccomp - add brk
+
+Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
+---
+ src/daemon/priv-seccomp.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/daemon/priv-seccomp.c b/src/daemon/priv-seccomp.c
+index 7e3b828..35a4b65 100644
+--- a/src/daemon/priv-seccomp.c
++++ b/src/daemon/priv-seccomp.c
+@@ -163,6 +163,7 @@ priv_seccomp_init(int remote, int child)
  	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(sendmmsg), 0)) < 0 ||
  	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(wait4), 0)) < 0 ||
  	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(stat), 0)) < 0 ||
@@ -9,3 +20,6 @@ diff -purN lldpd-1.0.1.orig/src/daemon/priv-seccomp.c lldpd-1.0.1/src/daemon/pri
  	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(getpid), 0)) < 0 ||
  	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(rt_sigreturn), 0)) < 0 ||
  	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(close), 0)) < 0 ||
+-- 
+2.26.2
+

@@ -38,7 +38,7 @@ PATCHES=(
 	"${FILESDIR}/lldpd-0.9.5-seccomp-add-socket-ops.patch"
 	"${FILESDIR}/lldpd-1.0.1-seccomp-add-brk.patch"
 	"${FILESDIR}/lldpd-1.0.2-seccomp-add-misc.patch"
-	"${FILESDIR}/lldpd-1.0.5-seccomp_allow_clock_gettime.patch"
+	"${FILESDIR}/lldpd-1.0.5-seccomp-add-clock-gettime.patch"
 )
 
 pkg_setup() {

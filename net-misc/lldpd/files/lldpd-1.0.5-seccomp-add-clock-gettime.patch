@@ -1,22 +1,23 @@
-From 9e95b5636abc49da9f35c40a00702cf99550ced5 Mon Sep 17 00:00:00 2001
+From 3a206f0eef5a0155cc3db022fe2706593bd98fe0 Mon Sep 17 00:00:00 2001
 From: Patrick McLean <chutzpah@gentoo.org>
-Date: Mon, 27 Apr 2020 20:28:14 +0200
-Subject: [PATCH] Allow clock_gettime syscall in seccomp
+Date: Mon, 27 Apr 2020 20:40:20 +0200
+Subject: [PATCH] v1.0.5: seccomp - add gettime
 
 Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
 ---
- src/daemon/priv-seccomp.c | 1 +
- 1 file changed, 1 insertion(+)
+ src/daemon/priv-seccomp.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/src/daemon/priv-seccomp.c b/src/daemon/priv-seccomp.c
-index 5a6e2ae..79e7680 100644
+index 700e749..5cef36f 100644
 --- a/src/daemon/priv-seccomp.c
 +++ b/src/daemon/priv-seccomp.c
-@@ -172,6 +172,7 @@ priv_seccomp_init(int remote, int child)
- 	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(recvfrom), 0)) < 0 ||
- 	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(readv), 0)) < 0 ||
+@@ -176,6 +176,8 @@ priv_seccomp_init(int remote, int child)
  	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(mprotect), 0)) < 0 ||
+ 	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(sendmmsg), 0)) < 0 ||
+ 	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(recvfrom), 0)) < 0 ||
 +	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(clock_gettime), 0)) < 0 ||
++	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(gettimeofday), 0)) < 0 ||
  	    /* The following are for resolving addresses */
  	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(mmap), 0)) < 0 ||
  	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(munmap), 0)) < 0 ||

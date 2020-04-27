@@ -1,9 +1,19 @@
+From f2ad3a44aa257057780b7cce421ae92faaf8723c Mon Sep 17 00:00:00 2001
+From: Patrick McLean <chutzpah@gentoo.org>
+Date: Mon, 27 Apr 2020 20:37:56 +0200
+Subject: [PATCH 1/4] v0.9.5: seccomp - add socket ops
+
+Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
+---
+ src/daemon/priv-seccomp.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
 diff --git a/src/daemon/priv-seccomp.c b/src/daemon/priv-seccomp.c
-index 97f4233..36184cd 100644
+index 5a6e2ae..7e3b828 100644
 --- a/src/daemon/priv-seccomp.c
 +++ b/src/daemon/priv-seccomp.c
-@@ -167,6 +167,8 @@ priv_seccomp_init(int remote, int child)
- 	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(recvmsg), 0)) < 0 ||
+@@ -172,6 +172,8 @@ priv_seccomp_init(int remote, int child)
+ 	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(recvfrom), 0)) < 0 ||
  	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(readv), 0)) < 0 ||
  	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(mprotect), 0)) < 0 ||
 +	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(sendmmsg), 0)) < 0 ||
@@ -11,3 +21,6 @@ index 97f4233..36184cd 100644
  	    /* The following are for resolving addresses */
  	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(mmap), 0)) < 0 ||
  	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(munmap), 0)) < 0 ||
+-- 
+2.26.2
+
