@@ -1,0 +1,25 @@
+From 9e95b5636abc49da9f35c40a00702cf99550ced5 Mon Sep 17 00:00:00 2001
+From: Patrick McLean <chutzpah@gentoo.org>
+Date: Mon, 27 Apr 2020 20:28:14 +0200
+Subject: [PATCH] Allow clock_gettime syscall in seccomp
+
+Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
+---
+ src/daemon/priv-seccomp.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/daemon/priv-seccomp.c b/src/daemon/priv-seccomp.c
+index 5a6e2ae..79e7680 100644
+--- a/src/daemon/priv-seccomp.c
++++ b/src/daemon/priv-seccomp.c
+@@ -172,6 +172,7 @@ priv_seccomp_init(int remote, int child)
+ 	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(recvfrom), 0)) < 0 ||
+ 	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(readv), 0)) < 0 ||
+ 	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(mprotect), 0)) < 0 ||
++	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(clock_gettime), 0)) < 0 ||
+ 	    /* The following are for resolving addresses */
+ 	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(mmap), 0)) < 0 ||
+ 	    (rc = seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(munmap), 0)) < 0 ||
+-- 
+2.26.2
+
