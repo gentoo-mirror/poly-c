@@ -6,4 +6,4 @@ KEYWORDS=~amd64 ~x86
 RESTRICT=mirror
 SLOT=0
 SRC_URI=http://www.areca.us/support/s_linux/driver/cli/linuxcli_V1.15.8_180529.zip
-_md5_=4c60a3a57df8dfba47b7f618bcf5c4b8
+_md5_=3351072032454e82065715f7ec4035cb

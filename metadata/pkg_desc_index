@@ -154,7 +154,6 @@ net-libs/farstream 0.2.9_pre: Audio/video conferencing framework specifically de
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
-net-misc/lldpd 1.0.5: Implementation of IEEE 802.1ab (LLDP)
 net-misc/netifrc 0.5.1 0.6.1: Gentoo Network Interface Management Scripts
 net-misc/networkmanager 1.22.10-r10: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
@@ -208,6 +207,7 @@ www-client/links 2.20.2 2.20.2-r1: A fast and lightweight web browser running in
 www-client/waterfox 2020.03.1 2020.04: Waterfox Web Browser
 x11-apps/xinit 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
+x11-libs/gtk+ 3.24.20_pre: Gimp ToolKit +
 x11-misc/adriconf 1.5.1 1.6 9999: Advanced DRI Configurator
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-plugins/pidgin-skypeweb 1.5_pre: SkypeWeb Plugin for Pidgin

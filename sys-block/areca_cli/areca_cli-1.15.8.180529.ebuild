@@ -37,6 +37,6 @@ src_install() {
 
 	dodir /opt/${PN}
 	exeinto /opt/${PN}
-	newexe "${S}/${dir}/${bin}" areca_cli
-	dosym ../${PN}/areca_cli /opt/bin/areca_cli
+	doexe "${S}/${dir}/${bin}"
+	dosym ../${PN}/${bin} /opt/bin/areca_cli
 }
