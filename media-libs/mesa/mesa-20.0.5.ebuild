@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 85944a36141eaa2ba0c7216a2777b317e32a3e4b $
+# $Id: b5ed3341ee9e7c806272990906f8f4d98b21aabc $
 
 EAPI=7
 
@@ -30,7 +30,7 @@ RESTRICT="
 "
 
 RADEON_CARDS="r100 r200 r300 r600 radeon radeonsi"
-VIDEO_CARDS="${RADEON_CARDS} freedreno i915 i965 intel iris lima nouveau panfrost vc4 virgl vivante vmware"
+VIDEO_CARDS="${RADEON_CARDS} freedreno i915 i965 intel iris lima nouveau panfrost vc4 virgl vivante vmware zink"
 for card in ${VIDEO_CARDS}; do
 	IUSE_VIDEO_CARDS+=" video_cards_${card}"
 done
@@ -38,14 +38,13 @@ done
 IUSE="${IUSE_VIDEO_CARDS}
 	+classic d3d9 debug +dri3 +egl +gallium +gbm gles1 +gles2 +libglvnd +llvm
 	lm-sensors opencl osmesa selinux test unwind vaapi valgrind vdpau vulkan
-	vulkan-overlay wayland +X xa xvmc zink +zstd"
+	vulkan-overlay wayland +X xa xvmc +zstd"
 
 REQUIRED_USE="
 	d3d9?   ( dri3 || ( video_cards_iris video_cards_r300 video_cards_r600 video_cards_radeonsi video_cards_nouveau video_cards_vmware ) )
 	gles1?  ( egl )
 	gles2?  ( egl )
 	vulkan? ( dri3
-			  || ( video_cards_i965 video_cards_iris video_cards_radeonsi )
 			  video_cards_radeonsi? ( llvm ) )
 	vulkan-overlay? ( vulkan )
 	wayland? ( egl gbm )
@@ -68,9 +67,9 @@ REQUIRED_USE="
 	video_cards_virgl? ( gallium )
 	video_cards_vivante? ( gallium gbm )
 	video_cards_vmware? ( gallium )
+	video_cards_zink? ( vulkan )
 	xa? ( X )
 	xvmc? ( X )
-	zink? ( vulkan )
 "
 
 LIBDRM_DEPSTRING=">=x11-libs/libdrm-2.4.100"
@@ -120,8 +119,8 @@ RDEPEND="
 		!video_cards_i965? ( ${LIBDRM_DEPSTRING}[video_cards_intel] )
 	)
 	video_cards_i915? ( ${LIBDRM_DEPSTRING}[video_cards_intel] )
+	video_cards_zink? ( media-libs/vulkan-loader[${MULTILIB_USEDEP}] )
 	vulkan-overlay? ( dev-util/glslang:0=[${MULTILIB_USEDEP}] )
-	zink? ( media-libs/vulkan-loader[${MULTILIB_USEDEP}] )
 	X? (
 		>=x11-libs/libX11-1.6.2:=[${MULTILIB_USEDEP}]
 		>=x11-libs/libxshmfence-1.1:=[${MULTILIB_USEDEP}]
@@ -263,6 +262,14 @@ llvm_check_deps() {
 }
 
 pkg_pretend() {
+	if use vulkan; then
+		if ! use video_cards_i965 &&
+		   ! use video_cards_iris &&
+		   ! use video_cards_radeonsi; then
+			ewarn "Ignoring USE=vulkan     since VIDEO_CARDS does not contain i965, iris, or radeonsi"
+		fi
+	fi
+
 	if use opencl; then
 		if ! use video_cards_r600 &&
 		   ! use video_cards_radeonsi; then
@@ -449,7 +456,7 @@ multilib_src_configure() {
 		gallium_enable video_cards_freedreno freedreno
 		gallium_enable video_cards_virgl virgl
 
-		gallium_enable zink zink
+		gallium_enable video_cards_zink zink
 
 		# opencl stuff
 		emesonargs+=(
