@@ -10,7 +10,6 @@ app-arch/xz-utils 5.2.4-r2 5.2.4-r3 5.2.5: utils for managing LZMA compressed fi
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-crypt/gnupg 2.2.19 2.2.20: The GNU Privacy Guard, a GPL OpenPGP implementation
-app-crypt/libu2f-host 1.1.10: Yubico Universal 2nd Factor (U2F) Host C Library
 app-crypt/libu2f-server 1.1.0: Yubico Universal 2nd Factor (U2F) server C Library
 app-crypt/nwipe 0.24_pre: Securely erase disks using a variety of recognized methods
 app-crypt/qca 2.1.3-r2: Qt Cryptographic Architecture (QCA)
@@ -26,6 +25,7 @@ app-misc/mmv 1.01b_p19_pre: Move/copy/append/link multiple files according to a 
 app-misc/osmo 0.4.2: Handy personal organizer
 app-misc/tmux 3.1_rc: Terminal multiplexer
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
+app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/enchant 2.2.8_pre: Spellchecker wrapping library
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
@@ -187,7 +187,6 @@ sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/portage 2.3.89-r3 2.3.96-r1 2.3.97 2.3.98-r1 2.3.99-r2: Portage is the package management and distribution system for Gentoo
 sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chipsets
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
-sys-auth/ykpers 1.20.0: Library and tool for personalization of Yubico's YubiKey
 sys-block/archttp 2.5.1.180529: CLI utility to manage Areca RAID controllers
 sys-block/areca_cli 1.15.8.180529: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
