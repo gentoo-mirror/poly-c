@@ -85,7 +85,7 @@ media-libs/libdvbpsi 1.3.3_pre: library for MPEG TS/DVB PSI tables decoding and 
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
-media-libs/mesa 19.3.5 20.0.5: OpenGL-like graphic library for Linux
+media-libs/mesa 19.3.5 20.0.5 20.0.6 20.1.0_rc2: OpenGL-like graphic library for Linux
 media-libs/x265 3.3_pre: Library for encoding video streams into the H.265/HEVC format
 media-plugins/gst-plugins-a52dec 1.16.2_pre: ATSC A/52 audio decoder plugin for GStreamer
 media-plugins/gst-plugins-assrender 1.16.2_pre: ASS/SSA rendering with effects support plugin for GStreamer
@@ -190,7 +190,6 @@ sys-block/areca_cli 1.15.8.180529: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/lsiutil 1.72: LSI Logic Fusion MPT Command Line Interface management tool
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
-sys-boot/gnu-efi 3.0.10_pre 3.0.11_pre: Library for build EFI Applications
 sys-boot/grub 2.04-r1: GNU GRUB boot loader
 sys-devel/distcc 3.3.3-r1: Distribute compilation of C code across several machines on a network
 sys-fs/fswatch 1.14.0 9999: cross-platform file change monitor with multiple backends

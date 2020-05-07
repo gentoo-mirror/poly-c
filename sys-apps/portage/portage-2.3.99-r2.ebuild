@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 91855cdabde4fe543e2db02cc7984cf5f084eaf0 $
+# $Id: 9e00e9ed1d699dc1d1bff0611a8d4f0522a3edc9 $
 
 EAPI=5
 
@@ -45,7 +45,6 @@ RDEPEND="
 			>=app-crypt/gnupg-2.2.4-r2[ssl(-)]
 		)
 	)
-	elibc_FreeBSD? ( sys-freebsd/freebsd-bin )
 	elibc_glibc? ( >=sys-apps/sandbox-2.2 )
 	elibc_musl? ( >=sys-apps/sandbox-2.2 )
 	elibc_uclibc? ( >=sys-apps/sandbox-2.2 )
@@ -83,7 +82,7 @@ SRC_URI="mirror://gentoo/${PN}-${TARBALL_PV}.tar.bz2
 	https://github.com/gentoo/portage/commit/9738a404e876270cbdef2514f66915bce35d7435.patch -> portage-2.3.89-bug-718578.patch"
 
 pkg_pretend() {
-	local CONFIG_CHECK="~IPC_NS ~PID_NS ~NET_NS"
+	local CONFIG_CHECK="~IPC_NS ~PID_NS ~NET_NS ~UTS_NS"
 
 	check_extra_config
 }

@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 33c9b7f89e8830d3d844baa8253e75f86edbf80c $
+# $Id: 210f4409e404725006cec05babca180b521fc57b $
 
 EAPI=5
 
@@ -49,7 +49,6 @@ RDEPEND="
 			>=app-crypt/gnupg-2.2.4-r2[ssl(-)]
 		)
 	)
-	elibc_FreeBSD? ( sys-freebsd/freebsd-bin )
 	elibc_glibc? ( >=sys-apps/sandbox-2.2 )
 	elibc_musl? ( >=sys-apps/sandbox-2.2 )
 	elibc_uclibc? ( >=sys-apps/sandbox-2.2 )
