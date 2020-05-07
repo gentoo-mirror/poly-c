@@ -1,6 +1,6 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 1863a883169d661b9c8561aaf8dedf04e06d1e97 $
+# $Id: 28b157da09791d2c42d94cfa01ca04423294cf8f $
 
 EAPI=7
 
@@ -89,6 +89,10 @@ src_prepare() {
 
 	# Commented out because it gives false positives
 	#l10n_find_plocales_changes "${S}"/src/translations ${PN}_ .ts
+
+	# Do not default compress man page
+	sed '/gzip -9.*\.1$/d' -i Makefile || die
+	sed 's@\.gz$@@' -i smplayer.spec || die
 }
 
 src_configure() {
