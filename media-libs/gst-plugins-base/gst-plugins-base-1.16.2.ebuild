@@ -1,20 +1,17 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
+# $Id: 548dabb5e358a73f84038d2f061fc95774d2e788 $
 
 EAPI=6
 GST_ORG_MODULE="gst-plugins-base"
 
-PV="${PV%_*}"
-P="${PN}-${PV}"
-S="${WORKDIR}/${P}"
-
-inherit autotools flag-o-matic gstreamer poly-c_ebuilds
+inherit autotools flag-o-matic gstreamer
 
 DESCRIPTION="Basepack of plugins for gstreamer"
 HOMEPAGE="https://gstreamer.freedesktop.org/"
 
 LICENSE="GPL-2+ LGPL-2+"
-KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 
 # For OpenGL we have three separate concepts, with a list of possibilities in each:
 #  * opengl APIs - opengl and/or gles2; USE=opengl and USE=gles2 enable these accordingly; if neither is enabled, OpenGL helper library and elements are not built at all and all the other options aren't relevant
@@ -67,7 +64,7 @@ GL_DEPS="
 RDEPEND="
 	app-text/iso-codes
 	>=dev-libs/glib-2.40.0:2[${MULTILIB_USEDEP}]
-	>=media-libs/gstreamer-${PV}_pre:1.0[introspection?,${MULTILIB_USEDEP}]
+	>=media-libs/gstreamer-${PV}:1.0[introspection?,${MULTILIB_USEDEP}]
 	>=sys-libs/zlib-1.2.8-r1[${MULTILIB_USEDEP}]
 	alsa? ( >=media-libs/alsa-lib-1.0.27.2[${MULTILIB_USEDEP}] )
 	introspection? ( >=dev-libs/gobject-introspection-1.31.1:= )
@@ -86,7 +83,7 @@ RDEPEND="
 	gles2? ( ${GL_DEPS} )
 	opengl? ( ${GL_DEPS} )
 
-	!<media-libs/gst-plugins-bad-1.16.0:1.0
+	!<media-libs/gst-plugins-bad-1.15.0:1.0
 "
 DEPEND="${RDEPEND}
 	dev-util/glib-utils
@@ -94,7 +91,10 @@ DEPEND="${RDEPEND}
 	X? ( x11-base/xorg-proto )
 "
 
-PATCHES=( "${FILESDIR}/${PN}-1.16.2-make43.patch" )
+PATCHES=(
+	"${FILESDIR}"/${PN}-1.16.2-make43.patch # remove when bumping and switching to Meson
+	"${FILESDIR}"/${PN}-1.16.2-avoid_bashisms.patch #721582
+)
 
 src_prepare() {
 	# Disable GL tests for now; prone to fail with EGL_NOT_INITIALIZED, etc
