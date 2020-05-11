@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e129349a96fce9a5b00abd4f6ec59d57fb4b1f8f $
+# $Id: cae7bc97c8e90b15520b5ac9432bb227d73d9370 $
 
 # Remember: we cannot leverage autotools in this ebuild in order
 #           to avoid circular deps with autotools
@@ -69,6 +69,12 @@ multilib_src_configure() {
 			# CRC64 is used by default, though some (old?) files use CRC32
 			--enable-checks=crc32,crc64
 		)
+	fi
+
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		# undo Solaris-based defaults pointing to /usr/xpg5/bin
+		myconf+=( --disable-path-for-script )
+		export gl_cv_posix_shell=${EPREFIX}/bin/sh
 	fi
 
 	use elibc_FreeBSD && export ac_cv_header_sha256_h=no #545714

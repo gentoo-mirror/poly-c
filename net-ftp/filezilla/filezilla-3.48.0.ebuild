@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9b6e1abcc9573cbdb386154d76c5ea49e7ac82b8 $
+# $Id: 9e6b4b3a1bff526ecd11d68f5b406f9bfb9082f9 $
 
 EAPI=6
 
@@ -46,6 +46,7 @@ DOCS=(AUTHORS ChangeLog NEWS )
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.22.1-debug.patch
 	"${FILESDIR}"/${PN}-3.47.0-metainfo.patch
+	"${FILESDIR}"/${PN}-3.47.0-disable-shellext_conf.patch
 )
 
 pkg_pretend() {
