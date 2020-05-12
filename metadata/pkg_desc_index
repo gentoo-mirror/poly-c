@@ -29,6 +29,7 @@ app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/enchant 2.2.8_pre: Spellchecker wrapping library
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
 dev-games/cegui 0.8.7-r1: Crazy Eddie's GUI System
+dev-games/simgear 2020.1.1_pre: Development library for simulation games
 dev-java/ant-core 1.9.8_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
@@ -61,6 +62,8 @@ games-fps/enemy-territory 2.60b-r1: standalone multi-player game based on Return
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.76 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.51b 1.51c 9999: Return to Castle Wolfenstein - IORTCW Project
+games-simulation/flightgear 2020.1.1_pre: Open Source Flight Simulator
+games-simulation/flightgear-data 2020.1.1_pre: FlightGear data files
 games-strategy/boswars 9999: Futuristic real-time strategy game
 games-strategy/megaglest 3.13.0_pre: Cross-platform 3D realtime strategy game
 games-strategy/megaglest-data 3.13.0_pre: Data files for the cross-platform 3D realtime strategy game MegaGlest

@@ -62,6 +62,10 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${P/_rc/rc}"
 
+PATCHES=(
+	"${FILESDIR}/${PN}-2.76-ipv6_build_fix.patch"
+)
+
 src_unpack() {
 	if [[ "${PV}" = 9999 ]] ; then
 		git-r3_src_unpack
