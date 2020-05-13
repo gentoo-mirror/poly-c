@@ -60,7 +60,7 @@ DEPEND="${COMMON_DEPEND}
 	)
 "
 RDEPEND="${COMMON_DEPEND}
-	~games-simulation/${PN}-data-${MY_PV}
+	~games-simulation/${PN}-data-${PV}
 "
 
 PATCHES=("${FILESDIR}/${PN}-2018.3.2-cmake.patch")

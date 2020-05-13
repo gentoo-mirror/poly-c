@@ -69,7 +69,6 @@ games-strategy/megaglest 3.13.0_pre: Cross-platform 3D realtime strategy game
 games-strategy/megaglest-data 3.13.0_pre: Data files for the cross-platform 3D realtime strategy game MegaGlest
 games-strategy/opendungeons 0.7.1 9999: An open source, real time strategy game based on the Dungeon Keeper series
 games-strategy/unknown-horizons 9999: Anno-like real time strategy game
-games-strategy/widelands 9999: A game similar to Settlers 2
 games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 games-util/x52pro-linux 9999: Saitek X52pro drivers & controller mapping software for Linux
