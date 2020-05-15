@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e077dd59d7355b58d087e50f5516808cd2303802 $
+# $Id: 34de9be6642480c004e4a2d749df8c0baf3201d5 $
 
 EAPI=7
 
@@ -8,26 +8,26 @@ QT5_MODULE="qtbase"
 inherit qt5-build
 
 DESCRIPTION="The GUI module and platform plugins for the Qt5 framework"
-SLOT=5/${PV} # bug 707658
+SLOT=5/$(ver_cut 1-3) # bug 707658
 
 if [[ ${QT5_BUILD_TYPE} == release ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
+	KEYWORDS="amd64 ~arm arm64 ~hppa ppc ppc64 ~sparc x86"
 fi
 
 # TODO: linuxfb
 
-IUSE="accessibility dbus egl eglfs evdev +gif gles2 ibus
-	jpeg +libinput +png tslib tuio +udev vnc wayland +X"
+IUSE="accessibility dbus egl eglfs evdev +gif gles2-only ibus jpeg
+	+libinput +png tslib tuio +udev vnc vulkan wayland +X"
 REQUIRED_USE="
 	|| ( eglfs X )
 	accessibility? ( dbus X )
 	eglfs? ( egl )
 	ibus? ( dbus )
 	libinput? ( udev )
-	X? ( gles2? ( egl ) )
+	X? ( gles2-only? ( egl ) )
 "
 
-COMMON_DEPEND="
+RDEPEND="
 	dev-libs/glib:2
 	~dev-qt/qtcore-${PV}
 	dev-util/gtk-update-icon-cache
@@ -43,7 +43,7 @@ COMMON_DEPEND="
 		x11-libs/libdrm
 	)
 	evdev? ( sys-libs/mtdev )
-	gles2? ( media-libs/mesa[gles2] )
+	gles2-only? ( media-libs/mesa[gles2] )
 	jpeg? ( virtual/jpeg:0 )
 	libinput? (
 		dev-libs/libinput:=
@@ -54,6 +54,7 @@ COMMON_DEPEND="
 	tuio? ( ~dev-qt/qtnetwork-${PV} )
 	udev? ( virtual/libudev:= )
 	vnc? ( ~dev-qt/qtnetwork-${PV} )
+	vulkan? ( dev-util/vulkan-headers )
 	X? (
 		x11-libs/libICE
 		x11-libs/libSM
@@ -66,16 +67,9 @@ COMMON_DEPEND="
 		x11-libs/xcb-util-wm
 	)
 "
-DEPEND="${COMMON_DEPEND}
+DEPEND="${RDEPEND}
 	evdev? ( sys-kernel/linux-headers )
 	udev? ( sys-kernel/linux-headers )
-"
-# bug 703306, _populate_Gui_plugin_properties breaks installed cmake modules
-RDEPEND="${COMMON_DEPEND}
-	!<dev-qt/qtimageformats-5.14.0:5
-	!<dev-qt/qtsvg-5.14.0:5
-	!<dev-qt/qtvirtualkeyboard-5.14.0:5
-	!<dev-qt/qtwayland-5.14.0:5
 "
 PDEPEND="
 	ibus? ( app-i18n/ibus )
@@ -106,8 +100,8 @@ QT5_GENTOO_CONFIG=(
 	:system-freetype:FREETYPE
 	!:no-freetype:
 	!gif:no-gif:
-	gles2::OPENGL_ES
-	gles2:opengles2:OPENGL_ES_2
+	gles2-only::OPENGL_ES
+	gles2-only:opengles2:OPENGL_ES_2
 	!:no-gui:
 	:system-harfbuzz:
 	!:no-harfbuzz:
@@ -121,6 +115,7 @@ QT5_GENTOO_CONFIG=(
 	!png:no-png:
 	tslib:tslib:
 	udev:libudev:
+	vulkan:vulkan:
 	X:xcb:
 	X:xcb-glx:
 	X:xcb-plugin:
@@ -174,10 +169,11 @@ src_configure() {
 		-system-harfbuzz
 		$(qt_use jpeg libjpeg system)
 		$(qt_use libinput)
-		-opengl $(usex gles2 es2 desktop)
+		-opengl $(usex gles2-only es2 desktop)
 		$(qt_use png libpng system)
 		$(qt_use tslib)
 		$(qt_use udev libudev)
+		$(qt_use vulkan)
 		$(qt_use X xcb system)
 		$(usex X '-xcb-xlib -xcb-xinput -xkb' '')
 	)

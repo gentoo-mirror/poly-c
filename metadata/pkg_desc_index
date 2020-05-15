@@ -47,7 +47,7 @@ dev-php/pecl-redis 5.2.1_pre: PHP extension for interfacing with Redis
 dev-python/pyscard 1.9.9_pre: Smart cards support in python
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
-dev-qt/qtgui 5.13.2 5.14.1-r2: The GUI module and platform plugins for the Qt5 framework
+dev-qt/qtgui 5.14.1-r4 5.14.2: The GUI module and platform plugins for the Qt5 framework
 dev-util/cloc 1.84_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/meson 0.53.2_pre: Open source build system
@@ -167,7 +167,7 @@ sys-fs/udev 242 243 243-r2 245: Linux dynamic and persistent device naming suppo
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
-sys-libs/slang 2.3.3_pre19: Multi-platform library designed to allow a developer to create robust software
+sys-libs/slang 2.3.3_pre20: Multi-platform library designed to allow a developer to create robust software
 sys-power/cpupower 4.9.221 4.9.222 4.9.223 4.14.178 4.14.179 4.14.180 4.19.121 4.19.122 4.19.123 5.4.39 5.4.40 5.4.41: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer

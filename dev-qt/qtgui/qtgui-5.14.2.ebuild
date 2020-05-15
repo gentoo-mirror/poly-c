@@ -1,33 +1,35 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ec493f247cbc8e3a4b98e64c7050059065a29b8e $
+# $Id: 46c80da5c92d5ba8a04ba55a7efc933e7f7533a0 $
 
 EAPI=7
+
 QT5_MODULE="qtbase"
 inherit qt5-build
 
 DESCRIPTION="The GUI module and platform plugins for the Qt5 framework"
+SLOT=5/$(ver_cut 1-3) # bug 707658
 
 if [[ ${QT5_BUILD_TYPE} == release ]]; then
-	KEYWORDS="arm"
+	KEYWORDS="~amd64 arm ~arm64 ~hppa ~ppc ppc64 ~sparc ~x86"
 fi
 
 # TODO: linuxfb
 
-IUSE="accessibility dbus egl eglfs evdev +gif gles2 ibus
-	jpeg +libinput +png tslib tuio +udev vnc wayland +xcb"
+IUSE="accessibility dbus egl eglfs evdev +gif gles2-only ibus jpeg
+	+libinput +png tslib tuio +udev vnc vulkan wayland +X"
 REQUIRED_USE="
-	|| ( eglfs xcb )
-	accessibility? ( dbus xcb )
+	|| ( eglfs X )
+	accessibility? ( dbus X )
 	eglfs? ( egl )
 	ibus? ( dbus )
 	libinput? ( udev )
-	xcb? ( gles2? ( egl ) )
+	X? ( gles2-only? ( egl ) )
 "
 
 RDEPEND="
 	dev-libs/glib:2
-	~dev-qt/qtcore-${PV}
+	~dev-qt/qtcore-${PV}:5=
 	dev-util/gtk-update-icon-cache
 	media-libs/fontconfig
 	>=media-libs/freetype-2.6.1:2
@@ -41,18 +43,19 @@ RDEPEND="
 		x11-libs/libdrm
 	)
 	evdev? ( sys-libs/mtdev )
-	gles2? ( media-libs/mesa[gles2] )
+	gles2-only? ( media-libs/mesa[gles2] )
 	jpeg? ( virtual/jpeg:0 )
 	libinput? (
 		dev-libs/libinput:=
 		>=x11-libs/libxkbcommon-0.5.0
 	)
 	png? ( media-libs/libpng:0= )
-	tslib? ( x11-libs/tslib )
+	tslib? ( >=x11-libs/tslib-1.21 )
 	tuio? ( ~dev-qt/qtnetwork-${PV} )
 	udev? ( virtual/libudev:= )
 	vnc? ( ~dev-qt/qtnetwork-${PV} )
-	xcb? (
+	vulkan? ( dev-util/vulkan-headers )
+	X? (
 		x11-libs/libICE
 		x11-libs/libSM
 		x11-libs/libX11
@@ -97,8 +100,8 @@ QT5_GENTOO_CONFIG=(
 	:system-freetype:FREETYPE
 	!:no-freetype:
 	!gif:no-gif:
-	gles2::OPENGL_ES
-	gles2:opengles2:OPENGL_ES_2
+	gles2-only::OPENGL_ES
+	gles2-only:opengles2:OPENGL_ES_2
 	!:no-gui:
 	:system-harfbuzz:
 	!:no-harfbuzz:
@@ -112,29 +115,30 @@ QT5_GENTOO_CONFIG=(
 	!png:no-png:
 	tslib:tslib:
 	udev:libudev:
-	xcb:xcb:
-	xcb:xcb-glx:
-	xcb:xcb-plugin:
-	xcb:xcb-render:
-	xcb:xcb-sm:
-	xcb:xcb-xlib:
-	xcb:xcb-xinput:
+	vulkan:vulkan:
+	X:xcb:
+	X:xcb-glx:
+	X:xcb-plugin:
+	X:xcb-render:
+	X:xcb-sm:
+	X:xcb-xlib:
+	X:xcb-xinput:
 )
 
 QT5_GENTOO_PRIVATE_CONFIG=(
 	:gui
 )
 
-PATCHES+=(
-	"${FILESDIR}/${P}-no-xcb-no-xkbcommon.patch" # bug 699110
+PATCHES=(
+	"${FILESDIR}/${PN}-5.14.1-cmake-macro-backward-compat.patch" # bug 703306
 )
 
 src_prepare() {
 	# don't add -O3 to CXXFLAGS, bug 549140
 	sed -i -e '/CONFIG\s*+=/s/optimize_full//' src/gui/gui.pro || die
 
-	# egl_x11 is activated when both egl and xcb are enabled
-	use egl && QT5_GENTOO_CONFIG+=(xcb:egl_x11:) || QT5_GENTOO_CONFIG+=(egl:egl_x11:)
+	# egl_x11 is activated when both egl and X are enabled
+	use egl && QT5_GENTOO_CONFIG+=(X:egl_x11:) || QT5_GENTOO_CONFIG+=(egl:egl_x11:)
 
 	qt_use_disable_config dbus dbus \
 		src/platformsupport/themes/genericunix/genericunix.pri
@@ -165,14 +169,15 @@ src_configure() {
 		-system-harfbuzz
 		$(qt_use jpeg libjpeg system)
 		$(qt_use libinput)
-		-opengl $(usex gles2 es2 desktop)
+		-opengl $(usex gles2-only es2 desktop)
 		$(qt_use png libpng system)
 		$(qt_use tslib)
 		$(qt_use udev libudev)
-		$(qt_use xcb xcb system)
-		$(usex xcb '-xcb-xlib -xcb-xinput -xkb' '')
+		$(qt_use vulkan)
+		$(qt_use X xcb system)
+		$(usex X '-xcb-xlib -xcb-xinput -xkb' '')
 	)
-	if use libinput || use xcb; then
+	if use libinput || use X; then
 		myconf+=( -xkbcommon )
 	fi
 	qt5-build_src_configure
