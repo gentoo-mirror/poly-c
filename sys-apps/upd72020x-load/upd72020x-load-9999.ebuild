@@ -20,10 +20,6 @@ SLOT="0"
 
 IUSE=""
 
-PATCHES=(
-	"${FILESDIR}/${PN}-build_fixes.patch"
-)
-
 src_compile() {
 	tc-export CC
 	default
