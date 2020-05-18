@@ -1,0 +1,25 @@
+From 400e5c5ed55cfcc19c3a9f43ed489b234f1519a0 Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Mon, 18 May 2020 13:47:28 +0200
+Subject: [PATCH] Makefile: Use better recursion
+
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index d6775ad..7b0da6e 100644
+--- a/Makefile
++++ b/Makefile
+@@ -19,7 +19,7 @@ $(OUTPUT): $(OBJS)
+ 	$(CXX) $(ARCHFLAGS) $(COMMON_CFLAGS) $(CFLAGS_OS) -o $(OUTPUT) $(OBJS)
+ 
+ plscsi.o:
+-	cd plscsi;make $(PLSCSIMAKEFILE);cd ..
++	$(MAKE) -C plscsi $(PLSCSIMAKEFILE)
+ 
+ %.o: %.cpp
+ 	$(CXX) $(COMMON_CFLAGS) $(ARCHFLAGS) $(DBGFLAGS) -c $<
+-- 
+2.26.2
+

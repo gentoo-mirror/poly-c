@@ -1,0 +1,55 @@
+From b548dac522d3c249fc9faba996948647be4ed1a7 Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Mon, 18 May 2020 14:46:25 +0200
+Subject: [PATCH] configure: Don't strip files
+
+---
+ configure | 11 -----------
+ 1 file changed, 11 deletions(-)
+
+diff --git a/configure b/configure
+index 2cdcd1b..c037237 100755
+--- a/configure
++++ b/configure
+@@ -486,8 +486,6 @@ else
+ 		if test "$OSL" = "darwin" ; then
+ #			echo "	strip qpxtool.app/Contents/MacOS/qpxtool" >> $mf
+ 			echo "	" >> $mf
+-		else
+-			echo "	strip --strip-unneeded qpxtool" >> $mf
+ 		fi
+ 	fi
+ fi
+@@ -613,9 +611,6 @@ clean:
+ 	rm -f \$(LIB)* \$(OBJS) ../lib/\$(LIB) *~ include/*~
+ 
+ install: " >> $mf
+-			if test "$__enable_debug" = "no" ; then
+-				echo "	strip --strip-unneeded \$(LIB)" >> $mf
+-			fi
+ 			echo "
+ 	mkdir -p \$(DESTDIR)\$(LIBDIR)
+ 	install -m 755 \$(LIB) \$(DESTDIR)\$(LIBDIR)
+@@ -647,9 +642,6 @@ clean:
+ 	rm -f \$(LIB_SHORT)* \$(OBJS) ../lib/\$(LIB_SHORT) *~ include/*~
+ 
+ install: " >> $mf
+-			if test "$__enable_debug" = "no" ; then
+-				echo "	strip --strip-unneeded \$(LIB)" >> $mf
+-			fi
+ 			echo "
+ 	mkdir -p \$(DESTDIR)\$(LIBDIR)
+ 	install -m 755 \$(LIB) \$(DESTDIR)\$(LIBDIR)
+@@ -714,9 +706,6 @@ clean:
+ 	rm -f \$(LIB_SHORT) \$(OBJS) ../lib/\$(LIB_SHORT) *~ include/*~
+ 
+ install: " > $mf
+-	if test "$__enable_debug" = "no" ; then
+-		echo "	strip --strip-unneeded \$(LIB_SHORT)" >> $mf
+-	fi
+ echo "
+ 	mkdir -p \$(DESTDIR)\$(PLUGINDIR)
+ 	install -m 755 \$(LIB_SHORT) \$(DESTDIR)\$(PLUGINDIR)
+-- 
+2.26.2
+

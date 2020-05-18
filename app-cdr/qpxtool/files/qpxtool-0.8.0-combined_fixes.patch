@@ -1,0 +1,112 @@
+From 083d9d2d9c29b553ab433a73c920134fbd45ea35 Mon Sep 17 00:00:00 2001
+From: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>
+Date: Mon, 13 Apr 2020 14:32:25 +0200
+Subject: [PATCH 1/4] Fix Pioneer QuietMode operation
+
+- the argument given to --pio-quiet is stored in piosilent, but
+  pioneer_set_silent() was called with silent instead
+---
+ console/cdvdcontrol/cdvdcontrol.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/console/cdvdcontrol/cdvdcontrol.cpp b/console/cdvdcontrol/cdvdcontrol.cpp
+index 53cbfa6..6c243b1 100644
+--- a/console/cdvdcontrol/cdvdcontrol.cpp
++++ b/console/cdvdcontrol/cdvdcontrol.cpp
+@@ -1277,7 +1277,7 @@ dev->silent++;
+ 
+ // PIONEER features
+ 	if (flags & FL_PIOQUIET) {
+-		pioneer_set_silent(dev, silent, silent_save);
++		pioneer_set_silent(dev, piosilent, silent_save);
+ 	}
+ 	if (flags & FL_PIOLIMIT) {
+ 		pioneer_set_spdlim(dev, piolimit, silent_save);
+-- 
+2.26.2
+
+
+From 80436ee16923793e0a55bd0bb4d7a16bc5558506 Mon Sep 17 00:00:00 2001
+From: Boris Pek <tehnick-8@yandex.ru>
+Date: Thu, 30 Apr 2020 22:07:10 +0300
+Subject: [PATCH 2/4] Fix saving results to *.qpx files
+
+[Thanks to Eli Bildirici]
+---
+ gui/src/mainwindow.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gui/src/mainwindow.cpp b/gui/src/mainwindow.cpp
+index 6300b21..520d44e 100644
+--- a/gui/src/mainwindow.cpp
++++ b/gui/src/mainwindow.cpp
+@@ -1706,7 +1706,7 @@ void QPxToolMW::save_results()
+ 	device *dev = devices.current();
+ 
+ 	fname = QFileDialog::getSaveFileName(this, tr("Save results to file..."), set.last_res_path_native, "QPxTool data files (*.qpx)");
+-	if (fname.isEmpty()) return
++	if (fname.isEmpty()) return;
+ 
+ 	f.setFileName(fname);
+ 	finfo.setFile(f);
+-- 
+2.26.2
+
+
+From 8827296675f95979023afdde5ff38ada49d7075f Mon Sep 17 00:00:00 2001
+From: Boris Pek <tehnick-8@yandex.ru>
+Date: Thu, 30 Apr 2020 22:11:46 +0300
+Subject: [PATCH 3/4] Update ChangeLog
+
+---
+ ChangeLog | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/ChangeLog b/ChangeLog
+index 511b460..4446079 100644
+--- a/ChangeLog
++++ b/ChangeLog
+@@ -1,5 +1,15 @@
+ QPxTool ChangeLog
+ 
++***********************************************
++** 0.8.1 (2020-xx-xx)
++
++    gui:
++    - fix saving results to *.qpx files
++    cdvdcontrol:
++    - fix Pioneer QuietMode operation: the argument given to --pio-quiet is
++      stored in piosilent, but pioneer_set_silent() was called with silent
++      instead
++
+ ***********************************************
+ ** 0.8.0 (2020-01-28)
+ 
+-- 
+2.26.2
+
+
+From d98f56f5e493c083dde285f83fe528a5e0f4f0be Mon Sep 17 00:00:00 2001
+From: Boris Pek <tehnick-8@yandex.ru>
+Date: Fri, 1 May 2020 02:10:01 +0300
+Subject: [PATCH 4/4] Add missed include
+
+---
+ gui/include/device.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/gui/include/device.h b/gui/include/device.h
+index 85cc9d2..1ca5ece 100644
+--- a/gui/include/device.h
++++ b/gui/include/device.h
+@@ -17,6 +17,7 @@
+ #include <QStringList>
+ #include <QList>
+ #include <QMutex>
++#include <QIODevice>
+ 
+ #include <sys/time.h>
+ #include <inttypes.h>
+-- 
+2.26.2
+
