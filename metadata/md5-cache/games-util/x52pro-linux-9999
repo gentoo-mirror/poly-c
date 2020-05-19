@@ -1,11 +1,12 @@
-DEFINED_PHASES=install prepare unpack
-DEPEND=virtual/libusb >=app-portage/elt-patches-20170815 || ( >=sys-devel/automake-1.16.1:1.16 >=sys-devel/automake-1.15.1:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 virtual/pkgconfig >=dev-vcs/git-1.8.2.1[curl]
+BDEPEND=virtual/pkgconfig >=app-portage/elt-patches-20170815 || ( >=sys-devel/automake-1.16.1:1.16 >=sys-devel/automake-1.15.1:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 virtual/pkgconfig >=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=configure install prepare unpack
+DEPEND=virtual/libusb
 DESCRIPTION=Saitek X52pro drivers & controller mapping software for Linux
-EAPI=6
+EAPI=7
 HOMEPAGE=https://github.com/nirenjan/x52pro-linux
 LICENSE=GPL2
 PROPERTIES=live
 RDEPEND=virtual/libusb
 SLOT=0
 _eclasses_=autotools	7d999b62b8749fad43fff00620cedf47	git-r3	86a0188f2ad9eb3d65e4d031ab8a0422	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	318e8ae683e57fd3ccd0d31a769d8ee8	toolchain-funcs	512eb3367f507ebaa1d1d43ab7d66e6c	udev	452708c3f55cf6e918b045adb949a9e6
-_md5_=eba0f9a5c2eac22528eed3708ecb7f3f
+_md5_=edc2cb46d84e0738feb9a7296c9ab752

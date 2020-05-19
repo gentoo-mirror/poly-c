@@ -1,8 +1,8 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id: 65ea285b3cab02a5a25d0cadfed6c0f21613eeab $
 
-EAPI=6
+EAPI=7
 
 inherit autotools udev
 
@@ -23,15 +23,20 @@ IUSE=""
 
 DEPEND="virtual/libusb"
 RDEPEND="${DEPEND}"
+BDEPEND="virtual/pkgconfig"
 
 src_prepare() {
 	default
 	eautoreconf
 }
 
+src_configure() {
+	econf --disable-static
+}
+
 src_install() {
 	default
-	find "${ED}" \( -name "*.a" -o -name "*.la" \) -delete || die
+	find "${ED}" -type f -name "*.la" -delete || die
 
 	insinto $(get_udevdir)/rules.d
 	doins udev/99-saitek-x52pro.rules

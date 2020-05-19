@@ -45,6 +45,8 @@ dev-libs/openssl 1.1.1d-r3 1.1.1f 1.1.1g: full-strength general purpose cryptogr
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf-c 1.3.3_pre: Protocol Buffers implementation in C
 dev-php/pecl-redis 5.2.1_pre: PHP extension for interfacing with Redis
+dev-python/Rx 3.1.0_pre: Reactive Extensions for Python
+dev-python/injector 0.18.3: dependency injection framework
 dev-python/pyscard 1.9.9_pre: Smart cards support in python
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
@@ -70,6 +72,7 @@ games-strategy/megaglest 3.13.0_pre: Cross-platform 3D realtime strategy game
 games-strategy/megaglest-data 3.13.0_pre: Data files for the cross-platform 3D realtime strategy game MegaGlest
 games-strategy/opendungeons 0.7.1 9999: An open source, real time strategy game based on the Dungeon Keeper series
 games-strategy/unknown-horizons 9999: Anno-like real time strategy game
+games-util/gx52 9999: GTK app for control of the LEDs and MFD of Logitech X52 (Pro)
 games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 games-util/x52pro-linux 0.2.0 9999: Saitek X52pro drivers & controller mapping software for Linux
