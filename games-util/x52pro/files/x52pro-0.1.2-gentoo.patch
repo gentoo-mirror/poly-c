@@ -4,7 +4,7 @@
 -CFLAGS=-Wall -g -I.
 -LDFLAGS=-g
 +CFLAGS += -Wall -g -I.
-+LIBDIR = $(shell pkg-config --variable=libdir libusb)
++LIBDIR ?= $(shell pkg-config --variable=libdir libusb)
 +LIBS = $(shell pkg-config --libs libusb)
  
  X52LIB=libx52pro.so.0.1.1

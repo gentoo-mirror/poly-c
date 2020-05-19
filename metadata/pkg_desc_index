@@ -72,7 +72,7 @@ games-strategy/opendungeons 0.7.1 9999: An open source, real time strategy game 
 games-strategy/unknown-horizons 9999: Anno-like real time strategy game
 games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
-games-util/x52pro-linux 9999: Saitek X52pro drivers & controller mapping software for Linux
+games-util/x52pro-linux 0.2.0 9999: Saitek X52pro drivers & controller mapping software for Linux
 gnome-base/gconf 3.2.6-r4: GNOME configuration system and daemon
 kde-apps/kde-wallpapers 15.08.3-r3: KDE wallpapers
 kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE

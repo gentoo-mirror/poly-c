@@ -16,6 +16,10 @@ if ! [[ "${SOURCE_EBUILD}" =~ .*\.ebuild$ ]] ; then
 	printf '%s\n' "First argument is not an ebuild."
 	exit 2
 fi
+if ! [[ "${SOURCE_EBUILD}" =~ ^/.* ]] ; then
+	printf '%s\n' "First argument must consist of an absolute path."
+	exit 20
+fi
 if [[ -z "${TARGET_VERSION}" ]] ; then
 	printf '%s\n' "Second argument is not a version."
 	exit 3
@@ -55,7 +59,7 @@ SOURCE_DIR="${SOURCE_EBUILD%/*/*/*}"
 FULL_PACKAGE="${SOURCE_EBUILD/${SOURCE_DIR}\/}"
 CATEGORY="${FULL_PACKAGE%%/*}"
 PACKAGE="${FULL_PACKAGE##*/}"
-TARGET_PACKAGE="$(qatom -F "%{CATEGORY}/%{PN}/%{PN}-${TARGET_VERSION}.ebuild" ${CATEGORY}/${PACKAGE})"
+TARGET_PACKAGE="$(qatom -C -F "%{CATEGORY}/%{PN}/%{PN}-${TARGET_VERSION}.ebuild" ${CATEGORY}/${PACKAGE})"
 TARGET_EBUILD="${OVERLAYDIR}/${TARGET_PACKAGE}"
 TARGET_DIR="${TARGET_EBUILD%/*}"
 
@@ -84,12 +88,20 @@ if ${IS_POLYC_EBUILD} ; then
 	fi
 
 	sed \
-		-e "/FILESDIR/s@\${PV}@$(qatom -F '%{PV}' ${PACKAGE})@" \
-		-e "/FILESDIR/s@\${P}@\${PN}-$(qatom -F '%{PV}' ${PACKAGE})@" \
+		-e "/FILESDIR/s@\${PV}@$(qatom -C -F '%{PV}' ${PACKAGE})@" \
+		-e "/FILESDIR/s@\${P}@\${PN}-$(qatom -C -F '%{PV}' ${PACKAGE})@" \
 		-e 's@${PV}@${MY_PV}@g;s@${P}@${MY_P}@g' \
+		-e 's@${P^}@${MY_P^}@g;s@${P^^}@${MY_P^^}@g' \
 		-e 's@${PV/@${MY_PV/@g;s@${P/@${MY_P/@g' \
 		-e 's@${PV%@${MY_PV%@g;s@${P%@${MY_P%@g' \
 		-i "${TARGET_EBUILD}" || exit 11
+
+	# dev-qt ebuilds sometimes require special treatment
+	if [[ "${ECLASS_ADDON}" == "poly-c_qt" ]] ; then
+		sed \
+			-e '/~dev-qt/s@${MY_PV}@${PV}@' \
+			-i "${TARGET_EBUILD}" || exit 21
+	fi
 
 	if ! grep -q "^inherit" "${TARGET_EBUILD}" ; then
 		if grep -q "^EAPI" "${TARGET_EBUILD}" ; then
@@ -123,9 +135,9 @@ if grep -Fq FILESDIR "${SOURCE_EBUILD}" && [[ "${TARGET_DIR}" != "${SOURCE_EBUIL
 			| grep -F FILESDIR \
 			| sed \
 				-e 's@.*FILESDIR["}/]*\([[:alnum:]\${}/\.,+_-]\+\).*@\1@' \
-				-e "s@\${PN}@$(qatom -F '%{PN}' ${PACKAGE})@g" \
-				-e "s@\${PV}@$(qatom -F '%{PV}' ${PACKAGE})@g" \
-				-e "s@\${P}@$(qatom -F '%{P}' ${PACKAGE})@g" \
+				-e "s@\${PN}@$(qatom -C -F '%{PN}' ${PACKAGE})@g" \
+				-e "s@\${PV}@$(qatom -C -F '%{PV}' ${PACKAGE})@g" \
+				-e "s@\${P}@$(qatom -C -F '%{P}' ${PACKAGE})@g" \
 	) )
 	printf '%s\n' "AUX_FILES: ${AUX_FILES[@]}"
 	if [[ -n "${AUX_FILES[@]}" ]] ; then
