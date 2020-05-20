@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2885b3e2a4151bbc526074c04709e2e55b358e8f $
+# $Id: 1501ae504d38a6b69381da1896589d2d5687332f $
 
 EAPI="7"
 
@@ -39,7 +39,7 @@ SRC_URI="mirror://openssl/source/${MY_P}.tar.gz
 
 LICENSE="openssl"
 SLOT="1.0.0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~x86-linux"
+KEYWORDS="~alpha amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc x86 ~x86-linux"
 IUSE="+asm bindist gmp kerberos rfc3779 sctp cpu_flags_x86_sse2 static-libs test +tls-heartbeat vanilla zlib"
 
 RESTRICT="!bindist? ( bindist )
