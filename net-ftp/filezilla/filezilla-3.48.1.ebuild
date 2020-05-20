@@ -1,6 +1,6 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: fcb905143ffe8427c3687f8225b23ac0a9340f4b $
+# $Id: 9e6b4b3a1bff526ecd11d68f5b406f9bfb9082f9 $
 
 EAPI=6
 
@@ -17,16 +17,15 @@ SRC_URI="https://download.filezilla-project.org/client/${MY_P}_src.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-[[ "${PV}" == *_rc* ]] || \
-KEYWORDS="~amd64 ~arm ~ia64 ~ppc ~x86"
+KEYWORDS="~amd64 ~arm ~ia64 ~ppc ~ppc64 ~x86"
 IUSE="dbus nls test"
 
 # pugixml 1.7 minimal dependency is for c++11 proper configuration
 RDEPEND=">=app-eselect/eselect-wxwidgets-0.7-r1
 	>=dev-libs/nettle-3.1:=
 	>=dev-db/sqlite-3.7
-	>=dev-libs/libfilezilla-0.17.1
-	<dev-libs/libfilezilla-0.18.0
+	>=dev-libs/libfilezilla-0.22.0:=
+	<dev-libs/libfilezilla-0.23.0:=
 	>=dev-libs/pugixml-1.7
 	>=net-libs/gnutls-3.5.7
 	>=x11-libs/wxGTK-3.0.4:${WX_GTK_VER}[X]
@@ -38,12 +37,16 @@ DEPEND="${RDEPEND}
 	nls? ( >=sys-devel/gettext-0.11 )
 	test? ( >=dev-util/cppunit-1.13.0 )"
 
+RESTRICT="!test? ( test )"
+
 S="${WORKDIR}"/${PN}-${MY_PV}
 
 DOCS=(AUTHORS ChangeLog NEWS )
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.22.1-debug.patch
+	"${FILESDIR}"/${PN}-3.47.0-metainfo.patch
+	"${FILESDIR}"/${PN}-3.47.0-disable-shellext_conf.patch
 )
 
 pkg_pretend() {
