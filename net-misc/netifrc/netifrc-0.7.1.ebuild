@@ -30,6 +30,7 @@ RDEPEND="sys-apps/gentoo-functions
 
 PATCHES=(
 	"${FILESDIR}/${PN}-0.7.1-dhcpcd_pidfile_location.patch"
+	"${FILESDIR}/${PN}-0.7.1-dhcpcd_args_tempfile.patch"
 )
 
 src_prepare() {
