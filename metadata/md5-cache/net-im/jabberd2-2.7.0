@@ -11,5 +11,5 @@ RDEPEND=dev-libs/expat net-libs/udns net-dns/libidn virtual/gsasl berkdb? ( >=sy
 REQUIRED_USE=memdebug? ( debug )
 SLOT=0
 SRC_URI=https://github.com/jabberd2/jabberd2/releases/download/jabberd-2.7.0/jabberd-2.7.0.tar.xz
-_eclasses_=autotools	7d999b62b8749fad43fff00620cedf47	db-use	501a5d0963e0d17f30260023f292ae8e	eutils	fcb2aa98e1948b835b5ae66ca52868c5	flag-o-matic	f1194291b9a1baca337c1c89b5f7f365	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	797cda3549becfe50afdfa35192ca137	pam	a1771fc1e5831c201eaf18451747d94b	systemd	71fd8d2065d102753fb9e4d20eaf3e9f	toolchain-funcs	512eb3367f507ebaa1d1d43ab7d66e6c
+_eclasses_=autotools	7d999b62b8749fad43fff00620cedf47	db-use	501a5d0963e0d17f30260023f292ae8e	eutils	fcb2aa98e1948b835b5ae66ca52868c5	flag-o-matic	f1194291b9a1baca337c1c89b5f7f365	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	ac7989ababbeabdef6fdc6e465b21644	pam	a1771fc1e5831c201eaf18451747d94b	systemd	71fd8d2065d102753fb9e4d20eaf3e9f	toolchain-funcs	512eb3367f507ebaa1d1d43ab7d66e6c
 _md5_=5b1baece0c7308777349e60a2b1f88a6
