@@ -52,7 +52,6 @@ dev-python/wget 3.2: pure python download utility
 dev-qt/qtgui 5.14.1-r4 5.14.2: The GUI module and platform plugins for the Qt5 framework
 dev-util/cloc 1.84_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
-dev-util/meson 0.53.2_pre 0.54.2_pre: Open source build system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-action/supertuxkart 1.0 1.1: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
@@ -89,8 +88,7 @@ media-libs/libdvbpsi 1.3.3_pre: library for MPEG TS/DVB PSI tables decoding and 
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
-media-libs/mesa 19.3.5 20.0.7 20.1.0_rc3: OpenGL-like graphic library for Linux
-media-libs/x265 3.3_pre: Library for encoding video streams into the H.265/HEVC format
+media-libs/mesa 19.3.5 20.0.7 20.1.0_rc4: OpenGL-like graphic library for Linux
 media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
 media-sound/alsa-utils 1.2.1 1.2.2: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
@@ -103,7 +101,7 @@ media-sound/scdl 1.3.3_beta1 9999: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2 13.2.1: Download files from the public broadcasting services
 media-video/cinelerraGG 9999: The most advanced non-linear video editor and compositor - Good Guy's version
-media-video/ffmpeg 4.2.2: Complete solution to record, convert and stream audio and video. Includes libavcodec
+media-video/ffmpeg 4.2.2 4.2.3: Complete solution to record/convert/stream audio and video. Includes libavcodec
 media-video/mkvtoolnix 46.0.0_pre: Tools to create, alter, and inspect Matroska files
 media-video/mplayer 1.4_pre: Media Player for Linux
 media-video/smplayer 18.6.0 19.10.2 20.4.2: Great Qt GUI front-end for mplayer/mpv
@@ -156,7 +154,7 @@ sys-apps/iproute2 4.19.0-r1 5.2.0-r1 5.4.0 5.5.0 5.6.0: kernel routing and traff
 sys-apps/kmod 26-r5 27-r1: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
-sys-apps/portage 2.3.89-r3 2.3.96-r1 2.3.97 2.3.98-r1 2.3.99-r2: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.3.99-r2 2.3.100: Portage is the package management and distribution system for Gentoo
 sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chipsets
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/archttp 2.5.1.180529: CLI utility to manage Areca RAID controllers
