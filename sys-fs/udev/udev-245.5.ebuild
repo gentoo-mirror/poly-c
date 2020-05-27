@@ -1,24 +1,24 @@
 # Copyright 2003-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4cdaa936a654cd73c6b4a18ebe449729db7be98c $
+# $Id: f8ba208e8aefd0d55f7e6ba59cc507d5199bb7ad $
 
 EAPI=7
 
-inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal toolchain-funcs udev usr-ldscript poly-c_ebuilds
+inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal toolchain-funcs udev usr-ldscript
 
-if [[ ${MY_PV} = 9999* ]]; then
+if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="https://github.com/systemd/systemd.git"
 	inherit git-r3
 else
-	MY_PV=${MY_PV/_/-}
-	if [[ -n $(ver_cut 2) ]] ; then
-		MY_P=systemd-stable-${MY_PV}
-		SRC_URI="https://github.com/systemd/systemd-stable/archive/v${MY_PV}.tar.gz -> systemd-${MY_PV}.tar.gz"
+	if [[ ${PV} == *.* ]]; then
+		MY_PN=systemd-stable
 	else
-		MY_P=systemd-${MY_PV}
-		SRC_URI="https://github.com/systemd/systemd/archive/v${MY_PV}/${MY_P}.tar.gz"
+		MY_PN=systemd
 	fi
+	MY_PV=${PV/_/-}
+	MY_P=${MY_PN}-${MY_PV}
 	S=${WORKDIR}/${MY_P}
+	SRC_URI="https://github.com/systemd/${MY_PN}/archive/v${MY_PV}/${MY_P}.tar.gz"
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86"
 
 	FIXUP_PATCH="${PN}-245-revert-systemd-messup.patch"
@@ -82,13 +82,13 @@ pkg_setup() {
 		local MINKV=2.6.39
 
 		if kernel_is -lt ${MINKV//./ }; then
-			eerror "Your running kernel is too old to run this version of ${MY_P}"
+			eerror "Your running kernel is too old to run this version of ${P}"
 			eerror "You need to upgrade kernel at least to ${MINKV}"
 		fi
 
 		if kernel_is -lt 3 7; then
 			ewarn "Your running kernel is too old to have firmware loader and"
-			ewarn "this version of ${MY_P} doesn't have userspace firmware loader"
+			ewarn "this version of ${P} doesn't have userspace firmware loader"
 			ewarn "If you need firmware support, you need to upgrade kernel at least to 3.7"
 		fi
 	fi
