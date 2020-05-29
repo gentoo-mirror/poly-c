@@ -1,11 +1,11 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8abae5056549a5783ed98bcf1197dcd857adf8b2 $
+# $Id: 9f6aecbb7dccb77bac14341cda493edba0450107 $
 
 EAPI=5
 
 DISTUTILS_USE_SETUPTOOLS=no
-PYTHON_COMPAT=( pypy3 python3_6 python3_7 python3_8 )
+PYTHON_COMPAT=( pypy3 python3_{6..9} )
 PYTHON_REQ_USE='bzip2(+),threads(+)'
 
 inherit distutils-r1 epatch linux-info systemd prefix
