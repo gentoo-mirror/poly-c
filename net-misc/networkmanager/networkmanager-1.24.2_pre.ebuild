@@ -1,23 +1,22 @@
 # Copyright 2019-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: a6ae13c86a5dbb2acb8ef9eba5d08fa28772fbc9 $
 
 EAPI=7
 
 PYTHON_COMPAT=( python3_{6,7,8} )
 
-inherit meson linux-info python-any-r1 systemd udev vala
+inherit meson linux-info python-any-r1 systemd udev vala poly-c_ebuilds
 
 DESCRIPTION="A set of co-operative tools that make networking simple and straightforward"
 HOMEPAGE="https://wiki.gnome.org/Projects/NetworkManager"
-SRC_URI="https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/archive/${PV}/NetworkManager-${PV}.tar.bz2"
+SRC_URI="https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/archive/${MY_PV}/NetworkManager-${MY_PV}.tar.bz2"
 
 LICENSE="GPL-2+"
 SLOT="0" # add subslot if libnm-util.so.2 or libnm-glib.so.4 bumps soname version
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 IUSE="audit bluetooth +concheck connection-sharing consolekit +dhclient dhcpcd "
 IUSE+="debug elogind examples +gnutls gtk-doc introspection iwd json kernel_linux "
-    IUSE+="libpsl lto modemmanager nss ofono ovs +policykit ppp resolvconf selinux "
+IUSE+="libpsl lto modemmanager nss ofono ovs +policykit ppp resolvconf selinux "
 IUSE+="syslog systemd teamd test +tools vala wext +wifi"
 
 REQUIRED_USE="
@@ -101,7 +100,7 @@ BDEPEND="dev-util/intltool
 	vala? ( $(vala_depend) )
 "
 
-S="${WORKDIR}"/NetworkManager-${PV}
+S="${WORKDIR}"/NetworkManager-${MY_PV}
 
 RESTRICT="!test? ( test )"
 
@@ -282,7 +281,7 @@ src_configure() {
 src_install() {
 	meson_src_install
 
-	newinitd "${FILESDIR}/init.d.NetworkManager-r1" NetworkManager
+	newinitd "${FILESDIR}/init.d.NetworkManager-r2" NetworkManager
 	newconfd "${FILESDIR}/conf.d.NetworkManager" NetworkManager
 
 	# Need to keep the /etc/NetworkManager/dispatched.d for dispatcher scripts
