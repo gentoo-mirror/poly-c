@@ -20,6 +20,7 @@ RESTRICT="test"
 
 # zlib is some strange auto-dep from simgear
 COMMON_DEPEND="
+	app-accessibility/flite
 	dev-db/sqlite:3
 	dev-games/openscenegraph[jpeg,png]
 	~dev-games/simgear-${PV}[gdal=]
@@ -82,7 +83,6 @@ src_configure() {
 		-DENABLE_FGELEV=$(usex utils)
 		-DENABLE_FGJS=$(usex utils)
 		-DENABLE_FGVIEWER=$(usex utils)
-		-DENABLE_FLITE=OFF
 		-DENABLE_GDAL=$(usex gdal)
 		-DENABLE_GPSSMOOTH=$(usex utils)
 		-DENABLE_HID_INPUT=$(usex udev)
@@ -95,7 +95,6 @@ src_configure() {
 		-DENABLE_PROFILE=OFF
 		-DENABLE_QT=$(usex qt5)
 		-DENABLE_RTI=OFF
-		-DENABLE_SIMD=OFF # see CPU_FLAGS
 		-DENABLE_SIMD_CODE=$(usex cpu_flags_x86_sse2)
 		-DENABLE_STGMERGE=ON
 		-DENABLE_TERRASYNC=$(usex utils)
@@ -110,7 +109,7 @@ src_configure() {
 		-DSP_FDMS=ON
 		-DSYSTEM_CPPUNIT=OFF # NOTE we do not build tests anyway
 		-DSYSTEM_FLITE=ON
-		-DSYSTEM_HTS_ENGINE=ON
+		#-DSYSTEM_HTS_ENGINE=ON
 		-DSYSTEM_SPEEX=ON
 		-DSYSTEM_GSM=ON
 		-DSYSTEM_SQLITE=ON
