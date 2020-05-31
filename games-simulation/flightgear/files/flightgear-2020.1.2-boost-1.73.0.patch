@@ -1,0 +1,25 @@
+From a74b9206e3afff502a098bc8b21ef27052d05a12 Mon Sep 17 00:00:00 2001
+From: James Turner <zakalawe@mac.com>
+Date: Thu, 28 May 2020 10:47:10 +0100
+Subject: [PATCH] Fix compilation with Boost >= 1.73
+
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 2abb32076..380924e8f 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -541,7 +541,7 @@ if(WIN32)
+     set(NOMINMAX 1)
+ endif(WIN32)
+ 
+-set (BOOST_CXX_FLAGS "-DBOOST_BIMAP_DISABLE_SERIALIZATION")
++set (BOOST_CXX_FLAGS "-DBOOST_BIMAP_DISABLE_SERIALIZATION -DBOOST_NO_STDLIB_CONFIG")
+ 
+ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${WARNING_FLAGS_C} ${MSVC_FLAGS} -D_REENTRANT")
+ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${WARNING_FLAGS_CXX} ${MSVC_FLAGS} -D_REENTRANT ${BOOST_CXX_FLAGS}")
+-- 
+2.27.0.rc2
+

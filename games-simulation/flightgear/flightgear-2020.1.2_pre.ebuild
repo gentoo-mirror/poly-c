@@ -63,7 +63,10 @@ RDEPEND="${COMMON_DEPEND}
 	~games-simulation/${PN}-data-${PV}
 "
 
-PATCHES=("${FILESDIR}/${PN}-2018.3.2-cmake.patch")
+PATCHES=(
+	"${FILESDIR}/${PN}-2018.3.2-cmake.patch"
+	"${FILESDIR}/${PN}-2020.1.2-boost-1.73.0.patch"
+)
 
 DOCS=(AUTHORS ChangeLog NEWS README Thanks)
 

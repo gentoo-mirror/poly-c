@@ -35,7 +35,7 @@ RDEPEND="${COMMON_DEPEND}
 
 PATCHES=(
 	"${FILESDIR}/${PN}-2019.1.1-gdal3.patch"
-	#"${FILESDIR}/${PN}-2020.1.1-boost173.patch"
+	"${FILESDIR}/${PN}-2020.1.2-boost-1.73.0.patch"
 )
 
 pkg_pretend() {

@@ -1,0 +1,22 @@
+From 7c004a4c90a95e3cdbd5f88518a81b8bbe2b1425 Mon Sep 17 00:00:00 2001
+From: James Turner <zakalawe@mac.com>
+Date: Thu, 28 May 2020 10:45:47 +0100
+Subject: [PATCH] Fix compilation with Boost >= 1.73
+
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ec97ffcb..6224dd75 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -227,7 +227,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR ${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD
+ endif()
+ 
+ find_package(Boost REQUIRED)
+-set (BOOST_CXX_FLAGS "-DBOOST_BIMAP_DISABLE_SERIALIZATION")
++set (BOOST_CXX_FLAGS "-DBOOST_BIMAP_DISABLE_SERIALIZATION -DBOOST_NO_STDLIB_CONFIG")
+ include(BoostTestTargets)
+ 
+ if(SIMGEAR_HEADLESS)
