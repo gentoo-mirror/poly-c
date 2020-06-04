@@ -152,7 +152,7 @@ sys-apps/iproute2 4.19.0-r1 5.2.0-r1 5.4.0 5.5.0 5.6.0: kernel routing and traff
 sys-apps/kmod 26-r5 27-r1: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
-sys-apps/portage 2.3.99-r2 2.3.100: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.3.99-r2 2.3.100-r1: Portage is the package management and distribution system for Gentoo
 sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chipsets
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/archttp 2.5.1.180529: CLI utility to manage Areca RAID controllers
@@ -169,13 +169,13 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre23: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.223 4.9.224 4.9.225 4.14.180 4.14.181 4.14.182 4.19.123 4.19.124 4.19.125 5.4.41 5.4.42 5.4.43: Shows and sets processor power related values
+sys-power/cpupower 4.9.224 4.9.225 4.9.226 4.14.181 4.14.182 4.14.183 4.19.124 4.19.125 4.19.126 5.4.42 5.4.43 5.4.44: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.15-r1 3.3.16-r2: standard informational utilities and process-handling tools
 www-client/links 2.20.2 2.20.2-r1: A fast and lightweight web browser running in both graphics and text mode
-www-client/waterfox 2020.03.1 2020.04 2020.05: Waterfox Web Browser
+www-client/waterfox 2020.03.1 2020.04 2020.05 2020.06: Waterfox Web Browser
 x11-apps/xinit 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/adriconf 1.5.1 1.6 9999: Advanced DRI Configurator

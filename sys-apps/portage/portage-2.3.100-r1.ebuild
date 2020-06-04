@@ -79,7 +79,8 @@ prefix_src_archives() {
 
 TARBALL_PV=${PV}
 SRC_URI="mirror://gentoo/${PN}-${TARBALL_PV}.tar.bz2
-	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.bz2)"
+	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.bz2)
+	https://github.com/gentoo/portage/commit/c238d5f7ed264179c263f5a2da983c4ee50b4f00.patch -> portage-2.3.100-bug-719810-escape-percent-signs.patch"
 
 pkg_pretend() {
 	local CONFIG_CHECK="~IPC_NS ~PID_NS ~NET_NS ~UTS_NS"
@@ -90,6 +91,7 @@ pkg_pretend() {
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
+	epatch "${DISTDIR}/portage-2.3.100-bug-719810-escape-percent-signs.patch"
 	epatch "${FILESDIR}/${PN}-2.3.84-eapply_non_verbose.patch"
 
 	sed -e "s:^VERSION = \"HEAD\"$:VERSION = \"${PV}\":" -i lib/portage/__init__.py || die
