@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ff719014070b5be4516821bb3874488c6045149e $
+# $Id: 00b4050b4e805caace9341eb52e5f63398fd3838 $
 
 EAPI=7
 
@@ -509,6 +509,7 @@ multilib_src_configure() {
 		-Ddri-drivers=$(driver_list "${DRI_DRIVERS[*]}")
 		-Dgallium-drivers=$(driver_list "${GALLIUM_DRIVERS[*]}")
 		-Dvulkan-drivers=$(driver_list "${VULKAN_DRIVERS[*]}")
+		$(meson_use vulkan vulkan-device-select-layer)
 		$(meson_use vulkan-overlay vulkan-overlay-layer)
 		--buildtype $(usex debug debug plain)
 		-Db_ndebug=$(usex debug false true)
