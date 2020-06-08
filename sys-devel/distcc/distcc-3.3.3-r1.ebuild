@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 700f331aa62b812dd8f1bd5ef7f8f6fc9d663500 $
+# $Id: f4d8d84f5ecad58035147271bbc66fc5daeaef5f $
 
 EAPI=6
 
@@ -17,8 +17,6 @@ LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 s390 sparc x86"
 IUSE="gssapi gtk hardened ipv6 selinux xinetd zeroconf"
-
-RESTRICT="test"
 
 CDEPEND="${PYTHON_DEPS}
 	dev-libs/popt
@@ -99,7 +97,7 @@ src_test() {
 
 src_install() {
 	# override GZIP_BIN to stop it from compressing manpages
-	emake DESTDIR="${D}" GZIP_BIN=false install
+	emake -j1 DESTDIR="${D}" GZIP_BIN=false install
 	python_optimize
 
 	newinitd "${FILESDIR}/distccd.initd" distccd
