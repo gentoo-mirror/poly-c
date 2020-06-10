@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e1816cc90c933402f5de9d4a0f31f20961bcb7a9 $
+# $Id: 3b5a305104565695e12a44114fca5ed844b776c1 $
 
 EAPI=7
 
@@ -63,7 +63,7 @@ LICENSE="
 	samba? ( GPL-3 )
 "
 if [ "${PV#9999}" = "${PV}" ] ; then
-	KEYWORDS="~alpha amd64 arm ~arm64 ~hppa ~ia64 ~mips ppc ppc64 sparc x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
+	KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ~mips ppc ppc64 sparc x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 fi
 
 # Options to use as use_enable in the foo[:bar] form.
@@ -131,7 +131,11 @@ ARM_CPU_REQUIRED_USE="
 	cpu_flags_arm_v6? ( cpu_flags_arm_thumb )
 "
 MIPS_CPU_FEATURES=( mipsdspr1:mipsdsp mipsdspr2 mipsfpu )
-PPC_CPU_FEATURES=( altivec )
+PPC_CPU_FEATURES=( cpu_flags_ppc_altivec:altivec cpu_flags_ppc_vsx:vsx cpu_flags_ppc_vsx2:power8 )
+PPC_CPU_REQUIRED_USE="
+	cpu_flags_ppc_vsx? ( cpu_flags_ppc_altivec )
+	cpu_flags_ppc_vsx2? ( cpu_flags_ppc_vsx )
+"
 X86_CPU_FEATURES_RAW=( 3dnow:amd3dnow 3dnowext:amd3dnowext aes:aesni avx:avx avx2:avx2 fma3:fma3 fma4:fma4 mmx:mmx mmxext:mmxext sse:sse sse2:sse2 sse3:sse3 ssse3:ssse3 sse4_1:sse4 sse4_2:sse42 xop:xop )
 X86_CPU_FEATURES=( ${X86_CPU_FEATURES_RAW[@]/#/cpu_flags_x86_} )
 X86_CPU_REQUIRED_USE="
@@ -163,6 +167,7 @@ IUSE="${IUSE}
 
 CPU_REQUIRED_USE="
 	${ARM_CPU_REQUIRED_USE}
+	${PPC_CPU_REQUIRED_USE}
 	${X86_CPU_REQUIRED_USE}
 "
 
