@@ -19,16 +19,9 @@ media-radio/liquidsoap
 # fails to link
 sci-astronomy/pulsatingscience
 
-# Break at least x11-libs/pangox-compat:
-# https://gitlab.gnome.org/Archive/pangox-compat/issues/1
-=x11-libs/pango-1.44.7_pre
-
 # Fails to link:
 # https://github.com/jlHertel/adriconf/issues/78
 =x11-misc/adriconf-1.6
 
-# broken (bug 711322)
-=sys-apps/portage-2.3.91
-
-# has issues with pkgconfig files
-=dev-util/meson-0.54.0_pre
+# Fails to build (qt-5.15 related?)
+=net-misc/owncloud-client-2.6.3.14058_pre
