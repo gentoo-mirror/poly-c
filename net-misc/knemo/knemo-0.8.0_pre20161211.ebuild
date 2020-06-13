@@ -40,7 +40,7 @@ DEPEND="
 	kde-frameworks/kwindowsystem
 	kde-frameworks/kxmlgui
 	kde-frameworks/plasma
-	kde-plasma/libksysguard
+	kde-plasma/libksysguard:=
 	sys-apps/net-tools
 	wifi? ( net-wireless/wireless-tools )
 "
