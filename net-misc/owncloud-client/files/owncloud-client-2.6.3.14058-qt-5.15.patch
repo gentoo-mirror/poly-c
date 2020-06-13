@@ -1,0 +1,22 @@
+From e49bbdd5b20e046a7d996b5afd8e22f69fd578ed Mon Sep 17 00:00:00 2001
+From: Bernard Cafarelli <bernard.cafarelli@gmail.com>
+Date: Sat, 13 Jun 2020 11:27:18 +0200
+Subject: [PATCH] Fix compilation with Qt 5.15
+
+Explicitely import QPainterPath
+---
+ src/libsync/networkjobs.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/libsync/networkjobs.cpp b/src/libsync/networkjobs.cpp
+index d1e877df17..d1d75bad3e 100644
+--- a/src/libsync/networkjobs.cpp
++++ b/src/libsync/networkjobs.cpp
+@@ -31,6 +31,7 @@
+ #include <QJsonObject>
+ #ifndef TOKEN_AUTH_ONLY
+ #include <QPainter>
++#include <QPainterPath>
+ #endif
+ 
+ #include "networkjobs.h"

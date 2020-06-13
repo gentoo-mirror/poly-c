@@ -50,6 +50,10 @@ RESTRICT="!test? ( test )"
 
 S=${WORKDIR}/${MY_P/-}
 
+PATCHES=(
+	"${FILESDIR}/${MY_P}-qt-5.15.patch"
+)
+
 src_prepare() {
 	# Keep tests in ${T}
 	sed -i -e "s#\"/tmp#\"${T}#g" test/test*.cpp || die
