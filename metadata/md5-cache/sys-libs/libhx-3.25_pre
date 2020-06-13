@@ -10,5 +10,5 @@ LICENSE=GPL-3
 RESTRICT=mirror
 SLOT=0/32
 SRC_URI=mirror://sourceforge/libhx/libHX-3.25.tar.xz
-_eclasses_=autotools	7d999b62b8749fad43fff00620cedf47	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	0914eab919f4f11dd9e0407b92af4726	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	toolchain-funcs	d3e75048a89c0445838d2f44e5c65d97
+_eclasses_=autotools	7d999b62b8749fad43fff00620cedf47	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	ba693a7065ee4edc78b3ea02a015bcad	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	toolchain-funcs	d3e75048a89c0445838d2f44e5c65d97
 _md5_=3a90dcf7c9e30d52e6be60f423ad4501

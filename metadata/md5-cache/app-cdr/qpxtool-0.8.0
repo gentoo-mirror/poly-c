@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=dev-qt/qtcore:5 dev-qt/qtgui:5 dev-qt/qtnetwork:5 dev-qt/qtprintsupport:5 dev-qt/qtsql:5 dev-qt/qtwidgets:5 media-libs/libpng:0=
 SLOT=0
 SRC_URI=mirror://sourceforge/qpxtool/qpxtool-0.8.0.tar.bz2
-_eclasses_=multilib	0914eab919f4f11dd9e0407b92af4726	toolchain-funcs	d3e75048a89c0445838d2f44e5c65d97
+_eclasses_=multilib	ba693a7065ee4edc78b3ea02a015bcad	toolchain-funcs	d3e75048a89c0445838d2f44e5c65d97
 _md5_=718f1ebce6825525402423089e36da48
