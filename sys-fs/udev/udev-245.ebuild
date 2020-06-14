@@ -1,6 +1,6 @@
 # Copyright 2003-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4cdaa936a654cd73c6b4a18ebe449729db7be98c $
+# $Id: d5fc3ed104d5f348a6765e12c2adca8b854f9d6b $
 
 EAPI=7
 
@@ -33,7 +33,7 @@ BDEPEND="
 	dev-util/gperf
 	>=dev-util/intltool-0.50
 	>=sys-apps/coreutils-8.16
-	virtual/pkgconfig[${MULTILIB_USEDEP}]
+	virtual/pkgconfig
 	app-text/docbook-xml-dtd:4.2
 	app-text/docbook-xml-dtd:4.5
 	app-text/docbook-xsl-stylesheets

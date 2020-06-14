@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 3b5a305104565695e12a44114fca5ed844b776c1 $
+# $Id: a61a062ccd21074f176be8dcbf00e9aa025b05b8 $
 
 EAPI=7
 
@@ -291,7 +291,7 @@ DEPEND="${RDEPEND}
 "
 BDEPEND="
 	>=sys-devel/make-3.81
-	>=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}]
+	virtual/pkgconfig
 	cpu_flags_x86_mmx? ( || ( >=dev-lang/nasm-2.13 >=dev-lang/yasm-1.3 ) )
 	cuda? ( >=sys-devel/clang-7[llvm_targets_NVPTX] )
 	doc? ( sys-apps/texinfo )

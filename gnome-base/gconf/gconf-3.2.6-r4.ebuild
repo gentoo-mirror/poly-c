@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ebaac26eb04beb8cf28115198ea7aab6ea0fdd30 $
+# $Id: 5712c7277f6e584a8263e574bfb2cec492df4ff5 $
 
 EAPI="5"
 GCONF_DEBUG="yes"
@@ -34,7 +34,7 @@ DEPEND="${RDEPEND}
 	dev-util/glib-utils
 	dev-util/gtk-doc-am
 	>=dev-util/intltool-0.35
-	>=virtual/pkgconfig-0-r1[${MULTILIB_USEDEP}]
+	virtual/pkgconfig
 "
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"

@@ -82,6 +82,7 @@ lxde-base/lxsession 0.5.2: LXDE session manager
 media-libs/freeimage 3.15.4-r1: Image library supporting many formats
 media-libs/glm 0.9.9.6 0.9.9.8_pre: OpenGL Mathematics
 media-libs/gst-plugins-base 1.16.2: Basepack of plugins for gstreamer
+media-libs/ilmbase 2.3.0: OpenEXR ILM Base libraries
 media-libs/libbpg 0.9.7_pre 0.9.8_pre: BPG (Better Portable Graphics) is a new image format
 media-libs/libdvbpsi 1.3.3_pre: library for MPEG TS/DVB PSI tables decoding and generation
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
