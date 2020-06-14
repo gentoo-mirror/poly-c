@@ -12,5 +12,5 @@ REQUIRED_USE=?? ( elogind systemd ) elogind? ( daemon ) systemd? ( daemon )
 RESTRICT=mirror
 SLOT=2
 SRC_URI=https://github.com/storaged-project/udisks/releases/download/udisks-2.9.0/udisks-2.9.0.tar.bz2
-_eclasses_=bash-completion-r1	e5f9c3faab3ab3d1e7e007daa8c736ef	linux-info	5d5cc2632ef6b3c817019fa4fa3d8508	multilib	ba693a7065ee4edc78b3ea02a015bcad	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	systemd	71fd8d2065d102753fb9e4d20eaf3e9f	toolchain-funcs	d3e75048a89c0445838d2f44e5c65d97	udev	452708c3f55cf6e918b045adb949a9e6	xdg-utils	ff2ff954e6b17929574eee4efc5152ba
+_eclasses_=bash-completion-r1	e5f9c3faab3ab3d1e7e007daa8c736ef	linux-info	5d5cc2632ef6b3c817019fa4fa3d8508	multilib	2477ebe553d3e4d2c606191fe6c33602	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	systemd	71fd8d2065d102753fb9e4d20eaf3e9f	toolchain-funcs	605c126bed8d87e4378d5ff1645330cb	udev	452708c3f55cf6e918b045adb949a9e6	xdg-utils	ff2ff954e6b17929574eee4efc5152ba
 _md5_=34879c686d4d239c386bb1c8ba457e30
