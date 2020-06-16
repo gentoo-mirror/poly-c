@@ -15,7 +15,7 @@ LICENSE="GPL-3"
 SLOT="0"
 [[ ${PV} = *_pre* ]] || \
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="acl examples iconv ipv6 libressl lz4 ssl static stunnel +system-zlib xattr zstd"
+IUSE="acl examples iconv ipv6 libressl lz4 ssl static stunnel +system-zlib xattr xxhash zstd"
 
 LIB_DEPEND="acl? ( virtual/acl[static-libs(+)] )
 	lz4? ( app-arch/lz4[static-libs(+)] )
@@ -25,6 +25,7 @@ LIB_DEPEND="acl? ( virtual/acl[static-libs(+)] )
 	)
 	system-zlib? ( sys-libs/zlib[static-libs(+)] )
 	xattr? ( kernel_linux? ( sys-apps/attr[static-libs(+)] ) )
+	xxhash? ( dev-libs/xxhash[static-libs(+)] )
 	zstd? ( app-arch/zstd[static-libs(+)] )
 	>=dev-libs/popt-1.5[static-libs(+)]"
 RDEPEND="!static? ( ${LIB_DEPEND//\[static-libs(+)]} )
@@ -37,7 +38,6 @@ S="${WORKDIR}/${P/_/}"
 src_configure() {
 	use static && append-ldflags -static
 	local myeconfargs=(
-		--enable-xxhash
 		--with-rsyncd-conf="${EPREFIX}"/etc/rsyncd.conf
 		--without-included-popt
 		$(use_enable acl acl-support)
@@ -45,8 +45,9 @@ src_configure() {
 		$(use_enable ipv6)
 		$(use_enable lz4)
 		$(use_enable ssl openssl)
-		$(use_enable xattr xattr-support)
 		$(use_with !system-zlib included-zlib)
+		$(use_enable xattr xattr-support)
+		$(use_enable xxhash)
 		$(use_enable zstd)
 	)
 	econf "${myeconfargs[@]}"
