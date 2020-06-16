@@ -15,11 +15,17 @@ LICENSE="GPL-3"
 SLOT="0"
 [[ ${PV} = *_pre* ]] || \
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="acl examples iconv ipv6 static stunnel +system-zlib xattr"
+IUSE="acl examples iconv ipv6 libressl lz4 ssl static stunnel +system-zlib xattr zstd"
 
 LIB_DEPEND="acl? ( virtual/acl[static-libs(+)] )
-	xattr? ( kernel_linux? ( sys-apps/attr[static-libs(+)] ) )
+	lz4? ( app-arch/lz4[static-libs(+)] )
+	ssl? (
+		!libressl? ( dev-libs/openssl:0=[static-libs(+)] )
+		libressl? ( dev-libs/libressl:0=[static-libs(+)] )
+	)
 	system-zlib? ( sys-libs/zlib[static-libs(+)] )
+	xattr? ( kernel_linux? ( sys-apps/attr[static-libs(+)] ) )
+	zstd? ( app-arch/zstd[static-libs(+)] )
 	>=dev-libs/popt-1.5[static-libs(+)]"
 RDEPEND="!static? ( ${LIB_DEPEND//\[static-libs(+)]} )
 	iconv? ( virtual/libiconv )"
@@ -31,13 +37,17 @@ S="${WORKDIR}/${P/_/}"
 src_configure() {
 	use static && append-ldflags -static
 	local myeconfargs=(
+		--enable-xxhash
 		--with-rsyncd-conf="${EPREFIX}"/etc/rsyncd.conf
 		--without-included-popt
 		$(use_enable acl acl-support)
 		$(use_enable iconv)
 		$(use_enable ipv6)
+		$(use_enable lz4)
+		$(use_enable ssl openssl)
 		$(use_enable xattr xattr-support)
 		$(use_with !system-zlib included-zlib)
+		$(use_enable zstd)
 	)
 	econf "${myeconfargs[@]}"
 	touch proto.h-tstamp #421625
@@ -49,7 +59,7 @@ src_install() {
 	newconfd "${FILESDIR}"/rsyncd.conf.d rsyncd
 	newinitd "${FILESDIR}"/rsyncd.init.d-r1 rsyncd
 
-	dodoc NEWS OLDNEWS README TODO tech_report.tex
+	dodoc NEWS.md OLDNEWS.md README.md TODO tech_report.tex
 
 	insinto /etc
 	newins "${FILESDIR}"/rsyncd.conf-3.0.9-r1 rsyncd.conf
@@ -73,7 +83,7 @@ src_install() {
 		rm -f "${ED%/}"/usr/share/rsync/{Makefile*,*.c}
 	fi
 
-	eprefixify "${ED%/}"/etc/{,xinetd.d}/rsyncd*
+	eprefixify "${ED}"/etc/{,xinetd.d}/rsyncd*
 
 	systemd_dounit "${FILESDIR}/rsyncd.service"
 }
