@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 7dcb54c51f5b6c7cd6e87838edf7856aca45ada9 $
+# $Id: 6a78d7f40fb64aeaf3ec66f657ce0baa756fa9e2 $
 
 EAPI=7
 
@@ -49,6 +49,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-3.1.0-mtu.patch #291907
 	"${FILESDIR}"/${PN}-4.20.0-configure-nomagic.patch # bug 643722
 	"${FILESDIR}"/${PN}-5.1.0-portability.patch
+	"${FILESDIR}"/${PN}-5.7.0-mix-signal.h-include.patch
 )
 
 src_prepare() {

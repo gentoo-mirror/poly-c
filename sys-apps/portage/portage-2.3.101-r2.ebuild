@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 60c322495ccc046e8ed991ab1289fc023fe61676 $
+# $Id: e3ec6c3b452bde6887e7262f45b79177a86e24ed $
 
 EAPI=5
 
@@ -79,7 +79,8 @@ prefix_src_archives() {
 
 TARBALL_PV=${PV}
 SRC_URI="mirror://gentoo/${PN}-${TARBALL_PV}.tar.bz2
-	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.bz2)"
+	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.bz2)
+	https://github.com/gentoo/portage/compare/1079f2d13cfe575e243b76b2f5128c0c4e222f51...ca763549507d995e91a49753b13bcca8748fae6c.patch -> portage-2.3.101-revert2-bug-709746.patch"
 
 pkg_pretend() {
 	local CONFIG_CHECK="~IPC_NS ~PID_NS ~NET_NS ~UTS_NS"
@@ -89,6 +90,8 @@ pkg_pretend() {
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
+
+	epatch "${DISTDIR}/portage-2.3.101-revert2-bug-709746.patch"
 
 	epatch "${FILESDIR}/${PN}-2.3.84-eapply_non_verbose.patch"
 
