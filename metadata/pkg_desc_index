@@ -44,7 +44,6 @@ dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptogra
 dev-libs/openssl 1.1.1d-r3 1.1.1f 1.1.1g: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf-c 1.3.3_pre: Protocol Buffers implementation in C
-dev-libs/serd 0.30.4_pre: Library for RDF syntax which supports reading and writing Turtle and NTriples
 dev-libs/xerces-c 3.2.3_pre: A validating XML parser written in a portable subset of C++
 dev-php/pecl-redis 5.2.1_pre: PHP extension for interfacing with Redis
 dev-python/injector 0.18.3: dependency injection framework
