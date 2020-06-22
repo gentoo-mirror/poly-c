@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 05048d8c6a30958242deff7c2b6833e60567bc9f $
+# $Id: 35dc9274af977f8f68c8e9f5fdb678256b1e00bf $
 
 EAPI=7
 
@@ -9,7 +9,7 @@ inherit flag-o-matic systemd toolchain-funcs
 MY_P="${P/_/-}"
 
 DESCRIPTION="The GNU Privacy Guard, a GPL OpenPGP implementation"
-HOMEPAGE="http://www.gnupg.org/"
+HOMEPAGE="https://gnupg.org/"
 SRC_URI="mirror://gnupg/gnupg/${MY_P}.tar.bz2"
 
 LICENSE="GPL-3"

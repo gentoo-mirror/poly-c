@@ -53,7 +53,6 @@ dev-python/wget 3.2: pure python download utility
 dev-qt/qtgui 5.14.1-r4 5.14.2 5.15.0: The GUI module and platform plugins for the Qt5 framework
 dev-util/cloc 1.84_pre 1.86_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
-dev-util/meson 0.54.3_pre: Open source build system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-action/supertuxkart 1.0 1.1: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
@@ -132,7 +131,6 @@ net-misc/ssh-tools 1.5: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-nds/openldap 2.4.50_pre: LDAP suite of application and development tools
 net-p2p/ncdc 1.21_pre: ncurses directconnect client
-net-print/hplip 3.20.6_pre: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/pulsatingscience 9999: 3D binary pulsar animation and outreach application
 sci-libs/dcmtk 3.6.2: The DICOM Toolkit
@@ -171,7 +169,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre24: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.225 4.9.226 4.9.227 4.14.182 4.14.183 4.14.184 4.19.126 4.19.127 4.19.128 5.4.45 5.4.46 5.4.47: Shows and sets processor power related values
+sys-power/cpupower 4.9.226 4.9.227 4.9.228 4.14.183 4.14.184 4.14.185 4.19.126 4.19.127 4.19.128 5.4.45 5.4.46 5.4.47: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
