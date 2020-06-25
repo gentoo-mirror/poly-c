@@ -127,7 +127,6 @@ net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that s
 net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
 net-misc/netifrc 0.5.1 0.6.1 0.7.1: Gentoo Network Interface Management Scripts
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
-net-misc/rsync 3.1.3: File transfer program to keep remote files into sync
 net-misc/ssh-tools 1.5: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-nds/openldap 2.4.50_pre: LDAP suite of application and development tools
@@ -170,7 +169,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre24: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.226 4.9.227 4.9.228 4.14.183 4.14.184 4.14.185 4.19.127 4.19.128 4.19.129 5.4.47 5.4.48 5.4.49: Shows and sets processor power related values
+sys-power/cpupower 4.9.226 4.9.227 4.9.228 4.14.183 4.14.184 4.14.185 4.19.128 4.19.129 4.19.130 5.4.47 5.4.48 5.4.49: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
