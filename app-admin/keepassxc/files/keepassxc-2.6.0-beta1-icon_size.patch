@@ -1,0 +1,13 @@
+--- keepassxc-2.6.0-beta1/src/gui/MainWindow.ui
++++ keepassxc-2.6.0-beta1/src/gui/MainWindow.ui
+@@ -365,8 +365,8 @@
+    </property>
+    <property name="iconSize">
+     <size>
+-     <width>26</width>
+-     <height>26</height>
++     <width>22</width>
++     <height>22</height>
+     </size>
+    </property>
+    <attribute name="toolBarArea">
