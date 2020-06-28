@@ -2,10 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
+
 PYTHON_COMPAT=( python2_7 python3_{6,7,8} )
 PYTHON_REQ_USE="xml"
 
-inherit libtool flag-o-matic ltprune python-r1 autotools prefix multilib-minimal poly-c_ebuilds
+inherit libtool flag-o-matic python-r1 autotools prefix multilib-minimal poly-c_ebuilds
 
 DESCRIPTION="XML C parser and toolkit"
 HOMEPAGE="http://www.xmlsoft.org/"
@@ -15,6 +16,7 @@ SLOT="2"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="debug examples icu ipv6 lzma python readline static-libs test"
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
+RESTRICT="!test? ( test )"
 
 XSTS_HOME="http://www.w3.org/XML/2004/xml-schema-test-suite"
 XSTS_NAME_1="xmlschema2002-01-16"
@@ -128,7 +130,10 @@ multilib_src_configure() {
 
 	libxml2_py_configure() {
 		mkdir -p "${BUILD_DIR}" || die # ensure python build dirs exist
-		run_in_build_dir libxml2_configure "--with-python=${ROOT%/}${PYTHON}" # odd build system, also see bug #582130
+		run_in_build_dir libxml2_configure \
+			"--with-python=${EPYTHON}" \
+			"--with-python-install-dir=$(python_get_sitedir)"
+			# odd build system, also see bug #582130
 	}
 
 	libxml2_configure --without-python # build python bindings separately
@@ -148,7 +153,7 @@ multilib_src_compile() {
 
 multilib_src_test() {
 	ln -s "${S}"/xmlconf || die
-	emake check || die "tests failed"
+	emake check
 	multilib_is_native_abi && use python && python_foreach_impl libxml2_py_emake test
 }
 
@@ -184,7 +189,7 @@ multilib_src_install_all() {
 		rm -rf "${ED}"/usr/share/doc/${PF}/python/examples
 	fi
 
-	prune_libtool_files --modules
+	find "${ED}" -name '*.la' -delete || die
 }
 
 pkg_postinst() {
