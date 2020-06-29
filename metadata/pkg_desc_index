@@ -76,7 +76,7 @@ games-strategy/unknown-horizons 9999: Anno-like real time strategy game
 games-util/gx52 9999: GTK app for control of the LEDs and MFD of Logitech X52 (Pro)
 games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
-games-util/x52pro-linux 0.2.0 9999: Saitek X52pro drivers & controller mapping software for Linux
+games-util/x52pro-linux 0.2.0 0.2.1 9999: Saitek X52pro drivers & controller mapping software for Linux
 gnome-base/gconf 3.2.6-r4: GNOME configuration system and daemon
 kde-apps/kde-wallpapers 15.08.3-r3: KDE wallpapers
 kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
@@ -178,6 +178,7 @@ sys-process/procps 3.3.15-r1 3.3.16-r2: standard informational utilities and pro
 www-client/waterfox 2020.03.1 2020.04 2020.05 2020.06: Waterfox Web Browser
 x11-apps/xinit 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
+x11-libs/gtk+ 3.24.21_pre: Gimp ToolKit +
 x11-misc/adriconf 1.5.1 1.6 9999: Advanced DRI Configurator
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-misc/sddm 0.18.1-r1: Simple Desktop Display Manager
