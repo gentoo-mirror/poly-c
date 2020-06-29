@@ -30,7 +30,7 @@ inherit flag-o-matic toolchain-funcs
 
 case ${PN} in
 	(seamonkey) inherit mozcoreconf-v6 ;;
-	(waterfox) inherit mozcoreconf-v5 ;;
+	(waterfox-classic) inherit mozcoreconf-v5 ;;
 	(*) die "Don't use this eclass with some other package!" ;;
 esac
 

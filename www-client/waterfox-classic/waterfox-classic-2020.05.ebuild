@@ -29,7 +29,8 @@ inherit check-reqs eapi7-ver flag-o-matic toolchain-funcs eutils gnome2-utils mo
 #else
 #	MY_PV="$(ver_cut 1-2)-classic-$(ver_cut 3)"
 #fi
-MY_PV="${PV}-classic"
+MY_PN="${PN/-classic}"
+MY_PV="${PV}-${PN/*-}"
 
 DESCRIPTION="Waterfox Web Browser"
 HOMEPAGE="http://www.waterfoxproject.org"
@@ -62,9 +63,9 @@ DEPEND="${RDEPEND}
 	amd64? ( ${ASM_DEPEND} virtual/opengl )
 	x86? ( ${ASM_DEPEND} virtual/opengl )"
 
-S="${WORKDIR}/${PN^}-${MY_PV}"
+S="${WORKDIR}/${MY_PN^}-${MY_PV}"
 
-QA_PRESTRIPPED="usr/lib*/${PN}/waterfox"
+QA_PRESTRIPPED="usr/lib*/${MY_PN}/waterfox"
 
 BUILD_OBJ_DIR="${S}/wf"
 
@@ -91,7 +92,7 @@ pkg_setup() {
 	#	elog "You are enabling official branding. You may not redistribute this build"
 	#	elog "to any users on your network or the internet. Doing so puts yourself into"
 	#	elog "a legal problem with Mozilla Foundation"
-	#	elog "You can disable it by emerging ${PN} _with_ the bindist USE-flag"
+	#	elog "You can disable it by emerging ${MY_PN} _with_ the bindist USE-flag"
 	#fi
 
 	if use pgo; then
@@ -228,8 +229,8 @@ src_configure() {
 
 	# Waterfox specific stuff
 	mozconfig_annotate 'Waterfox' --disable-elf-hack
-	mozconfig_annotate 'Waterfox' --with-app-name=${PN}
-	mozconfig_annotate 'Waterfox' --with-app-basename=${PN}
+	mozconfig_annotate 'Waterfox' --with-app-name=${MY_PN}
+	mozconfig_annotate 'Waterfox' --with-app-basename=${MY_PN}
 	mozconfig_annotate 'Waterfox' --with-branding=browser/branding/unofficial
 	mozconfig_annotate 'Waterfox' --with-distribution-id=org.waterfoxproject
 
@@ -347,7 +348,7 @@ src_install() {
 	#else
 		sizes="16 22 24 32 256"
 		icon_path="${S}/browser/branding/unofficial"
-		icon="${PN}"
+		icon="${MY_PN}"
 		name="Waterfox"
 	#fi
 
@@ -361,14 +362,14 @@ src_install() {
 	doins "${icon_path}/${icon}.png"
 	# Install a 48x48 icon into /usr/share/pixmaps for legacy DEs
 	newicon "${icon_path}/default48.png" "${icon}.png"
-	newmenu "${FILESDIR}/icon/${PN}.desktop" "${PN}.desktop"
+	newmenu "${FILESDIR}/icon/${MY_PN}.desktop" "${MY_PN}.desktop"
 	sed -i -e "s:@NAME@:${name}:" -e "s:@ICON@:${icon}:" \
-		"${ED%/}/usr/share/applications/${PN}.desktop" || die
+		"${ED%/}/usr/share/applications/${MY_PN}.desktop" || die
 
 	# Add StartupNotify=true bug 237317
 	if use startup-notification ; then
 		echo "StartupNotify=true"\
-			 >> "${ED%/}/usr/share/applications/${PN}.desktop" \
+			 >> "${ED%/}/usr/share/applications/${MY_PN}.desktop" \
 			|| die
 	fi
 
