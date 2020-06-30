@@ -49,7 +49,6 @@ dev-libs/xerces-c 3.2.3_pre: A validating XML parser written in a portable subse
 dev-libs/xxhash 0.7.4_pre: Extremely fast non-cryptographic hash algorithm
 dev-php/pecl-redis 5.2.1_pre: PHP extension for interfacing with Redis
 dev-python/injector 0.18.3: dependency injection framework
-dev-python/pyscard 1.9.9_pre: Smart cards support in python
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtgui 5.14.1-r4 5.14.2 5.15.0: The GUI module and platform plugins for the Qt5 framework
@@ -83,6 +82,7 @@ kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
 kde-frameworks/plasma 5.67.0: Plasma framework
 lxde-base/lxsession 0.5.2: LXDE session manager
+mail-filter/pyzor 1.0.0-r1: A distributed, collaborative spam detection and filtering network
 media-libs/freeimage 3.15.4-r1: Image library supporting many formats
 media-libs/glm 0.9.9.6 0.9.9.8_pre: OpenGL Mathematics
 media-libs/gst-plugins-base 1.16.2: Basepack of plugins for gstreamer

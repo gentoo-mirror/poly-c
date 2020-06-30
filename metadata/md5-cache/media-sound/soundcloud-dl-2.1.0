@@ -1,10 +1,10 @@
 DEFINED_PHASES=install postinst
 DESCRIPTION=This is a sample skeleton ebuild file
-EAPI=5
+EAPI=7
 HOMEPAGE=https://github.com/lukapusic/soundcloud-dl
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-2
 RDEPEND=app-shells/bash dev-python/eyeD3 net-misc/curl sys-apps/coreutils sys-apps/grep sys-apps/sed !!media-sound/scdl
 SLOT=0
 SRC_URI=https://github.com/lukapusic/soundcloud-dl/archive/2.1.0.tar.gz -> soundcloud-dl-2.1.0.tar.gz
-_md5_=979bf8a478d4f4b4a178764315330244
+_md5_=24679bb3d6c364c53f6a4e6c37268269
