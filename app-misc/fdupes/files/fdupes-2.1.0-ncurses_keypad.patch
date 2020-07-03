@@ -1,0 +1,29 @@
+From e51406e4a7da12a75420a36fc601ba2a4be8a7f8 Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Wed, 1 Jul 2020 10:37:59 +0200
+Subject: [PATCH] configure.ac: Search for keypad function in ncurses(w) and
+ tinfo(w) as well
+
+Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
+---
+ configure.ac | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index a31de33..b00c8c2 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -15,7 +15,9 @@ AC_CHECK_HEADERS([getopt.h ncursesw/curses.h])
+ AS_IF([test x"$with_ncurses" != x"no"],
+ 	[PKG_CHECK_MODULES([NCURSES], [ncursesw],
+ 		[LIBS="$LIBS $NCURSES_LIBS"],
+-		[AC_SEARCH_LIBS([wget_wch], [ncursesw ncurses curses], [], [AC_ERROR([ncurses library not found (or lacks wide character support)])])])]
++		[AC_SEARCH_LIBS([wget_wch], [ncursesw ncurses curses], [], [AC_ERROR([ncurses library not found (or lacks wide character support)])])]
++		[AC_SEARCH_LIBS([keypad], [ncursesw tinfow ncurses tinfo curses], [], [AC_ERROR([ncurses library not found (lacks keypad support)])])]
++	)]
+ 	[AC_DEFINE([_XOPEN_SOURCE], [], [enable certain functions in wchar.h])]
+ 	[AC_DEFINE([_XOPEN_SOURCE_EXTENDED], [], [enable certain functions in curses.h])]
+ 	[AC_DEFINE([_ISOC99_SOURCE], [], [enable strtoll])]
+-- 
+2.27.0
+

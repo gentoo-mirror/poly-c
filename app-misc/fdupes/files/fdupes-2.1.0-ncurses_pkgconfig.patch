@@ -1,0 +1,37 @@
+From 3b93c352f5474462bb5faf16a7151eb8ebd22047 Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Wed, 1 Jul 2020 10:27:56 +0200
+Subject: [PATCH] configure.ac: Prefer pkgconfig when searching for ncurses
+
+otherwise fallback to AC_SEARCH_LIBS
+
+Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
+---
+ configure.ac | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index 1ee4308..a31de33 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -6,12 +6,16 @@ AC_CONFIG_HEADERS([config.h])
+ 
+ AC_ARG_PROGRAM
+ 
++PKG_PROG_PKG_CONFIG
++
+ AC_ARG_WITH([ncurses], AS_HELP_STRING([--without-ncurses], [Do not use ncurses interface]))
+ 
+ AC_CHECK_HEADERS([getopt.h ncursesw/curses.h])
+ 
+ AS_IF([test x"$with_ncurses" != x"no"],
+-	[AC_SEARCH_LIBS([wget_wch], [ncursesw ncurses curses], [], [AC_ERROR([ncurses library not found (or lacks wide character support)])])]
++	[PKG_CHECK_MODULES([NCURSES], [ncursesw],
++		[LIBS="$LIBS $NCURSES_LIBS"],
++		[AC_SEARCH_LIBS([wget_wch], [ncursesw ncurses curses], [], [AC_ERROR([ncurses library not found (or lacks wide character support)])])])]
+ 	[AC_DEFINE([_XOPEN_SOURCE], [], [enable certain functions in wchar.h])]
+ 	[AC_DEFINE([_XOPEN_SOURCE_EXTENDED], [], [enable certain functions in curses.h])]
+ 	[AC_DEFINE([_ISOC99_SOURCE], [], [enable strtoll])]
+-- 
+2.27.0
+

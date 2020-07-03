@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 78c106e2196339183bf8ef90cbee83c655714323 $
+# $Id: f337de3968def19a9116bb69b196c73b54f0cf91 $
 
 EAPI=7
 
@@ -60,7 +60,7 @@ LICENSE="
 	samba? ( GPL-3 )
 "
 if [ "${PV#9999}" = "${PV}" ] ; then
-	KEYWORDS="~amd64 ~mips ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
+	KEYWORDS="~amd64 ~mips ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 fi
 
 # Options to use as use_enable in the foo[:bar] form.
@@ -98,7 +98,7 @@ FFMPEG_FLAG_MAP=(
 FFMPEG_ENCODER_FLAG_MAP=(
 	amrenc:libvo-amrwbenc mp3:libmp3lame
 	kvazaar:libkvazaar libaom
-	openh264:libopenh264 snappy:libsnappy theora:libtheora twolame:libtwolame
+	openh264:libopenh264 rav1e:librav1e snappy:libsnappy theora:libtheora twolame:libtwolame
 	wavpack:libwavpack webp:libwebp x264:libx264 x265:libx265 xvid:libxvid
 )
 
@@ -186,6 +186,7 @@ RDEPEND="
 		kvazaar? ( >=media-libs/kvazaar-1.2.0[${MULTILIB_USEDEP}] )
 		mp3? ( >=media-sound/lame-3.99.5-r1[${MULTILIB_USEDEP}] )
 		openh264? ( >=media-libs/openh264-1.4.0-r1[${MULTILIB_USEDEP}] )
+		rav1e? ( media-video/rav1e:=[capi] )
 		snappy? ( >=app-arch/snappy-1.1.2-r1:=[${MULTILIB_USEDEP}] )
 		theora? (
 			>=media-libs/libtheora-1.1.1[encode,${MULTILIB_USEDEP}]
@@ -394,7 +395,7 @@ multilib_src_configure() {
 
 	# (temporarily) disable non-multilib deps
 	if ! multilib_is_native_abi; then
-		for i in frei0r libzmq ; do
+		for i in frei0r librav1e libzmq ; do
 			myconf+=( --disable-${i} )
 		done
 	fi

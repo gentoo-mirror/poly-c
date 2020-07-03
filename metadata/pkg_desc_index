@@ -19,6 +19,7 @@ app-editors/cooledit 3.17.19: Cooledit is a full featured multiple window text e
 app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
 app-laptop/dell-fan-mon 1.0 9999: Fan control for some Dell laptops
 app-laptop/i8kutils 1.43_pre: Dell Inspiron and Latitude utilities
+app-misc/fdupes 2.1.0_pre 2.1.1_pre: Identify/delete duplicate files residing within specified directories
 app-misc/kenny 0.1: command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
 app-misc/mc 4.8.24: GNU Midnight Commander is a text based file manager
@@ -84,9 +85,7 @@ kde-frameworks/plasma 5.67.0: Plasma framework
 lxde-base/lxsession 0.5.2: LXDE session manager
 mail-filter/pyzor 1.0.0-r1: A distributed, collaborative spam detection and filtering network
 media-libs/freeimage 3.15.4-r1: Image library supporting many formats
-media-libs/glm 0.9.9.6 0.9.9.8_pre: OpenGL Mathematics
 media-libs/gst-plugins-base 1.16.2: Basepack of plugins for gstreamer
-media-libs/ilmbase 2.3.0: OpenEXR ILM Base libraries
 media-libs/libbpg 0.9.7_pre 0.9.8_pre: BPG (Better Portable Graphics) is a new image format
 media-libs/libdvbpsi 1.3.3_pre: library for MPEG TS/DVB PSI tables decoding and generation
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
@@ -105,7 +104,7 @@ media-sound/scdl 1.3.3_beta1 9999: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2 13.2.1: Download files from the public broadcasting services
 media-video/cinelerraGG 9999: The most advanced non-linear video editor and compositor - Good Guy's version
-media-video/ffmpeg 4.2.2 4.2.3 4.3: Complete solution to record/convert/stream audio and video. Includes libavcodec
+media-video/ffmpeg 4.2.2 4.2.3 4.3 4.3-r1: Complete solution to record/convert/stream audio and video. Includes libavcodec
 media-video/mkvtoolnix 46.0.0_pre 47.0.0_pre: Tools to create, alter, and inspect Matroska files
 media-video/smplayer 20.4.2: Great Qt GUI front-end for mplayer/mpv
 net-analyzer/arpalert 2.0.11_pre 2.0.12_pre: arpalert is used for monitoring ethernet networks
@@ -170,7 +169,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre24: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.226 4.9.227 4.9.228 4.14.184 4.14.185 4.14.186 4.19.128 4.19.129 4.19.130 5.4.47 5.4.48 5.4.49: Shows and sets processor power related values
+sys-power/cpupower 4.9.227 4.9.228 4.9.229 4.14.185 4.14.186 4.14.187 4.19.129 4.19.130 4.19.131 5.4.48 5.4.49 5.4.50: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
