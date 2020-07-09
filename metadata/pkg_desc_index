@@ -23,7 +23,7 @@ app-laptop/i8kutils 1.43_pre: Dell Inspiron and Latitude utilities
 app-misc/fdupes 2.1.0_pre 2.1.1_pre: Identify/delete duplicate files residing within specified directories
 app-misc/kenny 0.1: command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
-app-misc/mc 4.8.24: GNU Midnight Commander is a text based file manager
+app-misc/mc 4.8.24 4.8.25_rc1: GNU Midnight Commander is a text based file manager
 app-misc/mmv 1.01b_p19_pre: Move/copy/append/link multiple files according to a set of wildcard patterns
 app-misc/osmo 0.4.2: Handy personal organizer
 app-misc/tmux 3.1_rc: Terminal multiplexer
