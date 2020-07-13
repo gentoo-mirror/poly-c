@@ -1,6 +1,5 @@
 acct-user/ftp 0: File Transfer Protocol server user
 app-accessibility/at-spi2-core 2.30.1: D-Bus accessibility specifications and registration daemon
-app-accessibility/speech-dispatcher 0.8.8_pre: Speech synthesis interface
 app-admin/cpulimit 2.5_pre 2.6_pre: Limits the CPU usage of a process
 app-admin/keepassxc 2.6.0_beta1: KeePassXC - KeePass Cross-platform Community Edition
 app-admin/littleutils 1.0.44a 1.2.0: The littleutils are a collection of small and simple utilities
@@ -54,6 +53,7 @@ dev-python/wget 3.2: pure python download utility
 dev-qt/qtgui 5.14.1-r4 5.14.2 5.15.0: The GUI module and platform plugins for the Qt5 framework
 dev-util/cloc 1.84_pre 1.86_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
+dev-util/meson 0.55.0_pre: Open source build system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 dev-vcs/mercurial 5.4.2_pre: Scalable distributed SCM
 games-action/supertuxkart 1.0 1.1: A kart racing game starring Tux, the linux penguin (TuxKart fork)
@@ -107,6 +107,7 @@ media-video/cinelerraGG 9999: The most advanced non-linear video editor and comp
 media-video/ffmpeg 4.2.2 4.2.3 4.3 4.3-r1: Complete solution to record/convert/stream audio and video. Includes libavcodec
 media-video/smplayer 20.4.2 20.6.0: Great Qt GUI front-end for mplayer/mpv
 net-analyzer/arpalert 2.0.11_pre 2.0.12_pre: arpalert is used for monitoring ethernet networks
+net-analyzer/fping 4.3_pre: A utility to ping multiple hosts at once
 net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
 net-analyzer/nagios-plugins 1.4.16-r2 1.4.16-r3: Nagios 1.4.16 plugins - Pack of plugins to make Nagios work properly
 net-analyzer/netsniff-ng 0.6.6 9999: high performance network sniffer for packet inspection
