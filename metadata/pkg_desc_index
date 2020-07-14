@@ -75,7 +75,7 @@ games-strategy/megaglest-data 3.13.0_pre: Data files for the cross-platform 3D r
 games-strategy/opendungeons 0.7.1 9999: An open source, real time strategy game based on the Dungeon Keeper series
 games-strategy/unknown-horizons 9999: Anno-like real time strategy game
 games-util/gx52 9999: GTK app for control of the LEDs and MFD of Logitech X52 (Pro)
-games-util/lutris 0.5.7: An open source gaming platform for GNU/Linux
+games-util/lutris 0.5.6 0.5.7: An open source gaming platform for GNU/Linux
 games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 games-util/x52pro-linux 0.2.0 0.2.1 9999: Saitek X52pro drivers & controller mapping software for Linux
