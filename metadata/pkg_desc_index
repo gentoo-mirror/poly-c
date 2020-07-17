@@ -40,7 +40,6 @@ dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional algorithm
 dev-libs/libgcrypt 1.8.6_pre: General purpose crypto library based on the code used in GnuPG
-dev-libs/libtommath 1.2.0_pre: Optimized and portable routines for integer theoretic applications
 dev-libs/libxml2 2.9.10_pre: XML C parser and toolkit
 dev-libs/libxslt 1.1.34_pre: XSLT libraries and tools
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
@@ -165,14 +164,14 @@ sys-block/lsiutil 1.72: LSI Logic Fusion MPT Command Line Interface management t
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.04-r1: GNU GRUB boot loader
 sys-devel/distcc 3.3.3-r1: Distribute compilation of C code across several machines on a network
-sys-fs/fswatch 1.14.0 9999: cross-platform file change monitor with multiple backends
+sys-fs/fswatch 1.14.0 1.15.0 9999: cross-platform file change monitor with multiple backends
 sys-fs/udev 242 243 243-r2 245 245.5 245.6_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-libs/libhx 3.25_pre: Platform independent library providing basic system functions
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre24: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.228 4.9.229 4.9.230 4.14.186 4.14.187 4.14.188 4.19.130 4.19.131 4.19.132 5.4.49 5.4.50 5.4.51: Shows and sets processor power related values
+sys-power/cpupower 4.9.228 4.9.229 4.9.230 4.14.186 4.14.187 4.14.188 4.19.131 4.19.132 4.19.133 5.4.50 5.4.51 5.4.52: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality

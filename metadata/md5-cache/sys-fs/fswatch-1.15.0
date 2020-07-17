@@ -1,0 +1,9 @@
+DEFINED_PHASES=configure install prepare
+DESCRIPTION=cross-platform file change monitor with multiple backends
+EAPI=7
+HOMEPAGE=https://github.com/emcrisostomo/fswatch
+IUSE=docker nls static-libs
+KEYWORDS=~amd64 ~x86
+SLOT=0
+SRC_URI=https://github.com/emcrisostomo/fswatch/releases/download/1.15.0/fswatch-1.15.0.tar.gz
+_md5_=a93f8ed792c2b4af2e6a954e40bdd2c5
