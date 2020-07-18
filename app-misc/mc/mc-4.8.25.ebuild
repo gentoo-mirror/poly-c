@@ -1,17 +1,16 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 563e47b602e1ea73148fa46fe1153e5d0c70d5b9 $
+# $Id: f2506e57245a2d0aff364f93751b9a8eba0bb4dc $
 
 EAPI=7
 
-inherit autotools flag-o-matic vcs-snapshot
+inherit autotools flag-o-matic
 
-#MY_P="${P/_/-}"
+MY_P=${P/_/-}
 
 DESCRIPTION="GNU Midnight Commander is a text based file manager"
 HOMEPAGE="https://www.midnight-commander.org"
-#SRC_URI="http://ftp.midnight-commander.org/${MY_P}.tar.xz"
-SRC_URI="https://www.midnight-commander.org/nopaste/tarball/mc-4.8.24-163-g171957980.tar.xz -> ${P}.tar.xz"
+SRC_URI="http://ftp.midnight-commander.org/${MY_P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -42,7 +41,7 @@ DEPEND="${RDEPEND}
 
 RESTRICT="!test? ( test )"
 
-#S="${WORKDIR}/${MY_P}"
+S="${WORKDIR}/${MY_P}"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.8.13-restore_saved_replace_string.patch
