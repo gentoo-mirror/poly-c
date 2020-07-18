@@ -1,0 +1,15 @@
+--- Waterfox-2020.07-classic/config/rules.mk
++++ Waterfox-2020.07-classic/config/rules.mk
+@@ -864,12 +864,6 @@
+ # These flags are passed via `cargo rustc` and only apply to the final rustc
+ # invocation (i.e., only the top-level crate, not its dependencies).
+ cargo_rustc_flags = $(CARGO_RUSTCFLAGS)
+-ifndef DEVELOPER_OPTIONS
+-ifndef MOZ_DEBUG_RUST
+-# Enable link-time optimization for release builds.
+-cargo_rustc_flags += -C lto
+-endif
+-endif
+ 
+ # Cargo currently supports only two interesting profiles for building:
+ # development and release.  Those map (roughly) to --enable-debug and

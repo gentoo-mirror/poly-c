@@ -160,6 +160,7 @@ sys-block/archttp 2.5.1.180529: CLI utility to manage Areca RAID controllers
 sys-block/areca_cli 1.15.8.180529: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/lsiutil 1.72: LSI Logic Fusion MPT Command Line Interface management tool
+sys-block/setblocksize 0.2: Reformat a SCSI disk with new block size
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
 sys-boot/grub 2.04-r1: GNU GRUB boot loader
 sys-devel/distcc 3.3.3-r1: Distribute compilation of C code across several machines on a network

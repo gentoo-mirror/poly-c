@@ -1,0 +1,24 @@
+--- setblocksize-0.2/Makefile
++++ setblocksize-0.2/Makefile
+@@ -49,10 +49,10 @@
+ TARGET		= setblocksize
+ 
+ # Compilers
+-C1		= gcc
++C1		?= gcc
+ 
+ # Flags 
+-C1FLAGS		= -I $(INCLUDE) -D_REENTRANT -Wall -pipe
++C1FLAGS		= $(CFLAGS) $(LDFLAGS) -I $(INCLUDE) -D_REENTRANT -Wall
+ A1FLAGS		=
+ A2FLAGS		=
+ 
+@@ -95,7 +95,7 @@
+ $(TARGET): $(TARGET).o sg_err.o
+ 	@echo
+ 	@echo "Creating binary ..."
+-	$(C1) -o $(TARGET) $(TARGET).o sg_err.o
++	$(C1) $(C1FLAGS) -o $(TARGET) $(TARGET).o sg_err.o
+ 
+ $(TARGET).o: $(TARGET).c
+ 	@echo

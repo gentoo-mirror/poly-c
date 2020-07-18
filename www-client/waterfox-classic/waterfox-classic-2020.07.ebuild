@@ -171,9 +171,11 @@ src_prepare() {
 	sed 's@\(xargs rm\)$@\1 -f@' \
 		-i "${S}"/toolkit/mozapps/installer/packager.mk || die
 
-	# Keep codebase the same even if not using official branding
-	#sed '/^MOZ_DEV_EDITION=1/d' \
-	#	-i "${S}"/browser/branding/aurora/configure.sh || die
+	# Fix build with >=rust-1.45.0
+	if has_version ">=virtual/rust-1.45.0" ; then
+		einfo "Unbreak build with >=rust-1.45.0, bmo#1640982 ..."
+		eapply "${FILESDIR}/${PN}-2020.07-rust-1.45.0.patch"
+	fi
 
 	# Allow user to apply any additional patches without modifing ebuild
 	eapply_user
