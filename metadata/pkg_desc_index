@@ -18,6 +18,7 @@ app-editors/cooledit 3.17.19: Cooledit is a full featured multiple window text e
 app-emulation/packettracer 5.3.2.0027: Cisco's Packet Tracer
 app-laptop/dell-fan-mon 1.0 9999: Fan control for some Dell laptops
 app-laptop/i8kutils 1.43_pre: Dell Inspiron and Latitude utilities
+app-laptop/laptop-mode-tools 1.74_pre: Linux kernel laptop_mode user-space utilities
 app-misc/fdupes 2.1.0_pre 2.1.1_pre: Identify/delete duplicate files residing within specified directories
 app-misc/kenny 0.1: command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
