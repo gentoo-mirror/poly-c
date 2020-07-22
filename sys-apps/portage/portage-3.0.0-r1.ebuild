@@ -2,13 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id: 6e1a8152761fd10d67d74616b6599bff487df497 $
 
-EAPI=5
+EAPI=7
 
 DISTUTILS_USE_SETUPTOOLS=no
 PYTHON_COMPAT=( pypy3 python3_{6..9} )
 PYTHON_REQ_USE='bzip2(+),threads(+)'
 
-inherit distutils-r1 epatch linux-info systemd prefix
+inherit distutils-r1 linux-info systemd prefix
 
 DESCRIPTION="Portage is the package management and distribution system for Gentoo"
 HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Portage"
@@ -90,7 +90,10 @@ pkg_pretend() {
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
-	epatch "${FILESDIR}/${PN}-2.3.84-eapply_non_verbose.patch"
+	# Apply d65e759fc26e for bug 733370.
+	sed -e 's:^import logging$:import functools\n\0:' -i lib/portage/sync/syncbase.py || die
+
+	eapply "${FILESDIR}/${PN}-2.3.84-eapply_non_verbose.patch"
 
 	sed -e "s:^VERSION = \"HEAD\"$:VERSION = \"${PV}\":" -i lib/portage/__init__.py || die
 
@@ -225,24 +228,24 @@ python_install_all() {
 	dodir /usr/sbin
 	for target in ${sbin_relocations}; do
 		einfo "Moving /usr/bin/${target} to /usr/sbin/${target}"
-		mv "${ED}usr/bin/${target}" "${ED}usr/sbin/${target}" || die "sbin scripts move failed!"
+		mv "${ED}/usr/bin/${target}" "${ED}/usr/sbin/${target}" || die "sbin scripts move failed!"
 	done
 }
 
 pkg_preinst() {
 	python_setup
 	local sitedir=$(python_get_sitedir)
-	[[ -d ${D%/}${sitedir} ]] || die "${D%/}${sitedir}: No such directory"
+	[[ -d ${D}${sitedir} ]] || die "${D}${sitedir}: No such directory"
 	env -u DISTDIR \
 		-u PORTAGE_OVERRIDE_EPREFIX \
 		-u PORTAGE_REPOSITORIES \
 		-u PORTDIR \
 		-u PORTDIR_OVERLAY \
-		PYTHONPATH="${D%/}${sitedir}${PYTHONPATH:+:${PYTHONPATH}}" \
+		PYTHONPATH="${D}${sitedir}${PYTHONPATH:+:${PYTHONPATH}}" \
 		"${PYTHON}" -m portage._compat_upgrade.default_locations || die
 
 	env -u BINPKG_COMPRESS \
-		PYTHONPATH="${D%/}${sitedir}${PYTHONPATH:+:${PYTHONPATH}}" \
+		PYTHONPATH="${D}${sitedir}${PYTHONPATH:+:${PYTHONPATH}}" \
 		"${PYTHON}" -m portage._compat_upgrade.binpkg_compression || die
 
 	# elog dir must exist to avoid logrotate error for bug #415911.
@@ -250,8 +253,8 @@ pkg_preinst() {
 	# portage:portage to root:root which happens after src_install.
 	keepdir /var/log/portage/elog
 	# This is allowed to fail if the user/group are invalid for prefix users.
-	if chown portage:portage "${ED}"var/log/portage{,/elog} 2>/dev/null ; then
-		chmod g+s,ug+rwx "${ED}"var/log/portage{,/elog}
+	if chown portage:portage "${ED}"/var/log/portage{,/elog} 2>/dev/null ; then
+		chmod g+s,ug+rwx "${ED}"/var/log/portage{,/elog}
 	fi
 
 	if has_version "<${CATEGORY}/${PN}-2.3.77"; then
