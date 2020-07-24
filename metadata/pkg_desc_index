@@ -87,6 +87,7 @@ kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Chan
 kde-frameworks/plasma 5.67.0: Plasma framework
 lxde-base/lxsession 0.5.2: LXDE session manager
 mail-filter/pyzor 1.0.0-r1: A distributed, collaborative spam detection and filtering network
+media-gfx/fawkes 9999: Image Cloaking for Personal Privacy
 media-libs/freeimage 3.15.4-r1: Image library supporting many formats
 media-libs/gst-plugins-base 1.16.2: Basepack of plugins for gstreamer
 media-libs/libbpg 0.9.7_pre 0.9.8_pre: BPG (Better Portable Graphics) is a new image format
