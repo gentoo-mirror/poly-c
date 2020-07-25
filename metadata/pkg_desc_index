@@ -111,7 +111,6 @@ media-video/cinelerraGG 9999: The most advanced non-linear video editor and comp
 media-video/ffmpeg 4.2.2 4.2.3 4.3 4.3.1: Complete solution to record/convert/stream audio and video. Includes libavcodec
 media-video/smplayer 20.4.2 20.6.0: Great Qt GUI front-end for mplayer/mpv
 net-analyzer/arpalert 2.0.11_pre 2.0.12_pre: arpalert is used for monitoring ethernet networks
-net-analyzer/fping 4.3_pre 4.4_pre: A utility to ping multiple hosts at once
 net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
 net-analyzer/nagios-plugins 1.4.16-r2 1.4.16-r3: Nagios 1.4.16 plugins - Pack of plugins to make Nagios work properly
 net-analyzer/netsniff-ng 0.6.6 9999: high performance network sniffer for packet inspection
