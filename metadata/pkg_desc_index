@@ -47,6 +47,7 @@ dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptogra
 dev-libs/openssl 1.1.1d-r3 1.1.1f 1.1.1g: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/xerces-c 3.2.3_pre: A validating XML parser written in a portable subset of C++
+dev-libs/xxhash 0.8.0_pre: Extremely fast non-cryptographic hash algorithm
 dev-php/pecl-redis 5.2.1_pre: PHP extension for interfacing with Redis
 dev-python/injector 0.18.3: dependency injection framework
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
