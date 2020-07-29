@@ -47,7 +47,6 @@ dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptogra
 dev-libs/openssl 1.1.1d-r3 1.1.1f 1.1.1g: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/xerces-c 3.2.3_pre: A validating XML parser written in a portable subset of C++
-dev-libs/xxhash 0.8.0_pre: Extremely fast non-cryptographic hash algorithm
 dev-php/pecl-redis 5.2.1_pre: PHP extension for interfacing with Redis
 dev-python/injector 0.18.3: dependency injection framework
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
@@ -176,7 +175,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre24: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.229 4.9.230 4.9.231 4.14.187 4.14.188 4.14.189 4.19.132 4.19.133 4.19.134 5.4.51 5.4.52 5.4.53: Shows and sets processor power related values
+sys-power/cpupower 4.9.229 4.9.230 4.9.231 4.14.188 4.14.189 4.14.190 4.19.133 4.19.134 4.19.135 5.4.52 5.4.53 5.4.54: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
