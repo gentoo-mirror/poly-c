@@ -171,10 +171,6 @@ src_prepare() {
 	sed 's@\(xargs rm\)$@\1 -f@' \
 		-i "${S}"/toolkit/mozapps/installer/packager.mk || die
 
-	# Keep codebase the same even if not using official branding
-	#sed '/^MOZ_DEV_EDITION=1/d' \
-	#	-i "${S}"/browser/branding/aurora/configure.sh || die
-
 	# Allow user to apply any additional patches without modifing ebuild
 	eapply_user
 
