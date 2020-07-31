@@ -167,7 +167,7 @@ sys-devel/autoconf 2.70_beta: Used to create autoconfiguration files
 sys-devel/autoconf-wrapper 14_pre: wrapper for autoconf to manage multiple autoconf versions
 sys-devel/distcc 3.3.3-r1: Distribute compilation of C code across several machines on a network
 sys-fs/fswatch 1.14.0 1.15.0 9999: cross-platform file change monitor with multiple backends
-sys-fs/udev 242 243 243-r2 245 245.5 245.6_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
+sys-fs/udev 242 243 243-r2 245 245.5 245.6_pre 246_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-libs/libhx 3.25_pre: Platform independent library providing basic system functions
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
