@@ -3,7 +3,7 @@ app-accessibility/at-spi2-core 2.30.1: D-Bus accessibility specifications and re
 app-admin/cpulimit 2.5_pre 2.6_pre: Limits the CPU usage of a process
 app-admin/keepassxc 2.6.0_beta1: KeePassXC - KeePass Cross-platform Community Edition
 app-admin/littleutils 1.0.44a 1.2.0 1.2.1: The littleutils are a collection of small and simple utilities
-app-admin/logrotate 3.16.0 3.17.0_pre: Rotates, compresses, and mails system logs
+app-admin/logrotate 3.16.0 3.17.0: Rotates, compresses, and mails system logs
 app-admin/remotebox 2.2 2.5: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-arch/xz-utils 5.2.4-r2 5.2.4-r3 5.2.5: utils for managing LZMA compressed files
@@ -173,7 +173,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre24: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.229 4.9.230 4.9.231 4.14.188 4.14.189 4.14.190 4.19.133 4.19.134 4.19.135 5.4.52 5.4.53 5.4.54: Shows and sets processor power related values
+sys-power/cpupower 4.9.230 4.9.231 4.9.232 4.14.189 4.14.190 4.14.191 4.19.134 4.19.135 4.19.136 5.4.53 5.4.54 5.4.55: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
