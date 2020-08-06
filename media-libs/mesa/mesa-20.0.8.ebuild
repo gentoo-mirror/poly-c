@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 48dbdd650ef2f9b41637c65c199154dce6cbde0f $
+# $Id: f8e02ddc8cdb71f13e02a390ed47f07f00118b5c $
 
 EAPI=7
 
@@ -337,11 +337,9 @@ pkg_setup() {
 		ewarn "detected! This can cause problems. For details, see bug 459306."
 	fi
 
-	# os_same_file_description requires the kcmp syscall,
-	# which is only available with CONFIG_CHECKPOINT_RESTORE=y.
-	# Currently only AMDGPU utilizes this function, so only AMDGPU users would
-	# get a spooky warning message if the syscall fails.
-	if use gallium && use video_cards_radeonsi; then
+	if use video_cards_i965 ||
+	   use video_cards_iris ||
+	   use video_cards_radeonsi; then
 		CONFIG_CHECK="~CHECKPOINT_RESTORE"
 		linux-info_pkg_setup
 	fi

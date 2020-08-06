@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 00b4050b4e805caace9341eb52e5f63398fd3838 $
+# $Id: f50ead679471cba22f42a983c008aabbc7c6d8cf $
 
 EAPI=7
 
@@ -154,7 +154,6 @@ LLVM_DEPSTR="
 	|| (
 		sys-devel/llvm:10[${MULTILIB_USEDEP}]
 		sys-devel/llvm:9[${MULTILIB_USEDEP}]
-		sys-devel/llvm:8[${MULTILIB_USEDEP}]
 	)
 	<sys-devel/llvm-$((LLVM_MAX_SLOT + 1)):=[${MULTILIB_USEDEP}]
 "
@@ -337,11 +336,9 @@ pkg_setup() {
 		ewarn "detected! This can cause problems. For details, see bug 459306."
 	fi
 
-	# os_same_file_description requires the kcmp syscall,
-	# which is only available with CONFIG_CHECKPOINT_RESTORE=y.
-	# Currently only AMDGPU utilizes this function, so only AMDGPU users would
-	# get a spooky warning message if the syscall fails.
-	if use gallium && use video_cards_radeonsi; then
+	if use video_cards_i965 ||
+	   use video_cards_iris ||
+	   use video_cards_radeonsi; then
 		CONFIG_CHECK="~CHECKPOINT_RESTORE"
 		linux-info_pkg_setup
 	fi
