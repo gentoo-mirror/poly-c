@@ -168,6 +168,7 @@ multilib_src_compile() {
 			udevadm
 			src/udev/ata_id
 			src/udev/cdrom_id
+			src/udev/fido_id
 			src/udev/mtd_probe
 			src/udev/scsi_id
 			src/udev/v4l_id
@@ -201,7 +202,7 @@ multilib_src_install() {
 		use hwdb && doexe udev-hwdb
 
 		exeinto /lib/udev
-		doexe src/udev/{ata_id,cdrom_id,mtd_probe,scsi_id,v4l_id}
+		doexe src/udev/{ata_id,cdrom_id,fido_id,mtd_probe,scsi_id,v4l_id}
 
 		rm rules.d/99-systemd.rules || die
 		insinto /lib/udev/rules.d

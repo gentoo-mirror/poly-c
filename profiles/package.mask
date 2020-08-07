@@ -23,3 +23,5 @@ sci-astronomy/pulsatingscience
 # https://github.com/jlHertel/adriconf/issues/78
 =x11-misc/adriconf-1.6
 
+# Fails to build: https://github.com/MrAlex94/Waterfox/issues/1699
+=www-client/waterfox-classic-2020.07.2.1
