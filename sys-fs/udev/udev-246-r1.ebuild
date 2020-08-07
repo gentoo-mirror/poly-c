@@ -1,6 +1,6 @@
 # Copyright 2003-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 6a1ca2ac209c7914320b380a2271472e67cabed4 $
+# $Id: cb14882292b27ee8e591dbe0183b6d2ef3d1e902 $
 
 EAPI=7
 
@@ -19,9 +19,9 @@ else
 	MY_P=${MY_PN}-${MY_PV}
 	S=${WORKDIR}/${MY_P}
 	SRC_URI="https://github.com/systemd/${MY_PN}/archive/v${MY_PV}/${MY_P}.tar.gz"
-	KEYWORDS="~alpha ~amd64 arm arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86"
 
-	FIXUP_PATCH="${PN}-245-revert-systemd-messup.patch"
+	FIXUP_PATCH="${PN}-246-revert-systemd-messup.patch"
 	SRC_URI+=" https://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}.xz"
 fi
 
@@ -168,6 +168,7 @@ multilib_src_compile() {
 			udevadm
 			src/udev/ata_id
 			src/udev/cdrom_id
+			src/udev/fido_id
 			src/udev/mtd_probe
 			src/udev/scsi_id
 			src/udev/v4l_id
@@ -201,7 +202,7 @@ multilib_src_install() {
 		use hwdb && doexe udev-hwdb
 
 		exeinto /lib/udev
-		doexe src/udev/{ata_id,cdrom_id,mtd_probe,scsi_id,v4l_id}
+		doexe src/udev/{ata_id,cdrom_id,fido_id,mtd_probe,scsi_id,v4l_id}
 
 		rm rules.d/99-systemd.rules || die
 		insinto /lib/udev/rules.d
