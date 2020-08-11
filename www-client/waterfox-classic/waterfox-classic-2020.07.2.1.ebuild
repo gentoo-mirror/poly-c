@@ -40,7 +40,7 @@ KEYWORDS="~amd64 ~x86"
 SLOT="0"
 LICENSE="MPL-2.0 GPL-2 LGPL-2.1"
 IUSE="eme-free +gmp-autoupdate hardened hwaccel jack nsplugin pgo selinux test"
-#RESTRICT="!bindist? ( bindist )"
+RESTRICT="mirror"
 
 PATCH_URIS=( https://dev.gentoo.org/~{anarchy,axs,polynomial-c}/mozilla/patchsets/${PATCH}.tar.xz )
 SRC_URI="
