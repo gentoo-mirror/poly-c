@@ -179,7 +179,7 @@ sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIO
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.15-r1 3.3.16-r2: standard informational utilities and process-handling tools
-www-client/waterfox-classic 2020.07 2020.07.2 2020.07.2.1: Waterfox Web Browser
+www-client/waterfox-classic 2020.07.2: Waterfox Web Browser
 x11-apps/xinit 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-libs/gtk+ 3.24.22_pre: Gimp ToolKit +
