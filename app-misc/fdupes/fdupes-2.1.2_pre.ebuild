@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit autotools flag-o-matic toolchain-funcs poly-c_ebuilds
+inherit flag-o-matic toolchain-funcs poly-c_ebuilds
 
 DESCRIPTION="Identify/delete duplicate files residing within specified directories"
 HOMEPAGE="https://github.com/adrianlopezroche/fdupes"
@@ -19,16 +19,6 @@ RDEPEND="
 	ncurses? ( sys-libs/ncurses:0= )
 "
 BDEPEND="virtual/pkgconfig"
-
-PATCHES=(
-	"${FILESDIR}/${PN}-2.1.0-ncurses_pkgconfig.patch"
-	"${FILESDIR}/${PN}-2.1.0-ncurses_keypad.patch"
-)
-
-src_prepare() {
-	default
-	eautoreconf
-}
 
 src_configure() {
 	econf $(use_with ncurses)

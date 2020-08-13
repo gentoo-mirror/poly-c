@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 70653ffbfc3e24fb05c79ec7eb754e3876db1e89 $
+# $Id: 1123bad2108fd999fe9a9c613858c322deea550a $
 
 EAPI=7
 
@@ -89,6 +89,9 @@ pkg_pretend() {
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
+
+	# Apply 7d891b78ec906bbd73a43d83abd296350678f002 for bug 736912
+	sed -e 's|from xml.parsers.expat import ExpatError|try:\n\t\0\nexcept Exception:\n\tExpatError = SyntaxError|' -i lib/portage/xml/metadata.py || die
 
 	eapply "${FILESDIR}/${PN}-2.3.84-eapply_non_verbose.patch"
 

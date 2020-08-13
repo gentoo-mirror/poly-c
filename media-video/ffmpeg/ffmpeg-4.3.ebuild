@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 38db0ce605e40a31555a976393a093abf7e48456 $
+# $Id: b519b9bd21cb1564bc9eb489dcc23f3e73e4ec16 $
 
 EAPI=7
 
@@ -474,6 +474,7 @@ multilib_src_configure() {
 		--ar="$(tc-getAR)" \
 		--nm="$(tc-getNM)" \
 		--ranlib="$(tc-getRANLIB)" \
+		--pkg-config="$(tc-getPKG_CONFIG)" \
 		--optflags="${CFLAGS}" \
 		$(use_enable static-libs static) \
 		"${myconf[@]}" \
