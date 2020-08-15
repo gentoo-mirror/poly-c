@@ -46,6 +46,7 @@ PATCH_URIS=( https://dev.gentoo.org/~{anarchy,axs,polynomial-c}/mozilla/patchset
 SRC_URI="
 	${MOZ_HTTP_URI}/${MY_PV}.tar.gz -> ${P}.tar.gz
 	${PATCH_URIS[@]}
+	system-libvpx? ( https://dev.gentoo.org/~polynomial-c/mozilla/seamonkey-2.53.3-system_libvpx-1.8.patch.xz )
 "
 	#${MOZ_HTTP_URI}/${P}.tar.xz
 
@@ -132,7 +133,7 @@ src_prepare() {
 	# Apply our patches
 	eapply "${WORKDIR}/firefox"
 
-	#eapply "${FILESDIR}/${P}-classic-version.patch"
+	use system-libvpx && eapply -p2 "${WORKDIR}/seamonkey-2.53.3-system_libvpx-1.8.patch"
 
 	# Enable gnomebreakpad
 	if use debug ; then
