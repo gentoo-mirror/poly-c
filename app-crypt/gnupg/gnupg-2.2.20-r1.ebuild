@@ -1,12 +1,12 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 35dc9274af977f8f68c8e9f5fdb678256b1e00bf $
+# $Id: ec52f6640695d7693ded21fafec1e332e4bd616c $
 
 EAPI=7
 
-inherit flag-o-matic systemd toolchain-funcs poly-c_ebuilds
+inherit flag-o-matic systemd toolchain-funcs
 
-MY_P="${MY_P/_/-}"
+MY_P="${P/_/-}"
 
 DESCRIPTION="The GNU Privacy Guard, a GPL OpenPGP implementation"
 HOMEPAGE="https://gnupg.org/"
@@ -14,7 +14,7 @@ SRC_URI="mirror://gnupg/gnupg/${MY_P}.tar.bz2"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 ~riscv s390 sparc x86 ~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="bzip2 doc ldap nls readline selinux +smartcard ssl tofu tools usb user-socket wks-server"
 
 # Existence of executables is checked during configuration.
@@ -52,6 +52,7 @@ DOCS=(
 
 PATCHES=(
 	"${FILESDIR}/${PN}-2.1.20-gpgscm-Use-shorter-socket-path-lengts-to-improve-tes.patch"
+	"${FILESDIR}/${PN}-2.2.20-fix-dirmngr-for-non-ipv6-enabled-hosts.patch"
 
 	# Taken from https://github.com/GPGTools/MacGPG2/tree/dev/patches/gnupg
 	"${FILESDIR}/${PN}-2.2.16-scdaemon_shared-access.patch"
