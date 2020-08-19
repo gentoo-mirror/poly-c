@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 1123bad2108fd999fe9a9c613858c322deea550a $
+# $Id: 4f9c517f4d131b0d0eab121a702d2ef16e770899 $
 
 EAPI=7
 
@@ -41,7 +41,7 @@ RDEPEND="
 		app-shells/bash:0[readline]
 		>=app-admin/eselect-1.2
 		rsync-verify? (
-			>=app-portage/gemato-14[${PYTHON_USEDEP}]
+			>=app-portage/gemato-14.4-r1[${PYTHON_USEDEP}]
 			>=app-crypt/openpgp-keys-gentoo-release-20180706
 			>=app-crypt/gnupg-2.2.4-r2[ssl(-)]
 		)
@@ -89,9 +89,6 @@ pkg_pretend() {
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
-
-	# Apply 7d891b78ec906bbd73a43d83abd296350678f002 for bug 736912
-	sed -e 's|from xml.parsers.expat import ExpatError|try:\n\t\0\nexcept Exception:\n\tExpatError = SyntaxError|' -i lib/portage/xml/metadata.py || die
 
 	eapply "${FILESDIR}/${PN}-2.3.84-eapply_non_verbose.patch"
 

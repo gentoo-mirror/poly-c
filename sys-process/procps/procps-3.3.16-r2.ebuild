@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 09f6a12956a8caa7b8b77da3396ea0b7e62ef548 $
+# $Id: 818b4caf487647fd6146327f442796192055bfbf $
 
 EAPI=7
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}-ng/${PN}-ng-${PV}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0/8" # libprocps.so
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv s390 sparc x86 ~amd64-linux ~x86-linux"
 IUSE="elogind +kill modern-top +ncurses nls selinux static-libs systemd test unicode"
 RESTRICT="!test? ( test )"
 
