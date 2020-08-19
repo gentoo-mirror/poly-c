@@ -30,7 +30,6 @@ app-misc/tmux 3.1_rc: Terminal multiplexer
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
-app-text/asciidoc 9.0.0_rc99 9.0.1_rc99: A plain text human readable/writable document format
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
 dev-games/cegui 0.8.7-r1: Crazy Eddie's GUI System
 dev-games/simgear 2020.1.2_pre 2020.1.3_pre: Development library for simulation games
