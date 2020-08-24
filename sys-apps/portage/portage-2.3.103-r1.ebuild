@@ -1,20 +1,20 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5578b8a560fb8fa9397272d2a2f918d55689d298 $
+# $Id: 403f1f91fa75ca728c22e24f48bc6c593c960da8 $
 
-EAPI=7
+EAPI=5
 
 DISTUTILS_USE_SETUPTOOLS=no
 PYTHON_COMPAT=( pypy3 python3_{6..9} )
 PYTHON_REQ_USE='bzip2(+),threads(+)'
 
-inherit distutils-r1 linux-info systemd prefix
+inherit distutils-r1 epatch linux-info systemd prefix
 
 DESCRIPTION="Portage is the package management and distribution system for Gentoo"
 HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Portage"
 
 LICENSE="GPL-2"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86"
+KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 ~riscv s390 sparc x86"
 SLOT="0"
 IUSE="apidoc build doc gentoo-dev +ipc +native-extensions +rsync-verify selinux xattr"
 
@@ -57,8 +57,7 @@ RDEPEND="
 	) )
 	!<app-admin/logrotate-3.8.0
 	!<app-portage/gentoolkit-0.4.6
-	!<app-portage/repoman-2.3.10
-	!~app-portage/repoman-3.0.0"
+	!<app-portage/repoman-2.3.10"
 PDEPEND="
 	!build? (
 		>=net-misc/rsync-2.6.4
@@ -91,7 +90,7 @@ pkg_pretend() {
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
-	eapply "${FILESDIR}/${PN}-2.3.84-eapply_non_verbose.patch"
+	epatch "${FILESDIR}/${PN}-2.3.84-eapply_non_verbose.patch"
 
 	sed -e "s:^VERSION = \"HEAD\"$:VERSION = \"${PV}\":" -i lib/portage/__init__.py || die
 
@@ -226,24 +225,24 @@ python_install_all() {
 	dodir /usr/sbin
 	for target in ${sbin_relocations}; do
 		einfo "Moving /usr/bin/${target} to /usr/sbin/${target}"
-		mv "${ED}/usr/bin/${target}" "${ED}/usr/sbin/${target}" || die "sbin scripts move failed!"
+		mv "${ED}usr/bin/${target}" "${ED}usr/sbin/${target}" || die "sbin scripts move failed!"
 	done
 }
 
 pkg_preinst() {
 	python_setup
 	local sitedir=$(python_get_sitedir)
-	[[ -d ${D}${sitedir} ]] || die "${D}${sitedir}: No such directory"
+	[[ -d ${D%/}${sitedir} ]] || die "${D%/}${sitedir}: No such directory"
 	env -u DISTDIR \
 		-u PORTAGE_OVERRIDE_EPREFIX \
 		-u PORTAGE_REPOSITORIES \
 		-u PORTDIR \
 		-u PORTDIR_OVERLAY \
-		PYTHONPATH="${D}${sitedir}${PYTHONPATH:+:${PYTHONPATH}}" \
+		PYTHONPATH="${D%/}${sitedir}${PYTHONPATH:+:${PYTHONPATH}}" \
 		"${PYTHON}" -m portage._compat_upgrade.default_locations || die
 
 	env -u BINPKG_COMPRESS \
-		PYTHONPATH="${D}${sitedir}${PYTHONPATH:+:${PYTHONPATH}}" \
+		PYTHONPATH="${D%/}${sitedir}${PYTHONPATH:+:${PYTHONPATH}}" \
 		"${PYTHON}" -m portage._compat_upgrade.binpkg_compression || die
 
 	# elog dir must exist to avoid logrotate error for bug #415911.
@@ -251,8 +250,8 @@ pkg_preinst() {
 	# portage:portage to root:root which happens after src_install.
 	keepdir /var/log/portage/elog
 	# This is allowed to fail if the user/group are invalid for prefix users.
-	if chown portage:portage "${ED}"/var/log/portage{,/elog} 2>/dev/null ; then
-		chmod g+s,ug+rwx "${ED}"/var/log/portage{,/elog}
+	if chown portage:portage "${ED}"var/log/portage{,/elog} 2>/dev/null ; then
+		chmod g+s,ug+rwx "${ED}"var/log/portage{,/elog}
 	fi
 
 	if has_version "<${CATEGORY}/${PN}-2.3.77"; then
