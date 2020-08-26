@@ -130,7 +130,6 @@ net-misc/netifrc 0.5.1 0.6.1 0.7.1: Gentoo Network Interface Management Scripts
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
-net-nds/openldap 2.4.50_pre 2.4.51_pre: LDAP suite of application and development tools
 net-p2p/ncdc 1.21_pre: ncurses directconnect client
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/pulsatingscience 9999: 3D binary pulsar animation and outreach application
@@ -179,7 +178,7 @@ sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIO
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.15-r1 3.3.16-r2: standard informational utilities and process-handling tools
-www-client/waterfox-classic 2020.07.2 2020.07.2.1: Waterfox Web Browser
+www-client/waterfox-classic 2020.07.2.1 2020.08.1: Waterfox Web Browser
 x11-apps/xinit 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/adriconf 1.5.1 1.6 9999: Advanced DRI Configurator
