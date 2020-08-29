@@ -130,7 +130,6 @@ RDEPEND=">=app-text/hunspell-1.5.4:=
 	system-icu? ( >=dev-libs/icu-59.1:= )
 	system-jpeg? ( >=media-libs/libjpeg-turbo-1.2.1 )
 	system-libevent? ( >=dev-libs/libevent-2.0:0= )
-	system-sqlite? ( >=dev-db/sqlite-3.19.3:3[secure-delete,debug=] )
 	system-libvpx? ( >=media-libs/libvpx-1.8.0:0=[postproc] )
 	system-harfbuzz? ( >=media-libs/harfbuzz-1.3.3:0= >=media-gfx/graphite2-1.3.9-r1 )
 "
