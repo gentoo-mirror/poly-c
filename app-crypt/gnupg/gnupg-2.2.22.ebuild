@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e41bbd941513521847ccaf0ab3380d51362330b8 $
+# $Id: 71679032de61747d425c3d79f66795899ace9142 $
 
 EAPI=7
 
@@ -20,7 +20,7 @@ IUSE="bzip2 doc ldap nls readline selinux +smartcard ssl tofu tools usb user-soc
 # Existence of executables is checked during configuration.
 DEPEND=">=dev-libs/libassuan-2.5.0
 	>=dev-libs/libgcrypt-1.7.3
-	>=dev-libs/libgpg-error-1.28
+	>=dev-libs/libgpg-error-1.29
 	>=dev-libs/libksba-1.3.4
 	>=dev-libs/npth-1.2
 	>=net-misc/curl-7.10
@@ -51,7 +51,6 @@ DOCS=(
 
 PATCHES=(
 	"${FILESDIR}/${PN}-2.1.20-gpgscm-Use-shorter-socket-path-lengts-to-improve-tes.patch"
-	"${FILESDIR}/${PN}-2.2.20-fix-dirmngr-for-non-ipv6-enabled-hosts.patch"
 
 	# Taken from https://github.com/GPGTools/MacGPG2/tree/dev/patches/gnupg
 	"${FILESDIR}/${PN}-2.2.16-scdaemon_shared-access.patch"
