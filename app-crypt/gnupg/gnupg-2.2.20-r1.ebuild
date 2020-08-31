@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ec52f6640695d7693ded21fafec1e332e4bd616c $
+# $Id: 248abe46da5e72c6923b0da9673c6b0cd2543a31 $
 
 EAPI=7
 
@@ -18,8 +18,7 @@ KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 ~riscv s390 sp
 IUSE="bzip2 doc ldap nls readline selinux +smartcard ssl tofu tools usb user-socket wks-server"
 
 # Existence of executables is checked during configuration.
-DEPEND="!app-crypt/dirmngr
-	>=dev-libs/libassuan-2.5.0
+DEPEND=">=dev-libs/libassuan-2.5.0
 	>=dev-libs/libgcrypt-1.7.3
 	>=dev-libs/libgpg-error-1.28
 	>=dev-libs/libksba-1.3.4

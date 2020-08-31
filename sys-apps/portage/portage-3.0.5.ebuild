@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8dd0866ca28d8a61cbe5157f7bfa85f1156abbc9 $
+# $Id: 5578b8a560fb8fa9397272d2a2f918d55689d298 $
 
 EAPI=7
 
@@ -14,7 +14,7 @@ DESCRIPTION="Portage is the package management and distribution system for Gento
 HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Portage"
 
 LICENSE="GPL-2"
-KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ppc64 ~riscv ~s390 sparc x86"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86"
 SLOT="0"
 IUSE="apidoc build doc gentoo-dev +ipc +native-extensions +rsync-verify selinux xattr"
 
@@ -90,9 +90,6 @@ pkg_pretend() {
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
-
-	# Apply b0ed587308eb3cbfafe9abcb1c59f24f48b97cdc for bug 738766.
-	sed "/scheduler.wait()/d" -i lib/portage/util/futures/iter_completed.py || die
 
 	eapply "${FILESDIR}/${PN}-2.3.84-eapply_non_verbose.patch"
 
