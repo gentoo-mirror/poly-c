@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 71679032de61747d425c3d79f66795899ace9142 $
+# $Id: 3cd4a08ed40148fd1066f1dc931cd227ee3147c1 $
 
 EAPI=7
 
@@ -51,6 +51,7 @@ DOCS=(
 
 PATCHES=(
 	"${FILESDIR}/${PN}-2.1.20-gpgscm-Use-shorter-socket-path-lengts-to-improve-tes.patch"
+	"${FILESDIR}/${P}-card-status.patch"
 
 	# Taken from https://github.com/GPGTools/MacGPG2/tree/dev/patches/gnupg
 	"${FILESDIR}/${PN}-2.2.16-scdaemon_shared-access.patch"
