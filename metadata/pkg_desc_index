@@ -151,7 +151,7 @@ sys-apps/fwup 1.0.0 1.2.1: Configurable embedded Linux firmware update creator a
 sys-apps/gawk 4.2.1-r1 5.0.1 5.1.0: GNU awk pattern-matching language
 sys-apps/hwloc 2.0.3_pre: displays the hardware topology in convenient formats
 sys-apps/iproute2 4.19.0-r1 5.2.0-r1 5.4.0 5.6.0 5.7.0 5.8.0: kernel routing and traffic control utilities
-sys-apps/kmod 26-r5 27-r1: library and tools for managing linux kernel modules
+sys-apps/kmod 26-r5 27-r2: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
 sys-apps/portage 2.3.99-r2 2.3.103-r1 3.0.3 3.0.4-r1 3.0.5: Portage is the package management and distribution system for Gentoo

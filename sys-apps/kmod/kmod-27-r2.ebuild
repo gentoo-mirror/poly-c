@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c9e60cdc33f1f5b0c7afaf87415c68225336adfb $
+# $Id: 53104ffcdf8fa1bbd6587a8dcaff6b7aaeb8a58d $
 
 EAPI=7
 
@@ -13,7 +13,7 @@ if [[ ${PV} == 9999* ]]; then
 	inherit git-r3
 else
 	SRC_URI="https://www.kernel.org/pub/linux/utils/kernel/kmod/${P}.tar.xz"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc x86"
 	#inherit libtool
 fi
 
@@ -22,7 +22,7 @@ HOMEPAGE="https://git.kernel.org/?p=utils/kernel/kmod/kmod.git"
 
 LICENSE="LGPL-2"
 SLOT="0"
-IUSE="debug doc libressl lzma pkcs7 python static-libs +tools zlib"
+IUSE="debug doc libressl +lzma pkcs7 python static-libs +tools +zlib"
 
 # Upstream does not support running the test suite with custom configure flags.
 # I was also told that the test suite is intended for kmod developers.
@@ -63,6 +63,8 @@ fi
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 DOCS="NEWS README TODO"
+
+PATCHES=( "${FILESDIR}"/${P}-depmod-do-not-output-.bin-to-stdout.patch )
 
 src_prepare() {
 	default
