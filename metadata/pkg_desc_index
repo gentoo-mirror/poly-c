@@ -31,7 +31,7 @@ app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iP
 app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
-dev-db/sqlite 3.33.0_pre: SQL database engine
+dev-db/sqlite 3.33.0_pre-r1: SQL database engine
 dev-games/cegui 0.8.7-r1: Crazy Eddie's GUI System
 dev-games/simgear 2020.1.2_pre 2020.1.3_pre: Development library for simulation games
 dev-java/ant-core 1.9.8_pre: Java-based build tool similar to 'make' that uses XML configuration files
