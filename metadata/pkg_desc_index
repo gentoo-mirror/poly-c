@@ -54,7 +54,7 @@ dev-qt/qtgui 5.14.1-r4 5.14.2 5.15.0: The GUI module and platform plugins for th
 dev-util/cloc 1.84_pre 1.86_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
-games-action/supertuxkart 1.0 1.1: A kart racing game starring Tux, the linux penguin (TuxKart fork)
+games-action/supertuxkart 1.1 1.2: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
 games-engines/fifechan 9999: Lightweight cross platform GUI C++ library designed for games
 games-engines/fifengine 9999: Flexible Isometric Free Engine, 2D
@@ -175,7 +175,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre24: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.231 4.9.232 4.9.234 4.14.193 4.14.194 4.14.195 4.19.140 4.19.141 4.19.142 5.4.59 5.4.60 5.4.61: Shows and sets processor power related values
+sys-power/cpupower 4.9.232 4.9.234 4.9.235 4.14.194 4.14.195 4.14.196 4.19.141 4.19.142 4.19.143 5.4.60 5.4.61 5.4.62: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
