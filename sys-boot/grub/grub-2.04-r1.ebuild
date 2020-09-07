@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ef4bd3028b86b6ac8cea2da99953fe4c25eafa01 $
+# $Id: 01e987158d71eb2c7570b344570c7c141fe5e2b0 $
 
 EAPI=7
 
@@ -19,7 +19,7 @@ if [[ -n ${GRUB_AUTORECONF} ]]; then
 	inherit autotools
 fi
 
-inherit bash-completion-r1 eutils flag-o-matic multibuild pax-utils toolchain-funcs
+inherit bash-completion-r1 flag-o-matic multibuild pax-utils toolchain-funcs
 
 if [[ ${PV} != 9999 ]]; then
 	if [[ ${PV} == *_alpha* || ${PV} == *_beta* || ${PV} == *_rc* ]]; then
