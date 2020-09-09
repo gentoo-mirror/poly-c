@@ -131,7 +131,7 @@ net-misc/netifrc 0.5.1 0.6.1 0.7.1: Gentoo Network Interface Management Scripts
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
-net-nds/openldap 2.4.52_pre: LDAP suite of application and development tools
+net-nds/openldap 2.4.52_pre 2.4.53_pre: LDAP suite of application and development tools
 net-p2p/ncdc 1.21_pre: ncurses directconnect client
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/pulsatingscience 9999: 3D binary pulsar animation and outreach application
@@ -154,7 +154,7 @@ sys-apps/iproute2 4.19.0-r1 5.2.0-r1 5.4.0 5.6.0 5.7.0 5.8.0: kernel routing and
 sys-apps/kmod 26-r5 27-r2: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
-sys-apps/portage 2.3.99-r2 2.3.103-r1 3.0.3 3.0.4-r1 3.0.5: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.3.99-r2 2.3.103-r1 3.0.3 3.0.4-r1 3.0.5 3.0.6: Portage is the package management and distribution system for Gentoo
 sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chipsets
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/archttp 2.5.1.180529: CLI utility to manage Areca RAID controllers

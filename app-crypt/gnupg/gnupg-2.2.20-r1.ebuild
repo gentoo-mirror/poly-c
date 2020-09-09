@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 248abe46da5e72c6923b0da9673c6b0cd2543a31 $
+# $Id: a043aa8cc780080531257e2def821bd21472f871 $
 
 EAPI=7
 
@@ -160,10 +160,4 @@ src_install() {
 	use doc && dodoc doc/gnupg.html/* doc/*.png
 
 	systemd_douserunit doc/examples/systemd-user/*.{service,socket}
-}
-
-pkg_postinst() {
-	elog "See https://wiki.gentoo.org/wiki/GnuPG for documentation on gnupg"
-	elog
-	elog "If you wish to use 'gpg-wks-client --send', you must install an MTA!"
 }
