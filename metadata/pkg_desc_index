@@ -67,6 +67,8 @@ games-fps/etlegacy 2.76 9999: Wolfenstein: Enemy Territory 2.60b compatible clie
 games-fps/rtcw 1.51b 1.51c 9999: Return to Castle Wolfenstein - IORTCW Project
 games-simulation/flightgear 2020.1.2_pre 2020.1.3_pre: Open Source Flight Simulator
 games-simulation/flightgear-data 2020.1.2_pre 2020.1.3_pre: FlightGear data files
+games-strategy/0ad 0.0.23b_alpha: A free, real-time strategy game
+games-strategy/0ad-data 0.0.23b_alpha: Data files for 0ad
 games-strategy/boswars 9999: Futuristic real-time strategy game
 games-strategy/megaglest 3.13.0_pre: Cross-platform 3D realtime strategy game
 games-strategy/megaglest-data 3.13.0_pre: Data files for the cross-platform 3D realtime strategy game MegaGlest
