@@ -3,11 +3,6 @@
 
 EAPI=7
 
-PV="${PV%_*}"
-PVR="${PVR/_pre?/}"
-P="${PN}-${PV}"
-RESTRICT="mirror"
-
 inherit webapp
 
 DESCRIPTION="Personal cloud that runs on your own server"
@@ -24,7 +19,7 @@ RDEPEND="dev-lang/php[curl?,filter,gd,hash(+),intl,json,mysql?,pdo,posix,postgre
 	imagemagick? ( dev-php/pecl-imagick )
 	virtual/httpd-php"
 
-S="${WORKDIR}/${PN}"
+S=${WORKDIR}/${PN}
 
 pkg_setup() {
 	webapp_pkg_setup
