@@ -178,11 +178,12 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre24: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.232 4.9.234 4.9.235 4.14.194 4.14.195 4.14.196 4.19.141 4.19.142 4.19.143 5.4.61 5.4.62 5.4.63: Shows and sets processor power related values
+sys-power/cpupower 4.9.232 4.9.234 4.9.235 4.14.195 4.14.196 4.14.197 4.19.142 4.19.143 4.19.144 5.4.62 5.4.63 5.4.64: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.15-r1 3.3.16-r2: standard informational utilities and process-handling tools
+www-apps/nextcloud 19.0.3_pre: Personal cloud that runs on your own server
 www-client/waterfox-classic 2020.07.2.1 2020.08.1: Waterfox Web Browser
 x11-apps/xinit 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
