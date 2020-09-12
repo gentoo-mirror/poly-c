@@ -53,7 +53,7 @@ dev-python/wget 3.2: pure python download utility
 dev-qt/qtgui 5.14.1-r4 5.14.2 5.15.0: The GUI module and platform plugins for the Qt5 framework
 dev-util/cloc 1.84_pre 1.86_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
-dev-util/meson 0.55.2_pre: Open source build system
+dev-util/meson 0.55.2_pre 0.55.3_pre: Open source build system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-action/supertuxkart 1.1 1.2: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
@@ -76,7 +76,6 @@ games-strategy/megaglest-data 3.13.0_pre: Data files for the cross-platform 3D r
 games-strategy/opendungeons 0.7.1 9999: An open source, real time strategy game based on the Dungeon Keeper series
 games-strategy/unknown-horizons 9999: Anno-like real time strategy game
 games-util/gx52 9999: GTK app for control of the LEDs and MFD of Logitech X52 (Pro)
-games-util/lutris 0.5.6 0.5.7: An open source gaming platform for GNU/Linux
 games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 games-util/x52pro-linux 0.2.0 0.2.1 9999: Saitek X52pro drivers & controller mapping software for Linux
@@ -134,7 +133,6 @@ net-misc/netifrc 0.5.1 0.6.1 0.7.1: Gentoo Network Interface Management Scripts
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
-net-nds/openldap 2.4.52_pre 2.4.53_pre: LDAP suite of application and development tools
 net-p2p/ncdc 1.21_pre: ncurses directconnect client
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/pulsatingscience 9999: 3D binary pulsar animation and outreach application
@@ -157,7 +155,7 @@ sys-apps/iproute2 4.19.0-r1 5.2.0-r1 5.4.0 5.6.0 5.7.0 5.8.0: kernel routing and
 sys-apps/kmod 26-r5 27-r2: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
-sys-apps/portage 2.3.99-r2 2.3.103-r1 3.0.3 3.0.4-r1 3.0.5 3.0.6: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.3.99-r2 2.3.103-r1 3.0.3 3.0.4-r1 3.0.6-r1: Portage is the package management and distribution system for Gentoo
 sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chipsets
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/archttp 2.5.1.180529: CLI utility to manage Areca RAID controllers
@@ -178,7 +176,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre24: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.232 4.9.234 4.9.235 4.14.195 4.14.196 4.14.197 4.19.142 4.19.143 4.19.144 5.4.62 5.4.63 5.4.64: Shows and sets processor power related values
+sys-power/cpupower 4.9.234 4.9.235 4.9.236 4.14.196 4.14.197 4.14.198 4.19.143 4.19.144 4.19.145 5.4.63 5.4.64 5.4.65: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
