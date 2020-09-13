@@ -9,5 +9,5 @@ LICENSE=LGPL-2.1+
 RESTRICT=mirror
 SLOT=0
 SRC_URI=https://github.com/fribidi/fribidi/releases/download/v1.0.10/fribidi-1.0.10.tar.xz
-_eclasses_=multibuild	b2c915190b051f55a23b9354b9849847	multilib	98584e405e2b0264d37e8f728327fed1	multilib-build	6cbe156168ae85dbada8a9b5bd5857a5	multilib-minimal	8bddda43703ba94d8341f4e247f97566	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	toolchain-funcs	605c126bed8d87e4378d5ff1645330cb
+_eclasses_=multibuild	b2c915190b051f55a23b9354b9849847	multilib	98584e405e2b0264d37e8f728327fed1	multilib-build	20e68da7a5efff72f76cd8adaa5cdfdf	multilib-minimal	8bddda43703ba94d8341f4e247f97566	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	toolchain-funcs	605c126bed8d87e4378d5ff1645330cb
 _md5_=cb9d175307a2b8b36bc49b42255cce39
