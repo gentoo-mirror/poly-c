@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9782a47c8d7e080e6d4ffbecc87f259c9f23a00f $
+# $Id: 934ec32ce41df49459f31bc097c72b67dbef797f $
 
 EAPI=7
 
@@ -20,7 +20,7 @@ if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
 else
 	SRC_URI="https://archive.mesa3d.org/${MY_P}.tar.xz"
-	KEYWORDS="~alpha ~amd64 arm arm64 hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
+	KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~mips ppc ppc64 ~s390 sparc x86 ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 fi
 
 LICENSE="MIT"

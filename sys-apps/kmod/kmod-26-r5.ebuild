@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0971ec42863ffe399fbd767430fd8a026f911e67 $
+# $Id: 53000bb3debcf4db8daaf8014ac669cc9f54acfb $
 
 EAPI=6
 
@@ -191,7 +191,7 @@ pkg_postinst() {
 	fi
 
 	if [[ -e ${EROOT%/}/etc/runlevels/sysinit ]]; then
-		if [[ ! -e ${EROOT%/}/etc/runlevels/sysinit/kmod-static-nodes ]]; then
+		if ! has_version sys-apps/systemd && [[ ! -e ${EROOT%/}/etc/runlevels/sysinit/kmod-static-nodes ]]; then
 			ewarn
 			ewarn "You need to add kmod-static-nodes to the sysinit runlevel for"
 			ewarn "kernel modules to have required static nodes!"
