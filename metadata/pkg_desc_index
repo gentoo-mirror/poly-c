@@ -102,7 +102,7 @@ media-sound/ameter 0.44_pre: Ameter is an Alsa meter plugin
 media-sound/cutmp3 2.1.2_pre 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
 media-sound/idjc 0.8.17: Internet DJ Console has two media players, jingles player, crossfader, VoIP and streaming
 media-sound/pavucontrol 3.0: Pulseaudio Volume Control, GTK based mixer for Pulseaudio
-media-sound/pulseaudio 13.99.1 9999: A networked sound server with an advanced plugin system
+media-sound/pulseaudio 13.99.1 13.99.2 9999: A networked sound server with an advanced plugin system
 media-sound/scdl 1.3.3_beta1 9999: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2 13.2.1: Download files from the public broadcasting services
