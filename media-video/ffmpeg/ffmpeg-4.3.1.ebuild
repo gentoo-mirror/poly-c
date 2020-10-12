@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e1d995bd1cf5c6b55323cb31da6a0f45ddc37c5b $
+# $Id: da8caf3ad3dae6481cbb6ac10189d4a401cab193 $
 
 EAPI=7
 
@@ -60,7 +60,7 @@ LICENSE="
 	samba? ( GPL-3 )
 "
 if [ "${PV#9999}" = "${PV}" ] ; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~ia64 ~mips ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
+	KEYWORDS="amd64 arm arm64 ~ia64 ~mips ~ppc ppc64 ~sparc x86 ~amd64-linux ~x86-linux"
 fi
 
 # Options to use as use_enable in the foo[:bar] form.
@@ -328,6 +328,7 @@ S=${WORKDIR}/${P/_/-}
 PATCHES=(
 	"${FILESDIR}"/chromium-r1.patch
 	"${FILESDIR}"/${PN}-4.3-fix-build-without-SSSE3.patch
+	"${FILESDIR}"/${PN}-4.3-altivec-novsx-yuv2rgb.patch
 )
 
 MULTILIB_WRAPPED_HEADERS=(

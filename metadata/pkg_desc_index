@@ -116,7 +116,8 @@ net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugi
 net-analyzer/nagios-plugins 1.4.16-r2 1.4.16-r3: Nagios 1.4.16 plugins - Pack of plugins to make Nagios work properly
 net-analyzer/netsniff-ng 0.6.6 9999: high performance network sniffer for packet inspection
 net-analyzer/nikto 2.1.5_pre 2.1.6_pre: Web Server vulnerability scanner.
-net-analyzer/nmap 7.90_pre: A utility for network discovery and security auditing
+net-analyzer/nmap 7.91_pre: A utility for network discovery and security auditing
+net-analyzer/wireshark 3.3.1_pre: A network protocol analyzer formerly known as ethereal
 net-dialup/mingetty 1.08-r1: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/filezilla 3.47.2.1 3.48.0 3.48.1 3.49.1 3.50.0: FTP client with lots of useful features and an intuitive interface

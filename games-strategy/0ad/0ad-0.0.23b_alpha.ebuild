@@ -42,7 +42,7 @@ RDEPEND="
 	x11-libs/libX11
 	x11-libs/libXcursor
 	editor? ( x11-libs/wxGTK:${WX_GTK_VER}[X,opengl] )
-	lobby? ( >=net-libs/gloox-1.0.20 )
+	lobby? ( >=net-libs/gloox-1.0.20:= )
 	nvtt? ( media-gfx/nvidia-texture-tools )"
 DEPEND="${RDEPEND}
 	${PYTHON_DEPS}
