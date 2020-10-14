@@ -87,9 +87,8 @@ kde-frameworks/plasma 5.67.0: Plasma framework
 lxde-base/lxsession 0.5.2: LXDE session manager
 mail-filter/pyzor 1.0.0-r1: A distributed, collaborative spam detection and filtering network
 media-gfx/fawkes 9999: Image Cloaking for Personal Privacy
-media-libs/freeimage 3.15.4-r1: Image library supporting many formats
 media-libs/gst-plugins-base 1.16.2: Basepack of plugins for gstreamer
-media-libs/libbpg 0.9.7_pre 0.9.8_pre: BPG (Better Portable Graphics) is a new image format
+media-libs/libbpg 0.9.8_pre: BPG (Better Portable Graphics) is a new image format
 media-libs/libdvbpsi 1.3.3_pre: library for MPEG TS/DVB PSI tables decoding and generation
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
@@ -108,7 +107,7 @@ media-sound/scdl 1.3.3_beta1 9999: Soundcloud Music Downloader
 media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2 13.2.1: Download files from the public broadcasting services
 media-video/cinelerraGG 9999: The most advanced non-linear video editor and compositor - Good Guy's version
-media-video/ffmpeg 4.2.2 4.2.3 4.3 4.3.1: Complete solution to record/convert/stream audio and video. Includes libavcodec
+media-video/ffmpeg 4.3.1: Complete solution to record/convert/stream audio and video. Includes libavcodec
 media-video/mkvtoolnix 49.0.0_pre: Tools to create, alter, and inspect Matroska files
 media-video/smplayer 20.4.2 20.6.0: Great Qt GUI front-end for mplayer/mpv
 net-analyzer/arpalert 2.0.11_pre 2.0.12_pre: arpalert is used for monitoring ethernet networks
@@ -131,7 +130,7 @@ net-libs/farstream 0.2.9_pre: Audio/video conferencing framework specifically de
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
-net-misc/netifrc 0.5.1 0.6.1 0.7.1: Gentoo Network Interface Management Scripts
+net-misc/netifrc 0.5.1 0.7.1: Gentoo Network Interface Management Scripts
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
@@ -178,7 +177,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre24: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.235 4.9.236 4.9.237 4.14.198 4.14.199 4.14.200 4.19.148 4.19.149 4.19.150 5.4.68 5.4.69 5.4.70: Shows and sets processor power related values
+sys-power/cpupower 4.9.236 4.9.237 4.9.239 4.14.199 4.14.200 4.14.201 4.19.149 4.19.150 4.19.151 5.4.69 5.4.70 5.4.71: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality

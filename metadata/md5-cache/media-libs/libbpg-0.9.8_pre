@@ -1,14 +1,15 @@
+BDEPEND=dev-lang/yasm dev-util/cmake
 DEFINED_PHASES=install prepare
-DEPEND=dev-lang/yasm dev-util/cmake
+DEPEND=media-libs/libjpeg-turbo media-libs/libpng:0= sys-process/numactl x265? ( media-libs/x265:= )
 DESCRIPTION=BPG (Better Portable Graphics) is a new image format
 EAPI=7
 HOMEPAGE=http://bellard.org/bpg/
 IUSE=x265
 KEYWORDS=~amd64 ~x86
 LICENSE=LGPL-2.1 BSD
-RDEPEND=media-libs/libjpeg-turbo media-libs/libpng:0 sys-process/numactl x265? ( media-libs/x265:= )
+RDEPEND=media-libs/libjpeg-turbo media-libs/libpng:0= sys-process/numactl x265? ( media-libs/x265:= )
 RESTRICT=mirror
 SLOT=0
 SRC_URI=http://bellard.org/bpg/libbpg-0.9.8.tar.gz
 _eclasses_=edos2unix	33e347e171066657f91f8b0c72ec8773	eutils	2d5b3f4b315094768576b6799e4f926e	l10n	8cdd85e169b835d518bc2fd59f780d8e	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	wrapper	4251d4c84c25f59094fd557e0063a974
-_md5_=c989f446f25fbb46ef49663f6685e806
+_md5_=916d3fba2f4e84c4d1828a687fb94d2a

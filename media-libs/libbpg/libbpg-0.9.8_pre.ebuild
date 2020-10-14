@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -13,15 +13,17 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="x265"
 
-DEPEND="
+BDEPEND="
 	dev-lang/yasm
 	dev-util/cmake
 "
 
 RDEPEND="media-libs/libjpeg-turbo
-	media-libs/libpng:0
+	media-libs/libpng:0=
 	sys-process/numactl
 	x265? ( media-libs/x265:= )"
+
+DEPEND="${RDEPEND}"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-0.9.6-numa_linking.patch
@@ -35,7 +37,7 @@ src_prepare() {
 		-e '/^prefix=/s@/usr/local@/usr@' \
 		-e "/^CFLAGS:=/s@-Os@${CFLAGS}@" \
 		-e "/^LDFLAGS=/s@-g@${LDFLAGS}@" \
-		-e '/install/s@$(prefix)@$(DESTDIR)/usr@' \
+		-e '/install/s@\($(prefix)\)@$(DESTDIR)\1@' \
 		-e '/install/s@-s@@' \
 		-i Makefile || die
 
@@ -47,7 +49,6 @@ src_prepare() {
 }
 
 src_install() {
-	ewarn "D: ${D}"
 	dodir /usr/bin
 	default
 }
