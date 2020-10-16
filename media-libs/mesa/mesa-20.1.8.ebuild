@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 934ec32ce41df49459f31bc097c72b67dbef797f $
+# $Id: 7d6a7fb5a0eb604067d0b183db3d82ae443d39f7 $
 
 EAPI=7
 
@@ -527,7 +527,7 @@ multilib_src_install_all() {
 }
 
 multilib_src_test() {
-	meson test -v -C "${BUILD_DIR}" -t 100
+	meson test -v -C "${BUILD_DIR}" -t 100 || die "tests failed"
 }
 
 pkg_postinst() {
