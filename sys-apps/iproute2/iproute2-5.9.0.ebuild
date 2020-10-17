@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 6a78d7f40fb64aeaf3ec66f657ce0baa756fa9e2 $
+# $Id: 6bccbe4b7ea6478f13010586bc3a3544be955888 $
 
 EAPI=7
 
@@ -61,11 +61,16 @@ src_prepare() {
 
 	default
 
+	# Fix version if necessary
+	local versionfile="include/version.h"
+	if ! grep -Fq "${PV}" ${versionfile} ; then
+		elog "Fixing version string"
+		sed "s@\"[[:digit:]\.]\+\"@\"${PV}\"@" \
+			-i ${versionfile} || die
+	fi
+
 	# echo -n is not POSIX compliant
 	sed 's@echo -n@printf@' -i configure || die
-
-	# Fix version string
-	sed "s@\"[[:digit:]\.]\+\"@\"${PV}\"@" -i include/version.h || die
 
 	sed -i \
 		-e '/^CC :\?=/d' \
