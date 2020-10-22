@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 01e987158d71eb2c7570b344570c7c141fe5e2b0 $
+# $Id: d0feaf3be6ade03ac711f1c1c9e4a32b123c9cfe $
 
 EAPI=7
 
@@ -97,7 +97,9 @@ BDEPEND="
 DEPEND="
 	app-arch/xz-utils
 	>=sys-libs/ncurses-5.2-r5:0=
-	sdl? ( media-libs/libsdl )
+	grub_platforms_emu? (
+		sdl? ( media-libs/libsdl )
+	)
 	device-mapper? ( >=sys-fs/lvm2-2.02.45 )
 	libzfs? ( sys-fs/zfs )
 	mount? ( sys-fs/fuse:0 )

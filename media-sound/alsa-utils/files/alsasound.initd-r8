@@ -139,7 +139,7 @@ terminate() {
 	fuser -k ${ossdevs} ${alsadevs} >/dev/null 2>/dev/null
 
 	# remove all sequencer connections if any
-	[ -f /proc/asound/seq/clients ] && type aconnect >/dev/null 2>/dev/null && aconnect --removeall
+	[ -f /proc/asound/seq/clients ] && command -v aconnect >/dev/null 2>/dev/null && aconnect --removeall
 }
 
 restore() {

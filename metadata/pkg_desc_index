@@ -31,7 +31,6 @@ app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iP
 app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/asciidoc 9.0.3_pre: A plain text human readable/writable document format
-app-text/ghostscript-gpl 9.53.3-r1: Interpreter for the PostScript language and PDF
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
 dev-db/sqlite 3.33.0_pre-r1: SQL database engine
 dev-games/cegui 0.8.7-r1: Crazy Eddie's GUI System
@@ -98,7 +97,7 @@ media-libs/mesa 20.0.8 20.1.8: OpenGL-like graphic library for Linux
 media-libs/x264 0.0.20200810: A free library for encoding X264/AVC streams
 media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
-media-sound/alsa-utils 1.2.2 1.2.3: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
+media-sound/alsa-utils 1.2.2 1.2.3 1.2.4: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
 media-sound/ameter 0.44_pre: Ameter is an Alsa meter plugin
 media-sound/cutmp3 2.1.2_pre 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
 media-sound/idjc 0.8.17: Internet DJ Console has two media players, jingles player, crossfader, VoIP and streaming
