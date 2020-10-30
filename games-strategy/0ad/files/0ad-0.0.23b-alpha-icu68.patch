@@ -1,0 +1,17 @@
+Fix build with icu-68.0
+
+icu-68.1 removed public macro definitions for TRUE and FALSE
+
+https://github.com/unicode-org/icu/commit/a18df7ba2834afc2b577a1d5a7d906868ade6fa9
+
+--- 0ad-0.0.23b-alpha/source/i18n/L10n.cpp
++++ 0ad-0.0.23b-alpha/source/i18n/L10n.cpp
+@@ -205,7 +205,7 @@
+ 	else
+ 	{
+ 		GetDictionaryLocale(locale, currentLocale);
+-		currentLocaleIsOriginalGameLocale = (currentLocale == icu::Locale::getUS()) == TRUE;
++		currentLocaleIsOriginalGameLocale = (currentLocale == icu::Locale::getUS()) == true;
+ 		useLongStrings = false;
+ 	}
+ 	LoadDictionaryForCurrentLocale();

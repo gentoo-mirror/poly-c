@@ -59,6 +59,7 @@ pkg_setup() {
 PATCHES=(
 	"${FILESDIR}"/${PN}-0.0.21_alpha-gentoo.patch
 	"${FILESDIR}"/${PN}-0.0.23b-header_includes_fix.patch
+	"${FILESDIR}"/${PN}-0.0.23b-alpha-icu68.patch
 )
 
 src_configure() {
