@@ -45,6 +45,7 @@ dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional algorithm
 dev-libs/icu 68.1_pre: International Components for Unicode
 dev-libs/icu-layoutex 68.1_pre: External layout part of International Components for Unicode
+dev-libs/libical 3.0.8: An implementation of basic iCAL protocols
 dev-libs/libxml2 2.9.10-r3: XML C parser and toolkit
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.1.1g 1.1.1h: full-strength general purpose cryptography library (including SSL and TLS)
