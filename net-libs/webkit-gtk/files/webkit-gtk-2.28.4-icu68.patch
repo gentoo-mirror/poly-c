@@ -1,4 +1,4 @@
-Fix build with icu-68.0
+Fix build with icu-68.1
 
 icu-68.1 removed public macro definitions for TRUE and FALSE
 

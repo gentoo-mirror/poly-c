@@ -1,0 +1,75 @@
+--- qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/base/i18n/string_compare.cc
++++ qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/base/i18n/string_compare.cc
+@@ -18,8 +18,8 @@
+                                              StringPiece16 rhs) {
+   UErrorCode error = U_ZERO_ERROR;
+   UCollationResult result = collator.compare(
+-      icu::UnicodeString(FALSE, lhs.data(), static_cast<int>(lhs.length())),
+-      icu::UnicodeString(FALSE, rhs.data(), static_cast<int>(rhs.length())),
++      icu::UnicodeString(false, lhs.data(), static_cast<int>(lhs.length())),
++      icu::UnicodeString(false, rhs.data(), static_cast<int>(rhs.length())),
+       error);
+   DCHECK(U_SUCCESS(error));
+   return result;
+--- qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/base/i18n/time_formatting.cc
++++ qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/base/i18n/time_formatting.cc
+@@ -236,7 +236,7 @@
+   icu::FieldPosition ignore(icu::FieldPosition::DONT_CARE);
+   measure_format.formatMeasures(measures, 3, formatted, ignore, status);
+   *out = i18n::UnicodeStringToString16(formatted);
+-  return U_SUCCESS(status) == TRUE;
++  return U_SUCCESS(status) == true;
+ }
+ 
+ string16 DateIntervalFormat(const Time& begin_time,
+--- qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/components/url_formatter/spoof_checks/idn_spoof_checker.cc
++++ qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/components/url_formatter/spoof_checks/idn_spoof_checker.cc
+@@ -315,7 +315,7 @@
+   if (U_FAILURE(status) || (result & USPOOF_ALL_CHECKS))
+     return false;
+ 
+-  icu::UnicodeString label_string(FALSE /* isTerminated */, label.data(),
++  icu::UnicodeString label_string(false /* isTerminated */, label.data(),
+                                   base::checked_cast<int32_t>(label.size()));
+ 
+   // A punycode label with 'xn--' prefix is not subject to the URL
+@@ -491,7 +491,7 @@
+ Skeletons IDNSpoofChecker::GetSkeletons(base::StringPiece16 hostname) {
+   Skeletons skeletons;
+   size_t hostname_length = hostname.length() - (hostname.back() == '.' ? 1 : 0);
+-  icu::UnicodeString host(FALSE, hostname.data(), hostname_length);
++  icu::UnicodeString host(false, hostname.data(), hostname_length);
+   // If input has any characters outside Latin-Greek-Cyrillic and [0-9._-],
+   // there is no point in getting rid of diacritics because combining marks
+   // attached to non-LGC characters are already blocked.
+@@ -690,7 +690,7 @@
+     base::StringPiece tld,
+     base::StringPiece16 tld_unicode) const {
+   icu::UnicodeString tld_string(
+-      FALSE /* isTerminated */, tld_unicode.data(),
++      false /* isTerminated */, tld_unicode.data(),
+       base::checked_cast<int32_t>(tld_unicode.size()));
+   if (cyrillic_letters_.containsSome(tld_string)) {
+     return true;
+--- qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/services/service_manager/zygote/zygote_linux.cc
++++ qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/services/service_manager/zygote/zygote_linux.cc
+@@ -564,7 +564,7 @@
+   if (!iter.ReadString16(&timezone_id))
+     return -1;
+   icu::TimeZone::adoptDefault(icu::TimeZone::createTimeZone(
+-      icu::UnicodeString(FALSE, timezone_id.data(), timezone_id.length())));
++      icu::UnicodeString(false, timezone_id.data(), timezone_id.length())));
+ 
+   if (!iter.ReadInt(&numfds))
+     return -1;
+--- qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/third_party/blink/renderer/platform/wtf/text/text_codec_icu.cc
++++ qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/third_party/blink/renderer/platform/wtf/text/text_codec_icu.cc
+@@ -326,7 +326,7 @@
+   DLOG_IF(ERROR, err == U_AMBIGUOUS_ALIAS_WARNING)
+       << "ICU ambiguous alias warning for encoding: " << encoding_.GetName();
+   if (converter_icu_)
+-    ucnv_setFallback(converter_icu_, TRUE);
++    ucnv_setFallback(converter_icu_, true);
+ }
+ 
+ int TextCodecICU::DecodeToBuffer(UChar* target,
