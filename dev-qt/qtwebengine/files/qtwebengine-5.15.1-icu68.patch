@@ -1,3 +1,9 @@
+Fix build with icu-68.1
+
+icu-68.1 removed public macro definitions for TRUE and FALSE
+
+https://github.com/unicode-org/icu/commit/a18df7ba2834afc2b577a1d5a7d906868ade6fa9
+
 --- qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/base/i18n/string_compare.cc
 +++ qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/base/i18n/string_compare.cc
 @@ -18,8 +18,8 @@
@@ -108,6 +114,92 @@
  
    if (!iter.ReadInt(&numfds))
      return -1;
+--- qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/third_party/blink/renderer/platform/text/locale_icu.cc
++++ qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/third_party/blink/renderer/platform/text/locale_icu.cc
+@@ -168,12 +168,12 @@
+     return g_empty_string;
+ 
+   UErrorCode status = U_ZERO_ERROR;
+-  int32_t length = udat_toPattern(date_format, TRUE, nullptr, 0, &status);
++  int32_t length = udat_toPattern(date_format, true, nullptr, 0, &status);
+   if (status != U_BUFFER_OVERFLOW_ERROR || !length)
+     return g_empty_string;
+   StringBuffer<UChar> buffer(length);
+   status = U_ZERO_ERROR;
+-  udat_toPattern(date_format, TRUE, buffer.Characters(), length, &status);
++  udat_toPattern(date_format, true, buffer.Characters(), length, &status);
+   if (U_FAILURE(status))
+     return g_empty_string;
+   return String::Adopt(buffer);
+--- qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/third_party/blink/renderer/platform/text/text_break_iterator_icu.cc
++++ qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/third_party/blink/renderer/platform/text/text_break_iterator_icu.cc
+@@ -311,13 +311,13 @@
+       text->chunkOffset = offset <= std::numeric_limits<int32_t>::max()
+                               ? static_cast<int32_t>(offset)
+                               : 0;
+-      is_accessible = TRUE;
++      is_accessible = true;
+       return true;
+     }
+     if (native_index >= native_length &&
+         text->chunkNativeLimit == native_length) {
+       text->chunkOffset = text->chunkLength;
+-      is_accessible = FALSE;
++      is_accessible = false;
+       return true;
+     }
+   } else {
+@@ -330,12 +330,12 @@
+       text->chunkOffset = offset <= std::numeric_limits<int32_t>::max()
+                               ? static_cast<int32_t>(offset)
+                               : 0;
+-      is_accessible = TRUE;
++      is_accessible = true;
+       return true;
+     }
+     if (native_index <= 0 && !text->chunkNativeStart) {
+       text->chunkOffset = 0;
+-      is_accessible = FALSE;
++      is_accessible = false;
+       return true;
+     }
+   }
+@@ -346,7 +346,7 @@
+                               int64_t native_index,
+                               UBool forward) {
+   if (!text->context)
+-    return FALSE;
++    return false;
+   int64_t native_length = TextNativeLength(text);
+   UBool is_accessible;
+   if (TextInChunkOrOutOfRange(text, native_index, native_length, forward,
+@@ -370,7 +370,7 @@
+     DCHECK_EQ(new_context, kPriorContext);
+     TextLatin1SwitchToPriorContext(text, native_index, native_length, forward);
+   }
+-  return TRUE;
++  return true;
+ }
+ 
+ static const struct UTextFuncs kTextLatin1Funcs = {
+@@ -510,7 +510,7 @@
+ 
+ static UBool TextUTF16Access(UText* text, int64_t native_index, UBool forward) {
+   if (!text->context)
+-    return FALSE;
++    return false;
+   int64_t native_length = TextNativeLength(text);
+   UBool is_accessible;
+   if (TextInChunkOrOutOfRange(text, native_index, native_length, forward,
+@@ -532,7 +532,7 @@
+     DCHECK_EQ(new_context, kPriorContext);
+     TextUTF16SwitchToPriorContext(text, native_index, native_length, forward);
+   }
+-  return TRUE;
++  return true;
+ }
+ 
+ static const struct UTextFuncs kTextUTF16Funcs = {
 --- qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/third_party/blink/renderer/platform/text/unicode_utilities.cc
 +++ qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/third_party/blink/renderer/platform/text/unicode_utilities.cc
 @@ -300,7 +300,7 @@

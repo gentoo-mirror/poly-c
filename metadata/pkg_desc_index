@@ -47,7 +47,6 @@ dev-libs/icu 68.1_pre: International Components for Unicode
 dev-libs/icu-layoutex 68.1_pre: External layout part of International Components for Unicode
 dev-libs/icu-le-hb 1.0.3-r1: ICU Layout Engine API on top of HarfBuzz shaping library
 dev-libs/libical 3.0.8: An implementation of basic iCAL protocols
-dev-libs/libxml2 2.9.10-r3: XML C parser and toolkit
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.1.1g 1.1.1h: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
