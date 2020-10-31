@@ -22,6 +22,52 @@
  }
  
  string16 DateIntervalFormat(const Time& begin_time,
+--- qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/components/autofill/core/common/autofill_regexes.cc
++++ qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/components/autofill/core/common/autofill_regexes.cc
+@@ -43,7 +43,7 @@
+ icu::RegexMatcher* AutofillRegexes::GetMatcher(const base::string16& pattern) {
+   auto it = matchers_.find(pattern);
+   if (it == matchers_.end()) {
+-    const icu::UnicodeString icu_pattern(FALSE, pattern.data(),
++    const icu::UnicodeString icu_pattern(false, pattern.data(),
+                                          pattern.length());
+ 
+     UErrorCode status = U_ZERO_ERROR;
+@@ -70,20 +70,20 @@
+   base::AutoLock lock(*g_lock);
+ 
+   icu::RegexMatcher* matcher = g_autofill_regexes->GetMatcher(pattern);
+-  icu::UnicodeString icu_input(FALSE, input.data(), input.length());
++  icu::UnicodeString icu_input(false, input.data(), input.length());
+   matcher->reset(icu_input);
+ 
+   UErrorCode status = U_ZERO_ERROR;
+   UBool matched = matcher->find(0, status);
+   DCHECK(U_SUCCESS(status));
+ 
+-  if (matched == TRUE && match) {
++  if (matched == true && match) {
+     icu::UnicodeString match_unicode = matcher->group(0, status);
+     DCHECK(U_SUCCESS(status));
+     *match = base::i18n::UnicodeStringToString16(match_unicode);
+   }
+ 
+-  return matched == TRUE;
++  return matched == true;
+ }
+ 
+ }  // namespace autofill
+--- qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/components/spellcheck/renderer/spellcheck_worditerator.cc
++++ qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/components/spellcheck/renderer/spellcheck_worditerator.cc
+@@ -424,7 +424,7 @@
+   // spellchecker and we need manual normalization as well. The normalized
+   // text does not have to be NUL-terminated since its characters are copied to
+   // string16, which adds a NUL character when we need.
+-  icu::UnicodeString input(FALSE, &text_[input_start],
++  icu::UnicodeString input(false, &text_[input_start],
+                            base::checked_cast<int32_t>(input_length));
+   UErrorCode status = U_ZERO_ERROR;
+   icu::UnicodeString output;
 --- qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/components/url_formatter/spoof_checks/idn_spoof_checker.cc
 +++ qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/components/url_formatter/spoof_checks/idn_spoof_checker.cc
 @@ -315,7 +315,7 @@
@@ -62,6 +108,17 @@
  
    if (!iter.ReadInt(&numfds))
      return -1;
+--- qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/third_party/blink/renderer/platform/text/unicode_utilities.cc
++++ qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/third_party/blink/renderer/platform/text/unicode_utilities.cc
+@@ -300,7 +300,7 @@
+   DCHECK(U_SUCCESS(status));
+   int32_t input_length = static_cast<int32_t>(length);
+   // copy-on-write.
+-  icu::UnicodeString normalized(FALSE, characters, input_length);
++  icu::UnicodeString normalized(false, characters, input_length);
+   // In the vast majority of cases, input is already NFC. Run a quick check
+   // to avoid normalizing the entire input unnecessarily.
+   int32_t normalized_prefix_length =
 --- qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/third_party/blink/renderer/platform/wtf/text/text_codec_icu.cc
 +++ qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/third_party/blink/renderer/platform/wtf/text/text_codec_icu.cc
 @@ -326,7 +326,7 @@
@@ -73,3 +130,32 @@
  }
  
  int TextCodecICU::DecodeToBuffer(UChar* target,
+--- qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/ui/base/l10n/formatter.cc
++++ qtwebengine-everywhere-src-5.15.1/src/3rdparty/chromium/ui/base/l10n/formatter.cc
+@@ -232,7 +232,7 @@
+                        int value,
+                        icu::UnicodeString* formatted_string) const {
+   DCHECK(simple_format_[unit]);
+-  DCHECK(formatted_string->isEmpty() == TRUE);
++  DCHECK(formatted_string->isEmpty() == true);
+   UErrorCode error = U_ZERO_ERROR;
+   FormatNumberInPlural(*simple_format_[unit],
+                         value, formatted_string, &error);
+@@ -248,7 +248,7 @@
+       << "Detailed() not implemented for your (format, length) combination!";
+   DCHECK(detailed_format_[units][1])
+       << "Detailed() not implemented for your (format, length) combination!";
+-  DCHECK(formatted_string->isEmpty() == TRUE);
++  DCHECK(formatted_string->isEmpty() == true);
+   UErrorCode error = U_ZERO_ERROR;
+   FormatNumberInPlural(*detailed_format_[units][0], value_1,
+                        formatted_string, &error);
+@@ -281,7 +281,7 @@
+     base::string16 pattern = l10n_util::GetStringUTF16(pluralities.id);
+     UErrorCode error = U_ZERO_ERROR;
+     std::unique_ptr<icu::MessageFormat> format(new icu::MessageFormat(
+-        icu::UnicodeString(FALSE, pattern.data(), pattern.length()), error));
++        icu::UnicodeString(false, pattern.data(), pattern.length()), error));
+     DCHECK(U_SUCCESS(error));
+     if (format.get())
+       return format;
