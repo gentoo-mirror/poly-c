@@ -26,14 +26,12 @@ app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LD
 app-misc/mc 4.8.24 4.8.25: GNU Midnight Commander is a text based file manager
 app-misc/mmv 1.01b_p19_pre: Move/copy/append/link multiple files according to a set of wildcard patterns
 app-misc/osmo 0.4.2: Handy personal organizer
-app-misc/tmux 3.1_rc 3.1c_pre: Terminal multiplexer
 app-office/libreoffice 6.4.7.2: A full office productivity suite
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/asciidoc 9.0.3_pre 9.0.4_pre: A plain text human readable/writable document format
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
-app-text/libebook 0.1.3: Library parsing various ebook formats
 dev-db/sqlite 3.33.0_pre-r1: SQL database engine
 dev-games/cegui 0.8.7-r1: Crazy Eddie's GUI System
 dev-games/simgear 2020.1.2_pre 2020.1.3_pre: Development library for simulation games
@@ -184,7 +182,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre28: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.239 4.9.240 4.9.241 4.14.201 4.14.202 4.14.203 4.19.152 4.19.153 4.19.154 5.4.71 5.4.72 5.4.73: Shows and sets processor power related values
+sys-power/cpupower 4.9.239 4.9.240 4.9.241 4.14.201 4.14.202 4.14.203 4.19.152 4.19.153 4.19.154 5.4.72 5.4.73 5.4.74: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
