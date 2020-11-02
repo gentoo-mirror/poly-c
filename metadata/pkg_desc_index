@@ -31,6 +31,7 @@ app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iP
 app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/asciidoc 9.0.3_pre 9.0.4_pre: A plain text human readable/writable document format
+app-text/calibre 5.4.2: Ebook management application
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
 dev-db/sqlite 3.33.0_pre-r1: SQL database engine
 dev-games/cegui 0.8.7-r1: Crazy Eddie's GUI System
@@ -43,7 +44,6 @@ dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional algorithm
 dev-libs/icu-le-hb 1.0.3-r1: ICU Layout Engine API on top of HarfBuzz shaping library
-dev-libs/libical 3.0.8: An implementation of basic iCAL protocols
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.1.1g 1.1.1h: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
@@ -94,7 +94,6 @@ mail-filter/pyzor 1.0.0-r1: A distributed, collaborative spam detection and filt
 media-gfx/fawkes 9999: Image Cloaking for Personal Privacy
 media-libs/gst-plugins-base 1.16.2: Basepack of plugins for gstreamer
 media-libs/libbpg 0.9.8_pre: BPG (Better Portable Graphics) is a new image format
-media-libs/libcdr 0.1.6: Library parsing the Corel cdr documents
 media-libs/libdvbpsi 1.3.3_pre: library for MPEG TS/DVB PSI tables decoding and generation
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
@@ -140,6 +139,7 @@ net-misc/netifrc 0.5.1 0.7.1: Gentoo Network Interface Management Scripts
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
+net-misc/youtube-dl 2020.11.01.1_pre: Download videos from YouTube.com (and more sites...)
 net-nds/openldap 2.4.55_pre: LDAP suite of application and development tools
 net-p2p/ncdc 1.21_pre: ncurses directconnect client
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
@@ -163,7 +163,7 @@ sys-apps/iproute2 4.19.0-r1 5.2.0-r1 5.4.0 5.6.0 5.7.0 5.8.0 5.9.0: kernel routi
 sys-apps/kmod 26-r5 27-r2: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
-sys-apps/portage 2.3.99-r2 2.3.103-r1 3.0.4-r1 3.0.7 3.0.8: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.3.99-r2 2.3.103-r1 3.0.4-r1 3.0.7 3.0.8 3.0.9: Portage is the package management and distribution system for Gentoo
 sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chipsets
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/archttp 2.5.1.180529: CLI utility to manage Areca RAID controllers

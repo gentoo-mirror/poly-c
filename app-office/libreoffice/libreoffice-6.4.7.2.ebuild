@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 59eabf0b026415937eb4f6bc370e67f530bb1861 $
+# $Id: 0d74d54e9b1215ab0c695ba59221c378b5b97821 $
 
 EAPI=7
 
@@ -140,7 +140,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	dev-libs/icu:=
 	dev-libs/libassuan
 	dev-libs/libgpg-error
-	>=dev-libs/liborcus-0.15.0
+	dev-libs/liborcus:0/0.15
 	dev-libs/librevenge
 	dev-libs/libxml2
 	dev-libs/libxslt

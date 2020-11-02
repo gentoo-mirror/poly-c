@@ -1,5 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
+# $Id: 27ed996c0ab0aaff4da8333b5cc727ee4f6cd2e3 $
 
 EAPI=6
 CMAKE_MAKEFILE_GENERATOR="ninja"
