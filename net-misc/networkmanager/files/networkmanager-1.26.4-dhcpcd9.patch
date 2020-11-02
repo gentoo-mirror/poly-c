@@ -1,0 +1,190 @@
+From 5e946cc805125b6a82c206ac12eae635be846239 Mon Sep 17 00:00:00 2001
+From: Roy Marples <roy@marples.name>
+Date: Mon, 2 Nov 2020 21:00:55 +0100
+Subject: [PATCH] DHCP: Support dhcpcd-9.x
+
+This breaks <=dhcpcd-6.10.0 as they will lack the -P option.
+This should not be a problem as that's over 5 years old vs this new shiny.
+
+Due to the way dhcpcd-9 uses privilege separation, when we kill
+the dhcpcd process waitpid(2) might return ECHILD so adjust code
+accordingly. When this happens, it has actually exited and this
+behaviour is noted by POSIX.
+
+Backported to networkmanager-1.26.4
+Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
+---
+ src/dhcp/nm-dhcp-dhcpcd.c | 68 ++++++++++++++++++++++++++++-----------
+ src/nm-core-utils.c       | 14 ++++----
+ 2 files changed, 56 insertions(+), 26 deletions(-)
+
+diff --git a/src/dhcp/nm-dhcp-dhcpcd.c b/src/dhcp/nm-dhcp-dhcpcd.c
+index ff695dbe8..69a09b9a6 100644
+--- a/src/dhcp/nm-dhcp-dhcpcd.c
++++ b/src/dhcp/nm-dhcp-dhcpcd.c
+@@ -1,6 +1,6 @@
+ // SPDX-License-Identifier: GPL-2.0+
+ /*
+- * Copyright (C) 2008 Roy Marples
++ * Copyright (C) 2008,2020 Roy Marples <roy@marples.name>
+  * Copyright (C) 2010 Dan Williams <dcbw@redhat.com>
+  */
+ 
+@@ -73,6 +73,8 @@ ip4_start (NMDhcpClient *client,
+ 	gs_unref_ptrarray GPtrArray *argv = NULL;
+ 	pid_t pid = -1;
+ 	GError *local = NULL;
++	gs_free char *pid_cmd_str = NULL;
++	gs_free char *pid_content = NULL;
+ 	gs_free char *cmd_str = NULL;
+ 	gs_free char *binary_name = NULL;
+ 	const char *iface;
+@@ -83,25 +85,16 @@ ip4_start (NMDhcpClient *client,
+ 
+ 	iface = nm_dhcp_client_get_iface (client);
+ 
+-	/* dhcpcd does not allow custom pidfiles; the pidfile is always
+-	 * RUNSTATEDIR "dhcpcd-<ifname>.pid".
+-	 */
+-	priv->pid_file = g_strdup_printf (RUNSTATEDIR "/dhcpcd-%s.pid", iface);
+-
+ 	dhcpcd_path = nm_dhcp_dhcpcd_get_path ();
+ 	if (!dhcpcd_path) {
+ 		nm_utils_error_set_literal (error, NM_UTILS_ERROR_UNKNOWN, "dhcpcd binary not found");
+ 		return FALSE;
+ 	}
+ 
+-	/* Kill any existing dhcpcd from the pidfile */
+-	binary_name = g_path_get_basename (dhcpcd_path);
+-	nm_dhcp_client_stop_existing (priv->pid_file, binary_name);
+-
+ 	argv = g_ptr_array_new ();
+ 	g_ptr_array_add (argv, (gpointer) dhcpcd_path);
+ 
+-	g_ptr_array_add (argv, (gpointer) "-B");    /* Don't background on lease (disable fork()) */
++	g_ptr_array_add (argv, (gpointer) "-b");    /* background right away */
+ 
+ 	g_ptr_array_add (argv, (gpointer) "-K");    /* Disable built-in carrier detection */
+ 
+@@ -138,17 +131,38 @@ ip4_start (NMDhcpClient *client,
+ 	g_ptr_array_add (argv, (gpointer) iface);
+ 	g_ptr_array_add (argv, NULL);
+ 
++	/* dhcpcd does not allow custom pidfiles; we need to query for the location
++	 */
++	g_ptr_array_insert(argv, 1, (gpointer) "-P"); /* Print pid file path */
++	pid_cmd_str = g_strjoinv(" ", (char **) argv->pdata);
++	g_ptr_array_remove_index(argv, 1);
++	if (!g_spawn_command_line_sync(pid_cmd_str, &priv->pid_file, NULL, NULL, &local)) {
++	    nm_utils_error_set(error,
++			       NM_UTILS_ERROR_UNKNOWN,
++			       "dhcpcd failed to emit pidfile: %s",
++			       local->message);
++	    g_error_free(local);
++	    return FALSE;
++	}
++
++	g_strchomp(priv->pid_file);
++	_LOGD("dhcpcd pidfile: %s", priv->pid_file);
++
++	/* Kill any existing dhcpcd from the pidfile */
++	binary_name = g_path_get_basename(dhcpcd_path);
++	nm_dhcp_client_stop_existing(priv->pid_file, binary_name);
++
+ 	_LOGD ("running: %s",
+ 	       (cmd_str = g_strjoinv (" ", (char **) argv->pdata)));
+ 
+-	if (!g_spawn_async (NULL,
++	if (!g_spawn_sync (NULL,
+ 	                    (char **) argv->pdata, NULL,
+-	                      G_SPAWN_DO_NOT_REAP_CHILD
+-	                    | G_SPAWN_STDOUT_TO_DEV_NULL
+-	                    | G_SPAWN_STDERR_TO_DEV_NULL,
++	                    G_SPAWN_STDOUT_TO_DEV_NULL | G_SPAWN_STDERR_TO_DEV_NULL,
+ 	                    nm_utils_setpgid,
+ 	                    NULL,
+-	                    &pid,
++	                    NULL,
++	                    NULL,
++	                    NULL,
+ 	                    &local)) {
+ 		nm_utils_error_set (error,
+ 		                    NM_UTILS_ERROR_UNKNOWN,
+@@ -158,6 +172,14 @@ ip4_start (NMDhcpClient *client,
+ 		return FALSE;
+ 	}
+ 
++	if (!g_file_get_contents(priv->pid_file, &pid_content, NULL, &local)) {
++	    nm_utils_error_set(error, NM_UTILS_ERROR_UNKNOWN, "no pid found: %s", local->message);
++	    g_error_free(local);
++	    return FALSE;
++	}
++
++	pid = _nm_utils_ascii_str_to_int64(pid_content, 10, 1, G_MAXINT64, 0);
++
+ 	nm_assert (pid > 0);
+ 	_LOGI ("dhcpcd started with pid %d", pid);
+ 	nm_dhcp_client_watch_child (client, pid);
+@@ -171,6 +193,18 @@ stop (NMDhcpClient *client, gboolean release)
+ 	NMDhcpDhcpcdPrivate *priv = NM_DHCP_DHCPCD_GET_PRIVATE (self);
+ 	int errsv;
+ 
++	if (release) {
++	    pid_t pid = nm_dhcp_client_get_pid(client);
++
++	    if (pid != 0 && kill(pid, SIGALRM) == -1) {
++		errsv = errno;
++		_LOGD("could not send SIGALRM to pid %d: %d (%s)",
++		      pid,
++		      errsv,
++		      nm_strerror_native(errsv));
++	    }
++	}
++
+ 	NM_DHCP_CLIENT_CLASS (nm_dhcp_dhcpcd_parent_class)->stop (client, release);
+ 
+ 	if (priv->pid_file) {
+@@ -179,8 +213,6 @@ stop (NMDhcpClient *client, gboolean release)
+ 			_LOGD ("could not remove dhcp pid file \"%s\": %d (%s)", priv->pid_file, errsv, nm_strerror_native (errsv));
+ 		}
+ 	}
+-
+-	/* FIXME: implement release... */
+ }
+ 
+ /*****************************************************************************/
+diff --git a/src/nm-core-utils.c b/src/nm-core-utils.c
+index 3950c3c3a..b0f118580 100644
+--- a/src/nm-core-utils.c
++++ b/src/nm-core-utils.c
+@@ -707,7 +707,8 @@ nm_utils_kill_child_sync (pid_t pid, int sig, NMLogDomain log_domain, const char
+ 
+ 		while (TRUE) {
+ 			ret = waitpid (pid, &status, WNOHANG);
+-			if (ret > 0) {
++			/* ECHILD means, the process is not a child/does not exist or it has SIGCHILD blocked. */
++			if (ret > 0 || (ret == -1 && errno == ECHILD)) {
+ 				nm_log_dbg (log_domain, LOG_NAME_FMT ": after sending %s, process %ld exited %s%s",
+ 				            LOG_NAME_ARGS, _kc_signal_to_string (sig), (long) ret, _kc_exit_to_string (buf_exit, status),
+ 				            was_waiting ? _kc_waited_to_string (buf_wait, wait_start_us) : "");
+@@ -716,13 +717,10 @@ nm_utils_kill_child_sync (pid_t pid, int sig, NMLogDomain log_domain, const char
+ 			}
+ 			if (ret == -1) {
+ 				errsv = errno;
+-				/* ECHILD means, the process is not a child/does not exist or it has SIGCHILD blocked. */
+-				if (errsv != ECHILD) {
+-					nm_log_err (LOGD_CORE | log_domain, LOG_NAME_FMT ": after sending %s, waitpid failed with %s (%d)%s",
+-					            LOG_NAME_ARGS, _kc_signal_to_string (sig), nm_strerror_native (errsv), errsv,
+-					           was_waiting ? _kc_waited_to_string (buf_wait, wait_start_us) : "");
+-					goto out;
+-				}
++				nm_log_err (LOGD_CORE | log_domain, LOG_NAME_FMT ": after sending %s, waitpid failed with %s (%d)%s",
++				            LOG_NAME_ARGS, _kc_signal_to_string (sig), nm_strerror_native (errsv), errsv,
++				            was_waiting ? _kc_waited_to_string (buf_wait, wait_start_us) : "");
++				goto out;
+ 			}
+ 
+ 			if (!wait_until)
+-- 
+2.29.2
+
