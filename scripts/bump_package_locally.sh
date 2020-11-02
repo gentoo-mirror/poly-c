@@ -149,7 +149,7 @@ if grep -Fq FILESDIR "${SOURCE_EBUILD}" && [[ "${TARGET_DIR}" != "${SOURCE_EBUIL
 				if [[ -d "${SOURCE_EBUILD%/*}/files/${file}" ]] ; then
 					cp -a "${SOURCE_EBUILD%/*}/files/${file}" "${target_aux_dir}" \
 						|| { ((retval++)) ; continue ; }
-				else 
+				else
 					if [[ ! -d "${target_aux_dir}/${file%/*}" ]] ; then
 						mkdir -p "${target_aux_dir}/${file%/*}" || exit 16
 					fi
