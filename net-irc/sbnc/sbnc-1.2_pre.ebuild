@@ -1,4 +1,4 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -6,7 +6,7 @@ inherit eutils poly-c_ebuilds
 
 DESCRIPTION="shroudBNC is a modular IRC proxy written in C++."
 HOMEPAGE="http://www.shroudbnc.info/"
-SRC_URI="http://mirror.shroudbnc.info/${MY_P}.tar.gz"
+SRC_URI="http://shroudbnc.info/files/${PN}/${MY_P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
