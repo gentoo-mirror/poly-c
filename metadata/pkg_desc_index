@@ -57,6 +57,7 @@ dev-qt/qtwebengine 5.15.1: Library for rendering dynamic web content in Qt5 C++ 
 dev-qt/qtwebkit 5.212.0_pre20200309-r1: WebKit rendering library for the Qt5 framework (deprecated)
 dev-util/cloc 1.84_pre 1.86_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
+dev-util/lxqt-build-tools 0.8.0_pre: LXQt Build Tools
 dev-util/meson 0.56.0_pre: Open source build system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-action/supertuxkart 1.1 1.2: A kart racing game starring Tux, the linux penguin (TuxKart fork)
@@ -84,11 +85,11 @@ games-util/gx52 9999: GTK app for control of the LEDs and MFD of Logitech X52 (P
 games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 games-util/x52pro-linux 0.2.0 0.2.1 9999: Saitek X52pro drivers & controller mapping software for Linux
-gnome-base/gconf 3.2.6-r4: GNOME configuration system and daemon
 kde-apps/kde-wallpapers 15.08.3-r3: KDE wallpapers
 kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
 kde-frameworks/plasma 5.67.0: Plasma framework
+lxqt-base/liblxqt 0.16.0_pre: Common base library for the LXQt desktop environment
 mail-filter/pyzor 1.0.0-r1: A distributed, collaborative spam detection and filtering network
 media-gfx/fawkes 9999: Image Cloaking for Personal Privacy
 media-libs/gst-plugins-base 1.16.2: Basepack of plugins for gstreamer
@@ -184,13 +185,13 @@ sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIO
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.15-r1 3.3.16-r2: standard informational utilities and process-handling tools
-www-apps/nextcloud 20.0.1: Personal cloud that runs on your own server
 www-client/waterfox-classic 2020.09 2020.10: Waterfox Web Browser
 x11-apps/xinit 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-libs/gtk+ 3.24.23_pre: Gimp ToolKit +
 x11-misc/adriconf 1.5.1 1.6 9999: Advanced DRI Configurator
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
+x11-misc/qps 2.2.0_pre: Qt GUI Process Manager
 x11-plugins/pidgin-skypeweb 1.5_pre: SkypeWeb Plugin for Pidgin
 x11-plugins/purple-icyque 9999: ICQ WIM protocol for libpurple
 x11-plugins/purple-matrix 9999: Libpurple protocol plugin for matrix
