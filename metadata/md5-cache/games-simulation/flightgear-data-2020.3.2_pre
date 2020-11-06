@@ -6,6 +6,6 @@ KEYWORDS=~amd64 ~x86
 LICENSE=GPL-2
 RESTRICT=mirror
 SLOT=0
-SRC_URI=mirror://sourceforge/flightgear/FlightGear-2020.1.2-data.tar.bz2
+SRC_URI=mirror://sourceforge/flightgear/FlightGear-2020.3.2-data.tar.bz2
 _eclasses_=poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac
 _md5_=dbda4fda59bcdaa07e10070a227f3dd6
