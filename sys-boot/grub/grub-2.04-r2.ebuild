@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: d0feaf3be6ade03ac711f1c1c9e4a32b123c9cfe $
+# $Id: e68f15c3a276006931a5020d84062ac6b3a5d673 $
 
 EAPI=7
 
@@ -101,7 +101,7 @@ DEPEND="
 		sdl? ( media-libs/libsdl )
 	)
 	device-mapper? ( >=sys-fs/lvm2-2.02.45 )
-	libzfs? ( sys-fs/zfs )
+	libzfs? ( sys-fs/zfs:= )
 	mount? ( sys-fs/fuse:0 )
 	truetype? ( media-libs/freetype:2= )
 	ppc? ( >=sys-apps/ibm-powerpc-utils-1.3.5 )

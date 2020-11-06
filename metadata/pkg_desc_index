@@ -26,7 +26,6 @@ app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LD
 app-misc/mc 4.8.24 4.8.25: GNU Midnight Commander is a text based file manager
 app-misc/mmv 1.01b_p19_pre: Move/copy/append/link multiple files according to a set of wildcard patterns
 app-misc/osmo 0.4.2: Handy personal organizer
-app-office/libreoffice 6.4.7.2: A full office productivity suite
 app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
@@ -43,7 +42,6 @@ dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional algorithm
-dev-libs/icu-le-hb 1.0.3-r1: ICU Layout Engine API on top of HarfBuzz shaping library
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.1.1g 1.1.1h: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
@@ -53,8 +51,6 @@ dev-python/injector 0.18.3: dependency injection framework
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtgui 5.14.1-r4 5.14.2 5.15.0: The GUI module and platform plugins for the Qt5 framework
-dev-qt/qtwebengine 5.15.1: Library for rendering dynamic web content in Qt5 C++ and QML applications
-dev-qt/qtwebkit 5.212.0_pre20200309-r1: WebKit rendering library for the Qt5 framework (deprecated)
 dev-util/cloc 1.84_pre 1.86_pre: Count Lines of Code
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/lxqt-build-tools 0.8.0_pre: LXQt Build Tools
@@ -170,7 +166,7 @@ sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
 sys-block/lsiutil 1.72: LSI Logic Fusion MPT Command Line Interface management tool
 sys-block/setblocksize 0.2: Reformat a SCSI disk with new block size
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family
-sys-boot/grub 2.04-r1: GNU GRUB boot loader
+sys-boot/grub 2.04-r2: GNU GRUB boot loader
 sys-devel/distcc 3.3.3-r1: Distribute compilation of C code across several machines on a network
 sys-devel/icecream 1.3.1_pre: Distributed compiling of C(++) code across several machines; based on distcc
 sys-fs/fswatch 1.14.0 1.15.0 9999: cross-platform file change monitor with multiple backends
