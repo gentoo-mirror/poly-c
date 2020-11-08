@@ -1,5 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
+# $Id: 97f5b8ad96b3e29f6d1f9de2c1ad839b28e4695c $
 
 EAPI=6
 GNOME_ORG_MODULE="NetworkManager"
@@ -7,7 +8,7 @@ GNOME2_LA_PUNT="yes"
 VALA_USE_DEPEND="vapigen"
 PYTHON_COMPAT=( python3_{6,7,8} )
 
-inherit bash-completion-r1 gnome2 linux-info multilib python-any-r1 systemd readme.gentoo-r1 vala virtualx udev multilib-minimal poly-c_gnome
+inherit bash-completion-r1 gnome2 linux-info multilib python-any-r1 systemd readme.gentoo-r1 vala virtualx udev multilib-minimal
 
 DESCRIPTION="A set of co-operative tools that make networking simple and straightforward"
 HOMEPAGE="https://wiki.gnome.org/Projects/NetworkManager"
@@ -101,7 +102,8 @@ DEPEND="${COMMON_DEPEND}
 "
 
 PATCHES=(
-	"${FILESDIR}/${PN}-1.26.4-dhcpcd9.patch"
+	"${FILESDIR}"/${PN}-1.26.4-iwd-fixes-pr640.patch
+	"${FILESDIR}"/${PN}-1.26.4-dhcpcd9.patch
 )
 
 python_check_deps() {
@@ -160,6 +162,11 @@ src_prepare() {
 
 	use vala && vala_src_prepare
 	gnome2_src_prepare
+
+	sed -i \
+		-e 's#/usr/bin/sed#/bin/sed#' \
+		data/84-nm-drivers.rules \
+		|| die
 }
 
 multilib_src_configure() {
@@ -216,7 +223,7 @@ multilib_src_configure() {
 	# Same hack as net-dialup/pptpd to get proper plugin dir for ppp, bug #519986
 	if use ppp; then
 		local PPPD_VER=`best_version net-dialup/ppp`
-		PPPD_VER=${PPPD_VER#*/*-} #reduce it to ${MY_PV}-${PR}
+		PPPD_VER=${PPPD_VER#*/*-} #reduce it to ${PV}-${PR}
 		PPPD_VER=${PPPD_VER%%[_-]*} # main version without beta/pre/patch/revision
 		myconf+=( --with-pppd-plugin-dir=/usr/$(get_libdir)/pppd/${PPPD_VER} )
 	fi
