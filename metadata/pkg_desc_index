@@ -130,7 +130,6 @@ net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC
 net-libs/webkit-gtk 2.28.4: Open source web browser engine
 net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
-net-misc/lldpd 1.0.7_pre: Implementation of IEEE 802.1ab (LLDP)
 net-misc/netifrc 0.5.1 0.7.1: Gentoo Network Interface Management Scripts
 net-misc/networkmanager 1.26.4: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
@@ -176,7 +175,7 @@ sys-libs/libhx 3.25_pre: Platform independent library providing basic system fun
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
-sys-libs/slang 2.3.3_pre28: Multi-platform library designed to allow a developer to create robust software
+sys-libs/slang 2.3.3_pre31: Multi-platform library designed to allow a developer to create robust software
 sys-power/cpupower 4.9.239 4.9.240 4.9.241 4.14.202 4.14.203 4.14.204 4.19.153 4.19.154 4.19.155 5.4.73 5.4.74 5.4.75: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer

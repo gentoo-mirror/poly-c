@@ -1,0 +1,1022 @@
+From 8b4386df83ab5a525f0568113fe1e53d362f433e Mon Sep 17 00:00:00 2001
+From: Andrew Borodin <aborodin@vmail.ru>
+Date: Sun, 19 Jul 2020 19:47:15 +0300
+Subject: [PATCH] Ticket #4120: draw shadows for dialog boxes and menus.
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Thanks Aleš Janda <ales.janda@kyblsoft.cz> for the original patch.
+
+Signed-off-by: Andrew Borodin <aborodin@vmail.ru>
+---
+ AUTHORS                             |   3 +
+ doc/man/mc.1.in                     |   6 +-
+ doc/man/ru/mc.1.in                  |   7 +-
+ lib/global.c                        |   1 +
+ lib/global.h                        |   2 +
+ lib/skin.h                          | 125 ++++++++++++++--------------
+ lib/skin/colors.c                   |   1 +
+ lib/tty/tty-internal.h              |   2 +
+ lib/tty/tty-ncurses.c               |  97 +++++++++++++++------
+ lib/tty/tty-slang.c                 |   9 ++
+ lib/tty/tty.c                       |  11 +++
+ lib/tty/tty.h                       |   1 +
+ lib/widget/frame.c                  |   3 +
+ lib/widget/menu.c                   |   4 +
+ misc/skins/dark.ini                 |   1 +
+ misc/skins/darkfar.ini              |   1 +
+ misc/skins/default.ini              |   1 +
+ misc/skins/double-lines.ini         |   1 +
+ misc/skins/featured-plus.ini        |   1 +
+ misc/skins/featured.ini             |   1 +
+ misc/skins/gotar.ini                |   1 +
+ misc/skins/gray-green-purple256.ini |   1 +
+ misc/skins/gray-orange-blue256.ini  |   1 +
+ misc/skins/julia256.ini             |   1 +
+ misc/skins/mc46.ini                 |   1 +
+ misc/skins/modarcon16-defbg.ini     |   1 +
+ misc/skins/modarcon16.ini           |   1 +
+ misc/skins/modarcon16root-defbg.ini |   1 +
+ misc/skins/modarcon16root.ini       |   1 +
+ misc/skins/modarin256-defbg.ini     |   1 +
+ misc/skins/modarin256.ini           |   1 +
+ misc/skins/modarin256root-defbg.ini |   1 +
+ misc/skins/modarin256root.ini       |   1 +
+ misc/skins/nicedark.ini             |   1 +
+ misc/skins/sand256.ini              |   1 +
+ misc/skins/seasons-autumn16M.ini    |   3 +
+ misc/skins/seasons-spring16M.ini    |   3 +
+ misc/skins/seasons-summer16M.ini    |   3 +
+ misc/skins/seasons-winter16M.ini    |   3 +
+ misc/skins/xoria256.ini             |   2 +
+ misc/skins/yadt256-defbg.ini        |   1 +
+ misc/skins/yadt256.ini              |   1 +
+ src/filemanager/boxes.c             |  44 +++++++++-
+ src/setup.c                         |   1 +
+ 44 files changed, 265 insertions(+), 89 deletions(-)
+
+diff --git a/AUTHORS b/AUTHORS
+index 85309db398..e6df1dcc85 100644
+--- a/AUTHORS
++++ b/AUTHORS
+@@ -43,6 +43,9 @@ Alexander Serkov <serkov@ukrpost.net>
+ Alessandro Rubini <rubini@ipvvis.unipv.it>
+ 	Mouse support.
+ 
++Aleš Janda <ales.janda@kyblsoft.cz>
++	Shadows of dialog windows and menus.
++
+ Alexander Dong <ado@software-ag.de>
+ 	OS/2 port.
+ 
+diff --git a/doc/man/mc.1.in b/doc/man/mc.1.in
+index cc4c6c68b4..cdd1f687bb 100644
+--- a/doc/man/mc.1.in
++++ b/doc/man/mc.1.in
+@@ -2113,13 +2113,17 @@ overwriting files, execution by pressing enter, quitting the program,
+ directory hotlist entries deletion and history cleanup.
+ .\"NODE "    Appearance"
+ .SH "    Appearance"
+-In this dialog you can select the skin to be used.
++In this dialog you can select the skin to be used and enable shadow
++for dialogs and drop down menus.
+ .PP
+ See the
+ .\"LINK2"
+ Skins
+ .\"Skins"
+ section for technical details about the skin definition files.
++.PP
++.I Shadows.
++If this option is enabled, all dialogs and drop down menus will have a shadow.
+ .\"NODE "    Display bits"
+ .SH "    Display bits"
+ This is used to configure the range of visible characters on the
+diff --git a/doc/man/ru/mc.1.in b/doc/man/ru/mc.1.in
+index ea9c898bef..f029b5f3ed 100644
+--- a/doc/man/ru/mc.1.in
++++ b/doc/man/ru/mc.1.in
+@@ -2411,12 +2411,17 @@ Commander, выделены цветом, определённым ключев
+ на подтверждение.
+ .\"NODE "    Appearance"
+ .SH "    Оформление"
+-Используя это диалоговое окно, вы можете выбрать скин.
++Используя это диалоговое окно, вы можете выбрать скин и разрещить отрисовку
++теней у диалоговых окон и выпадающих меню.
+ .PP
+ Для получения более подробной информации о скинах обратитесь к разделу
+ .\"LINK2"
+ Внешний вид\&.
+ .\"Skins"
++.PP
++.I Тени.
++Если эта опция включена, все диалоговые окна и выпадающие меню будут иметь
++тени.
+ .\"NODE "    Display bits"
+ .SH "    Биты символов..."
+ Этот пункт меню используется для задания диапазона отображаемых на
+diff --git a/lib/global.c b/lib/global.c
+index 137bfbdd36..50ba893ba1 100644
+--- a/lib/global.c
++++ b/lib/global.c
+@@ -85,6 +85,7 @@ mc_global_t mc_global = {
+     .tty =
+     {
+         .skin = NULL,
++        .shadows = TRUE,
+         .setup_color_string = NULL,
+         .term_color_string = NULL,
+         .color_terminal_string = NULL,
+diff --git a/lib/global.h b/lib/global.h
+index 846c724c67..6bf55952c9 100644
+--- a/lib/global.h
++++ b/lib/global.h
+@@ -230,6 +230,8 @@ typedef struct
+     {
+         /* Use the specified skin */
+         char *skin;
++        /* Dialog window and frop down menu have a shadow */
++        gboolean shadows;
+ 
+         char *setup_color_string;
+         char *term_color_string;
+diff --git a/lib/skin.h b/lib/skin.h
+index 747a504ec4..155a8db9cb 100644
+--- a/lib/skin.h
++++ b/lib/skin.h
+@@ -22,92 +22,93 @@
+ #define REVERSE_COLOR             mc_skin_color__cache[6]
+ #define COMMAND_MARK_COLOR        mc_skin_color__cache[7]
+ #define HEADER_COLOR              mc_skin_color__cache[8]
++#define SHADOW_COLOR              mc_skin_color__cache[9]
+ 
+ /* Dialog colors */
+-#define COLOR_NORMAL              mc_skin_color__cache[9]
+-#define COLOR_FOCUS               mc_skin_color__cache[10]
+-#define COLOR_HOT_NORMAL          mc_skin_color__cache[11]
+-#define COLOR_HOT_FOCUS           mc_skin_color__cache[12]
+-#define COLOR_TITLE               mc_skin_color__cache[13]
++#define COLOR_NORMAL              mc_skin_color__cache[10]
++#define COLOR_FOCUS               mc_skin_color__cache[11]
++#define COLOR_HOT_NORMAL          mc_skin_color__cache[12]
++#define COLOR_HOT_FOCUS           mc_skin_color__cache[13]
++#define COLOR_TITLE               mc_skin_color__cache[14]
+ 
+ /* Error dialog colors */
+-#define ERROR_COLOR               mc_skin_color__cache[14]
+-#define ERROR_FOCUS               mc_skin_color__cache[15]
+-#define ERROR_HOT_NORMAL          mc_skin_color__cache[16]
+-#define ERROR_HOT_FOCUS           mc_skin_color__cache[17]
+-#define ERROR_TITLE               mc_skin_color__cache[18]
++#define ERROR_COLOR               mc_skin_color__cache[15]
++#define ERROR_FOCUS               mc_skin_color__cache[16]
++#define ERROR_HOT_NORMAL          mc_skin_color__cache[17]
++#define ERROR_HOT_FOCUS           mc_skin_color__cache[18]
++#define ERROR_TITLE               mc_skin_color__cache[19]
+ 
+ /* Menu colors */
+-#define MENU_ENTRY_COLOR          mc_skin_color__cache[19]
+-#define MENU_SELECTED_COLOR       mc_skin_color__cache[20]
+-#define MENU_HOT_COLOR            mc_skin_color__cache[21]
+-#define MENU_HOTSEL_COLOR         mc_skin_color__cache[22]
+-#define MENU_INACTIVE_COLOR       mc_skin_color__cache[23]
++#define MENU_ENTRY_COLOR          mc_skin_color__cache[20]
++#define MENU_SELECTED_COLOR       mc_skin_color__cache[21]
++#define MENU_HOT_COLOR            mc_skin_color__cache[22]
++#define MENU_HOTSEL_COLOR         mc_skin_color__cache[23]
++#define MENU_INACTIVE_COLOR       mc_skin_color__cache[24]
+ 
+ /* Popup menu colors */
+-#define PMENU_ENTRY_COLOR         mc_skin_color__cache[24]
+-#define PMENU_SELECTED_COLOR      mc_skin_color__cache[25]
+-#define PMENU_HOT_COLOR           mc_skin_color__cache[26]      /* unused: not implemented yet */
+-#define PMENU_HOTSEL_COLOR        mc_skin_color__cache[27]      /* unused: not implemented yet */
+-#define PMENU_TITLE_COLOR         mc_skin_color__cache[28]
++#define PMENU_ENTRY_COLOR         mc_skin_color__cache[25]
++#define PMENU_SELECTED_COLOR      mc_skin_color__cache[26]
++#define PMENU_HOT_COLOR           mc_skin_color__cache[27]      /* unused: not implemented yet */
++#define PMENU_HOTSEL_COLOR        mc_skin_color__cache[28]      /* unused: not implemented yet */
++#define PMENU_TITLE_COLOR         mc_skin_color__cache[29]
+ 
+-#define BUTTONBAR_HOTKEY_COLOR    mc_skin_color__cache[29]
+-#define BUTTONBAR_BUTTON_COLOR    mc_skin_color__cache[30]
++#define BUTTONBAR_HOTKEY_COLOR    mc_skin_color__cache[30]
++#define BUTTONBAR_BUTTON_COLOR    mc_skin_color__cache[31]
+ 
+-#define STATUSBAR_COLOR           mc_skin_color__cache[31]
++#define STATUSBAR_COLOR           mc_skin_color__cache[32]
+ 
+ /*
+  * This should be selectable independently. Default has to be black background
+  * foreground does not matter at all.
+  */
+-#define GAUGE_COLOR               mc_skin_color__cache[32]
+-#define INPUT_COLOR               mc_skin_color__cache[33]
+-#define INPUT_UNCHANGED_COLOR     mc_skin_color__cache[34]
+-#define INPUT_MARK_COLOR          mc_skin_color__cache[35]
+-#define INPUT_HISTORY_COLOR       mc_skin_color__cache[36]
+-#define COMMAND_HISTORY_COLOR     mc_skin_color__cache[37]
+-
+-#define HELP_NORMAL_COLOR         mc_skin_color__cache[38]
+-#define HELP_ITALIC_COLOR         mc_skin_color__cache[39]
+-#define HELP_BOLD_COLOR           mc_skin_color__cache[40]
+-#define HELP_LINK_COLOR           mc_skin_color__cache[41]
+-#define HELP_SLINK_COLOR          mc_skin_color__cache[42]
+-#define HELP_TITLE_COLOR          mc_skin_color__cache[43]
+-
+-
+-#define VIEW_NORMAL_COLOR         mc_skin_color__cache[44]
+-#define VIEW_BOLD_COLOR           mc_skin_color__cache[45]
+-#define VIEW_UNDERLINED_COLOR     mc_skin_color__cache[46]
+-#define VIEW_SELECTED_COLOR       mc_skin_color__cache[47]
++#define GAUGE_COLOR               mc_skin_color__cache[33]
++#define INPUT_COLOR               mc_skin_color__cache[34]
++#define INPUT_UNCHANGED_COLOR     mc_skin_color__cache[35]
++#define INPUT_MARK_COLOR          mc_skin_color__cache[36]
++#define INPUT_HISTORY_COLOR       mc_skin_color__cache[37]
++#define COMMAND_HISTORY_COLOR     mc_skin_color__cache[38]
++
++#define HELP_NORMAL_COLOR         mc_skin_color__cache[39]
++#define HELP_ITALIC_COLOR         mc_skin_color__cache[40]
++#define HELP_BOLD_COLOR           mc_skin_color__cache[41]
++#define HELP_LINK_COLOR           mc_skin_color__cache[42]
++#define HELP_SLINK_COLOR          mc_skin_color__cache[43]
++#define HELP_TITLE_COLOR          mc_skin_color__cache[44]
++
++
++#define VIEW_NORMAL_COLOR         mc_skin_color__cache[45]
++#define VIEW_BOLD_COLOR           mc_skin_color__cache[46]
++#define VIEW_UNDERLINED_COLOR     mc_skin_color__cache[47]
++#define VIEW_SELECTED_COLOR       mc_skin_color__cache[48]
+ 
+ /*
+  * editor colors - only 4 for normal, search->found, select, and whitespace
+  * respectively
+  * Last is defined to view color.
+  */
+-#define EDITOR_NORMAL_COLOR       mc_skin_color__cache[48]
+-#define EDITOR_BOLD_COLOR         mc_skin_color__cache[49]
+-#define EDITOR_MARKED_COLOR       mc_skin_color__cache[50]
+-#define EDITOR_WHITESPACE_COLOR   mc_skin_color__cache[51]
+-#define EDITOR_RIGHT_MARGIN_COLOR mc_skin_color__cache[52]
+-#define EDITOR_BACKGROUND         mc_skin_color__cache[53]
+-#define EDITOR_FRAME              mc_skin_color__cache[54]
+-#define EDITOR_FRAME_ACTIVE       mc_skin_color__cache[55]
+-#define EDITOR_FRAME_DRAG         mc_skin_color__cache[56]
++#define EDITOR_NORMAL_COLOR       mc_skin_color__cache[49]
++#define EDITOR_BOLD_COLOR         mc_skin_color__cache[50]
++#define EDITOR_MARKED_COLOR       mc_skin_color__cache[51]
++#define EDITOR_WHITESPACE_COLOR   mc_skin_color__cache[52]
++#define EDITOR_RIGHT_MARGIN_COLOR mc_skin_color__cache[53]
++#define EDITOR_BACKGROUND         mc_skin_color__cache[54]
++#define EDITOR_FRAME              mc_skin_color__cache[55]
++#define EDITOR_FRAME_ACTIVE       mc_skin_color__cache[56]
++#define EDITOR_FRAME_DRAG         mc_skin_color__cache[57]
+ /* color of left 8 char status per line */
+-#define LINE_STATE_COLOR          mc_skin_color__cache[57]
+-#define BOOK_MARK_COLOR           mc_skin_color__cache[58]
+-#define BOOK_MARK_FOUND_COLOR     mc_skin_color__cache[59]
++#define LINE_STATE_COLOR          mc_skin_color__cache[58]
++#define BOOK_MARK_COLOR           mc_skin_color__cache[59]
++#define BOOK_MARK_FOUND_COLOR     mc_skin_color__cache[60]
+ 
+ /* Diff colors */
+-#define DFF_ADD_COLOR             mc_skin_color__cache[60]
+-#define DFF_CHG_COLOR             mc_skin_color__cache[61]
+-#define DFF_CHH_COLOR             mc_skin_color__cache[62]
+-#define DFF_CHD_COLOR             mc_skin_color__cache[63]
+-#define DFF_DEL_COLOR             mc_skin_color__cache[64]
+-#define DFF_ERROR_COLOR           mc_skin_color__cache[65]
+-
+-#define MC_SKIN_COLOR_CACHE_COUNT 66
++#define DFF_ADD_COLOR             mc_skin_color__cache[61]
++#define DFF_CHG_COLOR             mc_skin_color__cache[62]
++#define DFF_CHH_COLOR             mc_skin_color__cache[63]
++#define DFF_CHD_COLOR             mc_skin_color__cache[64]
++#define DFF_DEL_COLOR             mc_skin_color__cache[65]
++#define DFF_ERROR_COLOR           mc_skin_color__cache[66]
++
++#define MC_SKIN_COLOR_CACHE_COUNT 67
+ 
+ /*** enums ***************************************************************************************/
+ 
+diff --git a/lib/skin/colors.c b/lib/skin/colors.c
+index b8d944a41f..27e18bddaa 100644
+--- a/lib/skin/colors.c
++++ b/lib/skin/colors.c
+@@ -249,6 +249,7 @@ mc_skin_color_cache_init (void)
+     REVERSE_COLOR = mc_skin_color_get ("core", "reverse");
+     HEADER_COLOR = mc_skin_color_get ("core", "header");
+     COMMAND_MARK_COLOR = mc_skin_color_get ("core", "commandlinemark");
++    SHADOW_COLOR = mc_skin_color_get ("core", "shadow");
+ 
+     COLOR_NORMAL = mc_skin_color_get ("dialog", "_default_");
+     COLOR_FOCUS = mc_skin_color_get ("dialog", "dfocus");
+diff --git a/lib/tty/tty-internal.h b/lib/tty/tty-internal.h
+index 662b0bcaf3..77546cd5f0 100644
+--- a/lib/tty/tty-internal.h
++++ b/lib/tty/tty-internal.h
+@@ -42,6 +42,8 @@ char *mc_tty_normalize_from_utf8 (const char *);
+ void tty_init_xterm_support (gboolean is_xterm);
+ int tty_lowlevel_getch (void);
+ 
++void tty_colorize_area (int y, int x, int rows, int cols, int color);
++
+ /*** inline functions ****************************************************************************/
+ 
+ #endif /* MC_TTY_INTERNAL_H */
+diff --git a/lib/tty/tty-ncurses.c b/lib/tty/tty-ncurses.c
+index 4383d1e747..97ba9c053c 100644
+--- a/lib/tty/tty-ncurses.c
++++ b/lib/tty/tty-ncurses.c
+@@ -48,6 +48,7 @@
+ 
+ #include "tty-internal.h"       /* mc_tty_normalize_from_utf8() */
+ #include "tty.h"
++#include "color.h"              /* tty_setcolor */
+ #include "color-internal.h"
+ #include "key.h"
+ #include "mouse.h"
+@@ -119,6 +120,44 @@ sigwinch_handler (int dummy)
+     (void) n;
+ }
+ 
++/* --------------------------------------------------------------------------------------------- */
++
++/**
++ * Get visible part of area.
++ *
++ * @returns TRUE if any part of area is in screen bounds, FALSE otherwise.
++ */
++static gboolean
++tty_clip (int *y, int *x, int *rows, int *cols)
++{
++    if (*y < 0)
++    {
++        *rows += *y;
++
++        if (*rows <= 0)
++            return FALSE;
++
++        *y = 0;
++    }
++
++    if (*x < 0)
++    {
++        *cols += *x;
++
++        if (*cols <= 0)
++            return FALSE;
++
++        *x = 0;
++    }
++
++    if (*y + *rows > LINES)
++        *rows = LINES - *y;
++    if (*x + *cols > COLS)
++        *cols = COLS - *x;
++
++    return TRUE;
++}
++
+ /* --------------------------------------------------------------------------------------------- */
+ /*** public functions ****************************************************************************/
+ /* --------------------------------------------------------------------------------------------- */
+@@ -494,30 +533,8 @@ tty_fill_region (int y, int x, int rows, int cols, unsigned char ch)
+ {
+     int i;
+ 
+-    if (y < 0)
+-    {
+-        rows += y;
+-
+-        if (rows <= 0)
+-            return;
+-
+-        y = 0;
+-    }
+-
+-    if (x < 0)
+-    {
+-        cols += x;
+-
+-        if (cols <= 0)
+-            return;
+-
+-        x = 0;
+-    }
+-
+-    if (y + rows > LINES)
+-        rows = LINES - y;
+-    if (x + cols > COLS)
+-        cols = COLS - x;
++    if (!tty_clip (&y, &x, &rows, &cols))
++        return;
+ 
+     for (i = 0; i < rows; i++)
+     {
+@@ -533,6 +550,38 @@ tty_fill_region (int y, int x, int rows, int cols, unsigned char ch)
+ 
+ /* --------------------------------------------------------------------------------------------- */
+ 
++void
++tty_colorize_area (int y, int x, int rows, int cols, int color)
++{
++    cchar_t *ctext;
++    wchar_t wch[10];   /* TODO not sure if the length is correct */
++    attr_t attrs;
++    short color_pair;
++
++    if (!use_colors || !tty_clip (&y, &x, &rows, &cols))
++        return;
++
++    tty_setcolor (color);
++    ctext = g_malloc (sizeof (cchar_t) * (cols + 1));
++
++    for (int row = 0; row < rows; row++)
++    {
++        mvin_wchnstr (y + row, x, ctext, cols);
++
++        for (int col = 0; col < cols; col++)
++        {
++            getcchar (&ctext[col], wch, &attrs, &color_pair, NULL);
++            setcchar (&ctext[col], wch, attrs, color, NULL);
++        }
++
++        mvadd_wchnstr (y + row, x, ctext, cols);
++    }
++
++    g_free (ctext);
++}
++
++/* --------------------------------------------------------------------------------------------- */
++
+ void
+ tty_set_alt_charset (gboolean alt_charset)
+ {
+diff --git a/lib/tty/tty-slang.c b/lib/tty/tty-slang.c
+index 0d8e89ff7d..6bf22a90de 100644
+--- a/lib/tty/tty-slang.c
++++ b/lib/tty/tty-slang.c
+@@ -622,6 +622,15 @@ tty_fill_region (int y, int x, int rows, int cols, unsigned char ch)
+ 
+ /* --------------------------------------------------------------------------------------------- */
+ 
++void
++tty_colorize_area (int y, int x, int rows, int cols, int color)
++{
++    if (use_colors)
++        SLsmg_set_color_in_region (color, y, x, rows, cols);
++}
++
++/* --------------------------------------------------------------------------------------------- */
++
+ void
+ tty_set_alt_charset (gboolean alt_charset)
+ {
+diff --git a/lib/tty/tty.c b/lib/tty/tty.c
+index a3929b011f..d4a7313434 100644
+--- a/lib/tty/tty.c
++++ b/lib/tty/tty.c
+@@ -264,6 +264,17 @@ tty_draw_box (int y, int x, int ys, int xs, gboolean single)
+ 
+ /* --------------------------------------------------------------------------------------------- */
+ 
++void
++tty_draw_box_shadow (int y, int x, int rows, int cols, int shadow_color)
++{
++    /* draw right shadow */
++    tty_colorize_area (y + 1, x + cols, rows - 1, 2, shadow_color);
++    /* draw bottom shadow */
++    tty_colorize_area (y + rows, x + 2, 1, cols, shadow_color);
++}
++
++/* --------------------------------------------------------------------------------------------- */
++
+ char *
+ mc_tty_normalize_from_utf8 (const char *str)
+ {
+diff --git a/lib/tty/tty.h b/lib/tty/tty.h
+index fb1d94da81..5b9bf684f8 100644
+--- a/lib/tty/tty.h
++++ b/lib/tty/tty.h
+@@ -126,6 +126,7 @@ extern void tty_print_one_hline (gboolean single);
+ extern void tty_draw_hline (int y, int x, int ch, int len);
+ extern void tty_draw_vline (int y, int x, int ch, int len);
+ extern void tty_draw_box (int y, int x, int rows, int cols, gboolean single);
++extern void tty_draw_box_shadow (int y, int x, int rows, int cols, int shadow_color);
+ extern void tty_fill_region (int y, int x, int rows, int cols, unsigned char ch);
+ 
+ extern int tty_resize (int fd);
+diff --git a/lib/widget/frame.c b/lib/widget/frame.c
+index 1f4f14d8a8..5d5a5acdfc 100644
+--- a/lib/widget/frame.c
++++ b/lib/widget/frame.c
+@@ -76,6 +76,9 @@ frame_draw (const WFrame * f)
+ 
+     colors = widget_get_colors (w);
+ 
++    if (mc_global.tty.shadows)
++        tty_draw_box_shadow (w->y, w->x, w->lines, w->cols, SHADOW_COLOR);
++
+     tty_setcolor (colors[FRAME_COLOR_NORMAL]);
+     tty_fill_region (w->y, w->x, w->lines, w->cols, ' ');
+     tty_draw_box (w->y + d, w->x + d, w->lines - 2 * d, w->cols - 2 * d, f->single);
+diff --git a/lib/widget/menu.c b/lib/widget/menu.c
+index ca2ff472a7..271832e9d0 100644
+--- a/lib/widget/menu.c
++++ b/lib/widget/menu.c
+@@ -187,6 +187,10 @@ menubar_draw_drop (const WMenuBar * menubar)
+     if (column + menu->max_entry_len + 5 > (gsize) w->cols)
+         column = w->cols - menu->max_entry_len - 5;
+ 
++    if (mc_global.tty.shadows)
++        tty_draw_box_shadow (w->y + 1, w->x + column, count + 2, menu->max_entry_len + 5,
++                             SHADOW_COLOR);
++
+     tty_setcolor (MENU_ENTRY_COLOR);
+     tty_draw_box (w->y + 1, w->x + column, count + 2, menu->max_entry_len + 5, FALSE);
+ 
+diff --git a/misc/skins/dark.ini b/misc/skins/dark.ini
+index 58d6f83515..0cfeb8ecfe 100644
+--- a/misc/skins/dark.ini
++++ b/misc/skins/dark.ini
+@@ -39,6 +39,7 @@
+     header = yellow;black
+     inputhistory =
+     commandhistory =
++    shadow = gray;black
+ 
+ [dialog]
+     _default_ = brightcyan;blue
+diff --git a/misc/skins/darkfar.ini b/misc/skins/darkfar.ini
+index e0e1a5879e..c6dcf68f24 100644
+--- a/misc/skins/darkfar.ini
++++ b/misc/skins/darkfar.ini
+@@ -39,6 +39,7 @@
+     header = yellow;black
+     inputhistory =
+     commandhistory =
++    shadow = gray;black
+ 
+ [dialog]
+     _default_ = brightcyan;blue
+diff --git a/misc/skins/default.ini b/misc/skins/default.ini
+index afc060ade8..145eb998b4 100644
+--- a/misc/skins/default.ini
++++ b/misc/skins/default.ini
+@@ -39,6 +39,7 @@
+     header = yellow;blue
+     inputhistory =
+     commandhistory =
++    shadow = gray;black
+ 
+ [dialog]
+     _default_ = black;lightgray
+diff --git a/misc/skins/double-lines.ini b/misc/skins/double-lines.ini
+index cad1e2807d..7f35df0bcd 100644
+--- a/misc/skins/double-lines.ini
++++ b/misc/skins/double-lines.ini
+@@ -39,6 +39,7 @@
+     header = yellow;blue
+     inputhistory =
+     commandhistory =
++    shadow = gray;black
+ 
+ [dialog]
+     _default_ = black;lightgray
+diff --git a/misc/skins/featured-plus.ini b/misc/skins/featured-plus.ini
+index be7dde7a61..a0dc070280 100644
+--- a/misc/skins/featured-plus.ini
++++ b/misc/skins/featured-plus.ini
+@@ -41,6 +41,7 @@
+     header = yellow;blue
+     inputhistory =
+     commandhistory =
++    shadow = gray;black
+ 
+ [dialog]
+     _default_ = black;lightgray
+diff --git a/misc/skins/featured.ini b/misc/skins/featured.ini
+index b376718999..43ce2f2931 100644
+--- a/misc/skins/featured.ini
++++ b/misc/skins/featured.ini
+@@ -41,6 +41,7 @@
+     header = yellow;blue
+     inputhistory =
+     commandhistory =
++    shadow = gray;black
+ 
+ [dialog]
+     _default_ = black;lightgray
+diff --git a/misc/skins/gotar.ini b/misc/skins/gotar.ini
+index b9b8aa093a..3b81867fc1 100644
+--- a/misc/skins/gotar.ini
++++ b/misc/skins/gotar.ini
+@@ -36,6 +36,7 @@
+     header = brightred;
+     inputhistory =
+     commandhistory =
++    shadow = gray;black
+ 
+ [dialog]
+     _default_ = brightcyan;blue
+diff --git a/misc/skins/gray-green-purple256.ini b/misc/skins/gray-green-purple256.ini
+index 4a15b798cf..3ae534cae5 100644
+--- a/misc/skins/gray-green-purple256.ini
++++ b/misc/skins/gray-green-purple256.ini
+@@ -45,6 +45,7 @@
+     reverse =
+     commandlinemark = ;main1
+     header = main2
++    shadow = black;gray12
+ 
+ [dialog]
+     _default_ = black;bgdarker
+diff --git a/misc/skins/gray-orange-blue256.ini b/misc/skins/gray-orange-blue256.ini
+index cddd27b5f0..fa491f014d 100644
+--- a/misc/skins/gray-orange-blue256.ini
++++ b/misc/skins/gray-orange-blue256.ini
+@@ -45,6 +45,7 @@
+     reverse =
+     commandlinemark = ;main1
+     header = main2
++    shadow = black;gray12
+ 
+ [dialog]
+     _default_ = black;bgdarker
+diff --git a/misc/skins/julia256.ini b/misc/skins/julia256.ini
+index bf04dd9e69..a61701cfd0 100644
+--- a/misc/skins/julia256.ini
++++ b/misc/skins/julia256.ini
+@@ -42,6 +42,7 @@
+     header = yellow;color237
+     inputhistory =
+     commandhistory =
++    shadow = gray;black
+ 
+ [dialog]
+     _default_ = black;lightgray
+diff --git a/misc/skins/mc46.ini b/misc/skins/mc46.ini
+index 0b1f099d71..f971310ed4 100644
+--- a/misc/skins/mc46.ini
++++ b/misc/skins/mc46.ini
+@@ -39,6 +39,7 @@
+     header = yellow;blue
+     inputhistory =
+     commandhistory =
++    shadow = gray;black
+ 
+ [dialog]
+     _default_ = black;lightgray
+diff --git a/misc/skins/modarcon16-defbg.ini b/misc/skins/modarcon16-defbg.ini
+index 12391af2ff..c004f6363e 100644
+--- a/misc/skins/modarcon16-defbg.ini
++++ b/misc/skins/modarcon16-defbg.ini
+@@ -81,6 +81,7 @@
+     disabled = color8;color7
+     #inputhistory =
+     #commandhistory =
++    shadow = color7;color0
+ 
+ [dialog]
+     _default_ = color0;color7
+diff --git a/misc/skins/modarcon16.ini b/misc/skins/modarcon16.ini
+index f0fe8d9e87..8cf81ab8b6 100644
+--- a/misc/skins/modarcon16.ini
++++ b/misc/skins/modarcon16.ini
+@@ -81,6 +81,7 @@
+     disabled = color8;color7
+     #inputhistory =
+     #commandhistory =
++    shadow = color7;color0
+ 
+ [dialog]
+     _default_ = color0;color7
+diff --git a/misc/skins/modarcon16root-defbg.ini b/misc/skins/modarcon16root-defbg.ini
+index f00351b365..b747004892 100644
+--- a/misc/skins/modarcon16root-defbg.ini
++++ b/misc/skins/modarcon16root-defbg.ini
+@@ -81,6 +81,7 @@
+     disabled = color8;color7
+     #inputhistory =
+     #commandhistory =
++    shadow = color7;color0
+ 
+ [dialog]
+     _default_ = color0;color7
+diff --git a/misc/skins/modarcon16root.ini b/misc/skins/modarcon16root.ini
+index f76c8d6c94..d9afd5a3d1 100644
+--- a/misc/skins/modarcon16root.ini
++++ b/misc/skins/modarcon16root.ini
+@@ -81,6 +81,7 @@
+     disabled = color8;color7
+     #inputhistory =
+     #commandhistory =
++    shadow = color7;color0
+ 
+ [dialog]
+     _default_ = color0;color7
+diff --git a/misc/skins/modarin256-defbg.ini b/misc/skins/modarin256-defbg.ini
+index dcc6f265a0..f12d33623a 100644
+--- a/misc/skins/modarin256-defbg.ini
++++ b/misc/skins/modarin256-defbg.ini
+@@ -81,6 +81,7 @@
+     disabled = color246;color239
+     #inputhistory =
+     #commandhistory =
++    shadow = color240;color0
+ 
+ [dialog]
+     _default_ = color252;color239
+diff --git a/misc/skins/modarin256.ini b/misc/skins/modarin256.ini
+index fa2bf2e93d..8d1872aa76 100644
+--- a/misc/skins/modarin256.ini
++++ b/misc/skins/modarin256.ini
+@@ -81,6 +81,7 @@
+     disabled = color246;color239
+     #inputhistory =
+     #commandhistory =
++    shadow = color240;color0
+ 
+ [dialog]
+     _default_ = color252;color239
+diff --git a/misc/skins/modarin256root-defbg.ini b/misc/skins/modarin256root-defbg.ini
+index dcf7a29b4b..48a4e9927d 100644
+--- a/misc/skins/modarin256root-defbg.ini
++++ b/misc/skins/modarin256root-defbg.ini
+@@ -81,6 +81,7 @@
+     disabled = color246;color239
+     #inputhistory =
+     #commandhistory =
++    shadow = color240;color0
+ 
+ [dialog]
+     _default_ = color252;color239
+diff --git a/misc/skins/modarin256root.ini b/misc/skins/modarin256root.ini
+index 9bb4feefe1..0a361ed247 100644
+--- a/misc/skins/modarin256root.ini
++++ b/misc/skins/modarin256root.ini
+@@ -81,6 +81,7 @@
+     disabled = color246;color239
+     #inputhistory =
+     #commandhistory =
++    shadow = color240;color0
+ 
+ [dialog]
+     _default_ = color252;color239
+diff --git a/misc/skins/nicedark.ini b/misc/skins/nicedark.ini
+index fb2c076a5c..0b5ee01070 100644
+--- a/misc/skins/nicedark.ini
++++ b/misc/skins/nicedark.ini
+@@ -39,6 +39,7 @@
+     header = lightgray;black
+     inputhistory =
+     commandhistory =
++    shadow = gray;black
+ 
+ [dialog]
+     _default_ = lightgray;black
+diff --git a/misc/skins/sand256.ini b/misc/skins/sand256.ini
+index f60ad44ab0..94b1b77ca3 100644
+--- a/misc/skins/sand256.ini
++++ b/misc/skins/sand256.ini
+@@ -94,6 +94,7 @@
+     reverse = ;rgb452
+     commandlinemark = white;gray
+     header = red;;italic
++    shadow = black;rgb221
+ 
+ [dialog]
+     _default_ = black;rgb553
+diff --git a/misc/skins/seasons-autumn16M.ini b/misc/skins/seasons-autumn16M.ini
+index 182e2219bf..bc8dc65ea5 100644
+--- a/misc/skins/seasons-autumn16M.ini
++++ b/misc/skins/seasons-autumn16M.ini
+@@ -65,6 +65,8 @@
+     DialogFocus = #69880c
+     Input = #b5c400
+     PaleFg = #555
++    ShadowFg = #7f7f55
++    ShadowBg = #4c1002
+     Error = #840000
+     ErrorFocus = #b00
+     Top = #ff9909
+@@ -106,6 +108,7 @@
+     reverse = #000;Bottom
+     commandlinemark = #000;DialogFocus
+     header = HeaderFg
++    shadow = ShadowFg;ShadowBg
+ 
+ [dialog]
+     _default_ = #000;Dialog
+diff --git a/misc/skins/seasons-spring16M.ini b/misc/skins/seasons-spring16M.ini
+index de5906e2b4..2c44a243b2 100644
+--- a/misc/skins/seasons-spring16M.ini
++++ b/misc/skins/seasons-spring16M.ini
+@@ -65,6 +65,8 @@
+     DialogFocus = #b3de85
+     Input = Main
+     PaleFg = #777
++    ShadowFg = #000
++    ShadowBg = #797f73
+     Error = #c62b41
+     ErrorFocus = #e16d7e
+     Top = #f699a6
+@@ -106,6 +108,7 @@
+     reverse = #000;Bottom
+     commandlinemark = #000;DialogFocus
+     header = HeaderFg
++    shadow = ShadowFg;ShadowBg
+ 
+ [dialog]
+     _default_ = #000;Dialog
+diff --git a/misc/skins/seasons-summer16M.ini b/misc/skins/seasons-summer16M.ini
+index a8a01caa3c..e9c686dc19 100644
+--- a/misc/skins/seasons-summer16M.ini
++++ b/misc/skins/seasons-summer16M.ini
+@@ -65,6 +65,8 @@
+     DialogFocus = #f864f6
+     Input = #d7ffad
+     PaleFg = #777
++    ShadowFg = #000
++    ShadowBg = #7f7659
+     Error = #d40707
+     ErrorFocus = #db7b7b
+     Top = #46cef3
+@@ -106,6 +108,7 @@
+     reverse = #000;Bottom
+     commandlinemark = #000;DialogFocus
+     header = HeaderFg
++    shadow = ShadowFg;ShadowBg
+ 
+ [dialog]
+     _default_ = #000;Dialog
+diff --git a/misc/skins/seasons-winter16M.ini b/misc/skins/seasons-winter16M.ini
+index bebc50c793..2724b2f098 100644
+--- a/misc/skins/seasons-winter16M.ini
++++ b/misc/skins/seasons-winter16M.ini
+@@ -65,6 +65,8 @@
+     DialogFocus = #afbad8
+     Input = Main
+     PaleFg = #777
++    ShadowFg = #000
++    ShadowBg = #727176
+     Error = #3c4766
+     ErrorFocus = #586896
+     Top = #6b99d7
+@@ -106,6 +108,7 @@
+     reverse = #000;Bottom
+     commandlinemark = #000;DialogFocus
+     header = HeaderFg
++    shadow = ShadowFg;ShadowBg
+ 
+ [dialog]
+     _default_ = #000;Dialog
+diff --git a/misc/skins/xoria256.ini b/misc/skins/xoria256.ini
+index 771f39ca47..d0e6b8a9ba 100644
+--- a/misc/skins/xoria256.ini
++++ b/misc/skins/xoria256.ini
+@@ -82,6 +82,8 @@
+     #commandhistory =
+     #commandlinemark = black;lightgray
+ 
++    shadow = color239;black
++
+ [dialog]
+     _default_ = black;color250
+     dhotnormal = color88;;
+diff --git a/misc/skins/yadt256-defbg.ini b/misc/skins/yadt256-defbg.ini
+index 8eec14c14b..5de0aef579 100644
+--- a/misc/skins/yadt256-defbg.ini
++++ b/misc/skins/yadt256-defbg.ini
+@@ -48,6 +48,7 @@
+     disabled = color246;color239
+     #inputhistory =
+     #commandhistory =
++    shadow = color239;black
+ 
+ [dialog]
+     _default_ = color252;color239
+diff --git a/misc/skins/yadt256.ini b/misc/skins/yadt256.ini
+index 6395762142..8fd2c70b72 100644
+--- a/misc/skins/yadt256.ini
++++ b/misc/skins/yadt256.ini
+@@ -47,6 +47,7 @@
+     disabled = color246;color239
+     #inputhistory =
+     #commandhistory =
++    shadow = color239;black
+ 
+ [dialog]
+     _default_ = color252;color239
+diff --git a/src/filemanager/boxes.c b/src/filemanager/boxes.c
+index e6a9abe1ac..6dae3f04c4 100644
+--- a/src/filemanager/boxes.c
++++ b/src/filemanager/boxes.c
+@@ -42,6 +42,7 @@
+ #include "lib/global.h"
+ 
+ #include "lib/tty/tty.h"
++#include "lib/tty/color.h"      /* tty_use_colors() */
+ #include "lib/tty/key.h"        /* XCTRL and ALT macros  */
+ #include "lib/skin.h"           /* INPUT_COLOR */
+ #include "lib/mcconfig.h"       /* Load/save user formats */
+@@ -119,6 +120,8 @@ static gchar *current_skin_name;
+ static WListbox *bg_list = NULL;
+ #endif /* ENABLE_BACKGROUND */
+ 
++static unsigned long shadows_id;
++
+ /* --------------------------------------------------------------------------------------------- */
+ /*** file scope functions ************************************************************************/
+ /* --------------------------------------------------------------------------------------------- */
+@@ -272,6 +275,38 @@ sel_skin_button (WButton * button, int action)
+ 
+ /* --------------------------------------------------------------------------------------------- */
+ 
++static cb_ret_t
++appearance_box_callback (Widget * w, Widget * sender, widget_msg_t msg, int parm, void *data)
++{
++    switch (msg)
++    {
++    case MSG_INIT:
++        if (!tty_use_colors ())
++        {
++            Widget *shadow;
++
++            shadow = widget_find_by_id (w, shadows_id);
++            CHECK (shadow)->state = FALSE;
++            widget_disable (shadow, TRUE);
++        }
++        return MSG_HANDLED;
++
++    case MSG_NOTIFY:
++        if (sender != NULL && sender->id == shadows_id)
++        {
++            mc_global.tty.shadows = CHECK (sender)->state;
++            repaint_screen ();
++            return MSG_HANDLED;
++        }
++        return MSG_NOT_HANDLED;
++
++    default:
++        return dlg_default_callback (w, sender, msg, parm, data);
++    }
++}
++
++/* --------------------------------------------------------------------------------------------- */
++
+ static cb_ret_t
+ panel_listing_callback (Widget * w, Widget * sender, widget_msg_t msg, int parm, void *data)
+ {
+@@ -590,6 +625,8 @@ configure_box (void)
+ void
+ appearance_box (void)
+ {
++    gboolean shadows = mc_global.tty.shadows;
++
+     current_skin_name = g_strdup (mc_skin__default.name);
+     skin_names = mc_skin_list ();
+ 
+@@ -602,6 +639,8 @@ appearance_box (void)
+                 QUICK_BUTTON (str_fit_to_term (skin_name_to_label (current_skin_name), 20, J_LEFT_FIT),
+                               B_USER, sel_skin_button, NULL),
+             QUICK_STOP_COLUMNS,
++            QUICK_SEPARATOR (TRUE),
++            QUICK_CHECKBOX (N_("&Shadows"), &mc_global.tty.shadows, &shadows_id),
+             QUICK_BUTTONS_OK_CANCEL,
+             QUICK_END
+             /* *INDENT-ON* */
+@@ -610,14 +649,17 @@ appearance_box (void)
+         quick_dialog_t qdlg = {
+             -1, -1, 54,
+             N_("Appearance"), "[Appearance]",
+-            quick_widgets, dlg_default_callback, NULL
++            quick_widgets, appearance_box_callback, NULL
+         };
+ 
+         if (quick_dialog (&qdlg) == B_ENTER)
+             mc_config_set_string (mc_global.main_config, CONFIG_APP_SECTION, "skin",
+                                   current_skin_name);
+         else
++        {
+             skin_apply (NULL);
++            mc_global.tty.shadows = shadows;
++        }
+     }
+ 
+     g_free (current_skin_name);
+diff --git a/src/setup.c b/src/setup.c
+index 37618a9cdc..6c20c6e951 100644
+--- a/src/setup.c
++++ b/src/setup.c
+@@ -360,6 +360,7 @@ static const struct
+ #endif /* USE_INTERNAL_EDIT */
+     { "editor_ask_filename_before_edit", &editor_ask_filename_before_edit },
+     { "nice_rotating_dash", &nice_rotating_dash },
++    { "shadows", &mc_global.tty.shadows },
+     { "mcview_remember_file_position", &mcview_remember_file_position },
+     { "auto_fill_mkdir_name", &auto_fill_mkdir_name },
+     { "copymove_persistent_attr", &copymove_persistent_attr },
