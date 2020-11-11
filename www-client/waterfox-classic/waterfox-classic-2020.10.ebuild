@@ -22,7 +22,7 @@ MOZ_HTTP_URI="https://github.com/MrAlex94/Waterfox/archive"
 
 MOZCONFIG_OPTIONAL_WIFI=1
 
-inherit check-reqs eapi7-ver flag-o-matic toolchain-funcs eutils gnome2-utils mozconfig-v6.56 pax-utils xdg-utils autotools virtualx 
+inherit check-reqs eapi7-ver flag-o-matic toolchain-funcs eutils gnome2-utils mozconfig-v6.56 pax-utils xdg-utils autotools virtualx
 
 #if [[ -z "$(ver_cut 3)" ]] ; then
 #	MY_PV="${PV}-classic"
@@ -48,7 +48,6 @@ SRC_URI="
 	${PATCH_URIS[@]}
 	system-libvpx? ( https://dev.gentoo.org/~polynomial-c/mozilla/seamonkey-2.53.3-system_libvpx-1.8.patch.xz )
 "
-	#${MOZ_HTTP_URI}/${P}.tar.xz
 
 ASM_DEPEND=">=dev-lang/yasm-1.1"
 
@@ -89,14 +88,6 @@ pkg_setup() {
 		SESSION_MANAGER \
 		XDG_SESSION_COOKIE \
 		XAUTHORITY
-
-	#if ! use bindist; then
-	#	einfo
-	#	elog "You are enabling official branding. You may not redistribute this build"
-	#	elog "to any users on your network or the internet. Doing so puts yourself into"
-	#	elog "a legal problem with Mozilla Foundation"
-	#	elog "You can disable it by emerging ${MY_PN} _with_ the bindist USE-flag"
-	#fi
 
 	if use pgo; then
 		einfo
@@ -326,30 +317,10 @@ src_install() {
 	#mozlinguas_src_install
 
 	local size sizes icon_path icon name
-	#if use bindist; then
-	#	sizes="16 32 48"
-	#	icon_path="${S}/browser/branding/aurora"
-	#	# Firefox's new rapid release cycle means no more codenames
-	#	# Let's just stick with this one...
-	#	icon="aurora"
-	#	name="Aurora"
-
-	#	# Override preferences to set the MOZ_DEV_EDITION defaults, since we
-	#	# don't define MOZ_DEV_EDITION to avoid profile debaucles.
-	#	# (source: browser/app/profile/firefox.js)
-	#	cat >>"${BUILD_OBJ_DIR}/dist/bin/browser/defaults/preferences/all-gentoo.js" <<PROFILE_EOF
-#pref("app.feedback.baseURL", "https://input.mozilla.org/%LOCALE%/feedback/firefoxdev/%VERSION%/");
-#sticky_pref("lightweightThemes.selectedThemeID", "firefox-devedition@mozilla.org");
-#sticky_pref("browser.devedition.theme.enabled", true);
-#sticky_pref("devtools.theme", "dark");
-#PROFILE_EOF
-
-	#else
-		sizes="16 22 24 32 256"
-		icon_path="${S}/browser/branding/unofficial"
-		icon="${MY_PN}"
-		name="Waterfox"
-	#fi
+	sizes="16 22 24 32 256"
+	icon_path="${S}/browser/branding/unofficial"
+	icon="${MY_PN}"
+	name="Waterfox"
 
 	# Install icons and .desktop for menu entry
 	for size in ${sizes}; do

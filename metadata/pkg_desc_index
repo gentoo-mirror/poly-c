@@ -175,6 +175,7 @@ sys-libs/libhx 3.25_pre: Platform independent library providing basic system fun
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
+sys-libs/pam 1.5.0_pre: Linux-PAM (Pluggable Authentication Modules)
 sys-libs/slang 2.3.3_pre31: Multi-platform library designed to allow a developer to create robust software
 sys-power/cpupower 4.9.240 4.9.241 4.9.242 4.14.203 4.14.204 4.14.205 4.19.154 4.19.155 4.19.156 5.4.74 5.4.75 5.4.76: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
