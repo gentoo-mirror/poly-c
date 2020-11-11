@@ -69,7 +69,6 @@ games-fps/etlegacy 2.76 9999: Wolfenstein: Enemy Territory 2.60b compatible clie
 games-fps/rtcw 1.51b 1.51c 9999: Return to Castle Wolfenstein - IORTCW Project
 games-simulation/flightgear 2020.1.3_pre 2020.3.2_pre: Open Source Flight Simulator
 games-simulation/flightgear-data 2020.1.3_pre 2020.3.2_pre: FlightGear data files
-games-simulation/openttd 1.10.3: OpenTTD is a clone of Transport Tycoon Deluxe
 games-strategy/0ad 0.0.23b_alpha: A free, real-time strategy game
 games-strategy/0ad-data 0.0.23b_alpha: Data files for 0ad
 games-strategy/boswars 9999: Futuristic real-time strategy game
@@ -135,7 +134,7 @@ net-misc/networkmanager 1.26.4: A set of co-operative tools that make networking
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5 1.6: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
-net-nds/openldap 2.4.55_pre: LDAP suite of application and development tools
+net-nds/openldap 2.4.55_pre 2.4.56_pre: LDAP suite of application and development tools
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/pulsatingscience 9999: 3D binary pulsar animation and outreach application
 sci-libs/dcmtk 3.6.2: The DICOM Toolkit
@@ -177,7 +176,7 @@ sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/pam 1.5.0_pre: Linux-PAM (Pluggable Authentication Modules)
 sys-libs/slang 2.3.3_pre31: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.240 4.9.241 4.9.242 4.14.203 4.14.204 4.14.205 4.19.154 4.19.155 4.19.156 5.4.74 5.4.75 5.4.76: Shows and sets processor power related values
+sys-power/cpupower 4.9.241 4.9.242 4.9.243 4.14.204 4.14.205 4.14.206 4.19.155 4.19.156 4.19.157 5.4.75 5.4.76 5.4.77: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
