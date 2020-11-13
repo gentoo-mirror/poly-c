@@ -329,6 +329,9 @@ PATCHES=(
 	"${FILESDIR}"/chromium-r1.patch
 	"${FILESDIR}"/${PN}-4.3-fix-build-without-SSSE3.patch
 	"${FILESDIR}"/${PN}-4.3-altivec-novsx-yuv2rgb.patch
+
+	# https://trac.ffmpeg.org/ticket/8760
+	"${FILESDIR}"/${P}-libsrt-1.4.1.patch
 )
 
 MULTILIB_WRAPPED_HEADERS=(
