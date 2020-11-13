@@ -177,7 +177,6 @@ sys-libs/libhx 3.25_pre: Platform independent library providing basic system fun
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
-sys-libs/pam 1.5.0_pre: Linux-PAM (Pluggable Authentication Modules)
 sys-libs/slang 2.3.3_pre31: Multi-platform library designed to allow a developer to create robust software
 sys-power/cpupower 4.9.241 4.9.242 4.9.243 4.14.204 4.14.205 4.14.206 4.19.155 4.19.156 4.19.157 5.4.75 5.4.76 5.4.77: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
@@ -186,6 +185,7 @@ sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.15-r1 3.3.16-r2: standard informational utilities and process-handling tools
 www-client/waterfox-classic 2020.09 2020.10: Waterfox Web Browser
 x11-apps/xinit 1.4.1: X Window System initializer
+x11-libs/gdk-pixbuf-xlib 2.40.2: Deprecated Xlib integration for GdkPixbuf
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-libs/gtk+ 3.24.23_pre: Gimp ToolKit +
 x11-misc/adriconf 1.5.1 1.6 9999: Advanced DRI Configurator
