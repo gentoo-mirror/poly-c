@@ -195,3 +195,4 @@ x11-plugins/pidgin-skypeweb 1.5_pre: SkypeWeb Plugin for Pidgin
 x11-plugins/purple-icyque 9999: ICQ WIM protocol for libpurple
 x11-plugins/purple-matrix 9999: Libpurple protocol plugin for matrix
 x11-themes/sddm-gentoo-black-theme 1.2 9999: Simple SDDM theme inspired on FBSD SLiM theme
+x11-wm/icewm 1.9.2: Ice Window Manager with Themes
