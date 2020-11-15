@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -16,19 +16,22 @@ KEYWORDS="~amd64 ~x86"
 
 IUSE="doc ffmpeg flac mad mpg123 mysql nls opus speex twolame"
 
-RDEPEND="dev-python/eyeD3[${PYTHON_USEDEP}]
-	dev-python/pygtk[${PYTHON_USEDEP}]
+RDEPEND="
+	$(python_gen_cond_dep '
+		dev-python/eyeD3[${PYTHON_USEDEP}]
+		dev-python/pygtk[${PYTHON_USEDEP}]
+		media-libs/mutagen[${PYTHON_USEDEP}]
+		mysql? ( dev-python/mysql-python[${PYTHON_USEDEP}] )
+	')
 	media-libs/libsamplerate
 	>=media-libs/libshout-idjc-2.3.1[speex?]
 	media-libs/libsndfile
 	media-libs/libvorbis
-	media-libs/mutagen[${PYTHON_USEDEP}]
 	>=media-sound/jack-audio-connection-kit-0.116.0
-	ffmpeg? ( virtual/ffmpeg )
+	ffmpeg? ( media-video/ffmpeg )
 	flac? ( media-libs/flac )
 	mad? ( media-sound/lame )
 	mpg123? ( media-sound/mpg123 )
-	mysql? ( dev-python/mysql-python[${PYTHON_USEDEP}] )
 	opus? ( media-libs/opus )
 	speex? ( media-libs/speex )
 	twolame? ( media-sound/twolame )"

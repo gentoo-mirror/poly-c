@@ -1,15 +1,15 @@
 BDEPEND=virtual/pkgconfig nls? ( sys-devel/gettext ) >=app-portage/elt-patches-20170815 || ( >=sys-devel/automake-1.16.1:1.16 >=sys-devel/automake-1.15.1:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
 DEFINED_PHASES=configure install postinst prepare setup
-DEPEND=dev-python/eyeD3[%PYTHON_USEDEP-NEEDS-TO-BE-USED-IN-PYTHON_GEN_COND_DEP%] dev-python/pygtk[%PYTHON_USEDEP-NEEDS-TO-BE-USED-IN-PYTHON_GEN_COND_DEP%] media-libs/libsamplerate >=media-libs/libshout-idjc-2.3.1[speex?] media-libs/libsndfile media-libs/libvorbis media-libs/mutagen[%PYTHON_USEDEP-NEEDS-TO-BE-USED-IN-PYTHON_GEN_COND_DEP%] >=media-sound/jack-audio-connection-kit-0.116.0 ffmpeg? ( virtual/ffmpeg ) flac? ( media-libs/flac ) mad? ( media-sound/lame ) mpg123? ( media-sound/mpg123 ) mysql? ( dev-python/mysql-python[%PYTHON_USEDEP-NEEDS-TO-BE-USED-IN-PYTHON_GEN_COND_DEP%] ) opus? ( media-libs/opus ) speex? ( media-libs/speex ) twolame? ( media-sound/twolame )
+DEPEND=python_single_target_python2_7? ( dev-python/eyeD3[python_targets_python2_7(-)] dev-python/pygtk[python_targets_python2_7(-)] media-libs/mutagen[python_targets_python2_7(-)] mysql? ( dev-python/mysql-python[python_targets_python2_7(-)] ) ) media-libs/libsamplerate >=media-libs/libshout-idjc-2.3.1[speex?] media-libs/libsndfile media-libs/libvorbis >=media-sound/jack-audio-connection-kit-0.116.0 ffmpeg? ( media-video/ffmpeg ) flac? ( media-libs/flac ) mad? ( media-sound/lame ) mpg123? ( media-sound/mpg123 ) opus? ( media-libs/opus ) speex? ( media-libs/speex ) twolame? ( media-sound/twolame )
 DESCRIPTION=Internet DJ Console has two media players, jingles player, crossfader, VoIP and streaming
 EAPI=7
 HOMEPAGE=http://idjc.sourceforge.net/
 IUSE=doc ffmpeg flac mad mpg123 mysql nls opus speex twolame +python_single_target_python2_7
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-2
-RDEPEND=dev-python/eyeD3[%PYTHON_USEDEP-NEEDS-TO-BE-USED-IN-PYTHON_GEN_COND_DEP%] dev-python/pygtk[%PYTHON_USEDEP-NEEDS-TO-BE-USED-IN-PYTHON_GEN_COND_DEP%] media-libs/libsamplerate >=media-libs/libshout-idjc-2.3.1[speex?] media-libs/libsndfile media-libs/libvorbis media-libs/mutagen[%PYTHON_USEDEP-NEEDS-TO-BE-USED-IN-PYTHON_GEN_COND_DEP%] >=media-sound/jack-audio-connection-kit-0.116.0 ffmpeg? ( virtual/ffmpeg ) flac? ( media-libs/flac ) mad? ( media-sound/lame ) mpg123? ( media-sound/mpg123 ) mysql? ( dev-python/mysql-python[%PYTHON_USEDEP-NEEDS-TO-BE-USED-IN-PYTHON_GEN_COND_DEP%] ) opus? ( media-libs/opus ) speex? ( media-libs/speex ) twolame? ( media-sound/twolame )
+RDEPEND=python_single_target_python2_7? ( dev-python/eyeD3[python_targets_python2_7(-)] dev-python/pygtk[python_targets_python2_7(-)] media-libs/mutagen[python_targets_python2_7(-)] mysql? ( dev-python/mysql-python[python_targets_python2_7(-)] ) ) media-libs/libsamplerate >=media-libs/libshout-idjc-2.3.1[speex?] media-libs/libsndfile media-libs/libvorbis >=media-sound/jack-audio-connection-kit-0.116.0 ffmpeg? ( media-video/ffmpeg ) flac? ( media-libs/flac ) mad? ( media-sound/lame ) mpg123? ( media-sound/mpg123 ) opus? ( media-libs/opus ) speex? ( media-libs/speex ) twolame? ( media-sound/twolame )
 RESTRICT=mirror
 SLOT=0
 SRC_URI=mirror://sourceforge/idjc/idjc-0.8.17.tar.gz
 _eclasses_=autotools	7d999b62b8749fad43fff00620cedf47	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	98584e405e2b0264d37e8f728327fed1	python-single-r1	d3100de905f978df912135806cf27188	python-utils-r1	e41e32d357e5bdd388b5be2ce24f3883	toolchain-funcs	605c126bed8d87e4378d5ff1645330cb
-_md5_=517f23112fd00fd53a7bac02bb4273e7
+_md5_=355a77e26167ba0f76f13e53b42dd563
