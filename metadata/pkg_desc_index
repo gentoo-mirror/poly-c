@@ -45,6 +45,7 @@ dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional 
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.1.1g 1.1.1h: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/protobuf 3.14.0_pre: Google's Protocol Buffers - Extensible mechanism for serializing structured data
 dev-libs/xerces-c 3.2.3_pre: A validating XML parser written in a portable subset of C++
 dev-php/pecl-redis 5.2.1_pre: PHP extension for interfacing with Redis
 dev-python/injector 0.18.3: dependency injection framework
@@ -151,7 +152,7 @@ sci-misc/mia 2.4.4: Library and tools for medical image processing
 sci-misc/xmedcon 0.14.1: Medical Image Conversion Utility
 sci-visualization/amide 1.0.5: AMIDE's a Medical Imaging Data Examiner
 sci-visualization/ginkgocadx 3.8.6: An advanced DICOM viewer and dicomizer
-sys-apps/baselayout 2.6-r1 2.7: Filesystem baselayout and init scripts
+sys-apps/baselayout 2.6-r1 2.7 2.7-r1: Filesystem baselayout and init scripts
 sys-apps/fwup 1.0.0 1.2.1: Configurable embedded Linux firmware update creator and runner
 sys-apps/gawk 4.2.1-r1 5.0.1 5.1.0: GNU awk pattern-matching language
 sys-apps/hwloc 2.0.3_pre: displays the hardware topology in convenient formats
@@ -185,7 +186,6 @@ sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.15-r1 3.3.16-r2: standard informational utilities and process-handling tools
 www-client/waterfox-classic 2020.09 2020.10: Waterfox Web Browser
 x11-apps/xinit 1.4.1: X Window System initializer
-x11-libs/gdk-pixbuf-xlib 2.40.2: Deprecated Xlib integration for GdkPixbuf
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-libs/gtk+ 3.24.23_pre: Gimp ToolKit +
 x11-misc/adriconf 1.5.1 1.6 9999: Advanced DRI Configurator
@@ -195,4 +195,3 @@ x11-plugins/pidgin-skypeweb 1.5_pre: SkypeWeb Plugin for Pidgin
 x11-plugins/purple-icyque 9999: ICQ WIM protocol for libpurple
 x11-plugins/purple-matrix 9999: Libpurple protocol plugin for matrix
 x11-themes/sddm-gentoo-black-theme 1.2 9999: Simple SDDM theme inspired on FBSD SLiM theme
-x11-wm/icewm 1.9.2: Ice Window Manager with Themes
