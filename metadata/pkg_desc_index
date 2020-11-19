@@ -160,6 +160,7 @@ sys-apps/iproute2 4.19.0-r1 5.2.0-r1 5.4.0 5.6.0 5.7.0 5.8.0 5.9.0: kernel routi
 sys-apps/kmod 26-r5 27-r2: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
+sys-apps/openrc 0.42.1: OpenRC manages the services, startup and shutdown of a host
 sys-apps/portage 2.3.99-r2 2.3.103-r1 3.0.4-r1 3.0.7 3.0.8 3.0.9: Portage is the package management and distribution system for Gentoo
 sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chipsets
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
@@ -178,7 +179,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre31: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.9.241 4.9.242 4.9.243 4.14.204 4.14.205 4.14.206 4.19.155 4.19.156 4.19.157 5.4.75 5.4.76 5.4.77: Shows and sets processor power related values
+sys-power/cpupower 4.9.242 4.9.243 4.9.244 4.14.205 4.14.206 4.14.207 4.19.156 4.19.157 4.19.158 5.4.76 5.4.77 5.4.78: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
