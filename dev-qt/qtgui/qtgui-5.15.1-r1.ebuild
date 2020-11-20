@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 23bc34eb7c4694c78af91a2c3b9843469fdaebea $
+# $Id: 3e1ba3f077d6b483b9be0318a0257414f43cbdba $
 
 EAPI=7
 
@@ -11,7 +11,7 @@ DESCRIPTION="The GUI module and platform plugins for the Qt5 framework"
 SLOT=5/$(ver_cut 1-3) # bug 707658
 
 if [[ ${QT5_BUILD_TYPE} == release ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
+	KEYWORDS="amd64 arm arm64 ~hppa ppc ppc64 ~sparc x86"
 fi
 
 # TODO: linuxfb
@@ -35,7 +35,6 @@ RDEPEND="
 	>=media-libs/freetype-2.6.1:2
 	>=media-libs/harfbuzz-1.6.0:=
 	sys-libs/zlib:=
-	virtual/opengl
 	dbus? ( ~dev-qt/qtdbus-${PV} )
 	egl? ( media-libs/mesa[egl] )
 	eglfs? (
@@ -44,6 +43,7 @@ RDEPEND="
 	)
 	evdev? ( sys-libs/mtdev )
 	gles2-only? ( media-libs/mesa[gles2] )
+	!gles2-only? ( virtual/opengl )
 	jpeg? ( virtual/jpeg:0 )
 	libinput? (
 		dev-libs/libinput:=
@@ -131,6 +131,7 @@ QT5_GENTOO_PRIVATE_CONFIG=(
 
 PATCHES=(
 	"${FILESDIR}/${PN}-5.14.1-cmake-macro-backward-compat.patch" # bug 703306
+	"${FILESDIR}/${P}-emit-qscreen-geometrychanged-when-dpi-changes.patch" # QTBUG-86604
 )
 
 src_prepare() {
