@@ -139,7 +139,6 @@ net-misc/networkmanager 1.26.4: A set of co-operative tools that make networking
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5 1.6: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
-net-nds/openldap 2.4.55_pre 2.4.56_pre: LDAP suite of application and development tools
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/pulsatingscience 9999: 3D binary pulsar animation and outreach application
 sci-libs/dcmtk 3.6.2: The DICOM Toolkit
@@ -185,7 +184,6 @@ sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIO
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.15-r1 3.3.16-r2: standard informational utilities and process-handling tools
-www-apps/nextcloud 20.0.2: Personal cloud that runs on your own server
 www-client/waterfox-classic 2020.09 2020.10: Waterfox Web Browser
 x11-apps/xinit 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
