@@ -1,8 +1,8 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-inherit autotools bash-completion-r1 flag-o-matic gnome2-utils linux-info systemd toolchain-funcs user udev multilib-minimal
+EAPI=7
+inherit autotools bash-completion-r1 flag-o-matic gnome2-utils linux-info systemd toolchain-funcs udev multilib-minimal
 
 DESCRIPTION="A networked sound server with an advanced plugin system"
 HOMEPAGE="https://www.freedesktop.org/wiki/Software/PulseAudio/"
@@ -36,7 +36,7 @@ REQUIRED_USE="
 "
 
 # libpcre needed in some cases, bug #472228
-CDEPEND="
+RDEPEND="
 	|| (
 		elibc_glibc? ( virtual/libc )
 		elibc_uclibc? ( virtual/libc )
@@ -82,25 +82,16 @@ CDEPEND="
 	systemd? ( sys-apps/systemd:0=[${MULTILIB_USEDEP}] )
 	dev-libs/libltdl:0
 	selinux? ( sec-policy/selinux-pulseaudio )
-" # libltdl is a valid RDEPEND, libltdl.so is used for native abi in pulsecore and daemon
-
-RDEPEND="${CDEPEND}
 	realtime? ( sys-auth/rtkit )
 	gconf? ( >=gnome-base/gconf-3.2.6 )
-"
+" # libltdl is a valid RDEPEND, libltdl.so is used for native abi in pulsecore and daemon
 
 DEPEND="${RDEPEND}
-	sys-devel/m4
-	doc? ( app-doc/doxygen )
-	test? ( >=dev-libs/check-0.9.10 )
 	X? (
 		x11-base/xorg-proto
 		>=x11-libs/libXtst-1.0.99.2[${MULTILIB_USEDEP}]
 	)
 	dev-libs/libatomic_ops
-	virtual/pkgconfig
-	system-wide? ( || ( dev-util/unifdef sys-freebsd/freebsd-ubin ) )
-	>=sys-devel/gettext-0.19.3
 "
 # This is a PDEPEND to avoid a circular dep
 PDEPEND="
@@ -115,7 +106,19 @@ RDEPEND="${RDEPEND}
 	system-wide? (
 		alsa? ( media-sound/alsa-utils )
 		bluetooth? ( >=net-wireless/bluez-5 )
+		acct-user/pulse
+		acct-group/pulse-access
 	)
+	acct-group/audio
+"
+
+BDEPEND="
+	doc? ( app-doc/doxygen )
+	system-wide? ( dev-util/unifdef )
+	test? ( >=dev-libs/check-0.9.10 )
+	sys-devel/gettext
+	sys-devel/m4
+	virtual/pkgconfig
 "
 
 PATCHES=(
@@ -140,14 +143,6 @@ pkg_pretend() {
 pkg_setup() {
 	linux-info_pkg_setup
 	gnome2_environment_reset #543364
-
-	enewgroup audio 18 # Just make sure it exists
-
-	if use system-wide; then
-		enewgroup pulse-access
-		enewgroup pulse
-		enewuser pulse -1 -1 /var/run/pulse pulse,audio
-	fi
 }
 
 src_prepare() {
@@ -302,19 +297,16 @@ multilib_src_install_all() {
 	else
 		# Prevent warnings when system-wide is not used, bug #447694
 		if use dbus ; then
-			rm "${ED%/}"/etc/dbus-1/system.d/pulseaudio-system.conf || die
+			rm "${ED}"/etc/dbus-1/system.d/pulseaudio-system.conf || die
 		fi
 	fi
 
 	if use zeroconf ; then
 		sed -e '/module-zeroconf-publish/s:^#::' \
-			-i "${ED%/}/etc/pulse/default.pa" || die
+			-i "${ED}/etc/pulse/default.pa" || die
 	fi
 
 	dodoc NEWS README todo
-
-	# Create the state directory
-	use prefix || diropts -o pulse -g pulse -m0755
 
 	find "${ED}" \( -name '*.a' -o -name '*.la' \) -delete || die
 }
