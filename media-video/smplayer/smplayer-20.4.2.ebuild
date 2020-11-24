@@ -1,6 +1,6 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 2007-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9152ba49d33bcbc801319cf79bcf320c8e5420d5 $
+# $Id: 57d140c4373eff2ead5f5e28756749056e2d1824 $
 
 EAPI=7
 
@@ -35,7 +35,7 @@ DEPEND="
 "
 RDEPEND="${DEPEND}
 	|| (
-		media-video/mpv[libass,X]
+		media-video/mpv[libass(+),X]
 		media-video/mplayer[bidi?,libass,png,X]
 	)
 "
