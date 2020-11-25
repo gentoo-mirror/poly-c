@@ -9,5 +9,5 @@ RDEPEND=>=media-libs/gstreamer-1.16.3_pre_pre:1.0[abi_x86_32(-)?,abi_x86_64(-)?,
 REQUIRED_USE=opus? ( ogg ) theora? ( ogg ) vorbis? ( ogg )
 RESTRICT=mirror
 SLOT=1.0
-_eclasses_=multibuild	b2c915190b051f55a23b9354b9849847	multilib	98584e405e2b0264d37e8f728327fed1	multilib-build	9a65133006c608964888346a412cc454	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	toolchain-funcs	605c126bed8d87e4378d5ff1645330cb
+_eclasses_=multibuild	b2c915190b051f55a23b9354b9849847	multilib	d410501a125f99ffb560b0c523cd3d1e	multilib-build	9a65133006c608964888346a412cc454	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	toolchain-funcs	605c126bed8d87e4378d5ff1645330cb
 _md5_=3f05bc36bf7e31a03e3beb5cfd14b5d6
