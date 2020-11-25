@@ -88,7 +88,6 @@ kde-frameworks/plasma 5.67.0: Plasma framework
 lxqt-base/liblxqt 0.16.0_pre: Common base library for the LXQt desktop environment
 mail-filter/pyzor 1.0.0-r1: A distributed, collaborative spam detection and filtering network
 media-gfx/fawkes 9999: Image Cloaking for Personal Privacy
-media-libs/aubio 0.4.9: Library for audio labelling
 media-libs/gst-plugins-bad 1.16.3_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.16.2 1.16.3_pre: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.16.3_pre: Basepack of plugins for GStreamer
