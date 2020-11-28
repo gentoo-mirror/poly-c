@@ -2,9 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
-
-inherit eutils
+EAPI=7
 
 MY_P="RemoteBox-${PV}"
 
