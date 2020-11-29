@@ -1,17 +1,18 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2e529363d2c80cae0b3e29dbc36c65311dcb21ea $
+# $Id: 69b04b33a89e2d31b3360fca01f0738bb3e44393 $
 
 EAPI=7
 
 PYTHON_COMPAT=( python3_{6..8} )
-PYTHON_REQ_USE="sqlite,ssl"
+PYTHON_REQ_USE="ipv6,sqlite,ssl"
 
 inherit bash-completion-r1 desktop toolchain-funcs python-single-r1 xdg-utils
 
 DESCRIPTION="Ebook management application"
 HOMEPAGE="https://calibre-ebook.com/"
-SRC_URI="https://download.calibre-ebook.com/${PV}/${P}.tar.xz"
+SRC_URI="https://download.calibre-ebook.com/${PV}/${P}.tar.xz
+	https://dev.gentoo.org/~zmedico/dist/calibre-5.4.2-SIP-v4.patch.xz"
 
 LICENSE="
 	GPL-3+
@@ -123,8 +124,10 @@ src_prepare() {
 	# disable_plugins: walking sec-hole, wait for upstream to use GHNS interface
 	eapply \
 		"${FILESDIR}/${PN}-2.9.0-no_updates_dialog.patch" \
-		"${FILESDIR}/${PN}-disable_plugins.patch"
-	has_version ">=dev-libs/icu-68.1" && eapply "${FILESDIR}/${PN}-4-22-0-icu68.patch"
+		"${FILESDIR}/${PN}-disable_plugins.patch" \
+		"${WORKDIR}/${PN}-5.4.2-SIP-v4.patch"
+
+	has_version ">=dev-libs/icu-68.1" && eapply "${FILESDIR}/${PN}-4.22.0-icu68.patch"
 
 	eapply_user
 
@@ -228,25 +231,10 @@ src_install() {
 	python_fix_shebang --force "${ED}"
 
 	einfo "Compiling python modules"
-	python_optimize "${ED}"/usr/lib/calibre
+	python_optimize "${ED}"/usr/$(get_libdir)/calibre "${D}/$(python_get_sitedir)"
 
 	newinitd "${FILESDIR}"/calibre-server-3.init calibre-server
 	newconfd "${FILESDIR}"/calibre-server-3.conf calibre-server
-
-	bashcomp_alias calibre \
-		lrfviewer \
-		calibre-debug \
-		ebook-meta \
-		calibre-server \
-		ebook-viewer \
-		ebook-polish \
-		fetch-ebook-metadata \
-		lrf2lrs \
-		ebook-convert \
-		ebook-edit \
-		calibre-smtp \
-		ebook-device
-
 }
 
 pkg_preinst() {
