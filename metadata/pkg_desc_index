@@ -80,6 +80,7 @@ games-util/gx52 9999: GTK app for control of the LEDs and MFD of Logitech X52 (P
 games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 games-util/x52pro-linux 0.2.0 0.2.1 9999: Saitek X52pro drivers & controller mapping software for Linux
+kde-apps/calendarsupport 20.08.3: Calendar support library
 kde-apps/kde-wallpapers 15.08.3-r3: KDE wallpapers
 kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
