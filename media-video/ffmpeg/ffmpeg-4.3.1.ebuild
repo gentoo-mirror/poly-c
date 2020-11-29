@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: da8caf3ad3dae6481cbb6ac10189d4a401cab193 $
+# $Id: 7c722389ec2b1e34072edfe4387b9961b45c69ac $
 
 EAPI=7
 
@@ -60,7 +60,7 @@ LICENSE="
 	samba? ( GPL-3 )
 "
 if [ "${PV#9999}" = "${PV}" ] ; then
-	KEYWORDS="amd64 arm arm64 ~ia64 ~mips ~ppc ppc64 ~sparc x86 ~amd64-linux ~x86-linux"
+	KEYWORDS="amd64 arm arm64 ~hppa ~ia64 ~mips ~ppc ppc64 ~sparc x86 ~amd64-linux ~x86-linux"
 fi
 
 # Options to use as use_enable in the foo[:bar] form.
