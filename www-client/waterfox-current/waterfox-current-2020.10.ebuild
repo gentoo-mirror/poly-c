@@ -26,6 +26,7 @@ MY_PV="${PV}-current"
 
 # Patch version
 PATCH="firefox-68.0-patches-15"
+#PATCH="firefox-78esr-patches-07"
 
 MOZ_HTTP_URI="https://github.com/MrAlex94/Waterfox/archive"
 
@@ -61,7 +62,7 @@ PATCH_URIS=( https://dev.gentoo.org/~{anarchy,axs,polynomial-c,whissi}/mozilla/p
 SRC_URI="
 	${MOZ_HTTP_URI}/${MY_PV}.tar.gz -> ${P}.tar.gz
 	${PATCH_URIS[@]}"
-#SRC_URI+=" system-libvpx? ( https://dev.gentoo.org/~polynomial-c/mozilla/seamonkey-2.53.3-system_libvpx-1.8.patch.xz )"
+SRC_URI+=" https://dev.gentoo.org/~polynomial-c/mozilla/seamonkey-2.53.5.1-rust148-packed_simd.patch"
 
 CDEPEND="
 	>=dev-libs/nss-3.44.4
@@ -268,8 +269,9 @@ src_prepare() {
 
 	# Apply our patches
 	eapply "${WORKDIR}/firefox"
+	#eapply "${WORKDIR}/firefox-patches"
 
-	#use system-libvpx && eapply -p2 "${WORKDIR}/seamonkey-2.53.3-system_libvpx-1.8.patch"
+	eapply "${DISTDIR}/seamonkey-2.53.5.1-rust148-packed_simd.patch"
 
 	# Enable graceful fingerprinting:
 	# Do not always spoof Windows 10 on HTTP request unless Android
