@@ -40,6 +40,7 @@ dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional algorithm
+dev-libs/nss 3.59: Mozilla's Network Security Services library that implements PKI support
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.1.1g 1.1.1h: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
@@ -86,6 +87,7 @@ kde-frameworks/plasma 5.67.0: Plasma framework
 lxqt-base/liblxqt 0.16.0_pre: Common base library for the LXQt desktop environment
 mail-filter/pyzor 1.0.0-r1: A distributed, collaborative spam detection and filtering network
 media-gfx/fawkes 9999: Image Cloaking for Personal Privacy
+media-gfx/gimp 2.10.22-r1: GNU Image Manipulation Program
 media-libs/gst-plugins-bad 1.16.3_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.16.2 1.16.3_pre: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.16.3_pre: Basepack of plugins for GStreamer
@@ -209,6 +211,7 @@ net-misc/networkmanager 1.26.4: A set of co-operative tools that make networking
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5 1.6: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
+net-print/hplip 3.20.11_pre: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/pulsatingscience 9999: 3D binary pulsar animation and outreach application
 sci-libs/dcmtk 3.6.2: The DICOM Toolkit

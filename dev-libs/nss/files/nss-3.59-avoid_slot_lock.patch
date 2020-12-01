@@ -1,0 +1,71 @@
+# HG changeset patch
+# User Kevin Jacobs <kjacobs@mozilla.com>
+# Date 1606753516 28800
+#      Mon Nov 30 08:25:16 2020 -0800
+# Node ID 66aed57979611a4a35a75399703b53a093f1bb81
+# Parent  d36a1f84fe8d8b8907441cc5e0bd8106d10e53c0
+Don't hold slot lock when taking session lock
+
+diff --git a/lib/dev/devslot.c b/lib/dev/devslot.c
+--- a/lib/dev/devslot.c
++++ b/lib/dev/devslot.c
+@@ -188,6 +188,7 @@ nssSlot_IsTokenPresent(
+         }
+         session = nssToken_GetDefaultSession(slot->token);
+         if (session) {
++            nssSlot_ExitMonitor(slot);
+             nssSession_EnterMonitor(session);
+             /* token is not present */
+             if (session->handle != CK_INVALID_HANDLE) {
+@@ -197,6 +198,12 @@ nssSlot_IsTokenPresent(
+                 session->handle = CK_INVALID_HANDLE;
+             }
+             nssSession_ExitMonitor(session);
++            nssSlot_EnterMonitor(slot);
++            if (!slot->token) {
++                /* Check token presence after re-acquiring lock */
++                isPresent = PR_FALSE;
++                goto done; /* slot lock held */
++            }
+         }
+         if (slot->token->base.name[0] != 0) {
+             /* notify the high-level cache that the token is removed */
+@@ -223,6 +230,7 @@ nssSlot_IsTokenPresent(
+     session = nssToken_GetDefaultSession(slot->token);
+     if (session) {
+         PRBool tokenRemoved;
++        nssSlot_ExitMonitor(slot);
+         nssSession_EnterMonitor(session);
+         if (session->handle != CK_INVALID_HANDLE) {
+             CK_SESSION_INFO sessionInfo;
+@@ -236,11 +244,17 @@ nssSlot_IsTokenPresent(
+         }
+         tokenRemoved = (session->handle == CK_INVALID_HANDLE);
+         nssSession_ExitMonitor(session);
++        nssSlot_EnterMonitor(slot);
+         /* token not removed, finished */
+         if (!tokenRemoved) {
+             isPresent = PR_TRUE;
+             goto done; /* slot lock held */
+         }
++        if (!slot->token) {
++            /* Check token presence after re-acquiring lock */
++            isPresent = PR_FALSE;
++            goto done; /* slot lock held */
++        }
+     }
+     /* the token has been removed, and reinserted, or the slot contains
+      * a token it doesn't recognize. invalidate all the old
+diff --git a/lib/dev/devt.h b/lib/dev/devt.h
+--- a/lib/dev/devt.h
++++ b/lib/dev/devt.h
+@@ -96,9 +96,6 @@ struct NSSSlotStr {
+ };
+ 
+ struct nssSessionStr {
+-    /* Must not hold slot->lock when taking lock.
+-     * See ordering in nssSlot_IsTokenPresent.
+-     */
+     PZLock *lock;
+     CK_SESSION_HANDLE handle;
+     NSSSlot *slot;
