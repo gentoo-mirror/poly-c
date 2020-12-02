@@ -32,7 +32,7 @@ app-text/asciidoc 9.0.3_pre 9.0.4_pre: A plain text human readable/writable docu
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
 dev-db/sqlite 3.33.0_pre-r1: SQL database engine
 dev-games/cegui 0.8.7-r1: Crazy Eddie's GUI System
-dev-games/simgear 2020.3.2_pre 2020.3.3_pre: Development library for simulation games
+dev-games/simgear 2020.3.3_pre 2020.3.4_pre: Development library for simulation games
 dev-java/ant-core 1.9.8_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
@@ -40,7 +40,6 @@ dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional algorithm
-dev-libs/nss 3.59: Mozilla's Network Security Services library that implements PKI support
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.1.1g 1.1.1h: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
@@ -67,8 +66,8 @@ games-fps/enemy-territory 2.60b-r1: standalone multi-player game based on Return
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.76 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.51b 1.51c 9999: Return to Castle Wolfenstein - IORTCW Project
-games-simulation/flightgear 2020.3.2_pre 2020.3.3_pre: Open Source Flight Simulator
-games-simulation/flightgear-data 2020.1.3_pre 2020.3.2_pre 2020.3.3_pre: FlightGear data files
+games-simulation/flightgear 2020.3.3_pre 2020.3.4_pre: Open Source Flight Simulator
+games-simulation/flightgear-data 2020.3.3_pre 2020.3.4_pre: FlightGear data files
 games-strategy/0ad 0.0.23b_alpha: A free, real-time strategy game
 games-strategy/0ad-data 0.0.23b_alpha: Data files for 0ad
 games-strategy/boswars 9999: Futuristic real-time strategy game
