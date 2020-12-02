@@ -30,6 +30,7 @@ app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/asciidoc 9.0.3_pre 9.0.4_pre: A plain text human readable/writable document format
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
+app-text/poppler 20.12.0_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-db/sqlite 3.33.0_pre-r1: SQL database engine
 dev-games/cegui 0.8.7-r1: Crazy Eddie's GUI System
 dev-games/simgear 2020.3.3_pre 2020.3.4_pre: Development library for simulation games

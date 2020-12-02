@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4f900ed860ae0f7e4e92c57f69d5156981c24581 $
+# $Id: c7411c533012a7296c73f5f7fa65bbdbfce621ed $
 
 EAPI=6
 WANT_AUTOCONF="2.1"
@@ -40,7 +40,7 @@ PATCH="${PN}-2.53.5_beta1-patches-02"
 
 DESCRIPTION="Seamonkey Web Browser"
 HOMEPAGE="http://www.seamonkey-project.org"
-KEYWORDS="~amd64 ~ppc64 ~x86"
+KEYWORDS="amd64 ~ppc64 x86"
 
 SLOT="0"
 LICENSE="MPL-2.0 GPL-2 LGPL-2.1"

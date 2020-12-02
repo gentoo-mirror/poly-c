@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 663c940fad47c56c910208f9e968a11293577962 $
+# $Id: a10ce3384c699b72bba7dda82e1d75eb6dfdf318 $
 
 EAPI=7
 
@@ -184,7 +184,7 @@ pkg_postinst() {
 		ewarn "You have emerged OpenRc without network support. This"
 		ewarn "means you need to SET UP a network manager such as"
 		ewarn "	net-misc/netifrc, net-misc/dhcpcd, net-misc/connman,"
-		ewarn "net-misc/NetworkManager, or net-vpn/badvpn."
+		ewarn " net-misc/NetworkManager, or net-vpn/badvpn."
 		ewarn "Or, you have the option of emerging openrc with the newnet"
 		ewarn "use flag and configuring /etc/conf.d/network and"
 		ewarn "/etc/conf.d/staticroute if you only use static interfaces."
