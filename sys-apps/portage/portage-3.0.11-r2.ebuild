@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 28cd3d04cca05085cc5e06328c095503a9d31adb $
+# $Id: 91955bb7a5cc521489a928bb31430cc18de88b04 $
 
 EAPI=7
 
@@ -83,7 +83,14 @@ prefix_src_archives() {
 
 TARBALL_PV=${PV}
 SRC_URI="mirror://gentoo/${PN}-${TARBALL_PV}.tar.bz2
-	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.bz2)"
+	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.bz2)
+	https://github.com/gentoo/portage/commit/07a604537e746814613dc171a5c09072ef0266af.patch -> portage-3.0.11-bug-754903-pdepend.patch
+	https://github.com/gentoo/portage/commit/ff270ae58eca457a1e2bbf9507d8438123082ca0.patch -> portage-3.0.11-bug-757741-AttributeError.patch"
+
+PATCHES=(
+	"${DISTDIR}/portage-3.0.11-bug-754903-pdepend.patch"
+	"${DISTDIR}/portage-3.0.11-bug-757741-AttributeError.patch"
+)
 
 pkg_pretend() {
 	local CONFIG_CHECK="~IPC_NS ~PID_NS ~NET_NS ~UTS_NS"

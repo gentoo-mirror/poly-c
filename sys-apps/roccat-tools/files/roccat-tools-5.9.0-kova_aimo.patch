@@ -1,0 +1,90 @@
+From b4dbf9ee9b4fda34578c43946d4a1769f57e54b2 Mon Sep 17 00:00:00 2001
+From: Sophie Hirn <sophie.hirn@wyvernscale.com>
+Date: Sun, 5 Jul 2020 13:41:47 +0200
+Subject: [PATCH] Added support for the Kova Aimo to the kova2016 driver
+
+---
+ kova2016/libroccatkova2016/kova2016.h          | 2 ++
+ kova2016/libroccatkova2016/kova2016_device.c   | 1 +
+ libroccat/roccat_talk.c                        | 3 +++
+ libroccatwidget/roccat_talk_target_combo_box.c | 4 ++++
+ udev/90-roccat-kova2016.rules                  | 2 +-
+ 5 files changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/kova2016/libroccatkova2016/kova2016.h b/kova2016/libroccatkova2016/kova2016.h
+index fe65215..17a41f3 100644
+--- a/kova2016/libroccatkova2016/kova2016.h
++++ b/kova2016/libroccatkova2016/kova2016.h
+@@ -25,11 +25,13 @@ G_BEGIN_DECLS
+ #define USB_DEVICE_ID_ROCCAT_KOVA2016_GRAY 0x2cee
+ #define USB_DEVICE_ID_ROCCAT_KOVA2016_WHITE 0x2cef
+ #define USB_DEVICE_ID_ROCCAT_KOVA2016_BLACK 0x2cf0
++#define USB_DEVICE_ID_ROCCAT_KOVA2016_AIMO 0x2cf1
+ 
+ #define KOVA2016_DEVICE_NAME "Kova2016"
+ #define KOVA2016_DEVICE_NAME_BLACK "Kova 2016 Black"
+ #define KOVA2016_DEVICE_NAME_GRAY "Kova 2016 Gray"
+ #define KOVA2016_DEVICE_NAME_WHITE "Kova 2016 White"
++#define KOVA2016_DEVICE_NAME_AIMO "Kova Aimo"
+ #define KOVA2016_DEVICE_NAME_COMBINED "Kova 2016 Black/Gray/White"
+ 
+ #define KOVA2016_DBUS_SERVER_PATH "/org/roccat/Kova2016"
+diff --git a/kova2016/libroccatkova2016/kova2016_device.c b/kova2016/libroccatkova2016/kova2016_device.c
+index 94f0df8..85f1d93 100644
+--- a/kova2016/libroccatkova2016/kova2016_device.c
++++ b/kova2016/libroccatkova2016/kova2016_device.c
+@@ -25,6 +25,7 @@ static guint const device_ids[4] = {
+ 		USB_DEVICE_ID_ROCCAT_KOVA2016_BLACK,
+ 		USB_DEVICE_ID_ROCCAT_KOVA2016_GRAY,
+ 		USB_DEVICE_ID_ROCCAT_KOVA2016_WHITE,
++		USB_DEVICE_ID_ROCCAT_KOVA2016_AIMO,
+ 		0
+ };
+ 
+diff --git a/libroccat/roccat_talk.c b/libroccat/roccat_talk.c
+index 65bba20..395a562 100644
+--- a/libroccat/roccat_talk.c
++++ b/libroccat/roccat_talk.c
+@@ -58,6 +58,7 @@ guint roccat_talk_device_get_type(guint talk_device) {
+ 	case USB_DEVICE_ID_ROCCAT_KOVA2016_BLACK:
+ 	case USB_DEVICE_ID_ROCCAT_KOVA2016_GRAY:
+ 	case USB_DEVICE_ID_ROCCAT_KOVA2016_WHITE:
++	case USB_DEVICE_ID_ROCCAT_KOVA2016_AIMO:
+ 	case USB_DEVICE_ID_ROCCAT_KOVAPLUS:
+ 	case USB_DEVICE_ID_ROCCAT_LUA:
+ 	case USB_DEVICE_ID_ROCCAT_NYTH_BLACK:
+@@ -151,6 +152,8 @@ gchar const *roccat_talk_device_get_text_static(guint talk_device) {
+ 		return KOVA2016_DEVICE_NAME_GRAY;
+ 	case USB_DEVICE_ID_ROCCAT_KOVA2016_WHITE:
+ 		return KOVA2016_DEVICE_NAME_WHITE;
++	case USB_DEVICE_ID_ROCCAT_KOVA2016_AIMO:
++		return KOVA2016_DEVICE_NAME_AIMO;
+ 	case USB_DEVICE_ID_ROCCAT_KOVAPLUS:
+ 		return KOVAPLUS_DEVICE_NAME;
+ 	case USB_DEVICE_ID_ROCCAT_LUA:
+diff --git a/libroccatwidget/roccat_talk_target_combo_box.c b/libroccatwidget/roccat_talk_target_combo_box.c
+index 9f886ba..58cda89 100644
+--- a/libroccatwidget/roccat_talk_target_combo_box.c
++++ b/libroccatwidget/roccat_talk_target_combo_box.c
+@@ -166,6 +166,10 @@ static void list_store_add_mice(GtkListStore *store) {
+ 			NAME_COLUMN, roccat_talk_device_get_text_static(USB_DEVICE_ID_ROCCAT_KOVA2016_WHITE),
+ 			VALUE_COLUMN, USB_DEVICE_ID_ROCCAT_KOVA2016_WHITE,
+ 			-1);
++	gtk_roccat_list_store_append_with_values(store, NULL,
++			NAME_COLUMN, roccat_talk_device_get_text_static(USB_DEVICE_ID_ROCCAT_KOVA2016_AIMO),
++			VALUE_COLUMN, USB_DEVICE_ID_ROCCAT_KOVA2016_AIMO,
++			-1);
+ 	gtk_roccat_list_store_append_with_values(store, NULL,
+ 			NAME_COLUMN, roccat_talk_device_get_text_static(USB_DEVICE_ID_ROCCAT_NYTH_BLACK),
+ 			VALUE_COLUMN, USB_DEVICE_ID_ROCCAT_NYTH_BLACK,
+diff --git a/udev/90-roccat-kova2016.rules b/udev/90-roccat-kova2016.rules
+index ffd6b08..3e744c9 100644
+--- a/udev/90-roccat-kova2016.rules
++++ b/udev/90-roccat-kova2016.rules
+@@ -3,4 +3,4 @@
+ # If group roccat does not exist, group root is used.
+ 
+ SUBSYSTEM=="input", KERNEL=="event[0-9]*", ACTION=="add", ATTRS{idVendor}=="1e7d", ATTRS{idProduct}=="2cee|2cef|2cf0", GROUP="roccat", MODE="0660"
+-SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ACTION=="add", ATTRS{idVendor}=="1e7d", ATTRS{idProduct}=="2cee|2cef|2cf0", GROUP="roccat", MODE="0660"
+\ No newline at end of file
++SUBSYSTEM=="hidraw", KERNEL=="hidraw*", ACTION=="add", ATTRS{idVendor}=="1e7d", ATTRS{idProduct}=="2cee|2cef|2cf0|2cf1", GROUP="roccat", MODE="0660"
