@@ -1,0 +1,25 @@
+From f2e21248e0fa412d1ae6ba7ac5b6a9b45977fe8a Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Sun, 6 Dec 2020 20:59:08 +0100
+Subject: [PATCH] build: Fix system includes
+
+---
+ src/JsonUtil.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/JsonUtil.h b/src/JsonUtil.h
+index e70c632379..d82baea909 100644
+--- a/src/JsonUtil.h
++++ b/src/JsonUtil.h
+@@ -3,7 +3,7 @@
+ #define JsonUtil_H
+ 
+ class RageFileBasic;
+-#include "json/value.h"
++#include <josncpp/json/value.h>
+ #include "RageUtil.hpp"
+ 
+ namespace JsonUtil
+-- 
+2.29.2
+
