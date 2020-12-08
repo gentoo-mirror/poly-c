@@ -42,7 +42,7 @@ dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional 
 dev-libs/libical 9999: An implementation of basic iCAL protocols
 dev-libs/libtomcrypt 1.18.2: modular and portable cryptographic toolkit
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
-dev-libs/openssl 1.1.1g 1.1.1h: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/openssl 1.1.1g 1.1.1h 1.1.1i: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf 3.14.0_pre: Google's Protocol Buffers - Extensible mechanism for serializing structured data
 dev-libs/xerces-c 3.2.3_pre: A validating XML parser written in a portable subset of C++
