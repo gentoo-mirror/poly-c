@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ccc0cbc5d585057ba2ea89f50ac12baba6d1d0e5 $
+# $Id: 572b1945be6eccdeb90b12e30bd733a6beebf23f $
 
 EAPI="7"
 
@@ -15,7 +15,7 @@ MY_P=${P/_/-}
 # - ec_curve.c (SOURCE12) -- MODIFIED
 # - ectest.c (SOURCE13)
 # - openssl-1.1.1-ec-curves.patch (PATCH37) -- MODIFIED
-BINDIST_PATCH_SET="openssl-1.1.1e-bindist-1.0.tar.xz"
+BINDIST_PATCH_SET="openssl-1.1.1i-bindist-1.0.tar.xz"
 
 DESCRIPTION="full-strength general purpose cryptography library (including SSL and TLS)"
 HOMEPAGE="https://www.openssl.org/"
@@ -223,6 +223,7 @@ multilib_src_configure() {
 		$(usex api110 disable-deprecated '') \
 		enable-ec \
 		$(use_ssl !bindist ec2m) \
+		$(use_ssl !bindist sm2) \
 		enable-srp \
 		$(use elibc_musl && echo "no-async") \
 		${ec_nistp_64_gcc_128} \
