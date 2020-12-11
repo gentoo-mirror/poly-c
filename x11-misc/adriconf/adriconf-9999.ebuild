@@ -27,12 +27,11 @@ RDEPEND="
 	dev-libs/boost:=
 	dev-libs/glib:2
 	dev-libs/libsigc++:2
-	media-libs/mesa
+	media-libs/mesa[egl]
 	sys-apps/pciutils
 	x11-libs/gtk+:3
 	x11-libs/libdrm
 	x11-libs/libX11
-	wayland? ( media-libs/mesa[egl] )
 "
 DEPEND="${RDEPEND}"
 BDEPEND="
@@ -53,7 +52,6 @@ src_prepare() {
 src_configure() {
 	local mycmakeargs=(
 		-DENABLE_UNIT_TESTS="false"
-		-DENABLE_XWAYLAND="$(usex wayland)"
 	)
 	cmake_src_configure
 }
@@ -61,7 +59,7 @@ src_configure() {
 src_install() {
 	cmake_src_install
 
-	insinto /usr/share/appdata
+	insinto /usr/share/metainfo
 	newins {flatpak/br.com.jeanhertel.,}${PN}.appdata.xml
 
 	newmenu {flatpak/br.com.jeanhertel.,}${PN}.desktop

@@ -38,6 +38,7 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
+dev-libs/boost 1.75.0_pre: Boost Libraries for C++
 dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional algorithm
 dev-libs/libical 9999: An implementation of basic iCAL protocols
 dev-libs/libtomcrypt 1.18.2: modular and portable cryptographic toolkit
@@ -51,6 +52,7 @@ dev-python/injector 0.18.3: dependency injection framework
 dev-python/soundcloud-python 0.5.0: A friendly wrapper around the Soundcloud API
 dev-python/wget 3.2: pure python download utility
 dev-qt/qtgui 5.15.1-r1 5.15.2: The GUI module and platform plugins for the Qt5 framework
+dev-util/boost-build 1.75.0_pre: A system for large project software construction, simple to use and powerful
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/lxqt-build-tools 0.8.0_pre: LXQt Build Tools
 dev-util/meson 0.56.0_pre: Open source build system
@@ -266,7 +268,7 @@ www-client/waterfox-classic 2020.10 2020.12: Waterfox Web Browser
 www-client/waterfox-current 2020.10: Waterfox Web Browser
 x11-apps/xinit 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
-x11-misc/adriconf 1.5.1 1.6 9999: Advanced DRI Configurator
+x11-misc/adriconf 1.5.1 1.6.1 9999: Advanced DRI Configurator
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-misc/qps 2.2.0_pre: Qt GUI Process Manager
 x11-misc/sddm 0.19.0_pre: Simple Desktop Display Manager
