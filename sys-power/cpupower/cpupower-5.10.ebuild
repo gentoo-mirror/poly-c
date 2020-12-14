@@ -1,33 +1,30 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-# eutils: strip-linguas
-inherit eutils systemd toolchain-funcs
+inherit systemd toolchain-funcs
 
 DESCRIPTION="Shows and sets processor power related values"
 HOMEPAGE="https://www.kernel.org/"
-SRC_URI="https://www.kernel.org/pub/linux/kernel/v4.x/linux-${PV}.tar.xz"
+SRC_URI="https://cdn.kernel.org/pub/linux/kernel/v${PV%%.*}.x/linux-${PV}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0/0"
-KEYWORDS="~amd64 ~arm ~arm64 ~ppc ~ppc64 ~x86"
-IUSE="cpufreq_bench nls"
+KEYWORDS="amd64 ~arm ~arm64 ~ppc ~ppc64 x86"
+IUSE="nls"
 
 # File collision w/ headers of the deprecated cpufrequtils
-RDEPEND="sys-apps/pciutils
-	!<sys-apps/linux-misc-apps-3.6-r2
-	!sys-power/cpufrequtils"
+RDEPEND="sys-apps/pciutils"
 DEPEND="${RDEPEND}
 	virtual/os-headers
 	nls? ( sys-devel/gettext )"
 
-S="${WORKDIR}/linux-${PV}/tools/power/${PN}"
-
 PATCHES=(
-	"${FILESDIR}"/cflags-strip.patch
+	"${FILESDIR}/cpupower-5.4-cflags.patch"
 )
+
+S="${WORKDIR}/linux-${PV}"
 
 src_configure() {
 	export bindir="${EPREFIX}/usr/bin"
@@ -38,9 +35,9 @@ src_configure() {
 	export localedir="${EPREFIX}/usr/share/locale"
 	export docdir="${EPREFIX}/usr/share/doc/${PF}"
 	export confdir="${EPREFIX}/etc"
+	export bash_completion_dir="${EPREFIX}/usr/share/bash-completion/completions"
 	export V=1
 	export NLS=$(usex nls true false)
-	export CPUFREQ_BENCH=$(usex cpufreq_bench true false)
 }
 
 src_compile() {
@@ -51,18 +48,15 @@ src_compile() {
 		VERSION=${PV}
 	)
 
-	if [[ -n ${LINGUAS+set} ]]; then
-		strip-linguas -i po
-		myemakeargs+=( LANGUAGES="${LINGUAS}" )
-	fi
-
+	cd tools/power/cpupower || die
 	emake "${myemakeargs[@]}"
 }
 
 src_install() {
-	emake DESTDIR="${D}" "${myemakeargs[@]}" install
+	cd tools/power/cpupower || die
+	emake "${myemakeargs[@]}" DESTDIR="${D}" install
 	doheader lib/cpupower.h
-	dodoc README ToDo
+	einstalldocs
 
 	newconfd "${FILESDIR}"/conf.d-r2 cpupower
 	newinitd "${FILESDIR}"/init.d-r4 cpupower
