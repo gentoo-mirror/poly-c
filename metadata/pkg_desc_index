@@ -37,6 +37,7 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
+dev-lang/spidermonkey 78.6.0: SpiderMonkey is Mozilla's JavaScript engine written in C and C++
 dev-libs/boost 1.75.0_pre: Boost Libraries for C++
 dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional algorithm
 dev-libs/libical 9999: An implementation of basic iCAL protocols
