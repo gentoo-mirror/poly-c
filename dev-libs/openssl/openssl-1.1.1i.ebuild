@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 52fa5d828e314a7ada9d4965d6ccd30e4ca5f728 $
+# $Id: 7d5fc56e026b4cab37c40d32d177f926b6e5832c $
 
 EAPI="7"
 
@@ -39,7 +39,7 @@ elif has api110 ${USE} ; then
 	api="--api=1.1.0"
 fi
 [[ "${PV}" = *_pre* ]] || \
-KEYWORDS="~alpha amd64 ~arm arm64 hppa ~ia64 ~m68k ~mips ~ppc ppc64 ~riscv ~s390 sparc x86 ~x86-linux"
+KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 ~riscv s390 sparc x86 ~x86-linux"
 IUSE="api098 api100 api110 +asm bindist elibc_musl rfc3779 sctp cpu_flags_x86_sse2 static-libs test tls-heartbeat vanilla zlib"
 RESTRICT="!bindist? ( bindist )
 	!test? ( test )"
