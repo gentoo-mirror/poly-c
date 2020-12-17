@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 7d5fc56e026b4cab37c40d32d177f926b6e5832c $
+# $Id: 6c86f655c9968068cb414b90a3245aa7177510f8 $
 
 EAPI="7"
 
@@ -61,6 +61,7 @@ REQUIRED_USE="?? ( api098 api110 )"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.1.0j-parallel_install_fix.patch #671602
+	"${FILESDIR}"/${PN}-1.1.1i-riscv32.patch
 )
 
 S="${WORKDIR}/${MY_P}"

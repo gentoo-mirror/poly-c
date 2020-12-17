@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2fc95ee7016c3609923ae349300b4af8e468d9d6 $
+# $Id: 814cd4ad8541d6666191d2003dd8ab79512275f9 $
 
 EAPI=7
 inherit autotools
@@ -14,7 +14,7 @@ S=${WORKDIR}/xdg-utils-${EGIT_COMMIT}
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~mips ppc ppc64 ~s390 sparc x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~mips ppc ppc64 s390 sparc x86 ~amd64-linux ~x86-linux"
 IUSE="dbus doc gnome"
 REQUIRED_USE="gnome? ( dbus )"
 
