@@ -7,9 +7,7 @@ app-admin/remotebox 2.5 2.7: Open Source VirtualBox Client with Remote Managemen
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-arch/xz-utils 5.2.5: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
-app-cdr/cdrdao 1.2.4: Burn CDs in disk-at-once mode -- with optional GUI frontend
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
-app-cdr/dvd+rw-tools 7.1-r3: A set of tools for DVD+RW/-RW drives
 app-cdr/qpxtool 0.8.0: CD/DVD quality checking utilities
 app-crypt/gnupg 2.2.20-r1 2.2.23: The GNU Privacy Guard, a GPL OpenPGP implementation
 app-crypt/johntheripper-jumbo 1.9.0: fast password cracker
@@ -39,8 +37,6 @@ dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/boost 1.75.0_pre: Boost Libraries for C++
 dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional algorithm
-dev-libs/icu 68.2_pre: International Components for Unicode
-dev-libs/icu-layoutex 68.2_pre: External layout part of International Components for Unicode
 dev-libs/libical 9999: An implementation of basic iCAL protocols
 dev-libs/libtomcrypt 1.18.2: modular and portable cryptographic toolkit
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
@@ -196,6 +192,7 @@ net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugi
 net-analyzer/nagios-plugins 1.4.16-r2 1.4.16-r3: Nagios 1.4.16 plugins - Pack of plugins to make Nagios work properly
 net-analyzer/netsniff-ng 0.6.6 0.6.7 9999: high performance network sniffer for packet inspection
 net-analyzer/nikto 2.1.5_pre 2.1.6_pre: Web Server vulnerability scanner.
+net-analyzer/wireshark 3.4.2_pre: A network protocol analyzer formerly known as ethereal
 net-dialup/mingetty 1.08-r1: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/filezilla 3.47.2.1 3.50.0 3.51.0: FTP client with lots of useful features and an intuitive interface
