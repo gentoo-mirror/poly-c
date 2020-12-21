@@ -38,7 +38,6 @@ dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/boost 1.75.0_pre: Boost Libraries for C++
 dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional algorithm
 dev-libs/libical 9999: An implementation of basic iCAL protocols
-dev-libs/libtomcrypt 1.18.2: modular and portable cryptographic toolkit
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.1.1g 1.1.1h 1.1.1i: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
@@ -252,7 +251,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre31: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.161 4.19.162 4.19.163 5.4.82 5.4.83 5.4.84 5.10 5.10.1: Shows and sets processor power related values
+sys-power/cpupower 4.19.161 4.19.162 4.19.163 5.4.83 5.4.84 5.4.85 5.10 5.10.1 5.10.2: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
