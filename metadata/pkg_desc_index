@@ -227,7 +227,7 @@ sys-apps/baselayout 2.6-r1 2.7 2.7-r1: Filesystem baselayout and init scripts
 sys-apps/fwup 1.0.0 1.2.1: Configurable embedded Linux firmware update creator and runner
 sys-apps/gawk 4.2.1-r1 5.0.1 5.1.0: GNU awk pattern-matching language
 sys-apps/hwloc 2.0.3_pre: displays the hardware topology in convenient formats
-sys-apps/iproute2 4.19.0-r1 5.2.0-r1 5.4.0 5.6.0 5.7.0 5.8.0 5.9.0: kernel routing and traffic control utilities
+sys-apps/iproute2 4.19.0-r1 5.2.0-r1 5.4.0 5.6.0 5.7.0 5.8.0 5.9.0 5.10.0: kernel routing and traffic control utilities
 sys-apps/kmod 26-r5 27-r2: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
