@@ -1,12 +1,20 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # google-breakpad
 # TODO: fribidi, libvorbis static
 
-EAPI=6
+EAPI=7
+
+# src_install() currently requires this
+CMAKE_MAKEFILE_GENERATOR="emake"
+
+LUA_COMPAT=( lua5-{1..2} )
+
+# Only needed by certain features
 VIRTUALX_REQUIRED="manual"
-inherit desktop flag-o-matic cmake-utils virtualx wxwidgets gnome2-utils poly-c_ebuilds
+
+inherit cmake desktop flag-o-matic lua-single virtualx wxwidgets xdg-utils poly-c_ebuilds
 
 DESCRIPTION="Cross-platform 3D realtime strategy game"
 HOMEPAGE="http://www.megaglest.org/"
@@ -17,9 +25,10 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug +editor fribidi cpu_flags_x86_sse cpu_flags_x86_sse2 cpu_flags_x86_sse3 static +streflop +tools +unicode wxuniversal +model-viewer videos"
 
-RDEPEND="
+REQUIRED_USE="${LUA_REQUIRED_USE}"
+
+RDEPEND="${LUA_DEPS}
 	~games-strategy/${PN}-data-${PV}
-	>=dev-lang/lua-5.1:0
 	dev-libs/libxml2
 	media-libs/fontconfig
 	media-libs/freetype
@@ -47,10 +56,6 @@ RDEPEND="
 		)
 	videos? ( media-video/vlc )"
 DEPEND="${RDEPEND}
-	sys-apps/help2man
-	virtual/pkgconfig
-	editor? ( ${VIRTUALX_DEPEND} )
-	model-viewer? ( ${VIRTUALX_DEPEND} )
 	static? (
 		dev-libs/icu[static-libs]
 		dev-libs/xerces-c[icu,static-libs]
@@ -63,17 +68,25 @@ DEPEND="${RDEPEND}
 		virtual/jpeg:0[static-libs]
 	)"
 
+BDEPEND="
+	sys-apps/help2man
+	virtual/pkgconfig
+	editor? ( ${VIRTUALX_DEPEND} )
+	model-viewer? ( ${VIRTUALX_DEPEND} )
+"
+
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.13.0-static-build.patch
+	"${FILESDIR}"/${PN}-3.11.1-cmake-lua.patch
 )
 
 src_prepare() {
+	cmake_src_prepare
+
 	if use editor || use model-viewer ; then
 		WX_GTK_VER="3.0"
-		need-wxwidgets unicode
+		setup-wxwidgets
 	fi
-
-	default
 }
 
 src_configure() {
@@ -93,6 +106,7 @@ src_configure() {
 		-DBUILD_MEGAGLEST_MODEL_IMPORT_EXPORT_TOOLS="$(usex tools)"
 		-DBUILD_MEGAGLEST_MODEL_VIEWER="$(usex model-viewer)"
 		-DWANT_USE_VLC="$(usex videos)"
+		-DFORCE_LUA_VERSION="$(lua_get_version)"
 		-DFORCE_MAX_SSE_LEVEL="${SSE}"
 		#-DMEGAGLEST_BIN_INSTALL_PATH="${GAMES_BINDIR}"
 		#-DMEGAGLEST_DATA_INSTALL_PATH="${GAMES_DATADIR}/${PN}"
@@ -111,22 +125,22 @@ src_configure() {
 	# support CMAKE_BUILD_TYPE=Gentoo
 	#append-cppflags '-DCUSTOM_DATA_INSTALL_PATH=\\\"'${GAMES_DATADIR}/${PN}/'\\\"'
 
-	cmake-utils_src_configure
+	cmake_src_configure
 }
 
 src_compile() {
 	if use editor || use model-viewer; then
 		# work around parallel make issues - bug #561380
 		#MAKEOPTS="-j1 ${MAKEOPTS}" \
-		virtx cmake-utils_src_compile
+		virtx cmake_src_compile
 	else
-		cmake-utils_src_compile
+		cmake_src_compile
 	fi
 }
 
 src_install() {
 	# rebuilds some targets randomly without fast option
-	emake -C "${CMAKE_BUILD_DIR}" DESTDIR="${D}" "$@" install/fast
+	emake -C "${BUILD_DIR}" DESTDIR="${D}" "$@" install/fast
 
 	dodoc docs/{AUTHORS.source_code,CHANGELOG,README}.txt
 	#doicon -s 48 ${PN}.png
@@ -136,10 +150,6 @@ src_install() {
 	use model-viewer &&
 		make_desktop_entry ${PN}_g3dviewer "MegaGlest Model Viewer"
 
-}
-
-pkg_preinst() {
-	gnome2_icon_savelist
 }
 
 pkg_postinst() {
@@ -154,9 +164,5 @@ pkg_postinst() {
 	elog 'Some graphics cards may require setting Max Lights to 1.'
 	einfo
 
-	gnome2_icon_cache_update
-}
-
-pkg_postrm() {
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }

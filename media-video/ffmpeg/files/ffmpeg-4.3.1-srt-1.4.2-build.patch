@@ -1,3 +1,5 @@
+http://git.videolan.org/?p=ffmpeg.git;a=patch;h=7c59e1b0f285cd7c7b35fcd71f49c5fd52cf9315
+https://bugs.gentoo.org/756859
 From 7c59e1b0f285cd7c7b35fcd71f49c5fd52cf9315 Mon Sep 17 00:00:00 2001
 From: Jun Zhao <barryjzhao@tencent.com>
 Date: Sun, 12 Jul 2020 13:48:48 +0800

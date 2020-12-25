@@ -1,10 +1,10 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 3cc91e932e0394df1ffda5b170e56a143a4c4167 $
+# $Id: 1a5d2b88c0ab65debe5a0e29bb533d789e4ab7cc $
 
 EAPI=7
 
-LUA_COMPAT=( lua5-{1..4} )
+LUA_COMPAT=( lua5-1 luajit )
 
 inherit readme.gentoo-r1 cmake flag-o-matic lua-single toolchain-funcs udev user xdg
 
@@ -15,12 +15,6 @@ SRC_URI="mirror://sourceforge/roccat/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-
-LUA_IUSE=(
-	input_devices_roccat_ryosmk
-	input_devices_roccat_ryosmkfx
-	input_devices_roccat_ryostkl
-)
 
 IUSE_INPUT_DEVICES=(
 	input_devices_roccat_arvo
@@ -39,7 +33,9 @@ IUSE_INPUT_DEVICES=(
 	input_devices_roccat_lua
 	input_devices_roccat_nyth
 	input_devices_roccat_pyra
-	${LUA_IUSE[@]}
+	input_devices_roccat_ryosmk
+	input_devices_roccat_ryosmkfx
+	input_devices_roccat_ryostkl
 	input_devices_roccat_savu
 	input_devices_roccat_skeltr
 	input_devices_roccat_sova
@@ -48,6 +44,12 @@ IUSE_INPUT_DEVICES=(
 )
 
 IUSE="${IUSE_INPUT_DEVICES[@]}"
+
+REQUIRED_USE="
+	input_devices_roccat_ryosmk? ( ${LUA_REQUIRED_USE} )
+	input_devices_roccat_ryosmkfx? ( ${LUA_REQUIRED_USE} )
+	input_devices_roccat_ryostkl? ( ${LUA_REQUIRED_USE} )
+"
 
 RDEPEND="
 	dev-libs/dbus-glib
@@ -59,7 +61,9 @@ RDEPEND="
 	x11-libs/gtk+:2
 	x11-libs/libX11
 	virtual/libusb:1
-	$(for lua_use in ${LUA_IUSE[@]} ; do echo "${lua_use}? ( ${LUA_DEPS} )" ; done)
+	input_devices_roccat_ryosmk? ( ${LUA_DEPS} )
+	input_devices_roccat_ryosmkfx? ( ${LUA_DEPS} )
+	input_devices_roccat_ryostkl? ( ${LUA_DEPS} )
 "
 
 DEPEND="
@@ -69,27 +73,26 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
-DOCS=( Changelog KNOWN_LIMITATIONS README )
-
 PATCHES=(
+	"${FILESDIR}"/${PN}-5.9.0-cmake_lua_impl.patch
+
 	# Taken from https://github.com/LadyBoonami/roccat-tools
 	"${FILESDIR}/${PN}-5.9.0-kova_aimo.patch"
 )
 
+DOCS=( Changelog KNOWN_LIMITATIONS README )
+
 pkg_setup() {
+	# Don't bother checking all the relevant USE flags, this is harmless
+	# to call even when no Lua implementations have been pulled in
+	# by dependencies.
+	lua-single_pkg_setup
+
 	enewgroup roccat
 
 	local model
 	for model in ${IUSE_INPUT_DEVICES[@]} ; do
 		use ${model} && USED_MODELS+="${model/input_devices_roccat_/;}"
-	done
-
-	local luse
-	for luse in ${LUA_IUSE[@]} ; do
-		if use ${luse} ; then
-			lua-single_pkg_setup
-			break
-		fi
 	done
 }
 
@@ -110,10 +113,18 @@ src_configure() {
 		-DUDEVDIR="${EPREFIX}$(get_udevdir)/rules.d"
 	)
 
+	local lua_use=(
+		input_devices_roccat_ryosmk
+		input_devices_roccat_ryosmkfx
+		input_devices_roccat_ryostkl
+	)
 	local luse
-	for luse in ${LUA_IUSE[@]} ; do
+	for luse in ${lua_use[@]} ; do
 		if use ${luse} ; then
-			mycmakeargs+=( -DWITH_LUA="$(lua_get_version)" )
+			mycmakeargs+=(
+				-DLUA_IMPL="${ELUA}"
+				-DWITH_LUA="$(ver_cut 1-2 $(lua_get_version))"
+			)
 			break
 		fi
 	done

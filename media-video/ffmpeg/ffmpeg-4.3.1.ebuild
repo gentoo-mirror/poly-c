@@ -1,6 +1,6 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ad1f9fb2b8839680a66c605414f59506cb9be722 $
+# $Id: cd228d62314f49d19454b9997d41759fa095cb22 $
 
 EAPI=7
 
@@ -330,8 +330,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-4.3-fix-build-without-SSSE3.patch
 	"${FILESDIR}"/${PN}-4.3-altivec-novsx-yuv2rgb.patch
 
-	# https://trac.ffmpeg.org/ticket/8760
-	"${FILESDIR}"/${P}-libsrt-1.4.1.patch
+	"${FILESDIR}"/${PN}-4.3.1-srt-1.4.2-build.patch
 )
 
 MULTILIB_WRAPPED_HEADERS=(
