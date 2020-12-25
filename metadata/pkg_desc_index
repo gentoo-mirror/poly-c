@@ -249,6 +249,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre31: Multi-platform library designed to allow a developer to create robust software
+sys-libs/timezone-data 2020e_pre: Timezone data (/usr/share/zoneinfo) and utilities (tzselect/zic/zdump)
 sys-power/cpupower 4.19.161 4.19.162 4.19.163 5.4.83 5.4.84 5.4.85 5.10 5.10.1 5.10.2: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
