@@ -12,7 +12,6 @@ app-cdr/qpxtool 0.8.0: CD/DVD quality checking utilities
 app-crypt/gnupg 2.2.20-r1 2.2.23: The GNU Privacy Guard, a GPL OpenPGP implementation
 app-crypt/johntheripper-jumbo 1.9.0: fast password cracker
 app-crypt/nwipe 0.24_pre: Securely erase disks using a variety of recognized methods
-app-crypt/qca 2.1.3-r2: Qt Cryptographic Architecture (QCA)
 app-editors/cooledit 3.17.19: Cooledit is a full featured multiple window text editor
 app-laptop/dell-fan-mon 1.0 9999: Fan control for some Dell laptops
 app-laptop/i8kutils 1.43_pre: Dell Inspiron and Latitude utilities
@@ -209,7 +208,6 @@ net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5 1.6: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
-sci-astronomy/pulsatingscience 9999: 3D binary pulsar animation and outreach application
 sci-libs/dcmtk 3.6.2: The DICOM Toolkit
 sci-libs/gdcm 2.8.2: GDCM is an implementation of the DICOM standard.
 sci-libs/maxflow 3.0.4: Library that implements the maxflow-mincut algorithm
