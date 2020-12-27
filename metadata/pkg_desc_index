@@ -69,7 +69,7 @@ games-simulation/flightgear-data 2020.3.4_pre 2020.3.5_pre: FlightGear data file
 games-strategy/0ad 0.0.23b_alpha: A free, real-time strategy game
 games-strategy/0ad-data 0.0.23b_alpha: Data files for 0ad
 games-strategy/boswars 9999: Futuristic real-time strategy game
-games-strategy/megaglest 3.13.0_pre: Cross-platform 3D realtime strategy game
+games-strategy/megaglest 3.13.0_pre-r1: Cross-platform 3D realtime strategy game
 games-strategy/megaglest-data 3.13.0_pre: Data files for the cross-platform 3D realtime strategy game MegaGlest
 games-strategy/opendungeons 0.7.1 9999: An open source, real time strategy game based on the Dungeon Keeper series
 games-strategy/unknown-horizons 9999: Anno-like real time strategy game
@@ -247,8 +247,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre31: Multi-platform library designed to allow a developer to create robust software
-sys-libs/timezone-data 2020e_pre: Timezone data (/usr/share/zoneinfo) and utilities (tzselect/zic/zdump)
-sys-power/cpupower 4.19.161 4.19.162 4.19.163 5.4.83 5.4.84 5.4.85 5.10 5.10.1 5.10.2: Shows and sets processor power related values
+sys-power/cpupower 4.19.161 4.19.162 4.19.163 5.4.83 5.4.84 5.4.85 5.10.1 5.10.2 5.10.3: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
@@ -256,6 +255,7 @@ sys-process/procps 3.3.15-r1 3.3.16-r2: standard informational utilities and pro
 www-client/seamonkey 2.53.5.1: Seamonkey Web Browser
 www-client/waterfox-classic 2020.10 2020.12: Waterfox Web Browser
 www-client/waterfox-current 2020.10: Waterfox Web Browser
+x11-apps/radeon-profile 20200824: Read current clocks of ATi/AMD Radeon cards
 x11-apps/xinit 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/adriconf 1.5.1 1.6.1 9999: Advanced DRI Configurator
