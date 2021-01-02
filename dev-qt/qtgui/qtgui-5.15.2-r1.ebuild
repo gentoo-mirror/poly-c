@@ -1,6 +1,6 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2e272cfbc2f2d504ebc2e6e0a87a8da2335e78b8 $
+# $Id: 13063686d1cce952b87124e346c24e702727c2b8 $
 
 EAPI=7
 
@@ -134,6 +134,7 @@ QT5_GENTOO_PRIVATE_CONFIG=(
 
 PATCHES=(
 	"${FILESDIR}/${PN}-5.14.1-cmake-macro-backward-compat.patch" # bug 703306
+	"${FILESDIR}/${P}-bogus-xcb-util-dep.patch" # QTBUG-86287, QTBUG-88688
 )
 
 src_prepare() {
