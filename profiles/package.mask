@@ -18,8 +18,3 @@ media-radio/liquidsoap
 
 # fails to link
 sci-astronomy/pulsatingscience
-
-# simgear breaks during build
-=dev-games/simgear-2020.3.5_pre
-=games-simulation/flightgear-2020.3.5_pre
-=games-simulation/flightgear-data-2020.3.5_pre

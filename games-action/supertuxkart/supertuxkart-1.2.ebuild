@@ -1,6 +1,6 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5e9aa59fdef6d4894139197080b37908258bb84f $
+# $Id: fc674824ebbe0025db198a806b4507492bf54542 $
 
 EAPI=7
 
@@ -59,6 +59,7 @@ S="${WORKDIR}/${MY_P}"
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.1-irrlicht-arch-support.patch
 	"${FILESDIR}"/${PN}-1.2-irrlicht-system-libs.patch
+	"${FILESDIR}"/${P}-new-sdl.patch
 )
 
 src_prepare() {
