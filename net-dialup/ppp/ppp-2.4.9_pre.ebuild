@@ -52,9 +52,10 @@ src_prepare() {
 		sed -i '/^#USE_PAM=y/s:^#::' pppd/Makefile.linux || die
 	fi
 
-	if use ipv6 ; then
-		einfo "Enabling IPv6"
-		sed -i '/#HAVE_INET6/s:#::' pppd/Makefile.linux || die
+	if ! use ipv6 ; then
+		einfo "Disabling IPv6"
+		sed -i '/^HAVE_INET6/s:^:#:' pppd/Makefile.linux || die
+	else
 		echo "+ipv6" >> etc.ppp/options || die
 	fi
 
