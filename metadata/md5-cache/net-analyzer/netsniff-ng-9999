@@ -9,5 +9,5 @@ LICENSE=GPL-2
 PROPERTIES=live
 RDEPEND=dev-libs/libcli dev-libs/libnl:3 dev-libs/userspace-rcu:= net-libs/libnet:1.1 net-libs/libnetfilter_conntrack net-libs/libpcap sys-libs/ncurses:0= geoip? ( dev-libs/geoip ) zlib? ( sys-libs/zlib:= )
 SLOT=0
-_eclasses_=git-r3	3e7ec3d6619213460c85e2aa48398441	multilib	d410501a125f99ffb560b0c523cd3d1e	toolchain-funcs	605c126bed8d87e4378d5ff1645330cb
+_eclasses_=git-r3	3e7ec3d6619213460c85e2aa48398441	multilib	d410501a125f99ffb560b0c523cd3d1e	toolchain-funcs	1a94dc06d324bd0dab754e11abe6d27e
 _md5_=ea1de126a8a9ee6f90832a400adec345
