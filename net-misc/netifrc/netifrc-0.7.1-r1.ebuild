@@ -1,20 +1,21 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 032ac9cfd402c54a9793bab5f72d43977830ba2e $
+# $Id: 41edf1341cce350901753037b8215dacf827cb5e $
 
-EAPI=5
+EAPI=7
 
-inherit eutils systemd udev
+inherit systemd udev
 
 DESCRIPTION="Gentoo Network Interface Management Scripts"
 HOMEPAGE="https://www.gentoo.org/proj/en/base/openrc/"
 
 if [[ ${PV} == "9999" ]]; then
-	EGIT_REPO_URI="git://anongit.gentoo.org/proj/${PN}.git"
+	EGIT_REPO_URI="https://anongit.gentoo.org/git/proj/netifrc.git"
 	#EGIT_REPO_URI="https://github.com/gentoo/${PN}" # Alternate
 	inherit git-r3
 else
-	SRC_URI="https://dev.gentoo.org/~robbat2/distfiles/${P}.tar.bz2"
+	SRC_URI="https://gitweb.gentoo.org/proj/${PN}.git/snapshot/${P}.tar.gz"
+	SRC_URI+=" https://dev.gentoo.org/~polynomial-c/${P}-patches-01.tar.xz"
 	KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 ~riscv s390 sparc x86"
 fi
 
@@ -22,11 +23,16 @@ LICENSE="BSD-2"
 SLOT="0"
 IUSE=""
 
-DEPEND="kernel_linux? ( virtual/pkgconfig )
-	!<sys-fs/udev-172"
+DEPEND="!<sys-fs/udev-172"
 RDEPEND="sys-apps/gentoo-functions
 	>=sys-apps/openrc-0.15
 	!<sys-fs/udev-init-scripts-27"
+BDEPEND="kernel_linux? ( virtual/pkgconfig )"
+
+PATCHES=(
+	"${FILESDIR}/${PN}-0.7.1-dhcpcd_pidfile_location.patch"
+	"${FILESDIR}/${PN}-0.7.1-dhcpcd_args_tempfile.patch"
+)
 
 src_prepare() {
 	if [[ ${PV} == "9999" ]] ; then
@@ -36,10 +42,9 @@ src_prepare() {
 		GIT_DIR="${S}/.git" git log >"${S}"/ChangeLog
 	fi
 
-	epatch "${FILESDIR}"/${PN}-0.6.1-pppd-2.4.8-defaultroute-metric.patch
+	default
 
-	# Allow user patches to be applied without modifying the ebuild
-	epatch_user
+	eapply "${WORKDIR}"/patches
 }
 
 src_compile() {
@@ -47,25 +52,25 @@ src_compile() {
 		UDEVDIR=${EPREFIX}$(get_udevdir)
 		LIBEXECDIR=${EPREFIX}/lib/${PN} PF=${PF}"
 
-	use prefix && MAKE_ARGS="${MAKE_ARGS} MKPREFIX=yes PREFIX=${EPREFIX}"
+	use prefix && MAKE_ARGS+=" MKPREFIX=yes PREFIX=${EPREFIX}"
 
 	emake ${MAKE_ARGS} all
 }
 
 src_install() {
 	emake ${MAKE_ARGS} DESTDIR="${D}" install
-	dodoc README CREDITS FEATURE-REMOVAL-SCHEDULE STYLE TODO ChangeLog
+	dodoc README CREDITS FEATURE-REMOVAL-SCHEDULE STYLE TODO
 
 	# Install the service file
-	LIBEXECDIR=${EPREFIX}/lib/${PN}
-	UNIT_DIR="$(systemd_get_unitdir)"
+	LIBEXECDIR="${EPREFIX}/lib/${PN}"
+	UNIT_DIR="$(systemd_get_systemunitdir)"
 	sed "s:@LIBEXECDIR@:${LIBEXECDIR}:" "${S}/systemd/net_at.service.in" > "${T}/net_at.service" || die
 	systemd_newunit "${T}/net_at.service" 'net@.service'
 	dosym "${UNIT_DIR#${EPREFIX}}/net@.service" "${UNIT_DIR#${EPREFIX}}/net@lo.service"
 }
 
 pkg_postinst() {
-	if [[ ! -e "${EROOT}"/etc/conf.d/net && -z $REPLACING_VERSIONS ]]; then
+	if [[ ! -e "${EROOT}"/etc/conf.d/net && -z ${REPLACING_VERSIONS} ]]; then
 		elog "The network configuration scripts will use dhcp by"
 		elog "default to set up your interfaces."
 		elog "If you need to set up something more complete, see"

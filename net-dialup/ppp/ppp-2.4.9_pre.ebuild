@@ -225,4 +225,8 @@ pkg_postinst() {
 	elog "Pon, poff and plog scripts have been supplied for experienced users."
 	elog "Users needing particular scripts (ssh,rsh,etc.) should check out the"
 	elog "/usr/share/doc/${PF}/scripts directory."
+
+	if [[ -n ${REPLACING_VERSIONS} ]] ; then
+		ewarn '"rp-pppoe.so" plugin has been renamed to "pppoe.so"'
+	fi
 }
