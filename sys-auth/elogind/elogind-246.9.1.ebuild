@@ -3,8 +3,9 @@
 # $Id: afcc828ef5990c7fe2ccf5ab43fc845597806bb7 $
 
 EAPI=7
+PYTHON_COMPAT=( python3_{6..9} )
 
-inherit linux-info meson pam udev xdg-utils
+inherit linux-info meson pam python-any-r1 udev xdg-utils
 
 DESCRIPTION="The systemd project's logind, extracted to a standalone package"
 HOMEPAGE="https://github.com/elogind/elogind"
@@ -38,6 +39,7 @@ DEPEND="
 	acl? ( sys-apps/acl )
 	pam? ( sys-libs/pam )
 	selinux? ( sys-libs/libselinux )
+	${PYTHON_DEPS}
 "
 RDEPEND="${DEPEND}
 	!sys-apps/systemd
@@ -66,6 +68,8 @@ src_prepare() {
 }
 
 src_configure() {
+	python_setup
+
 	local rccgroupmode="$(grep rc_cgroup_mode ${EPREFIX}/etc/rc.conf | cut -d '"' -f 2)"
 	local cgroupmode="legacy"
 
