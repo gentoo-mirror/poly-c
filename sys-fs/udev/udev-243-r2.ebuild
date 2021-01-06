@@ -1,6 +1,6 @@
-# Copyright 2003-2020 Gentoo Authors
+# Copyright 2003-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 34e919e5c634e40a2467bbb3100a8e545d6563a7 $
+# $Id: c294a693ef17363d5754035e9747087900ab8e09 $
 
 EAPI=6
 
@@ -49,7 +49,8 @@ DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.2
 	app-text/docbook-xml-dtd:4.5
 	app-text/docbook-xsl-stylesheets
-	dev-libs/libxslt"
+	dev-libs/libxslt
+	${PYTHON_DEPS}"
 RDEPEND="${COMMON_DEPEND}
 	acct-group/kmem
 	acct-group/tty

@@ -1,9 +1,10 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
+# $Id: afcc828ef5990c7fe2ccf5ab43fc845597806bb7 $
 
 EAPI=7
 
-inherit linux-info meson pam udev xdg-utils poly-c_ebuilds
+inherit linux-info meson pam udev xdg-utils
 
 DESCRIPTION="The systemd project's logind, extracted to a standalone package"
 HOMEPAGE="https://github.com/elogind/elogind"
@@ -13,7 +14,7 @@ if [[ ${MY_PV} = *9999* ]]; then
 	EGIT_REPO_URI="https://github.com/elogind/elogind.git"
 	inherit git-r3
 else
-	SRC_URI="https://github.com/${PN}/${PN}/archive/v${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
+	SRC_URI="https://github.com/${PN}/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86"
 fi
 
@@ -111,7 +112,7 @@ src_install() {
 	sed -e "s/@libdir@/$(get_libdir)/" "${FILESDIR}"/${PN}.conf.in > ${PN}.conf || die
 	newconfd ${PN}.conf ${PN}
 
-	keepdir {/etc,/$(get_libdir)}/${PN}/{logind,sleep}.conf.d
+	keepdir /{etc,$(get_libdir)}/${PN}/{logind,sleep}.conf.d
 }
 
 pkg_postinst() {

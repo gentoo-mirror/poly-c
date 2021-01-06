@@ -50,7 +50,7 @@ dev-qt/qtgui 5.15.1-r1 5.15.2-r1: The GUI module and platform plugins for the Qt
 dev-util/dwdiff 2.1.3_pre: diff-like program operating at word level instead of line level
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/lxqt-build-tools 0.8.0_pre: LXQt Build Tools
-dev-util/meson 0.56.0_pre: Open source build system
+dev-util/meson 0.56.0_pre 0.56.1_pre: Open source build system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-action/supertuxkart 1.1 1.2: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
@@ -231,7 +231,7 @@ sys-apps/portage 2.3.99-r2 2.3.103-r1 3.0.4-r1 3.0.7 3.0.8 3.0.9 3.0.10-r1 3.0.1
 sys-apps/roccat-tools 5.9.0-r100: Utility for advanced configuration of Roccat devices
 sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chipsets
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
-sys-auth/elogind 246.9.1_pre: The systemd project's logind, extracted to a standalone package
+sys-auth/elogind 246.9.1: The systemd project's logind, extracted to a standalone package
 sys-block/archttp 2.5.1.180529: CLI utility to manage Areca RAID controllers
 sys-block/areca_cli 1.15.8.180529: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
@@ -242,17 +242,16 @@ sys-boot/grub 2.04-r2: GNU GRUB boot loader
 sys-devel/distcc 3.3.3-r1 3.3.5_pre: Distribute compilation of C code across several machines on a network
 sys-devel/icecream 1.3.1_pre: Distributed compiling of C(++) code across several machines; based on distcc
 sys-fs/fswatch 1.14.0 1.15.0 9999: cross-platform file change monitor with multiple backends
-sys-fs/udev 242 243 243-r2 245 245.5-r1 245.6 246-r1 247_pre 247.2_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
+sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.2_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre31: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.162 4.19.163 4.19.164 5.4.84 5.4.85 5.4.86 5.10.2 5.10.3 5.10.4: Shows and sets processor power related values
+sys-power/cpupower 4.19.163 4.19.164 4.19.165 5.4.85 5.4.86 5.4.87 5.10.3 5.10.4 5.10.5: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.15-r1 3.3.16-r2: standard informational utilities and process-handling tools
-www-client/seamonkey 2.53.5.1: Seamonkey Web Browser
 www-client/waterfox-classic 2020.10 2020.12: Waterfox Web Browser
 www-client/waterfox-current 2020.10: Waterfox Web Browser
 x11-apps/xinit 1.4.1: X Window System initializer
