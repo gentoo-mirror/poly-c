@@ -11,9 +11,18 @@ https://www.brunsware.de/blog/hostapd-40mhz-disable-neighbor-check
  		wpa_printf(MSG_INFO, "20/40 MHz operation not permitted on "
  			   "channel pri=%d sec=%d based on overlapping BSSes",
  			   iface->conf->channel,
-@@ -325,7 +325,7 @@
+@@ -318,14 +318,14 @@
+ 			   iface->conf->secondary_channel * 4);
+ 		iface->conf->secondary_channel = 0;
+ 		if (iface->drv_flags & WPA_DRIVER_FLAGS_HT_2040_COEX) {
+-			/*
++*/			/*
+ 			 * TODO: Could consider scheduling another scan to check
+ 			 * if channel width can be changed if no coex reports
+ 			 * are received from associating stations.
  			 */
- 		}
+-		}
++/*		}
  	}
 -
 +*/
