@@ -1,14 +1,14 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-inherit flag-o-matic toolchain-funcs multiprocessing qmake-utils xdg poly-c_ebuilds
+inherit autotools flag-o-matic toolchain-funcs multiprocessing qmake-utils xdg poly-c_ebuilds
 
 if [[ ${MY_PV} == *9999 ]] ; then
 	EGIT_REPO_URI="https://gitlab.com/mbunkus/mkvtoolnix.git"
 	EGIT_SUBMODULES=()
-	inherit autotools git-r3
+	inherit git-r3
 else
 	SRC_URI="https://mkvtoolnix.download/sources/${MY_P}.tar.xz"
 	KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
@@ -19,15 +19,16 @@ HOMEPAGE="https://mkvtoolnix.download/ https://gitlab.com/mbunkus/mkvtoolnix"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="debug dvd nls pch test qt5"
+IUSE="dbus debug dvd nls pch qt5 test"
 RESTRICT="!test? ( test )"
 
 # check NEWS.md for build system changes entries for boost/libebml/libmatroska
 # version requirement updates and other packaging info
 RDEPEND="
 	>=dev-libs/boost-1.60:=
-	>=dev-libs/libebml-1.4.0:=
+	>=dev-libs/libebml-1.4.1_pre:=
 	>=dev-libs/libfmt-6.1.0:=
+	dev-libs/libpcre2:=
 	dev-libs/pugixml:=
 	media-libs/flac:=
 	>=media-libs/libmatroska-1.6.0:=
@@ -38,13 +39,13 @@ RDEPEND="
 	dvd? ( media-libs/libdvdread:= )
 	qt5? (
 		dev-qt/qtcore:5
-		dev-qt/qtdbus:5
 		dev-qt/qtgui:5
 		dev-qt/qtnetwork:5
 		dev-qt/qtwidgets:5
 		dev-qt/qtconcurrent:5
 		dev-qt/qtmultimedia:5
 		app-text/cmark:0=
+		dbus? ( dev-qt/qtdbus:5 )
 	)
 "
 DEPEND="${RDEPEND}
@@ -63,11 +64,18 @@ BDEPEND="
 	)
 "
 
+PATCHES=( "${FILESDIR}"/mkvtoolnix-49.0.0-qt5dbus.patch )
+
 src_prepare() {
 	xdg_src_prepare
 	if [[ ${MY_PV} == *9999 ]]; then
 		./autogen.sh || die
 	fi
+
+	# https://bugs.gentoo.org/692018
+	sed -e 's/pandoc/diSaBlEd/' -i ac/pandoc.m4 || die
+
+	eautoreconf
 
 	# remove bundled libs
 	rm -r lib/{fmt,libebml,libmatroska,nlohmann-json,pugixml,utf8-cpp} || die
@@ -80,6 +88,7 @@ src_configure() {
 	local myeconfargs=(
 		$(use_enable debug)
 		$(usex pch "" --disable-precompiled-headers)
+		$(use_enable dbus)
 		$(use_enable qt5 qt)
 		$(use_with dvd dvdread)
 		$(use_with nls gettext)
