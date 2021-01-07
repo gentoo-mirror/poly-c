@@ -5,6 +5,7 @@ app-admin/littleutils 1.2.2 1.2.3: The littleutils are a collection of small and
 app-admin/logrotate 3.16.0 3.17.0: Rotates, compresses, and mails system logs
 app-admin/remotebox 2.5 2.7: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
+app-admin/super 3.30.3.1: setuid-root program
 app-arch/xz-utils 5.2.5: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
@@ -34,6 +35,7 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
+dev-libs/ell 0.36_pre: Embedded Linux Library provides core, low-level functionality for system daemons
 dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional algorithm
 dev-libs/libebml 1.4.1_pre: Extensible binary format library (kinda like XML)
 dev-libs/libical 9999: An implementation of basic iCAL protocols
@@ -208,6 +210,7 @@ net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5 1.6: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-wireless/hostapd 2.9-r3: IEEE 802.11 wireless LAN Host AP daemon
+net-wireless/iwd 1.11_pre: Wireless daemon for linux
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-libs/dcmtk 3.6.2: The DICOM Toolkit
 sci-libs/gdcm 2.8.2: GDCM is an implementation of the DICOM standard.
