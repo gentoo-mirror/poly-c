@@ -206,6 +206,7 @@ net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
 net-misc/netifrc 0.7.1-r1: Gentoo Network Interface Management Scripts
 net-misc/networkmanager 1.26.4 1.26.6 1.28.0: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
+net-misc/socat 1.7.4.0: Multipurpose relay (SOcket CAT)
 net-misc/ssh-tools 1.5 1.6: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-wireless/hostapd 2.9-r3: IEEE 802.11 wireless LAN Host AP daemon
