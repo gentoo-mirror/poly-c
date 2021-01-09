@@ -183,7 +183,7 @@ media-tv/mediathekview-bin 11 12 13.0.2 13.2.1: Download files from the public b
 media-video/cinelerraGG 9999: The most advanced non-linear video editor and compositor - Good Guy's version
 media-video/ffmpeg 4.3.1: Complete solution to record/convert/stream audio and video. Includes libavcodec
 media-video/mkvtoolnix 52.0.0_pre: Tools to create, alter, and inspect Matroska files
-media-video/obs-studio 26.0.2_pre 26.1.0_pre: Software for Recording and Streaming Live Video Content
+media-video/obs-studio 26.1.0_pre 26.1.2_pre: Software for Recording and Streaming Live Video Content
 media-video/smplayer 20.4.2 20.6.0: Great Qt GUI front-end for mplayer/mpv
 net-analyzer/arpalert 2.0.11_pre 2.0.12_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
@@ -251,7 +251,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre31: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.163 4.19.164 4.19.165 5.4.85 5.4.86 5.4.87 5.10.3 5.10.4 5.10.5: Shows and sets processor power related values
+sys-power/cpupower 4.19.164 4.19.165 4.19.166 5.4.86 5.4.87 5.4.88 5.10.4 5.10.5 5.10.6: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
@@ -260,6 +260,7 @@ www-client/waterfox-classic 2020.10 2020.12: Waterfox Web Browser
 www-client/waterfox-current 2020.10: Waterfox Web Browser
 x11-apps/xinit 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
+x11-libs/libva 2.10.0: Video Acceleration (VA) API for Linux
 x11-misc/adriconf 1.5.1 1.6.1 9999: Advanced DRI Configurator
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-misc/qps 2.2.0_pre: Qt GUI Process Manager
