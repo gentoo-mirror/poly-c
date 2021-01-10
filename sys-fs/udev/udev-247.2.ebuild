@@ -1,22 +1,22 @@
 # Copyright 2003-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: cb14882292b27ee8e591dbe0183b6d2ef3d1e902 $
+# $Id: f028328e33ef42dec885618d38fdaa05386991a3 $
 
 EAPI=7
 PYTHON_COMPAT=( python3_{6..9} )
 
-inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal python-any-r1 toolchain-funcs udev usr-ldscript poly-c_ebuilds
+inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal python-any-r1 toolchain-funcs udev usr-ldscript
 
-if [[ ${MY_PV} = 9999* ]]; then
+if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="https://github.com/systemd/systemd.git"
 	inherit git-r3
 else
-	if [[ ${MY_PV} == *.* ]]; then
+	if [[ ${PV} == *.* ]]; then
 		MY_PN=systemd-stable
 	else
 		MY_PN=systemd
 	fi
-	MY_PV=${MY_PV/_/-}
+	MY_PV=${PV/_/-}
 	MY_P=${MY_PN}-${MY_PV}
 	S=${WORKDIR}/${MY_P}
 	SRC_URI="https://github.com/systemd/${MY_PN}/archive/v${MY_PV}/${MY_P}.tar.gz"
@@ -73,7 +73,7 @@ RDEPEND="${COMMON_DEPEND}
 	!sys-apps/systemd
 "
 PDEPEND=">=sys-apps/hwids-20140304[udev]
-	>=sys-fs/udev-init-scripts-26"
+	>=sys-fs/udev-init-scripts-34"
 
 pkg_setup() {
 	if [[ ${MERGE_TYPE} != buildonly ]]; then
@@ -84,25 +84,19 @@ pkg_setup() {
 		local MINKV=2.6.39
 
 		if kernel_is -lt ${MINKV//./ }; then
-			eerror "Your running kernel is too old to run this version of ${MY_P}"
+			eerror "Your running kernel is too old to run this version of ${P}"
 			eerror "You need to upgrade kernel at least to ${MINKV}"
 		fi
 
 		if kernel_is -lt 3 7; then
 			ewarn "Your running kernel is too old to have firmware loader and"
-			ewarn "this version of ${MY_P} doesn't have userspace firmware loader"
+			ewarn "this version of ${P} doesn't have userspace firmware loader"
 			ewarn "If you need firmware support, you need to upgrade kernel at least to 3.7"
 		fi
 	fi
 }
 
 src_prepare() {
-	cat <<-EOF > "${T}"/40-gentoo.rules
-	# Gentoo specific floppy and usb groups
-	ACTION=="add", SUBSYSTEM=="block", KERNEL=="fd[0-9]", GROUP="floppy"
-	ACTION=="add", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", GROUP="usb"
-	EOF
-
 	if [[ -d "${WORKDIR}/patches" ]]; then
 		eapply "${WORKDIR}/patches"
 	fi
@@ -232,7 +226,7 @@ multilib_src_install_all() {
 
 	# see src_prepare() for content of 40-gentoo.rules
 	insinto /lib/udev/rules.d
-	doins "${T}"/40-gentoo.rules
+	doins "${FILESDIR}"/40-gentoo.rules
 	doins "${S}"/rules.d/*.rules
 
 	dobashcomp shell-completion/bash/udevadm
