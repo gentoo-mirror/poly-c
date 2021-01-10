@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 13063686d1cce952b87124e346c24e702727c2b8 $
+# $Id: ea8468b6b8fd05998e9e8ddc7ded610fb9a7288a $
 
 EAPI=7
 
@@ -11,7 +11,7 @@ DESCRIPTION="The GUI module and platform plugins for the Qt5 framework"
 SLOT=5/$(ver_cut 1-3) # bug 707658
 
 if [[ ${QT5_BUILD_TYPE} == release ]]; then
-	KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
+	KEYWORDS="~amd64 arm arm64 ~hppa ppc ppc64 ~sparc x86"
 fi
 
 # TODO: linuxfb
