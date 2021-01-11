@@ -80,7 +80,7 @@ src_prepare() {
 	eapply "${FILESDIR}/${P}-0002-WPS-UPnP-Fix-event-message-generation-using-a-long-U.patch"
 	eapply "${FILESDIR}/${P}-0003-WPS-UPnP-Handle-HTTP-initiation-failures-for-events-.patch"
 
-	eapply #eapply "${FILESDIR}/${PN}-2.9-no_neighbor_check.patch"
+	#eapply "${FILESDIR}/${PN}-2.9-no_neighbor_check.patch"
 	eapply "${FILESDIR}/${PN}-2.9-force_ht40.patch"
 	popd >/dev/null || die
 

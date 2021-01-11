@@ -52,7 +52,6 @@ dev-qt/qtgui 5.15.1-r1 5.15.2-r1: The GUI module and platform plugins for the Qt
 dev-util/dwdiff 2.1.3_pre: diff-like program operating at word level instead of line level
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/lxqt-build-tools 0.8.0_pre: LXQt Build Tools
-dev-util/meson 0.56.1_pre 0.56.2_pre: Open source build system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-action/supertuxkart 1.1 1.2: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
@@ -203,7 +202,6 @@ net-libs/farstream 0.2.9_pre: Audio/video conferencing framework specifically de
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
-net-misc/netifrc 0.7.1-r1: Gentoo Network Interface Management Scripts
 net-misc/networkmanager 1.26.4 1.26.6 1.28.0: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5 1.6: collection of various tools using ssh
