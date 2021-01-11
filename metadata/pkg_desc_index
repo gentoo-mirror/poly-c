@@ -23,7 +23,6 @@ app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LD
 app-misc/mc 4.8.25-r1: GNU Midnight Commander is a text based file manager
 app-misc/mmv 1.01b_p19_pre: Move/copy/append/link multiple files according to a set of wildcard patterns
 app-misc/osmo 0.4.2: Handy personal organizer
-app-pda/libusbmuxd 1.0.10_pre: USB multiplex daemon for use with Apple iPhone/iPod Touch devices
 app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
@@ -85,7 +84,6 @@ kde-frameworks/plasma 5.67.0: Plasma framework
 lxqt-base/liblxqt 0.16.0_pre: Common base library for the LXQt desktop environment
 mail-filter/pyzor 1.0.0-r1: A distributed, collaborative spam detection and filtering network
 media-gfx/fawkes 9999: Image Cloaking for Personal Privacy
-media-gfx/gimp 2.10.22-r1: GNU Image Manipulation Program
 media-libs/gst-plugins-bad 1.16.3_pre: Less plugins for GStreamer
 media-libs/gst-plugins-base 1.16.2 1.16.3_pre: Basepack of plugins for gstreamer
 media-libs/gst-plugins-good 1.16.3_pre: Basepack of plugins for GStreamer
@@ -267,5 +265,4 @@ x11-misc/xdg-utils 1.1.3_p20200220-r1: Portland utils for cross-platform/cross-t
 x11-plugins/pidgin-skypeweb 1.5_pre: SkypeWeb Plugin for Pidgin
 x11-plugins/purple-icyque 9999: ICQ WIM protocol for libpurple
 x11-plugins/purple-matrix 9999: Libpurple protocol plugin for matrix
-x11-plugins/purple-signald 9999: libpurple/Pidgin plugin for signald
 x11-themes/sddm-gentoo-black-theme 1.2 9999: Simple SDDM theme inspired on FBSD SLiM theme
