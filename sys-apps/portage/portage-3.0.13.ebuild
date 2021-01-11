@@ -1,6 +1,6 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 28cd3d04cca05085cc5e06328c095503a9d31adb $
+# $Id: 3048a7d74ceb1d6ed8943e902c6078c4a4eb3809 $
 
 EAPI=7
 
@@ -35,6 +35,7 @@ DEPEND="!build? ( $(python_gen_impl_dep 'ssl(+)') )
 # app-portage/gemato goes without PYTHON_USEDEP since we're calling
 # the executable.
 RDEPEND="
+	acct-user/portage
 	app-arch/zstd
 	>=app-arch/tar-1.27
 	dev-lang/python-exec:2

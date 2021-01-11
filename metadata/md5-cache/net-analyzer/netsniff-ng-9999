@@ -1,4 +1,4 @@
-BDEPEND=sys-devel/flex sys-devel/bison =net-libs/nacl-0_p20110221* virtual/pkgconfig >=dev-vcs/git-1.8.2.1[curl]
+BDEPEND=sys-devel/flex sys-devel/bison virtual/pkgconfig >=dev-vcs/git-1.8.2.1[curl]
 DEFINED_PHASES=compile configure install prepare unpack
 DEPEND=dev-libs/libcli dev-libs/libnl:3 dev-libs/userspace-rcu:= net-libs/libnet:1.1 net-libs/libnetfilter_conntrack net-libs/libpcap sys-libs/ncurses:0= geoip? ( dev-libs/geoip ) zlib? ( sys-libs/zlib:= )
 DESCRIPTION=high performance network sniffer for packet inspection
@@ -10,4 +10,4 @@ PROPERTIES=live
 RDEPEND=dev-libs/libcli dev-libs/libnl:3 dev-libs/userspace-rcu:= net-libs/libnet:1.1 net-libs/libnetfilter_conntrack net-libs/libpcap sys-libs/ncurses:0= geoip? ( dev-libs/geoip ) zlib? ( sys-libs/zlib:= )
 SLOT=0
 _eclasses_=git-r3	3e7ec3d6619213460c85e2aa48398441	multilib	d410501a125f99ffb560b0c523cd3d1e	toolchain-funcs	1a94dc06d324bd0dab754e11abe6d27e
-_md5_=ea1de126a8a9ee6f90832a400adec345
+_md5_=dd81bd5d7998f271a4d36a702a2ee161
