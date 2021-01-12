@@ -34,6 +34,7 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
+dev-lang/ruby 2.7.2: An object-oriented scripting language
 dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional algorithm
 dev-libs/libcli 1.10.4: Cisco-style (telnet) command-line interface library
 dev-libs/libebml 1.4.1_pre: Extensible binary format library (kinda like XML)
@@ -76,7 +77,7 @@ games-strategy/unknown-horizons 9999: Anno-like real time strategy game
 games-util/gx52 9999: GTK app for control of the LEDs and MFD of Logitech X52 (Pro)
 games-util/pyrocket 0.8: PyGTK control interface for Striker II and Dream Cheeky USB foam dart launchers
 games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
-games-util/x52pro-linux 0.2.0 0.2.1 9999: Saitek X52pro drivers & controller mapping software for Linux
+games-util/x52pro-linux 0.2.1 9999: Saitek X52pro drivers & controller mapping software for Linux
 kde-apps/kde-wallpapers 15.08.3-r3: KDE wallpapers
 kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
