@@ -1,9 +1,9 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id: 9a857f44f5f9c8d9153d7de19e2ed6d9d40a7140 $
 
-EAPI=6
-inherit cmake-utils eutils
+EAPI=7
+inherit cmake
 
 DESCRIPTION="A set of tools for CD/DVD reading and recording, including cdrecord"
 HOMEPAGE="http://cdrkit.org"
@@ -15,7 +15,7 @@ KEYWORDS="alpha amd64 ~arm ~arm64 hppa ia64 ~mips ppc ppc64 sparc x86 ~x86-fbsd 
 IUSE="debug hfs unicode"
 
 RDEPEND="app-arch/bzip2
-	!app-cdr/cdrtools
+	!<app-cdr/cdrtools-99
 	dev-libs/libcdio-paranoia:=
 	sys-apps/file
 	sys-libs/zlib
@@ -31,15 +31,16 @@ PATCHES=(
 )
 
 src_prepare() {
-	default
-	echo '.so wodim.1' > ${T}/cdrecord.1
-	echo '.so genisoimage.1' > ${T}/mkisofs.1
-	echo '.so icedax.1' > ${T}/cdda2wav.1
-	echo '.so readom.1' > ${T}/readcd.1
+	cmake_src_prepare
+
+	echo '.so wodim.1' > ${T}/cdrecord.1 || die
+	echo '.so genisoimage.1' > ${T}/mkisofs.1 || die
+	echo '.so icedax.1' > ${T}/cdda2wav.1 || die
+	echo '.so readom.1' > ${T}/readcd.1 || die
 }
 
 src_install() {
-	cmake-utils_src_install
+	cmake_src_install
 
 	dosym wodim /usr/bin/cdrecord
 	dosym genisoimage /usr/bin/mkisofs
