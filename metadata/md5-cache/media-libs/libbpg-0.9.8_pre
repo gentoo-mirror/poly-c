@@ -11,5 +11,5 @@ RDEPEND=media-libs/libjpeg-turbo media-libs/libpng:0= sys-process/numactl x265? 
 RESTRICT=mirror
 SLOT=0
 SRC_URI=http://bellard.org/bpg/libbpg-0.9.8.tar.gz
-_eclasses_=edos2unix	33e347e171066657f91f8b0c72ec8773	eutils	2d5b3f4b315094768576b6799e4f926e	l10n	8cdd85e169b835d518bc2fd59f780d8e	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	wrapper	4251d4c84c25f59094fd557e0063a974
-_md5_=916d3fba2f4e84c4d1828a687fb94d2a
+_eclasses_=poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac
+_md5_=8313132613238f3ceff3ca732129c206

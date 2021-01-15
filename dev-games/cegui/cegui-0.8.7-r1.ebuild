@@ -1,11 +1,11 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id: 6e34ca1b15de71d0753cc53dc5438f6b7955da60 $
 
 EAPI=7
 
 # TODO: multiple ABI?
-PYTHON_COMPAT=( python3_{6,7,8} )
+PYTHON_COMPAT=( python3_{6..9} )
 inherit eutils flag-o-matic cmake python-single-r1
 
 DESCRIPTION="Crazy Eddie's GUI System"

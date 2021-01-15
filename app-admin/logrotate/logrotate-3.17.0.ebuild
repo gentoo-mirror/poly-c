@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 98a69f1ad414ee79d27eca1c8defc1e47d4f2960 $
+# $Id: 33eb0d103ce05d1f02bffebdeca78e0ad3c54332 $
 
 EAPI=7
 
@@ -12,7 +12,7 @@ SRC_URI="https://github.com/${PN}/${PN}/releases/download/${PV}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ~m68k ~mips ppc ppc64 ~s390 ~sparc x86"
+KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ~m68k ~mips ppc ppc64 ~s390 sparc x86"
 IUSE="acl +cron selinux"
 
 COMMON_DEPEND="
@@ -77,6 +77,10 @@ src_install() {
 }
 
 pkg_postinst() {
+	elog
+	elog "The ${PN} binary is now installed under /usr/bin. Please"
+	elog "update your links"
+	elog
 	move_old_state_file
 	elog "If you are running systemd you might need to run:"
 	elog "systemd-tmpfiles --create /usr/lib/tmpfiles.d/logrotate.conf"
