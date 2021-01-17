@@ -77,10 +77,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	elog
-	elog "The ${PN} binary is now installed under /usr/bin. Please"
-	elog "update your links"
-	elog
 	move_old_state_file
 	elog "If you are running systemd you might need to run:"
 	elog "systemd-tmpfiles --create /usr/lib/tmpfiles.d/logrotate.conf"
