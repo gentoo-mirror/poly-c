@@ -70,8 +70,6 @@ games-simulation/flightgear-data 2020.3.4_pre 2020.3.5_pre: FlightGear data file
 games-strategy/0ad 0.0.23b_alpha: A free, real-time strategy game
 games-strategy/0ad-data 0.0.23b_alpha: Data files for 0ad
 games-strategy/boswars 9999: Futuristic real-time strategy game
-games-strategy/megaglest 3.13.0_pre-r1: Cross-platform 3D realtime strategy game
-games-strategy/megaglest-data 3.13.0_pre: Data files for the cross-platform 3D realtime strategy game MegaGlest
 games-strategy/opendungeons 0.7.1 9999: An open source, real time strategy game based on the Dungeon Keeper series
 games-strategy/unknown-horizons 9999: Anno-like real time strategy game
 games-util/gx52 9999: GTK app for control of the LEDs and MFD of Logitech X52 (Pro)
@@ -206,6 +204,7 @@ net-misc/networkmanager 1.26.4 1.26.6 1.28.0: A set of co-operative tools that m
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5 1.6: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
+net-print/cups 2.3.3-r1: The Common Unix Printing System
 net-wireless/hostapd 2.9-r3: IEEE 802.11 wireless LAN Host AP daemon
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-libs/dcmtk 3.6.2: The DICOM Toolkit
@@ -249,7 +248,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre32: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.165 4.19.166 4.19.167 5.4.87 5.4.88 5.4.89 5.10.5 5.10.6 5.10.7: Shows and sets processor power related values
+sys-power/cpupower 4.19.166 4.19.167 4.19.168 5.4.88 5.4.89 5.4.90 5.10.6 5.10.7 5.10.8: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
