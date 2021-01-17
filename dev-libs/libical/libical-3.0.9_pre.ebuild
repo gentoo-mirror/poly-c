@@ -5,19 +5,15 @@ EAPI=7
 
 PYTHON_COMPAT=( python3_{6,7,8} )
 VALA_USE_DEPEND="vapigen"
-inherit cmake python-any-r1 vala
+inherit cmake python-any-r1 vala poly-c_ebuilds
 
 DESCRIPTION="An implementation of basic iCAL protocols"
 HOMEPAGE="https://github.com/libical/libical"
-if [[ "${PV}" == *9999 ]] ; then
-	inherit git-r3
-	EGIT_REPO_URI="https://github.com/libical/libical.git"
-else
-	SRC_URI="https://github.com/${PN}/${PN}/releases/download/v${PV}/${P}.tar.gz"
-	KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ~mips ppc ppc64 sparc x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-fi
+SRC_URI="https://github.com/${PN}/${PN}/releases/download/v${MY_PV}/${MY_P}.tar.gz"
+
 LICENSE="|| ( MPL-2.0 LGPL-2.1 )"
 SLOT="0/3"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="berkdb doc examples +glib +introspection static-libs test vala"
 
 REQUIRED_USE="introspection? ( glib ) vala? ( introspection )"
