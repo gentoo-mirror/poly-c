@@ -1,4 +1,4 @@
-From c1446a9eaad84631ccdfafa23d872c780f03d76c Mon Sep 17 00:00:00 2001
+From 755078fd71a68eec56b8dd3a24ca6f35b49622d2 Mon Sep 17 00:00:00 2001
 From: Lars Wendler <polynomial-c@gentoo.org>
 Date: Mon, 18 Jan 2021 11:45:36 +0100
 Subject: [PATCH] Convert many "grep" calls to "grep -F"
@@ -10,9 +10,8 @@ Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
  net/iproute2.sh          | 6 +++---
  net/iw.sh                | 4 ++--
  net/iwconfig.sh.Linux.in | 5 ++---
- net/vlan.sh              | 2 +-
  net/wpa_supplicant.sh    | 3 +--
- 7 files changed, 13 insertions(+), 15 deletions(-)
+ 6 files changed, 12 insertions(+), 14 deletions(-)
 
 diff --git a/doc/net.example.Linux.in b/doc/net.example.Linux.in
 index b404329..bafde42 100644
@@ -134,19 +133,6 @@ index 02f748d..98044a9 100644
  	local txpowerwasoff=$?
  
  	iwconfig_defaults
-diff --git a/net/vlan.sh b/net/vlan.sh
-index da9f9c0..2e000e3 100644
---- a/net/vlan.sh
-+++ b/net/vlan.sh
-@@ -15,7 +15,7 @@ _is_vlan()
- {
- 	[ ! -d /proc/net/vlan ] && return 1
- 	[ -e /proc/net/vlan/"${IFACE}" ] && return 0
--	grep -Eq "^${IFACE}[[:space:]]+" /proc/net/vlan/config
-+	grep -q "^${IFACE}[[:space:]]\+" /proc/net/vlan/config
- }
- 
- _get_vlans()
 diff --git a/net/wpa_supplicant.sh b/net/wpa_supplicant.sh
 index 607d4e1..d5e2013 100644
 --- a/net/wpa_supplicant.sh

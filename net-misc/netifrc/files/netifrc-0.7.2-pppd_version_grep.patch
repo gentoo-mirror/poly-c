@@ -1,4 +1,4 @@
-From ddf7e160ee499496a94f4d04f2465657ae66caf3 Mon Sep 17 00:00:00 2001
+From 69e19c2fd268500b388bfd4e070dac3ae189261b Mon Sep 17 00:00:00 2001
 From: Lars Wendler <polynomial-c@gentoo.org>
 Date: Mon, 18 Jan 2021 12:44:10 +0100
 Subject: [PATCH] net/pppd.sh: Improved pppd version check
@@ -7,6 +7,7 @@ Ed Wildgoose reported an issue with pppd version check if plugins are
 also to be initialized. I this case "pppd --version" also reports the
 plugins and that can confuse our original version check.
 
+Bug: https://bugs.gentoo.org/729920
 Thanks-to: Ed Wildgoose <ed+git@wildgooses.com>
 Closes: https://github.com/gentoo/netifrc/pull/33
 Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
