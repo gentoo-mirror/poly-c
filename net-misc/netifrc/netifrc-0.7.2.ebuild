@@ -32,6 +32,7 @@ PATCHES=(
 	"${FILESDIR}/${P}-grep_improvements.patch"
 	"${FILESDIR}/${P}-dash_redirect_fix.patch"
 	"${FILESDIR}/${P}-pppd_version_grep.patch"
+	"${FILESDIR}/${P}-pppd_ver_check_overhaul.patch"
 )
 
 src_prepare() {
