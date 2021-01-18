@@ -1,0 +1,166 @@
+From c1446a9eaad84631ccdfafa23d872c780f03d76c Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Mon, 18 Jan 2021 11:45:36 +0100
+Subject: [PATCH] Convert many "grep" calls to "grep -F"
+
+Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
+---
+ doc/net.example.Linux.in | 6 +++---
+ net/ifconfig.sh.Linux.in | 2 +-
+ net/iproute2.sh          | 6 +++---
+ net/iw.sh                | 4 ++--
+ net/iwconfig.sh.Linux.in | 5 ++---
+ net/vlan.sh              | 2 +-
+ net/wpa_supplicant.sh    | 3 +--
+ 7 files changed, 13 insertions(+), 15 deletions(-)
+
+diff --git a/doc/net.example.Linux.in b/doc/net.example.Linux.in
+index b404329..bafde42 100644
+--- a/doc/net.example.Linux.in
++++ b/doc/net.example.Linux.in
+@@ -1365,7 +1365,7 @@
+ #	# Test for link on the interface prior to bringing it up.  This
+ #	# only works on some network adapters and requires the
+ #	# sys-apps/net-tools package to be installed.
+-#	if mii-tool "${IFACE}" 2> /dev/null | grep -q 'no link'; then
++#	if mii-tool "${IFACE}" 2> /dev/null | grep -Fq 'no link'; then
+ #		ewarn "No link on ${IFACE}, aborting configuration"
+ #		return 1
+ #	fi
+@@ -1373,14 +1373,14 @@
+ #	# Test for link on the interface prior to bringing it up.  This
+ #	# only works on some network adapters and requires the ethtool
+ #	# package to be installed.
+-#	if ethtool "${IFACE}" | grep -q 'Link detected: no'; then
++#	if ethtool "${IFACE}" | grep -Fq 'Link detected: no'; then
+ #		ewarn "No link on ${IFACE}, aborting configuration"
+ #		return 1
+ #	fi
+ #
+ #	# Test to see if we're docked or not and configure like so
+ #	# config_docked="dhcp"
+-#	if grep -q "1" /sys/devices/platform/dock.0/docked; then
++#	if grep -Fq "1" /sys/devices/platform/dock.0/docked; then
+ #       einfo "${IFACE} is docked - configuring"
+ #		_configure_variables "docked"
+ #	fi
+diff --git a/net/ifconfig.sh.Linux.in b/net/ifconfig.sh.Linux.in
+index 960b239..b0a4551 100644
+--- a/net/ifconfig.sh.Linux.in
++++ b/net/ifconfig.sh.Linux.in
+@@ -47,7 +47,7 @@ _is_wireless()
+ 		-d /sys/class/net/"${IFACE}"/phy80211 ] && return 0
+ 
+ 	[ ! -e /proc/net/wireless ] && return 1
+-	grep -Eq "^[[:space:]]*${IFACE}:" /proc/net/wireless
++	grep -q "^[[:space:]]*${IFACE}:" /proc/net/wireless
+ }
+ 
+ _set_flag()
+diff --git a/net/iproute2.sh b/net/iproute2.sh
+index d19f79d..4c32acc 100644
+--- a/net/iproute2.sh
++++ b/net/iproute2.sh
+@@ -192,7 +192,7 @@ _add_address()
+ 
+ 	# Check for address already existing:
+ 	ip addr show to "${address}/${family_maxnetmask}" dev "${IFACE}" 2>/dev/null | \
+-		fgrep -sq "${address}"
++		grep -Fsq "${address}"
+ 	address_already_exists=$?
+ 
+ 	# This must appear on a single line, continuations cannot be used
+@@ -265,7 +265,7 @@ _add_route()
+ 
+ 	# Check for route already existing:
+ 	ip ${family} route show ${cmd_nometric} dev "${IFACE}" 2>/dev/null | \
+-		fgrep -sq "${cmd%% *}"
++		grep -Fsq "${cmd%% *}"
+ 	route_already_exists=$?
+ 
+ 	_cmd ip ${family} route append ${cmd} dev "${IFACE}"
+@@ -304,7 +304,7 @@ _delete_addresses()
+ 
+ _has_carrier()
+ {
+-	LC_ALL=C ip link show dev "${IFACE}" | grep -q "LOWER_UP"
++	LC_ALL=C ip link show dev "${IFACE}" | grep -Fq "LOWER_UP"
+ }
+ 
+ # Used by iproute2, ip6rd & ip6to4
+diff --git a/net/iw.sh b/net/iw.sh
+index 029b9d6..1f8b068 100644
+--- a/net/iw.sh
++++ b/net/iw.sh
+@@ -212,7 +212,7 @@ iw_wait_for_association()
+ 				# carrier on or buggy madwifi drivers that
+ 				# sometimes have carrier on and ssid set
+ 				# without being associated.  :/
+-				[ -n "$(iw dev "${IFACE}" info |grep ssid)" ] && [ "${station_mac}" != "00:00:00:00:00:00" ] && return 0
++				[ -n "$(iw dev "${IFACE}" info | grep -F ssid)" ] && [ "${station_mac}" != "00:00:00:00:00:00" ] && return 0
+ 			fi
+ 		else
+ 			local atest=
+@@ -704,7 +704,7 @@ iw_pre_start()
+ 
+ 	# Store the fact that tx-power was off so we default to a longer
+ 	# wait if our scan returns nothing
+-	LC_ALL=C iw dev "${IFACE}" info | sed -e '1d' | grep -q "txpower 0.00"
++	LC_ALL=C iw dev "${IFACE}" info | sed -e '1d' | grep -Fq "txpower 0.00"
+ 	local txpowerwasoff=$?
+ 
+ 	iw_defaults
+diff --git a/net/iwconfig.sh.Linux.in b/net/iwconfig.sh.Linux.in
+index 02f748d..98044a9 100644
+--- a/net/iwconfig.sh.Linux.in
++++ b/net/iwconfig.sh.Linux.in
+@@ -17,9 +17,8 @@ iwconfig_get_wep_status()
+ {
+ 	local mode= status="disabled"
+ 
+-	# No easy way of doing this grep in bash regex :/
+ 	if LC_ALL=C iwconfig "${IFACE}" | \
+-	grep -qE "^ +Encryption key:[*0-9,A-F]"; then
++	grep -Eq "^ +Encryption key:[*0-9,A-F]"; then
+ 		status="enabled"
+ 		mode=$(LC_ALL=C iwconfig "${IFACE}" | \
+ 		sed -n -e 's/^.*Security mode:\(.*[^ ]\).*/\1/p')
+@@ -710,7 +709,7 @@ iwconfig_pre_start()
+ 
+ 	# Store the fact that tx-power was off so we default to a longer
+ 	# wait if our scan returns nothing
+-	LC_ALL=C iwconfig "${IFACE}" | sed -e '1d' | grep -q "Tx-Power=off"
++	LC_ALL=C iwconfig "${IFACE}" | sed -e '1d' | grep -Fq "Tx-Power=off"
+ 	local txpowerwasoff=$?
+ 
+ 	iwconfig_defaults
+diff --git a/net/vlan.sh b/net/vlan.sh
+index da9f9c0..2e000e3 100644
+--- a/net/vlan.sh
++++ b/net/vlan.sh
+@@ -15,7 +15,7 @@ _is_vlan()
+ {
+ 	[ ! -d /proc/net/vlan ] && return 1
+ 	[ -e /proc/net/vlan/"${IFACE}" ] && return 0
+-	grep -Eq "^${IFACE}[[:space:]]+" /proc/net/vlan/config
++	grep -q "^${IFACE}[[:space:]]\+" /proc/net/vlan/config
+ }
+ 
+ _get_vlans()
+diff --git a/net/wpa_supplicant.sh b/net/wpa_supplicant.sh
+index 607d4e1..d5e2013 100644
+--- a/net/wpa_supplicant.sh
++++ b/net/wpa_supplicant.sh
+@@ -10,8 +10,7 @@ wpa_supplicant_depend()
+ 		program start ${wpas}
+ 		# bug 345281: if wpa_supplicant is built w/ USE=dbus, we need to start
+ 		# dbus before we can start wpa_supplicant.
+-		${wpas} -h |grep DBus -sq
+-		[ $? -eq 0 ] && need dbus
++		${wpas} -h | grep -Fsq DBus && need dbus
+ 	fi
+ 	after macnet plug
+ 	before interface
+-- 
+2.30.0
+

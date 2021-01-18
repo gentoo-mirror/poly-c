@@ -1,0 +1,32 @@
+From ddf7e160ee499496a94f4d04f2465657ae66caf3 Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Mon, 18 Jan 2021 12:44:10 +0100
+Subject: [PATCH] net/pppd.sh: Improved pppd version check
+
+Ed Wildgoose reported an issue with pppd version check if plugins are
+also to be initialized. I this case "pppd --version" also reports the
+plugins and that can confuse our original version check.
+
+Thanks-to: Ed Wildgoose <ed+git@wildgooses.com>
+Closes: https://github.com/gentoo/netifrc/pull/33
+Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
+---
+ net/pppd.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/net/pppd.sh b/net/pppd.sh
+index 42495a7..2182497 100644
+--- a/net/pppd.sh
++++ b/net/pppd.sh
+@@ -23,7 +23,7 @@ requote()
+ 
+ pppd_is_ge_248()
+ {
+-	local ver_str="$(/usr/sbin/pppd --version 2>&1 | grep -o '[[:digit:]\.]\+')"
++	local ver_str="$(/usr/sbin/pppd --version 2>&1 | awk '/pppd version/ {print $3}')"
+ 	local maj_ver="$(echo ${ver_str} | cut -d . -f 1)"
+ 	local min_ver="$(echo ${ver_str} | cut -d . -f 2)"
+ 	local patch_ver="$(echo ${ver_str} | cut -d . -f 3)"
+-- 
+2.30.0
+

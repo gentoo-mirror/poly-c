@@ -1,0 +1,27 @@
+From 47efe715346c4aed41b981f2b30910566aadb596 Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Mon, 18 Jan 2021 12:23:12 +0100
+Subject: [PATCH] net/l2tp.sh: dash doesn't know "&>/dev/null" redirect
+
+Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
+---
+ net/l2tp.sh | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/net/l2tp.sh b/net/l2tp.sh
+index 9644e32..82649b9 100644
+--- a/net/l2tp.sh
++++ b/net/l2tp.sh
+@@ -34,8 +34,7 @@ _l2tp_eval_props() {
+ 
+ _is_l2tp() {
+ 	# Check for L2TP support in kernel
+-	ip l2tp show session &>/dev/null
+-	[ $? -ne 0 ] && return 1
++	ip l2tp show session 2>/dev/null 1>/dev/null || return 1
+ 
+ 	eval "$(ip l2tp show session | \
+ 		awk "match(\$0, /^Session ([0-9]+) in tunnel ([0-9]+)\$/, ret) {sid=ret[1]; tid=ret[2]} 
+-- 
+2.30.0
+

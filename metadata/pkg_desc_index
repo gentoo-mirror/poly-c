@@ -38,7 +38,6 @@ dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional algorithm
 dev-libs/libcli 1.10.4: Cisco-style (telnet) command-line interface library
-dev-libs/libical 3.0.9_pre 9999: An implementation of basic iCAL protocols
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.1.1g 1.1.1h 1.1.1i: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
@@ -200,6 +199,7 @@ net-libs/farstream 0.2.9_pre: Audio/video conferencing framework specifically de
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
+net-misc/netifrc 0.7.2: Gentoo Network Interface Management Scripts
 net-misc/networkmanager 1.26.4 1.26.6 1.28.0: A set of co-operative tools that make networking simple and straightforward
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5 1.6: collection of various tools using ssh
