@@ -38,6 +38,7 @@ dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional algorithm
 dev-libs/libcli 1.10.4: Cisco-style (telnet) command-line interface library
+dev-libs/libgcrypt 1.9.0_pre: General purpose crypto library based on the code used in GnuPG
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.1.1g 1.1.1h 1.1.1i: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
@@ -228,7 +229,7 @@ sys-apps/kmod 27-r2 28: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
 sys-apps/openrc 0.42.1: OpenRC manages the services, startup and shutdown of a host
-sys-apps/portage 2.3.99-r2 3.0.9 3.0.12 3.0.13: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.3.99-r2 3.0.9 3.0.12 3.0.13 3.0.14: Portage is the package management and distribution system for Gentoo
 sys-apps/roccat-tools 5.9.0-r100: Utility for advanced configuration of Roccat devices
 sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chipsets
 sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
@@ -249,7 +250,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/slang 2.3.3_pre32: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.166 4.19.167 4.19.168 5.4.88 5.4.89 5.4.90 5.10.6 5.10.7 5.10.8: Shows and sets processor power related values
+sys-power/cpupower 4.19.167 4.19.168 4.19.169 5.4.89 5.4.90 5.4.91 5.10.7 5.10.8 5.10.9: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
@@ -258,6 +259,7 @@ www-client/waterfox-classic 2020.10 2020.12: Waterfox Web Browser
 www-client/waterfox-current 2020.10: Waterfox Web Browser
 x11-apps/xinit 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
+x11-libs/libdrm 2.4.104_pre: X.Org libdrm library
 x11-libs/libva 2.10.0: Video Acceleration (VA) API for Linux
 x11-misc/adriconf 1.5.1 1.6.1 9999: Advanced DRI Configurator
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
