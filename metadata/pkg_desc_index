@@ -21,8 +21,7 @@ app-laptop/i8kutils 1.43_pre: Dell Inspiron and Latitude utilities
 app-laptop/laptop-mode-tools 1.74_pre: Linux kernel laptop_mode user-space utilities
 app-misc/kenny 0.1: command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
-app-misc/mc 4.8.25-r1: GNU Midnight Commander is a text based file manager
-app-misc/mmv 1.01b_p19_pre: Move/copy/append/link multiple files according to a set of wildcard patterns
+app-misc/mc 4.8.25-r1 4.8.26: GNU Midnight Commander is a text based file manager
 app-misc/osmo 0.4.2: Handy personal organizer
 app-misc/radeontop 1.3_pre: Utility to view Radeon GPU utilization
 app-shells/dash 0.5.10.2: Debian Almquist Shell
@@ -38,7 +37,6 @@ dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional algorithm
 dev-libs/libcli 1.10.4: Cisco-style (telnet) command-line interface library
-dev-libs/libgcrypt 1.9.0_pre: General purpose crypto library based on the code used in GnuPG
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.1.1g 1.1.1h 1.1.1i: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
@@ -259,7 +257,6 @@ www-client/waterfox-classic 2020.10 2020.12: Waterfox Web Browser
 www-client/waterfox-current 2020.10: Waterfox Web Browser
 x11-apps/xinit 1.4.1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
-x11-libs/libdrm 2.4.104_pre: X.Org libdrm library
 x11-libs/libva 2.10.0: Video Acceleration (VA) API for Linux
 x11-misc/adriconf 1.5.1 1.6.1 9999: Advanced DRI Configurator
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
