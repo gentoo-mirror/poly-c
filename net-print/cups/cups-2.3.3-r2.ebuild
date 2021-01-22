@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: d6375da0adfe6016a3e2c4f6621b823125351834 $
+# $Id: a367e9deed5b6810e911c282ebeaa364b20f2018 $
 
 EAPI=7
 
@@ -256,8 +256,9 @@ multilib_src_install_all() {
 		"${T}"/cupsd || die
 	doinitd "${T}"/cupsd
 
-	# install our pam script
-	pamd_mimic_system cups auth account
+	if use pam ; then
+		pamd_mimic_system cups auth account
+	fi
 
 	if use xinetd ; then
 		# correct path
