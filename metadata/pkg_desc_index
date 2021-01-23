@@ -266,5 +266,6 @@ x11-misc/xdg-utils 1.1.3_p20200220-r1: Portland utils for cross-platform/cross-t
 x11-plugins/pidgin-skypeweb 1.5_pre: SkypeWeb Plugin for Pidgin
 x11-plugins/purple-icyque 9999: ICQ WIM protocol for libpurple
 x11-plugins/purple-matrix 9999: Libpurple protocol plugin for matrix
+x11-themes/gtk-engines 2.20.2-r100: GTK+2 standard engines and themes
 x11-themes/sddm-gentoo-black-theme 1.2 9999: Simple SDDM theme inspired on FBSD SLiM theme
 x11-wm/icewm 2.1.0: Ice Window Manager with Themes
