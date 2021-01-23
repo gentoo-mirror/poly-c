@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: ec1d0545c00581b361d1c30e6a071d09bb062012 $
+# $Id: 57f469f48b7912790e7e1dbc470339cba8833f0a $
 
 EAPI=7
 
@@ -83,7 +83,7 @@ BDEPEND="
 "
 
 PATCHES=(
-	"${FILESDIR}/${PN}-2.1.0-application_menu.patch"
+	"${FILESDIR}/${P}-appmenu_fix.patch"
 )
 
 pkg_pretend() {
