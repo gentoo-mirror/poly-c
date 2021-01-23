@@ -50,6 +50,7 @@ dev-python/wget 3.2: pure python download utility
 dev-qt/qtgui 5.15.1-r1 5.15.2-r1: The GUI module and platform plugins for the Qt5 framework
 dev-util/dwdiff 2.1.3_pre: diff-like program operating at word level instead of line level
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
+dev-util/icemon 3.3_pre: Monitor program for use with Icecream compile clusters based on KDE Frameworks
 dev-util/lxqt-build-tools 0.8.0_pre: LXQt Build Tools
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-action/supertuxkart 1.1 1.2: A kart racing game starring Tux, the linux penguin (TuxKart fork)
