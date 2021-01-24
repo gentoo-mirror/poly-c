@@ -7,6 +7,7 @@ app-admin/remotebox 2.5 2.7: Open Source VirtualBox Client with Remote Managemen
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-admin/super 3.30.3.1: setuid-root program
 app-arch/dpkg 1.20.7.1_pre: Package maintenance system for Debian
+app-arch/pigz 2.5_pre: A parallel implementation of gzip
 app-arch/xz-utils 5.2.5: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
