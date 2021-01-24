@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit gnome2-utils bash-completion-r1 flag-o-matic linux-info meson multilib-minimal systemd udev user xdg
+inherit bash-completion-r1 flag-o-matic gnome2-utils linux-info meson multilib-minimal systemd udev
 
 DESCRIPTION="A networked sound server with an advanced plugin system"
 HOMEPAGE="https://www.freedesktop.org/wiki/Software/PulseAudio/"
@@ -24,13 +24,13 @@ LICENSE="!gdbm? ( LGPL-2.1 ) gdbm? ( GPL-2 )"
 SLOT="0"
 
 # +alsa-plugin as discussed in bug #519530
-IUSE="+alsa +alsa-plugin +asyncns bluetooth +caps dbus doc equalizer gconf +gdbm
-+glib gtk ipv6 jack libsamplerate libressl lirc native-headset neon ofono-headset
+IUSE="+alsa +alsa-plugin +asyncns bluetooth +caps dbus doc elogind equalizer gconf +gdbm
++glib gstreamer gtk ipv6 jack libsamplerate libressl lirc native-headset neon ofono-headset
 +orc oss qt5 realtime selinux sox ssl systemd system-wide tcpd test +udev
 +webrtc-aec +X zeroconf"
 
-# See "*** BLUEZ support not found (requires D-Bus)" in configure.ac
 REQUIRED_USE="
+	?? ( elogind systemd )
 	bluetooth? ( dbus )
 	equalizer? ( dbus )
 	ofono-headset? ( bluetooth )
@@ -40,7 +40,7 @@ REQUIRED_USE="
 "
 
 # libpcre needed in some cases, bug #472228
-CDEPEND="
+RDEPEND="
 	|| (
 		elibc_glibc? ( virtual/libc )
 		elibc_uclibc? ( virtual/libc )
@@ -63,6 +63,10 @@ CDEPEND="
 	tcpd? ( sys-apps/tcp-wrappers[${MULTILIB_USEDEP}] )
 	lirc? ( app-misc/lirc )
 	dbus? ( >=sys-apps/dbus-1.0.0[${MULTILIB_USEDEP}] )
+	gstreamer? (
+		>=media-libs/gstreamer-1.14.0[${MULTILIB_USEDEP}]
+		>=media-libs/gst-plugins-base-1.14.0[${MULTILIB_USEDEP}]
+	)
 	gtk? ( x11-libs/gtk+:3 )
 	bluetooth? (
 		>=net-wireless/bluez-5
@@ -82,29 +86,20 @@ CDEPEND="
 	media-libs/speexdsp
 	gdbm? ( sys-libs/gdbm:= )
 	webrtc-aec? ( >=media-libs/webrtc-audio-processing-0.2 )
+	elogind? ( sys-auth/elogind )
 	systemd? ( sys-apps/systemd:0=[${MULTILIB_USEDEP}] )
 	dev-libs/libltdl:0
 	selinux? ( sec-policy/selinux-pulseaudio )
-" # libltdl is a valid RDEPEND, libltdl.so is used for native abi in pulsecore and daemon
-
-RDEPEND="${CDEPEND}
 	realtime? ( sys-auth/rtkit )
 	gconf? ( >=gnome-base/gconf-3.2.6 )
 "
 
 DEPEND="${RDEPEND}
-	sys-devel/m4
-	doc? ( app-doc/doxygen )
-	test? ( >=dev-libs/check-0.9.10 )
 	X? (
 		x11-base/xorg-proto
 		>=x11-libs/libXtst-1.0.99.2[${MULTILIB_USEDEP}]
 	)
 	dev-libs/libatomic_ops
-	virtual/pkgconfig
-	system-wide? ( || ( dev-util/unifdef sys-freebsd/freebsd-ubin ) )
-	dev-util/intltool
-	>=sys-devel/gettext-0.18.1
 "
 # This is a PDEPEND to avoid a circular dep
 PDEPEND="
@@ -119,8 +114,56 @@ RDEPEND="${RDEPEND}
 	system-wide? (
 		alsa? ( media-sound/alsa-utils )
 		bluetooth? ( >=net-wireless/bluez-5 )
+		acct-user/pulse
+		acct-group/pulse-access
 	)
+	acct-group/audio
 "
+
+BDEPEND="
+	doc? ( app-doc/doxygen )
+	system-wide? ( dev-util/unifdef )
+	test? ( >=dev-libs/check-0.9.10 )
+	sys-devel/gettext
+	sys-devel/m4
+	virtual/pkgconfig
+"
+
+MULTILIB_WRAPPED_HEADERS=(
+	/usr/include/pulse/error.h
+	/usr/include/pulse/rtclock.h
+	/usr/include/pulse/direction.h
+	/usr/include/pulse/cdecl.h
+	/usr/include/pulse/thread-mainloop.h
+	/usr/include/pulse/context.h
+	/usr/include/pulse/format.h
+	/usr/include/pulse/sample.h
+	/usr/include/pulse/channelmap.h
+	/usr/include/pulse/utf8.h
+	/usr/include/pulse/glib-mainloop.h
+	/usr/include/pulse/util.h
+	/usr/include/pulse/volume.h
+	/usr/include/pulse/proplist.h
+	/usr/include/pulse/operation.h
+	/usr/include/pulse/version.h
+	/usr/include/pulse/mainloop-signal.h
+	/usr/include/pulse/timeval.h
+	/usr/include/pulse/subscribe.h
+	/usr/include/pulse/xmalloc.h
+	/usr/include/pulse/ext-device-restore.h
+	/usr/include/pulse/ext-stream-restore.h
+	/usr/include/pulse/stream.h
+	/usr/include/pulse/def.h
+	/usr/include/pulse/ext-device-manager.h
+	/usr/include/pulse/introspect.h
+	/usr/include/pulse/gccmacro.h
+	/usr/include/pulse/mainloop.h
+	/usr/include/pulse/scache.h
+	/usr/include/pulse/simple.h
+	/usr/include/pulse/mainloop-api.h
+	/usr/include/pulse/message-params.h
+	/usr/include/pulse/pulseaudio.h
+)
 
 pkg_pretend() {
 	CONFIG_CHECK="~HIGH_RES_TIMERS"
@@ -138,15 +181,7 @@ pkg_pretend() {
 
 pkg_setup() {
 	linux-info_pkg_setup
-	xdg_environment_reset #543364
-
-	enewgroup audio 18 # Just make sure it exists
-
-	if use system-wide; then
-		enewgroup pulse-access
-		enewgroup pulse
-		enewuser pulse -1 -1 /var/run/pulse pulse,audio
-	fi
+	gnome2_environment_reset #543364
 }
 
 multilib_src_configure() {
@@ -155,15 +190,20 @@ multilib_src_configure() {
 
 		-Ddatabase="$(multilib_native_usex gdbm gdbm simple)"
 		-Dlegacy-database-entry-format=false
+		-Dsystemduserunitdir="$(systemd_get_userunitdir)"
+		-Dudevrulesdir="${EPREFIX}/$(get_udevdir)/rules.d"
+		-Dbashcompletiondir="$(get_bashcompdir)"
 
 		-Dalsa="$(multilib_native_usex alsa enabled disabled)"
 		-Dasyncns="$(usex asyncns enabled disabled)"
 		-Davahi="$(multilib_native_usex zeroconf enabled disabled)"
-		-Dbluez5="$(multilib_native_usex bluetooth enabled disabled)"
+		-Dbluez5="$(multilib_native_usex bluetooth true false)"
+		-Dbluez5-gstreamer="$(multilib_native_usex bluetooth $(usex gstreamer enabled disabled) disabled)"
 		-Ddbus="$(usex dbus enabled disabled)"
 		-Dfftw="$(multilib_native_usex equalizer enabled disabled)"
 		-Dglib="$(usex glib enabled disabled)"
 		-Dgsettings="$(multilib_native_usex glib enabled disabled)"
+		-Dgstreamer="$(usex gstreamer enabled disabled)"
 		-Dgtk="$(multilib_native_usex gtk enabled disabled)"
 		-Dhal-compat=false
 		-Dipv6="$(usex ipv6 true false)"
