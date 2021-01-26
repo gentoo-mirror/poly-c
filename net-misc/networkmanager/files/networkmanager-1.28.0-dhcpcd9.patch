@@ -1,13 +1,11 @@
-From 666f99e7d4dfc9c929d02858c1eb9b1fa4ee7e72 Mon Sep 17 00:00:00 2001
+From a58a89213bf4d0cefb155fef1ec9425f7a6ca5c8 Mon Sep 17 00:00:00 2001
 From: Roy Marples <roy@marples.name>
-Date: Fri, 20 Nov 2020 17:11:37 +0000
+Date: Tue, 19 Jan 2021 05:04:31 +0000
 Subject: [PATCH] DHCP: Support dhcpcd-9.x
 
 This locks NM into dhcpcd-9.3.3 as that is the first version to support
-the --noconfigure option.
-To work with older verions add HAVE_OLD_DHCPCD to CFLAGS which will use
-the -G option as before which just stops dhcpcd from installing
-a default route.
+the --noconfigure option. Older versions are no longer supported by NM
+because they do modify the host which is undesirable.
 
 Due to the way dhcpcd-9 uses privilege separation and that it re-parents
 itself to PID 1, the main process cannot be reaped or waited for.
@@ -15,17 +13,34 @@ So we rely on dhcpcd correctly cleaning up after itself.
 A new function nm_dhcp_client_stop_watch_child() has been added
 so that dhcpcd can perform similar cleanup to the equivalent stop call.
 
-As part of this change, more STOP and STOPPED reasons are mapped to
+As part of this change, the STOP and STOPPED reasons are mapped to
 NM_DHCP_STATE_DONE and PREINIT is mapped to a new state NM_DHCP_STATE_NOOP
 which means NM should just ignore this state.
+
+https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/merge_requests/668
 ---
+ NEWS                      |  3 ++
  src/dhcp/nm-dhcp-client.c | 20 +++++++++-
  src/dhcp/nm-dhcp-client.h |  3 ++
- src/dhcp/nm-dhcp-dhcpcd.c | 80 +++++++++++++++++++--------------------
- 3 files changed, 62 insertions(+), 41 deletions(-)
+ src/dhcp/nm-dhcp-dhcpcd.c | 82 ++++++++++++++++++++-------------------
+ 4 files changed, 67 insertions(+), 41 deletions(-)
 
+diff --git a/NEWS b/NEWS
+index 8a48587e5..958bbe91c 100644
+--- a/NEWS
++++ b/NEWS
+@@ -45,6 +45,9 @@ USE AT YOUR OWN RISK.  NOT RECOMMENDED FOR PRODUCTION USE!
+   cmdline argument actually generates a connection which disables both
+   ipv4 and ipv6. Previously the generated connection would disable ipv4
+   but ipv6 would be set to the 'auto' method.
++* The dhcpcd plugin now requires a minimum version of dhcpcd-9.3.3 with
++  the --noconfigure option. Using an older version will cause dhcpcd to
++  exit with a status code of 1.
+ 
+ =============================================
+ NetworkManager-1.26
 diff --git a/src/dhcp/nm-dhcp-client.c b/src/dhcp/nm-dhcp-client.c
-index 46ab489595..56f599abf1 100644
+index 46ab48959..56f599abf 100644
 --- a/src/dhcp/nm-dhcp-client.c
 +++ b/src/dhcp/nm-dhcp-client.c
 @@ -367,10 +367,13 @@ reason_to_state(NMDhcpClient *self, const char *iface, const char *reason)
@@ -73,7 +88,7 @@ index 46ab489595..56f599abf1 100644
          GVariantIter iter;
          const char * name;
 diff --git a/src/dhcp/nm-dhcp-client.h b/src/dhcp/nm-dhcp-client.h
-index 05faa9ea5f..46446849a2 100644
+index 05faa9ea5..46446849a 100644
 --- a/src/dhcp/nm-dhcp-client.h
 +++ b/src/dhcp/nm-dhcp-client.h
 @@ -55,6 +55,7 @@ typedef enum {
@@ -94,7 +109,7 @@ index 05faa9ea5f..46446849a2 100644
                                NMDhcpState   new_state,
                                NMIPConfig *  ip_config,
 diff --git a/src/dhcp/nm-dhcp-dhcpcd.c b/src/dhcp/nm-dhcp-dhcpcd.c
-index b2b5d28bdb..5ae4101166 100644
+index b2b5d28bd..7cb003859 100644
 --- a/src/dhcp/nm-dhcp-dhcpcd.c
 +++ b/src/dhcp/nm-dhcp-dhcpcd.c
 @@ -1,6 +1,6 @@
@@ -113,7 +128,7 @@ index b2b5d28bdb..5ae4101166 100644
      NMDhcpListener *dhcp_listener;
  } NMDhcpDhcpcdPrivate;
  
-@@ -71,39 +70,36 @@ ip4_start(NMDhcpClient *client,
+@@ -71,39 +70,37 @@ ip4_start(NMDhcpClient *client,
            const char *  last_ip4_address,
            GError **     error)
  {
@@ -157,17 +172,18 @@ index b2b5d28bdb..5ae4101166 100644
      argv = g_ptr_array_new();
      g_ptr_array_add(argv, (gpointer) dhcpcd_path);
  
-+    #ifdef HAVE_OLD_DHCPCD
-+    g_ptr_array_add(argv, (gpointer) "-G"); /* Don't install a default route */
-+    #else
-+    /* Don't configure anything, we will do that instead. */
++    /* Don't configure anything, we will do that instead.
++     * This requires dhcpcd-9.3.3 or newer.
++     * Older versions only had an option not to install a default route,
++     * dhcpcd still added addresses and other routes so we no longer support that
++     * as it doesn't fit how NetworkManager wants to work.
++     */
 +    g_ptr_array_add(argv, (gpointer) "--noconfigure");
-+    #endif
 +
      g_ptr_array_add(argv, (gpointer) "-B"); /* Don't background on lease (disable fork()) */
  
      g_ptr_array_add(argv, (gpointer) "-K"); /* Disable built-in carrier detection */
-@@ -113,8 +109,6 @@ ip4_start(NMDhcpClient *client,
+@@ -113,8 +110,6 @@ ip4_start(NMDhcpClient *client,
      /* --noarp. Don't request or claim the address by ARP; this also disables IPv4LL. */
      g_ptr_array_add(argv, (gpointer) "-A");
  
@@ -176,17 +192,18 @@ index b2b5d28bdb..5ae4101166 100644
      g_ptr_array_add(argv, (gpointer) "-c"); /* Set script file */
      g_ptr_array_add(argv, (gpointer) nm_dhcp_helper_path);
  
-@@ -146,8 +140,7 @@ ip4_start(NMDhcpClient *client,
+@@ -146,8 +141,8 @@ ip4_start(NMDhcpClient *client,
      if (!g_spawn_async(NULL,
                         (char **) argv->pdata,
                         NULL,
 -                       G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_STDOUT_TO_DEV_NULL
 -                           | G_SPAWN_STDERR_TO_DEV_NULL,
-+                       G_SPAWN_STDOUT_TO_DEV_NULL | G_SPAWN_STDERR_TO_DEV_NULL,
++                       G_SPAWN_STDOUT_TO_DEV_NULL | G_SPAWN_STDERR_TO_DEV_NULL
++                           | G_SPAWN_DO_NOT_REAP_CHILD,
                         nm_utils_setpgid,
                         NULL,
                         &pid,
-@@ -169,23 +162,32 @@ ip4_start(NMDhcpClient *client,
+@@ -169,23 +164,32 @@ ip4_start(NMDhcpClient *client,
  static void
  stop(NMDhcpClient *client, gboolean release)
  {
@@ -234,7 +251,7 @@ index b2b5d28bdb..5ae4101166 100644
  }
  
  /*****************************************************************************/
-@@ -214,8 +216,6 @@ dispose(GObject *object)
+@@ -214,8 +218,6 @@ dispose(GObject *object)
          g_clear_object(&priv->dhcp_listener);
      }
  
@@ -244,5 +261,5 @@ index b2b5d28bdb..5ae4101166 100644
  }
  
 -- 
-GitLab
+2.30.0
 

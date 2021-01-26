@@ -46,7 +46,7 @@ COMMON_DEPEND="
 		net-dns/dnsmasq[dbus,dhcp]
 		net-firewall/iptables )
 	dhclient? ( >=net-misc/dhcp-4[client] )
-	dhcpcd? ( net-misc/dhcpcd )
+	dhcpcd? ( >=net-misc/dhcpcd-9.3.3 )
 	elogind? ( >=sys-auth/elogind-219 )
 	introspection? ( >=dev-libs/gobject-introspection-0.10.3:= )
 	modemmanager? ( >=net-misc/modemmanager-0.7.991:0=
