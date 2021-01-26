@@ -56,7 +56,7 @@ RDEPEND="
 	>=dev-libs/nss-3.32.1
 	>=dev-libs/nspr-4.16
 	selinux? ( sec-policy/selinux-mozilla )
-	system-sqlite? ( >=dev-db/sqlite-3.33.0_pre:3[secure-delete,debug=] )
+	system-sqlite? ( >=dev-db/sqlite-3.33.0:3[secure-delete,debug=] )
 "
 
 DEPEND="${RDEPEND}
