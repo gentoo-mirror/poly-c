@@ -33,6 +33,7 @@ PATCHES=(
 	"${FILESDIR}/${P}-dash_redirect_fix.patch"
 	"${FILESDIR}/${P}-pppd_version_grep.patch"
 	"${FILESDIR}/${P}-pppd_ver_check_overhaul.patch"
+	"${FILESDIR}/${P}-ignore_wg_interfaces.patch"
 )
 
 src_prepare() {
