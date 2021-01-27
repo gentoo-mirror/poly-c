@@ -14,7 +14,8 @@ if [[ ${PV} == "9999" ]]; then
 	#EGIT_REPO_URI="https://github.com/gentoo/${PN}" # Alternate
 	inherit git-r3
 else
-	SRC_URI="https://gitweb.gentoo.org/proj/${PN}.git/snapshot/${P}.tar.gz"
+	SRC_URI="https://gitweb.gentoo.org/proj/${PN}.git/snapshot/${P}.tar.gz
+		https://dev.gentoo.org/~polynomial-c/${P}-patches-01.tar.xz"
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86"
 fi
 
@@ -28,14 +29,6 @@ RDEPEND="sys-apps/gentoo-functions
 	!<sys-fs/udev-init-scripts-27"
 BDEPEND="kernel_linux? ( virtual/pkgconfig )"
 
-PATCHES=(
-	"${FILESDIR}/${P}-grep_improvements.patch"
-	"${FILESDIR}/${P}-dash_redirect_fix.patch"
-	"${FILESDIR}/${P}-pppd_version_grep.patch"
-	"${FILESDIR}/${P}-pppd_ver_check_overhaul.patch"
-	"${FILESDIR}/${P}-ignore_wg_interfaces.patch"
-)
-
 src_prepare() {
 	if [[ ${PV} == "9999" ]] ; then
 		local ver="git-${EGIT_VERSION:0:6}"
@@ -45,6 +38,7 @@ src_prepare() {
 	fi
 
 	default
+	eapply "${WORKDIR}/patches"
 }
 
 src_compile() {
