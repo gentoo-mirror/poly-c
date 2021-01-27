@@ -1,18 +1,19 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
+CMAKE_ECLASS="cmake"
 inherit cmake-multilib
 
 DESCRIPTION="zip manipulation library found in the zlib distribution"
 HOMEPAGE="https://github.com/nmoinvaz/minizip"
 SRC_URI="https://github.com/nmoinvaz/minizip/archive/${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="ZLIB"
-SLOT="0/2" # libminizip.so version
+SLOT="0/3" # libminizip.so version
 
 KEYWORDS="~amd64 ~x86"
-IUSE="bzip2 libressl lzma ssl test +zlib"
+IUSE="bzip2 libressl lzma ssl test +zlib zstd"
 
 RDEPEND="
 	!sys-libs/zlib[minizip]
@@ -22,6 +23,7 @@ RDEPEND="
 		libressl? ( dev-libs/libressl:= )
 	)
 	zlib? ( sys-libs/zlib:=[-minizip(-)] )
+	zstd? ( app-arch/zstd )
 "
 
 DEPEND="${RDEPEND}"
@@ -32,11 +34,15 @@ multilib_src_configure() {
 		-DMZ_BUILD_TEST="$(usex test)"
 		-DMZ_BUILD_UNIT_TEST="$(usex test)"
 		-DMZ_COMPAT=ON
-		-DMZ_ZLIB="$(usex zlib)"
 		-DMZ_BZIP2="$(usex bzip2)"
+		-DMZ_FETCH_LIBS=OFF
+		-DMZ_FORCE_FETCH_LIBS=OFF
 		-DMZ_LZMA="$(usex lzma)"
 		-DMZ_OPENSSL="$(usex ssl)"
+		-DMZ_PROJECT_SUFFIX="-ng"
+		-DMZ_ZLIB="$(usex zlib)"
+		-DMZ_ZSTD="$(usex zstd)"
 		-DINSTALL_INC_DIR="${EPREFIX}/usr/include/${PN}"
 	)
-	cmake-utils_src_configure
+	cmake_src_configure
 }

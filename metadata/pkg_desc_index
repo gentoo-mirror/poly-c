@@ -7,6 +7,7 @@ app-admin/remotebox 2.5 2.7: Open Source VirtualBox Client with Remote Managemen
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-admin/super 3.30.3.1: setuid-root program
 app-arch/dpkg 1.20.7.1_pre: Package maintenance system for Debian
+app-arch/minizip-ng 3.0.0: zip manipulation library found in the zlib distribution
 app-arch/pigz 2.5_pre: A parallel implementation of gzip
 app-arch/xz-utils 5.2.5: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
@@ -246,7 +247,6 @@ sys-fs/fswatch 1.14.0 1.15.0 9999: cross-platform file change monitor with multi
 sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.2: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-libs/minizip 2.8.5 2.8.9 2.9.1: zip manipulation library found in the zlib distribution
 sys-libs/ncurses 6.2_p20210123: console display library
 sys-libs/slang 2.3.3_pre32: Multi-platform library designed to allow a developer to create robust software
 sys-power/cpupower 4.19.169 4.19.170 4.19.171 5.4.91 5.4.92 5.4.93 5.10.9 5.10.10 5.10.11: Shows and sets processor power related values
