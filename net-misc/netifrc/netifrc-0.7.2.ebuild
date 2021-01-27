@@ -15,7 +15,7 @@ if [[ ${PV} == "9999" ]]; then
 	inherit git-r3
 else
 	SRC_URI="https://gitweb.gentoo.org/proj/${PN}.git/snapshot/${P}.tar.gz
-		https://dev.gentoo.org/~polynomial-c/${P}-patches-01.tar.xz"
+		https://dev.gentoo.org/~polynomial-c/${P}-patches-02.tar.xz"
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86"
 fi
 
