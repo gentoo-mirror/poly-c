@@ -16,13 +16,12 @@ KEYWORDS="~amd64 ~x86"
 IUSE="bzip2 libressl lzma ssl test +zlib zstd"
 
 RDEPEND="
-	!sys-libs/zlib[minizip]
 	bzip2? ( app-arch/bzip2 )
 	ssl? (
 		!libressl? ( dev-libs/openssl:0= )
 		libressl? ( dev-libs/libressl:= )
 	)
-	zlib? ( sys-libs/zlib:=[-minizip(-)] )
+	zlib? ( sys-libs/zlib:= )
 	zstd? ( app-arch/zstd )
 "
 
