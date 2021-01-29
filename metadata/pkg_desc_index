@@ -91,7 +91,6 @@ media-libs/libbpg 0.9.8_pre: BPG (Better Portable Graphics) is a new image forma
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
-media-libs/mesa 20.3.0_rc2 20.3.0_rc3 20.3.0 21.0.0_rc2_pre 21.0.0_rc3_pre: OpenGL-like graphic library for Linux
 media-libs/x264 0.0.20200810: A free library for encoding X264/AVC streams
 media-plugins/gst-plugins-a52dec 1.16.3_pre: ATSC A/52 audio decoder plugin for GStreamer
 media-plugins/gst-plugins-amr 1.16.3_pre: AMRNB encoder/decoder and AMRWB decoder plugin for GStreamer
