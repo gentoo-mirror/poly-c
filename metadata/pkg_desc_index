@@ -91,6 +91,7 @@ media-libs/libbpg 0.9.8_pre: BPG (Better Portable Graphics) is a new image forma
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
+media-libs/libwebp 1.2.0_pre: A lossy image compression format
 media-libs/x264 0.0.20200810: A free library for encoding X264/AVC streams
 media-plugins/gst-plugins-a52dec 1.16.3_pre: ATSC A/52 audio decoder plugin for GStreamer
 media-plugins/gst-plugins-amr 1.16.3_pre: AMRNB encoder/decoder and AMRWB decoder plugin for GStreamer
@@ -250,7 +251,7 @@ sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/ncurses 6.2_p20210123: console display library
 sys-libs/slang 2.3.3_pre32: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.169 4.19.170 4.19.171 5.4.91 5.4.92 5.4.93 5.10.9 5.10.10 5.10.11: Shows and sets processor power related values
+sys-power/cpupower 4.19.170 4.19.171 4.19.172 5.4.92 5.4.93 5.4.94 5.10.10 5.10.11 5.10.12: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/htop 9999: interactive process viewer
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
