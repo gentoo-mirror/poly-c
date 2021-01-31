@@ -5,7 +5,7 @@
 EAPI=7
 
 # TODO: multiple ABI?
-PYTHON_COMPAT=( python3_{6..9} )
+PYTHON_COMPAT=( python3_{7..9} )
 inherit eutils flag-o-matic cmake python-single-r1
 
 DESCRIPTION="Crazy Eddie's GUI System"

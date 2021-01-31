@@ -1,15 +1,15 @@
-# Copyright 1999-2020 Gentoo Technologies, Inc.
+# Copyright 1999-2021 Gentoo Technologies, Inc.
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{6,7,8} )
+PYTHON_COMPAT=( python3_{7..9} )
 
 inherit python-single-r1
 
 DESCRIPTION="The littleutils are a collection of small and simple utilities"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.xz"
-HOMEPAGE="http://sourceforge.net/projects/littleutils/"
+HOMEPAGE="https://sourceforge.net/projects/littleutils/"
 KEYWORDS="~amd64 ~x86"
 LICENSE="GPL-2"
 SLOT="0"

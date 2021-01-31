@@ -1,9 +1,9 @@
 # Copyright 2003-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: d245246d21851187093c0b7bca34ecb2f2d4b1a9 $
+# $Id: cd11295946d57159cadf83365ff76fec901a4b40 $
 
 EAPI=7
-PYTHON_COMPAT=( python3_{6..9} )
+PYTHON_COMPAT=( python3_{7..9} )
 
 inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal python-any-r1 toolchain-funcs udev usr-ldscript
 

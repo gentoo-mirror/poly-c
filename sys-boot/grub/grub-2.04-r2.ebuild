@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id: e68f15c3a276006931a5020d84062ac6b3a5d673 $
 
@@ -10,7 +10,7 @@ if [[ ${PV} == 9999  ]]; then
 fi
 
 if [[ -n ${GRUB_AUTOGEN} || -n ${GRUB_BOOTSTRAP} ]]; then
-	PYTHON_COMPAT=( python{2_7,3_{6,7,8}} )
+	PYTHON_COMPAT=( python3_{7..9} )
 	inherit python-any-r1
 fi
 

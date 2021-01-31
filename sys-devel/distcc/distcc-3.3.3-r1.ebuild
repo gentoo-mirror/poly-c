@@ -1,10 +1,10 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: cd993af0db33b375c62dac01c870c2933d7131ea $
+# $Id: 5bbe0b807af5437606e26e41f6554aeab6a257b9 $
 
 EAPI=6
 
-PYTHON_COMPAT=( python3_{6,7,8,9} )
+PYTHON_COMPAT=( python3_{7,8,9} )
 
 inherit autotools flag-o-matic python-single-r1 systemd \
 	toolchain-funcs user xdg-utils prefix

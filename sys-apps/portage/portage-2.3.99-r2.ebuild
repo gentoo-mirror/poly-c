@@ -1,11 +1,11 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9f289c0f83fa4fd6cb58e23e5829637ece66ae9d $
+# $Id: 3e8a16cd18dc88961be6e2e7530e7ccbcf24fbb5 $
 
 EAPI=5
 
 DISTUTILS_USE_SETUPTOOLS=no
-PYTHON_COMPAT=( pypy3 python3_6 python3_7 python3_8 )
+PYTHON_COMPAT=( pypy3 python3_7 python3_8 )
 PYTHON_REQ_USE='bzip2(+),threads(+)'
 
 inherit distutils-r1 epatch linux-info tmpfiles prefix
