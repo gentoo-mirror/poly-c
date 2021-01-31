@@ -18,3 +18,6 @@ media-radio/liquidsoap
 
 # fails to link
 sci-astronomy/pulsatingscience
+
+# Lacks proper dependencies
+media-gfx/fawkes

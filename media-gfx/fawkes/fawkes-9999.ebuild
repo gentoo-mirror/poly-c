@@ -4,7 +4,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{7..9} )
+PYTHON_COMPAT=( python3_{7..8} )
 
 inherit distutils-r1
 
@@ -22,3 +22,9 @@ SLOT="0"
 IUSE=""
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
+
+RDEPEND="
+	>=dev-python/numpy-1.16.4[${PYTHON_USEDEP}]
+	>=dev-python/pillow-7.0.0[${PYTHON_USEDEP}]
+	sci-libs/tensorflow[python,${PYTHON_USEDEP}]
+"

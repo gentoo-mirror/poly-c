@@ -77,8 +77,6 @@ games-util/x52pro-linux 0.2.1 9999: Saitek X52pro drivers & controller mapping s
 kde-apps/kde-wallpapers 15.08.3-r3: KDE wallpapers
 kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
-kde-frameworks/plasma 5.67.0: Plasma framework
-lxqt-base/liblxqt 0.16.0_pre: Common base library for the LXQt desktop environment
 mail-filter/pyzor 1.0.0-r1: A distributed, collaborative spam detection and filtering network
 media-gfx/fawkes 9999: Image Cloaking for Personal Privacy
 media-libs/gst-plugins-bad 1.16.3_pre: Less plugins for GStreamer
@@ -207,6 +205,7 @@ net-wireless/hostapd 2.9-r3: IEEE 802.11 wireless LAN Host AP daemon
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/pulsatingscience 9999: 3D binary pulsar animation and outreach application
 sci-libs/dcmtk 3.6.2: The DICOM Toolkit
+sci-libs/keras-applications 2.4.0_pre: Keras deep learning library reference implementations of deep learning models
 sci-libs/maxflow 3.0.4: Library that implements the maxflow-mincut algorithm
 sci-libs/nifticlib 2.0.0: The NIFTI IO Library
 sci-libs/vistaio 1.2.18: Vista file IO library
