@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 36ce2267f5c7b79bf59174c11979e0dc3b78af64 $
+# $Id: a5d97f4e443fe1d644053a731cf03bf682e92dfb $
 
 EAPI=7
 
@@ -9,7 +9,7 @@ inherit xorg-3
 DESCRIPTION="X Window System initializer"
 
 LICENSE="${LICENSE} GPL-2"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86 ~arm-linux ~x86-linux"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~arm-linux ~x86-linux"
 IUSE="twm systemd"
 
 RDEPEND="
