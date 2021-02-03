@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0739b78af28180d61e0e92a9861437881987ee8d $
+# $Id: 222451104a3b01cdba86a1e5a9fab13bde4358c9 $
 
 EAPI=7
 
@@ -46,6 +46,8 @@ S="${WORKDIR}/${MY_P}"
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.8.13-restore_saved_replace_string.patch
 	"${FILESDIR}"/${PN}-4.8.23-shorten-too-long-german-strings.patch
+
+	"${FILESDIR}"/${P}-shadow-crash.patch
 )
 
 pkg_pretend() {

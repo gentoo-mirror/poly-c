@@ -205,7 +205,7 @@ src_prepare() {
 	use system-libvpx \
 		&& eapply -p2 "${WORKDIR}/${PN}-2.53.3-system_libvpx-1.8.patch"
 
-	eapply "${FILESDIR}/SM-cpu-hog-try-1"
+	eapply "${FILESDIR}/SM-cpu-hog"
 
 	# Allow user to apply any additional patches without modifing ebuild
 	eapply_user

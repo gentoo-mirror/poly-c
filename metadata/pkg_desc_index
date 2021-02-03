@@ -23,7 +23,7 @@ app-laptop/i8kutils 1.43_pre: Dell Inspiron and Latitude utilities
 app-laptop/laptop-mode-tools 1.74_pre: Linux kernel laptop_mode user-space utilities
 app-misc/kenny 0.1: command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
-app-misc/mc 4.8.25-r1 4.8.26: GNU Midnight Commander is a text based file manager
+app-misc/mc 4.8.25-r1 4.8.26-r1: GNU Midnight Commander is a text based file manager
 app-misc/osmo 0.4.2: Handy personal organizer
 app-misc/radeontop 1.3_pre: Utility to view Radeon GPU utilization
 app-shells/dash 0.5.10.2: Debian Almquist Shell
@@ -244,7 +244,6 @@ sys-fs/fswatch 1.14.0 1.15.0 9999: cross-platform file change monitor with multi
 sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.2: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-libs/ncurses 6.2_p20210123: console display library
 sys-libs/slang 2.3.3_pre32: Multi-platform library designed to allow a developer to create robust software
 sys-power/cpupower 4.19.170 4.19.171 4.19.172 5.4.92 5.4.93 5.4.94 5.10.10 5.10.11 5.10.12: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
