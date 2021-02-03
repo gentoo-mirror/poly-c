@@ -193,6 +193,7 @@ net-libs/enet 1.3.14_pre: relatively thin, simple and robust network communicati
 net-libs/farstream 0.2.9_pre: Audio/video conferencing framework specifically designed for instant messengers
 net-libs/gnutls 3.7.0: A secure communications library implementing the SSL, TLS and DTLS protocols
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
+net-misc/curl 7.75.0_pre: A Client that groks URLs
 net-misc/dhcpcd 9.4.0: A fully featured, yet light weight RFC2131 compliant DHCP client
 net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
@@ -263,4 +264,3 @@ x11-plugins/pidgin-skypeweb 1.5_pre: SkypeWeb Plugin for Pidgin
 x11-plugins/purple-icyque 9999: ICQ WIM protocol for libpurple
 x11-plugins/purple-matrix 9999: Libpurple protocol plugin for matrix
 x11-themes/sddm-gentoo-black-theme 1.2 9999: Simple SDDM theme inspired on FBSD SLiM theme
-x11-wm/icewm 2.1.0-r1: Ice Window Manager with Themes
