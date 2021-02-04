@@ -25,7 +25,6 @@ app-misc/kenny 0.1: command-line kennyfier
 app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
 app-misc/mc 4.8.25-r1 4.8.26-r1: GNU Midnight Commander is a text based file manager
 app-misc/osmo 0.4.2: Handy personal organizer
-app-misc/radeontop 1.3_pre: Utility to view Radeon GPU utilization
 app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/asciidoc 9.0.5_pre: A plain text human readable/writable document format
@@ -228,7 +227,6 @@ sys-apps/openrc 0.42.1-r1: OpenRC manages the services, startup and shutdown of 
 sys-apps/portage 2.3.99-r2 3.0.9 3.0.12 3.0.13 3.0.14: Portage is the package management and distribution system for Gentoo
 sys-apps/roccat-tools 5.9.0-r100: Utility for advanced configuration of Roccat devices
 sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chipsets
-sys-apps/usb_modeswitch 2.6.0_pre: A tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks
 sys-block/archttp 2.5.1.180529: CLI utility to manage Areca RAID controllers
 sys-block/areca_cli 1.15.8.180529: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
@@ -246,7 +244,7 @@ sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.2: Linux dynamic and persistent dev
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/slang 2.3.3_pre32: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.170 4.19.171 4.19.172 5.4.92 5.4.93 5.4.94 5.10.10 5.10.11 5.10.12: Shows and sets processor power related values
+sys-power/cpupower 4.19.171 4.19.172 4.19.173 5.4.93 5.4.94 5.4.95 5.10.11 5.10.12 5.10.13: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.16-r2 3.3.16-r3: standard informational utilities and process-handling tools
