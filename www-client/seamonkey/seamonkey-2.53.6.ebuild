@@ -238,6 +238,8 @@ src_prepare() {
 			-i comm/suite/locales/Makefile.in || die
 	fi
 
+	cp "${FILESDIR}/${PN}-2.53.6-GNUmakefile" GNUmakefile || die
+
 	eautoreconf old-configure.in
 	cd js/src || die
 	eautoconf old-configure.in

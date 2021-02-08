@@ -1,13 +1,13 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 61cac6a1e0c0d37352a737eaceeda01ba1668f69 $
+# $Id: 6183c8c4e5f67f48f070f17dae3a7cb9354fbbbc $
 
 EAPI=7
 
 inherit toolchain-funcs systemd savedconfig
 
 DESCRIPTION="IEEE 802.11 wireless LAN Host AP daemon"
-HOMEPAGE="http://w1.fi"
+HOMEPAGE="http://w1.fi https://w1.fi/cgit/hostap/"
 EXTRAS_VER="2.7-r2"
 EXTRAS_NAME="${CATEGORY}_${PN}_${EXTRAS_VER}_extras"
 SRC_URI="https://dev.gentoo.org/~andrey_utkin/distfiles/${EXTRAS_NAME}.tar.xz"

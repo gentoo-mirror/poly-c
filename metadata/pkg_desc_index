@@ -8,7 +8,7 @@ app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a log
 app-admin/super 3.30.3.1: setuid-root program
 app-arch/dpkg 1.20.7.1_pre: Package maintenance system for Debian
 app-arch/minizip-ng 3.0.0: zip manipulation library found in the zlib distribution
-app-arch/pigz 2.5_pre: A parallel implementation of gzip
+app-arch/pigz 2.5_pre 2.6_pre: A parallel implementation of gzip
 app-arch/xz-utils 5.2.5: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
@@ -27,6 +27,7 @@ app-misc/mc 4.8.25-r1 4.8.26-r1: GNU Midnight Commander is a text based file man
 app-misc/osmo 0.4.2: Handy personal organizer
 app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
+app-text/ansifilter 2.18_pre: Handles text files containing ANSI terminal escape codes
 app-text/asciidoc 9.0.5_pre: A plain text human readable/writable document format
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
 dev-games/cegui 0.8.7-r1: Crazy Eddie's GUI System
@@ -88,6 +89,7 @@ media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
 media-libs/libwebp 1.2.0_pre: A lossy image compression format
+media-libs/mesa 21.0.0_rc4_pre: OpenGL-like graphic library for Linux
 media-libs/x264 0.0.20200810: A free library for encoding X264/AVC streams
 media-plugins/gst-plugins-a52dec 1.16.3_pre: ATSC A/52 audio decoder plugin for GStreamer
 media-plugins/gst-plugins-amr 1.16.3_pre: AMRNB encoder/decoder and AMRWB decoder plugin for GStreamer
@@ -244,7 +246,7 @@ sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.2: Linux dynamic and persistent dev
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/slang 2.3.3_pre32: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.171 4.19.172 4.19.173 5.4.93 5.4.94 5.4.95 5.10.11 5.10.12 5.10.13: Shows and sets processor power related values
+sys-power/cpupower 4.19.172 4.19.173 4.19.174 5.4.94 5.4.95 5.4.96 5.10.12 5.10.13 5.10.14: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.16-r2 3.3.16-r3: standard informational utilities and process-handling tools
