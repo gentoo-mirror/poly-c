@@ -1,0 +1,538 @@
+# HG changeset patch
+# User Honza Bambas <honzab.moz@firemni.cz>
+# Date 1527690669 -10800
+#      Wed May 30 17:31:09 2018 +0300
+# Node ID 74619c5d019ccb8aed9c9785af84c48d46388180
+# Parent  d6b3ddd26eacc20f12aeddfd9b5e1ec7bdd81fc9
+Bug 1442178 - Repair broken socket polling wakeup mechanism after a network change to prevent long load hangs, r=dragana
+
+diff --git a/modules/libpref/init/all.js b/modules/libpref/init/all.js
+--- a/modules/libpref/init/all.js
++++ b/modules/libpref/init/all.js
+@@ -1853,31 +1853,37 @@ pref("network.http.rcwn.max_wait_before_
+ 
+ // The ratio of the transaction count for the focused window and the count of
+ // all available active connections.
+ pref("network.http.focused_window_transaction_ratio", "0.9");
+ 
+ // Whether or not we give more priority to active tab.
+ // Note that this requires restart for changes to take effect.
+ pref("network.http.active_tab_priority", true);
++// </http>
+ 
+ // default values for FTP
+ // in a DSCP environment this should be 40 (0x28, or AF11), per RFC-4594,
+ // Section 4.8 "High-Throughput Data Service Class", and 80 (0x50, or AF22)
+ // per Section 4.7 "Low-Latency Data Service Class".
+ pref("network.ftp.data.qos", 0);
+ pref("network.ftp.control.qos", 0);
+ 
+ // The max time to spend on xpcom events between two polls in ms.
+ pref("network.sts.max_time_for_events_between_two_polls", 100);
+ 
+ // During shutdown we limit PR_Close calls. If time exceeds this pref (in ms)
+ // let sockets just leak.
+ pref("network.sts.max_time_for_pr_close_during_shutdown", 5000);
+-// </http>
++
++// When the polling socket pair we use to wake poll() up on demand doesn't
++// get signalled (is not readable) within this timeout, we try to repair it.
++// This timeout can be disabled by setting this pref to 0.
++// The value is expected in seconds.
++pref("network.sts.pollable_event_timeout", 6);
+ 
+ // 2147483647 == PR_INT32_MAX == ~2 GB
+ pref("network.websocket.max-message-size", 2147483647);
+ 
+ // Should we automatically follow http 3xx redirects during handshake
+ pref("network.websocket.auto-follow-http-redirects", false);
+ 
+ // the number of seconds to wait for websocket connection to be opened
+diff --git a/netwerk/base/PollableEvent.cpp b/netwerk/base/PollableEvent.cpp
+--- a/netwerk/base/PollableEvent.cpp
++++ b/netwerk/base/PollableEvent.cpp
+@@ -133,16 +133,18 @@ failed:
+ }
+ 
+ #endif
+ 
+ PollableEvent::PollableEvent()
+   : mWriteFD(nullptr)
+   , mReadFD(nullptr)
+   , mSignaled(false)
++  , mWriteFailed(false)
++  , mSignalTimestampAdjusted(false)
+ {
+   MOZ_COUNT_CTOR(PollableEvent);
+   MOZ_ASSERT(OnSocketThread(), "not on socket thread");
+   // create pair of prfiledesc that can be used as a poll()ble
+   // signal. on windows use a localhost socket pair, and on
+   // unix use a pipe.
+ #ifdef USEPIPE
+   SOCKET_LOG(("PollableEvent() using pipe\n"));
+@@ -211,16 +213,17 @@ PollableEvent::PollableEvent()
+     SOCKET_LOG(("PollableEvent() socketpair failed\n"));
+   }
+ #endif
+ 
+   if (mReadFD && mWriteFD) {
+     // prime the system to deal with races invovled in [dc]tor cycle
+     SOCKET_LOG(("PollableEvent() ctor ok\n"));
+     mSignaled = true;
++    MarkFirstSignalTimestamp();
+     PR_Write(mWriteFD, "I", 1);
+   }
+ }
+ 
+ PollableEvent::~PollableEvent()
+ {
+   MOZ_COUNT_DTOR(PollableEvent);
+   if (mWriteFD) {
+@@ -267,64 +270,81 @@ PollableEvent::Signal()
+   // To wake up the poll writing once is enough, but for Windows that can cause
+   // hangs so we will write for every event.
+   // For non-Windows systems it is enough to write just once.
+   if (mSignaled) {
+     return true;
+   }
+ #endif
+ 
+-  mSignaled = true;
++  if (!mSignaled) {
++    mSignaled = true;
++    MarkFirstSignalTimestamp();
++  }
++
+   int32_t status = PR_Write(mWriteFD, "M", 1);
+   SOCKET_LOG(("PollableEvent::Signal PR_Write %d\n", status));
+   if (status != 1) {
+     NS_WARNING("PollableEvent::Signal Failed\n");
+     SOCKET_LOG(("PollableEvent::Signal Failed\n"));
+     mSignaled = false;
++    mWriteFailed = true;
++  } else {
++    mWriteFailed = false;
+   }
+   return (status == 1);
+ }
+ 
+ bool
+ PollableEvent::Clear()
+ {
+   // necessary because of the "dont signal on socket thread" optimization
+   MOZ_ASSERT(OnSocketThread(), "not on socket thread");
+ 
+   SOCKET_LOG(("PollableEvent::Clear\n"));
++
++  if (!mFirstSignalAfterClear.IsNull()) {
++    SOCKET_LOG(("PollableEvent::Clear time to signal %ums",
++                (uint32_t)(TimeStamp::NowLoRes() - mFirstSignalAfterClear).ToMilliseconds()));
++  }
++
++  mFirstSignalAfterClear = TimeStamp();
++  mSignalTimestampAdjusted = false;
+   mSignaled = false;
++
+   if (!mReadFD) {
+     SOCKET_LOG(("PollableEvent::Clear mReadFD is null\n"));
+     return false;
+   }
++
+   char buf[2048];
+   int32_t status;
+ #ifdef XP_WIN
+   // On Windows we are writing to the socket for each event, to be sure that we
+   // do not have any deadlock read from the socket as much as we can.
+   while (true) {
+     status = PR_Read(mReadFD, buf, 2048);
+-    SOCKET_LOG(("PollableEvent::Signal PR_Read %d\n", status));
++    SOCKET_LOG(("PollableEvent::Clear PR_Read %d\n", status));
+     if (status == 0) {
+       SOCKET_LOG(("PollableEvent::Clear EOF!\n"));
+       return false;
+     }
+     if (status < 0) {
+       PRErrorCode code = PR_GetError();
+       if (code == PR_WOULD_BLOCK_ERROR) {
+         return true;
+       } else {
+         SOCKET_LOG(("PollableEvent::Clear unexpected error %d\n", code));
+         return false;
+       }
+     }
+   }
+ #else
+   status = PR_Read(mReadFD, buf, 2048);
+-  SOCKET_LOG(("PollableEvent::Signal PR_Read %d\n", status));
++  SOCKET_LOG(("PollableEvent::Clear PR_Read %d\n", status));
+ 
+   if (status == 1) {
+     return true;
+   }
+   if (status == 0) {
+     SOCKET_LOG(("PollableEvent::Clear EOF!\n"));
+     return false;
+   }
+@@ -338,10 +358,52 @@ PollableEvent::Clear()
+   if (code == PR_WOULD_BLOCK_ERROR) {
+     return true;
+   }
+   SOCKET_LOG(("PollableEvent::Clear unexpected error %d\n", code));
+   return false;
+ #endif //XP_WIN
+ 
+ }
++
++void
++PollableEvent::MarkFirstSignalTimestamp()
++{
++  if (mFirstSignalAfterClear.IsNull()) {
++    SOCKET_LOG(("PollableEvent::MarkFirstSignalTimestamp"));
++    mFirstSignalAfterClear = TimeStamp::NowLoRes();
++  }
++}
++
++void
++PollableEvent::AdjustFirstSignalTimestamp()
++{
++  if (!mSignalTimestampAdjusted && !mFirstSignalAfterClear.IsNull()) {
++    SOCKET_LOG(("PollableEvent::AdjustFirstSignalTimestamp"));
++    mFirstSignalAfterClear = TimeStamp::NowLoRes();
++    mSignalTimestampAdjusted = true;
++  }
++}
++
++bool
++PollableEvent::IsSignallingAlive(TimeDuration const& timeout)
++{
++  if (mWriteFailed) {
++    return false;
++  }
++
++#ifdef DEBUG
++  // The timeout would be just a disturbance in a debug build.
++  return true;
++#else
++  if (!mSignaled || mFirstSignalAfterClear.IsNull() || timeout == TimeDuration()) {
++    return true;
++  }
++
++  TimeDuration delay = (TimeStamp::NowLoRes() - mFirstSignalAfterClear);
++  bool timedOut = delay > timeout;
++
++  return !timedOut;
++#endif // DEBUG
++}
++
+ } // namespace net
+ } // namespace mozilla
+diff --git a/netwerk/base/PollableEvent.h b/netwerk/base/PollableEvent.h
+--- a/netwerk/base/PollableEvent.h
++++ b/netwerk/base/PollableEvent.h
+@@ -3,36 +3,64 @@
+ /* This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+ 
+ #ifndef PollableEvent_h__
+ #define PollableEvent_h__
+ 
+ #include "mozilla/Mutex.h"
++#include "mozilla/TimeStamp.h"
+ 
+ namespace mozilla {
+ namespace net {
+ 
+ // class must be called locked
+ class PollableEvent
+ {
+ public:
+   PollableEvent();
+   ~PollableEvent();
+ 
+   // Signal/Clear return false only if they fail
+   bool Signal();
++  // This is called only when we get non-null out_flags for the socket pair
+   bool Clear();
+   bool Valid() { return mWriteFD && mReadFD; }
+ 
++  // We want to detect if writing to one of the socket pair sockets takes
++  // too long to be received by the other socket from the pair.
++  // Hence, we remember the timestamp of the earliest write by a call to
++  // MarkFirstSignalTimestamp() from Signal().  After waking up from poll()
++  // we check how long it took get the 'readable' signal on the socket pair.
++  void MarkFirstSignalTimestamp();
++  // Called right before we enter poll() to exclude any possible delay between
++  // the earlist call to Signal() and entering poll() caused by processing
++  // of events dispatched to the socket transport thread.
++  void AdjustFirstSignalTimestamp();
++  // This returns false on following conditions:
++  // - PR_Write has failed
++  // - no out_flags were signalled on the socket pair for too long after
++  //   the earliest Signal()
++  bool IsSignallingAlive(TimeDuration const& timeout);
++
+   PRFileDesc *PollableFD() { return mReadFD; }
+ 
+ private:
+   PRFileDesc *mWriteFD;
+   PRFileDesc *mReadFD;
+   bool        mSignaled;
++  // true when PR_Write to the socket pair has failed (status < 1)
++  bool        mWriteFailed;
++  // Set true after AdjustFirstSignalTimestamp() was called
++  // Set false after Clear() was called
++  // Ensures shifting the timestamp before entering poll() only once
++  // between Clear()'ings.
++  bool        mSignalTimestampAdjusted;
++  // Timestamp of the first call to Signal() (or time we enter poll())
++  // that happened after the last Clear() call
++  TimeStamp   mFirstSignalAfterClear;
+ };
+ 
+ } // namespace net
+ } // namespace mozilla
+ 
+ #endif
+diff --git a/netwerk/base/nsSocketTransportService2.cpp b/netwerk/base/nsSocketTransportService2.cpp
+--- a/netwerk/base/nsSocketTransportService2.cpp
++++ b/netwerk/base/nsSocketTransportService2.cpp
+@@ -46,16 +46,17 @@ static Atomic<PRThread*, Relaxed> gSocke
+ #define KEEPALIVE_IDLE_TIME_PREF "network.tcp.keepalive.idle_time"
+ #define KEEPALIVE_RETRY_INTERVAL_PREF "network.tcp.keepalive.retry_interval"
+ #define KEEPALIVE_PROBE_COUNT_PREF "network.tcp.keepalive.probe_count"
+ #define SOCKET_LIMIT_TARGET 1000U
+ #define SOCKET_LIMIT_MIN      50U
+ #define BLIP_INTERVAL_PREF "network.activity.blipIntervalMilliseconds"
+ #define MAX_TIME_BETWEEN_TWO_POLLS "network.sts.max_time_for_events_between_two_polls"
+ #define MAX_TIME_FOR_PR_CLOSE_DURING_SHUTDOWN "network.sts.max_time_for_pr_close_during_shutdown"
++#define POLLABLE_EVENT_TIMEOUT "network.sts.pollable_event_timeout"
+ 
+ #define REPAIR_POLLABLE_EVENT_TIME 10
+ 
+ uint32_t nsSocketTransportService::gMaxCount;
+ PRCallOnceType nsSocketTransportService::gMaxCountInitOnce;
+ 
+ // Utility functions
+ bool
+@@ -136,16 +137,17 @@ nsSocketTransportService::nsSocketTransp
+     , mIdleCount(0)
+     , mSentBytesCount(0)
+     , mReceivedBytesCount(0)
+     , mSendBufferSize(0)
+     , mKeepaliveIdleTimeS(600)
+     , mKeepaliveRetryIntervalS(1)
+     , mKeepaliveProbeCount(kDefaultTCPKeepCount)
+     , mKeepaliveEnabledPref(false)
++    , mPollableEventTimeout(TimeDuration::FromSeconds(6))
+     , mServingPendingQueue(false)
+     , mMaxTimePerPollIter(100)
+     , mMaxTimeForPrClosePref(PR_SecondsToInterval(5))
+     , mSleepPhase(false)
+     , mProbedMaxCount(false)
+ #if defined(XP_WIN)
+     , mPolling(false)
+ #endif
+@@ -601,16 +603,17 @@ nsSocketTransportService::Init()
+     if (tmpPrefService) {
+         tmpPrefService->AddObserver(SEND_BUFFER_PREF, this, false);
+         tmpPrefService->AddObserver(KEEPALIVE_ENABLED_PREF, this, false);
+         tmpPrefService->AddObserver(KEEPALIVE_IDLE_TIME_PREF, this, false);
+         tmpPrefService->AddObserver(KEEPALIVE_RETRY_INTERVAL_PREF, this, false);
+         tmpPrefService->AddObserver(KEEPALIVE_PROBE_COUNT_PREF, this, false);
+         tmpPrefService->AddObserver(MAX_TIME_BETWEEN_TWO_POLLS, this, false);
+         tmpPrefService->AddObserver(MAX_TIME_FOR_PR_CLOSE_DURING_SHUTDOWN, this, false);
++        tmpPrefService->AddObserver(POLLABLE_EVENT_TIMEOUT, this, false);
+     }
+     UpdatePrefs();
+ 
+     nsCOMPtr<nsIObserverService> obsSvc = services::GetObserverService();
+     if (obsSvc) {
+         obsSvc->AddObserver(this, "profile-initial-state", false);
+         obsSvc->AddObserver(this, "last-pb-context-exited", false);
+         obsSvc->AddObserver(this, NS_WIDGET_SLEEP_OBSERVER_TOPIC, true);
+@@ -1110,16 +1113,30 @@ nsSocketTransportService::DoPollIteratio
+             mIdleList[i].mHandler->mPollFlags));
+         //---
+         if (NS_FAILED(mIdleList[i].mHandler->mCondition))
+             DetachSocket(mIdleList, &mIdleList[i]);
+         else if (mIdleList[i].mHandler->mPollFlags != 0)
+             MoveToPollList(&mIdleList[i]);
+     }
+ 
++    {
++        MutexAutoLock lock(mLock);
++        if (mPollableEvent) {
++            // we want to make sure the timeout is measured from the time
++            // we enter poll().  This method resets the timestamp to 'now',
++            // if we were first signalled between leaving poll() and here.
++            // If we didn't do this and processing events took longer than
++            // the allowed signal timeout, we would detect it as a
++            // false-positive.  AdjustFirstSignalTimestamp is then a no-op
++            // until mPollableEvent->Clear() is called.
++            mPollableEvent->AdjustFirstSignalTimestamp();
++        }
++    }
++
+     SOCKET_LOG(("  calling PR_Poll [active=%u idle=%u]\n", mActiveCount, mIdleCount));
+ 
+ #if defined(XP_WIN)
+     // 30 active connections is the historic limit before firefox 7's 256. A few
+     //  windows systems have troubles with the higher limit, so actively probe a
+     // limit the first time we exceed 30.
+     if ((mActiveCount > 30) && !mProbedMaxCount)
+         ProbeMaxCount();
+@@ -1177,39 +1194,36 @@ nsSocketTransportService::DoPollIteratio
+         // check for "dead" sockets and remove them (need to do this in
+         // reverse order obviously).
+         //
+         for (i=mActiveCount-1; i>=0; --i) {
+             if (NS_FAILED(mActiveList[i].mHandler->mCondition))
+                 DetachSocket(mActiveList, &mActiveList[i]);
+         }
+ 
+-        if (n != 0 && (mPollList[0].out_flags & (PR_POLL_READ | PR_POLL_EXCEPT))) {
++        {
+             MutexAutoLock lock(mLock);
+-
+             // acknowledge pollable event (should not block)
+-            if (mPollableEvent &&
+-                ((mPollList[0].out_flags & PR_POLL_EXCEPT) ||
+-                 !mPollableEvent->Clear())) {
++            if (n != 0 &&
++                (mPollList[0].out_flags & (PR_POLL_READ | PR_POLL_EXCEPT)) &&
++                mPollableEvent &&
++                ((mPollList[0].out_flags & PR_POLL_EXCEPT) || !mPollableEvent->Clear())) {
+                 // On Windows, the TCP loopback connection in the
+                 // pollable event may become broken when a laptop
+                 // switches between wired and wireless networks or
+                 // wakes up from hibernation.  We try to create a
+                 // new pollable event.  If that fails, we fall back
+                 // on "busy wait".
+-                NS_WARNING("Trying to repair mPollableEvent");
+-                mPollableEvent.reset(new PollableEvent());
+-                if (!mPollableEvent->Valid()) {
+-                    mPollableEvent = nullptr;
+-                }
+-                SOCKET_LOG(("running socket transport thread without "
+-                            "a pollable event now valid=%d", !!mPollableEvent));
+-                mPollList[0].fd = mPollableEvent ? mPollableEvent->PollableFD() : nullptr;
+-                mPollList[0].in_flags = PR_POLL_READ | PR_POLL_EXCEPT;
+-                mPollList[0].out_flags = 0;
++                TryRepairPollableEvent();
++            }
++
++            if (mPollableEvent &&
++                !mPollableEvent->IsSignallingAlive(mPollableEventTimeout)) {
++                SOCKET_LOG(("Pollable event signalling failed/timed out"));
++                TryRepairPollableEvent();
+             }
+         }
+     }
+ 
+     return NS_OK;
+ }
+ 
+ void
+@@ -1275,16 +1289,24 @@ nsSocketTransportService::UpdatePrefs()
+         }
+ 
+         int32_t maxTimeForPrClosePref;
+         rv = tmpPrefService->GetIntPref(MAX_TIME_FOR_PR_CLOSE_DURING_SHUTDOWN,
+                                         &maxTimeForPrClosePref);
+         if (NS_SUCCEEDED(rv) && maxTimeForPrClosePref >=0) {
+             mMaxTimeForPrClosePref = PR_MillisecondsToInterval(maxTimeForPrClosePref);
+         }
++
++        int32_t pollableEventTimeout;
++        rv = tmpPrefService->GetIntPref(POLLABLE_EVENT_TIMEOUT,
++                                        &pollableEventTimeout);
++        if (NS_SUCCEEDED(rv) && pollableEventTimeout >= 0) {
++            MutexAutoLock lock(mLock);
++            mPollableEventTimeout = TimeDuration::FromSeconds(pollableEventTimeout);
++        }
+     }
+ 
+     return NS_OK;
+ }
+ 
+ void
+ nsSocketTransportService::OnKeepaliveEnabledPrefChange()
+ {
+@@ -1636,18 +1658,35 @@ void
+ nsSocketTransportService::EndPolling()
+ {
+     MutexAutoLock lock(mLock);
+     mPolling = false;
+     if (mPollRepairTimer) {
+         mPollRepairTimer->Cancel();
+     }
+ }
++
+ #endif
+ 
++void nsSocketTransportService::TryRepairPollableEvent()
++{
++    mLock.AssertCurrentThreadOwns();
++
++    NS_WARNING("Trying to repair mPollableEvent");
++    mPollableEvent.reset(new PollableEvent());
++    if (!mPollableEvent->Valid()) {
++        mPollableEvent = nullptr;
++    }
++    SOCKET_LOG(("running socket transport thread without "
++                "a pollable event now valid=%d", !!mPollableEvent));
++    mPollList[0].fd = mPollableEvent ? mPollableEvent->PollableFD() : nullptr;
++    mPollList[0].in_flags = PR_POLL_READ | PR_POLL_EXCEPT;
++    mPollList[0].out_flags = 0;
++}
++
+ #if defined(_WIN64) && defined(WIN95)
+ void
+ nsSocketTransportService::AddOverlappedPendingSocket(PRFileDesc *aFd)
+ {
+     MOZ_ASSERT(OnSocketThread(), "not on socket thread");
+     MOZ_ASSERT(HasFileDesc2PlatformOverlappedIOHandleFunc());
+     SOCKET_LOG(("STS AddOverlappedPendingSocket append aFd=%p\n", aFd));
+     mOverlappedPendingSockets.AppendElement(aFd);
+diff --git a/netwerk/base/nsSocketTransportService2.h b/netwerk/base/nsSocketTransportService2.h
+--- a/netwerk/base/nsSocketTransportService2.h
++++ b/netwerk/base/nsSocketTransportService2.h
+@@ -256,16 +256,18 @@ private:
+     // Number of seconds of connection is idle before first keepalive ping.
+     int32_t     mKeepaliveIdleTimeS;
+     // Number of seconds between retries should keepalive pings fail.
+     int32_t     mKeepaliveRetryIntervalS;
+     // Number of keepalive probes to send.
+     int32_t     mKeepaliveProbeCount;
+     // True if TCP keepalive is enabled globally.
+     bool        mKeepaliveEnabledPref;
++    // Timeout of pollable event signalling.
++    TimeDuration mPollableEventTimeout;
+ 
+     Atomic<bool>                    mServingPendingQueue;
+     Atomic<int32_t, Relaxed>        mMaxTimePerPollIter;
+     Atomic<PRIntervalTime, Relaxed> mMaxTimeForPrClosePref;
+ 
+     // Between a computer going to sleep and waking up the PR_*** telemetry
+     // will be corrupted - so do not record it.
+     Atomic<bool, Relaxed>           mSleepPhase;
+@@ -294,16 +296,18 @@ private:
+     Atomic<bool> mPolling;
+     nsCOMPtr<nsITimer> mPollRepairTimer;
+     void StartPollWatchdog();
+     void DoPollRepair();
+     void StartPolling();
+     void EndPolling();
+ #endif
+ 
++    void TryRepairPollableEvent();
++
+ #if defined(_WIN64) && defined(WIN95)       
+     // If TCP Fast Open is used on Windows an overlapped io is used. We need to
+     // wait until this io is finished or canceled before detroying its
+     // PRFileDesc.
+     nsTArray<PRFileDesc *> mOverlappedPendingSockets;
+ 
+     bool mFileDesc2PlatformOverlappedIOHandleFuncChecked;
+     HMODULE mNsprLibrary;

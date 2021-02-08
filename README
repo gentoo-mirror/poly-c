@@ -18,6 +18,10 @@ into the eclass-folder of your portage-overlay.
 
 You can access the portage-overlay directory via:
 
+  PORTAGE:
+    Drop the poly-c.conf file into /etc/portage/repos.conf/ dir and run:
+    emaint sync -r poly-c
+
   HTTPS:
     https://www.gentoofan.org/gentoo/poly-c_overlay/
 
@@ -25,12 +29,17 @@ You can access the portage-overlay directory via:
     rsync://rsync.gentoofan.org/poly-c
       (this is no official rsync-mirror. Do NOT "emerge --sync" to this server!!)
 
-  LAYMAN:
+  LAYMAN (deprecated):
     layman -a poly-c
       (You have to install app-portage/layman to use this method)
-
 
 All ebuilds are tested on ~amd64 and ~x86 installations. As I have no other 
 arch I can't tell if an ebuild works on those architectures as well. 
 
-Poly-C
+I got several requests to provide this overlay via git or another VCS. The
+reasoning varied between "having secure access to the overlay" and "being able
+to track changes in the overlay". These are valid reasons but I won't start
+using a VCS because it would simply disturb my daily work flow. So please bear
+with the rsync protocol until I might change my mind and habits.
+
+Polynomial-C (@gentoo.org)

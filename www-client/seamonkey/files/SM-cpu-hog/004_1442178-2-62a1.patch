@@ -1,0 +1,411 @@
+# HG changeset patch
+# User Honza Bambas <honzab.moz@firemni.cz>
+# Date 1527691002 -10800
+#      Wed May 30 17:36:42 2018 +0300
+# Node ID 0fcc885b89ccf06c2d06c55f16e5696f605f646b
+# Parent  222f49c92242750a24416c14388731c0b276141f
+Bug 1442178 - Do a busy wait of socket poll() shortly after network change detection, r=dragana
+
+diff --git a/modules/libpref/init/all.js b/modules/libpref/init/all.js
+--- a/modules/libpref/init/all.js
++++ b/modules/libpref/init/all.js
+@@ -1865,16 +1865,26 @@ pref("network.http.active_tab_priority",
+ // Section 4.8 "High-Throughput Data Service Class", and 80 (0x50, or AF22)
+ // per Section 4.7 "Low-Latency Data Service Class".
+ pref("network.ftp.data.qos", 0);
+ pref("network.ftp.control.qos", 0);
+ 
+ // The max time to spend on xpcom events between two polls in ms.
+ pref("network.sts.max_time_for_events_between_two_polls", 100);
+ 
++// The number of seconds we don't let poll() handing indefinitely after network
++// link change has been detected so we can detect breakout of the pollable event.
++// Expected in seconds, 0 to disable.
++pref("network.sts.poll_busy_wait_period", 50);
++
++// The number of seconds we cap poll() timeout to during the network link change
++// detection period.
++// Expected in seconds, 0 to disable.
++pref("network.sts.poll_busy_wait_period_timeout", 7);
++
+ // During shutdown we limit PR_Close calls. If time exceeds this pref (in ms)
+ // let sockets just leak.
+ pref("network.sts.max_time_for_pr_close_during_shutdown", 5000);
+ 
+ // When the polling socket pair we use to wake poll() up on demand doesn't
+ // get signalled (is not readable) within this timeout, we try to repair it.
+ // This timeout can be disabled by setting this pref to 0.
+ // The value is expected in seconds.
+diff --git a/netwerk/base/nsIOService.cpp b/netwerk/base/nsIOService.cpp
+--- a/netwerk/base/nsIOService.cpp
++++ b/netwerk/base/nsIOService.cpp
+@@ -46,16 +46,17 @@
+ #include "nsIWidget.h"
+ #include "nsThreadUtils.h"
+ #include "mozilla/LoadInfo.h"
+ #include "mozilla/net/NeckoCommon.h"
+ #include "mozilla/Services.h"
+ #include "mozilla/net/DNS.h"
+ #include "mozilla/ipc/URIUtils.h"
+ #include "mozilla/net/NeckoChild.h"
++#include "mozilla/net/NeckoParent.h"
+ #include "mozilla/dom/ContentParent.h"
+ #include "mozilla/net/CaptivePortalService.h"
+ #include "ReferrerPolicy.h"
+ #include "nsContentSecurityManager.h"
+ #include "nsContentUtils.h"
+ #include "xpcpublic.h"
+ 
+ namespace mozilla {
+@@ -1657,36 +1658,55 @@ nsIOService::GetManageOfflineStatus(bool
+     *aManage = mManageLinkStatus;
+     return NS_OK;
+ }
+ 
+ // input argument 'data' is already UTF8'ed
+ nsresult
+ nsIOService::OnNetworkLinkEvent(const char *data)
+ {
++    if (IsNeckoChild()) {
++        // There is nothing IO service could do on the child process
++        // with this at the moment.  Feel free to add functionality
++        // here at will, though.
++        return NS_OK;
++    }
++
++    if (mShutdown) {
++        return NS_ERROR_NOT_AVAILABLE;
++    }
++
++    nsCString dataAsString(data);
++    for (auto* cp : mozilla::dom::ContentParent::AllProcesses(mozilla::dom::ContentParent::eLive)) {
++        PNeckoParent* neckoParent = SingleManagedOrNull(cp->ManagedPNeckoParent());
++        if (!neckoParent) {
++            continue;
++        }
++        Unused << neckoParent->SendNetworkChangeNotification(dataAsString);
++    }
++
+     LOG(("nsIOService::OnNetworkLinkEvent data:%s\n", data));
+-    if (!mNetworkLinkService)
++    if (!mNetworkLinkService) {
+         return NS_ERROR_FAILURE;
+-
+-    if (mShutdown)
+-        return NS_ERROR_NOT_AVAILABLE;
++    }
+ 
+     if (!mManageLinkStatus) {
+         LOG(("nsIOService::OnNetworkLinkEvent mManageLinkStatus=false\n"));
+         return NS_OK;
+     }
+ 
+     bool isUp = true;
+     if (!strcmp(data, NS_NETWORK_LINK_DATA_CHANGED)) {
+         mLastNetworkLinkChange = PR_IntervalNow();
+         // CHANGED means UP/DOWN didn't change
+         // but the status of the captive portal may have changed.
+         RecheckCaptivePortal();
+         return NS_OK;
+-    } else if (!strcmp(data, NS_NETWORK_LINK_DATA_DOWN)) {
++    }
++    if (!strcmp(data, NS_NETWORK_LINK_DATA_DOWN)) {
+         isUp = false;
+     } else if (!strcmp(data, NS_NETWORK_LINK_DATA_UP)) {
+         isUp = true;
+     } else if (!strcmp(data, NS_NETWORK_LINK_DATA_UNKNOWN)) {
+         nsresult rv = mNetworkLinkService->GetIsLinkUp(&isUp);
+         NS_ENSURE_SUCCESS(rv, rv);
+     } else {
+         NS_WARNING("Unhandled network event!");
+diff --git a/netwerk/base/nsSocketTransportService2.cpp b/netwerk/base/nsSocketTransportService2.cpp
+--- a/netwerk/base/nsSocketTransportService2.cpp
++++ b/netwerk/base/nsSocketTransportService2.cpp
+@@ -45,16 +45,18 @@ static Atomic<PRThread*, Relaxed> gSocke
+ #define KEEPALIVE_ENABLED_PREF "network.tcp.keepalive.enabled"
+ #define KEEPALIVE_IDLE_TIME_PREF "network.tcp.keepalive.idle_time"
+ #define KEEPALIVE_RETRY_INTERVAL_PREF "network.tcp.keepalive.retry_interval"
+ #define KEEPALIVE_PROBE_COUNT_PREF "network.tcp.keepalive.probe_count"
+ #define SOCKET_LIMIT_TARGET 1000U
+ #define SOCKET_LIMIT_MIN      50U
+ #define BLIP_INTERVAL_PREF "network.activity.blipIntervalMilliseconds"
+ #define MAX_TIME_BETWEEN_TWO_POLLS "network.sts.max_time_for_events_between_two_polls"
++#define POLL_BUSY_WAIT_PERIOD "network.sts.poll_busy_wait_period"
++#define POLL_BUSY_WAIT_PERIOD_TIMEOUT "network.sts.poll_busy_wait_period_timeout"
+ #define MAX_TIME_FOR_PR_CLOSE_DURING_SHUTDOWN "network.sts.max_time_for_pr_close_during_shutdown"
+ #define POLLABLE_EVENT_TIMEOUT "network.sts.pollable_event_timeout"
+ 
+ #define REPAIR_POLLABLE_EVENT_TIME 10
+ 
+ uint32_t nsSocketTransportService::gMaxCount;
+ PRCallOnceType nsSocketTransportService::gMaxCountInitOnce;
+ 
+@@ -141,16 +143,19 @@ nsSocketTransportService::nsSocketTransp
+     , mKeepaliveIdleTimeS(600)
+     , mKeepaliveRetryIntervalS(1)
+     , mKeepaliveProbeCount(kDefaultTCPKeepCount)
+     , mKeepaliveEnabledPref(false)
+     , mPollableEventTimeout(TimeDuration::FromSeconds(6))
+     , mServingPendingQueue(false)
+     , mMaxTimePerPollIter(100)
+     , mMaxTimeForPrClosePref(PR_SecondsToInterval(5))
++    , mLastNetworkLinkChangeTime(0)
++    , mNetworkLinkChangeBusyWaitPeriod(PR_SecondsToInterval(50))
++    , mNetworkLinkChangeBusyWaitTimeout(PR_SecondsToInterval(7))
+     , mSleepPhase(false)
+     , mProbedMaxCount(false)
+ #if defined(XP_WIN)
+     , mPolling(false)
+ #endif
+ #if defined(_WIN64) && defined(WIN95)
+     , mFileDesc2PlatformOverlappedIOHandleFuncChecked(false)
+     , mNsprLibrary(nullptr)
+@@ -546,16 +551,26 @@ nsSocketTransportService::Poll(TimeDurat
+         if (pollCount)
+             pollList = &mPollList[1];
+         else
+             pollList = nullptr;
+         pollTimeout =
+             pendingEvents ? PR_INTERVAL_NO_WAIT : PR_MillisecondsToInterval(25);
+     }
+ 
++    if ((ts - mLastNetworkLinkChangeTime) < mNetworkLinkChangeBusyWaitPeriod) {
++        // Being here means we are few seconds after a network change has
++        // been detected.
++        PRIntervalTime to = mNetworkLinkChangeBusyWaitTimeout;
++        if (to) {
++            pollTimeout = std::min(to, pollTimeout);
++            SOCKET_LOG(("  timeout shorthened after network change event"));
++        }
++    }
++
+     SOCKET_LOG(("    timeout = %i milliseconds\n",
+          PR_IntervalToMilliseconds(pollTimeout)));
+ 
+     int32_t rv = PR_Poll(pollList, pollCount, pollTimeout);
+ 
+     SOCKET_LOG(("    ...returned after %i milliseconds\n",
+          PR_IntervalToMilliseconds(PR_IntervalNow() - ts)));
+ 
+@@ -614,16 +629,17 @@ nsSocketTransportService::Init()
+ 
+     nsCOMPtr<nsIObserverService> obsSvc = services::GetObserverService();
+     if (obsSvc) {
+         obsSvc->AddObserver(this, "profile-initial-state", false);
+         obsSvc->AddObserver(this, "last-pb-context-exited", false);
+         obsSvc->AddObserver(this, NS_WIDGET_SLEEP_OBSERVER_TOPIC, true);
+         obsSvc->AddObserver(this, NS_WIDGET_WAKE_OBSERVER_TOPIC, true);
+         obsSvc->AddObserver(this, "xpcom-shutdown-threads", false);
++        obsSvc->AddObserver(this, NS_NETWORK_LINK_TOPIC, false);
+     }
+ 
+     mInitialized = true;
+     return NS_OK;
+ }
+ 
+ // called from main thread only
+ NS_IMETHODIMP
+@@ -682,16 +698,17 @@ nsSocketTransportService::ShutdownThread
+ 
+     nsCOMPtr<nsIObserverService> obsSvc = services::GetObserverService();
+     if (obsSvc) {
+         obsSvc->RemoveObserver(this, "profile-initial-state");
+         obsSvc->RemoveObserver(this, "last-pb-context-exited");
+         obsSvc->RemoveObserver(this, NS_WIDGET_SLEEP_OBSERVER_TOPIC);
+         obsSvc->RemoveObserver(this, NS_WIDGET_WAKE_OBSERVER_TOPIC);
+         obsSvc->RemoveObserver(this, "xpcom-shutdown-threads");
++        obsSvc->RemoveObserver(this, NS_NETWORK_LINK_TOPIC);
+     }
+ 
+     if (mAfterWakeUpTimer) {
+         mAfterWakeUpTimer->Cancel();
+         mAfterWakeUpTimer = nullptr;
+     }
+ 
+     NetworkActivityMonitor::Shutdown();
+@@ -1283,16 +1300,29 @@ nsSocketTransportService::UpdatePrefs()
+ 
+         int32_t maxTimePref;
+         rv = tmpPrefService->GetIntPref(MAX_TIME_BETWEEN_TWO_POLLS,
+                                         &maxTimePref);
+         if (NS_SUCCEEDED(rv) && maxTimePref >= 0) {
+             mMaxTimePerPollIter = maxTimePref;
+         }
+ 
++        int32_t pollBusyWaitPeriod;
++        rv = tmpPrefService->GetIntPref(POLL_BUSY_WAIT_PERIOD, &pollBusyWaitPeriod);
++        if (NS_SUCCEEDED(rv) && pollBusyWaitPeriod > 0) {
++            mNetworkLinkChangeBusyWaitPeriod = PR_SecondsToInterval(pollBusyWaitPeriod);
++        }
++
++        int32_t pollBusyWaitPeriodTimeout;
++        rv = tmpPrefService->GetIntPref(POLL_BUSY_WAIT_PERIOD_TIMEOUT, &pollBusyWaitPeriodTimeout);
++        if (NS_SUCCEEDED(rv) && pollBusyWaitPeriodTimeout > 0) {
++            mNetworkLinkChangeBusyWaitTimeout = PR_SecondsToInterval(pollBusyWaitPeriodTimeout);
++        }
++
++
+         int32_t maxTimeForPrClosePref;
+         rv = tmpPrefService->GetIntPref(MAX_TIME_FOR_PR_CLOSE_DURING_SHUTDOWN,
+                                         &maxTimeForPrClosePref);
+         if (NS_SUCCEEDED(rv) && maxTimeForPrClosePref >=0) {
+             mMaxTimeForPrClosePref = PR_MillisecondsToInterval(maxTimeForPrClosePref);
+         }
+ 
+         int32_t pollableEventTimeout;
+@@ -1349,16 +1379,18 @@ nsSocketTransportService::NotifyKeepaliv
+     sock->mHandler->OnKeepaliveEnabledPrefChange(mKeepaliveEnabledPref);
+ }
+ 
+ NS_IMETHODIMP
+ nsSocketTransportService::Observe(nsISupports *subject,
+                                   const char *topic,
+                                   const char16_t *data)
+ {
++    SOCKET_LOG(("nsSocketTransportService::Observe topic=%s", topic));
++
+     if (!strcmp(topic, NS_PREFBRANCH_PREFCHANGE_TOPIC_ID)) {
+         UpdatePrefs();
+         return NS_OK;
+     }
+ 
+     if (!strcmp(topic, "profile-initial-state")) {
+         int32_t blipInterval = Preferences::GetInt(BLIP_INTERVAL_PREF, 0);
+         if (blipInterval <= 0) {
+@@ -1400,16 +1432,18 @@ nsSocketTransportService::Observe(nsISup
+         if (mSleepPhase && !mAfterWakeUpTimer) {
+             mAfterWakeUpTimer = do_CreateInstance("@mozilla.org/timer;1");
+             if (mAfterWakeUpTimer) {
+                 mAfterWakeUpTimer->Init(this, 2000, nsITimer::TYPE_ONE_SHOT);
+             }
+         }
+     } else if (!strcmp(topic, "xpcom-shutdown-threads")) {
+         ShutdownThread();
++    } else if (!strcmp(topic, NS_NETWORK_LINK_TOPIC)) {
++        mLastNetworkLinkChangeTime = PR_IntervalNow();
+     }
+ 
+     return NS_OK;
+ }
+ 
+ void
+ nsSocketTransportService::ClosePrivateConnections()
+ {
+diff --git a/netwerk/base/nsSocketTransportService2.h b/netwerk/base/nsSocketTransportService2.h
+--- a/netwerk/base/nsSocketTransportService2.h
++++ b/netwerk/base/nsSocketTransportService2.h
+@@ -262,16 +262,25 @@ private:
+     // True if TCP keepalive is enabled globally.
+     bool        mKeepaliveEnabledPref;
+     // Timeout of pollable event signalling.
+     TimeDuration mPollableEventTimeout;
+ 
+     Atomic<bool>                    mServingPendingQueue;
+     Atomic<int32_t, Relaxed>        mMaxTimePerPollIter;
+     Atomic<PRIntervalTime, Relaxed> mMaxTimeForPrClosePref;
++    // Timestamp of the last network link change event, tracked
++    // also on child processes.
++    Atomic<PRIntervalTime, Relaxed> mLastNetworkLinkChangeTime;
++    // Preference for how long we do busy wait after network link
++    // change has been detected.
++    Atomic<PRIntervalTime, Relaxed> mNetworkLinkChangeBusyWaitPeriod;
++    // Preference for the value of timeout for poll() we use during
++    // the network link change event period.
++    Atomic<PRIntervalTime, Relaxed> mNetworkLinkChangeBusyWaitTimeout;
+ 
+     // Between a computer going to sleep and waking up the PR_*** telemetry
+     // will be corrupted - so do not record it.
+     Atomic<bool, Relaxed>           mSleepPhase;
+     nsCOMPtr<nsITimer>              mAfterWakeUpTimer;
+ 
+     void OnKeepaliveEnabledPrefChange();
+     void NotifyKeepaliveEnabledPrefChange(SocketContext *sock);
+diff --git a/netwerk/ipc/NeckoChild.cpp b/netwerk/ipc/NeckoChild.cpp
+--- a/netwerk/ipc/NeckoChild.cpp
++++ b/netwerk/ipc/NeckoChild.cpp
+@@ -27,16 +27,17 @@
+ #include "mozilla/net/StunAddrsRequestChild.h"
+ #endif
+ 
+ #include "SerializedLoadContext.h"
+ #include "nsGlobalWindow.h"
+ #include "nsIOService.h"
+ #include "nsINetworkPredictor.h"
+ #include "nsINetworkPredictorVerifier.h"
++#include "nsINetworkLinkService.h"
+ #include "mozilla/ipc/URIUtils.h"
+ #include "nsNetUtil.h"
+ 
+ using mozilla::dom::TCPSocketChild;
+ using mozilla::dom::TCPServerSocketChild;
+ using mozilla::dom::UDPSocketChild;
+ 
+ namespace mozilla {
+@@ -448,11 +449,22 @@ NeckoChild::RecvSpeculativeConnectReques
+   nsCOMPtr<nsIObserverService> obsService = services::GetObserverService();
+   if (obsService) {
+     obsService->NotifyObservers(nullptr, "speculative-connect-request",
+                                 nullptr);
+   }
+   return IPC_OK();
+ }
+ 
++mozilla::ipc::IPCResult
++NeckoChild::RecvNetworkChangeNotification(nsCString const& type)
++{
++  nsCOMPtr<nsIObserverService> obsService = services::GetObserverService();
++  if (obsService) {
++    obsService->NotifyObservers(nullptr, NS_NETWORK_LINK_TOPIC,
++                                NS_ConvertUTF8toUTF16(type).get());
++  }
++  return IPC_OK();
++}
++
+ } // namespace net
+ } // namespace mozilla
+ 
+diff --git a/netwerk/ipc/NeckoChild.h b/netwerk/ipc/NeckoChild.h
+--- a/netwerk/ipc/NeckoChild.h
++++ b/netwerk/ipc/NeckoChild.h
+@@ -91,16 +91,17 @@ protected:
+ 
+   /* Predictor Messsages */
+   virtual mozilla::ipc::IPCResult RecvPredOnPredictPrefetch(const URIParams& aURI,
+                                                             const uint32_t& aHttpStatus) override;
+   virtual mozilla::ipc::IPCResult RecvPredOnPredictPreconnect(const URIParams& aURI) override;
+   virtual mozilla::ipc::IPCResult RecvPredOnPredictDNS(const URIParams& aURI) override;
+ 
+   virtual mozilla::ipc::IPCResult RecvSpeculativeConnectRequest() override;
++  virtual mozilla::ipc::IPCResult RecvNetworkChangeNotification(nsCString const& type) override;
+ };
+ 
+ /**
+  * Reference to the PNecko Child protocol.
+  * Null if this is not a content process.
+  */
+ extern PNeckoChild *gNeckoChild;
+ 
+diff --git a/netwerk/ipc/PNecko.ipdl b/netwerk/ipc/PNecko.ipdl
+--- a/netwerk/ipc/PNecko.ipdl
++++ b/netwerk/ipc/PNecko.ipdl
+@@ -139,16 +139,20 @@ child:
+ 
+   /* Predictor Methods */
+   async PredOnPredictPrefetch(URIParams uri, uint32_t httpStatus);
+   async PredOnPredictPreconnect(URIParams uri);
+   async PredOnPredictDNS(URIParams uri);
+ 
+   async SpeculativeConnectRequest();
+ 
++  // Using high priority to deliver this notification possibly sooner than we
++  // enter poll() on the child process with infinite timeout.
++  prio(high) async NetworkChangeNotification(nsCString type);
++
+   async PTransportProvider();
+ 
+ both:
+   // Actually we need PTCPSocket() for parent. But ipdl disallows us having different
+   // signatures on parent and child. So when constructing the parent side object, we just
+   // leave host/port unused.
+   async PTCPSocket(nsString host, uint16_t port);
+ };
