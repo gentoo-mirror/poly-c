@@ -1,13 +1,14 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
+# $Id: 89cefa1028fde60ed0723560299960ead1740d47 $
 
 EAPI="7"
 
-inherit autotools prefix multilib-minimal poly-c_ebuilds
+inherit autotools prefix multilib-minimal
 
 DESCRIPTION="A Client that groks URLs"
 HOMEPAGE="https://curl.haxx.se/"
-SRC_URI="https://curl.haxx.se/download/${MY_P}.tar.xz"
+SRC_URI="https://curl.haxx.se/download/${P}.tar.xz"
 
 LICENSE="curl"
 SLOT="0"
@@ -224,6 +225,7 @@ multilib_src_configure() {
 		--without-cyassl
 		--without-darwinssl
 		--without-fish-functions-dir
+		--without-hyper
 		$(use_with idn libidn2)
 		$(use_with kerberos gssapi "${EPREFIX}"/usr)
 		$(use_with metalink libmetalink)

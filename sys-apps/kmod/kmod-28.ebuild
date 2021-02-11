@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 7bf60b4339aa8b407980bea1ac3c059e5214cde5 $
+# $Id: c163e6b8ac209f221dbc20bce8d68d6e69275ec6 $
 
 EAPI=7
 
@@ -13,7 +13,7 @@ if [[ ${PV} == 9999* ]]; then
 	inherit git-r3
 else
 	SRC_URI="https://www.kernel.org/pub/linux/utils/kernel/kmod/${P}.tar.xz"
-	KEYWORDS="~alpha amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ppc64 ~riscv s390 sparc ~x86"
+	KEYWORDS="~alpha amd64 ~arm ~arm64 hppa ~ia64 ~m68k ~mips ~ppc ppc64 ~riscv s390 sparc x86"
 	#inherit libtool
 fi
 
