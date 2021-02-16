@@ -1,6 +1,6 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c9790e0e5a0173f4e94e08fe024413cedf70c2bc $
+# $Id: 26cf0d9fe4d788b9cea0d68e13ff510f439bc85b $
 
 EAPI=7
 
@@ -14,7 +14,6 @@ MY_PN="JohnTheRipper"
 if [[ ${PV} == "9999" ]] ; then
 	EGIT_REPO_URI="https://github.com/magnumripper/${MY_PN}.git"
 	inherit git-r3
-	KEYWORDS=""
 else
 	JUMBO="jumbo-1"
 	MY_PV="${PV}-${JUMBO}"

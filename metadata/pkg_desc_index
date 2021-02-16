@@ -244,7 +244,7 @@ sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.2 247.3_pre: Linux dynamic and pers
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/slang 2.3.3_pre32: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.173 4.19.174 4.19.175 5.4.95 5.4.96 5.4.97 5.10.13 5.10.14 5.10.15: Shows and sets processor power related values
+sys-power/cpupower 4.19.174 4.19.175 4.19.176 5.4.96 5.4.97 5.4.98 5.10.14 5.10.15 5.10.16: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.16-r2 3.3.16-r3 3.3.17: standard informational utilities and process-handling tools
