@@ -38,7 +38,7 @@ dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/fribidi 1.0.10_pre: A free implementation of the unicode bidirectional algorithm
 dev-libs/libcli 1.10.4: Cisco-style (telnet) command-line interface library
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
-dev-libs/openssl 1.1.1g 1.1.1h 1.1.1i: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/openssl 1.1.1i 1.1.1j: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/protobuf 3.14.0_pre: Google's Protocol Buffers - Extensible mechanism for serializing structured data
 dev-libs/xerces-c 3.2.3_pre: A validating XML parser written in a portable subset of C++
@@ -52,6 +52,7 @@ dev-util/dwdiff 2.1.3_pre: diff-like program operating at word level instead of 
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/icemon 3.3_pre: Monitor program for use with Icecream compile clusters based on KDE Frameworks
 dev-util/lxqt-build-tools 0.8.0_pre: LXQt Build Tools
+dev-util/meson 0.57.0_pre: Open source build system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-action/supertuxkart 1.1 1.2: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
@@ -77,12 +78,6 @@ kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
 mail-filter/pyzor 1.0.0-r1: A distributed, collaborative spam detection and filtering network
 media-gfx/fawkes 9999: Image Cloaking for Personal Privacy
-media-libs/gst-plugins-bad 1.16.3_pre: Less plugins for GStreamer
-media-libs/gst-plugins-base 1.16.2 1.16.3_pre: Basepack of plugins for gstreamer
-media-libs/gst-plugins-good 1.16.3_pre: Basepack of plugins for GStreamer
-media-libs/gst-plugins-ugly 1.16.3_pre: Basepack of plugins for gstreamer
-media-libs/gst-rtsp-server 1.16.3_pre: A GStreamer based RTSP server
-media-libs/gstreamer 1.16.3_pre: Open source multimedia framework
 media-libs/libbpg 0.9.8_pre: BPG (Better Portable Graphics) is a new image format
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
@@ -90,77 +85,6 @@ media-libs/libsquish 1.15: DXT compression library
 media-libs/libwebp 1.2.0_pre: A lossy image compression format
 media-libs/mesa 21.0.0_rc4_pre: OpenGL-like graphic library for Linux
 media-libs/x264 0.0.20200810: A free library for encoding X264/AVC streams
-media-plugins/gst-plugins-a52dec 1.16.3_pre: ATSC A/52 audio decoder plugin for GStreamer
-media-plugins/gst-plugins-amr 1.16.3_pre: AMRNB encoder/decoder and AMRWB decoder plugin for GStreamer
-media-plugins/gst-plugins-assrender 1.16.3_pre: ASS/SSA rendering with effects support plugin for GStreamer
-media-plugins/gst-plugins-bluez 1.16.3_pre: AVDTP source/sink and A2DP sink plugin for GStreamer
-media-plugins/gst-plugins-bs2b 1.16.3_pre: bs2b elements for Gstreamer
-media-plugins/gst-plugins-cairo 1.16.3_pre: Video overlay plugin based on cairo for GStreamer
-media-plugins/gst-plugins-cdio 1.16.3_pre: CD Audio Source (cdda) plugin for GStreamer
-media-plugins/gst-plugins-cdparanoia 1.16.3_pre: CD Audio Source (cdda) plugin for GStreamer
-media-plugins/gst-plugins-chromaprint 1.16.3_pre: Calculate Chromaprint fingerprint from audio files for GStreamer
-media-plugins/gst-plugins-colormanagement 1.16.3_pre: Color management correction GStreamer plugins
-media-plugins/gst-plugins-dash 1.16.3_pre: MPEG-DASH plugin for GStreamer
-media-plugins/gst-plugins-dtls 1.16.3_pre: DTLS encoder/decoder with SRTP support plugin for GStreamer
-media-plugins/gst-plugins-dts 1.16.3_pre: DTS audio decoder plugin for Gstreamer
-media-plugins/gst-plugins-dv 1.16.3_pre: DV demuxer and decoder plugin for GStreamer
-media-plugins/gst-plugins-dvb 1.16.3_pre: plugin for gstreamer
-media-plugins/gst-plugins-dvdread 1.16.3_pre: DVD read plugin for GStreamer
-media-plugins/gst-plugins-faac 1.16.3_pre: AAC audio encoder plugin for GStreamer
-media-plugins/gst-plugins-faad 1.16.3_pre: AAC audio decoder plugin.
-media-plugins/gst-plugins-flac 1.16.3_pre: FLAC encoder/decoder/tagger plugin for GStreamer
-media-plugins/gst-plugins-gdkpixbuf 1.16.3_pre: plugin for gstreamer
-media-plugins/gst-plugins-gtk 1.16.3_pre: Video sink plugin for GStreamer that renders to a GtkWidget
-media-plugins/gst-plugins-hls 1.16.3_pre: HTTP live streaming plugin for GStreamer
-media-plugins/gst-plugins-jack 1.16.3_pre: plugin for gstreamer
-media-plugins/gst-plugins-jpeg 1.16.3_pre: JPEG image encoder/decoder plugin for GStreamer
-media-plugins/gst-plugins-kate 1.16.3_pre: Kate overlay codec suppport plugin for GStreamer
-media-plugins/gst-plugins-ladspa 1.16.3_pre: Ladspa elements for Gstreamer
-media-plugins/gst-plugins-lame 1.16.3_pre: MP3 encoder plugin for GStreamer
-media-plugins/gst-plugins-libav 1.16.3_pre: FFmpeg based gstreamer plugin
-media-plugins/gst-plugins-libde265 1.16.3_pre: H.265 decoder plugin for GStreamer
-media-plugins/gst-plugins-libmms 1.16.3_pre: Microsoft Multi Media Server source plugin for GStreamer
-media-plugins/gst-plugins-libpng 1.16.3_pre: PNG image encoder/decoder plugin for GStreamer
-media-plugins/gst-plugins-libvisual 1.16.3_pre: Visualization elements for GStreamer
-media-plugins/gst-plugins-lv2 1.16.3_pre: Lv2 elements for Gstreamer
-media-plugins/gst-plugins-meta 1.16.3_pre: Meta ebuild to pull in gst plugins for apps
-media-plugins/gst-plugins-modplug 1.16.3_pre: MOD audio decoder plugin for GStreamer
-media-plugins/gst-plugins-mpeg2dec 1.16.3_pre: MPEG2 decoder plugin for GStreamer
-media-plugins/gst-plugins-mpeg2enc 1.16.3_pre: MPEG-1/2 video encoding plugin for GStreamer
-media-plugins/gst-plugins-mpg123 1.16.3_pre: MP3 decoder plugin for GStreamer
-media-plugins/gst-plugins-mplex 1.16.3_pre: MPEG/DVD/SVCD/VCD video/audio multiplexing plugin for GStreamer
-media-plugins/gst-plugins-neon 1.16.3_pre: HTTP client source plugin for GStreamer
-media-plugins/gst-plugins-ofa 1.16.3_pre: MusicIP audio fingerprinting plugin for GStreamer
-media-plugins/gst-plugins-opencv 1.16.3_pre: OpenCV elements for GStreamer
-media-plugins/gst-plugins-openh264 1.16.3_pre: H.264 encoder/decoder plugin for GStreamer.
-media-plugins/gst-plugins-opus 1.16.3_pre: Opus audio parser plugin for GStreamer
-media-plugins/gst-plugins-oss 1.16.3_pre: OSS (Open Sound System) support plugin for GStreamer
-media-plugins/gst-plugins-pulse 1.16.3_pre: PulseAudio sound server plugin for GStreamer
-media-plugins/gst-plugins-raw1394 1.16.3_pre: Fiwewire DV/HDV capture plugin for GStreamer
-media-plugins/gst-plugins-resindvd 1.16.3_pre: DVD playback support plugin for GStreamer
-media-plugins/gst-plugins-rtmp 1.16.3_pre: RTMP source/sink plugin for GStreamer
-media-plugins/gst-plugins-shout2 1.16.3_pre: Icecast server sink plugin for GStreamer
-media-plugins/gst-plugins-sidplay 1.16.3_pre: Sid decoder plugin for GStreamer
-media-plugins/gst-plugins-smoothstreaming 1.16.3_pre: Smooth Streaming plugin for GStreamer
-media-plugins/gst-plugins-soundtouch 1.16.3_pre: Beats-per-minute detection and pitch controlling plugin for GStreamer
-media-plugins/gst-plugins-soup 1.16.3_pre: HTTP client source/sink plugin for GStreamer
-media-plugins/gst-plugins-speex 1.16.3_pre: Speex encoder/decoder plugin for GStreamer
-media-plugins/gst-plugins-srt 1.16.3_pre: Secure reliable transport (SRT) transfer plugin for GStreamer
-media-plugins/gst-plugins-srtp 1.16.3_pre: SRTP encoder/decoder plugin for GStreamer
-media-plugins/gst-plugins-taglib 1.16.3_pre: ID3v2/APEv2 tagger plugin for GStreamer
-media-plugins/gst-plugins-twolame 1.16.3_pre: MPEG2 encoder plugin for GStreamer
-media-plugins/gst-plugins-uvch264 1.16.3_pre: UVC compliant H264 encoding cameras plugin for GStreamer
-media-plugins/gst-plugins-v4l2 1.16.3_pre: plugin for gstreamer
-media-plugins/gst-plugins-vaapi 1.16.3_pre: Hardware accelerated video decoding through VA-API plugin for GStreamer
-media-plugins/gst-plugins-voaacenc 1.16.3_pre: AAC encoder plugin for GStreamer
-media-plugins/gst-plugins-voamrwbenc 1.16.3_pre: AMR-WB audio encoder plugin for GStreamer
-media-plugins/gst-plugins-vpx 1.16.3_pre: VP8/VP9 video encoder/decoder plugin for GStreamer
-media-plugins/gst-plugins-wavpack 1.16.3_pre: Wavpack audio encoder/decoder plugin for GStreamer
-media-plugins/gst-plugins-webrtc 1.16.3_pre: WebRTC plugins for GStreamer
-media-plugins/gst-plugins-x264 1.16.3_pre: H.264 encoder plugin for GStreamer
-media-plugins/gst-plugins-x265 1.16.3_pre: H.265 encoder plugin for GStreamer
-media-plugins/gst-plugins-ximagesrc 1.16.3_pre: X11 video capture stream plugin for GStreamer
-media-plugins/gst-plugins-zbar 1.16.3_pre: Bar codes detection in video streams for GStreamer
 media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
 media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
 media-sound/alsa-utils 1.2.2 1.2.3 1.2.4: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
@@ -249,6 +173,7 @@ sys-power/cpupower 4.19.174 4.19.175 4.19.176 5.4.96 5.4.97 5.4.98 5.10.14 5.10.
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.16-r2 3.3.16-r3 3.3.17: standard informational utilities and process-handling tools
+sys-process/psmisc 23.4: A set of tools that use the proc filesystem
 www-client/seamonkey 2.53.6: Seamonkey Web Browser
 www-client/waterfox-classic 2020.12 2021.01 2021.02: Waterfox Web Browser
 www-client/waterfox-current 2020.10: Waterfox Web Browser

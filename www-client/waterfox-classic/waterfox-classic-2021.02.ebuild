@@ -30,8 +30,7 @@ inherit check-reqs eapi7-ver flag-o-matic toolchain-funcs eutils gnome2-utils mo
 #	MY_PV="$(ver_cut 1-2)-classic-$(ver_cut 3)"
 #fi
 MY_PN="${PN/-classic}"
-#MY_PV="${PV}-${PN/*-}"
-MY_PV="2020.21-${PN/*-}"
+MY_PV="${PV}-${PN/*-}"
 
 DESCRIPTION="Waterfox Web Browser"
 HOMEPAGE="http://www.waterfoxproject.org"
