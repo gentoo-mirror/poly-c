@@ -46,7 +46,7 @@ DOCS=( BUGS.txt CHANGELOG.txt README.asciidoc
 	   docbook-xsl/asciidoc-docbook-xsl.txt dblatex/dblatex-readme.txt
 	   filters/code/code-filter-readme.txt )
 
-S="${WORKDIR}/${PN}-py3-${MY_PV/_/}"
+S="${WORKDIR}/${PN}-py-${MY_PV/_/}"
 
 src_prepare() {
 	default
