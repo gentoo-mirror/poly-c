@@ -58,8 +58,7 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
-DOCS=( AUTHORS HACKING NEWS README.md README.generic README.kernel README.modules
-	README.testsuite TODO )
+DOCS=( AUTHORS HACKING.md NEWS.md README.md README.generic README.kernel )
 
 QA_MULTILIB_PATHS="usr/lib/dracut/.*"
 
@@ -90,7 +89,7 @@ src_install() {
 	default
 
 	insinto /etc/logrotate.d
-	newins dracut.logrotate dracut
+	newins "${FILESDIR}"/dracut.logrotate dracut
 
 	docinto html
 	dodoc dracut.html
