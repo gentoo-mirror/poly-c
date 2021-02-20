@@ -1,4 +1,4 @@
-From 45bef7af528a8758d31d40e5f51da0da40598c32 Mon Sep 17 00:00:00 2001
+From 09b40be6e0e0a59ba4bd764067eb353241043a70 Mon Sep 17 00:00:00 2001
 From: Daiki Ueno <ueno@gnu.org>
 Date: Mon, 28 Dec 2020 12:14:13 +0100
 Subject: [PATCH] gnutls_x509_trust_list_verify_crt2: ignore duplicate
@@ -14,14 +14,35 @@ chain, and skip them while still allow the caller to inject missing
 certificates.
 
 Signed-off-by: Daiki Ueno <ueno@gnu.org>
+Co-authored-by: Andreas Metzler <ametzler@debian.org>
 ---
+ lib/x509/common.c          |   8 ++
  lib/x509/verify-high.c     | 157 +++++++++++++++++++++++++++++++------
  tests/missingissuer.c      |   2 +
- tests/test-chains-issuer.h |  82 ++++++++++++++++++-
- 3 files changed, 218 insertions(+), 23 deletions(-)
+ tests/test-chains-issuer.h | 101 +++++++++++++++++++++++-
+ 4 files changed, 245 insertions(+), 23 deletions(-)
 
+diff --git a/lib/x509/common.c b/lib/x509/common.c
+index 3301aaad0c..10c8db53c0 100644
+--- a/lib/x509/common.c
++++ b/lib/x509/common.c
+@@ -1758,6 +1758,14 @@ unsigned int _gnutls_sort_clist(gnutls_x509_crt_t *clist,
+ 	 * increasing DEFAULT_MAX_VERIFY_DEPTH.
+ 	 */
+ 	for (i = 0; i < clist_size; i++) {
++		/* Self-signed certificate found in the chain; skip it
++		 * as it should only appear in the trusted set.
++		 */
++		if (gnutls_x509_crt_check_issuer(clist[i], clist[i])) {
++			_gnutls_cert_log("self-signed cert found", clist[i]);
++			continue;
++		}
++
+ 		for (j = 1; j < clist_size; j++) {
+ 			if (i == j)
+ 				continue;
 diff --git a/lib/x509/verify-high.c b/lib/x509/verify-high.c
-index 588e7ee0d..16e8d4ad6 100644
+index 588e7ee0dc..9a16e6b42a 100644
 --- a/lib/x509/verify-high.c
 +++ b/lib/x509/verify-high.c
 @@ -67,6 +67,80 @@ struct gnutls_x509_trust_list_iter {
@@ -176,8 +197,8 @@ index 588e7ee0d..16e8d4ad6 100644
 +			}
 +		}
 +
-+		/* If the issuer of the certificate is known, no need for
-+		 * further processing. */
++		/* If the issuer of the certificate is known, no need
++		 * for further processing. */
 +		if (_gnutls_trust_list_get_issuer(list,
 +						  cert_list[i - 1],
 +						  &issuer,
@@ -234,7 +255,7 @@ index 588e7ee0d..16e8d4ad6 100644
  }
  
 diff --git a/tests/missingissuer.c b/tests/missingissuer.c
-index f21e2b6b0..226d09592 100644
+index f21e2b6b0c..226d095929 100644
 --- a/tests/missingissuer.c
 +++ b/tests/missingissuer.c
 @@ -145,6 +145,8 @@ void doit(void)
@@ -247,7 +268,7 @@ index f21e2b6b0..226d09592 100644
  				printf("\tAdding certificate %d...", (int)j);
  
 diff --git a/tests/test-chains-issuer.h b/tests/test-chains-issuer.h
-index 543e2d71f..b9ff9cd9e 100644
+index 543e2d71fb..bf1e65c956 100644
 --- a/tests/test-chains-issuer.h
 +++ b/tests/test-chains-issuer.h
 @@ -24,7 +24,7 @@
@@ -259,7 +280,7 @@ index 543e2d71f..b9ff9cd9e 100644
  
  #define SERVER_CERT "-----BEGIN CERTIFICATE-----\n"			\
  	"MIIDATCCAbmgAwIBAgIUQdvdegP8JFszFHLfV4+lrEdafzAwPQYJKoZIhvcNAQEK\n" \
-@@ -338,6 +338,80 @@ static const char *missing_middle_unrelated_extra_insert[] = {
+@@ -338,11 +338,102 @@ static const char *missing_middle_unrelated_extra_insert[] = {
  	NULL,
  };
  
@@ -340,7 +361,29 @@ index 543e2d71f..b9ff9cd9e 100644
  static const char *missing_ca[] = {
  	CA_CERT_0,
  	NULL,
-@@ -377,6 +451,12 @@ static struct chains {
+ };
+ 
++static const char *middle_single_duplicate_ca[] = {
++	SERVER_CERT,
++	CA_CERT_5,
++	CA_CERT_0,
++	CA_CERT_4,
++	CA_CERT_0,
++	CA_CERT_2,
++	CA_CERT_0,
++	CA_CERT_1,
++	NULL,
++};
++
++static const char *missing_middle_single_duplicate_ca_unrelated_insert[] = {
++	CA_CERT_0,
++	NULL,
++};
++
+ static struct chains {
+ 	const char *name;
+ 	const char **chain;
+@@ -377,6 +468,14 @@ static struct chains {
  	{ "skip multiple unsorted", missing_skip_multiple_unsorted, missing_skip_multiple_insert, missing_ca, 0, 0 },
  	{ "unrelated", missing_middle_single, missing_middle_unrelated_insert, missing_ca, 0, GNUTLS_CERT_INVALID | GNUTLS_CERT_SIGNER_NOT_FOUND },
  	{ "unrelated extra", missing_middle_single, missing_middle_unrelated_extra_insert, missing_ca, 0, 0 },
@@ -350,6 +393,8 @@ index 543e2d71f..b9ff9cd9e 100644
 +	{ "last multiple duplicate", missing_last_multiple_duplicate, missing_last_multiple_insert, missing_ca, 0, 0 },
 +	{ "skip single duplicate", missing_skip_single_duplicate, missing_skip_single_insert, missing_ca, 0, 0 },
 +	{ "skip multiple duplicate", missing_skip_multiple_duplicate, missing_skip_multiple_insert, missing_ca, 0, 0 },
++	{ "middle single duplicate ca", middle_single_duplicate_ca, missing_middle_single_insert, missing_ca, 0, 0 },
++	{ "middle single duplicate ca - insert unrelated", middle_single_duplicate_ca, missing_middle_single_duplicate_ca_unrelated_insert, missing_ca, 0, GNUTLS_CERT_INVALID | GNUTLS_CERT_SIGNER_NOT_FOUND },
  	{ NULL, NULL, NULL, NULL },
  };
  

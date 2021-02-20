@@ -56,8 +56,7 @@ DOCS=(
 HTML_DOCS=()
 
 PATCHES=(
-	"${FILESDIR}/${P}-ignore_dupe_certs.patch"
-	"${FILESDIR}/${P}-fix_ignore_dupe_certs.diff"
+	"${FILESDIR}/${P}-ignore_dupe_certs.patch" #759037
 )
 
 pkg_setup() {
