@@ -165,11 +165,11 @@ sys-devel/icecream 1.3.1_pre: Distributed compiling of C(++) code across several
 sys-devel/slibtool 9999: A skinny libtool implementation, written in C
 sys-fs/fswatch 1.14.0 1.15.0 9999: cross-platform file change monitor with multiple backends
 sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.2 247.3_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
-sys-kernel/dracut 052_pre: Generic initramfs generation tool
+sys-kernel/dracut 052_pre 053_pre: Generic initramfs generation tool
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/slang 2.3.3_pre32: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.175 4.19.176 4.19.177 5.4.98 5.4.99 5.4.100 5.10.15 5.10.16 5.10.17: Shows and sets processor power related values
+sys-power/cpupower 4.19.175 4.19.176 4.19.177 5.4.98 5.4.99 5.4.100 5.10.16 5.10.17 5.10.18: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.16-r2 3.3.16-r3 3.3.17: standard informational utilities and process-handling tools
