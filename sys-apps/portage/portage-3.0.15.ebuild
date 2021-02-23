@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 002a731eda7046c86c625ad3cf734f17c2d56a9b $
+# $Id: 57a36478cce871c54e944e686beff68fb02f7a68 $
 
 EAPI=7
 
@@ -14,7 +14,7 @@ DESCRIPTION="Portage is the package management and distribution system for Gento
 HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Portage"
 
 LICENSE="GPL-2"
-KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 ~riscv s390 sparc x86"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86"
 SLOT="0"
 IUSE="apidoc build doc gentoo-dev +ipc +native-extensions +rsync-verify selinux test xattr"
 RESTRICT="!test? ( test )"
@@ -35,6 +35,7 @@ DEPEND="!build? ( $(python_gen_impl_dep 'ssl(+)') )
 # app-portage/gemato goes without PYTHON_USEDEP since we're calling
 # the executable.
 RDEPEND="
+	acct-user/portage
 	app-arch/zstd
 	>=app-arch/tar-1.27
 	dev-lang/python-exec:2
