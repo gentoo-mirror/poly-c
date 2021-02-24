@@ -1,6 +1,6 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 6bccbe4b7ea6478f13010586bc3a3544be955888 $
+# $Id: 8747ab940d69dfe51167f2b6e738f2e396108998 $
 
 EAPI=7
 
@@ -64,7 +64,7 @@ src_prepare() {
 	# Fix version if necessary
 	local versionfile="include/version.h"
 	if ! grep -Fq "${PV}" ${versionfile} ; then
-		elog "Fixing version string"
+		einfo "Fixing version string"
 		sed "s@\"[[:digit:]\.]\+\"@\"${PV}\"@" \
 			-i ${versionfile} || die
 	fi
