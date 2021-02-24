@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python3_{7..9} )
 inherit autotools python-single-r1
 
 RESTRICT="mirror"
