@@ -21,3 +21,7 @@ sci-astronomy/pulsatingscience
 
 # Lacks proper dependencies
 media-gfx/fawkes
+
+# WIP
+=media-libs/gstreamer-1.18.3_pre
+=media-libs/gst-plugins-base-1.18.3_pre

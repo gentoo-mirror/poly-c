@@ -78,6 +78,8 @@ kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
 mail-filter/pyzor 1.0.0-r1: A distributed, collaborative spam detection and filtering network
 media-gfx/fawkes 9999: Image Cloaking for Personal Privacy
+media-libs/gst-plugins-base 1.18.3_pre: Basepack of plugins for gstreamer
+media-libs/gstreamer 1.18.3_pre: Open source multimedia framework
 media-libs/libbpg 0.9.8_pre: BPG (Better Portable Graphics) is a new image format
 media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC

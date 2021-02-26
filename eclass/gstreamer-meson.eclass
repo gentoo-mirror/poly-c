@@ -76,7 +76,7 @@ fi
 # @INTERNAL
 # @DESCRIPTION:
 # Major and minor numbers of the version number.
-: ${GST_ORG_PVP:=$(get_version_component_range 1-2)}
+: ${GST_ORG_PVP:=$(ver_cut 1-2)}
 
 
 DESCRIPTION="${BUILD_GST_PLUGINS} plugin for gstreamer"
