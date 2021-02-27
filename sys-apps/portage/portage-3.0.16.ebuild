@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 08381b58595188bf4fe463725b3bf3f04dfcf9a1 $
+# $Id: 0c20c53762627420db7fcb497def1b186aeab02e $
 
 EAPI=7
 
@@ -84,14 +84,7 @@ prefix_src_archives() {
 
 TARBALL_PV=${PV}
 SRC_URI="mirror://gentoo/${PN}-${TARBALL_PV}.tar.bz2
-	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.bz2)
-	https://github.com/gentoo/portage/commit/3e5ef19d5d6b26fde08da463d730ff90edf6eb29.patch -> ${P}-bug-772386-fetch.patch
-	https://github.com/gentoo/portage/commit/48226b2df1408cf1944cb7c6128c73710c740dd3.patch -> ${P}-bug-772386-fetch-48226b2df140.patch"
-
-PATCHES=(
-	"${DISTDIR}/${P}-bug-772386-fetch.patch"
-	"${DISTDIR}/${P}-bug-772386-fetch-48226b2df140.patch"
-)
+	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.bz2)"
 
 pkg_pretend() {
 	local CONFIG_CHECK="~IPC_NS ~PID_NS ~NET_NS ~UTS_NS"
@@ -253,9 +246,13 @@ pkg_preinst() {
 		PYTHONPATH="${D}${sitedir}${PYTHONPATH:+:${PYTHONPATH}}" \
 		"${PYTHON}" -m portage._compat_upgrade.default_locations || die
 
-	env -u BINPKG_COMPRESS \
+	env -u BINPKG_COMPRESS -u PORTAGE_REPOSITORIES \
 		PYTHONPATH="${D}${sitedir}${PYTHONPATH:+:${PYTHONPATH}}" \
 		"${PYTHON}" -m portage._compat_upgrade.binpkg_compression || die
+
+	env -u FEATURES -u PORTAGE_REPOSITORIES \
+		PYTHONPATH="${D}${sitedir}${PYTHONPATH:+:${PYTHONPATH}}" \
+		"${PYTHON}" -m portage._compat_upgrade.binpkg_multi_instance || die
 
 	# elog dir must exist to avoid logrotate error for bug #415911.
 	# This code runs in preinst in order to bypass the mapping of
