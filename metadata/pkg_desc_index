@@ -9,7 +9,6 @@ app-admin/super 3.30.3.1: setuid-root program
 app-arch/dpkg 1.20.7.1_pre: Package maintenance system for Debian
 app-arch/minizip-ng 3.0.0: zip manipulation library found in the zlib distribution
 app-arch/xz-utils 5.2.5: utils for managing LZMA compressed files
-app-arch/zstd 1.4.9_pre: zstd fast compression library
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-cdr/cdrtools 99: Placeholder to replace cdrtools with cdrkit
@@ -169,7 +168,6 @@ sys-devel/icecream 1.3.1_pre: Distributed compiling of C(++) code across several
 sys-devel/slibtool 9999: A skinny libtool implementation, written in C
 sys-fs/fswatch 1.14.0 1.15.0 9999: cross-platform file change monitor with multiple backends
 sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.2 247.3_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
-sys-kernel/dracut 052_pre 053_pre: Generic initramfs generation tool
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/slang 2.3.3_pre32: Multi-platform library designed to allow a developer to create robust software
