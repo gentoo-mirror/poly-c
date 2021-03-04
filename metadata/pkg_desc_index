@@ -9,6 +9,7 @@ app-admin/super 3.30.3.1: setuid-root program
 app-arch/dpkg 1.20.7.1_pre: Package maintenance system for Debian
 app-arch/minizip-ng 3.0.0: zip manipulation library found in the zlib distribution
 app-arch/xz-utils 5.2.5: utils for managing LZMA compressed files
+app-arch/zstd 1.4.9_pre: zstd fast compression library
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-cdr/cdrtools 99: Placeholder to replace cdrtools with cdrkit
@@ -28,7 +29,6 @@ app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/asciidoc 9.1.0_pre: A plain text human readable/writable document format
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
-dev-db/mariadb-connector-c 3.1.12: C client library for MariaDB/MySQL
 dev-games/cegui 0.8.7-r1: Crazy Eddie's GUI System
 dev-java/ant-core 1.9.8_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
