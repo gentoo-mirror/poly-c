@@ -177,6 +177,7 @@ sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIO
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.16-r2 3.3.16-r3 3.3.17: standard informational utilities and process-handling tools
 sys-process/psmisc 23.4: A set of tools that use the proc filesystem
+www-apps/baikal 0.8.0: Lightweight CalDAV+CardDAV server
 www-client/seamonkey 2.53.6: Seamonkey Web Browser
 www-client/waterfox-classic 2020.12 2021.01 2021.02: Waterfox Web Browser
 www-client/waterfox-current 2020.10: Waterfox Web Browser
