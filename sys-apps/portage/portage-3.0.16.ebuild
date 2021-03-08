@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0c20c53762627420db7fcb497def1b186aeab02e $
+# $Id: 0a278512cacb76d2aec441585f18c196ae6f08cb $
 
 EAPI=7
 
@@ -140,13 +140,17 @@ python_prepare_all() {
 			-w "/_BINARY/" lib/portage/const.py
 
 		einfo "Prefixing shebangs ..."
+		> "${T}/shebangs" || die
 		while read -r -d $'\0' ; do
 			local shebang=$(head -n1 "$REPLY")
 			if [[ ${shebang} == "#!"* && ! ${shebang} == "#!${EPREFIX}/"* ]] ; then
-				sed -i -e "1s:.*:#!${EPREFIX}${shebang:2}:" "$REPLY" || \
-					die "sed failed"
+				echo "${REPLY}" >> "${T}/shebangs" || die
 			fi
-		done < <(find . -type f ! -name etc-update -print0)
+		done < <(find . -type f -executable ! -name etc-update -print0)
+
+		if [[ -s ${T}/shebangs ]]; then
+			xargs sed -i -e "1s:^#!:#!${EPREFIX}:" < "${T}/shebangs" || die "sed failed"
+		fi
 
 		einfo "Adjusting make.globals, repos.conf and etc-update ..."
 		hprefixify cnf/{make.globals,repos.conf} bin/etc-update

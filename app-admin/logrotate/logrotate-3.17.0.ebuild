@@ -1,10 +1,10 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 33eb0d103ce05d1f02bffebdeca78e0ad3c54332 $
+# $Id: 9e712b69c69595b826b629a0bcd0d1b4ee7b9728 $
 
 EAPI=7
 
-inherit systemd
+inherit systemd tmpfiles
 
 DESCRIPTION="Rotates, compresses, and mails system logs"
 HOMEPAGE="https://github.com/logrotate/logrotate"
@@ -71,7 +71,7 @@ src_install() {
 	use cron && install_cron_file
 
 	systemd_dounit examples/logrotate.{service,timer}
-	systemd_newtmpfilesd "${FILESDIR}/${PN}.tmpfiles" "${PN}".conf
+	newtmpfiles "${FILESDIR}/${PN}.tmpfiles" "${PN}".conf
 
 	keepdir /etc/logrotate.d
 }

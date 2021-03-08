@@ -126,6 +126,7 @@ net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5 1.6: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-print/cups 2.3.3-r2: The Common Unix Printing System
+net-wireless/bluez 5.56_pre: Bluetooth Tools and System Daemons for Linux
 net-wireless/hostapd 2.9-r3: IEEE 802.11 wireless LAN Host AP daemon
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/pulsatingscience 9999: 3D binary pulsar animation and outreach application
@@ -170,7 +171,7 @@ sys-fs/fswatch 1.14.0 1.15.0 9999: cross-platform file change monitor with multi
 sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.2 247.3_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
-sys-libs/slang 2.3.3_pre32: Multi-platform library designed to allow a developer to create robust software
+sys-libs/slang 2.3.3_pre46: Multi-platform library designed to allow a developer to create robust software
 sys-power/cpupower 4.19.177 4.19.178 4.19.179 5.4.101 5.4.102 5.4.103 5.10.19 5.10.20 5.10.21: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
