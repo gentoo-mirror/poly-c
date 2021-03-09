@@ -3,7 +3,7 @@
 # $Id: 9a857f44f5f9c8d9153d7de19e2ed6d9d40a7140 $
 
 EAPI=7
-inherit cmake
+inherit cmake flag-o-matic
 
 DESCRIPTION="A set of tools for CD/DVD reading and recording, including cdrecord"
 HOMEPAGE="http://cdrkit.org"
@@ -37,6 +37,13 @@ src_prepare() {
 	echo '.so genisoimage.1' > ${T}/mkisofs.1 || die
 	echo '.so icedax.1' > ${T}/cdda2wav.1 || die
 	echo '.so readom.1' > ${T}/readcd.1 || die
+}
+
+src_configure() {
+	# gcc10 workaround
+	append-cflags -fcommon
+
+	cmake_src_configure
 }
 
 src_install() {

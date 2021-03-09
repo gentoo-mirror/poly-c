@@ -59,6 +59,8 @@ src_configure() {
 	cd src || die
 
 	use custom-cflags || strip-flags
+	# gcc10 workaround
+	append-cflags -fcommon
 
 	econf \
 		--disable-native-march \

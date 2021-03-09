@@ -32,7 +32,7 @@ RDEPEND="
 	x11-apps/xprop
 	x11-apps/xset
 "
-BDEPEND=">=app-text/xmlto-0.0.26-r1[text(+)]"
+BDEPEND=">=app-text/xmlto-0.0.28-r2[text(+)]"
 
 DOCS=( ChangeLog README RELEASE_NOTES TODO )
 
