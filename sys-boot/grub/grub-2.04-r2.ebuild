@@ -14,6 +14,7 @@ if [[ -n ${GRUB_AUTOGEN} || -n ${GRUB_BOOTSTRAP} ]]; then
 	inherit python-any-r1
 fi
 
+GRUB_AUTORECONF=1
 if [[ -n ${GRUB_AUTORECONF} ]]; then
 	WANT_LIBTOOL=none
 	inherit autotools
@@ -41,6 +42,7 @@ PATCHES=(
 	"${FILESDIR}"/gfxpayload.patch
 	"${FILESDIR}"/grub-2.02_beta2-KERNEL_GLOBS.patch
 	"${FILESDIR}"/2.04-sparc64-bios-boot.patch
+	"${FILESDIR}/${P}-too_big_decompressor.patch"
 )
 
 DEJAVU=dejavu-sans-ttf-2.37
