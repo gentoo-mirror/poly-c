@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2c2a54608a7a08e06e25e9b8fb123f8c031bb620 $
+# $Id: 2057b3611383d96881d1c5751f09e7cb10aa030d $
 
 EAPI=7
 
@@ -88,10 +88,12 @@ prefix_src_archives() {
 TARBALL_PV=${PV}
 SRC_URI="mirror://gentoo/${PN}-${TARBALL_PV}.tar.xz
 	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.xz)
-	https://github.com/gentoo/portage/commit/ff7d78442895e53afb534c072477f98bada4f248.patch -> ${P}-bug-775053-setup-globals-double-prefix-ff7d78.patch"
+	https://github.com/gentoo/portage/commit/ff7d78442895e53afb534c072477f98bada4f248.patch -> ${P}-bug-775053-setup-globals-double-prefix-ff7d78.patch
+	https://github.com/gentoo/portage/commit/d8a12c258cbe15b2725c51b1061e8297919b20df.patch -> ${P}-bug-775239-_test_lock_fn-tempfile-leak-d8a12c.patch"
 
 PATCHES=(
 	"${DISTDIR}/${P}-bug-775053-setup-globals-double-prefix-ff7d78.patch"
+	"${DISTDIR}/${P}-bug-775239-_test_lock_fn-tempfile-leak-d8a12c.patch"
 )
 
 pkg_pretend() {
