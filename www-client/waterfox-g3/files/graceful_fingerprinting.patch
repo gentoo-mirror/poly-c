@@ -1,0 +1,21 @@
+--- a/toolkit/components/resistfingerprinting/nsRFPService.h	2020-03-24 19:57:56.677490433 +0100
++++ b/toolkit/components/resistfingerprinting/nsRFPService.h	2020-03-24 20:01:05.694842333 +0100
+@@ -54,11 +54,16 @@
+ // For the HTTP User-Agent header, we use a simpler set of spoofed values
+ // that do not reveal the specific desktop platform.
+ #if defined(MOZ_WIDGET_ANDROID)
+-#  define SPOOFED_HTTP_UA_OS "Android 6.0; Mobile"
+-#else
++#  define SPOOFED_HTTP_UA_OS "Android 8.1; Mobile"
++#elif defined(XP_WIN)
+ #  define SPOOFED_HTTP_UA_OS "Windows NT 10.0"
++#elif defined(XP_MACOSX)
++#  define SPOOFED_HTTP_UA_OS "Macintosh; Intel Mac OS X 10.14"
++#else
++#  define SPOOFED_HTTP_UA_OS "X11; Linux x86_64"
+ #endif
+ 
++
+ // Forward declare LRUCache, defined in nsRFPService.cpp
+ class LRUCache;
+ 

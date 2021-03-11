@@ -1,12 +1,13 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 2607bc2f694a4b5e3519759ba4d9f72318bee0e2 $
+# $Id: 2c2a54608a7a08e06e25e9b8fb123f8c031bb620 $
 
 EAPI=7
 
 DISTUTILS_USE_SETUPTOOLS=no
 PYTHON_COMPAT=( pypy3 python3_{7..9} )
 PYTHON_REQ_USE='bzip2(+),threads(+)'
+TMPFILES_OPTIONAL=1
 
 inherit distutils-r1 linux-info tmpfiles prefix
 
@@ -86,7 +87,12 @@ prefix_src_archives() {
 
 TARBALL_PV=${PV}
 SRC_URI="mirror://gentoo/${PN}-${TARBALL_PV}.tar.xz
-	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.xz)"
+	$(prefix_src_archives ${PN}-${TARBALL_PV}.tar.xz)
+	https://github.com/gentoo/portage/commit/ff7d78442895e53afb534c072477f98bada4f248.patch -> ${P}-bug-775053-setup-globals-double-prefix-ff7d78.patch"
+
+PATCHES=(
+	"${DISTDIR}/${P}-bug-775053-setup-globals-double-prefix-ff7d78.patch"
+)
 
 pkg_pretend() {
 	local CONFIG_CHECK="~IPC_NS ~PID_NS ~NET_NS ~UTS_NS"

@@ -1,6 +1,6 @@
 # Copyright 2003-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e4e2b1d8e5f2b36e6ea761c25665bbfc00f9ef3e $
+# $Id: 276bd37716fe2fdd8d257670159e22445a9df275 $
 
 EAPI=7
 PYTHON_COMPAT=( python3_{7..9} )
@@ -135,6 +135,7 @@ multilib_src_configure() {
 		-Dlibidn=false
 		-Dlibidn2=false
 		-Dlibiptc=false
+		-Dp11kit=false
 		-Dseccomp=false
 		-Dlz4=false
 		-Dxz=false

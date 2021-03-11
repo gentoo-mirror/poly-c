@@ -23,3 +23,24 @@ www-client/waterfox-current:system-libevent - Use the system-wide dev-libs/libev
 www-client/waterfox-current:system-libvpx - Use the system-wide media-libs/libvpx instead of bundled.
 www-client/waterfox-current:system-sqlite - Use the system-wide dev-db/sqlite installation with secure-delete enabled
 www-client/waterfox-current:system-webp - Use the system-wide media-libs/libwebp instead of bundled.
+www-client/waterfox-g3:bindist - Disable official Firefox branding (icons, name) which are not binary-redistributable according to upstream.
+www-client/waterfox-g3:clang - Use Clang compiler instead of GCC
+www-client/waterfox-g3:custom-optimization - Build with user-specified compiler optimizations (-Os, -O0, -O1, -O2, -O3) from CFLAGS (unsupported)
+www-client/waterfox-g3:eme-free - Disable EME (DRM plugin) cabability at build time
+www-client/waterfox-g3:geckodriver - Enable WebDriver support
+www-client/waterfox-g3:gmp-autoupdate - Allow Gecko Media Plugins (binary blobs) to be automatically downloaded and kept up-to-date in user profiles
+www-client/waterfox-g3:graceful-fingerprinting - Allow real platform to be revealed (prevent always spoofing Windows OS) when privacy.resistFingerprinting is enabled (WARNING: needs further investigations!)
+www-client/waterfox-g3:hwaccel - Force-enable hardware-accelerated rendering (Mozilla bug 594876)
+www-client/waterfox-g3:lto - Enable Link Time Optimization (LTO). Requires Gold linker when using GCC or LDD linker when using Clang
+www-client/waterfox-g3:openh264 - Use media-libs/openh264 for H.264 support instead of downloading binary blob from Mozilla at runtime
+www-client/waterfox-g3:pgo - Add support for profile-guided optimization using gcc-4.5, for faster binaries. This option will double the compile time.
+www-client/waterfox-g3:screencast - Enable support for remote desktop and screen cast using media-video/pipewire
+www-client/waterfox-g3:screenshot - Allow to disable screenshot extension in global profile
+www-client/waterfox-g3:system-av1 - Use the system-wide media-libs/dav1d and media-libs/libaom library instead of bundled.
+www-client/waterfox-g3:system-harfbuzz - Use the system-wide media-libs/harfbuzz and media-gfx/graphite2 instead of bundled.
+www-client/waterfox-g3:system-icu - Use the system-wide dev-libs/icu instead of bundled.
+www-client/waterfox-g3:system-jpeg - Use the system-wide media-libs/libjpeg-turbo instead of bundled.
+www-client/waterfox-g3:system-libevent - Use the system-wide dev-libs/libevent instead of bundled.
+www-client/waterfox-g3:system-libvpx - Use the system-wide media-libs/libvpx instead of bundled.
+www-client/waterfox-g3:system-sqlite - Use the system-wide dev-db/sqlite installation with secure-delete enabled
+www-client/waterfox-g3:system-webp - Use the system-wide media-libs/libwebp instead of bundled.

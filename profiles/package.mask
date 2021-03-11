@@ -28,3 +28,6 @@ media-gfx/fawkes
 
 # Needs some attention
 =dev-vcs/cvs-1.12.13.1-r2
+
+# WIP
+www-client/waterfox-g3

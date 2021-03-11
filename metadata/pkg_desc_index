@@ -7,14 +7,13 @@ app-admin/remotebox 2.5 2.7: Open Source VirtualBox Client with Remote Managemen
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-admin/super 3.30.3.1: setuid-root program
 app-arch/dpkg 1.20.7.1_pre: Package maintenance system for Debian
-app-arch/minizip-ng 3.0.0: zip manipulation library found in the zlib distribution
+app-arch/minizip-ng 3.0.0 3.0.1: zip manipulation library found in the zlib distribution
 app-arch/xz-utils 5.2.5: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-cdr/cdrtools 99: Placeholder to replace cdrtools with cdrkit
 app-cdr/qpxtool 0.8.0: CD/DVD quality checking utilities
 app-crypt/gnupg 2.2.20-r1 2.2.23: The GNU Privacy Guard, a GPL OpenPGP implementation
-app-crypt/johntheripper-jumbo 1.9.0: fast password cracker
 app-crypt/nwipe 0.24_pre: Securely erase disks using a variety of recognized methods
 app-editors/cooledit 3.17.19: Cooledit is a full featured multiple window text editor
 app-laptop/dell-fan-mon 1.0 9999: Fan control for some Dell laptops
@@ -149,11 +148,11 @@ sys-apps/kmod 27-r2 28: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
 sys-apps/openrc 0.42.1-r1: OpenRC manages the services, startup and shutdown of a host
-sys-apps/portage 2.3.99-r2 3.0.12 3.0.13 3.0.14 3.0.16 3.0.17: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.3.99-r2 3.0.12 3.0.13 3.0.14 3.0.16 3.0.17-r1: Portage is the package management and distribution system for Gentoo
 sys-apps/roccat-tools 5.9.0-r100: Utility for advanced configuration of Roccat devices
 sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chipsets
 sys-auth/elogind 246.10_pre: The systemd project's logind, extracted to a standalone package
-sys-auth/passwdqc 2.0.0_pre: Password strength checking library (and PAM module)
+sys-auth/passwdqc 2.0.0_pre 2.0.1_pre: Password strength checking library (and PAM module)
 sys-block/archttp 2.5.1.180529: CLI utility to manage Areca RAID controllers
 sys-block/areca_cli 1.15.8.180529: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
@@ -180,6 +179,7 @@ www-apps/baikal 0.8.0: Lightweight CalDAV+CardDAV server
 www-client/seamonkey 2.53.6: Seamonkey Web Browser
 www-client/waterfox-classic 2020.12 2021.01 2021.02: Waterfox Web Browser
 www-client/waterfox-current 2020.10: Waterfox Web Browser
+www-client/waterfox-g3 1.1: Waterfox Web Browser
 x11-apps/xinit 1.4.1 1.4.1-r1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/adriconf 1.5.1 1.6.1 9999: Advanced DRI Configurator
