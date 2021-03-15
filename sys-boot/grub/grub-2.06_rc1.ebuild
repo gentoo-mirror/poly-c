@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 04098f7fd8ef32f176cff264e063f7d12d56a190 $
+# $Id: bae070420bf525467080307c245710771e1e9955 $
 
 EAPI=7
 
@@ -32,7 +32,7 @@ if [[ ${PV} != 9999 ]]; then
 		SRC_URI="mirror://gnu/${PN}/${P}.tar.xz"
 		S=${WORKDIR}/${P%_*}
 	fi
-	KEYWORDS="amd64 ~arm arm64 ~ia64 ppc ppc64 x86"
+	KEYWORDS="~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 else
 	inherit git-r3
 	EGIT_REPO_URI="https://git.savannah.gnu.org/git/grub.git"
@@ -41,8 +41,7 @@ fi
 PATCHES=(
 	"${FILESDIR}"/gfxpayload.patch
 	"${FILESDIR}"/grub-2.02_beta2-KERNEL_GLOBS.patch
-	"${FILESDIR}"/2.04-sparc64-bios-boot.patch
-	"${FILESDIR}/${P}-too_big_decompressor.patch"
+	"${FILESDIR}"/grub-2.06-test-words.patch
 )
 
 DEJAVU=dejavu-sans-ttf-2.37
@@ -142,14 +141,6 @@ src_prepare() {
 	default
 
 	sed -i -e /autoreconf/d autogen.sh || die
-
-	# Nothing in Gentoo packages 'american-english' in the exact path
-	# wanted for the test, but all that is needed is a compressible text
-	# file, and we do have 'words' from miscfiles in the same path.
-	sed -i \
-		-e '/CFILESSRC.*=/s,american-english,words,' \
-		tests/util/grub-fs-tester.in \
-		|| die
 
 	if [[ -n ${GRUB_AUTOGEN} || -n ${GRUB_BOOTSTRAP} ]]; then
 		python_setup
