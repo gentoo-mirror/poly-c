@@ -14,7 +14,6 @@ if [[ -n ${GRUB_AUTOGEN} || -n ${GRUB_BOOTSTRAP} ]]; then
 	inherit python-any-r1
 fi
 
-GRUB_AUTORECONF=1
 if [[ -n ${GRUB_AUTORECONF} ]]; then
 	WANT_LIBTOOL=none
 	inherit autotools
