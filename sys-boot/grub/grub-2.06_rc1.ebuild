@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: bae070420bf525467080307c245710771e1e9955 $
+# $Id: 29c5c03332ac04188f99ba83e255e260782d3432 $
 
 EAPI=7
 
@@ -112,7 +112,7 @@ RDEPEND="${DEPEND}
 		grub_platforms_efi-32? ( sys-boot/efibootmgr )
 		grub_platforms_efi-64? ( sys-boot/efibootmgr )
 	)
-	!sys-boot/grub:0 !sys-boot/grub-static
+	!sys-boot/grub:0
 	nls? ( sys-devel/gettext )
 "
 
@@ -122,6 +122,10 @@ QA_EXECSTACK="bin/grub-emu* lib/grub/*"
 QA_PRESTRIPPED="lib/grub/.*"
 QA_MULTILIB_PATHS="lib/grub/.*"
 QA_WX_LOAD="lib/grub/*"
+
+pkg_setup() {
+	:
+}
 
 src_unpack() {
 	if [[ ${PV} == 9999 ]]; then
@@ -143,6 +147,8 @@ src_prepare() {
 
 	if [[ -n ${GRUB_AUTOGEN} || -n ${GRUB_BOOTSTRAP} ]]; then
 		python_setup
+	else
+		export PYTHON=true
 	fi
 
 	if [[ -n ${GRUB_BOOTSTRAP} ]]; then
