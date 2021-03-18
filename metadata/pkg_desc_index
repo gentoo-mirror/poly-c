@@ -118,7 +118,6 @@ net-libs/enet 1.3.14_pre: relatively thin, simple and robust network communicati
 net-libs/farstream 0.2.9_pre: Audio/video conferencing framework specifically designed for instant messengers
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-misc/curl 7.75.0: A Client that groks URLs
-net-misc/dhcpcd 9.4.0: A fully featured, yet light weight RFC2131 compliant DHCP client
 net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
 net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
@@ -174,7 +173,6 @@ sys-power/cpupower 4.19.179 4.19.180 4.19.181 5.4.104 5.4.105 5.4.106 5.10.22 5.
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.16-r2 3.3.16-r3 3.3.17: standard informational utilities and process-handling tools
-sys-process/psmisc 23.4: A set of tools that use the proc filesystem
 www-apps/baikal 0.8.0: Lightweight CalDAV+CardDAV server
 www-client/seamonkey 2.53.6: Seamonkey Web Browser
 www-client/waterfox-classic 2020.12 2021.01 2021.02: Waterfox Web Browser
