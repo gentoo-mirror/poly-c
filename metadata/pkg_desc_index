@@ -27,6 +27,7 @@ app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/asciidoc 9.1.0_pre: A plain text human readable/writable document format
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
+dev-db/lmdb 0.9.29_pre: An ultra-fast, ultra-compact key-value embedded data store
 dev-games/cegui 0.8.7-r1: Crazy Eddie's GUI System
 dev-java/ant-core 1.9.8_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
@@ -123,7 +124,6 @@ net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5 1.6: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
-net-nds/openldap 2.4.58_pre: LDAP suite of application and development tools
 net-print/cups 2.3.3-r2: The Common Unix Printing System
 net-wireless/hostapd 2.9-r3: IEEE 802.11 wireless LAN Host AP daemon
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
@@ -169,7 +169,7 @@ sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.2 247.3_pre: Linux dynamic and pers
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/slang 2.3.3_pre48: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.179 4.19.180 4.19.181 5.4.104 5.4.105 5.4.106 5.10.22 5.10.23 5.10.24: Shows and sets processor power related values
+sys-power/cpupower 4.19.180 4.19.181 4.19.182 5.4.105 5.4.106 5.4.107 5.10.23 5.10.24 5.10.25: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.16-r2 3.3.16-r3 3.3.17: standard informational utilities and process-handling tools
