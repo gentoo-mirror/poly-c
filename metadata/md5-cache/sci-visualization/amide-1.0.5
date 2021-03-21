@@ -3,11 +3,12 @@ DEPEND=>=x11-libs/gtk+-2.10:2 ffmpeg? ( >=media-video/ffmpeg-3.2.4 ) xmedcon? ( 
 DESCRIPTION=AMIDE's a Medical Imaging Data Examiner
 EAPI=6
 HOMEPAGE=http://amide.sourceforge.net
+INHERIT=autotools
 IUSE=+gsl +xmedcon +fame +ffmpeg +volpack +vistaio +dicom debug doc +jpeg2k
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-2
 RDEPEND=>=x11-libs/gtk+-2.10:2 ffmpeg? ( >=media-video/ffmpeg-3.2.4 ) xmedcon? ( >=sci-misc/xmedcon-0.10 ) jpeg2k? ( media-libs/openjpeg:2 ) volpack? ( media-libs/volpack ) fame? ( media-libs/libfame ) gsl? ( sci-libs/gsl ) dicom? ( sci-libs/dcmtk ) vistaio? ( sci-libs/vistaio )
 SLOT=0
 SRC_URI=mirror://sourceforge/amide/amide-1.0.5.tgz
-_eclasses_=autotools	9988ecbe04129214297a7bbf3d253710	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	d410501a125f99ffb560b0c523cd3d1e	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
+_eclasses_=toolchain-funcs	24921b57d6561d87cbef4916a296ada4	multilib	d410501a125f99ffb560b0c523cd3d1e	libtool	f143db5a74ccd9ca28c1234deffede96	autotools	4ba6c345bf49883c84d5fa5c9bf40c0b
 _md5_=0ae196630026f190a025eba7cbca68ca

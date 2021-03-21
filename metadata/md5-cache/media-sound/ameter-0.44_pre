@@ -3,11 +3,12 @@ DEFINED_PHASES=prepare
 DESCRIPTION=Ameter is an Alsa meter plugin
 EAPI=7
 HOMEPAGE=http://laugeo.free.fr/ameter.html
+INHERIT=autotools poly-c_ebuilds
 KEYWORDS=~x86
 LICENSE=GPL-2
 RDEPEND=>=media-libs/alsa-lib-1.0.11_rc2 media-libs/libsdl media-libs/sdl-image
 RESTRICT=mirror
 SLOT=0
 SRC_URI=http://laugeo.free.fr/ameter-0.44.tar.gz
-_eclasses_=autotools	9988ecbe04129214297a7bbf3d253710	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	d410501a125f99ffb560b0c523cd3d1e	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
+_eclasses_=toolchain-funcs	24921b57d6561d87cbef4916a296ada4	multilib	d410501a125f99ffb560b0c523cd3d1e	libtool	f143db5a74ccd9ca28c1234deffede96	autotools	4ba6c345bf49883c84d5fa5c9bf40c0b	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac
 _md5_=a8f9f6a3b02652a1387c490018eeb6bc
