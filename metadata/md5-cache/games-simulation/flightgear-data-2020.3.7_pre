@@ -1,0 +1,12 @@
+DEFINED_PHASES=install
+DESCRIPTION=FlightGear data files
+EAPI=7
+HOMEPAGE=https://www.flightgear.org/
+INHERIT=poly-c_ebuilds
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RESTRICT=mirror
+SLOT=0
+SRC_URI=mirror://sourceforge/flightgear/FlightGear-2020.3.7-data.txz
+_eclasses_=poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac
+_md5_=b75982596158d905e055c6ea14349a36

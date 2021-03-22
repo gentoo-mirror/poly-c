@@ -29,6 +29,7 @@ app-text/asciidoc 9.1.0_pre: A plain text human readable/writable document forma
 app-text/gocr 0.51_pre: An OCR (Optical Character Recognition) reader
 dev-db/lmdb 0.9.29_pre: An ultra-fast, ultra-compact key-value embedded data store
 dev-games/cegui 0.8.7-r1: Crazy Eddie's GUI System
+dev-games/simgear 2020.3.7_pre: Development library for simulation games
 dev-java/ant-core 1.9.8_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
 dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classes
@@ -63,6 +64,8 @@ games-fps/enemy-territory 2.60b-r1: standalone multi-player game based on Return
 games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.76 2.77 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.51b 1.51c 9999: Return to Castle Wolfenstein - IORTCW Project
+games-simulation/flightgear 2020.3.7_pre: Open Source Flight Simulator
+games-simulation/flightgear-data 2020.3.7_pre: FlightGear data files
 games-strategy/0ad 0.0.23b_alpha: A free, real-time strategy game
 games-strategy/0ad-data 0.0.23b_alpha: Data files for 0ad
 games-strategy/boswars 9999: Futuristic real-time strategy game
