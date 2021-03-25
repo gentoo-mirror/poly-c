@@ -35,9 +35,10 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
+dev-libs/expat 2.3.0_pre: Stream-oriented XML parser library
 dev-libs/libcli 1.10.4: Cisco-style (telnet) command-line interface library
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
-dev-libs/openssl 1.1.1i 1.1.1j: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/openssl 1.1.1i 1.1.1j 1.1.1k: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/xerces-c 3.2.3_pre: A validating XML parser written in a portable subset of C++
 dev-php/pecl-redis 5.2.1_pre: PHP extension for interfacing with Redis
@@ -85,6 +86,7 @@ media-libs/libdvdcss 1.4.2: A portable abstraction library for DVD decryption
 media-libs/libmatroska 1.6.3_pre: Extensible multimedia container format based on EBML
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
+media-libs/libvpx 1.10.0_pre: WebM VP8 and VP9 Codec SDK
 media-libs/libwebp 1.2.0_pre: A lossy image compression format
 media-libs/x264 0.0.20200810: A free library for encoding X264/AVC streams
 media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
@@ -169,7 +171,7 @@ sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.2 247.3_pre: Linux dynamic and pers
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/slang 2.3.3_pre48: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.180 4.19.181 4.19.182 5.4.105 5.4.106 5.4.107 5.10.23 5.10.24 5.10.25: Shows and sets processor power related values
+sys-power/cpupower 4.19.181 4.19.182 4.19.183 5.4.106 5.4.107 5.4.108 5.10.24 5.10.25 5.10.26: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.16-r2 3.3.16-r3 3.3.17: standard informational utilities and process-handling tools
@@ -182,7 +184,6 @@ x11-apps/xinit 1.4.1 1.4.1-r1: X Window System initializer
 x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/adriconf 1.5.1 1.6.1 9999: Advanced DRI Configurator
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
-x11-misc/qps 2.2.0_pre: Qt GUI Process Manager
 x11-misc/sddm 0.19.0_pre: Simple Desktop Display Manager
 x11-misc/xdg-utils 1.1.3_p20200220-r1: Portland utils for cross-platform/cross-toolkit/cross-desktop interoperability
 x11-plugins/pidgin-skypeweb 1.5_pre: SkypeWeb Plugin for Pidgin
