@@ -1,10 +1,10 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 21a01cc6422bd32c8c88f5dca1d4f28e85cccf03 $
+# $Id: 075c8b253ac9e30d30bc0bb5343e7c196341f655 $
 
 EAPI=7
 
-inherit toolchain-funcs flag-o-matic multilib-minimal usr-ldscript
+inherit flag-o-matic multilib-minimal toolchain-funcs usr-ldscript
 
 DESCRIPTION="standard informational utilities and process-handling tools"
 HOMEPAGE="http://procps-ng.sourceforge.net/ https://gitlab.com/procps-ng/procps"
@@ -16,19 +16,19 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~
 IUSE="elogind +kill modern-top +ncurses nls selinux static-libs systemd test unicode"
 RESTRICT="!test? ( test )"
 
-COMMON_DEPEND="
+DEPEND="
 	elogind? ( sys-auth/elogind )
 	ncurses? ( >=sys-libs/ncurses-5.7-r7:=[unicode?] )
 	selinux? ( sys-libs/libselinux[${MULTILIB_USEDEP}] )
 	systemd? ( sys-apps/systemd[${MULTILIB_USEDEP}] )
 "
-DEPEND="${COMMON_DEPEND}
+BDEPEND="
 	elogind? ( virtual/pkgconfig )
 	ncurses? ( virtual/pkgconfig )
 	systemd? ( virtual/pkgconfig )
-	test? ( dev-util/dejagnu )"
-RDEPEND="
-	${COMMON_DEPEND}
+	test? ( dev-util/dejagnu )
+"
+RDEPEND="${DEPEND}
 	kill? (
 		!sys-apps/coreutils[kill]
 		!sys-apps/util-linux[kill]
@@ -84,5 +84,6 @@ multilib_src_install() {
 }
 
 multilib_src_install_all() {
+	einstalldocs
 	find "${ED}" -type f -name '*.la' -delete || die
 }
