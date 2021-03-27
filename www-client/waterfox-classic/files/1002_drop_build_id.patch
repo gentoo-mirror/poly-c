@@ -1,0 +1,38 @@
+From: Jory A. Pratt <anarchy@gentoo.org>
+
+We must drop build id as it causes conflicts when merging
+thunderbird/firefox/seamonkey on same system when using
+splitdebug
+
+--- Waterfox-2021.03-classic/js/src/old-configure.in
++++ Waterfox-2021.03-classic/js/src/old-configure.in
+@@ -483,13 +483,6 @@
+                   AC_MSG_RESULT([no])
+                   LDFLAGS=$_SAVE_LDFLAGS)
+ 
+-    AC_MSG_CHECKING([for --build-id option to ld])
+-    _SAVE_LDFLAGS=$LDFLAGS
+-    LDFLAGS="$LDFLAGS -Wl,--build-id"
+-    AC_TRY_LINK(,,AC_MSG_RESULT([yes]),
+-                  AC_MSG_RESULT([no])
+-                  LDFLAGS=$_SAVE_LDFLAGS)
+-
+     _DEFINES_CFLAGS="-include $jsconfdefs -DMOZILLA_CLIENT"
+     _USE_CPP_INCLUDE_FLAG=1
+ fi
+--- Waterfox-2021.03-classic/old-configure.in
++++ Waterfox-2021.03-classic/old-configure.in
+@@ -514,13 +514,6 @@
+                   AC_MSG_RESULT([no])
+                   LDFLAGS=$_SAVE_LDFLAGS)
+ 
+-    AC_MSG_CHECKING([for --build-id option to ld])
+-    _SAVE_LDFLAGS=$LDFLAGS
+-    LDFLAGS="$LDFLAGS -Wl,--build-id"
+-    AC_TRY_LINK(,,AC_MSG_RESULT([yes]),
+-                  AC_MSG_RESULT([no])
+-                  LDFLAGS=$_SAVE_LDFLAGS)
+-
+     AC_MSG_CHECKING([for --ignore-unresolved-symbol option to ld])
+     HAVE_LINKER_SUPPORT_IGNORE_UNRESOLVED=
+     _SAVE_LDFLAGS=$LDFLAGS
