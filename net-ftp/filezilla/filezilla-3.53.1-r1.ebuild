@@ -1,27 +1,30 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: c8f67f39ebeb07c499f46af59d32764eef435c86 $
+# $Id: db6302c5e6e5bad1af36f80862b6cbf6b23c76f0 $
 
-EAPI=6
+EAPI=7
 
 WX_GTK_VER="3.0"
 
 inherit autotools flag-o-matic wxwidgets xdg
 
-MY_PV=${PV/_/-}
+MY_PV="${PV/_/-}"
 MY_P="FileZilla_${MY_PV}"
 
 DESCRIPTION="FTP client with lots of useful features and an intuitive interface"
 HOMEPAGE="https://filezilla-project.org/"
 SRC_URI="https://download.filezilla-project.org/client/${MY_P}_src.tar.bz2"
+S="${WORKDIR}/${PN}-${MY_PV}"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~ia64 ~ppc ~ppc64 ~x86"
 IUSE="dbus nls test"
+RESTRICT="!test? ( test )"
 
 # pugixml 1.7 minimal dependency is for c++11 proper configuration
-RDEPEND=">=app-eselect/eselect-wxwidgets-0.7-r1
+RDEPEND="
+	>=app-eselect/eselect-wxwidgets-0.7-r1
 	>=dev-libs/nettle-3.1:=
 	>=dev-db/sqlite-3.7
 	>=dev-libs/libfilezilla-0.26.0:=
@@ -31,16 +34,11 @@ RDEPEND=">=app-eselect/eselect-wxwidgets-0.7-r1
 	x11-misc/xdg-utils
 	dbus? ( sys-apps/dbus )"
 DEPEND="${RDEPEND}
+	test? ( >=dev-util/cppunit-1.13.0 )"
+BDEPEND="
 	virtual/pkgconfig
 	>=sys-devel/libtool-1.4
-	nls? ( >=sys-devel/gettext-0.11 )
-	test? ( >=dev-util/cppunit-1.13.0 )"
-
-RESTRICT="!test? ( test )"
-
-S="${WORKDIR}"/${PN}-${MY_PV}
-
-DOCS=(AUTHORS ChangeLog NEWS )
+	nls? ( >=sys-devel/gettext-0.11 )"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.22.1-debug.patch
@@ -49,24 +47,14 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-3.52.2-slibtool.patch
 )
 
-pkg_pretend() {
-	if [[ ${MERGE_TYPE} != binary ]]; then
-		if ! test-flag-CXX -std=c++14; then
-			eerror "${P} requires C++14-capable C++ compiler. Your current compiler"
-			eerror "does not seem to support -std=c++14 option. Please upgrade your compiler"
-			eerror "to gcc-4.9 or an equivalent version supporting C++14."
-			die "Currently active compiler does not support -std=c++14"
-		fi
-	fi
-}
-
 src_prepare() {
-	setup-wxwidgets
 	default
 	eautoreconf
 }
 
 src_configure() {
+	setup-wxwidgets
+
 	local myeconfargs=(
 		--disable-autoupdatecheck
 		--with-pugixml=system
@@ -76,14 +64,9 @@ src_configure() {
 	econf "${myeconfargs[@]}"
 }
 
-pkg_preinst() {
-	xdg_pkg_preinst
-}
+src_install() {
+	default
 
-pkg_postinst() {
-	xdg_pkg_postinst
-}
-
-pkg_postrm() {
-	xdg_pkg_postrm
+	# no static archives
+	find "${ED}" -type f -name '*.la' -delete || die
 }

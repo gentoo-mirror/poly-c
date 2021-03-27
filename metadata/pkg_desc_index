@@ -6,7 +6,6 @@ app-admin/logrotate 3.17.0 3.18.0: Rotates, compresses, and mails system logs
 app-admin/remotebox 2.5 2.7: Open Source VirtualBox Client with Remote Management
 app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a login shell
 app-admin/super 3.30.3.1: setuid-root program
-app-arch/dpkg 1.20.7.1_pre: Package maintenance system for Debian
 app-arch/minizip-ng 3.0.0 3.0.1: zip manipulation library found in the zlib distribution
 app-arch/xz-utils 5.2.5: utils for managing LZMA compressed files
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
@@ -111,7 +110,7 @@ net-analyzer/netsniff-ng 0.6.8 9999: high performance network sniffer for packet
 net-analyzer/nikto 2.1.5_pre 2.1.6_pre: Web Server vulnerability scanner.
 net-dialup/mingetty 1.08-r1: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
-net-ftp/filezilla 3.51.0 3.52.0.5 3.52.2 3.53.0 3.53.1: FTP client with lots of useful features and an intuitive interface
+net-ftp/filezilla 3.51.0 3.52.0.5 3.52.2 3.53.0 3.53.1-r1: FTP client with lots of useful features and an intuitive interface
 net-im/jabberd2 2.7.0: Open Source Jabber Server
 net-im/licq 1.8.2: ICQ Client with v8 support
 net-irc/pchat-irc 1.5.3: Graphical IRC client
