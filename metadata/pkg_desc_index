@@ -70,6 +70,7 @@ games-strategy/boswars 9999: Futuristic real-time strategy game
 games-strategy/opendungeons 0.7.1 9999: An open source, real time strategy game based on the Dungeon Keeper series
 games-strategy/unknown-horizons 9999: Anno-like real time strategy game
 games-util/gx52 9999: GTK app for control of the LEDs and MFD of Logitech X52 (Pro)
+games-util/mangohud 0.6.1 9999: A Vulkan and OpenGL overlay for monitoring FPS, CPU/GPU load and more.
 games-util/x52pro 0.1.2: MFD+LED library for the SAITEK X52 Pro Flight Sytem
 games-util/x52pro-linux 0.2.1 9999: Saitek X52pro drivers & controller mapping software for Linux
 kde-apps/kde-wallpapers 15.08.3-r3: KDE wallpapers
@@ -149,10 +150,9 @@ sys-apps/kmod 27-r2 28: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
 sys-apps/openrc 0.42.1-r1: OpenRC manages the services, startup and shutdown of a host
-sys-apps/portage 2.3.99-r2 3.0.12 3.0.13 3.0.14 3.0.16 3.0.17-r2: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 2.3.99-r2 3.0.13 3.0.17-r2: Portage is the package management and distribution system for Gentoo
 sys-apps/roccat-tools 5.9.0-r100: Utility for advanced configuration of Roccat devices
 sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chipsets
-sys-auth/elogind 246.10_pre: The systemd project's logind, extracted to a standalone package
 sys-block/archttp 2.5.1.180529: CLI utility to manage Areca RAID controllers
 sys-block/areca_cli 1.15.8.180529: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)

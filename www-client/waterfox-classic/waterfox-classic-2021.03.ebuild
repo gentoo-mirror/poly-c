@@ -195,6 +195,7 @@ src_configure() {
 	####################################
 
 	mozconfig_init
+	append-cxxflags '-std=c++14'
 	mozconfig_config
 
 	# enable JACK, bug 600002
