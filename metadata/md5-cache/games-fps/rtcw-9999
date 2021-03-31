@@ -4,6 +4,7 @@ DEPEND=|| ( >=sys-libs/zlib-1.2.11:=[minizip(-)] sys-libs/minizip:= ) client? ( 
 DESCRIPTION=Return to Castle Wolfenstein - IORTCW Project
 EAPI=7
 HOMEPAGE=http://games.activision.com/games/wolfenstein/
+INHERIT=desktop unpacker git-r3
 IUSE=+client curl mumble openal opus server truetype voip vorbis
 LICENSE=GPL-2 RTCW
 PROPERTIES=live
@@ -11,5 +12,5 @@ RDEPEND=|| ( >=sys-libs/zlib-1.2.11:=[minizip(-)] sys-libs/minizip:= ) client? (
 REQUIRED_USE=|| ( client server ) voip? ( opus )
 SLOT=0
 SRC_URI=mirror://idsoftware/wolf/linux/wolf-linux-1.41b.x86.run https://github.com/iortcw/iortcw/releases/download/1.51c/patch-data-141.zip -> rtcw-1.51c-patch-data-141.zip
-_eclasses_=desktop	c0d27bf73aa08ca05b663dbd31fbef28	git-r3	3e7ec3d6619213460c85e2aa48398441	multilib	d410501a125f99ffb560b0c523cd3d1e	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	unpacker	45b49db67094fdafbb6a16a2299e894b
+_eclasses_=desktop	c0d27bf73aa08ca05b663dbd31fbef28	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	multilib	d410501a125f99ffb560b0c523cd3d1e	unpacker	517f16af48ee3ab88180dd58b5143213	git-r3	b8e8c92aa5fe8df7187e466138eb4e52
 _md5_=0f67b040c0337ac22ea498be5e5655f6

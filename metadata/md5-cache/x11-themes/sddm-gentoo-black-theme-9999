@@ -3,9 +3,10 @@ DEPEND=>=dev-vcs/git-1.8.2.1[curl]
 DESCRIPTION=Simple SDDM theme inspired on FBSD SLiM theme
 EAPI=6
 HOMEPAGE=https://bitbucket.org/rigoletto-freebsd/sddm-gentoo-black-theme
+INHERIT=git-r3
 LICENSE=CC-BY-SA-3.0
 PROPERTIES=live
 RDEPEND=x11-misc/sddm
 SLOT=0
-_eclasses_=git-r3	3e7ec3d6619213460c85e2aa48398441
+_eclasses_=git-r3	b8e8c92aa5fe8df7187e466138eb4e52
 _md5_=731f2d9aee77379623432490c0f4e27c

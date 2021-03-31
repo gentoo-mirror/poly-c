@@ -3,10 +3,11 @@ DEPEND=clang? ( sys-devel/clang ) >=dev-vcs/git-1.8.2.1[curl]
 DESCRIPTION=Open Watcom compiler
 EAPI=6
 HOMEPAGE=https://github.com/open-watcom/open-watcom-v2
+INHERIT=git-r3
 IUSE=clang doc
 KEYWORDS=~amd64 ~x86
 LICENSE=OWPL-1
 PROPERTIES=live
 SLOT=0
-_eclasses_=git-r3	3e7ec3d6619213460c85e2aa48398441
+_eclasses_=git-r3	b8e8c92aa5fe8df7187e466138eb4e52
 _md5_=6b469b84ac24076aad36a0af562c58c0

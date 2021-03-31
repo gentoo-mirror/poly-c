@@ -14,6 +14,7 @@ app-cdr/cdrtools 99: Placeholder to replace cdrtools with cdrkit
 app-cdr/qpxtool 0.8.0: CD/DVD quality checking utilities
 app-crypt/gnupg 2.2.20-r1 2.2.23: The GNU Privacy Guard, a GPL OpenPGP implementation
 app-crypt/nwipe 0.24_pre: Securely erase disks using a variety of recognized methods
+app-crypt/yubikey-manager-qt 1.2.1_pre: Cross-platform application for configuring any YubiKey over all USB transports
 app-editors/cooledit 3.17.19: Cooledit is a full featured multiple window text editor
 app-laptop/dell-fan-mon 1.0 9999: Fan control for some Dell laptops
 app-laptop/i8kutils 1.43_pre: Dell Inspiron and Latitude utilities
@@ -166,11 +167,11 @@ sys-devel/distcc 3.3.5_pre: Distribute compilation of C code across several mach
 sys-devel/gnuconfig 20210107_pre: Updated config.sub and config.guess file from GNU
 sys-devel/icecream 1.3.1_pre: Distributed compiling of C(++) code across several machines; based on distcc
 sys-fs/fswatch 1.14.0 1.15.0 9999: cross-platform file change monitor with multiple backends
-sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.2 247.3_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
+sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.2 247.3_pre 248_pre: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-libs/libosinfo 1.0.0_pre 1.2.0_pre: GObject library for managing information about real and virtual OSes
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/slang 2.3.3_pre48: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.181 4.19.182 4.19.183 5.4.106 5.4.107 5.4.108 5.10.24 5.10.25 5.10.26: Shows and sets processor power related values
+sys-power/cpupower 4.19.182 4.19.183 4.19.184 5.4.107 5.4.108 5.4.109 5.10.25 5.10.26 5.10.27: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.16-r2 3.3.16-r3 3.3.17: standard informational utilities and process-handling tools
