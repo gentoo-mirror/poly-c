@@ -3,6 +3,7 @@ DEPEND=net-im/pidgin dev-libs/json-glib virtual/pkgconfig
 DESCRIPTION=SkypeWeb Plugin for Pidgin
 EAPI=6
 HOMEPAGE=https://github.com/EionRobb/skype4pidgin
+INHERIT=poly-c_ebuilds
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-3+
 RDEPEND=net-im/pidgin dev-libs/json-glib

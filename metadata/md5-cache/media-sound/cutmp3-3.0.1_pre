@@ -2,6 +2,7 @@ DEFINED_PHASES=install prepare
 DESCRIPTION=cutmp3 is a small and fast command line MP3 editor.
 EAPI=7
 HOMEPAGE=http://www.puchalla-online.de/cutmp3.html
+INHERIT=poly-c_ebuilds
 IUSE=kde
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-2

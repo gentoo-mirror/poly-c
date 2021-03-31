@@ -4,6 +4,7 @@ DEPEND=media-libs/libjpeg-turbo media-libs/libpng:0= sys-process/numactl x265? (
 DESCRIPTION=BPG (Better Portable Graphics) is a new image format
 EAPI=7
 HOMEPAGE=http://bellard.org/bpg/
+INHERIT=poly-c_ebuilds
 IUSE=x265
 KEYWORDS=~amd64 ~x86
 LICENSE=LGPL-2.1 BSD

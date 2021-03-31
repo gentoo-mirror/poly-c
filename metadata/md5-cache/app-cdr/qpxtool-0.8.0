@@ -4,10 +4,11 @@ DEPEND=dev-qt/qtcore:5 dev-qt/qtgui:5 dev-qt/qtnetwork:5 dev-qt/qtprintsupport:5
 DESCRIPTION=CD/DVD quality checking utilities
 EAPI=7
 HOMEPAGE=http://qpxtool.sourceforge.net/
+INHERIT=toolchain-funcs
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-2
 RDEPEND=dev-qt/qtcore:5 dev-qt/qtgui:5 dev-qt/qtnetwork:5 dev-qt/qtprintsupport:5 dev-qt/qtsql:5 dev-qt/qtwidgets:5 media-libs/libpng:0=
 SLOT=0
 SRC_URI=mirror://sourceforge/qpxtool/qpxtool-0.8.0.tar.bz2
-_eclasses_=multilib	d410501a125f99ffb560b0c523cd3d1e	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
+_eclasses_=toolchain-funcs	24921b57d6561d87cbef4916a296ada4	multilib	d410501a125f99ffb560b0c523cd3d1e
 _md5_=718f1ebce6825525402423089e36da48

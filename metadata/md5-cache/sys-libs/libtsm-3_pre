@@ -3,6 +3,7 @@ DEPEND=!!<sys-apps/kmscon-8_pre
 DESCRIPTION=Terminal Emulator State Machine
 EAPI=5
 HOMEPAGE=http://cgit.freedesktop.org/~dvdhrm/libtsm
+INHERIT=poly-c_ebuilds
 KEYWORDS=~amd64 ~x86
 LICENSE=LGPL-2.1 MIT
 RDEPEND=!!<sys-apps/kmscon-8_pre

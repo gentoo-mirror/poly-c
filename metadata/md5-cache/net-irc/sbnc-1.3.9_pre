@@ -3,6 +3,7 @@ DEPEND=ssl? ( dev-libs/openssl:0= )
 DESCRIPTION=shroudBNC is a modular IRC proxy written in C++.
 EAPI=7
 HOMEPAGE=http://www.shroudbnc.info/
+INHERIT=poly-c_ebuilds
 IUSE=ssl
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-2

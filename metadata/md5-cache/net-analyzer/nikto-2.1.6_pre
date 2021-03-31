@@ -3,6 +3,7 @@ DEPEND=dev-lang/perl net-analyzer/nmap ssl? ( dev-libs/openssl dev-perl/Net-SSLe
 DESCRIPTION=Web Server vulnerability scanner.
 EAPI=7
 HOMEPAGE=http://www.cirt.net/nikto2
+INHERIT=poly-c_ebuilds
 IUSE=ssl
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-2
