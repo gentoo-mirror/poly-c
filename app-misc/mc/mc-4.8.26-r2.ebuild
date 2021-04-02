@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9d1a282a2ca3be024f9aaec145cc15eec480a4ee $
+# $Id: 9bd2fbe7d5ed4904853c438e4abe43bb27ba6ef4 $
 
 EAPI=7
 
@@ -14,7 +14,7 @@ SRC_URI="http://ftp.midnight-commander.org/${MY_P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~mips ppc ppc64 ~s390 sparc x86 ~amd64-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86 ~amd64-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="+edit gpm nls samba sftp +slang spell test unicode X +xdg"
 
 REQUIRED_USE="spell? ( edit )"
@@ -44,12 +44,11 @@ RESTRICT="!test? ( test )"
 S="${WORKDIR}/${MY_P}"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-4.8.25-alacritty-tmux.patch
-
 	"${FILESDIR}"/${PN}-4.8.13-restore_saved_replace_string.patch
 	"${FILESDIR}"/${PN}-4.8.23-shorten-too-long-german-strings.patch
 
-	"${FILESDIR}"/${P}-dialog_shadows.patch
+	"${FILESDIR}"/${P}-shadow-crash.patch
+	"${FILESDIR}"/${P}-file-seccomp.patch
 )
 
 pkg_pretend() {
