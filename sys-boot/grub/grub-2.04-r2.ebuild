@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 04098f7fd8ef32f176cff264e063f7d12d56a190 $
+# $Id: 04aa2e74e313604b2311a7f16ec887351a898ac8 $
 
 EAPI=7
 
@@ -295,9 +295,8 @@ pkg_postinst() {
 
 	if [[ -z ${REPLACING_VERSIONS} ]]; then
 		elog
-		elog "You may consider installing the following optional packages:"
-		optfeature "Detect other operating systems (grub-mkconfig)" sys-boot/os-prober
-		optfeature "Create rescue media (grub-mkrescue)" dev-libs/libisoburn
-		optfeature "Enable RAID device detection" sys-fs/mdadm
+		optfeature "detecting other operating systems (grub-mkconfig)" sys-boot/os-prober
+		optfeature "creating rescue media (grub-mkrescue)" dev-libs/libisoburn
+		optfeature "enabling RAID device detection" sys-fs/mdadm
 	fi
 }

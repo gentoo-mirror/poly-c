@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 04cef798e60a85d5624110101aad46faac46491c $
+# $Id: 5a89856d0a6855fff9965861af861547a6bbe0ab $
 
 EAPI=7
 
@@ -291,9 +291,13 @@ pkg_postinst() {
 
 	if [[ -z ${REPLACING_VERSIONS} ]]; then
 		elog
-		elog "You may consider installing the following optional packages:"
-		optfeature "Detect other operating systems (grub-mkconfig)" sys-boot/os-prober
-		optfeature "Create rescue media (grub-mkrescue)" dev-libs/libisoburn
-		optfeature "Enable RAID device detection" sys-fs/mdadm
+		optfeature "detecting other operating systems (grub-mkconfig)" sys-boot/os-prober
+		optfeature "creating rescue media (grub-mkrescue)" dev-libs/libisoburn
+		optfeature "enabling RAID device detection" sys-fs/mdadm
+	fi
+
+	if has_version sys-boot/os-prober; then
+		ewarn "Due to security concerns, os-prober is disabled by default."
+		ewarn "Set GRUB_DISABLE_OS_PROBER=false in /etc/default/grub to enable it."
 	fi
 }
