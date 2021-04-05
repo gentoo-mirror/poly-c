@@ -101,7 +101,7 @@ media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2 13.2.1: Download files from the public broadcasting services
 media-video/cinelerraGG 9999: The most advanced non-linear video editor and compositor - Good Guy's version
 media-video/ffmpeg 4.3.1 4.3.2: Complete solution to record/convert/stream audio and video. Includes libavcodec
-media-video/mkvtoolnix 52.0.0_pre 54.0.0_pre: Tools to create, alter, and inspect Matroska files
+media-video/mkvtoolnix 54.0.0_pre 56.0.0_pre: Tools to create, alter, and inspect Matroska files
 media-video/obs-studio 26.1.2_pre: Software for Recording and Streaming Live Video Content
 media-video/smplayer 20.4.2 20.6.0: Great Qt GUI front-end for mplayer/mpv
 net-analyzer/arpalert 2.0.11_pre 2.0.12_pre: arpalert is used for monitoring ethernet networks
