@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: db6302c5e6e5bad1af36f80862b6cbf6b23c76f0 $
+# $Id: 3ccd1f882cbf59089c8f72fd26af8f76c29f13a4 $
 
 EAPI=7
 
@@ -18,7 +18,7 @@ S="${WORKDIR}/${PN}-${MY_PV}"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~ia64 ~ppc ~ppc64 ~x86"
+KEYWORDS="amd64 ~arm ~ia64 ppc ppc64 x86"
 IUSE="dbus nls test"
 RESTRICT="!test? ( test )"
 

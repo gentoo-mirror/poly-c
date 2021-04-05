@@ -5,24 +5,24 @@
 EAPI=7
 PYTHON_COMPAT=( python3_{7..9} )
 
-inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal python-any-r1 toolchain-funcs udev usr-ldscript poly-c_ebuilds
+inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal python-any-r1 toolchain-funcs udev usr-ldscript
 
-if [[ ${MY_PV} = 9999* ]]; then
+if [[ ${PV} = 9999* ]] ; then
 	EGIT_REPO_URI="https://github.com/systemd/systemd.git"
 	inherit git-r3
 else
-	if [[ ${MY_PV} == *.* ]]; then
+	if [[ ${PV} == *.* ]] ; then
 		MY_PN=systemd-stable
 	else
 		MY_PN=systemd
 	fi
-	MY_PV=${MY_PV/_/-}
-	MY_P=${MY_PN}-${MY_PV}
-	S=${WORKDIR}/${MY_P}
+	MY_PV="${PV/_/-}"
+	MY_P="${MY_PN}-${MY_PV}"
+	S="${WORKDIR}/${MY_P}"
 	SRC_URI="https://github.com/systemd/${MY_PN}/archive/v${MY_PV}/${MY_P}.tar.gz"
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86"
 
-	FIXUP_PATCH="${PN}-247-revert-systemd-messup.patch"
+	FIXUP_PATCH="${PN}-248-revert-systemd-messup.patch"
 	SRC_URI+=" https://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}.xz"
 fi
 
@@ -76,19 +76,19 @@ PDEPEND=">=sys-apps/hwids-20140304[udev]
 	>=sys-fs/udev-init-scripts-34"
 
 pkg_setup() {
-	if [[ ${MERGE_TYPE} != buildonly ]]; then
+	if [[ ${MERGE_TYPE} != buildonly ]] ; then
 		CONFIG_CHECK="~BLK_DEV_BSG ~DEVTMPFS ~!IDE ~INOTIFY_USER ~!SYSFS_DEPRECATED ~!SYSFS_DEPRECATED_V2 ~SIGNALFD ~EPOLL ~FHANDLE ~NET ~!FW_LOADER_USER_HELPER ~UNIX"
 		linux-info_pkg_setup
 
 		# CONFIG_FHANDLE was introduced by 2.6.39
 		local MINKV=2.6.39
 
-		if kernel_is -lt ${MINKV//./ }; then
+		if kernel_is -lt ${MINKV//./ } ; then
 			eerror "Your running kernel is too old to run this version of ${MY_P}"
 			eerror "You need to upgrade kernel at least to ${MINKV}"
 		fi
 
-		if kernel_is -lt 3 7; then
+		if kernel_is -lt 3 7 ; then
 			ewarn "Your running kernel is too old to have firmware loader and"
 			ewarn "this version of ${MY_P} doesn't have userspace firmware loader"
 			ewarn "If you need firmware support, you need to upgrade kernel at least to 3.7"
@@ -97,7 +97,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	if [[ -d "${WORKDIR}/patches" ]]; then
+	if [[ -d "${WORKDIR}/patches" ]] ; then
 		eapply "${WORKDIR}/patches"
 	fi
 
@@ -110,7 +110,7 @@ src_prepare() {
 }
 
 meson_multilib_native_use() {
-	if multilib_is_native_abi && use "$1"; then
+	if multilib_is_native_abi && use "$1" ; then
 		echo true
 	else
 		echo false
@@ -152,15 +152,15 @@ src_configure() {
 
 multilib_src_compile() {
 	# meson creates this link
-	local libudev=$(readlink src/udev/libudev.so.1)
+	local libudev=$(readlink libudev.so.1)
 
 	local targets=(
-		src/udev/${libudev}
+		${libudev}
 	)
-	if use static-libs; then
+	if use static-libs ; then
 		targets+=( src/udev/libudev.a )
 	fi
-	if multilib_is_native_abi; then
+	if multilib_is_native_abi ; then
 		targets+=(
 			udevd
 			udevadm
@@ -182,16 +182,16 @@ multilib_src_compile() {
 }
 
 multilib_src_install() {
-	local libudev=$(readlink src/udev/libudev.so.1)
+	local libudev=$(readlink libudev.so.1)
 
-	dolib.so src/udev/{${libudev},libudev.so.1,libudev.so}
+	dolib.so {${libudev},libudev.so.1,libudev.so}
 	gen_usr_ldscript -a udev
 	use static-libs && dolib.a src/udev/libudev.a
 
 	insinto "/usr/$(get_libdir)/pkgconfig"
 	doins src/libudev/libudev.pc
 
-	if multilib_is_native_abi; then
+	if multilib_is_native_abi ; then
 		exeinto /sbin
 		doexe udevd
 		doexe udevadm
@@ -262,15 +262,15 @@ pkg_postinst() {
 	fi
 
 	local fstab="${ROOT}"/etc/fstab dev path fstype rest
-	while read -r dev path fstype rest; do
-		if [[ ${path} == /dev && ${fstype} != devtmpfs ]]; then
+	while read -r dev path fstype rest ; do
+		if [[ ${path} == /dev && ${fstype} != devtmpfs ]] ; then
 			ewarn "You need to edit your /dev line in ${fstab} to have devtmpfs"
 			ewarn "filesystem. Otherwise udev won't be able to boot."
 			ewarn "See, https://bugs.gentoo.org/453186"
 		fi
 	done < "${fstab}"
 
-	if [[ -d ${ROOT}/usr/lib/udev ]]; then
+	if [[ -d ${ROOT}/usr/lib/udev ]] ; then
 		ewarn
 		ewarn "Please re-emerge all packages on your system which install"
 		ewarn "rules and helpers in /usr/lib/udev. They should now be in"
@@ -285,7 +285,7 @@ pkg_postinst() {
 	ewarn "You need to restart udev as soon as possible to make the upgrade go"
 	ewarn "into effect."
 	ewarn "The method you use to do this depends on your init system."
-	if has_version 'sys-apps/openrc'; then
+	if has_version 'sys-apps/openrc' ; then
 		ewarn "For sys-apps/openrc users it is:"
 		ewarn "# /etc/init.d/udev --nodeps restart"
 	fi
@@ -297,7 +297,7 @@ pkg_postinst() {
 	elog "https://wiki.gentoo.org/wiki/Udev/upgrade"
 
 	# Update hwdb database in case the format is changed by udev version.
-	if use hwdb && has_version 'sys-apps/hwids[udev]'; then
+	if use hwdb && has_version 'sys-apps/hwids[udev]' ; then
 		udev-hwdb --root="${ROOT}" update
 		# Only reload when we are not upgrading to avoid potential race w/ incompatible hwdb.bin and the running udevd
 		# https://cgit.freedesktop.org/systemd/systemd/commit/?id=1fab57c209035f7e66198343074e9cee06718bda
