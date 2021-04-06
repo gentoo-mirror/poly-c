@@ -153,6 +153,7 @@ sys-apps/openrc 0.42.1-r1: OpenRC manages the services, startup and shutdown of 
 sys-apps/portage 2.3.99-r2 3.0.13 3.0.17-r2 3.0.18: Portage is the package management and distribution system for Gentoo
 sys-apps/roccat-tools 5.9.0-r100: Utility for advanced configuration of Roccat devices
 sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chipsets
+sys-auth/passwdqc 2.0.2_pre: Password strength checking library (and PAM module)
 sys-block/archttp 2.5.1.180529: CLI utility to manage Areca RAID controllers
 sys-block/areca_cli 1.15.8.180529: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)

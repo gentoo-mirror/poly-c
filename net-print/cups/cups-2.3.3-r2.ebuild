@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: a367e9deed5b6810e911c282ebeaa364b20f2018 $
+# $Id: 6b09cae365aff114eeb130f5ebdd9026107e55eb $
 
 EAPI=7
 
@@ -22,7 +22,7 @@ else
 	#SRC_URI="https://github.com/apple/cups/releases/download/v${MY_PV}/${MY_P}-source.tar.gz"
 	SRC_URI="https://github.com/OpenPrinting/cups/releases/download/v${MY_PV}/cups-${MY_PV}-source.tar.gz"
 	if [[ "${PV}" != *_beta* ]] && [[ "${PV}" != *_rc* ]] ; then
-		KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~mips ppc ppc64 s390 sparc x86"
+		KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~mips ppc ppc64 ~s390 sparc x86"
 	fi
 fi
 
