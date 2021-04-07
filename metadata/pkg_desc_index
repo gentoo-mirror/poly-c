@@ -183,7 +183,7 @@ x11-libs/gl2ps 1.4.0_pre: OpenGL to PostScript printing library
 x11-misc/adriconf 1.5.1 1.6.1 9999: Advanced DRI Configurator
 x11-misc/hot-babe 0.4: Cairo and Compositing version of hot-babe CPU monitor
 x11-misc/sddm 0.19.0_pre: Simple Desktop Display Manager
-x11-misc/xdg-utils 1.1.3_p20200220-r1: Portland utils for cross-platform/cross-toolkit/cross-desktop interoperability
+x11-misc/xdg-utils 1.1.3_p20200220-r3: Portland utils for cross-platform/cross-toolkit/cross-desktop interoperability
 x11-plugins/pidgin-skypeweb 1.5_pre: SkypeWeb Plugin for Pidgin
 x11-plugins/purple-icyque 9999: ICQ WIM protocol for libpurple
 x11-plugins/purple-matrix 9999: Libpurple protocol plugin for matrix

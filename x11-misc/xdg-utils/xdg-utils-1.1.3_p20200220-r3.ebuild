@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8db71130ff2037d12320f304bcb6ecfc14afb3d6 $
+# $Id: ebfab8c520bf38790a779f89c42d7cda0d0e1c0b $
 
 EAPI=7
 inherit autotools
@@ -32,7 +32,10 @@ RDEPEND="
 	x11-apps/xprop
 	x11-apps/xset
 "
-BDEPEND=">=app-text/xmlto-0.0.28-r2[text(+)]"
+BDEPEND="
+	>=app-text/xmlto-0.0.28-r5[text(+)]
+	virtual/awk
+"
 
 DOCS=( ChangeLog README RELEASE_NOTES TODO )
 
