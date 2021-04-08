@@ -130,6 +130,7 @@ src_prepare() {
 	#eapply "${FILESDIR}/${P}-build_fix.patch"
 
 	use system-libvpx && eapply -p2 "${WORKDIR}/seamonkey-2.53.3-system_libvpx-1.8.patch"
+	eapply "${FILESDIR}/${PN}-2021.03-angle_build_fix.patch"
 
 	# Enable gnomebreakpad
 	if use debug ; then
@@ -195,7 +196,6 @@ src_configure() {
 	####################################
 
 	mozconfig_init
-	append-cxxflags '-std=c++14'
 	mozconfig_config
 
 	# enable JACK, bug 600002

@@ -33,6 +33,8 @@ dev-java/commons-lang 3.4_pre: Commons components to manipulate core java classe
 dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
+dev-libs/icu 69.1_pre: International Components for Unicode
+dev-libs/icu-layoutex 69.1_pre: External layout part of International Components for Unicode
 dev-libs/libcli 1.10.4: Cisco-style (telnet) command-line interface library
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.1.1i 1.1.1j 1.1.1k: full-strength general purpose cryptography library (including SSL and TLS)

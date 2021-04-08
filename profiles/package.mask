@@ -32,5 +32,3 @@ media-gfx/fawkes
 # WIP
 www-client/waterfox-g3
 
-# https://github.com/MrAlex94/Waterfox/issues/2015
-=www-client/waterfox-classic-2021.03
