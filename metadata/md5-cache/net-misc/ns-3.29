@@ -11,5 +11,5 @@ RDEPEND=dev-db/sqlite dev-libs/boost dev-libs/libxml2 sci-libs/gsl:= gtk? ( dev-
 REQUIRED_USE=^^ ( python_single_target_python3_7 python_single_target_python3_8 python_single_target_python3_9 )
 SLOT=0
 SRC_URI=https://www.nsnam.org/release/ns-allinone-3.29.tar.bz2
-_eclasses_=toolchain-funcs	24921b57d6561d87cbef4916a296ada4	multilib	d410501a125f99ffb560b0c523cd3d1e	python-utils-r1	543b53e4d003ebd889082f4673e52af5	python-single-r1	c7de0087e87a282f2faec351822e097c	multiprocessing	cac3169468f893670dac3e7cb940e045	waf-utils	0a6e492cdcbd52b1304cfcd9eba5abc6
+_eclasses_=toolchain-funcs	24921b57d6561d87cbef4916a296ada4	multilib	d410501a125f99ffb560b0c523cd3d1e	python-utils-r1	2a0da9eb3f3fd923a42d92127685aa37	python-single-r1	d25ac9d5d91fe9d44fda6ec192aca11a	multiprocessing	cac3169468f893670dac3e7cb940e045	waf-utils	0a6e492cdcbd52b1304cfcd9eba5abc6
 _md5_=b4c901d4f1fea3df5592299d9a18de8d
