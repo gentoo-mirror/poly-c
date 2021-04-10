@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 3833238121f2de3bcc5cbc4bb47bc04bda5cdaec $
+# $Id: 9aa3b99c8fff085c9dc06fdffb87235840479ef2 $
 
 EAPI=7
 
@@ -15,11 +15,24 @@ EAPI=7
 # doing so since such a case is unlikely.
 FFMPEG_SUBSLOT=56.58.58
 
-inherit eutils flag-o-matic multilib multilib-minimal toolchain-funcs poly-c_ebuilds
+SCM=""
+if [ "${PV#9999}" != "${PV}" ] ; then
+	SCM="git-r3"
+	EGIT_MIN_CLONE_TYPE="single"
+	EGIT_REPO_URI="https://git.ffmpeg.org/ffmpeg.git"
+fi
+
+inherit eutils flag-o-matic multilib multilib-minimal toolchain-funcs ${SCM}
 
 DESCRIPTION="Complete solution to record/convert/stream audio and video. Includes libavcodec"
 HOMEPAGE="https://ffmpeg.org/"
-SRC_URI="https://ffmpeg.org/releases/${MY_P/_/-}.tar.bz2"
+if [ "${PV#9999}" != "${PV}" ] ; then
+	SRC_URI=""
+elif [ "${PV%_p*}" != "${PV}" ] ; then # Snapshot
+	SRC_URI="mirror://gentoo/${P}.tar.bz2"
+else # Release
+	SRC_URI="https://ffmpeg.org/releases/${P/_/-}.tar.bz2"
+fi
 FFMPEG_REVISION="${PV#*_p}"
 
 SLOT="0/${FFMPEG_SUBSLOT}"
@@ -46,7 +59,9 @@ LICENSE="
 	)
 	samba? ( GPL-3 )
 "
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
+if [ "${PV#9999}" = "${PV}" ] ; then
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
+fi
 
 # Options to use as use_enable in the foo[:bar] form.
 # This will feed configure with $(use_enable foo bar)
@@ -171,7 +186,7 @@ RDEPEND="
 		kvazaar? ( >=media-libs/kvazaar-1.2.0[${MULTILIB_USEDEP}] )
 		mp3? ( >=media-sound/lame-3.99.5-r1[${MULTILIB_USEDEP}] )
 		openh264? ( >=media-libs/openh264-1.4.0-r1:=[${MULTILIB_USEDEP}] )
-		rav1e? ( media-video/rav1e:=[capi] )
+		rav1e? ( >=media-video/rav1e-0.4:=[capi] )
 		snappy? ( >=app-arch/snappy-1.1.2-r1:=[${MULTILIB_USEDEP}] )
 		theora? (
 			>=media-libs/libtheora-1.1.1[encode,${MULTILIB_USEDEP}]
@@ -308,12 +323,10 @@ RESTRICT="
 	gpl? ( openssl? ( bindist ) fdk? ( bindist ) libressl? ( bindist ) )
 "
 
-S=${WORKDIR}/${MY_P/_/-}
+S=${WORKDIR}/${P/_/-}
 
 PATCHES=(
 	"${FILESDIR}"/chromium-r1.patch
-	"${FILESDIR}"/${PN}-4.3-fix-build-without-SSSE3.patch
-	"${FILESDIR}"/${PN}-4.3-altivec-novsx-yuv2rgb.patch
 )
 
 MULTILIB_WRAPPED_HEADERS=(
@@ -325,7 +338,7 @@ build_separate_libffmpeg() {
 }
 
 src_prepare() {
-	if [[ "${MY_PV%_p*}" != "${MY_PV}" ]] ; then # Snapshot
+	if [[ "${PV%_p*}" != "${PV}" ]] ; then # Snapshot
 		export revision=git-N-${FFMPEG_REVISION}
 	fi
 	default
