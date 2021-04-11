@@ -78,11 +78,10 @@ kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
 mail-filter/pyzor 1.0.0-r1: A distributed, collaborative spam detection and filtering network
 media-gfx/fawkes 9999: Image Cloaking for Personal Privacy
-media-gfx/gimp 2.10.24_pre: GNU Image Manipulation Program
-media-libs/gegl 0.4.30_pre: A graph based image processing framework
 media-libs/gst-plugins-base 1.18.3_pre: Basepack of plugins for gstreamer
 media-libs/gstreamer 1.18.3_pre: Open source multimedia framework
 media-libs/libbpg 0.9.8_pre: BPG (Better Portable Graphics) is a new image format
+media-libs/libdvdcss 1.4.2-r1: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
 media-libs/libwebp 1.2.0_pre: A lossy image compression format
@@ -102,7 +101,7 @@ media-video/cinelerraGG 9999: The most advanced non-linear video editor and comp
 media-video/ffmpeg 4.3.1 4.3.2 4.4: Complete solution to record/convert/stream audio and video. Includes libavcodec
 media-video/obs-studio 26.1.2_pre: Software for Recording and Streaming Live Video Content
 media-video/smplayer 20.4.2 20.6.0: Great Qt GUI front-end for mplayer/mpv
-net-analyzer/arpalert 2.0.11_pre 2.0.12_pre: arpalert is used for monitoring ethernet networks
+net-analyzer/arpalert 2.0.12_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
 net-analyzer/netsniff-ng 0.6.8 9999: high performance network sniffer for packet inspection
 net-analyzer/nikto 2.1.5_pre 2.1.6_pre: Web Server vulnerability scanner.
