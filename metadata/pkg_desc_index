@@ -88,7 +88,6 @@ media-libs/libsquish 1.15: DXT compression library
 media-libs/libwebp 1.2.0_pre: A lossy image compression format
 media-libs/x264 0.0.20200810: A free library for encoding X264/AVC streams
 media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
-media-sound/alsa-driver 1.0.24_pre 1.0.24.47_pre 1.0.25_pre: Advanced Linux Sound Architecture kernel modules
 media-sound/alsa-utils 1.2.2 1.2.3 1.2.4: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
 media-sound/ameter 0.44_pre: Ameter is an Alsa meter plugin
 media-sound/cutmp3 2.1.2_pre 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
@@ -105,7 +104,6 @@ media-video/obs-studio 26.1.2_pre: Software for Recording and Streaming Live Vid
 media-video/smplayer 20.4.2 20.6.0: Great Qt GUI front-end for mplayer/mpv
 net-analyzer/arpalert 2.0.11_pre 2.0.12_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
-net-analyzer/nagios-plugins 1.4.16-r2 1.4.16-r3: Nagios 1.4.16 plugins - Pack of plugins to make Nagios work properly
 net-analyzer/netsniff-ng 0.6.8 9999: high performance network sniffer for packet inspection
 net-analyzer/nikto 2.1.5_pre 2.1.6_pre: Web Server vulnerability scanner.
 net-dialup/mingetty 1.08-r1: A compact getty program for virtual consoles only
