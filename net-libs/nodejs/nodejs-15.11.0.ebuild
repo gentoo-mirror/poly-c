@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4228e1c6eee2bf93824d686abe095ff2e46c786a $
+# $Id: b6ed53533665486f03d398f0b91529e7194119b7 $
 
 EAPI=7
 
@@ -35,6 +35,7 @@ RDEPEND=">=app-arch/brotli-1.0.9
 	system-ssl? ( >=dev-libs/openssl-1.1.1:0= )"
 BDEPEND="${PYTHON_DEPS}
 	sys-apps/coreutils
+	virtual/pkgconfig
 	systemtap? ( dev-util/systemtap )
 	test? ( net-misc/curl )
 	pax_kernel? ( sys-apps/elfix )"

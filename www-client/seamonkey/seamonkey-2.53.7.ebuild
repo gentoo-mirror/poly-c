@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 24e958206839262e9d35736081e4c7354bcd7a3d $
+# $Id: 759d69a97f4d08a3bc764dbd1d0576c84da3c4bf $
 
 EAPI=7
 
@@ -49,8 +49,9 @@ SRC_URI+="
 LICENSE="MPL-2.0 GPL-2 LGPL-2.1"
 SLOT="0"
 SYSTEM_IUSE=( +system-{av1,harfbuzz,icu,jpeg,libevent,libvpx,sqlite} )
-IUSE="+chatzilla +crypt dbus debug +gmp-autoupdate +ipc jack lto minimal neon
-pulseaudio +roaming selinux startup-notification ${SYSTEM_IUSE[@]} test wifi"
+IUSE="+chatzilla cpu_flags_arm_neon +crypt dbus debug +gmp-autoupdate +ipc jack
+lto minimal pulseaudio +roaming selinux startup-notification test wifi"
+IUSE+=" ${SYSTEM_IUSE[@]}"
 KEYWORDS="~amd64 ~ppc64 ~x86"
 
 RESTRICT="!test? ( test )"
@@ -349,7 +350,7 @@ src_configure() {
 	mozconfig_use_with system-av1
 
 	# Modifications to better support ARM, bug 553364
-	if use neon ; then
+	if use cpu_flags_arm_neon ; then
 		mozconfig_annotate '' --with-fpu=neon
 		mozconfig_annotate '' --with-thumb=yes
 		mozconfig_annotate '' --with-thumb-interwork=no
@@ -498,7 +499,7 @@ src_install() {
 	pax-mark m "${ED}"/${MOZILLA_FIVE_HOME}/{seamonkey,seamonkey-bin,plugin-container}
 
 	if use minimal ; then
-		rm -r "${ED}"/usr/include "${ED}/${MOZILLA_FIVE_HOME}"/{idl,include,lib,sdk}
+		rm -r "${ED}"/usr/include "${ED}/${MOZILLA_FIVE_HOME}"/{idl,include,lib,sdk} || die
 	fi
 
 	if use chatzilla ; then

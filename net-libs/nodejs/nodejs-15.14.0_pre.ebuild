@@ -35,6 +35,7 @@ RDEPEND=">=app-arch/brotli-1.0.9
 	system-ssl? ( >=dev-libs/openssl-1.1.1:0= )"
 BDEPEND="${PYTHON_DEPS}
 	sys-apps/coreutils
+	virtual/pkgconfig
 	systemtap? ( dev-util/systemtap )
 	test? ( net-misc/curl )
 	pax_kernel? ( sys-apps/elfix )"
