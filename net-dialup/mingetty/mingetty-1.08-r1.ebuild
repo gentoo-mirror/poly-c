@@ -1,10 +1,10 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 05ccf45f094a02f5d41898408b58e9240d32deb3 $
+# $Id: a981600d9c12aa3e08789aca88bc1532a9d1ca11 $
 
 EAPI=6
 
-inherit toolchain-funcs eutils
+inherit toolchain-funcs
 
 DESCRIPTION="A compact getty program for virtual consoles only"
 HOMEPAGE="https://sourceforge.net/projects/mingetty"

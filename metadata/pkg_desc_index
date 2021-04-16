@@ -139,7 +139,7 @@ sci-misc/mia 2.4.4: Library and tools for medical image processing
 sci-misc/xmedcon 0.14.1: Medical Image Conversion Utility
 sci-visualization/amide 1.0.5: AMIDE's a Medical Imaging Data Examiner
 sci-visualization/ginkgocadx 3.8.6: An advanced DICOM viewer and dicomizer
-sys-apps/baselayout 2.6-r1 2.7 2.7-r1: Filesystem baselayout and init scripts
+sys-apps/baselayout 2.6-r1 2.7 2.7-r1 2.7-r2: Filesystem baselayout and init scripts
 sys-apps/fwup 1.0.0 1.2.1: Configurable embedded Linux firmware update creator and runner
 sys-apps/gawk 4.2.1-r1 5.0.1 5.1.0: GNU awk pattern-matching language
 sys-apps/hwloc 2.0.3_pre: displays the hardware topology in convenient formats

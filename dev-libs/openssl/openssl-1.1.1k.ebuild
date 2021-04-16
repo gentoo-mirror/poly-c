@@ -1,10 +1,10 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 77e5341fd9e7dce38110b4d3ce4b57b66788b4b8 $
+# $Id: 9b4eaf0e7a623ed648a07352ae283fd3a1d8f4b9 $
 
 EAPI="7"
 
-inherit flag-o-matic toolchain-funcs multilib multilib-minimal
+inherit flag-o-matic toolchain-funcs multilib-minimal
 
 MY_P=${P/_/-}
 

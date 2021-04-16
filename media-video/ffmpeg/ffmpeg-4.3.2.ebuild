@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 3833238121f2de3bcc5cbc4bb47bc04bda5cdaec $
+# $Id: 657510529850a08d885a8afc4d596df61bcae020 $
 
 EAPI=7
 
@@ -22,7 +22,7 @@ if [ "${PV#9999}" != "${PV}" ] ; then
 	EGIT_REPO_URI="https://git.ffmpeg.org/ffmpeg.git"
 fi
 
-inherit eutils flag-o-matic multilib multilib-minimal toolchain-funcs ${SCM}
+inherit flag-o-matic multilib multilib-minimal toolchain-funcs ${SCM}
 
 DESCRIPTION="Complete solution to record/convert/stream audio and video. Includes libavcodec"
 HOMEPAGE="https://ffmpeg.org/"

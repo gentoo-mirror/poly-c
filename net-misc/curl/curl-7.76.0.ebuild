@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: dbfb4e71fdf4c2f837bba1dfcce36bd631df430c $
+# $Id: 77bc653da2508ad56f9ea7fa3cfd39e2d77139d7 $
 
 EAPI="7"
 
@@ -286,7 +286,7 @@ multilib_src_configure() {
 }
 
 multilib_src_install_all() {
-	einstalldocs
+	default
 	find "${ED}" -type f -name '*.la' -delete || die
 	rm -rf "${ED}"/etc/ || die
 }

@@ -1,10 +1,10 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 1501ae504d38a6b69381da1896589d2d5687332f $
+# $Id: 4ba9941176cbb4a65740c52f86989be84391bef1 $
 
 EAPI="7"
 
-inherit flag-o-matic toolchain-funcs multilib multilib-minimal
+inherit flag-o-matic toolchain-funcs multilib-minimal
 
 # openssl-1.0.2-patches-1.6 contain additional CVE patches
 # which got fixed with this release.
