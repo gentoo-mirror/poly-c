@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 759d69a97f4d08a3bc764dbd1d0576c84da3c4bf $
+# $Id: cb3f4454b5137d0642783ad16e4d1cfb8a170b0f $
 
 EAPI=7
 
@@ -52,7 +52,7 @@ SYSTEM_IUSE=( +system-{av1,harfbuzz,icu,jpeg,libevent,libvpx,sqlite} )
 IUSE="+chatzilla cpu_flags_arm_neon +crypt dbus debug +gmp-autoupdate +ipc jack
 lto minimal pulseaudio +roaming selinux startup-notification test wifi"
 IUSE+=" ${SYSTEM_IUSE[@]}"
-KEYWORDS="~amd64 ~ppc64 ~x86"
+KEYWORDS="amd64 ~ppc64 x86"
 
 RESTRICT="!test? ( test )"
 
