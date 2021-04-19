@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 15d529af89d71745f1b2855b53832990386e8faf $
+# $Id: b19e986d2fc813b1915dbd0285493e02ccdf0539 $
 
 EAPI=7
 USE_RUBY="ruby25 ruby26 ruby27 ruby30"

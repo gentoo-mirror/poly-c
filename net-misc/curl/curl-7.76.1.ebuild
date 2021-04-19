@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: dbfb4e71fdf4c2f837bba1dfcce36bd631df430c $
+# $Id: eda3ad6523f03a4217b604a694c9aef4c44e5731 $
 
 EAPI="7"
 
@@ -12,7 +12,7 @@ SRC_URI="https://curl.haxx.se/download/${P}.tar.xz"
 
 LICENSE="curl"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 hppa ~ia64 ~m68k ~mips ppc ~ppc64 ~riscv ~s390 sparc ~x86 ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="adns alt-svc brotli +ftp gnutls gopher hsts +http2 idn +imap ipv6 kerberos ldap mbedtls metalink nss +openssl +pop3 +progress-meter rtmp samba +smtp ssh ssl static-libs test telnet +tftp threads winssl zstd"
 IUSE+=" curl_ssl_gnutls curl_ssl_mbedtls curl_ssl_nss +curl_ssl_openssl curl_ssl_winssl"
 IUSE+=" nghttp3 quiche"
