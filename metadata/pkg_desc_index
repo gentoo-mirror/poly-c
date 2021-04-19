@@ -117,7 +117,7 @@ net-irc/sbnc 1.2_pre 1.3.9_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/bctoolbox 0.6.0_pre: Utilities library used by Belledonne Communications softwares like belle-sip, mediastreamer2 and linphone.
 net-libs/enet 1.3.14_pre: relatively thin, simple and robust network communication layer on top of UDP
 net-libs/farstream 0.2.9_pre: Audio/video conferencing framework specifically designed for instant messengers
-net-libs/nodejs 15.11.0 15.14.0_pre: A JavaScript runtime built on Chrome's V8 JavaScript engine
+net-libs/nodejs 15.14.0: A JavaScript runtime built on Chrome's V8 JavaScript engine
 net-libs/ortp 0.24.0_pre 0.27.0_pre: Open Real-time Transport Protocol (RTP, RFC3550) stack
 net-misc/curl 7.75.0 7.76.0 7.76.1: A Client that groks URLs
 net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
@@ -155,7 +155,6 @@ sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chip
 sys-block/archttp 2.5.1.180529: CLI utility to manage Areca RAID controllers
 sys-block/areca_cli 1.15.8.180529: CLI utility to manage Areca RAID controllers
 sys-block/asm 5.20.17414 6.50.18579: Adaptec Storage Manager (ASM)
-sys-block/gparted 1.2.0_pre: Gnome Partition Editor
 sys-block/lsiutil 1.72: LSI Logic Fusion MPT Command Line Interface management tool
 sys-block/setblocksize 0.2: Reformat a SCSI disk with new block size
 sys-block/varmon 1.2.1: VARMon is a GNU licensed RAID manipulation / management tool for DAC960/DAC1164 controller family

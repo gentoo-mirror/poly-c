@@ -1,17 +1,17 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4228e1c6eee2bf93824d686abe095ff2e46c786a $
+# $Id: b6ed53533665486f03d398f0b91529e7194119b7 $
 
 EAPI=7
 
 PYTHON_COMPAT=( python3_{7..9} )
 PYTHON_REQ_USE="threads(+)"
 
-inherit bash-completion-r1 flag-o-matic pax-utils python-any-r1 toolchain-funcs xdg-utils poly-c_ebuilds
+inherit bash-completion-r1 flag-o-matic pax-utils python-any-r1 toolchain-funcs xdg-utils
 
 DESCRIPTION="A JavaScript runtime built on Chrome's V8 JavaScript engine"
 HOMEPAGE="https://nodejs.org/"
-SRC_URI="https://nodejs.org/dist/v${MY_PV}/node-v${MY_PV}.tar.xz"
+SRC_URI="https://nodejs.org/dist/v${PV}/node-v${PV}.tar.xz"
 
 LICENSE="Apache-1.1 Apache-2.0 BSD BSD-2 MIT"
 SLOT="0/$(ver_cut 1)"
@@ -45,7 +45,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-15.2.0-global-npm-config.patch
 )
 
-S="${WORKDIR}/node-v${MY_PV}"
+S="${WORKDIR}/node-v${PV}"
 
 pkg_pretend() {
 	(use x86 && ! use cpu_flags_x86_sse2) && \
@@ -179,8 +179,8 @@ src_install() {
 		doman "${LIBDIR}"/node_modules/npm/man/man{1,5,7}/*
 
 		# Clean up
-		rm "${LIBDIR}"/node_modules/npm/{.mailmap,.npmignore,Makefile} || die
-		rm -rf "${LIBDIR}"/node_modules/npm/{doc,html,man} || die
+		rm -f "${LIBDIR}"/node_modules/npm/{.mailmap,.npmignore,Makefile}
+		rm -rf "${LIBDIR}"/node_modules/npm/{doc,html,man}
 
 		local find_exp="-or -name"
 		local find_name=()
