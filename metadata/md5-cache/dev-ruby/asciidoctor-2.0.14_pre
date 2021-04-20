@@ -13,5 +13,5 @@ REQUIRED_USE=|| ( ruby_targets_ruby26 ruby_targets_ruby27 ruby_targets_ruby30 )
 RESTRICT=mirror
 SLOT=0
 SRC_URI=https://github.com/asciidoctor/asciidoctor/archive/v2.0.14.tar.gz -> asciidoctor-2.0.14.tar.gz
-_eclasses_=estack	055c42df72f76a4f45ec92b35e83cd56	multilib	d410501a125f99ffb560b0c523cd3d1e	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	ruby-utils	03dfa7f54d59d740c2964dc7256d2820	ruby-ng	40ad5ce3f20bff3a06352fd3fb633cfd	ruby-fakegem	d9894561694732185fbcad470b121f2e	poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac	poly-c_ruby	8dd8c21f3c1a70d5a6cdbffe0838350d
+_eclasses_=estack	055c42df72f76a4f45ec92b35e83cd56	multilib	d410501a125f99ffb560b0c523cd3d1e	toolchain-funcs	24921b57d6561d87cbef4916a296ada4	ruby-utils	03dfa7f54d59d740c2964dc7256d2820	ruby-ng	40ad5ce3f20bff3a06352fd3fb633cfd	ruby-fakegem	d9894561694732185fbcad470b121f2e	poly-c_ebuilds	28d7c47d66d22c42a8d1fb7679def39a	poly-c_ruby	8dd8c21f3c1a70d5a6cdbffe0838350d
 _md5_=73c204b611ec6bfb3bd20ec69234bad3

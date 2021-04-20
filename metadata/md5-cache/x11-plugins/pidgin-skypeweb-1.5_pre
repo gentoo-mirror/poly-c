@@ -10,5 +10,5 @@ RDEPEND=net-im/pidgin dev-libs/json-glib
 RESTRICT=mirror
 SLOT=0
 SRC_URI=https://github.com/EionRobb/skype4pidgin/archive/1.5.tar.gz -> pidgin-skypeweb-1.5.tar.gz
-_eclasses_=poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac
+_eclasses_=poly-c_ebuilds	28d7c47d66d22c42a8d1fb7679def39a
 _md5_=fd42ab3501e72abe523f9ad10cc75d87

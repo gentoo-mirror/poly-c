@@ -8,5 +8,5 @@ LICENSE=GPL-2
 RESTRICT=mirror
 SLOT=0
 SRC_URI=mirror://sourceforge/flightgear/FlightGear-2020.3.7-data.txz
-_eclasses_=poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac
+_eclasses_=poly-c_ebuilds	28d7c47d66d22c42a8d1fb7679def39a
 _md5_=b75982596158d905e055c6ea14349a36

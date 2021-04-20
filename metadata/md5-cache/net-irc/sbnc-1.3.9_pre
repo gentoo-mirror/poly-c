@@ -11,5 +11,5 @@ RDEPEND=ssl? ( dev-libs/openssl:0= )
 RESTRICT=mirror
 SLOT=0
 SRC_URI=http://shroudbnc.info/files/sbnc/sbnc-1.3.9.tar.gz
-_eclasses_=poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac
+_eclasses_=poly-c_ebuilds	28d7c47d66d22c42a8d1fb7679def39a
 _md5_=fbe799ce5d3a0f7ef4e2de313cee9b24

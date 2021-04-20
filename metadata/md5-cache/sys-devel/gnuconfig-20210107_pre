@@ -8,5 +8,5 @@ LICENSE=GPL-3+-with-autoconf-exception
 RESTRICT=mirror
 SLOT=0
 SRC_URI=https://dev.gentoo.org/~polynomial-c/dist/gnuconfig/gnuconfig-20210107.tar.xz
-_eclasses_=poly-c_ebuilds	9ba88acd0fedb4f1326829d5bcc4f5ac
+_eclasses_=poly-c_ebuilds	28d7c47d66d22c42a8d1fb7679def39a
 _md5_=43ecdceaadf3e341e19e5815be4c6ce0

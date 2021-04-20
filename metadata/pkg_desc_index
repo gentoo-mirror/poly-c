@@ -62,7 +62,6 @@ games-engines/fifengine 9999: Flexible Isometric Free Engine, 2D
 games-engines/stratagus 2.4.2_pre: A realtime strategy game engine
 games-fps/dhewm3 1.4.1 9999: A Doom 3 GPL source modification.
 games-fps/enemy-territory 2.60b-r1: standalone multi-player game based on Return to Castle Wolfenstein
-games-fps/enemy-territory-etpro 3.2.6-r1: Enemy Territory ETPro - Minor additions to Enemy Territory to make it more fun
 games-fps/etlegacy 2.76 2.77 9999: Wolfenstein: Enemy Territory 2.60b compatible client/server
 games-fps/rtcw 1.51b 1.51c 9999: Return to Castle Wolfenstein - IORTCW Project
 games-simulation/flightgear 2020.3.7_pre 2020.3.8_pre: Open Source Flight Simulator
