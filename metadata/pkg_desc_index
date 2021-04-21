@@ -35,6 +35,7 @@ dev-java/gradle-bin 1.8: Build Tool
 dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/libcli 1.10.4: Cisco-style (telnet) command-line interface library
+dev-libs/libuv 1.41.0_pre: Cross-platform asychronous I/O
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
 dev-libs/openssl 1.1.1i 1.1.1j 1.1.1k: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
@@ -162,7 +163,7 @@ sys-fs/fswatch 1.14.0 1.15.0 9999: cross-platform file change monitor with multi
 sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.6 248: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/slang 2.3.3_pre48: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.186 4.19.187 4.19.188 5.4.112 5.4.113 5.4.114 5.10.29 5.10.30 5.10.31: Shows and sets processor power related values
+sys-power/cpupower 4.19.186 4.19.187 4.19.188 5.4.112 5.4.113 5.4.114 5.10.30 5.10.31 5.10.32: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.16-r2 3.3.16-r3 3.3.17: standard informational utilities and process-handling tools
