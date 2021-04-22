@@ -1,0 +1,272 @@
+From 83954925873626b180e35ae34ab250492fbaf21e Mon Sep 17 00:00:00 2001
+From: Mike Blumenkrantz <michael.blumenkrantz@gmail.com>
+Date: Tue, 20 Apr 2021 14:40:05 -0400
+Subject: [PATCH] Revert "zink: force scanout sync when mapping scanout
+ resource"
+
+This reverts commit 874535752b497bd8ab49cf97add6de2ed9b16f81.
+
+Reviewed-by: Adam Jackson <ajax@redhat.com>
+
+Fixes: 874535752b4 ("zink: force scanout sync when mapping scanout resource")
+
+Acked-by: Erik Faye-Lund <erik.faye-lund@collabora.com>
+Part-of: <https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/10358>
+(cherry picked from commit 82710b8fc4fbdb08da7db02f8a64fadb8d43525f)
+---
+ .pick_status.json                        | 191 ++++++++++++++++++++++-
+ src/gallium/drivers/zink/zink_resource.c |  18 ---
+ 2 files changed, 190 insertions(+), 19 deletions(-)
+
+diff --git a/.pick_status.json b/.pick_status.json
+index ec7709cb83c..ec9ea6d462f 100644
+--- a/.pick_status.json
++++ b/.pick_status.json
+@@ -1,4 +1,193 @@
+ [
++    {
++        "sha": "57603866540e4782451215a10c4401f5c6ee43fe",
++        "description": "radv: only set robust_modes if robustBufferAccess2 is enabled",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "8408d0312faa237d541062a80fef80bea49a4ab0",
++        "description": "radv: improve vectorization callback for small bit sizes",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "89b759c4f953eb284cb96c220779c160dffa842e",
++        "description": "nir/opt_load_store_vectorize: loop internally",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "447820d003798b177700407128c7eaa9b9e6cc48",
++        "description": "nir/opt_load_store_vectorize: ignore load_vulkan_descriptor",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "6ca11b4a66ece88cbfdbe0c23d826f2f7c232d4d",
++        "description": "nir/opt_load_store_vectorize: improve handling of swizzles",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "4df3654c7914118f9ccba1224fb46e928bb07177",
++        "description": "nir/load_store_vectorize: assume CAN_REORDER ops don't alias with stores",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "839af6545bf2f9a7406725e905ffa702731ddc10",
++        "description": "mesa: Replace _mesa_pack_ubyte_rgba_row() with pack_ubyte_rgba_8unorm().",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "1a36b11a66ac32854adc1a47dd1b587d74ab01e7",
++        "description": "mesa: Remove dead _mesa_pack_ubyte_rgba_rect().",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "580a1ba7065698ef86b6222b2bcbf89147b1e4e9",
++        "description": "mesa: Move per-pixel Z pack functions to swrast.",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "84db62553317b27ba1b205867e0944b608d74950",
++        "description": "msea: Move z24s8-to-z24s8 packing fastpath to swrast.",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "698c8b5022d022a4616a8f3a3fb8f19ecb25f9f6",
++        "description": "mesa: Remove dead _mesa_get_pack_float_z_func().",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "90f98b56f8541a3e7bc96e1121f404350bb68cf8",
++        "description": "mesa: Deduplicate _mesa_pack_uint_z_row().",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "8a773d770e094f82081820e868daa53e8e69945f",
++        "description": "mesa: Deduplicate _mesa_pack_float_z_row().",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "0e20f6a1e99840f763c21988e723638b9a54000e",
++        "description": "mesa: Deduplicate _mesa_pack_ubyte_stencil_row()",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "8bd91d1368815c5bbf975044df8bfcf3186ac3b7",
++        "description": "util: Fix big-endian handling of z/s formats.",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "3ccd0891d342cd518b929f5135ad307255ddc789",
++        "description": "nir/lower_fragcolor: set outputs_written for fragdata members",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "577c9de659d8763cc2310654c0fbe23505469450",
++        "description": "docs: update calendar and link releases notes for 21.0.3",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "8e821001c55cac76c59d7788862e9f084f6df851",
++        "description": "docs: update sha256 sum for mesa 21.0.3",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "2655ccc30e79a29b5df590efaafae4f566840c00",
++        "description": "docs: add release notes for 21.0.3",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "4f12a42841f4e64ec84d81845b7b0a563098dff2",
++        "description": "docs: write basic meta-documentation",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
++    {
++        "sha": "bbeee415eebf214c1658a86db9b6a48b5ece3056",
++        "description": "zink: Learn about VK_KHR_swapchain",
++        "nominated": false,
++        "nomination_type": null,
++        "resolution": 4,
++        "master_sha": null,
++        "because_sha": null
++    },
+     {
+         "sha": "fcb5ba58165cd407408f8dd9a102f0c5e16a9956",
+         "description": "Revert \"ci/radeonsi: Add expected failures due to #4674 having slipped in\"",
+@@ -103,7 +292,7 @@
+         "description": "Revert \"zink: force scanout sync when mapping scanout resource\"",
+         "nominated": false,
+         "nomination_type": 2,
+-        "resolution": 4,
++        "resolution": 1,
+         "master_sha": null,
+         "because_sha": "874535752b497bd8ab49cf97add6de2ed9b16f81"
+     },
+diff --git a/src/gallium/drivers/zink/zink_resource.c b/src/gallium/drivers/zink/zink_resource.c
+index bf51add034a..5cf4e812fa8 100644
+--- a/src/gallium/drivers/zink/zink_resource.c
++++ b/src/gallium/drivers/zink/zink_resource.c
+@@ -1003,17 +1003,8 @@ zink_transfer_map(struct pipe_context *pctx,
+ 
+          if (usage & PIPE_MAP_READ) {
+             zink_transfer_copy_bufimage(ctx, staging_res, res, trans);
+-            /* TODO: remove for wsi */
+-            struct zink_resource *scanout = NULL;
+-            if (res->scanout_obj) {
+-               scanout = ctx->flush_res;
+-               ctx->flush_res = res;
+-            }
+             /* need to wait for rendering to finish */
+             zink_fence_wait(pctx);
+-            /* TODO: remove for wsi */
+-            if (res->scanout_obj)
+-               ctx->flush_res = scanout;
+          }
+ 
+          ptr = base = map_resource(screen, staging_res);
+@@ -1028,19 +1019,10 @@ zink_transfer_map(struct pipe_context *pctx,
+          if (zink_resource_has_usage(res, ZINK_RESOURCE_ACCESS_READ))
+             resource_sync_reads(ctx, res);
+          if (zink_resource_has_usage(res, ZINK_RESOURCE_ACCESS_RW)) {
+-            /* TODO: remove for wsi */
+-            struct zink_resource *scanout = NULL;
+-            if (res->scanout_obj) {
+-               scanout = ctx->flush_res;
+-               ctx->flush_res = res;
+-            }
+             if (usage & PIPE_MAP_READ)
+                resource_sync_writes_from_batch_usage(ctx, res);
+             else
+                zink_fence_wait(pctx);
+-            /* TODO: remove for wsi */
+-            if (res->scanout_obj)
+-               ctx->flush_res = scanout;
+          }
+          VkImageSubresource isr = {
+             res->aspect,
+-- 
+GitLab
+

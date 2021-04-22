@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: cb3f4454b5137d0642783ad16e4d1cfb8a170b0f $
+# $Id: a71a636282ed1a24c36c9237892ec3ae89769934 $
 
 EAPI=7
 
@@ -61,6 +61,7 @@ ASM_DEPEND=">=dev-lang/yasm-1.1"
 BDEPEND="
 	app-arch/unzip
 	app-arch/zip
+	>=dev-lang/nasm-2.13
 	dev-lang/perl
 	sys-apps/findutils
 	>=sys-devel/binutils-2.16.1
