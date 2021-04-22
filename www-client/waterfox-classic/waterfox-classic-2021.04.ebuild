@@ -30,7 +30,7 @@ inherit check-reqs eapi7-ver flag-o-matic toolchain-funcs eutils gnome2-utils mo
 #	MY_PV="$(ver_cut 1-2)-classic-$(ver_cut 3)"
 #fi
 MY_PN="${PN/-classic}"
-MY_PV="${PV}-${PN/*-}"
+MY_PV="${PV}"
 
 DESCRIPTION="Waterfox Web Browser"
 HOMEPAGE="http://www.waterfoxproject.org"
@@ -109,6 +109,7 @@ pkg_pretend() {
 src_prepare() {
 	local patch_exclude=(
 		1000_gentoo_install_dir.patch
+		1002_drop_build_id.patch
 		2001_system_harfbuzz.patch
 		2002_system_graphite2.patch
 	)
@@ -125,6 +126,8 @@ src_prepare() {
 
 	# Apply our patches
 	eapply "${WORKDIR}/firefox"
+
+	#eapply "${FILESDIR}/${P}-build_fix.patch"
 
 	use system-libvpx && eapply -p2 "${WORKDIR}/seamonkey-2.53.3-system_libvpx-1.8.patch"
 
