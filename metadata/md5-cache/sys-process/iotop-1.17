@@ -1,0 +1,14 @@
+BDEPEND=virtual/pkgconfig
+DEFINED_PHASES=compile install
+DEPEND=sys-libs/ncurses:0=
+DESCRIPTION=top utility for IO (C port)
+EAPI=7
+HOMEPAGE=https://github.com/Tomas-M/iotop
+INHERIT=toolchain-funcs
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2+
+RDEPEND=sys-libs/ncurses:0=
+SLOT=0
+SRC_URI=https://github.com/Tomas-M/iotop/archive/v1.17.tar.gz -> iotop-1.17.tar.gz
+_eclasses_=toolchain-funcs	24921b57d6561d87cbef4916a296ada4	multilib	d410501a125f99ffb560b0c523cd3d1e
+_md5_=8253948fb18ac264fc4af9ca725ae767
