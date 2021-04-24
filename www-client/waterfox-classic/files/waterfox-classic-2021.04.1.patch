@@ -1,0 +1,3592 @@
+From a410344bc83e2b494f1fb95f3b40f4790c64e54c Mon Sep 17 00:00:00 2001
+From: Adam Wood <adamwoodce@gmail.com>
+Date: Thu, 22 Apr 2021 13:25:49 +0100
+Subject: [PATCH 1/2] Revert "Merge pull request #2029 from
+ hawkeye116477/classic_scrollbar"
+
+This reverts commit e7635afe5a48ce9958cbdcbce3db275fcbd026dc, reversing
+changes made to 821ae5cd18add7acc10e7fbe4bff219cb1ffb6a5.
+---
+ accessible/base/TextAttrs.cpp                 |   3 +-
+ .../treeupdate/test_cssoverflow.html          |  10 +-
+ devtools/client/shared/theme-switching.js     |  30 +-
+ devtools/client/themes/common.css             |  29 +-
+ devtools/client/themes/dark-theme.css         |  14 +-
+ .../themes/floating-scrollbars-dark-theme.css |   4 +
+ devtools/client/themes/variables.css          |  49 ---
+ .../shared/css/generated/properties-db.js     |  56 ---
+ dom/animation/KeyframeEffectReadOnly.cpp      |   2 +-
+ dom/base/Element.cpp                          |  20 +-
+ dom/base/nsDocument.cpp                       |   2 +-
+ dom/base/nsGlobalWindow.cpp                   |   6 +-
+ dom/events/EventStateManager.cpp              |   4 +-
+ gfx/layers/apz/util/APZCCallbackHelper.cpp    |   4 +-
+ gfx/src/nsColor.cpp                           |  53 +++
+ gfx/src/nsColor.h                             |   4 +
+ gfx/src/nsITheme.h                            |   3 +-
+ gfx/src/nsThemeConstants.h                    |   3 -
+ layout/base/PresShell.cpp                     |   4 +-
+ layout/base/RestyleManager.cpp                |  70 +---
+ .../{ScrollStyles.cpp => ScrollbarStyles.cpp} |   6 +-
+ .../{ScrollStyles.h => ScrollbarStyles.h}     |  18 +-
+ layout/base/crashtests/1490037.html           |  12 -
+ layout/base/crashtests/crashtests.list        |   1 -
+ layout/base/moz.build                         |   4 +-
+ layout/base/nsCSSFrameConstructor.cpp         |  10 +-
+ layout/base/nsCSSFrameConstructor.h           |   2 +-
+ layout/base/nsChangeHint.h                    |   8 +-
+ layout/base/nsLayoutUtils.cpp                 |  54 +--
+ layout/base/nsLayoutUtils.h                   |   6 -
+ layout/base/nsPresContext.cpp                 |  28 +-
+ layout/base/nsPresContext.h                   |  18 +-
+ layout/forms/nsListControlFrame.cpp           |  10 +-
+ layout/forms/nsListControlFrame.h             |   2 +-
+ layout/generic/TextOverflow.cpp               |   4 +-
+ layout/generic/nsFrame.cpp                    |   2 +-
+ layout/generic/nsGfxScrollFrame.cpp           | 135 +++----
+ layout/generic/nsGfxScrollFrame.h             |  10 +-
+ layout/generic/nsIScrollableFrame.h           |   4 +-
+ layout/generic/nsTextFrame.cpp                |   8 +-
+ layout/inspector/inDOMUtils.cpp               |   1 -
+ layout/painting/nsCSSRendering.cpp            |  45 +--
+ layout/style/StyleComplexColor.cpp            |  77 ----
+ layout/style/StyleComplexColor.h              |  25 +-
+ layout/style/moz.build                        |   1 -
+ layout/style/nsCSSKeywordList.h               |   2 -
+ layout/style/nsCSSParser.cpp                  |  24 --
+ layout/style/nsCSSPropList.h                  |  22 --
+ layout/style/nsCSSProps.cpp                   |   7 -
+ layout/style/nsCSSProps.h                     |   1 -
+ layout/style/nsComputedDOMStyle.cpp           |  37 +-
+ layout/style/nsComputedDOMStyle.h             |   2 -
+ layout/style/nsComputedDOMStylePropertyList.h |   2 -
+ layout/style/nsRuleNode.cpp                   |  83 +----
+ layout/style/nsStyleConsts.h                  |   7 -
+ layout/style/nsStyleContext.cpp               |   2 +-
+ layout/style/nsStyleStruct.cpp                |  23 +-
+ layout/style/nsStyleStruct.h                  |  14 +-
+ layout/style/res/forms.css                    |   1 -
+ layout/style/test/property_database.js        |  12 -
+ layout/xul/nsBox.cpp                          |  31 --
+ layout/xul/nsListBoxBodyFrame.cpp             |   4 +-
+ layout/xul/nsTextBoxFrame.cpp                 |   3 +-
+ layout/xul/tree/nsTreeBodyFrame.cpp           |   3 +-
+ modules/libpref/init/all.js                   |  10 -
+ .../style/properties/longhand/box.mako.rs     |   2 +-
+ toolkit/content/minimal-xul.css               |   5 -
+ .../themes/osx/global/nativescrollbars.css    |   2 +-
+ .../themes/windows/global/xulscrollbars.css   |  11 +-
+ widget/gtk/nsNativeThemeGTK.cpp               |   9 -
+ widget/nsNativeTheme.cpp                      |  82 +----
+ widget/nsNativeTheme.h                        |   9 -
+ widget/windows/nsNativeThemeWin.cpp           | 332 +-----------------
+ widget/windows/nsNativeThemeWin.h             |   8 +-
+ 74 files changed, 304 insertions(+), 1307 deletions(-)
+ rename layout/base/{ScrollStyles.cpp => ScrollbarStyles.cpp} (90%)
+ rename layout/base/{ScrollStyles.h => ScrollbarStyles.h} (87%)
+ delete mode 100644 layout/base/crashtests/1490037.html
+ delete mode 100644 layout/style/StyleComplexColor.cpp
+
+diff --git a/accessible/base/TextAttrs.cpp b/accessible/base/TextAttrs.cpp
+index 7fb826d93119..f6e6d8519972 100644
+--- a/accessible/base/TextAttrs.cpp
++++ b/accessible/base/TextAttrs.cpp
+@@ -698,7 +698,8 @@ TextAttrsMgr::TextDecorValue::
+ {
+   const nsStyleTextReset* textReset = aFrame->StyleTextReset();
+   mStyle = textReset->mTextDecorationStyle;
+-  mColor = textReset->mTextDecorationColor.CalcColor(aFrame);
++  mColor = aFrame->StyleColor()->
++    CalcComplexColor(textReset->mTextDecorationColor);
+   mLine = textReset->mTextDecorationLine &
+     (NS_STYLE_TEXT_DECORATION_LINE_UNDERLINE |
+      NS_STYLE_TEXT_DECORATION_LINE_LINE_THROUGH);
+diff --git a/accessible/tests/mochitest/treeupdate/test_cssoverflow.html b/accessible/tests/mochitest/treeupdate/test_cssoverflow.html
+index 911299af0085..ed9edd66e523 100644
+--- a/accessible/tests/mochitest/treeupdate/test_cssoverflow.html
++++ b/accessible/tests/mochitest/treeupdate/test_cssoverflow.html
+@@ -67,7 +67,7 @@
+      * Change scrollbar styles from hidden to auto. That makes us to create an
+      * accessible for scroll area.
+      */
+-    function changeScrollStyles(aContainerID, aScrollAreaID)
++    function changeScrollbarStyles(aContainerID, aScrollAreaID)
+     {
+       this.container = getAccessible(aContainerID);
+       this.scrollAreaNode = getNode(aScrollAreaID);
+@@ -77,7 +77,7 @@
+         new invokerChecker(EVENT_REORDER, this.container)
+       ];
+ 
+-      this.invoke = function changeScrollStyles_invoke()
++      this.invoke = function changeScrollbarStyles_invoke()
+       {
+         var accTree =
+           { SECTION: [] };
+@@ -86,7 +86,7 @@
+         this.scrollAreaNode.style.overflow = "auto";
+       }
+ 
+-      this.finalCheck = function changeScrollStyles_finalCheck()
++      this.finalCheck = function changeScrollbarStyles_finalCheck()
+       {
+         var accTree =
+           { SECTION: [ // container
+@@ -95,7 +95,7 @@
+         testAccessibleTree(this.container, accTree);
+       }
+ 
+-      this.getID = function changeScrollStyles_getID()
++      this.getID = function changeScrollbarStyles_getID()
+       {
+         return "change scrollbar styles " + prettyName(aScrollAreaID);
+       }
+@@ -114,7 +114,7 @@
+       gQueue = new eventQueue();
+ 
+       gQueue.push(new changeScrollRange("container", "scrollarea"));
+-      gQueue.push(new changeScrollStyles("container2", "scrollarea2"));
++      gQueue.push(new changeScrollbarStyles("container2", "scrollarea2"));
+ 
+       gQueue.invoke(); // Will call SimpleTest.finish();
+     }
+diff --git a/devtools/client/shared/theme-switching.js b/devtools/client/shared/theme-switching.js
+index 0f2ac1f23df5..c14c95e32199 100644
+--- a/devtools/client/shared/theme-switching.js
++++ b/devtools/client/shared/theme-switching.js
+@@ -91,24 +91,22 @@
+       loadEvents.push(loadPromise);
+     }
+ 
+-    if (os !== "win" && os !== "linux" ) {
+-      // Windows & Linux always use native scrollbars, Mac still uses custom floating
+-      // scrollbar implementation.
+-      try {
+-        const StylesheetUtils = require("devtools/shared/layout/utils");
+-        const SCROLLBARS_URL = "chrome://devtools/skin/floating-scrollbars-dark-theme.css";
+-        if (!Services.appShell.hiddenDOMWindow
+-          .matchMedia("(-moz-overlay-scrollbars)").matches) {
+-          if (newTheme == "dark") {
+-            StylesheetUtils.loadSheet(window, SCROLLBARS_URL, "agent");
+-          } else if (oldTheme == "dark") {
+-            StylesheetUtils.removeSheet(window, SCROLLBARS_URL, "agent");
+-          }
+-          forceStyle();
++    try {
++      const StylesheetUtils = require("devtools/shared/layout/utils");
++      const SCROLLBARS_URL = "chrome://devtools/skin/floating-scrollbars-dark-theme.css";
++
++      // TODO: extensions might want to customize scrollbar styles too.
++      if (!Services.appShell.hiddenDOMWindow
++        .matchMedia("(-moz-overlay-scrollbars)").matches) {
++        if (newTheme == "dark") {
++          StylesheetUtils.loadSheet(window, SCROLLBARS_URL, "agent");
++        } else if (oldTheme == "dark") {
++          StylesheetUtils.removeSheet(window, SCROLLBARS_URL, "agent");
+         }
+-      } catch (e) {
+-        console.warn("customize scrollbar styles is only supported in firefox");
++        forceStyle();
+       }
++    } catch (e) {
++      console.warn("customize scrollbar styles is only supported in firefox");
+     }
+ 
+     Promise.all(loadEvents).then(() => {
+diff --git a/devtools/client/themes/common.css b/devtools/client/themes/common.css
+index 041ecaa70e46..7ce747320c3d 100644
+--- a/devtools/client/themes/common.css
++++ b/devtools/client/themes/common.css
+@@ -27,15 +27,6 @@
+   --proportional-font-family: Lucida Grande, Tahoma, sans-serif;
+ }
+ 
+-/**
+- * Customize scrollbar colors on Linux + light theme, to avoid visual conflicts
+- * between the light theme and the selected GTK theme (see bug 1471163).
+- * This removes GTK scrollbars and uses a fallback design (see bug 1464723).
+- */
+-:root[platform="linux"].theme-light {
+-  scrollbar-color: var(--theme-body-color-inactive) var(--grey-20);
+-}
+-
+ .devtools-monospace {
+   font-family: var(--monospace-font-family);
+ }
+@@ -400,16 +391,6 @@ checkbox:-moz-focusring {
+   padding: 4px 6px;
+   border-color: var(--theme-splitter-color);
+   font: message-box;
+-  background-color: white;
+-  color: var(--grey-90);
+-}
+-
+-.theme-dark .devtools-textinput,
+-.theme-dark .devtools-searchinput,
+-.theme-dark .devtools-filterinput {
+-  /* in between grey-85 and grey-90 */
+-  background-color: #141416;
+-  color: var(--grey-20);
+ }
+ 
+ :root[platform="mac"] .devtools-textinput,
+@@ -464,13 +445,12 @@ checkbox:-moz-focusring {
+ }
+ 
+ .devtools-plaininput {
+-  color: var(--grey-90);
+   border-color: transparent;
+   background-color: transparent;
+ }
+ 
+ .theme-dark .devtools-plaininput {
+-  color: var(--grey-20);
++  color: var(--theme-highlight-gray);
+ }
+ 
+ /* Searchbox is a div container element for a search input element */
+@@ -544,7 +524,7 @@ checkbox:-moz-focusring {
+ 
+ .devtools-searchinput-clear {
+   position: absolute;
+-  top: calc(50% - 8px);
++  top: 3.5px;
+   offset-inline-end: 7px;
+   padding: 0;
+   border: 0;
+@@ -555,6 +535,11 @@ checkbox:-moz-focusring {
+   background-color: transparent;
+ }
+ 
++.devtools-searchinput-clear:dir(rtl) {
++  right: unset;
++  left: 7px;
++}
++
+ .theme-dark .devtools-searchinput-clear {
+   background-image: url("chrome://devtools/skin/images/search-clear-dark.svg");
+ }
+diff --git a/devtools/client/themes/dark-theme.css b/devtools/client/themes/dark-theme.css
+index 8bec821ea8e9..07116a532cee 100644
+--- a/devtools/client/themes/dark-theme.css
++++ b/devtools/client/themes/dark-theme.css
+@@ -27,13 +27,6 @@ body {
+   color: var(--theme-selection-color);
+ }
+ 
+-:root[platform="win"],
+-:root[platform="linux"] {
+-  /* Set colors for native scrollbars on Windows and Linux dark theme */
+-  /* Other platforms support for scrollbar theming is Bug 1460109 */
+-  scrollbar-color: var(--theme-body-color-inactive) var(--theme-splitter-color);
+-}
+-
+ .theme-bg-darker {
+   background-color: var(--theme-selection-background-semitransparent);
+ }
+@@ -336,6 +329,13 @@ div.CodeMirror span.eval-text {
+   border-bottom: 0;
+ }
+ 
++.devtools-textinput,
++.devtools-searchinput,
++.devtools-filterinput {
++  background-color: rgba(24, 29, 32, 1);
++  color: rgba(184, 200, 217, 1);
++}
++
+ .CodeMirror-Tern-fname {
+   color: #f7f7f7;
+ }
+diff --git a/devtools/client/themes/floating-scrollbars-dark-theme.css b/devtools/client/themes/floating-scrollbars-dark-theme.css
+index 76a998fbc2cc..042fe28cc299 100644
+--- a/devtools/client/themes/floating-scrollbars-dark-theme.css
++++ b/devtools/client/themes/floating-scrollbars-dark-theme.css
+@@ -47,9 +47,13 @@
+   -moz-appearance: none !important;
+ }
+ 
++*|*:root[platform="win"] > scrollbar scrollbarbutton,
+ *|*:root[platform="linux"] > scrollbar scrollbarbutton,
++*|*:root[platform="win"] > scrollbar gripper,
+ *|*:root[platform="linux"] > scrollbar gripper,
++*|*:root[platform="win"] *|*:not(html|select) > scrollbar scrollbarbutton,
+ *|*:root[platform="linux"] *|*:not(html|select) > scrollbar scrollbarbutton,
++*|*:root[platform="win"] *|*:not(html|select) > scrollbar gripper,
+ *|*:root[platform="linux"] *|*:not(html|select) > scrollbar gripper {
+   display: none;
+ }
+diff --git a/devtools/client/themes/variables.css b/devtools/client/themes/variables.css
+index eac1fded23a0..221c5dd1714b 100644
+--- a/devtools/client/themes/variables.css
++++ b/devtools/client/themes/variables.css
+@@ -242,53 +242,4 @@
+   --toolbarbutton-checked-background: var(--theme-selection-background);
+   --toolbarbutton-checked-color: var(--theme-selection-color);
+   --toolbarbutton-checked-border-color: var(--toolbarbutton-border-color);
+-
+-  /* Firefox Colors CSS Variables v1.0.3
+-   * Colors are taken from: https://github.com/FirefoxUX/design-tokens
+-   * Some intermediate colors were added (names ending in '5').
+-   */
+-   --magenta-50: #ff1ad9;
+-   --magenta-65: #dd00a9;
+-   --magenta-70: #b5007f;
+-
+-   --purple-50: #9400ff;
+-   --purple-60: #8000d7;
+-
+-   --blue-40: #45a1ff;
+-   --blue-50: #0a84ff;
+-   --blue-55: #0074e8;
+-   --blue-60: #0060df;
+-   --blue-70: #003eaa;
+-
+-   --teal-60: #00c8d7;
+-   --teal-70: #008ea4;
+-
+-   --red-70: #a4000f;
+-
+-   --green-50: #30e60b;
+-   --green-60: #12bc00;
+-   --green-70: #058b00;
+-
+-   --yellow-50: #ffe900;
+-   --yellow-60: #d7b600;
+-   --yellow-80: #715100;
+-
+-   --grey-10: #f9f9fa;
+-   --grey-20: #ededf0;
+-   --grey-25: #e0e0e2;
+-   --grey-30: #d7d7db;
+-   --grey-30-a40: rgba(215, 215, 219, 0.4);
+-   --grey-30-a90: rgba(215, 215, 219, 0.9);
+-   --grey-40: #b1b1b3;
+-   --grey-45: #939395;
+-   --grey-50: #737373;
+-   --grey-55: #5c5c5f;
+-   --grey-60: #4a4a4f;
+-   --grey-60-a50: rgba(74, 74, 79, 0.5);
+-   --grey-70: #38383d;
+-   --grey-80: #2a2a2e;
+-   --grey-85: #1b1b1d;
+-   --grey-90: #0c0c0d;
+-   --grey-90-a10: rgba(12, 12, 13, 0.1);
+-   --grey-90-a80: rgba(12, 12, 13, 0.8);
+ }
+diff --git a/devtools/shared/css/generated/properties-db.js b/devtools/shared/css/generated/properties-db.js
+index c38f09485f47..248afcb2477a 100644
+--- a/devtools/shared/css/generated/properties-db.js
++++ b/devtools/shared/css/generated/properties-db.js
+@@ -284,7 +284,6 @@ exports.CSS_PROPERTIES = {
+       "scrollbarthumb-vertical",
+       "scrollbartrack-horizontal",
+       "scrollbartrack-vertical",
+-      "scrollcorner",
+       "searchfield",
+       "separator",
+       "spinner",
+@@ -1893,7 +1892,6 @@ exports.CSS_PROPERTIES = {
+       "scrollbarthumb-vertical",
+       "scrollbartrack-horizontal",
+       "scrollbartrack-vertical",
+-      "scrollcorner",
+       "searchfield",
+       "separator",
+       "spinner",
+@@ -3273,8 +3271,6 @@ exports.CSS_PROPERTIES = {
+       "scroll-snap-points-y",
+       "scroll-snap-type-x",
+       "scroll-snap-type-y",
+-      "scrollbar-color",
+-      "scrollbar-width",
+       "shape-outside",
+       "shape-rendering",
+       "-moz-stack-sizing",
+@@ -3358,7 +3354,6 @@ exports.CSS_PROPERTIES = {
+     ],
+     "values": [
+       "COLOR",
+-      "-moz-activehyperlinktext",
+       "-moz-all",
+       "-moz-alt-content",
+       "-moz-available",
+@@ -3769,7 +3764,6 @@ exports.CSS_PROPERTIES = {
+       "scrollbarthumb-vertical",
+       "scrollbartrack-horizontal",
+       "scrollbartrack-vertical",
+-      "scrollcorner",
+       "se-resize",
+       "searchfield",
+       "select-after",
+@@ -9012,48 +9006,6 @@ exports.CSS_PROPERTIES = {
+       "unset"
+     ]
+   },
+-  "scrollbar-color": {
+-    "isInherited": true,
+-    "subproperties": [
+-      "scrollbar-color"
+-    ],
+-    "supports": [
+-      2
+-    ],
+-    "values": [
+-      "COLOR",
+-      "auto",
+-      "currentColor",
+-      "hsl",
+-      "hsla",
+-      "inherit",
+-      "initial",
+-      "rgb",
+-      "rgba",
+-      "transparent",
+-      "unset"
+-    ]
+-  },
+-  "scrollbar-width": {
+-    "isInherited": true,
+-    "subproperties": [
+-      "scrollbar-width"
+-    ],
+-    "supports": [],
+-    "values": [
+-      "-moz-activehyperlinktext",
+-      "auto",
+-      "ignore",
+-      "ignore-horizontal",
+-      "ignore-vertical",
+-      "inherit",
+-      "initial",
+-      "none",
+-      "stretch-to-fit",
+-      "thin",
+-      "unset"
+-    ]
+-  },
+   "shape-rendering": {
+     "isInherited": true,
+     "subproperties": [
+@@ -10132,14 +10084,6 @@ exports.PREFERENCES = [
+     "scroll-snap-type-y",
+     "layout.css.scroll-snap.enabled"
+   ],
+-  [
+-    "scrollbar-color",
+-    "layout.css.scrollbar-color.enabled"
+-  ],
+-  [
+-    "scrollbar-width",
+-    "layout.css.scrollbar-width.enabled"
+-  ],
+   [
+     "shape-outside",
+     "layout.css.shape-outside.enabled"
+diff --git a/dom/animation/KeyframeEffectReadOnly.cpp b/dom/animation/KeyframeEffectReadOnly.cpp
+index dc1af2110672..32d6f66d3501 100644
+--- a/dom/animation/KeyframeEffectReadOnly.cpp
++++ b/dom/animation/KeyframeEffectReadOnly.cpp
+@@ -1419,7 +1419,7 @@ KeyframeEffectReadOnly::CanThrottleTransformChanges(nsIFrame& aFrame) const
+     return true;
+   }
+ 
+-  ScrollStyles ss = scrollable->GetScrollStyles();
++  ScrollbarStyles ss = scrollable->GetScrollbarStyles();
+   if (ss.mVertical == NS_STYLE_OVERFLOW_HIDDEN &&
+       ss.mHorizontal == NS_STYLE_OVERFLOW_HIDDEN &&
+       scrollable->GetLogicalScrollPosition() == nsPoint(0, 0)) {
+diff --git a/dom/base/Element.cpp b/dom/base/Element.cpp
+index 672ca40748d0..0f770ae2b6a6 100644
+--- a/dom/base/Element.cpp
++++ b/dom/base/Element.cpp
+@@ -789,7 +789,7 @@ Element::Scroll(const CSSIntPoint& aScroll, const ScrollOptions& aOptions)
+     if (aOptions.mBehavior == ScrollBehavior::Smooth) {
+       scrollMode = nsIScrollableFrame::SMOOTH_MSD;
+     } else if (aOptions.mBehavior == ScrollBehavior::Auto) {
+-      ScrollStyles styles = sf->GetScrollStyles();
++      ScrollbarStyles styles = sf->GetScrollbarStyles();
+       if (styles.mScrollBehavior == NS_STYLE_SCROLL_BEHAVIOR_SMOOTH) {
+         scrollMode = nsIScrollableFrame::SMOOTH_MSD;
+       }
+@@ -886,7 +886,7 @@ Element::SetScrollTop(int32_t aScrollTop)
+   nsIScrollableFrame* sf = GetScrollFrame(nullptr, flushType);
+   if (sf) {
+     nsIScrollableFrame::ScrollMode scrollMode = nsIScrollableFrame::INSTANT;
+-    if (sf->GetScrollStyles().mScrollBehavior == NS_STYLE_SCROLL_BEHAVIOR_SMOOTH) {
++    if (sf->GetScrollbarStyles().mScrollBehavior == NS_STYLE_SCROLL_BEHAVIOR_SMOOTH) {
+       scrollMode = nsIScrollableFrame::SMOOTH_MSD;
+     }
+     sf->ScrollToCSSPixels(CSSIntPoint(sf->GetScrollPositionCSSPixels().x,
+@@ -911,7 +911,7 @@ Element::SetScrollLeft(int32_t aScrollLeft)
+   nsIScrollableFrame* sf = GetScrollFrame();
+   if (sf) {
+     nsIScrollableFrame::ScrollMode scrollMode = nsIScrollableFrame::INSTANT;
+-    if (sf->GetScrollStyles().mScrollBehavior == NS_STYLE_SCROLL_BEHAVIOR_SMOOTH) {
++    if (sf->GetScrollbarStyles().mScrollBehavior == NS_STYLE_SCROLL_BEHAVIOR_SMOOTH) {
+       scrollMode = nsIScrollableFrame::SMOOTH_MSD;
+     }
+ 
+@@ -1124,7 +1124,7 @@ ShadowRoot*
+ Element::GetShadowRootByMode() const
+ {
+   /**
+-   * 1. Let shadow be context object's shadow root.
++   * 1. Let shadow be context object’s shadow root.
+    * 2. If shadow is null or its mode is "closed", then return null.
+    */
+   ShadowRoot* shadowRoot = GetShadowRoot();
+@@ -1143,7 +1143,7 @@ already_AddRefed<ShadowRoot>
+ Element::AttachShadow(const ShadowRootInit& aInit, ErrorResult& aError)
+ {
+   /**
+-   * 1. If context object's namespace is not the HTML namespace,
++   * 1. If context object’s namespace is not the HTML namespace,
+    *    then throw a "NotSupportedError" DOMException.
+    */
+   if (!IsHTMLElement()) {
+@@ -1152,7 +1152,7 @@ Element::AttachShadow(const ShadowRootInit& aInit, ErrorResult& aError)
+   }
+ 
+   /**
+-   * 2. If context object's local name is not
++   * 2. If context object’s local name is not
+    *      a valid custom element name, "article", "aside", "blockquote",
+    *      "body", "div", "footer", "h1", "h2", "h3", "h4", "h5", "h6",
+    *      "header", "main" "nav", "p", "section", or "span",
+@@ -1236,8 +1236,8 @@ Element::AttachShadowInternal(bool aClosed, ErrorResult& aError)
+ 
+   /**
+    * 4. Let shadow be a new shadow root whose node document is
+-   *    context object's node document, host is context object,
+-   *    and mode is init's mode.
++   *    context object’s node document, host is context object,
++   *    and mode is init’s mode.
+    */
+   RefPtr<ShadowRoot> shadowRoot =
+     new ShadowRoot(this, aClosed, nodeInfo.forget(), protoBinding);
+@@ -1245,7 +1245,7 @@ Element::AttachShadowInternal(bool aClosed, ErrorResult& aError)
+   shadowRoot->SetIsComposedDocParticipant(IsInComposedDoc());
+ 
+   /**
+-   * 5. Set context object's shadow root to shadow.
++   * 5. Set context object’s shadow root to shadow.
+    */
+   SetShadowRoot(shadowRoot);
+ 
+@@ -1919,7 +1919,7 @@ Element::UnbindFromTree(bool aDeep, bool aNullParent)
+       nsPresContext* presContext = presShell->GetPresContext();
+       if (presContext) {
+         MOZ_ASSERT(this !=
+-                   presContext->GetViewportScrollStylesOverrideNode(),
++                   presContext->GetViewportScrollbarStylesOverrideNode(),
+                    "Leaving behind a raw pointer to this node (as having "
+                    "propagated scrollbar styles) - that's dangerous...");
+       }
+diff --git a/dom/base/nsDocument.cpp b/dom/base/nsDocument.cpp
+index a05bd401a4aa..b7e728aa9be5 100644
+--- a/dom/base/nsDocument.cpp
++++ b/dom/base/nsDocument.cpp
+@@ -10809,7 +10809,7 @@ UpdateViewportScrollbarOverrideForFullscreen(nsIDocument* aDoc)
+ {
+   if (nsIPresShell* presShell = aDoc->GetShell()) {
+     if (nsPresContext* presContext = presShell->GetPresContext()) {
+-      presContext->UpdateViewportScrollStylesOverride();
++      presContext->UpdateViewportScrollbarStylesOverride();
+     }
+   }
+ }
+diff --git a/dom/base/nsGlobalWindow.cpp b/dom/base/nsGlobalWindow.cpp
+index 5114be91b1b1..8988252a5455 100644
+--- a/dom/base/nsGlobalWindow.cpp
++++ b/dom/base/nsGlobalWindow.cpp
+@@ -8559,7 +8559,7 @@ nsGlobalWindow::ScrollTo(const CSSIntPoint& aScroll,
+       scroll.y = maxpx;
+     }
+ 
+-    bool smoothScroll = sf->GetScrollStyles().IsSmoothScroll(aOptions.mBehavior);
++    bool smoothScroll = sf->GetScrollbarStyles().IsSmoothScroll(aOptions.mBehavior);
+ 
+     sf->ScrollToCSSPixels(scroll, smoothScroll
+                             ? nsIScrollableFrame::SMOOTH_MSD
+@@ -8615,7 +8615,7 @@ nsGlobalWindow::ScrollByLines(int32_t numLines,
+     // It seems like it would make more sense for ScrollByLines to use
+     // SMOOTH mode, but tests seem to depend on the synchronous behaviour.
+     // Perhaps Web content does too.
+-    bool smoothScroll = sf->GetScrollStyles().IsSmoothScroll(aOptions.mBehavior);
++    bool smoothScroll = sf->GetScrollbarStyles().IsSmoothScroll(aOptions.mBehavior);
+ 
+     sf->ScrollBy(nsIntPoint(0, numLines), nsIScrollableFrame::LINES,
+                  smoothScroll
+@@ -8636,7 +8636,7 @@ nsGlobalWindow::ScrollByPages(int32_t numPages,
+     // It seems like it would make more sense for ScrollByPages to use
+     // SMOOTH mode, but tests seem to depend on the synchronous behaviour.
+     // Perhaps Web content does too.
+-    bool smoothScroll = sf->GetScrollStyles().IsSmoothScroll(aOptions.mBehavior);
++    bool smoothScroll = sf->GetScrollbarStyles().IsSmoothScroll(aOptions.mBehavior);
+ 
+     sf->ScrollBy(nsIntPoint(0, numPages), nsIScrollableFrame::PAGES,
+                  smoothScroll
+diff --git a/dom/events/EventStateManager.cpp b/dom/events/EventStateManager.cpp
+index 9f1c1aa6575c..816308babcf8 100644
+--- a/dom/events/EventStateManager.cpp
++++ b/dom/events/EventStateManager.cpp
+@@ -2518,7 +2518,7 @@ EventStateManager::ComputeScrollTarget(nsIFrame* aTargetFrame,
+       return frameToScroll;
+     }
+ 
+-    ScrollStyles ss = scrollableFrame->GetScrollStyles();
++    ScrollbarStyles ss = scrollableFrame->GetScrollbarStyles();
+     bool hiddenForV = (NS_STYLE_OVERFLOW_HIDDEN == ss.mVertical);
+     bool hiddenForH = (NS_STYLE_OVERFLOW_HIDDEN == ss.mHorizontal);
+     if ((hiddenForV && hiddenForH) ||
+@@ -2611,7 +2611,7 @@ EventStateManager::DoScrollText(nsIScrollableFrame* aScrollableFrame,
+       ComputeScrollAmountForDefaultAction(aEvent, scrollAmountInDevPixels);
+ 
+   // Don't scroll around the axis whose overflow style is hidden.
+-  ScrollStyles overflowStyle = aScrollableFrame->GetScrollStyles();
++  ScrollbarStyles overflowStyle = aScrollableFrame->GetScrollbarStyles();
+   if (overflowStyle.mHorizontal == NS_STYLE_OVERFLOW_HIDDEN) {
+     actualDevPixelScrollAmount.x = 0;
+   }
+diff --git a/gfx/layers/apz/util/APZCCallbackHelper.cpp b/gfx/layers/apz/util/APZCCallbackHelper.cpp
+index 272b69244157..6f824ecf75a0 100644
+--- a/gfx/layers/apz/util/APZCCallbackHelper.cpp
++++ b/gfx/layers/apz/util/APZCCallbackHelper.cpp
+@@ -98,10 +98,10 @@ ScrollFrameTo(nsIScrollableFrame* aFrame, const FrameMetrics& aMetrics, bool& aS
+   // (by design). Note also that when we run into this case, even if both axes
+   // have overflow:hidden, we want to set aSuccessOut to true, so that the displayport
+   // follows the async scroll position rather than the gecko scroll position.
+-  if (aFrame->GetScrollStyles().mVertical == NS_STYLE_OVERFLOW_HIDDEN) {
++  if (aFrame->GetScrollbarStyles().mVertical == NS_STYLE_OVERFLOW_HIDDEN) {
+     targetScrollPosition.y = geckoScrollPosition.y;
+   }
+-  if (aFrame->GetScrollStyles().mHorizontal == NS_STYLE_OVERFLOW_HIDDEN) {
++  if (aFrame->GetScrollbarStyles().mHorizontal == NS_STYLE_OVERFLOW_HIDDEN) {
+     targetScrollPosition.x = geckoScrollPosition.x;
+   }
+ 
+diff --git a/gfx/src/nsColor.cpp b/gfx/src/nsColor.cpp
+index c7a6fafb1bae..af3d130197ff 100644
+--- a/gfx/src/nsColor.cpp
++++ b/gfx/src/nsColor.cpp
+@@ -257,6 +257,59 @@ NS_ComposeColors(nscolor aBG, nscolor aFG)
+   return NS_RGBA(r, g, b, a);
+ }
+ 
++namespace mozilla {
++
++static uint32_t
++BlendColorComponent(uint32_t aBg, uint32_t aFg, uint32_t aFgAlpha)
++{
++  return RoundingDivideBy255(aBg * (255 - aFgAlpha) + aFg * aFgAlpha);
++}
++
++nscolor
++LinearBlendColors(nscolor aBg, nscolor aFg, uint_fast8_t aFgRatio)
++{
++  // Common case that either pure background or pure foreground
++  if (aFgRatio == 0) {
++    return aBg;
++  }
++  if (aFgRatio == 255) {
++    return aFg;
++  }
++  // Common case that alpha channel is equal (usually both are opaque)
++  if (NS_GET_A(aBg) == NS_GET_A(aFg)) {
++    auto r = BlendColorComponent(NS_GET_R(aBg), NS_GET_R(aFg), aFgRatio);
++    auto g = BlendColorComponent(NS_GET_G(aBg), NS_GET_G(aFg), aFgRatio);
++    auto b = BlendColorComponent(NS_GET_B(aBg), NS_GET_B(aFg), aFgRatio);
++    return NS_RGBA(r, g, b, NS_GET_A(aFg));
++  }
++
++  constexpr float kFactor = 1.0f / 255.0f;
++
++  float p1 = kFactor * (255 - aFgRatio);
++  float a1 = kFactor * NS_GET_A(aBg);
++  float r1 = a1 * NS_GET_R(aBg);
++  float g1 = a1 * NS_GET_G(aBg);
++  float b1 = a1 * NS_GET_B(aBg);
++
++  float p2 = 1.0f - p1;
++  float a2 = kFactor * NS_GET_A(aFg);
++  float r2 = a2 * NS_GET_R(aFg);
++  float g2 = a2 * NS_GET_G(aFg);
++  float b2 = a2 * NS_GET_B(aFg);
++
++  float a = p1 * a1 + p2 * a2;
++  if (a == 0.0) {
++    return NS_RGBA(0, 0, 0, 0);
++  }
++
++  auto r = ClampColor((p1 * r1 + p2 * r2) / a);
++  auto g = ClampColor((p1 * g1 + p2 * g2) / a);
++  auto b = ClampColor((p1 * b1 + p2 * b2) / a);
++  return NS_RGBA(r, g, b, NSToIntRound(a * 255));
++}
++
++} // namespace mozilla
++
+ // Functions to convert from HSL color space to RGB color space.
+ // This is the algorithm described in the CSS3 specification
+ 
+diff --git a/gfx/src/nsColor.h b/gfx/src/nsColor.h
+index 2e8e82821918..2f21c91bf2a8 100644
+--- a/gfx/src/nsColor.h
++++ b/gfx/src/nsColor.h
+@@ -87,6 +87,10 @@ inline uint32_t RoundingDivideBy255(uint32_t n)
+   return (n + 127) / 255;
+ }
+ 
++// Blend one RGBA color with another based on a given ratio.
++// It is a linear interpolation on each channel with alpha premultipled.
++nscolor LinearBlendColors(nscolor aBg, nscolor aFg, uint_fast8_t aFgRatio);
++
+ } // namespace mozilla
+ 
+ // Translate a hex string to a color. Return true if it parses ok,
+diff --git a/gfx/src/nsITheme.h b/gfx/src/nsITheme.h
+index 62e467a85155..ae072c9eeb14 100644
+--- a/gfx/src/nsITheme.h
++++ b/gfx/src/nsITheme.h
+@@ -22,7 +22,6 @@ class nsDeviceContext;
+ class nsIFrame;
+ class nsIAtom;
+ class nsIWidget;
+-class nsStyleContext;
+ 
+ // IID for the nsITheme interface
+ // {7329f760-08cb-450f-8225-dae729096dec}
+@@ -65,7 +64,7 @@ public:
+   /**
+    * Get the computed CSS border for the widget, in pixels.
+    */
+-  NS_IMETHOD GetWidgetBorder(nsDeviceContext* aContext,
++  NS_IMETHOD GetWidgetBorder(nsDeviceContext* aContext, 
+                              nsIFrame* aFrame,
+                              uint8_t aWidgetType,
+                              nsIntMargin* aResult)=0;
+diff --git a/gfx/src/nsThemeConstants.h b/gfx/src/nsThemeConstants.h
+index 7407f60d6a80..d0ced405095d 100644
+--- a/gfx/src/nsThemeConstants.h
++++ b/gfx/src/nsThemeConstants.h
+@@ -175,9 +175,6 @@ enum ThemeWidgetType : uint8_t {
+   // A non-disappearing scrollbar.
+   NS_THEME_SCROLLBAR_NON_DISAPPEARING,
+ 
+-  // The scroll corner
+-  NS_THEME_SCROLLCORNER,
+-
+   // A textfield or text area
+   NS_THEME_TEXTFIELD,
+ 
+diff --git a/layout/base/PresShell.cpp b/layout/base/PresShell.cpp
+index 3e16ee51321e..44b341c58877 100644
+--- a/layout/base/PresShell.cpp
++++ b/layout/base/PresShell.cpp
+@@ -3400,7 +3400,7 @@ static void ScrollToShowRect(nsIScrollableFrame*      aFrameAsScrollable,
+       aHorizontal.mWhenToScroll == nsIPresShell::SCROLL_IF_NOT_VISIBLE) {
+     lineSize = aFrameAsScrollable->GetLineScrollAmount();
+   }
+-  ScrollStyles ss = aFrameAsScrollable->GetScrollStyles();
++  ScrollbarStyles ss = aFrameAsScrollable->GetScrollbarStyles();
+   nsRect allowedRange(scrollPt, nsSize(0, 0));
+   bool needToScroll = false;
+   uint32_t directions = aFrameAsScrollable->GetPerceivedScrollingDirections();
+@@ -3457,7 +3457,7 @@ static void ScrollToShowRect(nsIScrollableFrame*      aFrameAsScrollable,
+   // a current smooth scroll operation.
+   if (needToScroll) {
+     nsIScrollableFrame::ScrollMode scrollMode = nsIScrollableFrame::INSTANT;
+-    bool autoBehaviorIsSmooth = (aFrameAsScrollable->GetScrollStyles().mScrollBehavior
++    bool autoBehaviorIsSmooth = (aFrameAsScrollable->GetScrollbarStyles().mScrollBehavior
+                                   == NS_STYLE_SCROLL_BEHAVIOR_SMOOTH);
+     bool smoothScroll = (aFlags & nsIPresShell::SCROLL_SMOOTH) ||
+                           ((aFlags & nsIPresShell::SCROLL_SMOOTH_AUTO) && autoBehaviorIsSmooth);
+diff --git a/layout/base/RestyleManager.cpp b/layout/base/RestyleManager.cpp
+index 20fabc9029cb..9aa7df244a92 100644
+--- a/layout/base/RestyleManager.cpp
++++ b/layout/base/RestyleManager.cpp
+@@ -6,12 +6,10 @@
+ 
+ #include "mozilla/RestyleManager.h"
+ #include "mozilla/RestyleManagerInlines.h"
+-#include "mozilla/dom/HTMLBodyElement.h"
+ 
+ #include "Layers.h"
+ #include "LayerAnimationInfo.h" // For LayerAnimationInfo::sRecords
+ #include "mozilla/StyleSetHandleInlines.h"
+-#include "nsIDocumentInlines.h"
+ #include "nsIFrame.h"
+ #include "nsIPresShellInlines.h"
+ 
+@@ -459,7 +457,7 @@ RestyleManager::ChangeHintToString(nsChangeHint aHint)
+     "NeutralChange", "InvalidateRenderingObservers",
+     "ReflowChangesSizeOrPosition", "UpdateComputedBSize",
+     "UpdateUsesOpacity", "UpdateBackgroundPosition",
+-    "AddOrRemoveTransform", "ScrollbarChange",
++    "AddOrRemoveTransform", "CSSOverflowChange",
+     "UpdateWidgetProperties"
+   };
+   static_assert(nsChangeHint_AllHints == (1 << ArrayLength(names)) - 1,
+@@ -1150,42 +1148,6 @@ SyncViewsAndInvalidateDescendants(nsIFrame* aFrame, nsChangeHint aChange)
+   }
+ }
+ 
+-static bool
+-IsPrimaryFrameOfRootOrBodyElement(nsIFrame* aFrame)
+-{
+-  nsIContent* content = aFrame->GetContent();
+-  if (!content) {
+-    return false;
+-  }
+-
+-  nsIDocument* document = content->OwnerDoc();
+-  Element* root = document->GetRootElement();
+-  if (!root) {
+-    return false;
+-  }
+-  nsIFrame* rootFrame = root->GetPrimaryFrame();
+-  if (!rootFrame) {
+-    return false;
+-  }
+-  if (aFrame == rootFrame) {
+-    return true;
+-  }
+-
+-  Element* body = document->GetBodyElement();
+-  if (!body) {
+-    return false;
+-  }
+-  nsIFrame* bodyFrame = body->GetPrimaryFrame();
+-  if (!bodyFrame) {
+-    return false;
+-  }
+-  if (aFrame == bodyFrame) {
+-    return true;
+-  }
+-
+-  return false;
+-}
+-
+ static void
+ ApplyRenderingChangeToTree(nsIPresShell* aPresShell,
+                            nsIFrame* aFrame,
+@@ -1213,15 +1175,17 @@ ApplyRenderingChangeToTree(nsIPresShell* aPresShell,
+   gInApplyRenderingChangeToTree = true;
+ #endif
+   if (aChange & nsChangeHint_RepaintFrame) {
+-    // If the frame is the primary frame of either the body element or
+-    // the html element, we propagate the repaint change hint to the
+-    // viewport. This is necessary for background and scrollbar colors
+-    // propagation.
+-    if (IsPrimaryFrameOfRootOrBodyElement(aFrame)) {
+-      nsIFrame* rootFrame = aFrame->
+-        PresContext()->PresShell()->FrameConstructor()->GetRootFrame();
+-      MOZ_ASSERT(rootFrame, "No root frame?");
+-      DoApplyRenderingChangeToTree(rootFrame, nsChangeHint_RepaintFrame);
++    // If the frame's background is propagated to an ancestor, walk up to
++    // that ancestor and apply the RepaintFrame change hint to it.
++    nsStyleContext* bgSC;
++    nsIFrame* propagatedFrame = aFrame;
++    while (!nsCSSRendering::FindBackground(propagatedFrame, &bgSC)) {
++      propagatedFrame = propagatedFrame->GetParent();
++      NS_ASSERTION(aFrame, "root frame must paint");
++    }
++
++    if (propagatedFrame != aFrame) {
++      DoApplyRenderingChangeToTree(propagatedFrame, nsChangeHint_RepaintFrame);
+       aChange &= ~nsChangeHint_RepaintFrame;
+       if (!aChange) {
+         return;
+@@ -1357,11 +1321,11 @@ RestyleManager::ProcessRestyledFrames(nsStyleChangeList& aChangeList)
+   nsPresContext* presContext = PresContext();
+   nsCSSFrameConstructor* frameConstructor = presContext->FrameConstructor();
+ 
+-  // Handle nsChangeHint_ScrollbarChange, by either updating the
++  // Handle nsChangeHint_CSSOverflowChange, by either updating the
+   // scrollbars on the viewport, or upgrading the change hint to frame-reconstruct.
+   for (nsStyleChangeData& data : aChangeList) {
+-    if (data.mHint & nsChangeHint_ScrollbarChange) {
+-      data.mHint &= ~nsChangeHint_ScrollbarChange;
++    if (data.mHint & nsChangeHint_CSSOverflowChange) {
++      data.mHint &= ~nsChangeHint_CSSOverflowChange;
+       bool doReconstruct = true; // assume the worst
+ 
+       // Only bother with this if we're html/body, since:
+@@ -1383,9 +1347,9 @@ RestyleManager::ProcessRestyledFrames(nsStyleChangeList& aChangeList)
+         // to reconstruct - we can just reflow, because no scrollframe is being
+         // added/removed.
+         nsIContent* prevOverrideNode =
+-          presContext->GetViewportScrollStylesOverrideNode();
++          presContext->GetViewportScrollbarStylesOverrideNode();
+         nsIContent* newOverrideNode =
+-          presContext->UpdateViewportScrollStylesOverride();
++          presContext->UpdateViewportScrollbarStylesOverride();
+ 
+         if (data.mContent == prevOverrideNode ||
+             data.mContent == newOverrideNode) {
+diff --git a/layout/base/ScrollStyles.cpp b/layout/base/ScrollbarStyles.cpp
+similarity index 90%
+rename from layout/base/ScrollStyles.cpp
+rename to layout/base/ScrollbarStyles.cpp
+index e39354c1f504..cc9f0c57de65 100644
+--- a/layout/base/ScrollStyles.cpp
++++ b/layout/base/ScrollbarStyles.cpp
+@@ -3,12 +3,12 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+ 
+-#include "mozilla/ScrollStyles.h"
++#include "ScrollbarStyles.h"
+ #include "nsStyleStruct.h" // for nsStyleDisplay and nsStyleBackground::Position
+ 
+ namespace mozilla {
+ 
+-  ScrollStyles::ScrollStyles(uint8_t aH, uint8_t aV,
++  ScrollbarStyles::ScrollbarStyles(uint8_t aH, uint8_t aV,
+                                    const nsStyleDisplay* aDisplay)
+     : mHorizontal(aH), mVertical(aV),
+       mScrollBehavior(aDisplay->mScrollBehavior),
+@@ -19,7 +19,7 @@ namespace mozilla {
+       mScrollSnapDestinationX(aDisplay->mScrollSnapDestination.mXPosition),
+       mScrollSnapDestinationY(aDisplay->mScrollSnapDestination.mYPosition) {}
+ 
+-  ScrollStyles::ScrollStyles(const nsStyleDisplay* aDisplay)
++  ScrollbarStyles::ScrollbarStyles(const nsStyleDisplay* aDisplay)
+     : mHorizontal(aDisplay->mOverflowX), mVertical(aDisplay->mOverflowY),
+       mScrollBehavior(aDisplay->mScrollBehavior),
+       mScrollSnapTypeX(aDisplay->mScrollSnapTypeX),
+diff --git a/layout/base/ScrollStyles.h b/layout/base/ScrollbarStyles.h
+similarity index 87%
+rename from layout/base/ScrollStyles.h
+rename to layout/base/ScrollbarStyles.h
+index 774d11c73b36..b9b59e39f449 100644
+--- a/layout/base/ScrollStyles.h
++++ b/layout/base/ScrollbarStyles.h
+@@ -3,8 +3,8 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+ 
+-#ifndef mozilla_ScrollStyles_h
+-#define mozilla_ScrollStyles_h
++#ifndef ScrollbarStyles_h
++#define ScrollbarStyles_h
+ 
+ #include <stdint.h>
+ #include "nsStyleConsts.h" // for NS_STYLE_SCROLL_SNAP_*
+@@ -16,7 +16,7 @@ struct nsStyleDisplay;
+ 
+ namespace mozilla {
+ 
+-struct ScrollStyles
++struct ScrollbarStyles
+ {
+   // Always one of NS_STYLE_OVERFLOW_SCROLL, NS_STYLE_OVERFLOW_HIDDEN,
+   // or NS_STYLE_OVERFLOW_AUTO.
+@@ -34,7 +34,7 @@ struct ScrollStyles
+   nsStyleCoord::CalcValue mScrollSnapDestinationX;
+   nsStyleCoord::CalcValue mScrollSnapDestinationY;
+ 
+-  ScrollStyles(uint8_t aH, uint8_t aV)
++  ScrollbarStyles(uint8_t aH, uint8_t aV)
+     : mHorizontal(aH), mVertical(aV),
+       mScrollBehavior(NS_STYLE_SCROLL_BEHAVIOR_AUTO),
+       mScrollSnapTypeX(NS_STYLE_SCROLL_SNAP_TYPE_NONE),
+@@ -50,9 +50,9 @@ struct ScrollStyles
+     mScrollSnapDestinationY.mHasPercent = false;
+   }
+ 
+-  explicit ScrollStyles(const nsStyleDisplay* aDisplay);
+-  ScrollStyles(uint8_t aH, uint8_t aV, const nsStyleDisplay* aDisplay);
+-  bool operator==(const ScrollStyles& aStyles) const {
++  explicit ScrollbarStyles(const nsStyleDisplay* aDisplay);
++  ScrollbarStyles(uint8_t aH, uint8_t aV, const nsStyleDisplay* aDisplay);
++  bool operator==(const ScrollbarStyles& aStyles) const {
+     return aStyles.mHorizontal == mHorizontal && aStyles.mVertical == mVertical &&
+            aStyles.mScrollBehavior == mScrollBehavior &&
+            aStyles.mScrollSnapTypeX == mScrollSnapTypeX &&
+@@ -62,7 +62,7 @@ struct ScrollStyles
+            aStyles.mScrollSnapDestinationX == mScrollSnapDestinationX &&
+            aStyles.mScrollSnapDestinationY == mScrollSnapDestinationY;
+   }
+-  bool operator!=(const ScrollStyles& aStyles) const {
++  bool operator!=(const ScrollbarStyles& aStyles) const {
+     return !(*this == aStyles);
+   }
+   bool IsHiddenInBothDirections() const {
+@@ -78,4 +78,4 @@ struct ScrollStyles
+ 
+ } // namespace mozilla
+ 
+-#endif // mozilla_ScrollStyles_h
++#endif
+diff --git a/layout/base/crashtests/1490037.html b/layout/base/crashtests/1490037.html
+deleted file mode 100644
+index 7d5c6b1040ef..000000000000
+--- a/layout/base/crashtests/1490037.html
++++ /dev/null
+@@ -1,12 +0,0 @@
+-<!DOCTYPE html>
+-<style>
+-div {
+-  display: contents;
+-}
+-div::before {
+-  content: "";
+-  float: left;
+-  overflow: scroll;
+-}
+-</style>
+-<div></div>
+diff --git a/layout/base/crashtests/crashtests.list b/layout/base/crashtests/crashtests.list
+index 1f4cfdcabae2..ed905854a9e7 100644
+--- a/layout/base/crashtests/crashtests.list
++++ b/layout/base/crashtests/crashtests.list
+@@ -496,4 +496,3 @@ asserts(0-1) load 1343606.html # bug 1343948
+ load 1352380.html
+ load 1362423-1.html
+ load 1381323.html
+-load 1490037.html
+diff --git a/layout/base/moz.build b/layout/base/moz.build
+index 1bbfd07bc927..fcfc5a3c043b 100644
+--- a/layout/base/moz.build
++++ b/layout/base/moz.build
+@@ -61,6 +61,7 @@ EXPORTS += [
+     'nsRefreshDriver.h',
+     'nsStyleChangeList.h',
+     'nsStyleSheetService.h',
++    'ScrollbarStyles.h',
+     'StackArena.h',
+     'Units.h',
+     'UnitTransforms.h',
+@@ -78,7 +79,6 @@ EXPORTS.mozilla += [
+     'RestyleLogging.h',
+     'RestyleManager.h',
+     'RestyleManagerInlines.h',
+-    'ScrollStyles.h',
+     'ServoRestyleManager.h',
+     'ShapeUtils.h',
+     'StaticPresData.h',
+@@ -113,7 +113,7 @@ UNIFIED_SOURCES += [
+     'PresShell.cpp',
+     'RestyleManager.cpp',
+     'RestyleTracker.cpp',
+-    'ScrollStyles.cpp',
++    'ScrollbarStyles.cpp',
+     'ServoRestyleManager.cpp',
+     'ShapeUtils.cpp',
+     'StackArena.cpp',
+diff --git a/layout/base/nsCSSFrameConstructor.cpp b/layout/base/nsCSSFrameConstructor.cpp
+index 511307e9841e..9b37275faa5a 100644
+--- a/layout/base/nsCSSFrameConstructor.cpp
++++ b/layout/base/nsCSSFrameConstructor.cpp
+@@ -2496,12 +2496,12 @@ nsCSSFrameConstructor::ConstructDocElementFrame(Element*                 aDocEle
+     GetRootFrame()->SetStyleContextWithoutNotification(sc);
+   }
+ 
+-  // Make sure to call UpdateViewportScrollStylesOverride before
++  // Make sure to call UpdateViewportScrollbarStylesOverride before
+   // SetUpDocElementContainingBlock, since it sets up our scrollbar state
+   // properly.
+   DebugOnly<nsIContent*> propagatedScrollFrom;
+   if (nsPresContext* presContext = mPresShell->GetPresContext()) {
+-    propagatedScrollFrom = presContext->UpdateViewportScrollStylesOverride();
++    propagatedScrollFrom = presContext->UpdateViewportScrollbarStylesOverride();
+   }
+ 
+   SetUpDocElementContainingBlock(aDocElement);
+@@ -4808,7 +4808,7 @@ nsCSSFrameConstructor::FindDisplayData(const nsStyleDisplay* aDisplay,
+   if (aElement->IsHTMLElement(nsGkAtoms::body)) {
+     if (nsPresContext* presContext = mPresShell->GetPresContext()) {
+       propagatedScrollToViewport =
+-        presContext->UpdateViewportScrollStylesOverride() == aElement;
++        presContext->UpdateViewportScrollbarStylesOverride() == aElement;
+     }
+   }
+ 
+@@ -4844,7 +4844,7 @@ nsCSSFrameConstructor::FindDisplayData(const nsStyleDisplay* aDisplay,
+       // scrollframe so that it paginates correctly, but we don't want to set
+       // the bit on the block that tells it to clip at paint time.
+       if (mPresShell->GetPresContext()->
+-            ElementWouldPropagateScrollStyles(aElement)) {
++            ElementWouldPropagateScrollbarStyles(aElement)) {
+         suppressScrollFrame = false;
+       }
+     }
+@@ -8474,7 +8474,7 @@ nsCSSFrameConstructor::ContentRemoved(nsIContent* aContainer,
+     // source is a fullscreen element, and we have code elsewhere to update
+     // scrollbars after fullscreen elements are removed -- specifically, it's
+     // part of the fullscreen cleanup code called by Element::UnbindFromTree.)
+-    presContext->UpdateViewportScrollStylesOverride();
++    presContext->UpdateViewportScrollbarStylesOverride();
+   }
+ 
+ #ifdef DEBUG
+diff --git a/layout/base/nsCSSFrameConstructor.h b/layout/base/nsCSSFrameConstructor.h
+index 38bcdac6956f..c9a477ccde5c 100644
+--- a/layout/base/nsCSSFrameConstructor.h
++++ b/layout/base/nsCSSFrameConstructor.h
+@@ -15,7 +15,6 @@
+ #include "mozilla/LinkedList.h"
+ #include "mozilla/RestyleManager.h"
+ #include "mozilla/RestyleManager.h"
+-#include "mozilla/ScrollStyles.h"
+ 
+ #include "nsCOMPtr.h"
+ #include "nsILayoutHistoryState.h"
+@@ -23,6 +22,7 @@
+ #include "nsCounterManager.h"
+ #include "nsIAnonymousContentCreator.h"
+ #include "nsFrameManager.h"
++#include "ScrollbarStyles.h"
+ 
+ struct nsFrameItems;
+ class nsStyleContext;
+diff --git a/layout/base/nsChangeHint.h b/layout/base/nsChangeHint.h
+index 6626d1b8571a..ee6dd14a86ed 100644
+--- a/layout/base/nsChangeHint.h
++++ b/layout/base/nsChangeHint.h
+@@ -223,16 +223,14 @@ enum nsChangeHint : uint32_t {
+   nsChangeHint_AddOrRemoveTransform = 1 << 27,
+ 
+   /**
+-   * Indicates that the presence of scrollbars might have changed.
+-   *
+-   * This happens when at least one of overflow-{x,y} properties changed.
++   * Indicates that the overflow-x and/or overflow-y property changed.
+    *
+    * In most cases, this is equivalent to nsChangeHint_ReconstructFrame. But
+    * in some special cases where the change is really targeting the viewport's
+    * scrollframe, this is instead equivalent to nsChangeHint_AllReflowHints
+    * (because the viewport always has an associated scrollframe).
+    */
+-  nsChangeHint_ScrollbarChange = 1 << 28,
++  nsChangeHint_CSSOverflowChange = 1 << 28,
+ 
+   /**
+    * Indicates that nsIFrame::UpdateWidgetProperties needs to be called.
+@@ -344,7 +342,7 @@ inline nsChangeHint operator^=(nsChangeHint& aLeft, nsChangeHint aRight)
+ #define nsChangeHint_Hints_NeverHandledForDescendants (    \
+   nsChangeHint_BorderStyleNoneChange |                     \
+   nsChangeHint_ChildrenOnlyTransform |                     \
+-  nsChangeHint_ScrollbarChange |                           \
++  nsChangeHint_CSSOverflowChange |                         \
+   nsChangeHint_InvalidateRenderingObservers |              \
+   nsChangeHint_RecomputePosition |                         \
+   nsChangeHint_UpdateBackgroundPosition |                  \
+diff --git a/layout/base/nsLayoutUtils.cpp b/layout/base/nsLayoutUtils.cpp
+index 6b7eb9e6b9e6..d0f3507b87b5 100644
+--- a/layout/base/nsLayoutUtils.cpp
++++ b/layout/base/nsLayoutUtils.cpp
+@@ -2059,7 +2059,7 @@ nsLayoutUtils::GetNearestScrollableFrameForDirection(nsIFrame* aFrame,
+   for (nsIFrame* f = aFrame; f; f = nsLayoutUtils::GetCrossDocParentFrame(f)) {
+     nsIScrollableFrame* scrollableFrame = do_QueryFrame(f);
+     if (scrollableFrame) {
+-      ScrollStyles ss = scrollableFrame->GetScrollStyles();
++      ScrollbarStyles ss = scrollableFrame->GetScrollbarStyles();
+       uint32_t directions = scrollableFrame->GetPerceivedScrollingDirections();
+       if (aDirection == eVertical ?
+           (ss.mVertical != NS_STYLE_OVERFLOW_HIDDEN &&
+@@ -2086,7 +2086,7 @@ nsLayoutUtils::GetNearestScrollableFrame(nsIFrame* aFrame, uint32_t aFlags)
+           return scrollableFrame;
+         }
+       } else {
+-        ScrollStyles ss = scrollableFrame->GetScrollStyles();
++        ScrollbarStyles ss = scrollableFrame->GetScrollbarStyles();
+         if ((aFlags & SCROLLABLE_INCLUDE_HIDDEN) ||
+             ss.mVertical != NS_STYLE_OVERFLOW_HIDDEN ||
+             ss.mHorizontal != NS_STYLE_OVERFLOW_HIDDEN) {
+@@ -8345,11 +8345,11 @@ nsLayoutUtils::CalculateScrollableRectForFrame(nsIScrollableFrame* aScrollableFr
+     contentBounds = aScrollableFrame->GetScrollRange();
+ 
+     nsPoint scrollPosition = aScrollableFrame->GetScrollPosition();
+-    if (aScrollableFrame->GetScrollStyles().mVertical == NS_STYLE_OVERFLOW_HIDDEN) {
++    if (aScrollableFrame->GetScrollbarStyles().mVertical == NS_STYLE_OVERFLOW_HIDDEN) {
+       contentBounds.y = scrollPosition.y;
+       contentBounds.height = 0;
+     }
+-    if (aScrollableFrame->GetScrollStyles().mHorizontal == NS_STYLE_OVERFLOW_HIDDEN) {
++    if (aScrollableFrame->GetScrollbarStyles().mHorizontal == NS_STYLE_OVERFLOW_HIDDEN) {
+       contentBounds.x = scrollPosition.x;
+       contentBounds.width = 0;
+     }
+@@ -9456,49 +9456,3 @@ nsLayoutUtils::ComputeGeometryBox(nsIFrame* aFrame,
+ 
+   return r;
+ }
+-
+-/* static */ nsStyleContext*
+-nsLayoutUtils::StyleForScrollbar(nsIFrame* aScrollbarPart)
+-{
+-  // Get the closest content node which is not an anonymous scrollbar
+-  // part. It should be the originating element of the scrollbar part.
+-  nsIContent* content = aScrollbarPart->GetContent();
+-  // Note that the content may be a normal element with scrollbar part
+-  // value specified for its -moz-appearance, so don't rely on it being
+-  // a native anonymous. Also note that we have to check the node name
+-  // because anonymous element like generated content may originate a
+-  // scrollbar.
+-  MOZ_ASSERT(content, "No content for the scrollbar part?");
+-  while (content && content->IsInNativeAnonymousSubtree() &&
+-         content->IsAnyOfXULElements(nsGkAtoms::scrollbar,
+-                                     nsGkAtoms::scrollbarbutton,
+-                                     nsGkAtoms::scrollcorner,
+-                                     nsGkAtoms::slider,
+-                                     nsGkAtoms::thumb)) {
+-    content = content->GetParent();
+-  }
+-  MOZ_ASSERT(content, "Native anonymous element with no originating node?");
+-  // Use the style from the primary frame of the content.
+-  // Note: it is important to use the primary frame rather than an
+-  // ancestor frame of the scrollbar part for the correct handling of
+-  // viewport scrollbar. The content of the scroll frame of the viewport
+-  // is the root element, but its style inherits from the viewport.
+-  // Since we need to use the style of root element for the viewport
+-  // scrollbar, we have to get the style from the primary frame.
+-  if (nsIFrame* primaryFrame = content->GetPrimaryFrame()) {
+-    return primaryFrame->StyleContext();
+-  }
+-  // If the element doesn't have primary frame, get the computed style
+-  // from the element directly. This can happen on viewport, because
+-  // the scrollbar of viewport may be shown when the root element has
+-  // > display: none; overflow: scroll;
+-  nsPresContext* pc = aScrollbarPart->PresContext();
+-  MOZ_ASSERT(content == pc->Document()->GetRootElement(),
+-             "Root element is the only case for this fallback "
+-             "path to be triggered");
+-  RefPtr<nsStyleContext> style =
+-    pc->StyleSet()->AsGecko()->ResolveStyleFor(content->AsElement(), nullptr);
+-  // Dropping the strong reference is fine because the style should be
+-  // held strongly by the element.
+-  return style.get();
+-}
+diff --git a/layout/base/nsLayoutUtils.h b/layout/base/nsLayoutUtils.h
+index 9d1d1febcb62..0616a8d971f2 100644
+--- a/layout/base/nsLayoutUtils.h
++++ b/layout/base/nsLayoutUtils.h
+@@ -2978,12 +2978,6 @@ public:
+     return ResolveToLength<true>(aGap, aPercentageBasis);
+   }
+ 
+-  /**
+-   * Get the computed style from which the scrollbar style should be
+-   * used for the given scrollbar part frame.
+-   */
+-  static nsStyleContext* StyleForScrollbar(nsIFrame* aScrollbarPart);
+-
+ private:
+   static uint32_t sFontSizeInflationEmPerLine;
+   static uint32_t sFontSizeInflationMinTwips;
+diff --git a/layout/base/nsPresContext.cpp b/layout/base/nsPresContext.cpp
+index 905f37446460..5faea4a940f4 100644
+--- a/layout/base/nsPresContext.cpp
++++ b/layout/base/nsPresContext.cpp
+@@ -1449,7 +1449,7 @@ nsPresContext::ScreenSizeInchesForFontInflation(bool* aChanged)
+ }
+ 
+ static bool
+-CheckOverflow(const nsStyleDisplay* aDisplay, ScrollStyles* aStyles)
++CheckOverflow(const nsStyleDisplay* aDisplay, ScrollbarStyles* aStyles)
+ {
+   if (aDisplay->mOverflowX == NS_STYLE_OVERFLOW_VISIBLE &&
+       aDisplay->mScrollBehavior == NS_STYLE_SCROLL_BEHAVIOR_AUTO &&
+@@ -1465,17 +1465,17 @@ CheckOverflow(const nsStyleDisplay* aDisplay, ScrollStyles* aStyles)
+   }
+ 
+   if (aDisplay->mOverflowX == NS_STYLE_OVERFLOW_CLIP) {
+-    *aStyles = ScrollStyles(NS_STYLE_OVERFLOW_HIDDEN,
++    *aStyles = ScrollbarStyles(NS_STYLE_OVERFLOW_HIDDEN,
+                                NS_STYLE_OVERFLOW_HIDDEN, aDisplay);
+   } else {
+-    *aStyles = ScrollStyles(aDisplay);
++    *aStyles = ScrollbarStyles(aDisplay);
+   }
+   return true;
+ }
+ 
+ static nsIContent*
+-GetPropagatedScrollStylesForViewport(nsPresContext* aPresContext,
+-                                     ScrollStyles *aStyles)
++GetPropagatedScrollbarStylesForViewport(nsPresContext* aPresContext,
++                                        ScrollbarStyles *aStyles)
+ {
+   nsIDocument* document = aPresContext->Document();
+   Element* docElement = document->GetRootElement();
+@@ -1528,16 +1528,16 @@ GetPropagatedScrollStylesForViewport(nsPresContext* aPresContext,
+ }
+ 
+ nsIContent*
+-nsPresContext::UpdateViewportScrollStylesOverride()
++nsPresContext::UpdateViewportScrollbarStylesOverride()
+ {
+   // Start off with our default styles, and then update them as needed.
+-  mViewportStyleScrollbar = ScrollStyles(NS_STYLE_OVERFLOW_AUTO,
++  mViewportStyleScrollbar = ScrollbarStyles(NS_STYLE_OVERFLOW_AUTO,
+                                             NS_STYLE_OVERFLOW_AUTO);
+   mViewportScrollbarOverrideNode = nullptr;
+   // Don't propagate the scrollbar state in printing or print preview.
+   if (!IsPaginated()) {
+     mViewportScrollbarOverrideNode =
+-      GetPropagatedScrollStylesForViewport(this, &mViewportStyleScrollbar);
++      GetPropagatedScrollbarStylesForViewport(this, &mViewportStyleScrollbar);
+   }
+ 
+   nsIDocument* document = Document();
+@@ -1549,7 +1549,7 @@ nsPresContext::UpdateViewportScrollStylesOverride()
+     // affected across fullscreen change.
+     if (fullscreenElement != document->GetRootElement() &&
+         fullscreenElement != mViewportScrollbarOverrideNode) {
+-      mViewportStyleScrollbar = ScrollStyles(NS_STYLE_OVERFLOW_HIDDEN,
++      mViewportStyleScrollbar = ScrollbarStyles(NS_STYLE_OVERFLOW_HIDDEN,
+                                                 NS_STYLE_OVERFLOW_HIDDEN);
+     }
+   }
+@@ -1557,7 +1557,7 @@ nsPresContext::UpdateViewportScrollStylesOverride()
+ }
+ 
+ bool
+-nsPresContext::ElementWouldPropagateScrollStyles(Element* aElement)
++nsPresContext::ElementWouldPropagateScrollbarStyles(Element* aElement)
+ {
+   MOZ_ASSERT(IsPaginated(), "Should only be called on paginated contexts");
+   if (aElement->GetParent() && !aElement->IsHTMLElement(nsGkAtoms::body)) {
+@@ -1565,13 +1565,13 @@ nsPresContext::ElementWouldPropagateScrollStyles(Element* aElement)
+     return false;
+   }
+ 
+-  // Go ahead and just call GetPropagatedScrollStylesForViewport, but update
+-  // a dummy ScrollStyles we don't care about.  It'll do a bit of extra work,
++  // Go ahead and just call GetPropagatedScrollbarStylesForViewport, but update
++  // a dummy ScrollbarStyles we don't care about.  It'll do a bit of extra work,
+   // but saves us having to have more complicated code or more code duplication;
+   // in practice we will make this call quite rarely, because we checked for all
+   // the common cases above.
+-  ScrollStyles dummy(NS_STYLE_OVERFLOW_AUTO, NS_STYLE_OVERFLOW_AUTO);
+-  return GetPropagatedScrollStylesForViewport(this, &dummy) == aElement;
++  ScrollbarStyles dummy(NS_STYLE_OVERFLOW_AUTO, NS_STYLE_OVERFLOW_AUTO);
++  return GetPropagatedScrollbarStylesForViewport(this, &dummy) == aElement;
+ }
+ 
+ void
+diff --git a/layout/base/nsPresContext.h b/layout/base/nsPresContext.h
+index 7e092e8f0b0e..158e211ea902 100644
+--- a/layout/base/nsPresContext.h
++++ b/layout/base/nsPresContext.h
+@@ -10,7 +10,6 @@
+ 
+ #include "mozilla/Attributes.h"
+ #include "mozilla/NotNull.h"
+-#include "mozilla/ScrollStyles.h"
+ #include "mozilla/UniquePtr.h"
+ #include "mozilla/WeakPtr.h"
+ #include "nsColor.h"
+@@ -39,6 +38,7 @@
+ #include "mozilla/AppUnits.h"
+ #include "prclist.h"
+ #include "nsThreadUtils.h"
++#include "ScrollbarStyles.h"
+ #include "nsIMessageManager.h"
+ #include "mozilla/RestyleLogging.h"
+ #include "Units.h"
+@@ -130,7 +130,7 @@ public:
+   using Encoding = mozilla::Encoding;
+   template <typename T> using NotNull = mozilla::NotNull<T>;
+   typedef mozilla::LangGroupFontPrefs LangGroupFontPrefs;
+-  typedef mozilla::ScrollStyles ScrollStyles;
++  typedef mozilla::ScrollbarStyles ScrollbarStyles;
+   typedef mozilla::StaticPresData StaticPresData;
+ 
+   NS_DECL_CYCLE_COLLECTING_ISUPPORTS
+@@ -733,19 +733,19 @@ public:
+    * @return if scroll was propagated from some content node, the content node
+    *         it was propagated from.
+    */
+-  nsIContent* UpdateViewportScrollStylesOverride();
++  nsIContent* UpdateViewportScrollbarStylesOverride();
+ 
+   /**
+    * Returns the cached result from the last call to
+-   * UpdateViewportScrollStylesOverride() -- i.e. return the node
++   * UpdateViewportScrollbarStylesOverride() -- i.e. return the node
+    * whose scrollbar styles we have propagated to the viewport (or nullptr if
+    * there is no such node).
+    */
+-  nsIContent* GetViewportScrollStylesOverrideNode() const {
++  nsIContent* GetViewportScrollbarStylesOverrideNode() const {
+     return mViewportScrollbarOverrideNode;
+   }
+ 
+-  const ScrollStyles& GetViewportScrollStylesOverride() const
++  const ScrollbarStyles& GetViewportScrollbarStylesOverride() const
+   {
+     return mViewportStyleScrollbar;
+   }
+@@ -754,7 +754,7 @@ public:
+    * Check whether the given element would propagate its scrollbar styles to the
+    * viewport in non-paginated mode.  Must only be called if IsPaginated().
+    */
+-  bool ElementWouldPropagateScrollStyles(mozilla::dom::Element* aElement);
++  bool ElementWouldPropagateScrollbarStyles(mozilla::dom::Element* aElement);
+ 
+   /**
+    * Set and get methods for controlling the background drawing
+@@ -1372,13 +1372,13 @@ protected:
+ 
+   // This is a non-owning pointer. May be null. If non-null, it's guaranteed
+   // to be pointing to a node that's still alive, because we'll reset it in
+-  // UpdateViewportScrollStylesOverride() as part of the cleanup code
++  // UpdateViewportScrollbarStylesOverride() as part of the cleanup code
+   // when this node is removed from the document. (For <body> and the root node,
+   // this call happens in nsCSSFrameConstructor::ContentRemoved(). For
+   // fullscreen elements, it happens in the fullscreen-specific cleanup
+   // invoked by Element::UnbindFromTree().)
+   nsIContent* MOZ_NON_OWNING_REF mViewportScrollbarOverrideNode;
+-  ScrollStyles          mViewportStyleScrollbar;
++  ScrollbarStyles       mViewportStyleScrollbar;
+ 
+   uint8_t               mFocusRingWidth;
+ 
+diff --git a/layout/forms/nsListControlFrame.cpp b/layout/forms/nsListControlFrame.cpp
+index 4b484d71e20d..be543e3d8826 100644
+--- a/layout/forms/nsListControlFrame.cpp
++++ b/layout/forms/nsListControlFrame.cpp
+@@ -616,17 +616,17 @@ nsListControlFrame::ReflowAsDropdown(nsPresContext*           aPresContext,
+   nsHTMLScrollFrame::Reflow(aPresContext, aDesiredSize, state, aStatus);
+ }
+ 
+-ScrollStyles
+-nsListControlFrame::GetScrollStyles() const
++ScrollbarStyles
++nsListControlFrame::GetScrollbarStyles() const
+ {
+   // We can't express this in the style system yet; when we can, this can go away
+-  // and GetScrollStyles can be devirtualized
++  // and GetScrollbarStyles can be devirtualized
+   int32_t style = IsInDropDownMode() ? NS_STYLE_OVERFLOW_AUTO
+                                      : NS_STYLE_OVERFLOW_SCROLL;
+   if (GetWritingMode().IsVertical()) {
+-    return ScrollStyles(style, NS_STYLE_OVERFLOW_HIDDEN);
++    return ScrollbarStyles(style, NS_STYLE_OVERFLOW_HIDDEN);
+   } else {
+-    return ScrollStyles(NS_STYLE_OVERFLOW_HIDDEN, style);
++    return ScrollbarStyles(NS_STYLE_OVERFLOW_HIDDEN, style);
+   }
+ }
+ 
+diff --git a/layout/forms/nsListControlFrame.h b/layout/forms/nsListControlFrame.h
+index a8fcf266cc55..9836c663364c 100644
+--- a/layout/forms/nsListControlFrame.h
++++ b/layout/forms/nsListControlFrame.h
+@@ -101,7 +101,7 @@ public:
+   virtual nsresult SetFormProperty(nsIAtom* aName, const nsAString& aValue) override;
+   virtual void SetFocus(bool aOn = true, bool aRepaint = false) override;
+ 
+-  virtual mozilla::ScrollStyles GetScrollStyles() const override;
++  virtual mozilla::ScrollbarStyles GetScrollbarStyles() const override;
+   virtual bool ShouldPropagateComputedBSizeToScrolledContent() const override;
+ 
+     // for accessibility purposes
+diff --git a/layout/generic/TextOverflow.cpp b/layout/generic/TextOverflow.cpp
+index 44d5adaaa974..3ad1d627e44f 100644
+--- a/layout/generic/TextOverflow.cpp
++++ b/layout/generic/TextOverflow.cpp
+@@ -305,8 +305,8 @@ TextOverflow::TextOverflow(nsDisplayListBuilder* aBuilder,
+   mCanHaveInlineAxisScrollbar = false;
+   if (mScrollableFrame) {
+     auto scrollbarStyle = mBlockWM.IsVertical() ?
+-      mScrollableFrame->GetScrollStyles().mVertical :
+-      mScrollableFrame->GetScrollStyles().mHorizontal;
++      mScrollableFrame->GetScrollbarStyles().mVertical :
++      mScrollableFrame->GetScrollbarStyles().mHorizontal;
+     mCanHaveInlineAxisScrollbar = scrollbarStyle != NS_STYLE_OVERFLOW_HIDDEN;
+     if (!mAdjustForPixelSnapping) {
+       // Scrolling to the end position can leave some text still overflowing due
+diff --git a/layout/generic/nsFrame.cpp b/layout/generic/nsFrame.cpp
+index c7183dcee519..c169407c588d 100644
+--- a/layout/generic/nsFrame.cpp
++++ b/layout/generic/nsFrame.cpp
+@@ -9578,7 +9578,7 @@ nsIFrame::IsFocusable(int32_t *aTabIndex, bool aWithMouse)
+       // will be enough to make them keyboard scrollable.
+       nsIScrollableFrame *scrollFrame = do_QueryFrame(this);
+       if (scrollFrame &&
+-          !scrollFrame->GetScrollStyles().IsHiddenInBothDirections() &&
++          !scrollFrame->GetScrollbarStyles().IsHiddenInBothDirections() &&
+           !scrollFrame->GetScrollRange().IsEqualEdges(nsRect(0, 0, 0, 0))) {
+         // Scroll bars will be used for overflow
+         isFocusable = true;
+diff --git a/layout/generic/nsGfxScrollFrame.cpp b/layout/generic/nsGfxScrollFrame.cpp
+index 85dca5ab5153..cf6599500e06 100644
+--- a/layout/generic/nsGfxScrollFrame.cpp
++++ b/layout/generic/nsGfxScrollFrame.cpp
+@@ -207,32 +207,10 @@ nsHTMLScrollFrame::GetSplittableType() const
+ 
+ namespace mozilla {
+ 
+-enum class ShowScrollbar : uint8_t
+-{
+-  Auto,
+-  Always,
+-  Never,
+-};
+-
+-static ShowScrollbar
+-ShouldShowScrollbar(uint8_t aOverflow)
+-{
+-  switch (aOverflow) {
+-    case NS_STYLE_OVERFLOW_SCROLL:
+-      return ShowScrollbar::Always;
+-    case NS_STYLE_OVERFLOW_HIDDEN:
+-      return ShowScrollbar::Never;
+-    default:
+-    case NS_STYLE_OVERFLOW_AUTO:
+-      return ShowScrollbar::Auto;
+-  }
+-}
+-
+ struct MOZ_STACK_CLASS ScrollReflowInput {
+   const ReflowInput& mReflowInput;
+   nsBoxLayoutState mBoxState;
+-  ShowScrollbar mHScrollbar;
+-  ShowScrollbar mVScrollbar;
++  ScrollbarStyles mStyles;
+   nsMargin mComputedBorder;
+ 
+   // === Filled in by ReflowScrolledFrame ===
+@@ -253,15 +231,12 @@ struct MOZ_STACK_CLASS ScrollReflowInput {
+   bool mShowVScrollbar;
+ 
+   ScrollReflowInput(nsIScrollableFrame* aFrame,
+-                    const ReflowInput& aState)
+-    : mReflowInput(aState)
++                    const ReflowInput& aState) :
++    mReflowInput(aState),
+     // mBoxState is just used for scrollbars so we don't need to
+     // worry about the reflow depth here
+-  , mBoxState(aState.mFrame->PresContext(), aState.mRenderingContext, 0)
+-  {
+-    ScrollStyles styles = aFrame->GetScrollStyles();
+-    mHScrollbar = ShouldShowScrollbar(styles.mHorizontal);
+-    mVScrollbar = ShouldShowScrollbar(styles.mVertical);
++    mBoxState(aState.mFrame->PresContext(), aState.mRenderingContext, 0),
++    mStyles(aFrame->GetScrollbarStyles()) {
+   }
+ };
+ 
+@@ -349,8 +324,8 @@ nsHTMLScrollFrame::TryLayout(ScrollReflowInput* aState,
+                              bool aAssumeHScroll, bool aAssumeVScroll,
+                              bool aForce)
+ {
+-  if ((aState->mVScrollbar == ShowScrollbar::Never && aAssumeVScroll) ||
+-      (aState->mHScrollbar == ShowScrollbar::Never && aAssumeHScroll)) {
++  if ((aState->mStyles.mVertical == NS_STYLE_OVERFLOW_HIDDEN && aAssumeVScroll) ||
++      (aState->mStyles.mHorizontal == NS_STYLE_OVERFLOW_HIDDEN && aAssumeHScroll)) {
+     NS_ASSERTION(!aForce, "Shouldn't be forcing a hidden scrollbar to show!");
+     return false;
+   }
+@@ -421,9 +396,9 @@ nsHTMLScrollFrame::TryLayout(ScrollReflowInput* aState,
+     nscoord oneDevPixel = aState->mBoxState.PresContext()->DevPixelsToAppUnits(1);
+ 
+     // If the style is HIDDEN then we already know that aAssumeHScroll is false
+-    if (aState->mHScrollbar != ShowScrollbar::Never) {
++    if (aState->mStyles.mHorizontal != NS_STYLE_OVERFLOW_HIDDEN) {
+       bool wantHScrollbar =
+-        aState->mHScrollbar == ShowScrollbar::Always ||
++        aState->mStyles.mHorizontal == NS_STYLE_OVERFLOW_SCROLL ||
+         scrolledRect.XMost() >= visualScrollPortSize.width + oneDevPixel ||
+         scrolledRect.x <= -oneDevPixel;
+       if (scrollPortSize.width < hScrollbarMinSize.width)
+@@ -433,9 +408,9 @@ nsHTMLScrollFrame::TryLayout(ScrollReflowInput* aState,
+     }
+ 
+     // If the style is HIDDEN then we already know that aAssumeVScroll is false
+-     if (aState->mVScrollbar != ShowScrollbar::Never) {
++    if (aState->mStyles.mVertical != NS_STYLE_OVERFLOW_HIDDEN) {
+       bool wantVScrollbar =
+-        aState->mVScrollbar == ShowScrollbar::Always ||
++        aState->mStyles.mVertical == NS_STYLE_OVERFLOW_SCROLL ||
+         scrolledRect.YMost() >= visualScrollPortSize.height + oneDevPixel ||
+         scrolledRect.y <= -oneDevPixel;
+       if (scrollPortSize.height < vScrollbarMinSize.height)
+@@ -630,20 +605,19 @@ nsHTMLScrollFrame::ReflowScrolledFrame(ScrollReflowInput* aState,
+ bool
+ nsHTMLScrollFrame::GuessHScrollbarNeeded(const ScrollReflowInput& aState)
+ {
+-  if (aState.mHScrollbar != ShowScrollbar::Auto) {
++  if (aState.mStyles.mHorizontal != NS_STYLE_OVERFLOW_AUTO)
+     // no guessing required
+-    return aState.mHScrollbar == ShowScrollbar::Always;
+-  }
++    return aState.mStyles.mHorizontal == NS_STYLE_OVERFLOW_SCROLL;
++
+   return mHelper.mHasHorizontalScrollbar;
+ }
+ 
+ bool
+ nsHTMLScrollFrame::GuessVScrollbarNeeded(const ScrollReflowInput& aState)
+ {
+-  if (aState.mVScrollbar != ShowScrollbar::Auto) {
++  if (aState.mStyles.mVertical != NS_STYLE_OVERFLOW_AUTO)
+     // no guessing required
+-    return aState.mVScrollbar == ShowScrollbar::Always;
+-  }
++    return aState.mStyles.mVertical == NS_STYLE_OVERFLOW_SCROLL;
+ 
+   // If we've had at least one non-initial reflow, then just assume
+   // the state of the vertical scrollbar will be what we determined
+@@ -718,8 +692,8 @@ nsHTMLScrollFrame::ReflowContents(ScrollReflowInput* aState,
+   // XXX Is this check really sufficient to catch all the incremental cases
+   // where the ideal case doesn't have a scrollbar?
+   if ((aState->mReflowedContentsWithHScrollbar || aState->mReflowedContentsWithVScrollbar) &&
+-      aState->mVScrollbar != ShowScrollbar::Always &&
+-      aState->mHScrollbar != ShowScrollbar::Always) {
++      aState->mStyles.mVertical != NS_STYLE_OVERFLOW_SCROLL &&
++      aState->mStyles.mHorizontal != NS_STYLE_OVERFLOW_SCROLL) {
+     nsSize insideBorderSize =
+       ComputeInsideBorderSize(aState,
+                               nsSize(kidDesiredSize.Width(), kidDesiredSize.Height()));
+@@ -760,8 +734,8 @@ nsHTMLScrollFrame::ReflowContents(ScrollReflowInput* aState,
+   // enable and force the layout to stick even if it's inconsistent.
+   // This just happens sometimes.
+   TryLayout(aState, &kidDesiredSize,
+-            aState->mHScrollbar != ShowScrollbar::Never,
+-            aState->mVScrollbar != ShowScrollbar::Never,
++            aState->mStyles.mHorizontal != NS_STYLE_OVERFLOW_HIDDEN,
++            aState->mStyles.mVertical != NS_STYLE_OVERFLOW_HIDDEN,
+             true);
+ }
+ 
+@@ -817,7 +791,7 @@ nsHTMLScrollFrame::PlaceScrollArea(ScrollReflowInput& aState,
+ nscoord
+ nsHTMLScrollFrame::GetIntrinsicVScrollbarWidth(gfxContext *aRenderingContext)
+ {
+-  ScrollStyles ss = GetScrollStyles();
++  ScrollbarStyles ss = GetScrollbarStyles();
+   if (ss.mVertical != NS_STYLE_OVERFLOW_SCROLL || !mHelper.mVScrollbarBox)
+     return 0;
+ 
+@@ -1017,10 +991,10 @@ nsHTMLScrollFrame::AdjustForPerspective(nsRect& aScrollableOverflow)
+ }
+ 
+ void
+-nsHTMLScrollFrame::Reflow(nsPresContext* aPresContext,
+-                          ReflowOutput& aDesiredSize,
++nsHTMLScrollFrame::Reflow(nsPresContext*           aPresContext,
++                          ReflowOutput&     aDesiredSize,
+                           const ReflowInput& aReflowInput,
+-                          nsReflowStatus& aStatus)
++                          nsReflowStatus&          aStatus)
+ {
+   MarkInReflow();
+   DO_GLOBAL_REFLOW_COUNT("nsHTMLScrollFrame");
+@@ -1031,12 +1005,10 @@ nsHTMLScrollFrame::Reflow(nsPresContext* aPresContext,
+   ScrollReflowInput state(this, aReflowInput);
+   // sanity check: ensure that if we have no scrollbar, we treat it
+   // as hidden.
+-  if (!mHelper.mVScrollbarBox || mHelper.mNeverHasVerticalScrollbar) {
+-    state.mVScrollbar = ShowScrollbar::Never;
+-  }
+-  if (!mHelper.mHScrollbarBox || mHelper.mNeverHasHorizontalScrollbar) {
+-    state.mHScrollbar = ShowScrollbar::Never;
+-  }
++  if (!mHelper.mVScrollbarBox || mHelper.mNeverHasVerticalScrollbar)
++    state.mStyles.mVertical = NS_STYLE_OVERFLOW_HIDDEN;
++  if (!mHelper.mHScrollbarBox || mHelper.mNeverHasHorizontalScrollbar)
++    state.mStyles.mHorizontal = NS_STYLE_OVERFLOW_HIDDEN;
+ 
+   //------------ Handle Incremental Reflow -----------------
+   bool reflowHScrollbar = true;
+@@ -1063,17 +1035,6 @@ nsHTMLScrollFrame::Reflow(nsPresContext* aPresContext,
+       reflowScrollCorner = showResizer == mHelper.mCollapsedResizer;
+       mHelper.mCollapsedResizer = !showResizer;
+     }
+-
+-    // Hide the scrollbar when the scrollbar-width is set to none.
+-    // This is only needed for root element because scrollbars of non-
+-    // root elements with "scrollbar-width: none" is already suppressed
+-    // in ScrollFrameHelper::CreateAnonymousContent.
+-    nsStyleContext* scrollbarStyle = nsLayoutUtils::StyleForScrollbar(this);
+-    auto scrollbarWidth = scrollbarStyle->StyleUserInterface()->mScrollbarWidth;
+-    if (scrollbarWidth == StyleScrollbarWidth::None) {
+-      state.mVScrollbar = ShowScrollbar::Never;
+-      state.mHScrollbar = ShowScrollbar::Never;
+-    }
+   }
+ 
+   nsRect oldScrollAreaBounds = mHelper.mScrollPort;
+@@ -1181,7 +1142,7 @@ nsHTMLScrollFrame::AccessibleType()
+   // Create an accessible regardless of focusable state because the state can be
+   // changed during frame life cycle without any notifications to accessibility.
+   if (mContent->IsRootOfNativeAnonymousSubtree() ||
+-      GetScrollStyles().IsHiddenInBothDirections()) {
++      GetScrollbarStyles().IsHiddenInBothDirections()) {
+     return a11y::eNoType;
+   }
+ 
+@@ -1356,7 +1317,7 @@ ScrollFrameHelper::WantAsyncScroll() const
+     return true;
+   }
+ 
+-  ScrollStyles styles = GetScrollStylesFromFrame();
++  ScrollbarStyles styles = GetScrollbarStylesFromFrame();
+   nscoord oneDevPixel = GetScrolledFrame()->PresContext()->AppUnitsPerDevPixel();
+   nsRect scrollRange = GetScrollRange();
+   bool isVScrollable = (scrollRange.height >= oneDevPixel) &&
+@@ -1605,7 +1566,7 @@ nsXULScrollFrame::GetXULPrefSize(nsBoxLayoutState& aState)
+ 
+   nsSize pref = mHelper.mScrolledFrame->GetXULPrefSize(aState);
+ 
+-  ScrollStyles styles = GetScrollStyles();
++  ScrollbarStyles styles = GetScrollbarStyles();
+ 
+   // scrolled frames don't have their own margins
+ 
+@@ -1638,7 +1599,7 @@ nsXULScrollFrame::GetXULMinSize(nsBoxLayoutState& aState)
+ 
+   nsSize min = mHelper.mScrolledFrame->GetXULMinSizeForScrollArea(aState);
+ 
+-  ScrollStyles styles = GetScrollStyles();
++  ScrollbarStyles styles = GetScrollbarStyles();
+ 
+   if (mHelper.mVScrollbarBox &&
+       styles.mVertical == NS_STYLE_OVERFLOW_SCROLL) {
+@@ -2521,7 +2482,7 @@ bool ScrollFrameHelper::IsAlwaysActive() const
+ 
+   // If we're overflow:hidden, then start as inactive until
+   // we get scrolled manually.
+-  ScrollStyles styles = GetScrollStylesFromFrame();
++  ScrollbarStyles styles = GetScrollbarStylesFromFrame();
+   return (styles.mHorizontal != NS_STYLE_OVERFLOW_HIDDEN &&
+           styles.mVertical != NS_STYLE_OVERFLOW_HIDDEN);
+ }
+@@ -3904,21 +3865,21 @@ static void HandleScrollPref(nsIScrollable *aScrollable, int32_t aOrientation,
+   }
+ }
+ 
+-ScrollStyles
+-ScrollFrameHelper::GetScrollStylesFromFrame() const
++ScrollbarStyles
++ScrollFrameHelper::GetScrollbarStylesFromFrame() const
+ {
+   nsPresContext* presContext = mOuter->PresContext();
+   if (!presContext->IsDynamic() &&
+       !(mIsRoot && presContext->HasPaginatedScrolling())) {
+-    return ScrollStyles(NS_STYLE_OVERFLOW_HIDDEN, NS_STYLE_OVERFLOW_HIDDEN);
++    return ScrollbarStyles(NS_STYLE_OVERFLOW_HIDDEN, NS_STYLE_OVERFLOW_HIDDEN);
+   }
+ 
+   if (!mIsRoot) {
+     const nsStyleDisplay* disp = mOuter->StyleDisplay();
+-    return ScrollStyles(disp);
++    return ScrollbarStyles(disp);
+   }
+ 
+-  ScrollStyles result = presContext->GetViewportScrollStylesOverride();
++  ScrollbarStyles result = presContext->GetViewportScrollbarStylesOverride();
+   nsCOMPtr<nsISupports> container = presContext->GetContainerWeak();
+   nsCOMPtr<nsIScrollable> scrollable = do_QueryInterface(container);
+   if (scrollable) {
+@@ -4087,7 +4048,7 @@ ScrollFrameHelper::ScrollBy(nsIntPoint aDelta,
+   nsPoint newPos = mDestination + nsPoint(aDelta.x*deltaMultiplier.width, aDelta.y*deltaMultiplier.height);
+ 
+   if (aSnap == nsIScrollableFrame::ENABLE_SNAP) {
+-    ScrollStyles styles = GetScrollStylesFromFrame();
++    ScrollbarStyles styles = GetScrollbarStylesFromFrame();
+     if (styles.mScrollSnapTypeY != NS_STYLE_SCROLL_SNAP_TYPE_NONE ||
+         styles.mScrollSnapTypeX != NS_STYLE_SCROLL_SNAP_TYPE_NONE) {
+       nscoord appUnitsPerDevPixel = mOuter->PresContext()->AppUnitsPerDevPixel();
+@@ -4498,15 +4459,9 @@ ScrollFrameHelper::CreateAnonymousContent(
+   bool canHaveHorizontal;
+   bool canHaveVertical;
+   if (!mIsRoot) {
+-    if (mOuter->StyleUserInterface()->mScrollbarWidth == StyleScrollbarWidth::None) {
+-      // If scrollbar-width is none, don't generate scrollbars.
+-      canHaveHorizontal = false;
+-      canHaveVertical = false;
+-    } else {
+-      ScrollStyles styles = scrollable->GetScrollStyles();
+-      canHaveHorizontal = styles.mHorizontal != NS_STYLE_OVERFLOW_HIDDEN;
+-      canHaveVertical = styles.mVertical != NS_STYLE_OVERFLOW_HIDDEN;
+-    }
++    ScrollbarStyles styles = scrollable->GetScrollbarStyles();
++    canHaveHorizontal = styles.mHorizontal != NS_STYLE_OVERFLOW_HIDDEN;
++    canHaveVertical = styles.mVertical != NS_STYLE_OVERFLOW_HIDDEN;
+     if (!canHaveHorizontal && !canHaveVertical && !isResizable) {
+       // Nothing to do.
+       return NS_OK;
+@@ -5185,7 +5140,7 @@ nsXULScrollFrame::XULLayout(nsBoxLayoutState& aState)
+    (if we're the viewport and we added or removed a scrollbar).
+    **************/
+ 
+-  ScrollStyles styles = GetScrollStyles();
++  ScrollbarStyles styles = GetScrollbarStyles();
+ 
+   // Look at our style do we always have vertical or horizontal scrollbars?
+   if (styles.mHorizontal == NS_STYLE_OVERFLOW_SCROLL)
+@@ -5514,7 +5469,7 @@ bool
+ ScrollFrameHelper::ComputeCustomOverflow(nsOverflowAreas& aOverflowAreas)
+ {
+   nsIScrollableFrame* sf = do_QueryFrame(mOuter);
+-  ScrollStyles ss = sf->GetScrollStyles();
++  ScrollbarStyles ss = sf->GetScrollbarStyles();
+ 
+   // Reflow when the change in overflow leads to one of our scrollbars
+   // changing or might require repositioning the scrolled content due to
+@@ -6237,7 +6192,7 @@ ComputeScrollSnapInfo(const ScrollFrameHelper& aScrollFrame)
+ {
+   ScrollSnapInfo result;
+ 
+-  ScrollStyles styles = aScrollFrame.GetScrollStylesFromFrame();
++  ScrollbarStyles styles = aScrollFrame.GetScrollbarStylesFromFrame();
+ 
+   if (styles.mScrollSnapTypeY == NS_STYLE_SCROLL_SNAP_TYPE_NONE &&
+       styles.mScrollSnapTypeX == NS_STYLE_SCROLL_SNAP_TYPE_NONE) {
+diff --git a/layout/generic/nsGfxScrollFrame.h b/layout/generic/nsGfxScrollFrame.h
+index 7fb73a60f136..5c1bdd16cd93 100644
+--- a/layout/generic/nsGfxScrollFrame.h
++++ b/layout/generic/nsGfxScrollFrame.h
+@@ -55,7 +55,7 @@ public:
+   ScrollFrameHelper(nsContainerFrame* aOuter, bool aIsRoot);
+   ~ScrollFrameHelper();
+ 
+-  mozilla::ScrollStyles GetScrollStylesFromFrame() const;
++  mozilla::ScrollbarStyles GetScrollbarStylesFromFrame() const;
+ 
+   // If a child frame was added or removed on the scrollframe,
+   // reload our child frame list.
+@@ -782,8 +782,8 @@ public:
+   virtual nsIFrame* GetScrolledFrame() const override {
+     return mHelper.GetScrolledFrame();
+   }
+-  virtual mozilla::ScrollStyles GetScrollStyles() const override {
+-    return mHelper.GetScrollStylesFromFrame();
++  virtual mozilla::ScrollbarStyles GetScrollbarStyles() const override {
++    return mHelper.GetScrollbarStylesFromFrame();
+   }
+   virtual uint32_t GetScrollbarVisibility() const override {
+     return mHelper.GetScrollbarVisibility();
+@@ -1220,8 +1220,8 @@ public:
+   virtual nsIFrame* GetScrolledFrame() const override {
+     return mHelper.GetScrolledFrame();
+   }
+-  virtual mozilla::ScrollStyles GetScrollStyles() const override {
+-    return mHelper.GetScrollStylesFromFrame();
++  virtual mozilla::ScrollbarStyles GetScrollbarStyles() const override {
++    return mHelper.GetScrollbarStylesFromFrame();
+   }
+   virtual uint32_t GetScrollbarVisibility() const override {
+     return mHelper.GetScrollbarVisibility();
+diff --git a/layout/generic/nsIScrollableFrame.h b/layout/generic/nsIScrollableFrame.h
+index cb31e5594567..729bbf5b8ac6 100644
+--- a/layout/generic/nsIScrollableFrame.h
++++ b/layout/generic/nsIScrollableFrame.h
+@@ -12,8 +12,8 @@
+ 
+ #include "nsCoord.h"
+ #include "DisplayItemClip.h"
++#include "ScrollbarStyles.h"
+ #include "mozilla/Maybe.h"
+-#include "mozilla/ScrollStyles.h"
+ #include "mozilla/gfx/Point.h"
+ #include "nsIScrollbarMediator.h"
+ #include "Units.h"
+@@ -63,7 +63,7 @@ public:
+    * or NS_STYLE_OVERFLOW_AUTO) governing the horizontal and vertical
+    * scrollbars for this frame.
+    */
+-  virtual mozilla::ScrollStyles GetScrollStyles() const = 0;
++  virtual mozilla::ScrollbarStyles GetScrollbarStyles() const = 0;
+ 
+   enum { HORIZONTAL = 0x01, VERTICAL = 0x02 };
+   /**
+diff --git a/layout/generic/nsTextFrame.cpp b/layout/generic/nsTextFrame.cpp
+index 7f66adf848e7..b01cf710296c 100644
+--- a/layout/generic/nsTextFrame.cpp
++++ b/layout/generic/nsTextFrame.cpp
+@@ -342,7 +342,8 @@ public:
+     if (nsSVGUtils::IsInSVGTextSubtree(mFrame)) {
+       return 0;
+     }
+-    return mFrame->StyleText()->mWebkitTextStrokeColor.CalcColor(mFrame);
++    return mFrame->StyleColor()->
++      CalcComplexColor(mFrame->StyleText()->mWebkitTextStrokeColor);
+   }
+   float GetWebkitTextStrokeWidth() {
+     if (nsSVGUtils::IsInSVGTextSubtree(mFrame)) {
+@@ -5340,10 +5341,11 @@ nsTextFrame::BuildDisplayList(nsDisplayListBuilder*   aBuilder,
+ 
+   DO_GLOBAL_REFLOW_COUNT_DSP("nsTextFrame");
+ 
++  const nsStyleColor* sc = StyleColor();
+   const nsStyleText* st = StyleText();
+   bool isTextTransparent =
+-    NS_GET_A(st->mWebkitTextFillColor.CalcColor(this)) == 0 &&
+-    NS_GET_A(st->mWebkitTextStrokeColor.CalcColor(this)) == 0;
++    NS_GET_A(sc->CalcComplexColor(st->mWebkitTextFillColor)) == 0 &&
++    NS_GET_A(sc->CalcComplexColor(st->mWebkitTextStrokeColor)) == 0;
+   Maybe<bool> isSelected;
+   if (((GetStateBits() & TEXT_NO_RENDERED_GLYPHS) ||
+        (isTextTransparent && !StyleText()->HasTextShadow())) &&
+diff --git a/layout/inspector/inDOMUtils.cpp b/layout/inspector/inDOMUtils.cpp
+index f37e0b0f4ae1..c9824d659a18 100644
+--- a/layout/inspector/inDOMUtils.cpp
++++ b/layout/inspector/inDOMUtils.cpp
+@@ -773,7 +773,6 @@ PropertySupportsVariant(nsCSSPropertyID aPropertyID, uint32_t aVariant)
+       case eCSSProperty__moz_border_left_colors:
+       case eCSSProperty__moz_border_right_colors:
+       case eCSSProperty__moz_border_top_colors:
+-      case eCSSProperty_scrollbar_color:
+         supported = VARIANT_COLOR;
+         break;
+ 
+diff --git a/layout/painting/nsCSSRendering.cpp b/layout/painting/nsCSSRendering.cpp
+index 9ac82b9c7ca7..2da321c2855c 100644
+--- a/layout/painting/nsCSSRendering.cpp
++++ b/layout/painting/nsCSSRendering.cpp
+@@ -706,6 +706,9 @@ ConstructBorderRenderer(nsPresContext* aPresContext,
+ {
+   nsMargin border = aStyleBorder.GetComputedBorder();
+ 
++  // Get our style context's color struct.
++  const nsStyleColor* ourColor = aStyleContext->StyleColor();
++
+   // In NavQuirks mode we want to use the parent's context as a starting point
+   // for determining the background color.
+   bool quirks = aPresContext->CompatibilityMode() == eCompatibility_NavQuirks;
+@@ -762,7 +765,7 @@ ConstructBorderRenderer(nsPresContext* aPresContext,
+   // pull out styles, colors, composite colors
+   NS_FOR_CSS_SIDES (i) {
+     borderStyles[i] = aStyleBorder.GetBorderStyle(i);
+-    borderColors[i] = aStyleBorder.mBorderColor[i].CalcColor(aStyleContext);
++    borderColors[i] = ourColor->CalcComplexColor(aStyleBorder.mBorderColor[i]);
+     aStyleBorder.GetCompositeColors(i, &compositeColors[i]);
+   }
+ 
+@@ -2423,43 +2426,6 @@ DrawBackgroundColor(nsCSSRendering::ImageLayerClipState& aClipState,
+   aCtx->Restore();
+ }
+ 
+-static Maybe<nscolor>
+-CalcScrollbarColor(nsIFrame* aFrame, StyleComplexColor nsStyleUserInterface::* aColor)
+-{
+-  nsStyleContext* scrollbarStyle = nsLayoutUtils::StyleForScrollbar(aFrame);
+-  auto color = scrollbarStyle->StyleUserInterface()->*aColor;
+-  if (color.mIsAuto) {
+-    return Nothing();
+-  }
+-  return Some(color.CalcColor(scrollbarStyle));
+-}
+-
+-static nscolor
+-GetBackgroundColor(nsIFrame* aFrame, nsStyleContext* aComputedStyle)
+-{
+-  Maybe<nscolor> overrideColor = Nothing();
+-  switch (aComputedStyle->StyleDisplay()->mAppearance) {
+-    case NS_THEME_SCROLLBARTHUMB_VERTICAL:
+-    case NS_THEME_SCROLLBARTHUMB_HORIZONTAL:
+-      overrideColor =
+-        CalcScrollbarColor(aFrame, &nsStyleUserInterface::mScrollbarFaceColor);
+-      break;
+-    case NS_THEME_SCROLLBAR_VERTICAL:
+-    case NS_THEME_SCROLLBAR_HORIZONTAL:
+-    case NS_THEME_SCROLLCORNER:
+-      overrideColor =
+-        CalcScrollbarColor(aFrame, &nsStyleUserInterface::mScrollbarTrackColor);
+-      break;
+-    default:
+-      break;
+-  }
+-  if (overrideColor.isSome()) {
+-    return *overrideColor;
+-  }
+-  return aComputedStyle->
+-    GetVisitedDependentColor(&nsStyleBackground::mBackgroundColor);
+-}
+-
+ nscolor
+ nsCSSRendering::DetermineBackgroundColor(nsPresContext* aPresContext,
+                                          nsStyleContext* aStyleContext,
+@@ -2481,7 +2447,8 @@ nsCSSRendering::DetermineBackgroundColor(nsPresContext* aPresContext,
+   const nsStyleBackground *bg = aStyleContext->StyleBackground();
+   nscolor bgColor;
+   if (aDrawBackgroundColor) {
+-    bgColor = GetBackgroundColor(aFrame, aStyleContext);
++    bgColor = aStyleContext->
++      GetVisitedDependentColor(&nsStyleBackground::mBackgroundColor);
+     if (NS_GET_A(bgColor) == 0) {
+       aDrawBackgroundColor = false;
+     }
+diff --git a/layout/style/StyleComplexColor.cpp b/layout/style/StyleComplexColor.cpp
+deleted file mode 100644
+index c2e17e957e91..000000000000
+--- a/layout/style/StyleComplexColor.cpp
++++ /dev/null
+@@ -1,77 +0,0 @@
+-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+-/* vim: set ts=8 sts=2 et sw=2 tw=80: */
+-/* This Source Code Form is subject to the terms of the Mozilla Public
+- * License, v. 2.0. If a copy of the MPL was not distributed with this
+- * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+-
+-#include "mozilla/StyleComplexColor.h"
+-
+-#include "nsStyleContext.h"
+-#include "nsStyleContextInlines.h"
+-#include "nsIFrame.h"
+-#include "nsStyleStruct.h"
+-
+-using namespace mozilla;
+-
+-static uint32_t
+-BlendColorComponent(uint32_t aBg, uint32_t aFg, uint32_t aFgAlpha)
+-{
+-  return RoundingDivideBy255(aBg * (255 - aFgAlpha) + aFg * aFgAlpha);
+-}
+-
+-// Blend one RGBA color with another based on a given ratio.
+-// It is a linear interpolation on each channel with alpha premultipled.
+-static nscolor
+-LinearBlendColors(nscolor aBg, nscolor aFg, uint_fast8_t aFgRatio)
+-{
+-  // Common case that either pure background or pure foreground
+-  if (aFgRatio == 0) {
+-    return aBg;
+-  }
+-  if (aFgRatio == 255) {
+-    return aFg;
+-  }
+-  // Common case that alpha channel is equal (usually both are opaque)
+-  if (NS_GET_A(aBg) == NS_GET_A(aFg)) {
+-    auto r = BlendColorComponent(NS_GET_R(aBg), NS_GET_R(aFg), aFgRatio);
+-    auto g = BlendColorComponent(NS_GET_G(aBg), NS_GET_G(aFg), aFgRatio);
+-    auto b = BlendColorComponent(NS_GET_B(aBg), NS_GET_B(aFg), aFgRatio);
+-    return NS_RGBA(r, g, b, NS_GET_A(aFg));
+-  }
+-
+-  constexpr float kFactor = 1.0f / 255.0f;
+-
+-  float p1 = kFactor * (255 - aFgRatio);
+-  float a1 = kFactor * NS_GET_A(aBg);
+-  float r1 = a1 * NS_GET_R(aBg);
+-  float g1 = a1 * NS_GET_G(aBg);
+-  float b1 = a1 * NS_GET_B(aBg);
+-
+-  float p2 = 1.0f - p1;
+-  float a2 = kFactor * NS_GET_A(aFg);
+-  float r2 = a2 * NS_GET_R(aFg);
+-  float g2 = a2 * NS_GET_G(aFg);
+-  float b2 = a2 * NS_GET_B(aFg);
+-
+-  float a = p1 * a1 + p2 * a2;
+-  if (a == 0.0) {
+-    return NS_RGBA(0, 0, 0, 0);
+-  }
+-
+-  auto r = ClampColor((p1 * r1 + p2 * r2) / a);
+-  auto g = ClampColor((p1 * g1 + p2 * g2) / a);
+-  auto b = ClampColor((p1 * b1 + p2 * b2) / a);
+-  return NS_RGBA(r, g, b, NSToIntRound(a * 255));
+-}
+-
+-nscolor
+-StyleComplexColor::CalcColor(nsStyleContext* aStyle) const {
+-  MOZ_ASSERT(aStyle);
+-  auto foregroundColor = aStyle->StyleColor()->mColor;
+-  return LinearBlendColors(mColor, foregroundColor, mForegroundRatio);
+-}
+-
+-nscolor
+-StyleComplexColor::CalcColor(const nsIFrame* aFrame) const {
+-  return CalcColor(aFrame->StyleContext());
+-}
+diff --git a/layout/style/StyleComplexColor.h b/layout/style/StyleComplexColor.h
+index 06659d1debfa..e0258e2f59f4 100644
+--- a/layout/style/StyleComplexColor.h
++++ b/layout/style/StyleComplexColor.h
+@@ -11,9 +11,6 @@
+ 
+ #include "nsColor.h"
+ 
+-class nsIFrame;
+-class nsStyleContext;
+-
+ namespace mozilla {
+ 
+ /**
+@@ -22,19 +19,15 @@ namespace mozilla {
+  * Conceptually, the formula is "color * (1 - p) + currentcolor * p"
+  * where p is mForegroundRatio. See mozilla::LinearBlendColors for
+  * the actual algorithm.
+- *
+- * It can also represent an "auto" value, which is valid for some
+- * properties. See comment of mIsAuto.
+  */
+ struct StyleComplexColor
+ {
+   nscolor mColor;
+   uint8_t mForegroundRatio;
+   // Whether the complex color represents a computed-value time auto
+-  // value. This is a flag indicating that this value should not be
+-  // interpolatable with other colors. When this flag is set, other
+-  // fields represent a currentcolor. Properties can decide whether
+-  // that should be used.
++  // value. This is only a flag indicating that this value should not
++  // be interpolatable with other colors, while other fields still
++  // represents the actual used color of this value.
+   bool mIsAuto;
+ 
+   static StyleComplexColor FromColor(nscolor aColor) {
+@@ -58,18 +51,6 @@ struct StyleComplexColor
+   bool operator!=(const StyleComplexColor& aOther) const {
+     return !(*this == aOther);
+   }
+-
+-  /**
+-   * Compute the color for this StyleComplexColor, taking into account
+-   * the foreground color from aStyle.
+-   */
+-  nscolor CalcColor(nsStyleContext* aStyle) const;
+-
+-  /**
+-   * Compute the color for this StyleComplexColor, taking into account
+-   * the foreground color from aFrame's ComputedStyle.
+-   */
+-  nscolor CalcColor(const nsIFrame* aFrame) const;
+ };
+ 
+ }
+diff --git a/layout/style/moz.build b/layout/style/moz.build
+index 693a97e532c3..b5b19ee62232 100644
+--- a/layout/style/moz.build
++++ b/layout/style/moz.build
+@@ -267,7 +267,6 @@ UNIFIED_SOURCES += [
+     'ServoStyleSheet.cpp',
+     'ServoSupportsRule.cpp',
+     'StyleAnimationValue.cpp',
+-    'StyleComplexColor.cpp',
+     'StylePrefs.cpp',
+     'StyleRule.cpp',
+     'StyleSheet.cpp',
+diff --git a/layout/style/nsCSSKeywordList.h b/layout/style/nsCSSKeywordList.h
+index 39f721f5f819..cccd62d1a75b 100644
+--- a/layout/style/nsCSSKeywordList.h
++++ b/layout/style/nsCSSKeywordList.h
+@@ -512,8 +512,6 @@ CSS_KEY(scrollbar, scrollbar)
+ CSS_KEY(scrollbar-small, scrollbar_small)
+ CSS_KEY(scrollbar-horizontal, scrollbar_horizontal)
+ CSS_KEY(scrollbar-vertical, scrollbar_vertical)
+-CSS_KEY(scrollcorner, scrollcorner)
+-CSS_KEY(scrollbar-width, scrollbar_width)
+ CSS_KEY(se-resize, se_resize)
+ CSS_KEY(select-after, select_after)
+ CSS_KEY(select-all, select_all)
+diff --git a/layout/style/nsCSSParser.cpp b/layout/style/nsCSSParser.cpp
+index 0ade8fa8cf7c..29f142280f4a 100644
+--- a/layout/style/nsCSSParser.cpp
++++ b/layout/style/nsCSSParser.cpp
+@@ -798,7 +798,6 @@ protected:
+   bool ParseImageLayerSize(nsCSSPropertyID aPropID);
+   bool ParseImageLayerSizeValues(nsCSSValuePair& aOut);
+   bool ParseBorderColor();
+-  bool ParseScrollbarColor(nsCSSPropertyID aProperty);
+   bool ParseBorderColors(nsCSSPropertyID aProperty);
+   void SetBorderImageInitialValues();
+   bool ParseBorderImageRepeat(bool aAcceptsInherit);
+@@ -11825,8 +11824,6 @@ CSSParserImpl::ParsePropertyByFunction(nsCSSPropertyID aPropID)
+     return ParsePaintOrder();
+   case eCSSProperty_scroll_snap_type:
+     return ParseScrollSnapType();
+-  case eCSSProperty_scrollbar_color:
+-    return ParseScrollbarColor(aPropID);
+ #ifdef MOZ_ENABLE_MASK_AS_SHORTHAND
+   case eCSSProperty_mask:
+     return ParseImageLayers(nsStyleImageLayers::kMaskLayerTable);
+@@ -13140,27 +13137,6 @@ CSSParserImpl::ParseBorderColor()
+   return ParseBoxProperties(kBorderColorIDs);
+ }
+ 
+-bool
+-CSSParserImpl::ParseScrollbarColor(nsCSSPropertyID aPropID)
+-{
+-  // aPropID is a single value prop-id
+-  nsCSSValue value;
+-  // 'auto', 'initial', 'inherit' and 'unset' stand alone, no list permitted.
+-  if (!ParseSingleTokenVariant(value, VARIANT_INHERIT | VARIANT_AUTO, nullptr)) {
+-    nsCSSValueList* item = value.SetListValue();
+-    for (int32_t i = 0; i < 2; i++) {
+-      if (ParseVariant(item->mValue, VARIANT_COLOR, nullptr) !=
+-          CSSParseResult::Ok) {
+-        return false;
+-      }
+-      item->mNext = new nsCSSValueList;
+-      item = item->mNext;
+-    }
+-  }
+-  AppendValue(aPropID, value);
+-  return true;
+-}
+-
+ void
+ CSSParserImpl::SetBorderImageInitialValues()
+ {
+diff --git a/layout/style/nsCSSPropList.h b/layout/style/nsCSSPropList.h
+index 436d7c748084..d52eef267ca9 100644
+--- a/layout/style/nsCSSPropList.h
++++ b/layout/style/nsCSSPropList.h
+@@ -3743,28 +3743,6 @@ CSS_PROP_DISPLAY(
+     kScrollSnapTypeKTable,
+     CSS_PROP_NO_OFFSET,
+     eStyleAnimType_Discrete)
+-CSS_PROP_USERINTERFACE(
+-    scrollbar-color,
+-    scrollbar_color,
+-    ScrollbarColor,
+-    CSS_PROPERTY_PARSE_FUNCTION |
+-        CSS_PROPERTY_VALUE_LIST_USES_COMMAS |
+-        CSS_PROPERTY_IGNORED_WHEN_COLORS_DISABLED,
+-    "layout.css.scrollbar-color.enabled",
+-    VARIANT_AUTO | VARIANT_HC,
+-    nullptr,
+-    CSS_PROP_NO_OFFSET,
+-    eStyleAnimType_ComplexColor)
+-CSS_PROP_USERINTERFACE(
+-    scrollbar-width,
+-    scrollbar_width,
+-    ScrollbarWidth,
+-    CSS_PROPERTY_PARSE_VALUE,
+-    "layout.css.scrollbar-width.enabled",
+-    VARIANT_HK,
+-    kScrollbarWidthKTable,
+-    CSS_PROP_NO_OFFSET,
+-    eStyleAnimType_Discrete)
+ CSS_PROP_DISPLAY(
+     shape-outside,
+     shape_outside,
+diff --git a/layout/style/nsCSSProps.cpp b/layout/style/nsCSSProps.cpp
+index ef2fa6ad5487..c8854c571873 100644
+--- a/layout/style/nsCSSProps.cpp
++++ b/layout/style/nsCSSProps.cpp
+@@ -802,7 +802,6 @@ const KTableEntry nsCSSProps::kAppearanceKTable[] = {
+   { eCSSKeyword_scrollbartrack_vertical,      NS_THEME_SCROLLBARTRACK_VERTICAL },
+   { eCSSKeyword_scrollbarthumb_horizontal,    NS_THEME_SCROLLBARTHUMB_HORIZONTAL },
+   { eCSSKeyword_scrollbarthumb_vertical,      NS_THEME_SCROLLBARTHUMB_VERTICAL },
+-  { eCSSKeyword_scrollcorner,           NS_THEME_SCROLLCORNER },
+   { eCSSKeyword_textfield,              NS_THEME_TEXTFIELD },
+   { eCSSKeyword_textfield_multiline,    NS_THEME_TEXTFIELD_MULTILINE },
+   { eCSSKeyword_caret,                  NS_THEME_CARET },
+@@ -1958,12 +1957,6 @@ const KTableEntry nsCSSProps::kScrollSnapTypeKTable[] = {
+   { eCSSKeyword_UNKNOWN,   -1 }
+ };
+ 
+-const KTableEntry nsCSSProps::kScrollbarWidthKTable[] = {
+-  { eCSSKeyword_auto, StyleScrollbarWidth::Auto },
+-  { eCSSKeyword_thin, StyleScrollbarWidth::Thin },
+-  { eCSSKeyword_none, StyleScrollbarWidth::None }
+-};
+-
+ const KTableEntry nsCSSProps::kStackSizingKTable[] = {
+   { eCSSKeyword_ignore, StyleStackSizing::Ignore },
+   { eCSSKeyword_stretch_to_fit, StyleStackSizing::StretchToFit },
+diff --git a/layout/style/nsCSSProps.h b/layout/style/nsCSSProps.h
+index 4cb5bebba507..b5f37e1b54db 100644
+--- a/layout/style/nsCSSProps.h
++++ b/layout/style/nsCSSProps.h
+@@ -839,7 +839,6 @@ public:
+   static const KTableEntry kRubyPositionKTable[];
+   static const KTableEntry kScrollBehaviorKTable[];
+   static const KTableEntry kScrollSnapTypeKTable[];
+-  static const KTableEntry kScrollbarWidthKTable[];
+   static const KTableEntry kSpeakKTable[];
+   static const KTableEntry kSpeakHeaderKTable[];
+   static const KTableEntry kSpeakNumeralKTable[];
+diff --git a/layout/style/nsComputedDOMStyle.cpp b/layout/style/nsComputedDOMStyle.cpp
+index 7ba8fbb86ba9..f8075e0df24a 100644
+--- a/layout/style/nsComputedDOMStyle.cpp
++++ b/layout/style/nsComputedDOMStyle.cpp
+@@ -1209,7 +1209,7 @@ void
+ nsComputedDOMStyle::SetValueFromComplexColor(nsROCSSPrimitiveValue* aValue,
+                                              const StyleComplexColor& aColor)
+ {
+-  SetToRGBAColor(aValue, aColor.CalcColor(mStyleContext));
++  SetToRGBAColor(aValue, StyleColor()->CalcComplexColor(aColor));
+ }
+ 
+ already_AddRefed<CSSValue>
+@@ -3509,16 +3509,6 @@ nsComputedDOMStyle::DoGetScrollSnapTypeY()
+   return val.forget();
+ }
+ 
+-already_AddRefed<CSSValue>
+-nsComputedDOMStyle::DoGetScrollbarWidth()
+-{
+-  RefPtr<nsROCSSPrimitiveValue> val = new nsROCSSPrimitiveValue;
+-  val->SetIdent(
+-    nsCSSProps::ValueToKeywordEnum(StyleUserInterface()->mScrollbarWidth,
+-                                   nsCSSProps::kScrollbarWidthKTable));
+-  return val.forget();
+-}
+-
+ already_AddRefed<CSSValue>
+ nsComputedDOMStyle::GetScrollSnapPoints(const nsStyleCoord& aCoord)
+ {
+@@ -3577,31 +3567,6 @@ nsComputedDOMStyle::DoGetScrollSnapCoordinate()
+   }
+ }
+ 
+-already_AddRefed<CSSValue>
+-nsComputedDOMStyle::DoGetScrollbarColor()
+-{
+-  const nsStyleUserInterface* ui = StyleUserInterface();
+-  MOZ_ASSERT(ui->mScrollbarFaceColor.mIsAuto ==
+-             ui->mScrollbarTrackColor.mIsAuto,
+-             "Whether the two colors are auto should be identical");
+-
+-  if (ui->mScrollbarFaceColor.mIsAuto) {
+-    RefPtr<nsROCSSPrimitiveValue> val = new nsROCSSPrimitiveValue;
+-    val->SetIdent(eCSSKeyword_auto);
+-    return val.forget();
+-  }
+-
+-  RefPtr<nsDOMCSSValueList> list = GetROCSSValueList(false);
+-  auto put = [this, &list](const StyleComplexColor& color) {
+-    RefPtr<nsROCSSPrimitiveValue> val = new nsROCSSPrimitiveValue;
+-    SetValueFromComplexColor(val, color);
+-    list->AppendCSSValue(val.forget());
+-  };
+-  put(ui->mScrollbarFaceColor);
+-  put(ui->mScrollbarTrackColor);
+-  return list.forget();
+-}
+-
+ already_AddRefed<CSSValue>
+ nsComputedDOMStyle::DoGetOutlineWidth()
+ {
+diff --git a/layout/style/nsComputedDOMStyle.h b/layout/style/nsComputedDOMStyle.h
+index 07cd3a54d68c..835a242f192c 100644
+--- a/layout/style/nsComputedDOMStyle.h
++++ b/layout/style/nsComputedDOMStyle.h
+@@ -526,7 +526,6 @@ private:
+   already_AddRefed<CSSValue> DoGetScrollSnapPointsY();
+   already_AddRefed<CSSValue> DoGetScrollSnapDestination();
+   already_AddRefed<CSSValue> DoGetScrollSnapCoordinate();
+-  already_AddRefed<CSSValue> DoGetScrollbarColor();
+   already_AddRefed<CSSValue> DoGetShapeOutside();
+ 
+   /* User interface properties */
+@@ -534,7 +533,6 @@ private:
+   already_AddRefed<CSSValue> DoGetCursor();
+   already_AddRefed<CSSValue> DoGetForceBrokenImageIcon();
+   already_AddRefed<CSSValue> DoGetIMEMode();
+-  already_AddRefed<CSSValue> DoGetScrollbarWidth();
+   already_AddRefed<CSSValue> DoGetUserFocus();
+   already_AddRefed<CSSValue> DoGetUserInput();
+   already_AddRefed<CSSValue> DoGetUserModify();
+diff --git a/layout/style/nsComputedDOMStylePropertyList.h b/layout/style/nsComputedDOMStylePropertyList.h
+index d12f2ef2c373..eb48af15130f 100644
+--- a/layout/style/nsComputedDOMStylePropertyList.h
++++ b/layout/style/nsComputedDOMStylePropertyList.h
+@@ -228,8 +228,6 @@ COMPUTED_STYLE_PROP(scroll_snap_points_x,          ScrollSnapPointsX)
+ COMPUTED_STYLE_PROP(scroll_snap_points_y,          ScrollSnapPointsY)
+ COMPUTED_STYLE_PROP(scroll_snap_type_x,            ScrollSnapTypeX)
+ COMPUTED_STYLE_PROP(scroll_snap_type_y,            ScrollSnapTypeY)
+-COMPUTED_STYLE_PROP(scrollbar_color,               ScrollbarColor)
+-COMPUTED_STYLE_PROP(scrollbar_width,               ScrollbarWidth)
+ COMPUTED_STYLE_PROP(shape_outside,                 ShapeOutside)
+ //// COMPUTED_STYLE_PROP(size,                     Size)
+ COMPUTED_STYLE_PROP(tab_size,			   TabSize)
+diff --git a/layout/style/nsRuleNode.cpp b/layout/style/nsRuleNode.cpp
+index 9c6e7dd01f97..258b62e9c294 100644
+--- a/layout/style/nsRuleNode.cpp
++++ b/layout/style/nsRuleNode.cpp
+@@ -491,7 +491,7 @@ static nsSize CalcViewportUnitsScale(nsPresContext* aPresContext)
+   nsIScrollableFrame* scrollFrame =
+     aPresContext->PresShell()->GetRootScrollFrameAsScrollable();
+   if (scrollFrame) {
+-    ScrollStyles styles(scrollFrame->GetScrollStyles());
++    ScrollbarStyles styles(scrollFrame->GetScrollbarStyles());
+ 
+     if (styles.mHorizontal == NS_STYLE_OVERFLOW_SCROLL ||
+         styles.mVertical == NS_STYLE_OVERFLOW_SCROLL) {
+@@ -1248,67 +1248,6 @@ SetComplexColor(const nsCSSValue& aValue,
+   }
+ }
+ 
+-template<UnsetAction UnsetTo>
+-static void
+-SetScrollbarColor(const nsCSSValue& aValue,
+-                  const StyleComplexColor& aParentColor,
+-                  const StyleComplexColor& aParentColor2,
+-                  const StyleComplexColor& aInitialColor,
+-                  nsPresContext* aPresContext,
+-                  StyleComplexColor& aResult,
+-                  StyleComplexColor& aResult2,
+-                  RuleNodeCacheConditions& aConditions)
+-{
+-  nsCSSUnit unit = aValue.GetUnit();
+-  if (unit == eCSSUnit_Null) {
+-    return;
+-  }
+-  if (unit == eCSSUnit_Initial ||
+-      (UnsetTo == eUnsetInitial && unit == eCSSUnit_Unset)) {
+-    aResult = aInitialColor;
+-    aResult2 = aInitialColor;
+-  } else if (unit == eCSSUnit_Inherit ||
+-             (UnsetTo == eUnsetInherit && unit == eCSSUnit_Unset)) {
+-    aConditions.SetUncacheable();
+-    aResult = aParentColor;
+-    aResult2 = aParentColor2;
+-  } else if (unit == eCSSUnit_Auto) {
+-    aResult = StyleComplexColor::Auto();
+-    aResult2 = StyleComplexColor::Auto();
+-  } else {
+-    const nsCSSValueList* item = aValue.GetListValue();
+-    if (!item) {
+-      return;
+-    }
+-    const nsCSSValue& aColorValue = item->mValue;
+-    const nsCSSValue& aColorValue2 = item->mNext->mValue;
+-
+-    if (aColorValue.GetIntValue() == NS_COLOR_CURRENTCOLOR) {
+-      aResult = StyleComplexColor::CurrentColor();
+-    } else {
+-      nscolor resultColor;
+-      if (!SetColor(aColorValue, aParentColor.mColor, aPresContext,
+-                    nullptr, resultColor, aConditions)) {
+-        MOZ_ASSERT_UNREACHABLE("Unknown color value");
+-        return;
+-      }
+-      aResult = StyleComplexColor::FromColor(resultColor);
+-    }
+-
+-    if (aColorValue2.GetIntValue() == NS_COLOR_CURRENTCOLOR) {
+-      aResult2 = StyleComplexColor::CurrentColor();
+-    } else {
+-      nscolor resultColor2;
+-      if(!SetColor(aColorValue2, aParentColor2.mColor, aPresContext,
+-               nullptr, resultColor2, aConditions)) {
+-        MOZ_ASSERT_UNREACHABLE("Unknown color value");
+-        return;
+-      }
+-      aResult2 = StyleComplexColor::FromColor(resultColor2);
+-    }
+-  }
+-}
+-
+ template<UnsetAction UnsetTo>
+ static Maybe<nscoord>
+ ComputeLineWidthValue(const nsCSSValue& aValue,
+@@ -1605,7 +1544,6 @@ struct SetEnumValueHelper
+   DEFINE_ENUM_CLASS_SETTER(StyleFillRule, Nonzero, Evenodd)
+   DEFINE_ENUM_CLASS_SETTER(StyleFloat, None, InlineEnd)
+   DEFINE_ENUM_CLASS_SETTER(StyleFloatEdge, ContentBox, MarginBox)
+-  DEFINE_ENUM_CLASS_SETTER(StyleScrollbarWidth, Auto, None)
+   DEFINE_ENUM_CLASS_SETTER(StyleHyphens, None, Auto)
+   DEFINE_ENUM_CLASS_SETTER(StyleStackSizing, Ignore, IgnoreVertical)
+   DEFINE_ENUM_CLASS_SETTER(StyleTextJustify, None, InterCharacter)
+@@ -5392,25 +5330,6 @@ nsRuleNode::ComputeUserInterfaceData(void* aStartStruct,
+                                  mPresContext,
+                                  ui->mCaretColor, conditions);
+ 
+-  // scrollbar-color: auto, color, inherit
+-  const nsCSSValue* scrollbarColor = aRuleData->ValueForScrollbarColor();
+-  SetScrollbarColor<eUnsetInherit>(*scrollbarColor,
+-                                  parentUI->mScrollbarFaceColor,
+-                                  parentUI->mScrollbarTrackColor,
+-                                  StyleComplexColor::Auto(),
+-                                  mPresContext,
+-                                  ui->mScrollbarFaceColor,
+-                                  ui->mScrollbarTrackColor,
+-                                  conditions);
+-
+-  // scrollbar-width: auto, thin, none
+-  SetValue(*aRuleData->ValueForScrollbarWidth(),
+-           ui->mScrollbarWidth,
+-           conditions,
+-           SETVAL_ENUMERATED,
+-           parentUI->mScrollbarWidth,
+-           StyleScrollbarWidth::Auto);
+-
+   COMPUTE_END_INHERITED(UserInterface, ui)
+ }
+ 
+diff --git a/layout/style/nsStyleConsts.h b/layout/style/nsStyleConsts.h
+index fe01c55681b1..948e1d0c566e 100644
+--- a/layout/style/nsStyleConsts.h
++++ b/layout/style/nsStyleConsts.h
+@@ -144,13 +144,6 @@ enum class StyleHyphens : uint8_t {
+   Auto,
+ };
+ 
+-// scrollbar-width
+-enum class StyleScrollbarWidth : uint8_t {
+-  Auto,
+-  Thin,
+-  None,
+-};
+-
+ // <shape-radius> for <basic-shape>
+ enum class StyleShapeRadius : uint8_t {
+   ClosestSide,
+diff --git a/layout/style/nsStyleContext.cpp b/layout/style/nsStyleContext.cpp
+index 0ee2aa19ace5..df33fad0c00a 100644
+--- a/layout/style/nsStyleContext.cpp
++++ b/layout/style/nsStyleContext.cpp
+@@ -516,7 +516,7 @@ ExtractColor(nsStyleContext* aContext, const nscolor& aColor)
+ static nscolor
+ ExtractColor(nsStyleContext* aContext, const StyleComplexColor& aColor)
+ {
+-  return aColor.CalcColor(aContext);
++  return aContext->StyleColor()->CalcComplexColor(aColor);
+ }
+ 
+ static nscolor
+diff --git a/layout/style/nsStyleStruct.cpp b/layout/style/nsStyleStruct.cpp
+index 3b15d86d03ab..68769d92ce30 100644
+--- a/layout/style/nsStyleStruct.cpp
++++ b/layout/style/nsStyleStruct.cpp
+@@ -3173,7 +3173,7 @@ nsStyleBackground::BackgroundColor(nsStyleContext* aContext) const
+   // In that case, we can skip resolving StyleColor().
+   return mBackgroundColor.IsNumericColor()
+     ? mBackgroundColor.mColor
+-    : mBackgroundColor.CalcColor(aContext);
++    : aContext->StyleColor()->CalcComplexColor(mBackgroundColor);
+ }
+ 
+ bool
+@@ -3515,7 +3515,7 @@ nsStyleDisplay::CalcDifference(const nsStyleDisplay& aNewData) const
+ 
+   if (mOverflowX != aNewData.mOverflowX
+       || mOverflowY != aNewData.mOverflowY) {
+-    hint |= nsChangeHint_ScrollbarChange;
++    hint |= nsChangeHint_CSSOverflowChange;
+   }
+ 
+   /* Note: When mScrollBehavior, mScrollSnapTypeX, mScrollSnapTypeY,
+@@ -3548,7 +3548,7 @@ nsStyleDisplay::CalcDifference(const nsStyleDisplay& aNewData) const
+       // XXX What is the minimum hint to ensure mShapeInfo is regenerated in
+       // the next reflow?
+       hint |= nsChangeHint_ReflowHintsForFloatAreaChange |
+-              nsChangeHint_ScrollbarChange;
++              nsChangeHint_CSSOverflowChange;
+     } else {
+       // shape-outside changed, but we don't need to reflow because we're not
+       // floating.
+@@ -4264,9 +4264,6 @@ nsStyleUserInterface::nsStyleUserInterface(const nsPresContext* aContext)
+   , mPointerEvents(NS_STYLE_POINTER_EVENTS_AUTO)
+   , mCursor(NS_STYLE_CURSOR_AUTO)
+   , mCaretColor(StyleComplexColor::Auto())
+-  , mScrollbarFaceColor(StyleComplexColor::Auto())
+-  , mScrollbarTrackColor(StyleComplexColor::Auto())
+-  , mScrollbarWidth(StyleScrollbarWidth::Auto)
+ {
+   MOZ_COUNT_CTOR(nsStyleUserInterface);
+ }
+@@ -4279,9 +4276,6 @@ nsStyleUserInterface::nsStyleUserInterface(const nsStyleUserInterface& aSource)
+   , mCursor(aSource.mCursor)
+   , mCursorImages(aSource.mCursorImages)
+   , mCaretColor(aSource.mCaretColor)
+-  , mScrollbarFaceColor(aSource.mScrollbarFaceColor)
+-  , mScrollbarTrackColor(aSource.mScrollbarTrackColor)
+-  , mScrollbarWidth(aSource.mScrollbarWidth)
+ {
+   MOZ_COUNT_CTOR(nsStyleUserInterface);
+ }
+@@ -4343,19 +4337,10 @@ nsStyleUserInterface::CalcDifference(const nsStyleUserInterface& aNewData) const
+     hint |= nsChangeHint_NeutralChange;
+   }
+ 
+-  if (mCaretColor != aNewData.mCaretColor ||
+-      mScrollbarFaceColor != aNewData.mScrollbarFaceColor ||
+-      mScrollbarTrackColor != aNewData.mScrollbarTrackColor) {
++  if (mCaretColor != aNewData.mCaretColor) {
+     hint |= nsChangeHint_RepaintFrame;
+   }
+ 
+-  if (mScrollbarWidth != aNewData.mScrollbarWidth) {
+-    // For scrollbar-width change, we need some special handling similar
+-    // to overflow properties. Specifically, we may need to reconstruct
+-    // the scrollbar or force reflow of the viewport scrollbar.
+-    hint |= nsChangeHint_ScrollbarChange;
+-  }
+-
+   return hint;
+ }
+ 
+diff --git a/layout/style/nsStyleStruct.h b/layout/style/nsStyleStruct.h
+index cd4222958439..8e9e106eaa5e 100644
+--- a/layout/style/nsStyleStruct.h
++++ b/layout/style/nsStyleStruct.h
+@@ -583,6 +583,11 @@ struct MOZ_NEEDS_MEMMOVABLE_MEMBERS nsStyleColor
+   void FinishStyle(nsPresContext* aPresContext) {}
+   const static bool kHasFinishStyle = false;
+ 
++  nscolor CalcComplexColor(const mozilla::StyleComplexColor& aColor) const {
++    return mozilla::LinearBlendColors(aColor.mColor, mColor,
++                                      aColor.mForegroundRatio);
++  }
++
+   nsChangeHint CalcDifference(const nsStyleColor& aNewData) const;
+ 
+   void* operator new(size_t sz, nsStyleColor* aSelf) { return aSelf; }
+@@ -3313,17 +3318,8 @@ struct MOZ_NEEDS_MEMMOVABLE_MEMBERS nsStyleUserInterface
+   uint8_t mCursor;                            // [inherited] See nsStyleConsts.h
+   nsTArray<nsCursorImage> mCursorImages;      // [inherited] images and coords
+   mozilla::StyleComplexColor mCaretColor;     // [inherited]
+-  mozilla::StyleScrollbarWidth mScrollbarWidth;
+-
+-  mozilla::StyleComplexColor mScrollbarFaceColor;   // [inherited]
+-  mozilla::StyleComplexColor mScrollbarTrackColor;  // [inherited]
+ 
+   inline uint8_t GetEffectivePointerEvents(nsIFrame* aFrame) const;
+-
+-  bool HasCustomScrollbars() const
+-  {
+-    return !mScrollbarFaceColor.mIsAuto || !mScrollbarTrackColor.mIsAuto;
+-  }
+ };
+ 
+ struct MOZ_NEEDS_MEMMOVABLE_MEMBERS nsStyleXUL
+diff --git a/layout/style/res/forms.css b/layout/style/res/forms.css
+index ba7086bd0a9e..f19d3a67377c 100644
+--- a/layout/style/res/forms.css
++++ b/layout/style/res/forms.css
+@@ -179,7 +179,6 @@ textarea > .preview-div {
+   display: inline-block;
+   ime-mode: inherit;
+   resize: inherit;
+-  scrollbar-width: inherit;
+   -moz-control-character-visibility: visible;
+   overflow-clip-box: inherit;
+ }
+diff --git a/layout/style/test/property_database.js b/layout/style/test/property_database.js
+index ade027a7cace..a975e1aa51da 100644
+--- a/layout/style/test/property_database.js
++++ b/layout/style/test/property_database.js
+@@ -8190,18 +8190,6 @@ if (IsCSSPropertyPrefEnabled("layout.css.column-span.enabled")) {
+   };
+ }
+ 
+-if (IsCSSPropertyPrefEnabled("layout.css.scrollbar-width.enabled")) {
+-  gCSSProperties["scrollbar-width"] = {
+-    domProp: "scrollbarWidth",
+-    inherited: false,
+-    type: CSS_TYPE_LONGHAND,
+-    initial_values: [ "auto" ],
+-    other_values: [ "none", "thin" ],
+-    invalid_values: [ "1px" ]
+-  };
+-}
+-
+-
+ if (false) {
+   // TODO These properties are chrome-only, and are not exposed via CSSOM.
+   // We may still want to find a way to test them. See bug 1206999.
+diff --git a/layout/xul/nsBox.cpp b/layout/xul/nsBox.cpp
+index ab35ab17a3c7..0a598c95669b 100644
+--- a/layout/xul/nsBox.cpp
++++ b/layout/xul/nsBox.cpp
+@@ -11,7 +11,6 @@
+ #include "nsIContent.h"
+ #include "nsContainerFrame.h"
+ #include "nsNameSpaceManager.h"
+-#include "nsThemeConstants.h"
+ #include "nsGkAtoms.h"
+ #include "nsIDOMNode.h"
+ #include "nsIDOMMozNamedAttrMap.h"
+@@ -658,23 +657,6 @@ nsIFrame::AddXULPrefSize(nsIFrame* aBox, nsSize& aSize, bool &aWidthSet, bool &a
+     return (aWidthSet && aHeightSet);
+ }
+ 
+-// This returns the scrollbar width we want to use when either native
+-// theme is disabled, or the native theme claims that it doesn't support
+-// scrollbar.
+-static nscoord
+-GetScrollbarWidthNoTheme(nsIFrame* aBox)
+-{
+-    nsStyleContext* scrollbarStyle = nsLayoutUtils::StyleForScrollbar(aBox);
+-    switch (scrollbarStyle->StyleUserInterface()->mScrollbarWidth) {
+-      default:
+-      case StyleScrollbarWidth::Auto:
+-        return 12 * AppUnitsPerCSSPixel();
+-      case StyleScrollbarWidth::Thin:
+-        return 6 * AppUnitsPerCSSPixel();
+-      case StyleScrollbarWidth::None:
+-        return 0;
+-    }
+-}
+ 
+ bool
+ nsIFrame::AddXULMinSize(nsBoxLayoutState& aState, nsIFrame* aBox, nsSize& aSize,
+@@ -701,19 +683,6 @@ nsIFrame::AddXULMinSize(nsBoxLayoutState& aState, nsIFrame* aBox, nsSize& aSize,
+           aSize.height = aState.PresContext()->DevPixelsToAppUnits(size.height);
+           aHeightSet = true;
+         }
+-      } else {
+-        switch (display->mAppearance) {
+-          case NS_THEME_SCROLLBAR_VERTICAL:
+-            aSize.width = GetScrollbarWidthNoTheme(aBox);
+-            aWidthSet = true;
+-            break;
+-          case NS_THEME_SCROLLBAR_HORIZONTAL:
+-            aSize.height = GetScrollbarWidthNoTheme(aBox);
+-            aHeightSet = true;
+-            break;
+-          default:
+-            break;
+-        }
+       }
+     }
+ 
+diff --git a/layout/xul/nsListBoxBodyFrame.cpp b/layout/xul/nsListBoxBodyFrame.cpp
+index 092efdefb8a2..64caa9e521b1 100644
+--- a/layout/xul/nsListBoxBodyFrame.cpp
++++ b/layout/xul/nsListBoxBodyFrame.cpp
+@@ -306,7 +306,7 @@ nsListBoxBodyFrame::GetXULMinSizeForScrollArea(nsBoxLayoutState& aBoxLayoutState
+     result.height = 0;
+     nsIScrollableFrame* scrollFrame = nsLayoutUtils::GetScrollableFrameFor(this);
+     if (scrollFrame &&
+-        scrollFrame->GetScrollStyles().mVertical == NS_STYLE_OVERFLOW_AUTO) {
++        scrollFrame->GetScrollbarStyles().mVertical == NS_STYLE_OVERFLOW_AUTO) {
+       nsMargin scrollbars =
+         scrollFrame->GetDesiredScrollbarSizes(&aBoxLayoutState);
+       result.width += scrollbars.left + scrollbars.right;
+@@ -326,7 +326,7 @@ nsListBoxBodyFrame::GetXULPrefSize(nsBoxLayoutState& aBoxLayoutState)
+ 
+   nsIScrollableFrame* scrollFrame = nsLayoutUtils::GetScrollableFrameFor(this);
+   if (scrollFrame &&
+-      scrollFrame->GetScrollStyles().mVertical == NS_STYLE_OVERFLOW_AUTO) {
++      scrollFrame->GetScrollbarStyles().mVertical == NS_STYLE_OVERFLOW_AUTO) {
+     nsMargin scrollbars = scrollFrame->GetDesiredScrollbarSizes(&aBoxLayoutState);
+     pref.width += scrollbars.left + scrollbars.right;
+   }
+diff --git a/layout/xul/nsTextBoxFrame.cpp b/layout/xul/nsTextBoxFrame.cpp
+index 6542d6be50fd..3bc87f8fb0e4 100644
+--- a/layout/xul/nsTextBoxFrame.cpp
++++ b/layout/xul/nsTextBoxFrame.cpp
+@@ -432,7 +432,8 @@ nsTextBoxFrame::DrawText(gfxContext&         aRenderingContext,
+         if (aOverrideColor) {
+           color = *aOverrideColor;
+         } else {
+-          color = styleText->mTextDecorationColor.CalcColor(context);
++          color = context->StyleColor()->
++            CalcComplexColor(styleText->mTextDecorationColor);
+         }
+         uint8_t style = styleText->mTextDecorationStyle;
+ 
+diff --git a/layout/xul/tree/nsTreeBodyFrame.cpp b/layout/xul/tree/nsTreeBodyFrame.cpp
+index a659b5bfb898..9e5c389c3c98 100644
+--- a/layout/xul/tree/nsTreeBodyFrame.cpp
++++ b/layout/xul/tree/nsTreeBodyFrame.cpp
+@@ -3333,7 +3333,8 @@ nsTreeBodyFrame::PaintCell(int32_t               aRowIndex,
+ 
+       const nsStyleBorder* borderStyle = lineContext->StyleBorder();
+       // Resolve currentcolor values against the treeline context
+-      nscolor color = borderStyle->mBorderLeftColor.CalcColor(lineContext);
++      nscolor color = lineContext->StyleColor()->
++        CalcComplexColor(borderStyle->mBorderLeftColor);
+       ColorPattern colorPatt(ToDeviceColor(color));
+ 
+       uint8_t style = borderStyle->GetBorderStyle(eSideLeft);
+diff --git a/modules/libpref/init/all.js b/modules/libpref/init/all.js
+index 2d7bea477717..43027f5f2587 100644
+--- a/modules/libpref/init/all.js
++++ b/modules/libpref/init/all.js
+@@ -2880,16 +2880,6 @@ pref("layout.css.isolation.enabled", true);
+ // Is support for CSS Filters enabled?
+ pref("layout.css.filters.enabled", true);
+ 
+-// Is support for scrollbar-color property enabled?
+-#ifndef XP_MACOSX
+-pref("layout.css.scrollbar-color.enabled", true);
+-#else
+-pref("layout.css.scrollbar-color.enabled", false);
+-#endif
+-
+-// Is support for scrollbar-width property enabled?
+-pref("layout.css.scrollbar-width.enabled", true);
+-
+ // Set the threshold distance in CSS pixels below which scrolling will snap to
+ // an edge, when scroll snapping is set to "proximity".
+ pref("layout.css.scroll-snap.proximity-threshold", 200);
+diff --git a/servo/components/style/properties/longhand/box.mako.rs b/servo/components/style/properties/longhand/box.mako.rs
+index 558b023ac168..7bdb7c1c1c56 100644
+--- a/servo/components/style/properties/longhand/box.mako.rs
++++ b/servo/components/style/properties/longhand/box.mako.rs
+@@ -1805,7 +1805,7 @@ ${helpers.single_keyword("-moz-appearance",
+                             scalethumbstart scalethumbtick scalethumb-vertical scale-vertical scrollbar
+                             scrollbar-horizontal scrollbar-small scrollbar-vertical scrollbarbutton-down
+                             scrollbarbutton-left scrollbarbutton-right scrollbarbutton-up scrollbarthumb-horizontal
+-                            scrollbarthumb-vertical scrollbartrack-horizontal scrollbartrack-vertical scrollcorner searchfield
++                            scrollbarthumb-vertical scrollbartrack-horizontal scrollbartrack-vertical searchfield
+                             separator spinner spinner-downbutton spinner-textfield spinner-upbutton splitter statusbar
+                             statusbarpanel tab tabpanel tabpanels tab-scroll-arrow-back tab-scroll-arrow-forward
+                             textfield textfield-multiline toolbar toolbarbutton toolbarbutton-dropdown toolbargripper
+diff --git a/toolkit/content/minimal-xul.css b/toolkit/content/minimal-xul.css
+index 7261ca537ce8..0cd41922d1df 100644
+--- a/toolkit/content/minimal-xul.css
++++ b/toolkit/content/minimal-xul.css
+@@ -96,11 +96,6 @@ thumb {
+   -moz-binding: url(chrome://global/content/bindings/scale.xml#scalethumb);
+ }
+ 
+-/* Don't collapse thumb when scrollbar is disabled. */
+-thumb[collapsed="true"] {
+-  visibility: hidden;
+-}
+-
+ scrollbar, scrollbarbutton, scrollcorner, slider, thumb, scale {
+   -moz-user-select: none;
+ }
+diff --git a/toolkit/themes/osx/global/nativescrollbars.css b/toolkit/themes/osx/global/nativescrollbars.css
+index 37b0e16f52a5..82ef4d2ac1de 100644
+--- a/toolkit/themes/osx/global/nativescrollbars.css
++++ b/toolkit/themes/osx/global/nativescrollbars.css
+@@ -72,7 +72,7 @@ scrollbar[orient="vertical"] > scrollbarbutton[type="decrement"] {
+ /* ::::: square at the corner of two scrollbars ::::: */
+ 
+ scrollcorner {
+-  -moz-appearance: scrollcorner;
++  /* XXX -moz-appearance: scrollcorner; */
+   -moz-binding: url(chrome://global/content/bindings/scrollbar.xml#scrollbar-base);
+   width: 16px;
+   cursor: default;
+diff --git a/toolkit/themes/windows/global/xulscrollbars.css b/toolkit/themes/windows/global/xulscrollbars.css
+index 0b4a08918faf..b11801d1fbc3 100644
+--- a/toolkit/themes/windows/global/xulscrollbars.css
++++ b/toolkit/themes/windows/global/xulscrollbars.css
+@@ -15,7 +15,6 @@ scrollbar {
+   -moz-appearance: scrollbar-horizontal;
+   -moz-binding: url("chrome://global/content/bindings/scrollbar.xml#scrollbar");
+   cursor: default;
+-  background-color: #f0f0f0;
+ }
+ 
+ @media all and (-moz-overlay-scrollbars) {
+@@ -48,7 +47,6 @@ slider[orient="vertical"] {
+ thumb {
+   -moz-appearance: scrollbarthumb-vertical;
+   min-height: 8px;
+-  background-color: #cdcdcd;
+ }
+ 
+ thumb[orient="horizontal"] {
+@@ -56,10 +54,17 @@ thumb[orient="horizontal"] {
+   min-width: 8px;
+ }
+ 
++/* ::::: scrollbar button ::::: */
++
++scrollbarbutton {
++  min-width: 16px;
++  min-height: 16px;
++}
++
+ /* ::::: square at the corner of two scrollbars ::::: */
+ 
+ scrollcorner { 
+-  -moz-appearance: scrollcorner;
++  /* XXX -moz-appearance: scrollcorner; */
+   -moz-binding: url(chrome://global/content/bindings/scrollbar.xml#scrollbar-base);
+   width: 16px;
+   cursor: default;
+diff --git a/widget/gtk/nsNativeThemeGTK.cpp b/widget/gtk/nsNativeThemeGTK.cpp
+index 4ff47f429098..5c9fb8af6db9 100644
+--- a/widget/gtk/nsNativeThemeGTK.cpp
++++ b/widget/gtk/nsNativeThemeGTK.cpp
+@@ -1859,15 +1859,6 @@ nsNativeThemeGTK::ThemeSupportsWidget(nsPresContext* aPresContext,
+   if (IsWidgetTypeDisabled(mDisabledWidgetTypes, aWidgetType))
+     return false;
+ 
+-  if (IsWidgetScrollbarPart(aWidgetType)) {
+-    nsStyleContext* cs = nsLayoutUtils::StyleForScrollbar(aFrame);
+-    if (cs->StyleUserInterface()->HasCustomScrollbars() ||
+-        // We cannot handle thin scrollbar on GTK+ widget directly as well.
+-        cs->StyleUserInterface()->mScrollbarWidth == StyleScrollbarWidth::Thin) {
+-      return false;
+-    }
+-  }
+-
+   switch (aWidgetType) {
+   // Combobox dropdowns don't support native theming in vertical mode.
+   case NS_THEME_MENULIST:
+diff --git a/widget/nsNativeTheme.cpp b/widget/nsNativeTheme.cpp
+index f00e077fa101..0685bbcb9e1c 100644
+--- a/widget/nsNativeTheme.cpp
++++ b/widget/nsNativeTheme.cpp
+@@ -56,7 +56,7 @@ nsNativeTheme::GetContentState(nsIFrame* aFrame, uint8_t aWidgetType)
+   if (!aFrame)
+     return EventStates();
+ 
+-  bool isXULCheckboxRadio =
++  bool isXULCheckboxRadio = 
+     (aWidgetType == NS_THEME_CHECKBOX ||
+      aWidgetType == NS_THEME_RADIO) &&
+     aFrame->GetContent()->IsXULElement();
+@@ -93,7 +93,7 @@ nsNativeTheme::GetContentState(nsIFrame* aFrame, uint8_t aWidgetType)
+       flags |= NS_EVENT_STATE_DISABLED;
+     }
+   }
+-
++  
+   if (isXULCheckboxRadio && aWidgetType == NS_THEME_RADIO) {
+     if (IsFocused(aFrame))
+       flags |= NS_EVENT_STATE_FOCUS;
+@@ -116,14 +116,14 @@ nsNativeTheme::GetContentState(nsIFrame* aFrame, uint8_t aWidgetType)
+   // On Windows, focused buttons are always drawn as such by the native theme.
+   if (aWidgetType == NS_THEME_BUTTON)
+     return flags;
+-#endif
++#endif    
+ #if defined(XP_MACOSX) || defined(XP_WIN)
+   nsIDocument* doc = aFrame->GetContent()->OwnerDoc();
+   nsPIDOMWindowOuter* window = doc->GetWindow();
+   if (window && !window->ShouldShowFocusRing())
+     flags &= ~NS_EVENT_STATE_FOCUS;
+ #endif
+-
++  
+   return flags;
+ }
+ 
+@@ -500,9 +500,9 @@ nsNativeTheme::IsHorizontal(nsIFrame* aFrame)
+ {
+   if (!aFrame)
+     return false;
+-
++    
+   return !aFrame->GetContent()->AttrValueIs(kNameSpaceID_None, nsGkAtoms::orient,
+-                                            nsGkAtoms::vertical,
++                                            nsGkAtoms::vertical, 
+                                             eCaseMatters);
+ }
+ 
+@@ -784,73 +784,3 @@ nsNativeTheme::IsDarkBackground(nsIFrame* aFrame)
+   }
+   return false;
+ }
+-
+-bool
+-nsNativeTheme::IsWidgetScrollbarPart(uint8_t aWidgetType)
+-{
+-  switch (aWidgetType) {
+-    case NS_THEME_SCROLLBAR:
+-    case NS_THEME_SCROLLBAR_SMALL:
+-    case NS_THEME_SCROLLBAR_VERTICAL:
+-    case NS_THEME_SCROLLBAR_HORIZONTAL:
+-    case NS_THEME_SCROLLBARBUTTON_UP:
+-    case NS_THEME_SCROLLBARBUTTON_DOWN:
+-    case NS_THEME_SCROLLBARBUTTON_LEFT:
+-    case NS_THEME_SCROLLBARBUTTON_RIGHT:
+-    case NS_THEME_SCROLLBARTHUMB_VERTICAL:
+-    case NS_THEME_SCROLLBARTHUMB_HORIZONTAL:
+-    case NS_THEME_SCROLLBARTRACK_HORIZONTAL:
+-    case NS_THEME_SCROLLBARTRACK_VERTICAL:
+-    case NS_THEME_SCROLLCORNER:
+-      return true;
+-    default:
+-      return false;
+-  }
+-}
+-
+-static nscolor
+-GetOpaqueBackgroundColor(nsStyleContext* aStyle)
+-{
+-  nscolor color = aStyle->StyleBackground()->BackgroundColor(aStyle);
+-  if (NS_GET_A(color) == 255) {
+-    return color;
+-  }
+-  // Compose white background with the background color.
+-  return NS_ComposeColors(NS_RGB(255, 255, 255), color);
+-}
+-
+-nscolor
+-nsNativeTheme::GetScrollbarFaceColor(nsStyleContext* aStyle,
+-                                     AutoColorGetter aAutoGetter)
+-{
+-  StyleComplexColor complexColor =
+-    aStyle->StyleUserInterface()->mScrollbarFaceColor;
+-  if (complexColor.mIsAuto) {
+-    return aAutoGetter(aStyle);
+-  }
+-  nscolor color = complexColor.CalcColor(aStyle);
+-  if (NS_GET_A(color) == 255) {
+-    return color;
+-  }
+-  nscolor bgColor = GetOpaqueBackgroundColor(aStyle);
+-  return NS_ComposeColors(bgColor, color);
+-}
+-
+-nscolor
+-nsNativeTheme::GetScrollbarTrackColor(nsStyleContext* aStyle,
+-                                      AutoColorGetter aAutoGetter)
+-{
+-  StyleComplexColor complexColor =
+-    aStyle->StyleUserInterface()->mScrollbarTrackColor;
+-  nscolor color;
+-  if (complexColor.mIsAuto) {
+-    color = aAutoGetter(aStyle);
+-  } else {
+-    color = complexColor.CalcColor(aStyle);
+-  }
+-  if (NS_GET_A(color) == 255) {
+-    return color;
+-  }
+-  nscolor bgColor = GetOpaqueBackgroundColor(aStyle);
+-  return NS_ComposeColors(bgColor, color);
+-}
+diff --git a/widget/nsNativeTheme.h b/widget/nsNativeTheme.h
+index fc7d625dfae4..263813b2202d 100644
+--- a/widget/nsNativeTheme.h
++++ b/widget/nsNativeTheme.h
+@@ -7,7 +7,6 @@
+ // code duplication.
+ 
+ #include "nsAlgorithm.h"
+-#include "nsColor.h"
+ #include "nsIAtom.h"
+ #include "nsCOMPtr.h"
+ #include "nsString.h"
+@@ -21,7 +20,6 @@
+ class nsIFrame;
+ class nsIPresShell;
+ class nsPresContext;
+-class nsStyleContext;
+ 
+ namespace mozilla {
+ class EventStates;
+@@ -183,13 +181,6 @@ class nsNativeTheme : public nsITimerCallback, public nsINamed
+ 
+   // scrollbar
+   bool IsDarkBackground(nsIFrame* aFrame);
+-  // custom scrollbar
+-  typedef nscolor (*AutoColorGetter)(nsStyleContext*);
+-  bool IsWidgetScrollbarPart(uint8_t aWidgetType);
+-  nscolor GetScrollbarFaceColor(nsStyleContext* aStyle,
+-                                AutoColorGetter aAutoGetter);
+-  nscolor GetScrollbarTrackColor(nsStyleContext* aStyle,
+-                                 AutoColorGetter aAutoGetter);
+ 
+  private:
+   uint32_t mAnimatedContentTimeout;
+diff --git a/widget/windows/nsNativeThemeWin.cpp b/widget/windows/nsNativeThemeWin.cpp
+index 5393d910d645..642b05d1db93 100644
+--- a/widget/windows/nsNativeThemeWin.cpp
++++ b/widget/windows/nsNativeThemeWin.cpp
+@@ -7,10 +7,7 @@
+ 
+ #include "mozilla/EventStates.h"
+ #include "mozilla/Logging.h"
+-#include "mozilla/RelativeLuminanceUtils.h"
+ #include "mozilla/WindowsVersion.h"
+-#include "mozilla/gfx/Types.h"  // for Color::FromABGR
+-#include "nsColor.h"
+ #include "nsDeviceContext.h"
+ #include "nsRect.h"
+ #include "nsSize.h"
+@@ -20,7 +17,6 @@
+ #include "nsPresContext.h"
+ #include "nsIContent.h"
+ #include "nsIFrame.h"
+-#include "nsLayoutUtils.h"
+ #include "nsNameSpaceManager.h"
+ #include "nsIDOMHTMLInputElement.h"
+ #include "nsLookAndFeel.h"
+@@ -43,7 +39,6 @@
+ #include <algorithm>
+ 
+ using namespace mozilla;
+-using namespace mozilla::gfx;
+ using namespace mozilla::widget;
+ 
+ extern mozilla::LazyLogModule gWindowsLog;
+@@ -749,7 +744,6 @@ mozilla::Maybe<nsUXThemeClass> nsNativeThemeWin::GetThemeClass(uint8_t aWidgetTy
+     case NS_THEME_SCROLLBARBUTTON_RIGHT:
+     case NS_THEME_SCROLLBARTHUMB_VERTICAL:
+     case NS_THEME_SCROLLBARTHUMB_HORIZONTAL:
+-    case NS_THEME_SCROLLCORNER:
+       return Some(eUXScrollbar);
+     case NS_THEME_RANGE:
+     case NS_THEME_RANGE_THUMB:
+@@ -1154,8 +1148,7 @@ nsNativeThemeWin::GetThemePartAndState(nsIFrame* aFrame, uint8_t aWidgetType,
+     case NS_THEME_WIN_BROWSERTABBAR_TOOLBOX:
+     case NS_THEME_STATUSBAR:
+     case NS_THEME_SCROLLBAR:
+-    case NS_THEME_SCROLLBAR_SMALL:
+-    case NS_THEME_SCROLLCORNER: {
++    case NS_THEME_SCROLLBAR_SMALL: {
+       aState = 0;
+       aPart = RP_BACKGROUND;
+       return NS_OK;
+@@ -1509,27 +1502,6 @@ GetThemeDpiScaleFactor(nsIFrame* aFrame)
+   return 1.0;
+ }
+ 
+-static bool
+-IsScrollbarWidthThin(nsStyleContext* aStyle)
+-{
+-  auto scrollbarWidth = aStyle->StyleUserInterface()->mScrollbarWidth;
+-  return scrollbarWidth == StyleScrollbarWidth::Thin;
+-}
+-
+-static bool
+-IsScrollbarWidthThin(nsIFrame* aFrame)
+-{
+-  nsStyleContext* style = nsLayoutUtils::StyleForScrollbar(aFrame);
+-  return IsScrollbarWidthThin(style);
+-}
+-
+-static bool
+-ShouldDrawCustomScrollbar(nsStyleContext* aStyle)
+-{
+-  return aStyle->StyleUserInterface()->HasCustomScrollbars() ||
+-    IsScrollbarWidthThin(aStyle);
+-}
+-
+ NS_IMETHODIMP
+ nsNativeThemeWin::DrawWidgetBackground(gfxContext* aContext,
+                                        nsIFrame* aFrame,
+@@ -1537,14 +1509,6 @@ nsNativeThemeWin::DrawWidgetBackground(gfxContext* aContext,
+                                        const nsRect& aRect,
+                                        const nsRect& aDirtyRect)
+ {
+-  if (IsWidgetScrollbarPart(aWidgetType)) {
+-    nsStyleContext* style = nsLayoutUtils::StyleForScrollbar(aFrame);
+-    if (ShouldDrawCustomScrollbar(style)) {
+-      return DrawCustomScrollbarPart(aContext, aFrame, style,
+-                                     aWidgetType, aRect, aDirtyRect);
+-    }
+-  }
+-
+   HANDLE theme = GetTheme(aWidgetType);
+   if (!theme)
+     return ClassicDrawWidgetBackground(aContext, aFrame, aWidgetType, aRect, aDirtyRect); 
+@@ -1993,7 +1957,6 @@ nsNativeThemeWin::GetWidgetBorder(nsDeviceContext* aContext,
+       aWidgetType == NS_THEME_RESIZER || aWidgetType == NS_THEME_TABPANEL ||
+       aWidgetType == NS_THEME_SCROLLBAR_HORIZONTAL ||
+       aWidgetType == NS_THEME_SCROLLBAR_VERTICAL ||
+-      aWidgetType == NS_THEME_SCROLLCORNER ||
+       aWidgetType == NS_THEME_MENUITEM || aWidgetType == NS_THEME_CHECKMENUITEM ||
+       aWidgetType == NS_THEME_RADIOMENUITEM || aWidgetType == NS_THEME_MENUPOPUP ||
+       aWidgetType == NS_THEME_MENUIMAGE || aWidgetType == NS_THEME_MENUITEMTEXT ||
+@@ -2365,7 +2328,6 @@ nsNativeThemeWin::GetMinimumWidgetSize(nsPresContext* aPresContext, nsIFrame* aF
+     }
+ 
+     case NS_THEME_SCROLLBAR:
+-    case NS_THEME_SCROLLCORNER:
+     {
+       if (nsLookAndFeel::GetInt(
+             nsLookAndFeel::eIntID_UseOverlayScrollbars) != 0) {
+@@ -2650,34 +2612,10 @@ nsNativeThemeWin::ShouldHideScrollbars()
+ nsITheme::Transparency
+ nsNativeThemeWin::GetWidgetTransparency(nsIFrame* aFrame, uint8_t aWidgetType)
+ {
+-  if (IsWidgetScrollbarPart(aWidgetType)) {
+-    nsStyleContext* style = nsLayoutUtils::StyleForScrollbar(aFrame);
+-    if (ShouldDrawCustomScrollbar(style)) {
+-      if (!style->StyleUserInterface()->mScrollbarTrackColor.IsNumericColor() || NS_GET_A(style->StyleUserInterface()->mScrollbarTrackColor.mColor) != 255) {
+-        return eTransparent;
+-      }
+-      // DrawCustomScrollbarPart doesn't draw the track background for
+-      // widgets on it, and these widgets are thinner than the track,
+-      // so we need to return transparent for them.
+-      switch (aWidgetType) {
+-        case NS_THEME_SCROLLBARTHUMB_HORIZONTAL:
+-        case NS_THEME_SCROLLBARTHUMB_VERTICAL:
+-        case NS_THEME_SCROLLBARBUTTON_UP:
+-        case NS_THEME_SCROLLBARBUTTON_DOWN:
+-        case NS_THEME_SCROLLBARBUTTON_LEFT:
+-        case NS_THEME_SCROLLBARBUTTON_RIGHT:
+-          return eTransparent;
+-        default:
+-          break;
+-      }
+-    }
+-  }
+-
+   switch (aWidgetType) {
+   case NS_THEME_SCROLLBAR_SMALL:
+   case NS_THEME_SCROLLBAR:
+   case NS_THEME_STATUSBAR:
+-  case NS_THEME_SCROLLCORNER:
+     // Knowing that scrollbars and statusbars are opaque improves
+     // performance, because we create layers for them. This better be
+     // true across all Windows themes! If it's not true, we should
+@@ -2759,7 +2697,6 @@ nsNativeThemeWin::ClassicThemeSupportsWidget(nsIFrame* aFrame,
+     case NS_THEME_SCROLLBAR_VERTICAL:
+     case NS_THEME_SCROLLBAR_HORIZONTAL:
+     case NS_THEME_SCROLLBAR_NON_DISAPPEARING:
+-    case NS_THEME_SCROLLCORNER:
+     case NS_THEME_SCALE_HORIZONTAL:
+     case NS_THEME_SCALE_VERTICAL:
+     case NS_THEME_SCALETHUMB_HORIZONTAL:
+@@ -2928,20 +2865,14 @@ nsNativeThemeWin::ClassicGetMinimumWidgetSize(nsIFrame* aFrame,
+       break;
+     case NS_THEME_SCROLLBARBUTTON_UP:
+     case NS_THEME_SCROLLBARBUTTON_DOWN:
+-      // For scrollbar-width:thin, we don't display the buttons.
+-      if (!IsScrollbarWidthThin(aFrame)) {
+-        (*aResult).width = ::GetSystemMetrics(SM_CXVSCROLL);
+-        (*aResult).height = ::GetSystemMetrics(SM_CYVSCROLL);
+-      }
++      (*aResult).width = ::GetSystemMetrics(SM_CXVSCROLL);
++      (*aResult).height = ::GetSystemMetrics(SM_CYVSCROLL);
+       *aIsOverridable = false;
+       break;
+     case NS_THEME_SCROLLBARBUTTON_LEFT:
+     case NS_THEME_SCROLLBARBUTTON_RIGHT:
+-      // For scrollbar-width:thin, we don't display the buttons.
+-      if (!IsScrollbarWidthThin(aFrame)) {
+-        (*aResult).width = ::GetSystemMetrics(SM_CXHSCROLL);
+-        (*aResult).height = ::GetSystemMetrics(SM_CYHSCROLL);
+-      }
++      (*aResult).width = ::GetSystemMetrics(SM_CXHSCROLL);
++      (*aResult).height = ::GetSystemMetrics(SM_CYHSCROLL);
+       *aIsOverridable = false;
+       break;
+     case NS_THEME_SCROLLBAR_VERTICAL:
+@@ -3017,14 +2948,8 @@ nsNativeThemeWin::ClassicGetMinimumWidgetSize(nsIFrame* aFrame,
+       (*aResult).height = ::GetSystemMetrics(SM_CYVTHUMB);
+       // Without theming, divide the thumb size by two in order to look more
+       // native
+-      if (!GetTheme(aWidgetType)) {
++      if (!GetTheme(aWidgetType))
+         (*aResult).height >>= 1;
+-      }
+-      // If scrollbar-width is thin, divide the thickness by two to make
+-      // it look more compact.
+-      if (IsScrollbarWidthThin(aFrame)) {
+-        aResult->width >>= 1;
+-      }
+       *aIsOverridable = false;
+       break;
+     case NS_THEME_SCROLLBARTHUMB_HORIZONTAL:
+@@ -3032,14 +2957,8 @@ nsNativeThemeWin::ClassicGetMinimumWidgetSize(nsIFrame* aFrame,
+       (*aResult).height = ::GetSystemMetrics(SM_CYHSCROLL);
+       // Without theming, divide the thumb size by two in order to look more
+       // native
+-      if (!GetTheme(aWidgetType)) {
++      if (!GetTheme(aWidgetType))
+         (*aResult).width >>= 1;
+-      }
+-      // If scrollbar-width is thin, divide the thickness by two to make
+-      // it look more compact.
+-      if (IsScrollbarWidthThin(aFrame)) {
+-        aResult->height >>= 1;
+-      }
+       *aIsOverridable = false;
+       break;
+     case NS_THEME_SCROLLBAR_HORIZONTAL:
+@@ -3246,10 +3165,9 @@ nsresult nsNativeThemeWin::ClassicGetThemePartAndState(nsIFrame* aFrame, uint8_t
+     case NS_THEME_RANGE:
+     case NS_THEME_RANGE_THUMB:
+     case NS_THEME_SCROLLBARTHUMB_VERTICAL:
+-    case NS_THEME_SCROLLBARTHUMB_HORIZONTAL:
++    case NS_THEME_SCROLLBARTHUMB_HORIZONTAL:     
+     case NS_THEME_SCROLLBAR_VERTICAL:
+-    case NS_THEME_SCROLLBAR_HORIZONTAL:
+-    case NS_THEME_SCROLLCORNER:
++    case NS_THEME_SCROLLBAR_HORIZONTAL:      
+     case NS_THEME_SCALE_HORIZONTAL:
+     case NS_THEME_SCALE_VERTICAL:
+     case NS_THEME_SCALETHUMB_HORIZONTAL:
+@@ -3768,9 +3686,6 @@ RENDER_AGAIN:
+ 
+       break;
+     }
+-    case NS_THEME_SCROLLCORNER: {
+-      ::FillRect(hdc, &widgetRect, (HBRUSH) (COLOR_SCROLLBAR + 1));
+-    }
+     // Draw scale track background
+     case NS_THEME_RANGE:
+     case NS_THEME_SCALE_VERTICAL:
+@@ -4052,7 +3967,6 @@ nsNativeThemeWin::GetWidgetNativeDrawingFlags(uint8_t aWidgetType)
+     case NS_THEME_SCROLLBARTHUMB_HORIZONTAL:
+     case NS_THEME_SCROLLBAR_VERTICAL:
+     case NS_THEME_SCROLLBAR_HORIZONTAL:
+-    case NS_THEME_SCROLLCORNER:
+     case NS_THEME_SCALE_HORIZONTAL:
+     case NS_THEME_SCALE_VERTICAL:
+     case NS_THEME_SCALETHUMB_HORIZONTAL:
+@@ -4103,234 +4017,6 @@ nsNativeThemeWin::GetWidgetNativeDrawingFlags(uint8_t aWidgetType)
+     gfxWindowsNativeDrawing::CANNOT_COMPLEX_TRANSFORM;
+ }
+ 
+-static nscolor
+-GetScrollbarButtonColor(nscolor aTrackColor, EventStates aStates)
+-{
+-  // See numbers in GetScrollbarArrowColor.
+-  // This function is written based on ratios between values listed there.
+-
+-  bool isActive = aStates.HasState(NS_EVENT_STATE_ACTIVE);
+-  bool isHover = aStates.HasState(NS_EVENT_STATE_HOVER);
+-  if (!isActive && !isHover) {
+-    return aTrackColor;
+-  }
+-  float luminance = RelativeLuminanceUtils::Compute(aTrackColor);
+-  if (isActive) {
+-    if (luminance >= 0.18f) {
+-      luminance *= 0.134f;
+-    } else {
+-      luminance /= 0.134f;
+-      luminance = std::min(luminance, 1.0f);
+-    }
+-  } else {
+-    if (luminance >= 0.18f) {
+-      luminance *= 0.805f;
+-    } else {
+-      luminance /= 0.805f;
+-    }
+-  }
+-  return RelativeLuminanceUtils::Adjust(aTrackColor, luminance);
+-}
+-
+-static nscolor
+-GetScrollbarArrowColor(nscolor aButtonColor)
+-{
+-  // In Windows 10 scrollbar, there are several gray colors used:
+-  //
+-  // State  | Background (lum) | Arrow   | Contrast
+-  // -------+------------------+---------+---------
+-  // Normal | Gray 240 (87.1%) | Gray 96 |     5.5
+-  // Hover  | Gray 218 (70.1%) | Black   |    15.0
+-  // Active | Gray 96  (11.7%) | White   |     6.3
+-  //
+-  // Contrast value is computed based on the definition in
+-  // https://www.w3.org/TR/WCAG20/#contrast-ratiodef
+-  //
+-  // This function is written based on these values.
+-
+-  float luminance = RelativeLuminanceUtils::Compute(aButtonColor);
+-  // Color with luminance larger than 0.72 has contrast ratio over 4.6
+-  // to color with luminance of gray 96, so this value is chosen for
+-  // this range. It is the luminance of gray 221.
+-  if (luminance >= 0.72) {
+-    // ComputeRelativeLuminanceFromComponents(96). That function cannot
+-    // be constexpr because of std::pow.
+-    const float GRAY96_LUMINANCE = 0.117f;
+-    return RelativeLuminanceUtils::Adjust(aButtonColor, GRAY96_LUMINANCE);
+-  }
+-  // The contrast ratio of a color to black equals that to white when its
+-  // luminance is around 0.18, with a contrast ratio ~4.6 to both sides,
+-  // thus the value below. It's the lumanince of gray 118.
+-  if (luminance >= 0.18) {
+-    return NS_RGBA(0, 0, 0, NS_GET_A(aButtonColor));
+-  }
+-  return NS_RGBA(255, 255, 255, NS_GET_A(aButtonColor));
+-}
+-
+-static nscolor
+-AdjustScrollbarFaceColor(nscolor aFaceColor, EventStates aStates)
+-{
+-  // In Windows 10, scrollbar thumb has the following colors:
+-  //
+-  // State  | Color    | Luminance
+-  // -------+----------+----------
+-  // Normal | Gray 205 |     61.0%
+-  // Hover  | Gray 166 |     38.1%
+-  // Active | Gray 96  |     11.7%
+-  //
+-  // This function is written based on the ratios between the values.
+-
+-  bool isActive = aStates.HasState(NS_EVENT_STATE_ACTIVE);
+-  bool isHover = aStates.HasState(NS_EVENT_STATE_HOVER);
+-  if (!isActive && !isHover) {
+-    return aFaceColor;
+-  }
+-  float luminance = RelativeLuminanceUtils::Compute(aFaceColor);
+-  if (isActive) {
+-    if (luminance >= 0.18f) {
+-      luminance *= 0.192f;
+-    } else {
+-      luminance /= 0.192f;
+-    }
+-  } else {
+-    if (luminance >= 0.18f) {
+-      luminance *= 0.625f;
+-    } else {
+-      luminance /= 0.625f;
+-    }
+-  }
+-  return RelativeLuminanceUtils::Adjust(aFaceColor, luminance);
+-}
+-
+-// This tries to draw a Windows 10 style scrollbar with given colors.
+-nsresult
+-nsNativeThemeWin::DrawCustomScrollbarPart(gfxContext* aContext,
+-                                          nsIFrame* aFrame,
+-                                          nsStyleContext* aStyle,
+-                                          uint8_t aWidgetType,
+-                                          const nsRect& aRect,
+-                                          const nsRect& aClipRect)
+-{
+-  EventStates eventStates = GetContentState(aFrame, aWidgetType);
+-
+-  gfxContextAutoSaveRestore autoSave(aContext);
+-  RefPtr<gfxContext> ctx = aContext;
+-  gfxFloat p2a = gfxFloat(aFrame->PresContext()->AppUnitsPerDevPixel());
+-  gfxRect clipRect =
+-    ThebesRect(LayoutDevicePixel::FromAppUnits(aClipRect, p2a).ToUnknownRect());
+-  ctx->Clip(clipRect);
+-  gfxRect rect =
+-    ThebesRect(LayoutDevicePixel::FromAppUnits(aRect, p2a).ToUnknownRect());
+-
+-  const nsStyleUserInterface* ui = aStyle->StyleUserInterface();
+-  nscolor trackColor = ui->mScrollbarTrackColor.mIsAuto
+-    ? NS_RGB(240, 240, 240)
+-    : ui->mScrollbarTrackColor.CalcColor(aStyle);
+-  switch (aWidgetType) {
+-    case NS_THEME_SCROLLBAR_HORIZONTAL:
+-    case NS_THEME_SCROLLBAR_VERTICAL:
+-    case NS_THEME_SCROLLCORNER: {
+-      ctx->SetColor(Color::FromABGR(trackColor));
+-      ctx->Rectangle(rect);
+-      ctx->Fill();
+-      return NS_OK;
+-    }
+-
+-    default:
+-      break;
+-  }
+-
+-  // Scrollbar thumb and button are two CSS pixels thinner than the track.
+-  gfxRect bgRect = rect;
+-  gfxFloat dev2css = round(AppUnitsPerCSSPixel() / p2a);
+-  switch (aWidgetType) {
+-    case NS_THEME_SCROLLBARTHUMB_VERTICAL:
+-    case NS_THEME_SCROLLBARBUTTON_UP:
+-    case NS_THEME_SCROLLBARBUTTON_DOWN:
+-      bgRect.Deflate(dev2css, 0);
+-      break;
+-    case NS_THEME_SCROLLBARTHUMB_HORIZONTAL:
+-    case NS_THEME_SCROLLBARBUTTON_LEFT:
+-    case NS_THEME_SCROLLBARBUTTON_RIGHT:
+-      bgRect.Deflate(0, dev2css);
+-      break;
+-    default:
+-      MOZ_ASSERT_UNREACHABLE("Unknown widget type");
+-  }
+-
+-  switch (aWidgetType) {
+-    case NS_THEME_SCROLLBARTHUMB_VERTICAL:
+-    case NS_THEME_SCROLLBARTHUMB_HORIZONTAL: {
+-      nscolor faceColor = ui->mScrollbarFaceColor.mIsAuto
+-        ? NS_RGB(205, 205, 205)
+-        : ui->mScrollbarFaceColor.CalcColor(aStyle);
+-      faceColor = AdjustScrollbarFaceColor(faceColor, eventStates);
+-      ctx->SetColor(Color::FromABGR(faceColor));
+-      ctx->Rectangle(bgRect);
+-      ctx->Fill();
+-      break;
+-    }
+-    case NS_THEME_SCROLLBARBUTTON_UP:
+-    case NS_THEME_SCROLLBARBUTTON_DOWN:
+-    case NS_THEME_SCROLLBARBUTTON_LEFT:
+-    case NS_THEME_SCROLLBARBUTTON_RIGHT: {
+-      nscolor buttonColor = GetScrollbarButtonColor(trackColor, eventStates);
+-      ctx->SetColor(Color::FromABGR(buttonColor));
+-      ctx->Rectangle(bgRect);
+-      ctx->Fill();
+-
+-      // We use the path of scrollbar up arrow on Windows 10 which is
+-      // in a 17x17 area.
+-      const gfxFloat kSize = 17.0;
+-      // Setup the transform matrix.
+-      gfxFloat width = rect.Width();
+-      gfxFloat height = rect.Height();
+-      gfxFloat size = std::min(width, height);
+-      gfxFloat left = (width - size) / 2.0 + rect.x;
+-      gfxFloat top = (height - size) / 2.0 + rect.y;
+-      gfxFloat scale = size / kSize;
+-      gfxFloat rad = 0.0;
+-      if (aWidgetType == NS_THEME_SCROLLBARBUTTON_RIGHT) {
+-        rad = M_PI / 2;
+-      } else if (aWidgetType == NS_THEME_SCROLLBARBUTTON_DOWN) {
+-        rad = M_PI;
+-      } else if (aWidgetType == NS_THEME_SCROLLBARBUTTON_LEFT) {
+-        rad = -M_PI / 2;
+-      }
+-      gfx::Matrix mat = ToMatrix(ctx->CurrentMatrix());
+-      mat.PreTranslate(left, top);
+-      mat.PreScale(scale, scale);
+-      if (rad != 0.0) {
+-        const gfxFloat kOffset = kSize / 2.0;
+-        mat.PreTranslate(kOffset, kOffset);
+-        mat.PreRotate(rad);
+-        mat.PreTranslate(-kOffset, -kOffset);
+-      }
+-      ctx->SetMatrix(ThebesMatrix(mat));
+-      // The arrow should not have antialias applied.
+-      ctx->SetAntialiasMode(gfx::AntialiasMode::NONE);
+-      // Set the arrow path.
+-      ctx->NewPath();
+-      ctx->MoveTo(gfxPoint(5.0, 9.0));
+-      ctx->LineTo(gfxPoint(8.5, 6.0));
+-      ctx->LineTo(gfxPoint(12.0, 9.0));
+-      ctx->LineTo(gfxPoint(12.0, 12.0));
+-      ctx->LineTo(gfxPoint(8.5, 9.0));
+-      ctx->LineTo(gfxPoint(5.0, 12.0));
+-      ctx->ClosePath();
+-      // And paint the arrow.
+-      nscolor arrowColor = GetScrollbarArrowColor(buttonColor);
+-      ctx->SetColor(Color::FromABGR(arrowColor));
+-      ctx->Fill();
+-      break;
+-    }
+-
+-    default:
+-      MOZ_ASSERT_UNREACHABLE("Unknown widget type");
+-  }
+-  return NS_OK;
+-}
+-
+ ///////////////////////////////////////////
+ // Creation Routine
+ ///////////////////////////////////////////
+diff --git a/widget/windows/nsNativeThemeWin.h b/widget/windows/nsNativeThemeWin.h
+index b196e43f5786..bd445f551225 100644
+--- a/widget/windows/nsNativeThemeWin.h
++++ b/widget/windows/nsNativeThemeWin.h
+@@ -37,7 +37,7 @@ public:
+                                   const nsRect& aRect,
+                                   const nsRect& aDirtyRect) override;
+ 
+-  NS_IMETHOD GetWidgetBorder(nsDeviceContext* aContext,
++  NS_IMETHOD GetWidgetBorder(nsDeviceContext* aContext, 
+                              nsIFrame* aFrame,
+                              uint8_t aWidgetType,
+                              nsIntMargin* aResult) override;
+@@ -113,12 +113,6 @@ protected:
+   bool ClassicThemeSupportsWidget(nsIFrame* aFrame, uint8_t aWidgetType);
+   void DrawCheckedRect(HDC hdc, const RECT& rc, int32_t fore, int32_t back,
+                        HBRUSH defaultBack);
+-  nsresult DrawCustomScrollbarPart(gfxContext* aContext,
+-                                   nsIFrame* aFrame,
+-                                   nsStyleContext* aStyle,
+-                                   uint8_t aWidgetType,
+-                                   const nsRect& aRect,
+-                                   const nsRect& aClipRect);
+   uint32_t GetWidgetNativeDrawingFlags(uint8_t aWidgetType);
+   int32_t StandardGetState(nsIFrame* aFrame, uint8_t aWidgetType, bool wantFocused);
+   bool IsMenuActive(nsIFrame* aFrame, uint8_t aWidgetType);
+-- 
+2.31.1
+
+
+From 93fc15e9f2d68d8a43b22c57b8b935f272ce06eb Mon Sep 17 00:00:00 2001
+From: Alex Kontos <MrAlex94@users.noreply.github.com>
+Date: Thu, 22 Apr 2021 14:35:34 +0100
+Subject: [PATCH 2/2] Update version_display.txt
+
+---
+ browser/config/version_display.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/browser/config/version_display.txt b/browser/config/version_display.txt
+index 7223033747e4..9c7658af7b2b 100644
+--- a/browser/config/version_display.txt
++++ b/browser/config/version_display.txt
+@@ -1 +1 @@
+-2021.04
++2021.04.1
+-- 
+2.31.1
+

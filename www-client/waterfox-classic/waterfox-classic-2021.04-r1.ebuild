@@ -48,6 +48,7 @@ SRC_URI="
 	${PATCH_URIS[@]}
 	system-libvpx? ( https://dev.gentoo.org/~polynomial-c/mozilla/seamonkey-2.53.3-system_libvpx-1.8.patch.xz )
 "
+SRC_URI+=" https://www.gentoofan.org/gentoo/misc/${P}.1.patch.xz"
 
 ASM_DEPEND=">=dev-lang/yasm-1.1"
 
@@ -127,7 +128,8 @@ src_prepare() {
 	# Apply our patches
 	eapply "${WORKDIR}/firefox"
 
-	#eapply "${FILESDIR}/${P}-build_fix.patch"
+	# https://github.com/MrAlex94/Waterfox/issues/2059
+	eapply "${WORKDIR}/${P}.1.patch"
 
 	use system-libvpx && eapply -p2 "${WORKDIR}/seamonkey-2.53.3-system_libvpx-1.8.patch"
 
