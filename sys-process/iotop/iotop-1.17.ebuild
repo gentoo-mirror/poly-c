@@ -12,12 +12,19 @@ SRC_URI="https://github.com/Tomas-M/iotop/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
+IUSE="lto"
 
 RDEPEND="sys-libs/ncurses:0="
 DEPEND="${RDEPEND}"
 BDEPEND="virtual/pkgconfig"
 
-#S="${WORKDIR}/iotop-${PV}"
+src_prepare() {
+	default
+
+	if ! use lto ; then
+		sed '/-flto/d' -i Makefile || die
+	fi
+}
 
 src_compile() {
 	emake V=1 CC="$(tc-getCC)"
