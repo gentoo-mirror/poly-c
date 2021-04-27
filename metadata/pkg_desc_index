@@ -170,7 +170,7 @@ sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.16-r2 3.3.16-r3 3.3.17: standard informational utilities and process-handling tools
 www-apps/baikal 0.8.0: Lightweight CalDAV+CardDAV server
 www-client/seamonkey 2.53.6 2.53.7 2.53.7.1: Seamonkey Web Browser
-www-client/waterfox-classic 2021.03 2021.04-r1: Waterfox Web Browser
+www-client/waterfox-classic 2021.03 2021.04-r1 2021.04.2: Waterfox Web Browser
 www-client/waterfox-current 2020.10: Waterfox Web Browser
 www-client/waterfox-g3 1.1: Waterfox Web Browser
 x11-apps/xinit 1.4.1 1.4.1-r1: X Window System initializer
