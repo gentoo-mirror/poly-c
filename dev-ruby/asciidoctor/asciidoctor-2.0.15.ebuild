@@ -3,18 +3,18 @@
 # $Id: b19e986d2fc813b1915dbd0285493e02ccdf0539 $
 
 EAPI=7
-USE_RUBY="ruby26 ruby27 ruby30"
+USE_RUBY="ruby25 ruby26 ruby27 ruby30"
 
 RUBY_FAKEGEM_TASK_TEST="test features"
 RUBY_FAKEGEM_EXTRADOC="CHANGELOG.adoc README.adoc"
 
 RUBY_FAKEGEM_EXTRAINSTALL="data"
 
-inherit ruby-fakegem poly-c_ruby
+inherit ruby-fakegem
 
 DESCRIPTION="Processor for converting AsciiDoc into HTML 5, DocBook 4.5 and other formats"
 HOMEPAGE="https://github.com/asciidoctor/asciidoctor"
-SRC_URI="https://github.com/${PN}/${PN}/archive/v${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
+SRC_URI="https://github.com/${PN}/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
