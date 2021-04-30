@@ -145,7 +145,6 @@ sys-apps/hwloc 2.0.3_pre: displays the hardware topology in convenient formats
 sys-apps/iproute2 5.7.0 5.10.0-r1 5.11.0 5.12.0: kernel routing and traffic control utilities
 sys-apps/kmod 27-r2 28: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
-sys-apps/less 583_pre: Excellent text file viewer
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
 sys-apps/openrc 0.42.1-r1 0.43.2: OpenRC manages the services, startup and shutdown of a host
 sys-apps/portage 3.0.13 3.0.17-r2 3.0.18: Portage is the package management and distribution system for Gentoo
