@@ -19,7 +19,6 @@ app-editors/cooledit 3.17.19: Cooledit is a full featured multiple window text e
 app-laptop/dell-fan-mon 1.0 9999: Fan control for some Dell laptops
 app-laptop/i8kutils 1.43_pre: Dell Inspiron and Latitude utilities
 app-misc/kenny 0.1: command-line kennyfier
-app-misc/ldapexplorertool 2.0.1: LDAP Explorer is a multi platform, graphical LDAP tool that enables you to browse, modify and manage LDAP servers.
 app-misc/mc 4.8.26-r1 4.8.26-r2: GNU Midnight Commander is a text based file manager
 app-misc/osmo 0.4.2: Handy personal organizer
 app-shells/dash 0.5.10.2: Debian Almquist Shell
@@ -64,7 +63,6 @@ games-fps/etlegacy 2.76 2.77 9999: Wolfenstein: Enemy Territory 2.60b compatible
 games-fps/rtcw 1.51b 1.51c 9999: Return to Castle Wolfenstein - IORTCW Project
 games-simulation/flightgear 2020.3.7_pre 2020.3.8_pre: Open Source Flight Simulator
 games-simulation/flightgear-data 2020.3.7_pre 2020.3.8_pre: FlightGear data files
-games-strategy/0ad 0.0.23b_alpha: A free, real-time strategy game
 games-strategy/0ad-data 0.0.23b_alpha: Data files for 0ad
 games-strategy/boswars 9999: Futuristic real-time strategy game
 games-strategy/opendungeons 0.7.1 9999: An open source, real time strategy game based on the Dungeon Keeper series
@@ -137,7 +135,6 @@ sci-misc/dicom3tools 1.00.20160402132920: Command line utilities for manipulatin
 sci-misc/mia 2.4.4: Library and tools for medical image processing
 sci-misc/xmedcon 0.14.1: Medical Image Conversion Utility
 sci-visualization/amide 1.0.5: AMIDE's a Medical Imaging Data Examiner
-sci-visualization/ginkgocadx 3.8.6: An advanced DICOM viewer and dicomizer
 sys-apps/baselayout 2.6-r1 2.7 2.7-r1 2.7-r2: Filesystem baselayout and init scripts
 sys-apps/fwup 1.0.0 1.2.1: Configurable embedded Linux firmware update creator and runner
 sys-apps/gawk 4.2.1-r1 5.0.1 5.1.0: GNU awk pattern-matching language
