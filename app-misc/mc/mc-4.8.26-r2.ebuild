@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9bd2fbe7d5ed4904853c438e4abe43bb27ba6ef4 $
+# $Id: e14c4573b986827f41c545e4ac3b17cdee5112b8 $
 
 EAPI=7
 
@@ -14,7 +14,7 @@ SRC_URI="http://ftp.midnight-commander.org/${MY_P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86 ~amd64-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 sparc ~x86 ~amd64-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="+edit gpm nls samba sftp +slang spell test unicode X +xdg"
 
 REQUIRED_USE="spell? ( edit )"
