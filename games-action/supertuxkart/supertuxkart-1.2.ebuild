@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: fc674824ebbe0025db198a806b4507492bf54542 $
+# $Id: 03866f018d3556de0c084c3aada739d1518e6242 $
 
 EAPI=7
 
@@ -15,7 +15,7 @@ SRC_URI="https://github.com/${PN}/stk-code/releases/download/${PV}/${MY_P}.tar.x
 LICENSE="GPL-2 GPL-3 CC-BY-SA-3.0 CC-BY-SA-4.0 CC0-1.0 public-domain ZLIB"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug libressl nettle recorder sqlite wiimote"
+IUSE="debug nettle recorder sqlite wiimote"
 
 # don't unbundle irrlicht and bullet
 # both are modified and system versions will break the game
@@ -43,10 +43,7 @@ RDEPEND="
 	x11-libs/libX11
 	x11-libs/libXxf86vm
 	nettle? ( dev-libs/nettle:= )
-	!nettle? (
-		libressl? ( dev-libs/libressl:= )
-		!libressl? ( >=dev-libs/openssl-1.0.1d:0= )
-	)
+	!nettle? ( >=dev-libs/openssl-1.0.1d:0= )
 	recorder? ( media-libs/libopenglrecorder )
 	wiimote? ( net-wireless/bluez )"
 DEPEND="${RDEPEND}"

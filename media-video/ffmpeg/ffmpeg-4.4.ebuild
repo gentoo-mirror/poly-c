@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 7ab4dcdeb81a444053d00255746c2f3373e9dbd1 $
+# $Id: f1e2939f625e6e2caa95c48567b5d0542c36fbbe $
 
 EAPI=7
 
@@ -69,7 +69,7 @@ fi
 # foo is added to IUSE.
 FFMPEG_FLAG_MAP=(
 		+bzip2:bzlib cpudetection:runtime-cpudetect debug gcrypt +gnutls gmp
-		+gpl hardcoded-tables +iconv libressl:libtls libxml2 lzma +network opencl
+		+gpl hardcoded-tables +iconv libxml2 lzma +network opencl
 		openssl +postproc samba:libsmbclient sdl:ffplay sdl:sdl2 vaapi vdpau vulkan
 		X:xlib X:libxcb X:libxcb-shm X:libxcb-xfixes +zlib
 		# libavdevice options
@@ -271,17 +271,9 @@ RDEPEND="
 	postproc? ( !media-libs/libpostproc )
 "
 
-# Crypto & co provider magic
-# - libressl is a useflag meaning it should always favor libressl over openssl
-# - libressl and openssl provide more features to ffmpeg than gnutls
-#
-# The ordering is thus: libressl > openssl > gnutls
 RDEPEND="${RDEPEND}
-	libressl? ( dev-libs/libressl:0=[${MULTILIB_USEDEP}] )
-	!libressl? (
-		openssl? ( >=dev-libs/openssl-1.0.1h-r2:0=[${MULTILIB_USEDEP}] )
-		!openssl? ( gnutls? ( >=net-libs/gnutls-2.12.23-r6:=[${MULTILIB_USEDEP}] ) )
-	)
+	openssl? ( >=dev-libs/openssl-1.0.1h-r2:0=[${MULTILIB_USEDEP}] )
+	!openssl? ( gnutls? ( >=net-libs/gnutls-2.12.23-r6:=[${MULTILIB_USEDEP}] ) )
 "
 
 DEPEND="${RDEPEND}
@@ -320,7 +312,7 @@ REQUIRED_USE="
 	${CPU_REQUIRED_USE}"
 RESTRICT="
 	!test? ( test )
-	gpl? ( openssl? ( bindist ) fdk? ( bindist ) libressl? ( bindist ) )
+	gpl? ( openssl? ( bindist ) fdk? ( bindist ) )
 "
 
 S=${WORKDIR}/${P/_/-}
@@ -349,7 +341,7 @@ multilib_src_configure() {
 	local myconf=( )
 
 	local ffuse=( "${FFMPEG_FLAG_MAP[@]}" )
-	use openssl || use libressl && use gpl && myconf+=( --enable-nonfree )
+	use openssl && myconf+=( --enable-nonfree )
 	use samba && myconf+=( --enable-version3 )
 
 	# Encoders
@@ -385,10 +377,7 @@ multilib_src_configure() {
 		myconf+=( $(use_enable ${i%:*} ${i#*:}) )
 	done
 
-	# Incompatible features: openssl or libressl and gnutls
-	if use libressl ; then
-		myconf+=( --disable-gnutls --disable-openssl )
-	elif use openssl ; then
+	if use openssl ; then
 		myconf+=( --disable-gnutls )
 	fi
 

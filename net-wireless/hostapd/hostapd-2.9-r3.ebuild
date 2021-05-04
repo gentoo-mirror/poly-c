@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 6183c8c4e5f67f48f070f17dae3a7cb9354fbbbc $
+# $Id: 7a63076e50a76228dcdc03a04458bbc867d0a2ef $
 
 EAPI=7
 
@@ -29,17 +29,11 @@ fi
 
 LICENSE="BSD"
 SLOT="0"
-IUSE="internal-tls ipv6 libressl logwatch netlink sqlite +suiteb +wps +crda"
-
-# suiteb impl uses openssl feature not available in libressl, see bug 710992
-REQUIRED_USE="?? ( libressl suiteb )"
+IUSE="internal-tls ipv6 logwatch netlink sqlite +suiteb +wps +crda"
 
 DEPEND="
-	libressl? ( dev-libs/libressl:0= )
-	!libressl? (
-		internal-tls? ( dev-libs/libtommath )
-		!internal-tls? ( dev-libs/openssl:0=[-bindist] )
-	)
+	internal-tls? ( dev-libs/libtommath )
+	!internal-tls? ( dev-libs/openssl:0=[-bindist] )
 	kernel_linux? (
 		dev-libs/libnl:3
 		crda? ( net-wireless/crda )
@@ -51,11 +45,7 @@ RDEPEND="${DEPEND}"
 
 pkg_pretend() {
 	if use internal-tls; then
-		if use libressl; then
-			elog "libressl flag takes precedence over internal-tls"
-		else
-			ewarn "internal-tls implementation is experimental and provides fewer features"
-		fi
+		ewarn "internal-tls implementation is experimental and provides fewer features"
 	fi
 }
 
@@ -110,7 +100,7 @@ src_configure() {
 		echo "CONFIG_SUITEB192=y" >> ${CONFIG} || die
 	fi
 
-	if use internal-tls && ! use libressl; then
+	if use internal-tls ; then
 		echo "CONFIG_TLS=internal" >> ${CONFIG} || die
 	else
 		# SSL authentication methods
@@ -214,7 +204,7 @@ src_configure() {
 src_compile() {
 	emake V=1
 
-	if use libressl || ! use internal-tls; then
+	if ! use internal-tls; then
 		emake V=1 nt_password_hash
 		emake V=1 hlr_auc_gw
 	fi
@@ -229,7 +219,7 @@ src_install() {
 	dosbin ${PN}
 	dobin ${PN}_cli
 
-	if use libressl || ! use internal-tls; then
+	if ! use internal-tls; then
 		dobin nt_password_hash hlr_auc_gw
 	fi
 

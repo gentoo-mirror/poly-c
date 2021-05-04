@@ -1,6 +1,6 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 329de4139a25ca4c96669d164fcf6644fdaddfd0 $
+# $Id: 1b75dbc88d8480afac17e571666b0291a13c399f $
 
 EAPI=7
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/${PN}/SuperTuxKart/${PV}/${P}-src.tar.xz
 LICENSE="GPL-2 GPL-3 CC-BY-SA-3.0 CC-BY-SA-4.0 CC0-1.0 public-domain ZLIB"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug libressl nettle recorder wiimote"
+IUSE="debug nettle recorder wiimote"
 
 # don't unbundle irrlicht and bullet
 # both are modified and system versions will break the game
@@ -40,10 +40,7 @@ RDEPEND="
 	x11-libs/libX11
 	x11-libs/libXxf86vm
 	nettle? ( dev-libs/nettle:= )
-	!nettle? (
-		libressl? ( dev-libs/libressl:= )
-		!libressl? ( >=dev-libs/openssl-1.0.1d:0= )
-	)
+	!nettle? ( >=dev-libs/openssl-1.0.1d:0=	)
 	recorder? ( media-libs/libopenglrecorder )
 	wiimote? ( net-wireless/bluez )"
 DEPEND="${RDEPEND}"

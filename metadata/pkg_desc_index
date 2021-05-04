@@ -99,6 +99,7 @@ media-video/cinelerraGG 9999: The most advanced non-linear video editor and comp
 media-video/ffmpeg 4.3.1 4.3.2 4.4: Complete solution to record/convert/stream audio and video. Includes libavcodec
 media-video/obs-studio 26.1.2_pre: Software for Recording and Streaming Live Video Content
 media-video/smplayer 20.4.2 20.6.0: Great Qt GUI front-end for mplayer/mpv
+media-video/vlc 3.0.13_pre: Media player and framework with support for most multimedia files and streaming
 net-analyzer/arpalert 2.0.12_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
 net-analyzer/netsniff-ng 0.6.8 9999: high performance network sniffer for packet inspection
@@ -166,7 +167,6 @@ sys-process/iotop 1.17: top utility for IO (C port)
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.16-r2 3.3.16-r3 3.3.17: standard informational utilities and process-handling tools
 www-apps/baikal 0.8.0: Lightweight CalDAV+CardDAV server
-www-client/seamonkey 2.53.6 2.53.7 2.53.7.1: Seamonkey Web Browser
 www-client/waterfox-classic 2021.03 2021.04-r1 2021.04.2: Waterfox Web Browser
 www-client/waterfox-current 2020.10: Waterfox Web Browser
 www-client/waterfox-g3 1.1: Waterfox Web Browser
