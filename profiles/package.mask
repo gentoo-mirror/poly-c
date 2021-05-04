@@ -10,9 +10,6 @@ media-radio/liquidsoap
 # Requires java8 and FXCollections
 >=media-tv/mediathekview-bin-12
 
-# Missing deps
->=net-libs/ortp-0.27.0_pre
-
 # masked for testing
 =net-misc/icecast-2.5_beta*
 
@@ -32,3 +29,5 @@ media-gfx/fawkes
 # WIP
 www-client/waterfox-g3
 
+# Breaks revdeps
+=dev-utils/meson-0.58.0_pre
