@@ -30,4 +30,4 @@ media-gfx/fawkes
 www-client/waterfox-g3
 
 # Breaks revdeps
-=dev-utils/meson-0.58.0_pre
+=dev-util/meson-0.58.0_pre
