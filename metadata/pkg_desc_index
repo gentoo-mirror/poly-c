@@ -78,11 +78,10 @@ media-gfx/fawkes 9999: Image Cloaking for Personal Privacy
 media-libs/gst-plugins-base 1.18.3_pre: Basepack of plugins for gstreamer
 media-libs/gstreamer 1.18.3_pre: Open source multimedia framework
 media-libs/libbpg 0.9.8_pre: BPG (Better Portable Graphics) is a new image format
-media-libs/libdvdcss 1.4.2-r1: A portable abstraction library for DVD decryption
+media-libs/libdvdcss 1.4.2-r1 1.4.3: A portable abstraction library for DVD decryption
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
 media-libs/libwebp 1.2.0_pre: A lossy image compression format
-media-libs/mesa 21.1.0_rc2: OpenGL-like graphic library for Linux
 media-libs/x264 0.0.20200810: A free library for encoding X264/AVC streams
 media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
 media-sound/alsa-utils 1.2.2 1.2.3 1.2.4: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
@@ -99,6 +98,7 @@ media-video/cinelerraGG 9999: The most advanced non-linear video editor and comp
 media-video/ffmpeg 4.3.1 4.3.2 4.4: Complete solution to record/convert/stream audio and video. Includes libavcodec
 media-video/obs-studio 26.1.2_pre: Software for Recording and Streaming Live Video Content
 media-video/smplayer 20.4.2 20.6.0: Great Qt GUI front-end for mplayer/mpv
+media-video/vlc 3.0.13_pre: Media player and framework with support for most multimedia files and streaming
 net-analyzer/arpalert 2.0.12_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
 net-analyzer/netsniff-ng 0.6.8 9999: high performance network sniffer for packet inspection
@@ -140,6 +140,7 @@ sys-apps/hwloc 2.0.3_pre: displays the hardware topology in convenient formats
 sys-apps/iproute2 5.7.0 5.10.0-r1 5.11.0 5.12.0: kernel routing and traffic control utilities
 sys-apps/kmod 27-r2 28: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
+sys-apps/less 585_pre: Excellent text file viewer
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
 sys-apps/openrc 0.42.1-r1 0.43.2: OpenRC manages the services, startup and shutdown of a host
 sys-apps/portage 3.0.13 3.0.17-r2 3.0.18: Portage is the package management and distribution system for Gentoo
