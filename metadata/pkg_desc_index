@@ -25,7 +25,6 @@ app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/asciidoc 9.1.0_pre: A plain text human readable/writable document format
 app-text/calibre 4.23.0: Ebook management application
-app-text/poppler 21.05.0_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-db/sqlite 3.35.5_pre: SQL database engine
 dev-games/cegui 0.8.7-r1: Crazy Eddie's GUI System
 dev-games/simgear 2020.3.7_pre 2020.3.8_pre: Development library for simulation games
@@ -161,7 +160,7 @@ sys-fs/fswatch 1.14.0 1.15.0 9999: cross-platform file change monitor with multi
 sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.6 248: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/slang 2.3.3_pre48: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.187 4.19.188 4.19.189 5.4.114 5.4.115 5.4.116 5.10.32 5.10.33 5.10.34: Shows and sets processor power related values
+sys-power/cpupower 4.19.188 4.19.189 4.19.190 5.4.115 5.4.116 5.4.117 5.10.33 5.10.34 5.10.35: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/iotop 1.17: top utility for IO (C port)
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
