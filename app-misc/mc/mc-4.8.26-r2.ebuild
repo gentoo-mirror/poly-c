@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5c6783cbf2cc77e8a1d90d0030febe6fafe0569d $
+# $Id: 47e5f652e7108a7e17ef002708122706f3bd4636 $
 
 EAPI=7
 
@@ -119,6 +119,13 @@ src_install() {
 }
 
 pkg_postinst() {
+	if use spell && ! has_version app-dicts/aspell-en ; then
+		elog "'spell' USE flag is enabled however app-dicts/aspell-en is not installed."
+		elog "You should manually set 'spell_language' in the Misc section of ~/.config/mc/ini"
+		elog "It has to be set to one of your installed aspell dictionaries or 'NONE'"
+		elog
+	fi
+
 	elog "To enable exiting to latest working directory,"
 	elog "put this into your ~/.bashrc:"
 	elog ". ${EPREFIX}/usr/libexec/mc/mc.sh"
