@@ -1,7 +1,9 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
+
+WX_GTK_VER="3.0"
 
 inherit cmake-utils wxwidgets
 
@@ -19,7 +21,7 @@ DEPEND="
 	>=sci-libs/vtk-6.2[rendering,-opengl2]
 	>=sci-libs/itk-4.8
 	dev-db/sqlite
-	dev-libs/openssl:0
+	dev-libs/openssl:0=
 	|| (
 		>=sci-libs/dcmtk-3.6.1_pre20150924
 		>=sci-libs/dcmtk-3.6.2-r1[c++11]

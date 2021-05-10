@@ -25,7 +25,6 @@ app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/asciidoc 9.1.0_pre: A plain text human readable/writable document format
 app-text/calibre 4.23.0: Ebook management application
-dev-db/sqlite 3.35.5_pre: SQL database engine
 dev-games/cegui 0.8.7-r1: Crazy Eddie's GUI System
 dev-games/simgear 2020.3.7_pre 2020.3.8_pre: Development library for simulation games
 dev-java/ant-core 1.9.8_pre: Java-based build tool similar to 'make' that uses XML configuration files
@@ -133,6 +132,7 @@ sci-misc/dicom3tools 1.00.20160402132920: Command line utilities for manipulatin
 sci-misc/mia 2.4.4: Library and tools for medical image processing
 sci-misc/xmedcon 0.14.1: Medical Image Conversion Utility
 sci-visualization/amide 1.0.5: AMIDE's a Medical Imaging Data Examiner
+sci-visualization/ginkgocadx 3.8.6: An advanced DICOM viewer and dicomizer
 sys-apps/baselayout 2.6-r1 2.7 2.7-r1 2.7-r2: Filesystem baselayout and init scripts
 sys-apps/fwup 1.0.0 1.2.1: Configurable embedded Linux firmware update creator and runner
 sys-apps/gawk 4.2.1-r1 5.0.1 5.1.0: GNU awk pattern-matching language
