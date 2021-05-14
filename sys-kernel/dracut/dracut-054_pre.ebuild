@@ -64,6 +64,7 @@ QA_MULTILIB_PATHS="usr/lib/dracut/.*"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-054-gentoo-ldconfig-paths.patch
+	"${FILESDIR}"/${PN}-054-util.patch
 )
 
 src_configure() {
@@ -91,8 +92,8 @@ src_install() {
 	docinto html
 	dodoc dracut.html
 
-	dosym ${PN}-util /usr/lib/${PN}/${PN}-getarg
-	dosym ${PN}-util /usr/lib/${PN}/${PN}-getargs
+	#dosym ${PN}-util /usr/lib/${PN}/${PN}-getarg
+	#dosym ${PN}-util /usr/lib/${PN}/${PN}-getargs
 }
 
 pkg_postinst() {

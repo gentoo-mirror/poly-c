@@ -1,0 +1,113 @@
+From be1c1c0203b0e3023435b6b88a82caf009f045c6 Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Fri, 14 May 2021 16:00:27 +0200
+Subject: [PATCH 1/2] dracut-util: Print error message with trailing newline
+
+Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
+---
+ src/util/util.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/util/util.c b/src/util/util.c
+index 8ae06d6c..b3498df6 100644
+--- a/src/util/util.c
++++ b/src/util/util.c
+@@ -123,7 +123,7 @@ static void usage(enum EXEC_MODE enumExecMode, int ret, char *msg)
+ {
+         switch (enumExecMode) {
+         case UNDEFINED:
+-                fprintf(stderr, "ERROR: 'dracut-util' has to be called via a symlink to the tool name.");
++                fprintf(stderr, "ERROR: 'dracut-util' has to be called via a symlink to the tool name.\n");
+                 break;
+         case GETARG:
+                 fprintf(stderr, "ERROR: %s\nUsage: dracut-getarg <KEY>[=[<VALUE>]]\n", msg);
+-- 
+2.31.1
+
+
+From 87be580aacfbc4192cca794a047cfb8718af00be Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Fri, 14 May 2021 16:41:13 +0200
+Subject: [PATCH 2/2] modules.d/99base/dracut-lib.sh: Fix dracut-getarg{,s}
+ calls
+
+This should fix error messages like:
+
+  /usr/lib/dracut/modules.d/99base/dracut-lib.sh: line 217: dracut-getarg: command not found
+
+Signed-off-by: Lars Wendler <polynomial-c@gentoo.org>
+---
+ Makefile                       |  2 ++
+ modules.d/99base/dracut-lib.sh | 15 +++++++++++----
+ 2 files changed, 13 insertions(+), 4 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index e7d69e10..c181909d 100644
+--- a/Makefile
++++ b/Makefile
+@@ -195,6 +195,8 @@ endif
+ 	fi
+ 	if [ -f dracut-util ]; then \
+ 		install -m 0755 dracut-util $(DESTDIR)$(pkglibdir)/dracut-util; \
++		ln -sf dracut-util $(DESTDIR)$(pkglibdir)/dracut-getarg; \
++		ln -sf dracut-util $(DESTDIR)$(pkglibdir)/dracut-getargs; \
+ 	fi
+ 	mkdir -p $(DESTDIR)${prefix}/lib/kernel/install.d
+ 	install -m 0755 install.d/50-dracut.install $(DESTDIR)${prefix}/lib/kernel/install.d/50-dracut.install
+diff --git a/modules.d/99base/dracut-lib.sh b/modules.d/99base/dracut-lib.sh
+index c35658fa..47da33ec 100755
+--- a/modules.d/99base/dracut-lib.sh
++++ b/modules.d/99base/dracut-lib.sh
+@@ -17,6 +17,13 @@ if [ -z "$PREFIX" ]; then
+     [ -d /run/log ] || mkdir -p -m 0755 /run/log
+ fi
+ 
++_dracut-getarg() {
++	${dracutsysrootdir}${dracutbasedir}/dracut-getarg "$@"
++}
++_dracut-getargs() {
++	${dracutsysrootdir}${dracutbasedir}/dracut-getargs "$@"
++}
++
+ debug_off() {
+     set +x
+ }
+@@ -179,7 +186,7 @@ getarg() {
+                 shift
+                 ;;
+             -y)
+-                if dracut-getarg "$2" > /dev/null; then
++                if _dracut-getarg "$2" > /dev/null; then
+                     if [ "$_deprecated" = "1" ]; then
+                         if [ -n "$_newoption" ]; then
+                             warn "Kernel command line option '$2' is deprecated, use '$_newoption' instead."
+@@ -195,7 +202,7 @@ getarg() {
+                 shift 2
+                 ;;
+             -n)
+-                if dracut-getarg "$2" > /dev/null; then
++                if _dracut-getarg "$2" > /dev/null; then
+                     echo 0
+                     if [ "$_deprecated" = "1" ]; then
+                         if [ -n "$_newoption" ]; then
+@@ -214,7 +221,7 @@ getarg() {
+                 if [ -z "$_newoption" ]; then
+                     _newoption="$1"
+                 fi
+-                if dracut-getarg "$1"; then
++                if _dracut-getarg "$1"; then
+                     if [ "$_deprecated" = "1" ]; then
+                         if [ -n "$_newoption" ]; then
+                             warn "Kernel command line option '$1' is deprecated, use '$_newoption' instead."
+@@ -301,7 +308,7 @@ getargs() {
+             continue
+         fi
+ 
+-        if _val="$(dracut-getargs "$_i")"; then
++        if _val="$(_dracut-getargs "$_i")"; then
+             if [ "$_deprecated" = "1" ]; then
+                 if [ -n "$_newoption" ]; then
+                     warn "Option '$_i' is deprecated, use '$_newoption' instead."
+-- 
+2.31.1
+
