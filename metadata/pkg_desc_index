@@ -19,7 +19,7 @@ app-editors/cooledit 3.17.19: Cooledit is a full featured multiple window text e
 app-laptop/dell-fan-mon 1.0 9999: Fan control for some Dell laptops
 app-laptop/i8kutils 1.43_pre: Dell Inspiron and Latitude utilities
 app-misc/kenny 0.1: command-line kennyfier
-app-misc/mc 4.8.26-r1 4.8.26-r2: GNU Midnight Commander is a text based file manager
+app-misc/mc 4.8.26-r2: GNU Midnight Commander is a text based file manager
 app-misc/osmo 0.4.2: Handy personal organizer
 app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
@@ -95,7 +95,6 @@ media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2 13.2.1: Download files from the public broadcasting services
 media-video/cinelerraGG 9999: The most advanced non-linear video editor and compositor - Good Guy's version
 media-video/ffmpeg 4.3.1 4.3.2 4.4: Complete solution to record/convert/stream audio and video. Includes libavcodec
-media-video/obs-studio 26.1.2_pre: Software for Recording and Streaming Live Video Content
 media-video/smplayer 20.4.2 20.6.0: Great Qt GUI front-end for mplayer/mpv
 net-analyzer/arpalert 2.0.12_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
@@ -164,7 +163,7 @@ sys-power/cpupower 4.19.188 4.19.189 4.19.190 5.4.116 5.4.117 5.4.118 5.10.34 5.
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/iotop 1.17: top utility for IO (C port)
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
-sys-process/procps 3.3.16-r2 3.3.16-r3 3.3.17: standard informational utilities and process-handling tools
+sys-process/procps 3.3.16-r2 3.3.16-r3 3.3.17: Standard informational utilities and process-handling tools
 www-apps/baikal 0.8.0: Lightweight CalDAV+CardDAV server
 www-client/waterfox-classic 2021.03 2021.04-r1 2021.04.2: Waterfox Web Browser
 www-client/waterfox-current 2020.10: Waterfox Web Browser

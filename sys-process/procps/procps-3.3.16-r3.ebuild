@@ -1,12 +1,12 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 5e67f3649e5c3f2f35beabbcc33fabfcd04601f4 $
+# $Id: 96f077659aefca05c3eebba5cd866c9c2d48acce $
 
 EAPI=7
 
-inherit toolchain-funcs flag-o-matic multilib-minimal usr-ldscript
+inherit flag-o-matic multilib-minimal usr-ldscript
 
-DESCRIPTION="standard informational utilities and process-handling tools"
+DESCRIPTION="Standard informational utilities and process-handling tools"
 HOMEPAGE="http://procps-ng.sourceforge.net/ https://gitlab.com/procps-ng/procps"
 SRC_URI="mirror://sourceforge/${PN}-ng/${PN}-ng-${PV}.tar.xz"
 
