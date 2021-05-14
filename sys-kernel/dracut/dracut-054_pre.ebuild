@@ -58,7 +58,7 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
-DOCS=( AUTHORS README.md README.generic README.kernel )
+DOCS=( AUTHORS README.md docs/README.generic docs/README.kernel )
 
 QA_MULTILIB_PATHS="usr/lib/dracut/.*"
 
@@ -90,6 +90,9 @@ src_install() {
 
 	docinto html
 	dodoc dracut.html
+
+	dosym ${PN}-util /usr/lib/${PN}/${PN}-getarg
+	dosym ${PN}-util /usr/lib/${PN}/${PN}-getargs
 }
 
 pkg_postinst() {
