@@ -8,12 +8,12 @@ app-admin/sudosh2 1.0.5: sudosh is a sudo shell, filter and can be used as a log
 app-admin/super 3.30.3.1: setuid-root program
 app-arch/minizip-ng 3.0.0 3.0.1: zip manipulation library found in the zlib distribution
 app-arch/xz-utils 5.2.5: utils for managing LZMA compressed files
-app-arch/zstd 1.5.0_pre: zstd fast compression library
 app-backup/snapper-gui 9999: GUI for snapper, a tool for Linux filesystem snapshot management
 app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, including cdrecord
 app-cdr/cdrtools 99: Placeholder to replace cdrtools with cdrkit
 app-cdr/qpxtool 0.8.0: CD/DVD quality checking utilities
 app-crypt/gnupg 2.2.20-r1 2.2.23: The GNU Privacy Guard, a GPL OpenPGP implementation
+app-crypt/hashcat 6.2.1_pre: World's fastest and most advanced password recovery utility
 app-crypt/nwipe 0.24_pre: Securely erase disks using a variety of recognized methods
 app-editors/cooledit 3.17.19: Cooledit is a full featured multiple window text editor
 app-laptop/dell-fan-mon 1.0 9999: Fan control for some Dell laptops
@@ -136,7 +136,6 @@ sys-apps/hwloc 2.0.3_pre: displays the hardware topology in convenient formats
 sys-apps/iproute2 5.7.0 5.10.0-r1 5.11.0 5.12.0: kernel routing and traffic control utilities
 sys-apps/kmod 27-r2 28: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
-sys-apps/less 585_pre: Excellent text file viewer
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
 sys-apps/openrc 0.43.3: OpenRC manages the services, startup and shutdown of a host
 sys-apps/portage 3.0.13 3.0.17-r2 3.0.18: Portage is the package management and distribution system for Gentoo
