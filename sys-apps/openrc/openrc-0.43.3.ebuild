@@ -1,10 +1,10 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 24ee8a894fc54bf2c37f752bfc3ca946523397fd $
+# $Id: f6eaa2172d22694eba1b6bdfffb87486f4388960 $
 
 EAPI=7
 
-inherit flag-o-matic pam toolchain-funcs usr-ldscript
+inherit flag-o-matic pam toolchain-funcs
 
 DESCRIPTION="OpenRC manages the services, startup and shutdown of a host"
 HOMEPAGE="https://github.com/openrc/openrc/"
@@ -14,13 +14,12 @@ if [[ ${PV} == "9999" ]]; then
 	inherit git-r3
 else
 	SRC_URI="https://github.com/${PN}/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 ~riscv ~s390 sparc x86"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86"
 fi
 
 LICENSE="BSD-2"
 SLOT="0"
-IUSE="audit bash debug ncurses pam newnet prefix +netifrc selinux static-libs
-	sysv-utils unicode"
+IUSE="audit bash debug ncurses pam newnet prefix +netifrc selinux sysv-utils unicode"
 
 COMMON_DEPEND="
 	ncurses? ( sys-libs/ncurses:0= )
@@ -61,8 +60,7 @@ RDEPEND="${COMMON_DEPEND}
 PDEPEND="netifrc? ( net-misc/netifrc )"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-0.42.1-gcc-10.patch
-	"${FILESDIR}"/${PN}-0.42.1-ssd_exec_segfault.patch #755197
+	"${FILESDIR}/${P}-modules_service_dash.patch"
 )
 
 src_prepare() {
@@ -74,10 +72,9 @@ src_prepare() {
 }
 
 src_compile() {
-	unset LIBDIR #266688
-
 	MAKE_ARGS="${MAKE_ARGS}
 		LIBNAME=$(get_libdir)
+		LIBDIR=${EPREFIX}/$(get_libdir)
 		LIBEXECDIR=${EPREFIX}/lib/rc
 		MKBASHCOMP=yes
 		MKNET=$(usex newnet)
@@ -85,15 +82,13 @@ src_compile() {
 		MKSYSVINIT=$(usex sysv-utils)
 		MKAUDIT=$(usex audit)
 		MKPAM=$(usev pam)
-		MKSTATICLIBS=$(usex static-libs)
+		MKSTATICLIBS=no
 		MKZSHCOMP=yes
+		OS=Linux
 		SH=$(usex bash /bin/bash /bin/sh)"
 
-	local brand="Unknown"
-	MAKE_ARGS="${MAKE_ARGS} OS=Linux"
-	brand="Linux"
-	export BRANDING="Gentoo ${brand}"
 	use prefix && MAKE_ARGS="${MAKE_ARGS} MKPREFIX=yes PREFIX=${EPREFIX}"
+export BRANDING="Gentoo Linux"
 	export DEBUG=$(usev debug)
 	export MKTERMCAP=$(usev ncurses)
 
@@ -117,14 +112,6 @@ set_config_yes_no() {
 src_install() {
 	emake ${MAKE_ARGS} DESTDIR="${D}" install
 
-	# move the shared libs back to /usr so ldscript can install
-	# more of a minimal set of files
-	# disabled for now due to #270646
-	#mv "${ED}"/$(get_libdir)/lib{einfo,rc}* "${ED}"/usr/$(get_libdir)/ || die
-	#gen_usr_ldscript -a einfo rc
-	gen_usr_ldscript libeinfo.so
-	gen_usr_ldscript librc.so
-
 	keepdir /lib/rc/tmp
 
 	# Setup unicode defaults for silly unicode users
@@ -142,7 +129,7 @@ src_install() {
 	insinto /etc/logrotate.d
 	newins "${FILESDIR}"/openrc.logrotate openrc
 
-	if use pam ; then
+	if use pam; then
 		# install gentoo pam.d files
 		newpamd "${FILESDIR}"/start-stop-daemon.pam start-stop-daemon
 		newpamd "${FILESDIR}"/start-stop-daemon.pam supervise-daemon

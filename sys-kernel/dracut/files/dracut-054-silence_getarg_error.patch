@@ -1,0 +1,26 @@
+From fbaf87b570431b4a3a199975229e2054196d6303 Mon Sep 17 00:00:00 2001
+From: Lars Wendler <polynomial-c@gentoo.org>
+Date: Sat, 15 May 2021 15:16:32 +0200
+Subject: [PATCH] modules.d/99base/dracut-lib.sh: Don't emit error message
+
+https://github.com/dracutdevs/dracut/issues/1494
+---
+ modules.d/99base/dracut-lib.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/modules.d/99base/dracut-lib.sh b/modules.d/99base/dracut-lib.sh
+index c35658fa..3b537b4b 100755
+--- a/modules.d/99base/dracut-lib.sh
++++ b/modules.d/99base/dracut-lib.sh
+@@ -214,7 +214,7 @@ getarg() {
+                 if [ -z "$_newoption" ]; then
+                     _newoption="$1"
+                 fi
+-                if dracut-getarg "$1"; then
++                if dracut-getarg "$1" > /dev/null; then
+                     if [ "$_deprecated" = "1" ]; then
+                         if [ -n "$_newoption" ]; then
+                             warn "Kernel command line option '$1' is deprecated, use '$_newoption' instead."
+-- 
+2.31.1
+
