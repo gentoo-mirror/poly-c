@@ -152,7 +152,7 @@ sys-devel/distcc 3.3.5_pre 3.4: Distribute compilation of C code across several 
 sys-devel/gnuconfig 20210107_pre: Updated config.sub and config.guess file from GNU
 sys-devel/icecream 1.3.1_pre: Distributed compiling of C(++) code across several machines; based on distcc
 sys-fs/fswatch 1.14.0 1.15.0 9999: cross-platform file change monitor with multiple backends
-sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.6 248 248.2: Linux dynamic and persistent device naming support (aka userspace devfs)
+sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.6 248 248.2 248.3: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-kernel/dracut 054_pre: Generic initramfs generation tool
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/slang 2.3.3_pre51: Multi-platform library designed to allow a developer to create robust software
