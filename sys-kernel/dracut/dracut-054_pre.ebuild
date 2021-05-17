@@ -64,8 +64,8 @@ QA_MULTILIB_PATHS="usr/lib/dracut/.*"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-054-gentoo-ldconfig-paths.patch
-	#"${FILESDIR}"/${PN}-054-silence_getarg_error.patch
-	"${FILESDIR}"/${PN}-054-dev-lib_split_out.patch
+	"${FILESDIR}"/${PN}-054-silence_getarg_error.patch
+	#"${FILESDIR}"/${PN}-054-dev-lib_split_out.patch
 )
 
 src_configure() {
