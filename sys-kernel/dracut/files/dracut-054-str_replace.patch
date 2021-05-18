@@ -1,0 +1,57 @@
+From 148e420be5b5809aa8d5033f47477573bbbf3e60 Mon Sep 17 00:00:00 2001
+From: Harald Hoyer <harald@redhat.com>
+Date: Tue, 18 May 2021 10:13:56 +0200
+Subject: [PATCH] fix(base): add missing `str_replace` to `dracut-dev-lib.sh`
+
+```
+dracut-dev-lib.sh: line 92: str_replace: command not found
+dracut-dev-lib.sh: line 98: /var/tmp/dracut.sabKZg/initramfs/initqueue/finished/devexists-.sh: No such file or directory
+dracut-dev-lib.sh: line 83: /var/tmp/dracut.sabKZg/initramfs/emergency/80-.sh: No such file or directory
+```
+---
+ modules.d/99base/dracut-dev-lib.sh | 20 ++++++++++++++++++++
+ modules.d/99base/module-setup.sh   |  1 +
+ 2 files changed, 21 insertions(+)
+
+diff --git a/modules.d/99base/dracut-dev-lib.sh b/modules.d/99base/dracut-dev-lib.sh
+index 5083f4f25..0df22b82c 100755
+--- a/modules.d/99base/dracut-dev-lib.sh
++++ b/modules.d/99base/dracut-dev-lib.sh
+@@ -1,5 +1,25 @@
+ #!/bin/sh
+ 
++# replaces all occurrences of 'search' in 'str' with 'replacement'
++#
++# str_replace str search replacement
++#
++# example:
++# str_replace '  one two  three  ' ' ' '_'
++str_replace() {
++    local in="$1"
++    local s="$2"
++    local r="$3"
++    local out=''
++
++    while [ "${in##*"$s"*}" != "$in" ]; do
++        chop="${in%%"$s"*}"
++        out="${out}${chop}$r"
++        in="${in#*"$s"}"
++    done
++    echo "${out}${in}"
++}
++
+ # get a systemd-compatible unit name from a path
+ # (mimicks unit_name_from_path_instance())
+ dev_unit_name() {
+diff --git a/modules.d/99base/module-setup.sh b/modules.d/99base/module-setup.sh
+index 7eb0a2774..07c33eefc 100755
+--- a/modules.d/99base/module-setup.sh
++++ b/modules.d/99base/module-setup.sh
+@@ -117,6 +117,7 @@ install() {
+                     export DRACUT_SYSTEMD=1
+                 fi
+                 export PREFIX="$initdir"
++                export hookdir=/lib/dracut/hooks
+ 
+                 # shellcheck source=dracut-dev-lib.sh
+                 . "$moddir/dracut-dev-lib.sh"
