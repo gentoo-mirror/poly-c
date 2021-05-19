@@ -13,7 +13,6 @@ app-cdr/cdrkit 1.1.11-r2: A set of tools for CD/DVD reading and recording, inclu
 app-cdr/cdrtools 99: Placeholder to replace cdrtools with cdrkit
 app-cdr/qpxtool 0.8.0: CD/DVD quality checking utilities
 app-crypt/gnupg 2.2.20-r1 2.2.23: The GNU Privacy Guard, a GPL OpenPGP implementation
-app-crypt/hashcat 6.2.1_pre: World's fastest and most advanced password recovery utility
 app-crypt/nwipe 0.24_pre: Securely erase disks using a variety of recognized methods
 app-editors/cooledit 3.17.19: Cooledit is a full featured multiple window text editor
 app-laptop/dell-fan-mon 1.0 9999: Fan control for some Dell laptops
@@ -156,7 +155,7 @@ sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.6 248 248.2 248.3: Linux dynamic an
 sys-kernel/dracut 054_pre: Generic initramfs generation tool
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/slang 2.3.3_pre51: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.188 4.19.189 4.19.190 5.4.117 5.4.118 5.4.119 5.10.35 5.10.36 5.10.37: Shows and sets processor power related values
+sys-power/cpupower 4.19.188 4.19.189 4.19.190 5.4.118 5.4.119 5.4.120 5.10.36 5.10.37 5.10.38: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/iotop 1.17: top utility for IO (C port)
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
