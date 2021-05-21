@@ -91,6 +91,7 @@ media-sound/soundcloud-dl 2.1.0: This is a sample skeleton ebuild file
 media-tv/mediathekview-bin 11 12 13.0.2 13.2.1: Download files from the public broadcasting services
 media-video/cinelerraGG 9999: The most advanced non-linear video editor and compositor - Good Guy's version
 media-video/ffmpeg 4.3.1 4.3.2 4.4: Complete solution to record/convert/stream audio and video. Includes libavcodec
+media-video/pipewire 0.3.28: Multimedia processing graphs
 media-video/smplayer 20.4.2 20.6.0: Great Qt GUI front-end for mplayer/mpv
 net-analyzer/arpalert 2.0.12_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
