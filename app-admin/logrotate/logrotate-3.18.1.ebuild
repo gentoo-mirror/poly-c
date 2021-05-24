@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9e712b69c69595b826b629a0bcd0d1b4ee7b9728 $
+# $Id: d49a3017aaba32c5e6c7b5953f18b054f0c99982 $
 
 EAPI=7
 
@@ -15,20 +15,17 @@ SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86"
 IUSE="acl +cron selinux"
 
-COMMON_DEPEND="
+DEPEND="
 	>=dev-libs/popt-1.5
 	selinux? ( sys-libs/libselinux )
 	acl? ( virtual/acl )"
 
-DEPEND="${COMMON_DEPEND}
-	>=sys-apps/sed-4"
-
-RDEPEND="${COMMON_DEPEND}
+RDEPEND="${DEPEND}
 	selinux? ( sec-policy/selinux-logrotate )
 	cron? ( virtual/cron )"
 
-STATEFILE="/var/lib/misc/logrotate.status"
-OLDSTATEFILE="/var/lib/logrotate.status"
+STATEFILE="${EPREFIX}/var/lib/misc/logrotate.status"
+OLDSTATEFILE="${EPREFIX}/var/lib/logrotate.status"
 
 move_old_state_file() {
 	elog "logrotate state file is now located at ${STATEFILE}"
@@ -50,9 +47,9 @@ PATCHES=(
 
 src_configure() {
 	econf \
-	$(use_with acl) \
-	$(use_with selinux) \
-	--with-state-file-path="${STATEFILE}"
+		$(use_with acl) \
+		$(use_with selinux) \
+		--with-state-file-path="${STATEFILE}"
 }
 
 src_test() {
@@ -71,7 +68,7 @@ src_install() {
 	use cron && install_cron_file
 
 	systemd_dounit examples/logrotate.{service,timer}
-	newtmpfiles "${FILESDIR}/${PN}.tmpfiles" "${PN}".conf
+	newtmpfiles "${FILESDIR}"/${PN}.tmpfiles "${PN}".conf
 
 	keepdir /etc/logrotate.d
 }
