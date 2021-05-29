@@ -157,7 +157,7 @@ sys-fs/udev 243-r2 245.5-r1 245.6 246-r1 247.6 248 248.2 248.3: Linux dynamic an
 sys-kernel/dracut 054_pre 055_pre: Generic initramfs generation tool
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/slang 2.3.3_pre51: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.190 4.19.191 4.19.192 5.4.120 5.4.121 5.4.122 5.10.38 5.10.39 5.10.40: Shows and sets processor power related values
+sys-power/cpupower 4.19.190 4.19.191 4.19.192 5.4.120 5.4.121 5.4.122 5.10.39 5.10.40 5.10.41: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/iotop 1.17: top utility for IO (C port)
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
