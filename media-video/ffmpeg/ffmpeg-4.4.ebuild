@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 111ef05ca3d167e87546b43758fe654b42eef7a9 $
+# $Id: aa2fd13df6eb114e7ec1f13f3008b7b60c6971cc $
 
 EAPI=7
 
@@ -452,6 +452,13 @@ multilib_src_configure() {
 		$(multilib_native_enable manpages)
 	)
 
+	local extra_libs
+	if use arm || use ppc ; then
+		# bug #782811
+		# bug #790590
+		extra_libs+="-latomic "
+	fi
+
 	set -- "${S}/configure" \
 		--prefix="${EPREFIX}/usr" \
 		--libdir="${EPREFIX}/usr/$(get_libdir)" \
@@ -466,6 +473,7 @@ multilib_src_configure() {
 		--ranlib="$(tc-getRANLIB)" \
 		--pkg-config="$(tc-getPKG_CONFIG)" \
 		--optflags="${CFLAGS}" \
+		--extra-libs="${extra_libs}" \
 		$(use_enable static-libs static) \
 		"${myconf[@]}" \
 		${EXTRA_FFMPEG_CONF}
