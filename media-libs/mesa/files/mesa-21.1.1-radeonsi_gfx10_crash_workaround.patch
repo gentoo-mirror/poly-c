@@ -1,0 +1,37 @@
+From d8fefb13228256601c3ae04331f1c05828143ed7 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marek=20Ol=C5=A1=C3=A1k?= <marek.olsak@amd.com>
+Date: Fri, 7 May 2021 22:52:42 -0400
+Subject: radeonsi: add a gfx10 bug workaround for NOT_EOP
+
+Fixes: cc24ec8c077 - radeonsi: set NOT_EOP for back-to-back draws on gfx10+
+
+Reviewed-by: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+Part-of: <https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/10813>
+---
+ src/gallium/drivers/radeonsi/si_state_draw.cpp | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/src/gallium/drivers/radeonsi/si_state_draw.cpp b/src/gallium/drivers/radeonsi/si_state_draw.cpp
+index 1b47cf986ba..682195ba528 100644
+--- a/src/gallium/drivers/radeonsi/si_state_draw.cpp
++++ b/src/gallium/drivers/radeonsi/si_state_draw.cpp
+@@ -1270,6 +1270,16 @@ static void si_emit_draw_packets(struct si_context *sctx, const struct pipe_draw
+                   sctx->last_base_vertex = draws[num_draws - 1].index_bias;
+             } else {
+                /* DrawID and BaseVertex are constant. */
++               if (GFX_VERSION == GFX10) {
++                  /* GFX10 has a bug that consecutive draw packets with NOT_EOP must not have
++                   * count == 0 in the last draw (which doesn't set NOT_EOP).
++                   *
++                   * So remove all trailing draws with count == 0.
++                   */
++                  while (num_draws > 1 && !draws[num_draws - 1].count)
++                     num_draws--;
++               }
++
+                for (unsigned i = 0; i < num_draws; i++) {
+                   uint64_t va = index_va + draws[i].start * index_size;
+ 
+-- 
+cgit v1.2.1
+
