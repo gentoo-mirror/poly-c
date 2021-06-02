@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 1b65bc4a6c39c69955a9e387bae69a96de05b24f $
+# $Id: ac0a731d05cc4e8dc174f36b47e281070742d648 $
 
 EAPI=7
 
@@ -105,7 +105,7 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 	$(python_gen_cond_dep '
 		>=dev-python/setuptools-23.1.0[${PYTHON_MULTI_USEDEP}]
-		dev-python/sip[${PYTHON_MULTI_USEDEP}]
+		<dev-python/sip-5[${PYTHON_MULTI_USEDEP}]
 	')
 	>=virtual/podofo-build-0.9.6_pre20171027
 	virtual/pkgconfig"
