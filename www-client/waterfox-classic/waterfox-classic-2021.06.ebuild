@@ -16,21 +16,14 @@ sr sv-SE ta te th tr uk uz vi xh zh-CN zh-TW )
 # Patch version
 PATCH="firefox-56.0-patches-07"
 #PATCH="waterfox-2019.12-patches-01"
-MOZ_HTTP_URI="https://github.com/MrAlex94/Waterfox/archive"
-#MOZ_HTTP_URI="https://www.gentoofan.org/files"
-#MOZ_LANGPACK_HTTP_URI="https://github.com/MrAlex94/www.waterfoxproject.org"
 
 MOZCONFIG_OPTIONAL_WIFI=1
 
-inherit check-reqs eapi7-ver flag-o-matic toolchain-funcs eutils gnome2-utils mozconfig-v6.56 pax-utils xdg-utils autotools virtualx
+inherit check-reqs desktop eapi7-ver flag-o-matic toolchain-funcs gnome2-utils mozconfig-v6.56 pax-utils xdg-utils autotools virtualx
 
-#if [[ -z "$(ver_cut 3)" ]] ; then
-#	MY_PV="${PV}-classic"
-#else
-#	MY_PV="$(ver_cut 1-2)-classic-$(ver_cut 3)"
-#fi
+WF_HTTP_URI="https://github.com/MrAlex94/Waterfox/archive"
 MY_PN="${PN/-classic}"
-MY_PV="${PV}"
+MY_PV="${PV}-classic"
 
 DESCRIPTION="Waterfox Web Browser"
 HOMEPAGE="http://www.waterfoxproject.org"
@@ -44,11 +37,10 @@ RESTRICT="mirror"
 
 PATCH_URIS=( https://dev.gentoo.org/~{anarchy,axs,polynomial-c}/mozilla/patchsets/${PATCH}.tar.xz )
 SRC_URI="
-	${MOZ_HTTP_URI}/${MY_PV}.tar.gz -> ${P}.tar.gz
+	${WF_HTTP_URI}/refs/tags/${MY_PV}.tar.gz -> ${P}.tar.gz
 	${PATCH_URIS[@]}
 	system-libvpx? ( https://dev.gentoo.org/~polynomial-c/mozilla/seamonkey-2.53.3-system_libvpx-1.8.patch.xz )
 "
-SRC_URI+=" https://www.gentoofan.org/gentoo/misc/${P}.1.patch.xz"
 
 ASM_DEPEND=">=dev-lang/yasm-1.1"
 
@@ -128,10 +120,8 @@ src_prepare() {
 	# Apply our patches
 	eapply "${WORKDIR}/firefox"
 
-	# https://github.com/MrAlex94/Waterfox/issues/2059
-	eapply "${WORKDIR}/${P}.1.patch"
-
 	use system-libvpx && eapply -p2 "${WORKDIR}/seamonkey-2.53.3-system_libvpx-1.8.patch"
+	eapply -p1 "${FILESDIR}/seamonkey-2.53.7.1-CLEANUP-workaround.patch"
 
 	# Enable gnomebreakpad
 	if use debug ; then
