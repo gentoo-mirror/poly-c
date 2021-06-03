@@ -113,7 +113,6 @@ net-misc/curl 7.76.1 7.77.0: A Client that groks URLs
 net-misc/gns3-gui 2.2.21_pre: Graphical Network Simulator
 net-misc/gns3-server 2.2.21_pre: GNS3 server to asynchronously manage emulators
 net-misc/icecast 2.5_beta1 2.5_beta2: Opensource alternative to shoutcast that supports mp3, ogg and aac streaming
-net-misc/iperf 3.10.1_pre: A TCP, UDP, and SCTP network bandwidth measurement tool
 net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5 1.6: collection of various tools using ssh
