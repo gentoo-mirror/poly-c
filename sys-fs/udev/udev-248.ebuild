@@ -1,11 +1,11 @@
 # Copyright 2003-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 177412dc751eb3a7b0c56256635c801cf8362351 $
+# $Id: 676b5a0be4e7d102f46fed1eda813822ae63fdc1 $
 
 EAPI=7
 PYTHON_COMPAT=( python3_{7..9} )
 
-inherit bash-completion-r1 linux-info meson ninja-utils multilib-minimal python-any-r1 toolchain-funcs udev usr-ldscript
+inherit bash-completion-r1 linux-info meson-multilib ninja-utils python-any-r1 toolchain-funcs udev usr-ldscript
 
 if [[ ${PV} = 9999* ]] ; then
 	EGIT_REPO_URI="https://github.com/systemd/systemd.git"
@@ -109,25 +109,17 @@ src_prepare() {
 	eapply "${WORKDIR}"/${FIXUP_PATCH}
 }
 
-meson_multilib_native_use() {
-	if multilib_is_native_abi && use "$1" ; then
-		echo true
-	else
-		echo false
-	fi
-}
-
 multilib_src_configure() {
 	local emesonargs=(
-		-Dacl=$(meson_multilib_native_use acl)
+		$(meson_native_use_bool acl)
 		-Defi=false
-		-Dhwdb=$(meson_multilib_native_use hwdb)
-		-Dkmod=$(meson_multilib_native_use kmod)
-		-Dselinux=$(meson_multilib_native_use selinux)
+		$(meson_native_use_bool hwdb)
+		$(meson_native_use_bool kmod)
+		$(meson_native_use_bool selinux)
 		-Dlink-udev-shared=false
 		-Dsplit-usr=true
 		-Drootlibdir="${EPREFIX}/usr/$(get_libdir)"
-		-Dstatic-libudev=$(usex static-libs true false)
+		$(meson_use static-libs static-libudev)
 
 		# Prevent automagic deps
 		-Dgcrypt=false
