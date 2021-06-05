@@ -1,12 +1,12 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: e88a3ec3ab73361a2419ec30678398057a410191 $
+# $Id: c9640682fba3a43037c2a6b3a39507b064513df5 $
 
 EAPI=7
 inherit systemd udev
 
 DESCRIPTION="Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)"
-HOMEPAGE="https://alsa-project.org/"
+HOMEPAGE="https://alsa-project.org/wiki/Main_Page"
 SRC_URI="https://www.alsa-project.org/files/pub/utils/${P}.tar.bz2"
 
 LICENSE="GPL-2"
