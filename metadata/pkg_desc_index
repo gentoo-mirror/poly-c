@@ -117,7 +117,7 @@ net-misc/knemo 0.8.0_pre20161211: Plasma Network Monitor
 net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5 1.6: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
-net-nds/openldap 2.4.49_pre 2.5.5_pre: LDAP suite of application and development tools
+net-nds/openldap 2.4.59_pre 2.5.5_pre: LDAP suite of application and development tools
 net-print/hplip 3.21.2 3.21.4_pre: HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
 net-wireless/hostapd 2.9-r3 2.9-r4: IEEE 802.11 wireless LAN Host AP daemon
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
