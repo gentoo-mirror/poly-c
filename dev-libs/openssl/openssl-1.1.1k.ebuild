@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 9b4eaf0e7a623ed648a07352ae283fd3a1d8f4b9 $
+# $Id: 1e98af8f70397726dc2543a2d0de57314f46540e $
 
 EAPI="7"
 
@@ -284,6 +284,15 @@ multilib_src_install() {
 	fi
 
 	emake DESTDIR="${D}" install
+
+	# This is crappy in that the static archives are still built even
+	# when USE=static-libs.  But this is due to a failing in the openssl
+	# build system: the static archives are built as PIC all the time.
+	# Only way around this would be to manually configure+compile openssl
+	# twice; once with shared lib support enabled and once without.
+	if ! use static-libs; then
+		rm "${ED}"/usr/$(get_libdir)/lib{crypto,ssl}.a || die
+	fi
 }
 
 multilib_src_install_all() {
@@ -292,13 +301,6 @@ multilib_src_install_all() {
 	rm "${ED}"/usr/bin/c_rehash || die
 
 	dodoc CHANGES* FAQ NEWS README doc/*.txt doc/${PN}-c-indent.el
-
-	# This is crappy in that the static archives are still built even
-	# when USE=static-libs.  But this is due to a failing in the openssl
-	# build system: the static archives are built as PIC all the time.
-	# Only way around this would be to manually configure+compile openssl
-	# twice; once with shared lib support enabled and once without.
-	use static-libs || rm -f "${ED}"/usr/lib*/lib*.a
 
 	# create the certs directory
 	keepdir ${SSL_CNF_DIR}/certs
