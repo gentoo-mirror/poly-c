@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: fc1d54cc1cbde6e23b38b5cc13625a270541a9c1 $
+# $Id: 8046d169817d02bc821a1c7f7d786bed44a7ca2a $
 
 EAPI=7
 
@@ -243,7 +243,7 @@ src_configure() {
 	unset LDFLAGS
 
 	tc-export CC NM OBJCOPY RANLIB STRIP
-	tc-export BUILD_CC # Bug 485592
+	tc-export BUILD_CC BUILD_PKG_CONFIG
 
 	MULTIBUILD_VARIANTS=()
 	local p
