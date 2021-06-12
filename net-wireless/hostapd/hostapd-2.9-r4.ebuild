@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 8a63e598f5593b948658b4783f1f628c572a3460 $
+# $Id: 4130241a64ce1bfef6f2a34c7ca94590def078f2 $
 
 EAPI=7
 
@@ -29,30 +29,29 @@ fi
 
 LICENSE="BSD"
 SLOT="0"
-IUSE="internal-tls ipv6 logwatch netlink sqlite +suiteb +wps +crda"
+IUSE="internal-tls ipv6 netlink sqlite +suiteb +wps +crda"
 
 DEPEND="
-		internal-tls? ( dev-libs/libtommath )
-		!internal-tls? ( dev-libs/openssl:0=[-bindist] )
-
+	internal-tls? ( dev-libs/libtommath )
+	!internal-tls? ( dev-libs/openssl:0=[-bindist] )
 	kernel_linux? (
 		dev-libs/libnl:3
 		crda? ( net-wireless/crda )
 	)
 	netlink? ( net-libs/libnfnetlink )
 	sqlite? ( >=dev-db/sqlite-3 )"
-
 RDEPEND="${DEPEND}"
 
 pkg_pretend() {
 	if use internal-tls; then
-			ewarn "internal-tls implementation is experimental and provides fewer features"
+		ewarn "internal-tls implementation is experimental and provides fewer features"
 	fi
 }
 
 src_unpack() {
 	# Override default one because we need the SRC_URI ones even in case of 9999 ebuilds
 	default
+
 	if [[ ${PV} == 9999 ]] ; then
 		git-r3_src_unpack
 	fi
@@ -64,16 +63,16 @@ src_prepare() {
 	pushd ../ >/dev/null || die
 	default
 
-	# CVE-2019-16275 bug #696032
-	eapply "${FILESDIR}/hostapd-2.9-AP-Silently-ignore-management-frame-from-unexpected.patch"
-	# CVE-2020-12695 bug #727542
-	eapply "${FILESDIR}/${P}-0001-WPS-UPnP-Do-not-allow-event-subscriptions-with-URLs-.patch"
-	eapply "${FILESDIR}/${P}-0002-WPS-UPnP-Fix-event-message-generation-using-a-long-U.patch"
-	eapply "${FILESDIR}/${P}-0003-WPS-UPnP-Handle-HTTP-initiation-failures-for-events-.patch"
-	# CVE-2021-30004 bug #780135
-	eapply "${FILESDIR}/${P}-ASN-1-Validate-DigestAlgorithmIdentifier-parameters.patch"
+	# CVE-2019-16275 (bug #696032)
+	eapply "${FILESDIR}"/${P}-AP-Silently-ignore-management-frame-from-unexpected.patch
+	# CVE-2020-12695 (bug #727542)
+	eapply "${FILESDIR}"/${P}-0001-WPS-UPnP-Do-not-allow-event-subscriptions-with-URLs-.patch
+	eapply "${FILESDIR}"/${P}-0002-WPS-UPnP-Fix-event-message-generation-using-a-long-U.patch
+	eapply "${FILESDIR}"/${P}-0003-WPS-UPnP-Handle-HTTP-initiation-failures-for-events-.patch
+	# CVE-2021-30004 (bug #780135)
+	eapply "${FILESDIR}"/${P}-ASN-1-Validate-DigestAlgorithmIdentifier-parameters.patch
 
-	eapply "${FILESDIR}/${PN}-2.9-force_ht40.patch"
+	eapply "${FILESDIR}"/${PN}-2.9-force_ht40.patch
 
 	popd >/dev/null || die
 
@@ -82,7 +81,7 @@ src_prepare() {
 }
 
 src_configure() {
-	local CONFIG="${S}/.config"
+	local CONFIG="${S}"/.config
 
 	restore_config "${CONFIG}"
 	if [[ -f "${CONFIG}" ]]; then
@@ -239,20 +238,18 @@ src_install() {
 	docinto examples
 	dodoc wired.conf
 
-	if use logwatch; then
-		insinto /etc/log.d/conf/services/
-		doins logwatch/${PN}.conf
+	insinto /etc/log.d/conf/services/
+	doins logwatch/${PN}.conf
 
-		exeinto /etc/log.d/scripts/services/
-		doexe logwatch/${PN}
-	fi
+	exeinto /etc/log.d/scripts/services/
+	doexe logwatch/${PN}
 
 	save_config .config
 }
 
 pkg_postinst() {
 	einfo
-	einfo "If you are running openRC you need to follow this instructions:"
+	einfo "If you are running OpenRC you need to follow this instructions:"
 	einfo "In order to use ${PN} you need to set up your wireless card"
 	einfo "for master mode in /etc/conf.d/net and then start"
 	einfo "/etc/init.d/${PN}."
@@ -273,7 +270,7 @@ pkg_postinst() {
 
 	if use wps; then
 		einfo "You have enabled Wi-Fi Protected Setup support, please"
-		einfo "read the README-WPS file in /usr/share/doc/${P}"
+		einfo "read the README-WPS file in /usr/share/doc/${PF}"
 		einfo "for info on how to use WPS"
 	fi
 }
