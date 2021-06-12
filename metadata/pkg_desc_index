@@ -25,6 +25,7 @@ app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/asciidoc 9.1.0_pre: A plain text human readable/writable document format
 app-text/calibre 4.23.0: Ebook management application
+app-text/poppler 21.06.1_pre: PDF rendering library based on the xpdf-3.0 code base
 dev-games/cegui 0.8.7-r1: Crazy Eddie's GUI System
 dev-java/ant-core 1.9.8_pre: Java-based build tool similar to 'make' that uses XML configuration files
 dev-java/commons-compress 1.12_pre: Java API for working with archive files
