@@ -20,7 +20,6 @@ app-laptop/i8kutils 1.43_pre: Dell Inspiron and Latitude utilities
 app-misc/kenny 0.1: command-line kennyfier
 app-misc/mc 4.8.26-r2: GNU Midnight Commander is a text based file manager
 app-misc/osmo 0.4.2: Handy personal organizer
-app-misc/tmux 3.2a_pre: Terminal multiplexer
 app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
 app-text/asciidoc 9.1.0_pre: A plain text human readable/writable document format
@@ -48,7 +47,6 @@ dev-util/dwdiff 2.1.3_pre: diff-like program operating at word level instead of 
 dev-util/eclipse-sdk-bin 4.3.2: Eclipse SDK
 dev-util/icemon 3.3_pre: Monitor program for use with Icecream compile clusters based on KDE Frameworks
 dev-util/lxqt-build-tools 0.8.0_pre: LXQt Build Tools
-dev-util/meson 0.58.1_pre: Open source build system
 dev-vcs/cvs 1.12.13.1-r2: Concurrent Versions System - source code revision control tools
 games-action/supertuxkart 1.1 1.2: A kart racing game starring Tux, the linux penguin (TuxKart fork)
 games-arcade/emilia-pinball 0.3.3.3 0.3.4: SDL OpenGL pinball game
@@ -132,7 +130,7 @@ sci-misc/mia 2.4.4: Library and tools for medical image processing
 sci-misc/xmedcon 0.14.1: Medical Image Conversion Utility
 sci-visualization/amide 1.0.5: AMIDE's a Medical Imaging Data Examiner
 sci-visualization/ginkgocadx 3.8.6: An advanced DICOM viewer and dicomizer
-sys-apps/baselayout 2.6-r1 2.7 2.7-r1 2.7-r2: Filesystem baselayout and init scripts
+sys-apps/baselayout 2.6-r1 2.7 2.7-r1 2.7-r2 2.7-r3: Filesystem baselayout and init scripts
 sys-apps/fwup 1.0.0 1.2.1: Configurable embedded Linux firmware update creator and runner
 sys-apps/gawk 4.2.1-r1 5.0.1 5.1.0: GNU awk pattern-matching language
 sys-apps/hwloc 2.0.3_pre: displays the hardware topology in convenient formats
@@ -141,7 +139,7 @@ sys-apps/kmod 28 29: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
 sys-apps/openrc 0.43.3: OpenRC manages the services, startup and shutdown of a host
-sys-apps/portage 3.0.13 3.0.17-r2 3.0.18 3.0.19: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 3.0.13 3.0.17-r2 3.0.18 3.0.19 3.0.20-r1: Portage is the package management and distribution system for Gentoo
 sys-apps/roccat-tools 5.9.0-r100: Utility for advanced configuration of Roccat devices
 sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chipsets
 sys-block/archttp 2.5.1.180529: CLI utility to manage Areca RAID controllers
