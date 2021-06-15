@@ -62,7 +62,7 @@ src_configure() {
 }
 
 src_install() {
-	# automatic dodocs barfs
+	# Automatic dodocs barfs
 	rm -rf README_d || die
 	default
 
