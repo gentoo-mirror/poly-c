@@ -79,7 +79,7 @@ media-libs/libwebp 1.2.0_pre: A lossy image compression format
 media-libs/mesa 21.1.2: OpenGL-like graphic library for Linux
 media-libs/x264 0.0.20200810: A free library for encoding X264/AVC streams
 media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
-media-sound/alsa-utils 1.2.2 1.2.3 1.2.4 1.2.5-r1: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
+media-sound/alsa-utils 1.2.2 1.2.3 1.2.4 1.2.5-r1 1.2.5.1: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
 media-sound/ameter 0.44_pre: Ameter is an Alsa meter plugin
 media-sound/cutmp3 2.1.2_pre 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
 media-sound/idjc 0.9.1: Internet DJ Console has two media players, jingles player, crossfader, VoIP and streaming
