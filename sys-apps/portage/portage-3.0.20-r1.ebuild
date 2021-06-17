@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 7f7c65e2f5a754a865716fa2f361bf2d8b05da99 $
+# $Id: d17fc2233bfa410723c7df176b33ec20efd857b6 $
 
 EAPI=7
 
@@ -15,7 +15,7 @@ DESCRIPTION="Portage is the package management and distribution system for Gento
 HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Portage"
 
 LICENSE="GPL-2"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86"
+KEYWORDS="~alpha amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 sparc ~x86"
 SLOT="0"
 IUSE="apidoc build doc gentoo-dev +ipc +native-extensions +rsync-verify selinux test xattr"
 RESTRICT="!test? ( test )"
@@ -75,8 +75,7 @@ PDEPEND="
 # NOTE: FEATURES=installsources requires debugedit and rsync
 
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz
-	https://github.com/gentoo/portage/commit/a4d882964ee1931462f911d0c46a80e27e59fa48.patch -> portage-3.0.20-bug-777492-a4d8829.patch
-	https://github.com/gentoo/portage/commit/055abe523c2c3f6c8f1dccfb53565209222f90c1.patch -> portage-3.0.20-bug-777492-a4d8829-fix-055abe5.patch"
+	https://github.com/gentoo/portage/commit/a4d882964ee1931462f911d0c46a80e27e59fa48.patch -> portage-3.0.20-bug-777492-a4d8829.patch"
 
 pkg_pretend() {
 	local CONFIG_CHECK="~IPC_NS ~PID_NS ~NET_NS ~UTS_NS"
@@ -89,9 +88,10 @@ python_prepare_all() {
 
 	eapply "${FILESDIR}/${PN}-2.3.84-eapply_non_verbose.patch"
 
-	# Revert a4d8829 and apply 055abe5 for bug 777492.
+	# Revert due to regressions:
+	# https://bugs.gentoo.org/777492
+	# https://github.com/gentoo/portage/pull/728
 	eapply -R "${DISTDIR}/portage-3.0.20-bug-777492-a4d8829.patch"
-	eapply "${DISTDIR}/portage-3.0.20-bug-777492-a4d8829-fix-055abe5.patch"
 
 	sed -e "s:^VERSION = \"HEAD\"$:VERSION = \"${PV}\":" -i lib/portage/__init__.py || die
 

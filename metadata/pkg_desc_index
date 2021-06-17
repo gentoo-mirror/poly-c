@@ -139,7 +139,7 @@ sys-apps/kmod 28 29: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
 sys-apps/openrc 0.43.3: OpenRC manages the services, startup and shutdown of a host
-sys-apps/portage 3.0.13 3.0.17-r2 3.0.18 3.0.19 3.0.20-r2: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 3.0.13 3.0.17-r2 3.0.18 3.0.19 3.0.20-r1: Portage is the package management and distribution system for Gentoo
 sys-apps/roccat-tools 5.9.0-r100: Utility for advanced configuration of Roccat devices
 sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chipsets
 sys-block/archttp 2.5.1.180529: CLI utility to manage Areca RAID controllers
@@ -157,7 +157,7 @@ sys-fs/udev 245.5-r1 245.6 246-r1 247.6 248 248.3: Linux dynamic and persistent 
 sys-kernel/dracut 054_pre 055_pre: Generic initramfs generation tool
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/slang 2.3.3_pre51: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.192 4.19.193 4.19.194 5.4.122 5.4.123 5.4.124 5.10.41 5.10.42 5.10.43: Shows and sets processor power related values
+sys-power/cpupower 4.19.193 4.19.194 4.19.195 5.4.123 5.4.124 5.4.126 5.10.42 5.10.43 5.10.44: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/iotop 1.17: top utility for IO (C port)
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality

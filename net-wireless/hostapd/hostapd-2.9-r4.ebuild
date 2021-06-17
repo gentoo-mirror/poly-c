@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 4130241a64ce1bfef6f2a34c7ca94590def078f2 $
+# $Id: 8ff2cbb99abed21280b00494b811a092a16634a2 $
 
 EAPI=7
 
@@ -24,7 +24,7 @@ else
 	fi
 
 	# Never stabilize snapshot ebuilds please
-	KEYWORDS="~amd64 ~arm ~arm64 ~mips ~ppc ~x86"
+	KEYWORDS="amd64 ~arm ~arm64 ~mips ~ppc x86"
 fi
 
 LICENSE="BSD"
@@ -33,7 +33,7 @@ IUSE="internal-tls ipv6 netlink sqlite +suiteb +wps +crda"
 
 DEPEND="
 	internal-tls? ( dev-libs/libtommath )
-	!internal-tls? ( dev-libs/openssl:0=[-bindist] )
+	!internal-tls? ( dev-libs/openssl:0=[-bindist(-)] )
 	kernel_linux? (
 		dev-libs/libnl:3
 		crda? ( net-wireless/crda )

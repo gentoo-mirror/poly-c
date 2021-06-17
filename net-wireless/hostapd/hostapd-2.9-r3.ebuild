@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 174b3dd6157a4acbea8d359f0b5ce7207110843e $
+# $Id: 0e37a7314136d9bb68814cbb5bc1c0a86685f06e $
 
 EAPI=7
 
@@ -33,7 +33,7 @@ IUSE="internal-tls ipv6 netlink sqlite +suiteb +wps +crda"
 
 DEPEND="
 	internal-tls? ( dev-libs/libtommath )
-	!internal-tls? ( dev-libs/openssl:0=[-bindist] )
+	!internal-tls? ( dev-libs/openssl:0=[-bindist(-)] )
 	kernel_linux? (
 		dev-libs/libnl:3
 		crda? ( net-wireless/crda )
