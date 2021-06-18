@@ -115,7 +115,7 @@ net-misc/ns 3.29 3.30: A discrete-event network simulator for Internet systems.
 net-misc/ssh-tools 1.5 1.6: collection of various tools using ssh
 net-misc/tlsdate 0.0.13: Update local time over HTTPS
 net-nds/openldap 2.4.59_pre 2.5.5_pre: LDAP suite of application and development tools
-net-wireless/hostapd 2.9-r3 2.9-r4: IEEE 802.11 wireless LAN Host AP daemon
+net-wireless/hostapd 2.9-r5 2.9-r6: IEEE 802.11 wireless LAN Host AP daemon
 net-wireless/rtl8812au 9999: Driver for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
 sci-astronomy/pulsatingscience 9999: 3D binary pulsar animation and outreach application
 sci-libs/dcmtk 3.6.2: The DICOM Toolkit
@@ -138,7 +138,7 @@ sys-apps/kmod 28 29: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
 sys-apps/openrc 0.43.3: OpenRC manages the services, startup and shutdown of a host
-sys-apps/portage 3.0.13 3.0.17-r2 3.0.18 3.0.19 3.0.20-r3: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 3.0.18 3.0.19 3.0.20-r4: Portage is the package management and distribution system for Gentoo
 sys-apps/roccat-tools 5.9.0-r100: Utility for advanced configuration of Roccat devices
 sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chipsets
 sys-block/archttp 2.5.1.180529: CLI utility to manage Areca RAID controllers
