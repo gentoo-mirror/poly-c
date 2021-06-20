@@ -94,7 +94,6 @@ media-video/pipewire 0.3.29_pre: Multimedia processing graphs
 media-video/smplayer 20.4.2 20.6.0: Great Qt GUI front-end for mplayer/mpv
 media-video/vlc 3.0.16_pre: Media player and framework with support for most multimedia files and streaming
 net-analyzer/arpalert 2.0.12_pre: arpalert is used for monitoring ethernet networks
-net-analyzer/nagios-check_multi 0.25_pre 0.26_pre: A multi-purpose wrapper plugin for Nagios
 net-analyzer/netsniff-ng 0.6.8 9999: high performance network sniffer for packet inspection
 net-analyzer/nikto 2.1.5_pre 2.1.6_pre: Web Server vulnerability scanner.
 net-dialup/mingetty 1.08-r1: A compact getty program for virtual consoles only
