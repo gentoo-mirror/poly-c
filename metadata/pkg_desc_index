@@ -78,10 +78,10 @@ media-libs/libsquish 1.15: DXT compression library
 media-libs/libwebp 1.2.0_pre: A lossy image compression format
 media-libs/mesa 21.1.2 21.1.3: OpenGL-like graphic library for Linux
 media-libs/x264 0.0.20200810: A free library for encoding X264/AVC streams
-media-radio/liquidsoap 1.1.1 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
+media-radio/liquidsoap 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
 media-sound/alsa-utils 1.2.2 1.2.3 1.2.4 1.2.5-r1 1.2.5.1: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)
 media-sound/ameter 0.44_pre: Ameter is an Alsa meter plugin
-media-sound/cutmp3 2.1.2_pre 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
+media-sound/cutmp3 3.0.1_pre: cutmp3 is a small and fast command line MP3 editor.
 media-sound/idjc 0.9.1: Internet DJ Console has two media players, jingles player, crossfader, VoIP and streaming
 media-sound/pavucontrol 3.0: Pulseaudio Volume Control, GTK based mixer for Pulseaudio
 media-sound/pulseaudio 13.99.3 14.0_pre 14.2_pre 9999: A networked sound server with an advanced plugin system
@@ -92,17 +92,16 @@ media-video/cinelerraGG 9999: The most advanced non-linear video editor and comp
 media-video/ffmpeg 4.3.1 4.3.2 4.4: Complete solution to record/convert/stream audio and video. Includes libavcodec
 media-video/pipewire 0.3.29_pre: Multimedia processing graphs
 media-video/smplayer 20.4.2 20.6.0: Great Qt GUI front-end for mplayer/mpv
-media-video/vlc 3.0.16_pre: Media player and framework with support for most multimedia files and streaming
 net-analyzer/arpalert 2.0.12_pre: arpalert is used for monitoring ethernet networks
 net-analyzer/netsniff-ng 0.6.8 9999: high performance network sniffer for packet inspection
-net-analyzer/nikto 2.1.5_pre 2.1.6_pre: Web Server vulnerability scanner.
+net-analyzer/nikto 2.1.6_pre: Web Server vulnerability scanner.
 net-dialup/mingetty 1.08-r1: A compact getty program for virtual consoles only
 net-dns/noip-updater 1.6: no-ip.com dynamic DNS updater
 net-ftp/filezilla 3.53.1-r1 3.54.1: FTP client with lots of useful features and an intuitive interface
 net-im/jabberd2 2.7.0: Open Source Jabber Server
 net-im/licq 1.8.2: ICQ Client with v8 support
 net-irc/pchat-irc 1.5.3: Graphical IRC client
-net-irc/sbnc 1.2_pre 1.3.9_pre: shroudBNC is a modular IRC proxy written in C++.
+net-irc/sbnc 1.3.9_pre: shroudBNC is a modular IRC proxy written in C++.
 net-libs/bctoolbox 0.6.0_pre: Utilities library used by Belledonne Communications softwares like belle-sip, mediastreamer2 and linphone.
 net-libs/enet 1.3.14_pre: relatively thin, simple and robust network communication layer on top of UDP
 net-libs/srt 1.4.3_pre: Secure Reliable Transport (SRT) library and tools
@@ -138,7 +137,7 @@ sys-apps/kmod 28 29: library and tools for managing linux kernel modules
 sys-apps/kmscon 8_pre: KMS/DRM based virtual Console Emulator
 sys-apps/necflash 1.64 9999: Firmware flasher for NEC and Optiarc DVD burner firmwares
 sys-apps/openrc 0.43.3: OpenRC manages the services, startup and shutdown of a host
-sys-apps/portage 3.0.18 3.0.19 3.0.20-r4: Portage is the package management and distribution system for Gentoo
+sys-apps/portage 3.0.18 3.0.19 3.0.20-r6: Portage is the package management and distribution system for Gentoo
 sys-apps/roccat-tools 5.9.0-r100: Utility for advanced configuration of Roccat devices
 sys-apps/upd72020x-load 9999: Firmware loader for Renesas uPD72020x USB 3.0 chipsets
 sys-block/archttp 2.5.1.180529: CLI utility to manage Areca RAID controllers

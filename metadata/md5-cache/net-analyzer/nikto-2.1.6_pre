@@ -12,4 +12,4 @@ RESTRICT=mirror
 SLOT=0
 SRC_URI=https://github.com/sullo/nikto/archive/2.1.6.tar.gz -> nikto-2.1.6.tar.gz
 _eclasses_=poly-c_ebuilds	28d7c47d66d22c42a8d1fb7679def39a
-_md5_=e902f83f635a8768f5b33545cca96216
+_md5_=783731ab09d91b476e52c67386bdb980

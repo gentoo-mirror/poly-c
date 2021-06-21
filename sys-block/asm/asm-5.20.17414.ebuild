@@ -1,12 +1,12 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=7
 
-inherit multilib rpm versionator
+inherit rpm
 
-MY_PV="$(replace_all_version_separators _ ${PV})"
+MY_PV="$(ver_rs 1- _)"
 
 DESCRIPTION="Adaptec Storage Manager (ASM)"
 HOMEPAGE="http://www.adaptec.com/en-US/downloads/"
