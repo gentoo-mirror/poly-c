@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 40da6ec3c9f9953b61593b28ccc6f2f24b2c2465 $
+# $Id: 8878538c88603c476bc3c6bdb4b954901a5b81fd $
 
 EAPI=7
 
@@ -24,7 +24,7 @@ else
 	fi
 
 	# Never stabilize snapshot ebuilds please
-	KEYWORDS="amd64 arm ~arm64 ~mips ppc x86"
+	KEYWORDS="amd64 arm arm64 ~mips ppc x86"
 fi
 
 LICENSE="BSD"
