@@ -8,5 +8,5 @@ LICENSE=CC-BY-SA-3.0
 PROPERTIES=live
 RDEPEND=x11-misc/sddm
 SLOT=0
-_eclasses_=git-r3	b8e8c92aa5fe8df7187e466138eb4e52
+_eclasses_=git-r3	cc875b0c1e9b3bdac1af0f82f3ba29da
 _md5_=731f2d9aee77379623432490c0f4e27c
