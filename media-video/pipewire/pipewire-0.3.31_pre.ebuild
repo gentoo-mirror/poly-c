@@ -3,7 +3,9 @@
 
 EAPI="7"
 
-inherit meson optfeature udev multilib-minimal poly-c_ebuilds
+PYTHON_COMPAT=( python3_{7..10} )
+
+inherit meson-multilib optfeature python-any-r1 udev poly-c_ebuilds
 
 if [[ ${MY_PV} == 9999 ]]; then
 	EGIT_REPO_URI="https://gitlab.freedesktop.org/${PN}/${PN}.git"
@@ -37,6 +39,8 @@ RESTRICT="!test? ( test )"
 
 BDEPEND="
 	app-doc/xmltoman
+	virtual/pkgconfig
+	${PYTHON_DEPS}
 	doc? (
 		app-doc/doxygen
 		media-gfx/graphviz
@@ -97,24 +101,12 @@ DOCS=( {README,INSTALL}.md NEWS )
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-0.3.25-enable-failed-mlock-warning.patch
-	"${FILESDIR}"/${PN}-0.3.29-revert-openaptx-restriction.patch
+	"${FILESDIR}"/${PN}-0.3.31-revert-openaptx-restriction.patch
 )
 
 # limitsdfile related code taken from =sys-auth/realtime-base-0.1
 # with changes as necessary.
 limitsdfile=40-${PN}.conf
-
-meson_native_enabled() {
-	if multilib_is_native_abi; then
-		echo "-D${1}=enabled"
-	else
-		echo "-D${1}=disabled"
-	fi
-}
-
-meson_native_feature() {
-	multilib_native_usex "${1}" "-D${2-${1}}=enabled" "-D${2-${1}}=disabled"
-}
 
 src_prepare() {
 	default
@@ -122,7 +114,7 @@ src_prepare() {
 	if ! use systemd; then
 		# This can be applied non-conditionally but would make for a
 		# significantly worse user experience on systemd then.
-		eapply "${FILESDIR}"/${PN}-0.3.25-non-systemd-integration.patch
+		eapply "${FILESDIR}"/${PN}-0.3.31-non-systemd-integration.patch
 	fi
 
 	einfo "Generating ${limitsdfile}"
@@ -138,58 +130,54 @@ src_prepare() {
 multilib_src_configure() {
 	local emesonargs=(
 		-Ddocdir="${EPREFIX}"/usr/share/doc/${PF}
-		$(meson_native_feature doc docs)
+		$(meson_native_use_feature doc docs)
 		$(meson_native_enabled examples) # Disabling this implicitly disables -Dmedia-session
 		$(meson_native_enabled media-session)
 		$(meson_native_enabled man)
 		$(meson_feature test tests)
 		-Dinstalled_tests=disabled # Matches upstream; Gentoo never installs tests
-		$(meson_native_feature gstreamer)
-		$(meson_native_feature gstreamer gstreamer-device-provider)
-		$(meson_native_feature systemd)
+		$(meson_native_use_feature gstreamer)
+		$(meson_native_use_feature gstreamer gstreamer-device-provider)
+		$(meson_native_use_feature systemd)
 		-Dsystemd-system-service=disabled # Matches upstream
-		$(meson_native_feature systemd systemd-user-service)
+		$(meson_native_use_feature systemd systemd-user-service)
 		$(meson_feature pipewire-alsa) # Allows integrating ALSA apps into PW graph
 		-Dspa-plugins=enabled
 		-Dalsa=enabled # Allows using kernel ALSA for sound I/O (-Dmedia-session depends on this)
 		-Daudiomixer=enabled # Matches upstream
 		-Daudioconvert=enabled # Matches upstream
-		$(meson_native_feature bluetooth bluez5)
-		$(meson_native_feature bluetooth bluez5-backend-hsp-native)
-		$(meson_native_feature bluetooth bluez5-backend-hfp-native)
-		$(meson_native_feature bluetooth bluez5-backend-ofono)
-		$(meson_native_feature bluetooth bluez5-backend-hsphfpd)
-		$(meson_native_feature aac bluez5-codec-aac)
-		$(meson_native_feature aptx bluez5-codec-aptx)
-		$(meson_native_feature ldac bluez5-codec-ldac)
+		$(meson_native_use_feature bluetooth bluez5)
+		$(meson_native_use_feature bluetooth bluez5-backend-hsp-native)
+		$(meson_native_use_feature bluetooth bluez5-backend-hfp-native)
+		$(meson_native_use_feature bluetooth bluez5-backend-ofono)
+		$(meson_native_use_feature bluetooth bluez5-backend-hsphfpd)
+		$(meson_native_use_feature aac bluez5-codec-aac)
+		$(meson_native_use_feature aptx bluez5-codec-aptx)
+		$(meson_native_use_feature ldac bluez5-codec-ldac)
 		-Dcontrol=enabled # Matches upstream
 		-Daudiotestsrc=enabled # Matches upstream
 		-Dffmpeg=disabled # Disabled by upstream and no major developments to spa/plugins/ffmpeg/ since May 2020
 		-Dpipewire-jack=enabled # Allows integrating JACK apps into PW graph
-		$(meson_native_feature jack-client jack) # Allows PW to act as a JACK client
+		$(meson_native_use_feature jack-client jack) # Allows PW to act as a JACK client
 		$(meson_feature jack-sdk jack-devel)
 		$(usex jack-sdk "-Dlibjack-path=${EPREFIX}/usr/$(get_libdir)" '')
 		-Dsupport=enabled # Miscellaneous/common plugins, such as null sink
 		-Devl=disabled # Matches upstream
 		-Dtest=disabled # fakesink and fakesource plugins
-		$(meson_native_feature v4l v4l2)
+		$(meson_native_use_feature v4l v4l2)
 		-Dlibcamera=disabled # libcamera is not in Portage tree
 		-Dvideoconvert=enabled # Matches upstream
 		-Dvideotestsrc=enabled # Matches upstream
 		-Dvolume=enabled # Matches upstream
 		-Dvulkan=disabled # Uses pre-compiled Vulkan compute shader to provide a CGI video source (dev thing; disabled by upstream)
-		$(meson_native_feature extra pw-cat)
+		$(meson_native_use_feature extra pw-cat)
 		-Dudev=enabled
-		-Dudevrulesdir="$(get_udevdir)/rules.d"
+		-Dudevrulesdir="${EPREFIX}$(get_udevdir)/rules.d"
 		-Dsdl2=disabled # Controls SDL2 dependent code (currently only examples when -Dinstalled_tests=enabled which we never install)
-		$(meson_native_feature extra sndfile) # Enables libsndfile dependent code (currently only pw-cat)
+		$(meson_native_use_feature extra sndfile) # Enables libsndfile dependent code (currently only pw-cat)
 	)
 
 	meson_src_configure
-}
-
-multilib_src_compile() {
-	meson_src_compile
 }
 
 multilib_src_install() {
