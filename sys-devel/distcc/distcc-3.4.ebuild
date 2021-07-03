@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: d16540b5515c57f385f6ebbe6bd504649a5c5a6b $
+# $Id: 7f74770ee18655641f24029e3690cee7668501aa $
 
 EAPI=7
 
@@ -15,7 +15,7 @@ SRC_URI="https://github.com/distcc/distcc/releases/download/v${PV}/${P}.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86"
+KEYWORDS="~alpha amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 sparc x86"
 IUSE="gssapi gtk hardened ipv6 selinux xinetd zeroconf"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
