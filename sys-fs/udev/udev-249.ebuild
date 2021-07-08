@@ -22,7 +22,7 @@ else
 	SRC_URI="https://github.com/systemd/${MY_PN}/archive/v${MY_PV}/${MY_P}.tar.gz"
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86"
 
-	FIXUP_PATCH="${PN}-248-revert-systemd-messup.patch"
+	FIXUP_PATCH="${PN}-249-revert-systemd-messup.patch"
 	SRC_URI+=" https://dev.gentoo.org/~polynomial-c/${PN}/${FIXUP_PATCH}.xz"
 fi
 
@@ -148,6 +148,7 @@ multilib_src_compile() {
 
 	local targets=(
 		${libudev}
+		src/libudev/libudev.pc
 	)
 	if use static-libs ; then
 		targets+=( src/udev/libudev.a )
@@ -161,12 +162,15 @@ multilib_src_compile() {
 			src/udev/fido_id
 			src/udev/mtd_probe
 			src/udev/scsi_id
+			src/udev/udev.pc
 			src/udev/v4l_id
 			man/udev.conf.5
 			man/udev.link.5
 			man/udev.7
 			man/udevd.8
 			man/udevadm.8
+			rules.d/50-udev-default.rules
+			$(stat -c %n rules.d/*.rules)
 		)
 		use hwdb && targets+=( udev-hwdb man/hwdb.7 )
 	fi
@@ -194,7 +198,6 @@ multilib_src_install() {
 		exeinto /lib/udev
 		doexe src/udev/{ata_id,cdrom_id,fido_id,mtd_probe,scsi_id,v4l_id}
 
-		rm rules.d/99-systemd.rules || die
 		insinto /lib/udev/rules.d
 		doins rules.d/*.rules
 
