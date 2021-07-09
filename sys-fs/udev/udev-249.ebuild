@@ -1,6 +1,6 @@
 # Copyright 2003-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 676b5a0be4e7d102f46fed1eda813822ae63fdc1 $
+# $Id: 01117409e7f4d975ca821478a68b8d185958fda8 $
 
 EAPI=7
 PYTHON_COMPAT=( python3_{7..9} )
@@ -170,7 +170,7 @@ multilib_src_compile() {
 			man/udevd.8
 			man/udevadm.8
 			rules.d/50-udev-default.rules
-			$(stat -c %n rules.d/*.rules)
+			rules.d/64-btrfs.rules
 		)
 		use hwdb && targets+=( udev-hwdb man/hwdb.7 )
 	fi
@@ -200,6 +200,7 @@ multilib_src_install() {
 
 		insinto /lib/udev/rules.d
 		doins rules.d/*.rules
+		doins "${S}"/rules.d/*.rules
 
 		insinto /usr/share/pkgconfig
 		doins src/udev/udev.pc
@@ -224,6 +225,7 @@ multilib_src_install_all() {
 	insinto /lib/udev/rules.d
 	doins "${FILESDIR}"/40-gentoo.rules
 	doins "${S}"/rules.d/*.rules
+	doins rules.d/*.rules
 
 	dobashcomp shell-completion/bash/udevadm
 
