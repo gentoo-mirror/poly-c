@@ -1,6 +1,6 @@
 # Copyright 2003-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 01117409e7f4d975ca821478a68b8d185958fda8 $
+# $Id: d23c86c0aeb82c4c90e087d30f04af6a1d176951 $
 
 EAPI=7
 PYTHON_COMPAT=( python3_{7..9} )
@@ -198,9 +198,9 @@ multilib_src_install() {
 		exeinto /lib/udev
 		doexe src/udev/{ata_id,cdrom_id,fido_id,mtd_probe,scsi_id,v4l_id}
 
+		# Install generated rules (${BUILD_DIR}/rules.d/*.rules)
 		insinto /lib/udev/rules.d
 		doins rules.d/*.rules
-		doins "${S}"/rules.d/*.rules
 
 		insinto /usr/share/pkgconfig
 		doins src/udev/udev.pc
@@ -221,11 +221,10 @@ multilib_src_install_all() {
 	insinto /lib/udev/network
 	doins network/99-default.link
 
-	# see src_prepare() for content of 40-gentoo.rules
+	# Install static rules (${S}/rules.d/*.rules)
 	insinto /lib/udev/rules.d
-	doins "${FILESDIR}"/40-gentoo.rules
-	doins "${S}"/rules.d/*.rules
 	doins rules.d/*.rules
+	doins "${FILESDIR}"/40-gentoo.rules
 
 	dobashcomp shell-completion/bash/udevadm
 
