@@ -67,6 +67,7 @@ games-util/x52pro-linux 0.2.1 9999: Saitek X52pro drivers & controller mapping s
 kde-apps/kde-wallpapers 15.08.3-r3: KDE wallpapers
 kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
+mail-client/claws-mail 3.18.0: An email client (and news reader) based on GTK+
 mail-filter/pyzor 1.0.0-r1: A distributed, collaborative spam detection and filtering network
 media-gfx/fawkes 9999: Image Cloaking for Personal Privacy
 media-libs/gst-plugins-base 1.18.3_pre: Basepack of plugins for gstreamer
