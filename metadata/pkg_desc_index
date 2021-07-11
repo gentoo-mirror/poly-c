@@ -67,7 +67,6 @@ games-util/x52pro-linux 0.2.1 9999: Saitek X52pro drivers & controller mapping s
 kde-apps/kde-wallpapers 15.08.3-r3: KDE wallpapers
 kde-apps/kdeartwork-wallpapers 15.08.3-r2: Wallpapers from KDE
 kde-apps/kdeartwork-weatherwallpapers 15.08.3-r2: Weather aware wallpapers. Changes with weather outside
-mail-client/claws-mail 3.18.0: An email client (and news reader) based on GTK+
 mail-filter/pyzor 1.0.0-r1: A distributed, collaborative spam detection and filtering network
 media-gfx/fawkes 9999: Image Cloaking for Personal Privacy
 media-libs/gst-plugins-base 1.18.3_pre: Basepack of plugins for gstreamer
@@ -154,7 +153,7 @@ sys-fs/fswatch 1.15.0 1.16.0 9999: cross-platform file change monitor with multi
 sys-fs/udev 245.5-r1 245.6 246-r1 247.6 248.3 249: Linux dynamic and persistent device naming support (aka userspace devfs)
 sys-libs/libtsm 3_pre: Terminal Emulator State Machine
 sys-libs/slang 2.3.3_pre51: Multi-platform library designed to allow a developer to create robust software
-sys-power/cpupower 4.19.194 4.19.195 4.19.196 5.4.128 5.4.129 5.4.130 5.10.46 5.10.47 5.10.48: Shows and sets processor power related values
+sys-power/cpupower 4.19.195 4.19.196 4.19.197 5.4.129 5.4.130 5.4.131 5.10.47 5.10.48 5.10.49: Shows and sets processor power related values
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/iotop 1.17: top utility for IO (C port)
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality

@@ -10,6 +10,6 @@ KEYWORDS=amd64 ~arm ~arm64 ~ppc ~ppc64 x86
 LICENSE=GPL-2
 RDEPEND=sys-apps/pciutils
 SLOT=0/0
-SRC_URI=https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.46.tar.xz
+SRC_URI=https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.49.tar.xz
 _eclasses_=toolchain-funcs	9ea1c67b6f8315fdc2568abb674519aa	multilib	97566c1a256d07b00848aa767e38a352	systemd	c846b9e02ac8293bfc9ca38a195c2a18
 _md5_=8dd9b62462b13a6e602bbb781bcb8f62
