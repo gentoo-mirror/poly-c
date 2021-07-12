@@ -1,6 +1,6 @@
 # Copyright 2003-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: d23c86c0aeb82c4c90e087d30f04af6a1d176951 $
+# $Id: 0154e132439e13aec6b8cc74d5288160f502de88 $
 
 EAPI=7
 PYTHON_COMPAT=( python3_{7..9} )
@@ -102,6 +102,7 @@ src_prepare() {
 	fi
 
 	local PATCHES=(
+		"${FILESDIR}/249-libudev-static.patch"
 	)
 
 	default
