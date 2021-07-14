@@ -19,6 +19,9 @@ PATCH="firefox-56.0-patches-07"
 
 MOZCONFIG_OPTIONAL_WIFI=1
 
+PYTHON_COMPAT=( python2_7 )
+PYTHON_REQ_USE='ncurses,sqlite,ssl,threads'
+
 inherit check-reqs desktop eapi7-ver flag-o-matic toolchain-funcs gnome2-utils mozconfig-v6.56 pax-utils xdg-utils autotools virtualx
 
 WF_HTTP_URI="https://github.com/MrAlex94/Waterfox/archive"

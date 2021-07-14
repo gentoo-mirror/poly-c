@@ -18,19 +18,19 @@
 # and so ebuilds inheriting this eclass do not need to inherit that.
 
 case ${EAPI} in
-	0|1|2|3|4)
-		die "EAPI=${EAPI} not supported"
+	6|7|8)
+		:;
 		;;
-	5)
-		inherit multilib
+	*)
+		die "EAPI=${EAPI} not supported"
 		;;
 esac
 
 inherit flag-o-matic toolchain-funcs
 
 case ${PN} in
-	(seamonkey) inherit mozcoreconf-v6 ;;
-	(waterfox-classic) inherit mozcoreconf-v5 ;;
+	(seamonkey|waterfox-classic) inherit mozcoreconf-v6 ;;
+	#(waterfox-classic) inherit mozcoreconf-v5 ;;
 	(*) die "Don't use this eclass with some other package!" ;;
 esac
 
@@ -167,12 +167,13 @@ if [[ -n ${MOZCONFIG_OPTIONAL_WIFI} ]]; then
 	)"
 fi
 
-DEPEND="app-arch/zip
+BDEPEND="app-arch/zip
 	app-arch/unzip
 	>=sys-devel/binutils-2.16.1
 	sys-apps/findutils
-	pulseaudio? ( media-sound/pulseaudio )
-	${RDEPEND}"
+	pulseaudio? ( media-sound/pulseaudio )"
+
+DEPEND="${RDEPEND}"
 
 RDEPEND+="
 	pulseaudio? ( || ( media-sound/pulseaudio

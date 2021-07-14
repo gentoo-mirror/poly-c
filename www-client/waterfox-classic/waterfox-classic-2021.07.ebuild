@@ -1,7 +1,7 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 VIRTUALX_REQUIRED="pgo"
 WANT_AUTOCONF="2.1"
 MOZ_ESR=""
@@ -19,11 +19,14 @@ PATCH="firefox-56.0-patches-07"
 
 MOZCONFIG_OPTIONAL_WIFI=1
 
-inherit check-reqs desktop eapi7-ver flag-o-matic toolchain-funcs gnome2-utils mozconfig-v6.56 pax-utils xdg-utils autotools virtualx
+PYTHON_COMPAT=( python2_7 )
+PYTHON_REQ_USE='ncurses,sqlite,ssl,threads'
+
+inherit check-reqs desktop flag-o-matic toolchain-funcs gnome2-utils mozconfig-v6.56 pax-utils xdg-utils autotools virtualx
 
 WF_HTTP_URI="https://github.com/MrAlex94/Waterfox/archive"
 MY_PN="${PN/-classic}"
-MY_PV="${PV}"
+MY_PV="${PV}-classic"
 
 DESCRIPTION="Waterfox Web Browser"
 HOMEPAGE="http://www.waterfoxproject.org"
@@ -51,8 +54,9 @@ RDEPEND="
 	selinux? ( sec-policy/selinux-mozilla )
 	system-sqlite? ( >=dev-db/sqlite-3.33.0:3[secure-delete,debug=] )
 "
+DEPEND="${RDEPEND}"
 
-DEPEND="${RDEPEND}
+BDEPEND="
 	pgo? ( >=sys-devel/gcc-4.5 )
 	virtual/rust
 	amd64? ( ${ASM_DEPEND} virtual/opengl )
@@ -121,6 +125,7 @@ src_prepare() {
 	eapply "${WORKDIR}/firefox"
 
 	use system-libvpx && eapply -p2 "${WORKDIR}/seamonkey-2.53.3-system_libvpx-1.8.patch"
+	eapply -p1 "${FILESDIR}/seamonkey-2.53.7.1-CLEANUP-workaround.patch"
 
 	# Enable gnomebreakpad
 	if use debug ; then

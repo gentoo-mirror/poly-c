@@ -160,7 +160,7 @@ sys-process/iotop 1.17: top utility for IO (C port)
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
 sys-process/procps 3.3.16-r2 3.3.16-r3 3.3.17: Standard informational utilities and process-handling tools
 www-apps/baikal 0.8.0: Lightweight CalDAV+CardDAV server
-www-client/waterfox-classic 2021.04.2 2021.06: Waterfox Web Browser
+www-client/waterfox-classic 2021.06 2021.07: Waterfox Web Browser
 www-client/waterfox-current 2020.10: Waterfox Web Browser
 www-client/waterfox-g3 1.1: Waterfox Web Browser
 x11-apps/xinit 1.4.1 1.4.1-r1: X Window System initializer
