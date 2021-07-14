@@ -7,7 +7,7 @@ PYTHON_COMPAT=( python3_{7,8,9} )
 PYTHON_REQ_USE="threads(+),xml"
 
 # 14 and 15 spit out a lot of warnings about subdirs
-WANT_AUTOMAKE="1.13"
+#WANT_AUTOMAKE="1.13"
 
 inherit autotools linux-info python-single-r1 readme.gentoo-r1 udev poly-c_ebuilds
 

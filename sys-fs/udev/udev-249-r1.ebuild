@@ -1,6 +1,6 @@
 # Copyright 2003-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 0154e132439e13aec6b8cc74d5288160f502de88 $
+# $Id: 52595ad4a4e8943871defb7848a17623a320721f $
 
 EAPI=7
 PYTHON_COMPAT=( python3_{7..9} )
@@ -152,7 +152,7 @@ multilib_src_compile() {
 		src/libudev/libudev.pc
 	)
 	if use static-libs ; then
-		targets+=( src/udev/libudev.a )
+		targets+=( libudev.a )
 	fi
 	if multilib_is_native_abi ; then
 		targets+=(
@@ -183,7 +183,7 @@ multilib_src_install() {
 
 	dolib.so {${libudev},libudev.so.1,libudev.so}
 	gen_usr_ldscript -a udev
-	use static-libs && dolib.a src/udev/libudev.a
+	use static-libs && dolib.a libudev.a
 
 	insinto "/usr/$(get_libdir)/pkgconfig"
 	doins src/libudev/libudev.pc

@@ -18,7 +18,7 @@ app-editors/cooledit 3.17.19: Cooledit is a full featured multiple window text e
 app-laptop/dell-fan-mon 1.0 9999: Fan control for some Dell laptops
 app-laptop/i8kutils 1.43_pre: Dell Inspiron and Latitude utilities
 app-misc/kenny 0.1: command-line kennyfier
-app-misc/mc 4.8.26-r2: GNU Midnight Commander is a text based file manager
+app-misc/mc 4.8.26-r2 4.8.26-r3: GNU Midnight Commander is a text based file manager
 app-misc/osmo 0.4.2: Handy personal organizer
 app-shells/dash 0.5.10.2: Debian Almquist Shell
 app-shells/rssh 2.3.4: Restricted shell for SSHd
