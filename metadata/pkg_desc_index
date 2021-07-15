@@ -76,6 +76,7 @@ media-libs/libdvdcss 1.4.2-r1 1.4.3: A portable abstraction library for DVD decr
 media-libs/libshout-idjc 2.4.1 2.4.3: Libshout-idjc is libshout plus some extensions for IDJC
 media-libs/libsquish 1.15: DXT compression library
 media-libs/libwebp 1.2.0_pre: A lossy image compression format
+media-libs/mesa 21.1.5_pre: OpenGL-like graphic library for Linux
 media-libs/x264 0.0.20200810: A free library for encoding X264/AVC streams
 media-radio/liquidsoap 1.2.1: A swiss-army knife for multimedia streaming, notably used for netradios.
 media-sound/alsa-utils 1.2.2 1.2.3 1.2.4 1.2.5-r1 1.2.5.1: Advanced Linux Sound Architecture Utils (alsactl, alsamixer, etc.)

@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 617d48716de25bd41c3ef0988f6ba9203e31c52a $
+# $Id: 97a15d1bc0541e5b1eb75d0939069e330c004c5e $
 
 EAPI=8
 
@@ -96,6 +96,12 @@ src_compile() {
 }
 
 src_test() {
+	# Bug #759466
+	if ! has userpriv ${FEATURES} && [[ $(id -u) == 0 ]]; then
+		ewarn "You are emerging ${PN} as root with 'userpriv' disabled." \
+			"Expect some test failures, or emerge with 'FEATURES=userpriv'!"
+	fi
+
 	# CK_FORK=no to avoid using fork() in check library
 	# as mc mocks fork() itself: bug #644462.
 	#
