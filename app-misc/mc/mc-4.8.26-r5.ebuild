@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 97a15d1bc0541e5b1eb75d0939069e330c004c5e $
+# $Id: 9e443ca61fdd132a484699e520f764ff00b79629 $
 
 EAPI=8
 
@@ -25,7 +25,7 @@ RDEPEND=">=dev-libs/glib-2.26.0:2
 	samba? ( net-fs/samba )
 	sftp? ( net-libs/libssh2 )
 	slang? ( >=sys-libs/slang-2 )
-	!slang? ( sys-libs/ncurses:0=[unicode?] )
+	!slang? ( sys-libs/ncurses:=[unicode(+)?] )
 	spell? ( app-text/aspell )
 	X? ( x11-libs/libX11
 		x11-libs/libICE

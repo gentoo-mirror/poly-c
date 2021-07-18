@@ -1,6 +1,6 @@
 # Copyright 2003-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 51979da0f5c8913c79fc8f71ff145505d0fcabae $
+# $Id: 5fc08f3b74af65c1d5bc3cf05f026bfe9b358f6b $
 
 EAPI=7
 PYTHON_COMPAT=( python3_{7..9} )
@@ -49,6 +49,7 @@ BDEPEND="
 COMMON_DEPEND="
 	>=sys-apps/util-linux-2.30[${MULTILIB_USEDEP}]
 	sys-libs/libcap:0=[${MULTILIB_USEDEP}]
+	virtual/libcrypt:=[${MULTILIB_USEDEP}]
 	acl? ( sys-apps/acl )
 	kmod? ( >=sys-apps/kmod-15 )
 	selinux? ( >=sys-libs/libselinux-2.1.9 )
