@@ -158,7 +158,7 @@ sys-power/cpupower 4.19.195 4.19.196 4.19.197 5.4.130 5.4.131 5.4.132 5.10.48 5.
 sys-power/dell-bios-fan-control 9999: Simple tool to enable or disable the SMBIOS fan (auto) fan control on Dell
 sys-process/iotop 1.17: top utility for IO (C port)
 sys-process/numad 0.7.1: The NUMA daemon that manages application locality
-sys-process/procps 3.3.16-r2 3.3.16-r3 3.3.17: Standard informational utilities and process-handling tools
+sys-process/procps 3.3.17-r1: Standard informational utilities and process-handling tools
 www-apps/baikal 0.8.0: Lightweight CalDAV+CardDAV server
 www-client/waterfox-classic 2021.06 2021.07: Waterfox Web Browser
 www-client/waterfox-current 2020.10: Waterfox Web Browser
