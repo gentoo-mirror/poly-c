@@ -1,6 +1,6 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id: fbfae9e95d0e187bd5bb18bb923d9a58cdbdedde $
+# $Id: d628150b10fa76ceb8edda55612fab923f0b3f3e $
 
 # Remember: we cannot leverage autotools in this ebuild in order
 #           to avoid circular deps with autotools
@@ -28,7 +28,7 @@ HOMEPAGE="https://tukaani.org/xz/"
 # See top-level COPYING file as it outlines the various pieces and their licenses.
 LICENSE="public-domain LGPL-2.1+ GPL-2+"
 SLOT="0"
-IUSE="elibc_FreeBSD +extra-filters nls static-libs +threads"
+IUSE="elibc_FreeBSD +extra-filters nls static-libs"
 
 RDEPEND="!<app-arch/lzma-4.63
 	!<app-arch/p7zip-4.57
@@ -51,9 +51,9 @@ src_prepare() {
 multilib_src_configure() {
 	local myconf=(
 		--bindir=/bin
+		--enable-threads
 		$(multilib_is_native_abi && echo --libdir=/$(get_libdir))
 		$(use_enable nls)
-		$(use_enable threads)
 		$(use_enable static-libs static)
 	)
 	multilib_is_native_abi ||
