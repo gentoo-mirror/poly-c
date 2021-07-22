@@ -33,7 +33,7 @@ dev-java/java-config-wrapper 0.16: Wrapper for java-config
 dev-lang/openwatcom-v2 9999: Open Watcom compiler
 dev-libs/libcli 1.10.4: Cisco-style (telnet) command-line interface library
 dev-libs/olm 2.3.0 3.0.0 9999: An implementation of the Double Ratchet cryptographic ratchet in C++
-dev-libs/openssl 1.1.1i 1.1.1j 1.1.1k: full-strength general purpose cryptography library (including SSL and TLS)
+dev-libs/openssl 1.1.1i 1.1.1j 1.1.1k-r1: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/openssl-compat 1.0.2u 1.0.2u-r1: full-strength general purpose cryptography library (including SSL and TLS)
 dev-libs/xerces-c 3.2.3_pre: A validating XML parser written in a portable subset of C++
 dev-php/pecl-redis 5.2.1_pre: PHP extension for interfacing with Redis
