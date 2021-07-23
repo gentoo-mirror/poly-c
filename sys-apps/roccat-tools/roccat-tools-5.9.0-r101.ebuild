@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id: 1a5d2b88c0ab65debe5a0e29bb533d789e4ab7cc $
 
@@ -6,7 +6,7 @@ EAPI=7
 
 LUA_COMPAT=( lua5-1 luajit )
 
-inherit readme.gentoo-r1 cmake flag-o-matic lua-single toolchain-funcs udev user xdg
+inherit readme.gentoo-r1 cmake flag-o-matic lua-single toolchain-funcs udev xdg
 
 DESCRIPTION="Utility for advanced configuration of Roccat devices"
 
@@ -52,6 +52,7 @@ REQUIRED_USE="
 "
 
 RDEPEND="
+	acct-group/roccat
 	dev-libs/dbus-glib
 	dev-libs/glib:2
 	>=dev-libs/libgaminggear-0.15.1
@@ -87,8 +88,6 @@ pkg_setup() {
 	# to call even when no Lua implementations have been pulled in
 	# by dependencies.
 	lua-single_pkg_setup
-
-	enewgroup roccat
 
 	local model
 	for model in ${IUSE_INPUT_DEVICES[@]} ; do
